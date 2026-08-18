@@ -14,7 +14,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 007 | Establish the new project identity and scientific naming | PASS | 2026-08-18 |
 | 008 | Define the target monorepo architecture before moving code | PASS | 2026-08-18 |
 | 009 | Write Architecture Decision Records for high-risk design choices | PASS | 2026-08-18 |
-| 010 | Commit the untouched baseline audit and freeze the migration plan | PENDING | |
+| 010 | Commit the untouched baseline audit and freeze the migration plan | PASS | 2026-08-18 |
 | 011 | Transcribe the frozen research protocol into canonical repository files | PENDING | |
 | 012 | Define protocol and configuration schemas | PENDING | |
 | 013 | Implement evidence-stage types and claim guards | PENDING | |

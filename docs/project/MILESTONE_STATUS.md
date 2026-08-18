@@ -16,7 +16,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 009 | Write Architecture Decision Records for high-risk design choices | PASS | 2026-08-18 |
 | 010 | Commit the untouched baseline audit and freeze the migration plan | PASS | 2026-08-18 |
 | 011 | Transcribe the frozen research protocol into canonical repository files | PASS | 2026-08-18 |
-| 012 | Define protocol and configuration schemas | PENDING | |
+| 012 | Define protocol and configuration schemas | PASS | 2026-08-18 |
 | 013 | Implement evidence-stage types and claim guards | PENDING | |
 | 014 | Design the immutable experiment registry | PENDING | |
 | 015 | Implement deterministic file manifests and hashing | PENDING | |

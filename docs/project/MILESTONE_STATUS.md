@@ -7,7 +7,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 |---|---|---|---|
 | 001 | Create a genuinely new repository from the supplied source snapshot | PASS | 2026-08-18 |
 | 002 | Create an immutable baseline snapshot and repository inventory | PASS | 2026-08-18 |
-| 003 | Audit the legacy scientific behavior without accepting it as the new design | PENDING | |
+| 003 | Audit the legacy scientific behavior without accepting it as the new design | PASS | 2026-08-18 |
 | 004 | Audit the legacy backend implementation and identify unsafe coupling | PENDING | |
 | 005 | Audit the legacy frontend and public-data interaction model | PENDING | |
 | 006 | Reproduce the old project locally only as a baseline smoke test | PENDING | |

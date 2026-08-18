@@ -1,0 +1,34 @@
+file,line,symbol,value,category,disposition
+evo2-backend/main.py,269,threshold,-0.0009178519,decision_threshold,DEPRECATED - BRCA1-derived fixed cutoff; not the new decision rule
+evo2-backend/main.py,270,lof_std,0.0015140239,confidence_scale,DEPRECATED - BRCA1 LOF score std used as confidence denominator
+evo2-backend/main.py,271,func_std,0.0009016589,confidence_scale,DEPRECATED - BRCA1 FUNC/INT score std used as confidence denominator
+evo2-backend/main.py,274,prediction,"Likely pathogenic",binary_label,DEPRECATED - clinical-sounding binary output; banned from new default UI/API
+evo2-backend/main.py,277,prediction,"Likely benign",binary_label,DEPRECATED - clinical-sounding binary output; banned from new default UI/API
+evo2-backend/main.py,275,confidence,"min(1.0, abs(delta-threshold)/lof_std)",confidence_formula,DEPRECATED - distance-based heuristic; not a calibrated probability
+evo2-backend/main.py,278,confidence,"min(1.0, abs(delta-threshold)/func_std)",confidence_formula,DEPRECATED - distance-based heuristic; not a calibrated probability
+evo2-backend/main.py,57,model,Evo2('evo2_7b'),model_name,REVIEW - checkpoint identity must be re-established at Milestone 49/51
+evo2-backend/main.py,301,model,Evo2('evo2_7b'),model_name,REVIEW - same checkpoint ambiguity in serving class
+evo2-backend/main.py,54,WINDOW_SIZE,8192,window_length,REVIEW - intended 8192 but formula yields 8193 (see defect)
+evo2-backend/main.py,317,WINDOW_SIZE,8192,window_length,REVIEW - same intended window in endpoint path
+evo2-backend/main.py,228-229,window_formula,"start=max(0,pos-1-4096); end=pos-1+4096+1",window_formula,DEFECT - end-start==8193 for interior positions; must not be inherited
+evo2-backend/main.py,33,modal_app,"variant-analysis-evo2",deployment_identity,REPLACE - old Modal app name; new project needs unique app name
+evo2-backend/main.py,35,volume,"hf_cache",deployment_identity,REPLACE - old shared volume name; new project needs dedicated volume
+evo2-backend/main.py,235,ucsc_url,"https://api.genome.ucsc.edu/getData/sequence",live_network,REPLACE - per-request live UCSC fetch in inference path; frozen local FASTA required
+evo2-backend/main.py,61,brca1_xlsx,"/evo2/notebooks/brca1/41586_2018_461_MOESM3_ESM.xlsx",brca1_dataset,LEGACY - Findlay 2018 BRCA1 DMS dataset; threshold source
+evo2-backend/main.py,80,brca1_fasta,"/evo2/notebooks/brca1/GRCh37.p13_chr17.fna.gz",genome_assembly,LEGACY - GRCh37/hg19 chr17; new project is GRCh38-only
+evo2-backend/main.py,93,brca1_subset,"brca1_df.iloc[:500]",threshold_derivation_cohort,LEAKAGE - threshold derived on first-500 BRCA1 rows
+evo2-backend/main.py,138-140,optimal_threshold,"ROC Youden argmax on brca1_subset",threshold_selection,LEAKAGE - threshold selected on evaluation-overlapping labels
+evaluation/evaluate_modal_endpoint.py,35,DEFAULT_URL,"https://utkarshmer05--variant-analysis-evo2-evo2model-analyze-si-b52940.modal.run",endpoint_url,REPLACE - old deployment URL; must not be reused as final infra
+evaluation/evaluate_modal_endpoint.py,36,DEFAULT_XLSX,"evo2-backend/evo2/notebooks/brca1/41586_2018_461_MOESM3_ESM.xlsx",brca1_dataset,LEGACY - same BRCA1 DMS dataset as threshold source
+evaluation/evaluate_modal_endpoint.py,61,genome_default,"hg19",genome_assembly,LEGACY - evaluator sends hg19; new project is GRCh38-only
+evaluation/evaluate_modal_endpoint.py,144,y_pred,"'pathogenic' in pred_text.lower()",label_parsing,LEGACY - parses binary clinical-sounding text
+evaluation/evaluate_modal_endpoint.py,240,y_score,"-pred_df['delta_score']",score_orientation,LEGACY - current-label AUROC; not temporal
+evo2-frontend/src/app/page.tsx,142-145,loadBRCA1Example,"BRCA1",brca1_assumption,REVIEW - hard-coded BRCA1 example gene in UI
+evo2-frontend/src/env.js,client,NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL,z.string(),endpoint_config,REVIEW - browser-visible endpoint base URL; keep non-secret
+evo2-frontend/src/utils/genome-api.ts,69,ucsc_genomes,"https://api.genome.ucsc.edu/list/ucscGenomes",live_network,REVIEW - direct browser call to UCSC
+evo2-frontend/src/utils/genome-api.ts,141,gene_search,"https://clinicaltables.nlm.nih.gov/api/ncbi_genes/v3/search",live_network,REVIEW - direct browser call to NCBI
+evo2-frontend/src/utils/genome-api.ts,189,gene_details,"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",live_network,REVIEW - direct browser call to NCBI eutils
+evo2-frontend/src/utils/genome-api.ts,278-306,clinvar,"eutils esearch/esummary db=clinvar",live_network,REVIEW - direct browser ClinVar fetch
+evo2-frontend/src/components/variant-analysis.tsx,341,classification_confidence,"confidence*100 width bar",binary_label_ui,DEPRECATED - renders clinical confidence bar
+evo2-frontend/src/components/variant-comparison-modal.tsx,182-189,classification_confidence,"confidence*100 width bar",binary_label_ui,DEPRECATED - renders clinical confidence bar
+evo2-frontend/src/components/variant-comparison-modal.tsx,215-216,agreement_text,"Evo2 prediction agrees/differs with ClinVar",binary_label_ui,DEPRECATED - frames model output as clinical classification

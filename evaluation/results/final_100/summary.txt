@@ -1,0 +1,17 @@
+Modal Endpoint Evaluation Summary
+==================================
+endpoint_url: https://utkarshmer05--variant-analysis-evo2-evo2model-analyze-si-b52940.modal.run
+dataset: evo2-backend/evo2/notebooks/brca1/41586_2018_461_MOESM3_ESM.xlsx
+total_candidates: 100
+successful_calls: 100
+failed_calls: 0
+eval_wall_time_s: 270.16
+avg_latency_s: 2.7015
+median_latency_s: 2.5999
+p95_latency_s: 2.9770
+accuracy: 0.900000
+precision: 0.562500
+recall: 0.750000
+f1_score: 0.642857
+auroc_from_delta: 0.930871
+confusion_matrix_tn_fp_fn_tp: [[81, 7], [3, 9]]

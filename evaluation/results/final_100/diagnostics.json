@@ -1,0 +1,9 @@
+{
+  "total_candidates": 100,
+  "successful_calls": 100,
+  "failed_calls": 0,
+  "eval_wall_time_s": 270.1595928668976,
+  "fatal_error": null,
+  "status_counts": {},
+  "top_errors": []
+}

@@ -1,0 +1,24 @@
+{
+  "total_candidates": 100,
+  "successful_calls": 100,
+  "failed_calls": 0,
+  "eval_wall_time_s": 270.1595928668976,
+  "avg_latency_s": 2.7014977526664734,
+  "median_latency_s": 2.599901556968689,
+  "p95_latency_s": 2.9769674539566036,
+  "accuracy": 0.9,
+  "precision": 0.5625,
+  "recall": 0.75,
+  "f1_score": 0.6428571428571429,
+  "auroc_from_delta": 0.9308712121212122,
+  "confusion_matrix_tn_fp_fn_tp": [
+    [
+      81,
+      7
+    ],
+    [
+      3,
+      9
+    ]
+  ]
+}

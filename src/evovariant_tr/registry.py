@@ -20,8 +20,9 @@ import json
 import re
 import secrets
 import subprocess
-from datetime import datetime, timezone
-from enum import Enum
+from collections.abc import Sequence
+from datetime import UTC, datetime
+from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
@@ -38,7 +39,7 @@ class RegistryError(RuntimeError):
     """Raised for any registry policy violation."""
 
 
-class RunStatus(str, Enum):
+class RunStatus(StrEnum):
     REGISTERED = "REGISTERED"
     RUNNING = "RUNNING"
     COMPLETED = "COMPLETED"
@@ -52,13 +53,13 @@ TERMINAL_STATUSES = frozenset(
 
 
 def utc_now_iso(now: datetime | None = None) -> str:
-    moment = now or datetime.now(timezone.utc)
-    return moment.astimezone(timezone.utc).isoformat()
+    moment = now or datetime.now(UTC)
+    return moment.astimezone(UTC).isoformat()
 
 
 def generate_run_id(now: datetime | None = None) -> str:
     """Deterministic-prefix run id: ``run_<UTC stamp>_<8 hex chars>``."""
-    stamp = (now or datetime.now(timezone.utc)).strftime("%Y%m%dT%H%M%SZ")
+    stamp = (now or datetime.now(UTC)).strftime("%Y%m%dT%H%M%SZ")
     return f"run_{stamp}_{secrets.token_hex(4)}"
 
 
@@ -95,7 +96,7 @@ def hash_file(path: str | Path) -> str:
     return digest.hexdigest()
 
 
-def compute_output_hashes(paths: list[str | Path], base_dir: str | Path) -> dict[str, str]:
+def compute_output_hashes(paths: Sequence[str | Path], base_dir: str | Path) -> dict[str, str]:
     """Map each path (relative to ``base_dir``) to its SHA-256 hex digest."""
     base = Path(base_dir)
     hashes: dict[str, str] = {}
@@ -293,7 +294,7 @@ class Registry:
         run_id: str,
         status: RunStatus,
         *,
-        output_paths: list[str] | None = None,
+        output_paths: Sequence[str] | None = None,
         outputs_base_dir: str | Path | None = None,
         reason: str | None = None,
         now: datetime | None = None,

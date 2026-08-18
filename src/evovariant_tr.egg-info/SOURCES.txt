@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/evovariant_tr/__init__.py
+src/evovariant_tr/cli.py
+src/evovariant_tr/config.py
+src/evovariant_tr/evidence.py
+src/evovariant_tr/manifest.py
+src/evovariant_tr/registry.py
+src/evovariant_tr.egg-info/PKG-INFO
+src/evovariant_tr.egg-info/SOURCES.txt
+src/evovariant_tr.egg-info/dependency_links.txt
+src/evovariant_tr.egg-info/entry_points.txt
+src/evovariant_tr.egg-info/requires.txt
+src/evovariant_tr.egg-info/top_level.txt

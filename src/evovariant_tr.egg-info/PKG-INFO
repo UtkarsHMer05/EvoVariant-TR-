@@ -1,0 +1,711 @@
+Metadata-Version: 2.4
+Name: evovariant-tr
+Version: 0.1.0
+Summary: EvoVariant-TR: temporal-generalization benchmark for frozen zero-shot Evo 2 allele-likelihood scoring of ClinVar VUS resolution
+Author: EvoVariant-TR contributors
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic<3,>=2.13
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: modal
+Requires-Dist: modal>=0.64; extra == "modal"
+Provides-Extra: plotting
+Requires-Dist: matplotlib>=3.9; extra == "plotting"
+Requires-Dist: seaborn>=0.13; extra == "plotting"
+Provides-Extra: comparators
+Requires-Dist: pandas>=2.2; extra == "comparators"
+Requires-Dist: numpy>=2.0; extra == "comparators"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: pytest-cov>=5.0; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+Requires-Dist: mypy>=1.11; extra == "dev"
+Requires-Dist: pyarrow>=17; extra == "dev"
+Requires-Dist: jsonschema>=4.23; extra == "dev"
+
+# Evo2 Variant Analysis
+
+A full-stack, end-to-end variant effect prediction platform powered by Evo2.
+
+This project lets you:
+
+- Explore human genome assemblies and chromosomes
+- Search genes (for example, BRCA1)
+- Inspect gene sequences at nucleotide resolution
+- Analyze single nucleotide variants (SNVs) with Evo2 on H100 GPU
+- Compare AI predictions with ClinVar classifications
+
+It combines:
+
+- Next.js frontend for interactive genome exploration
+- FastAPI backend deployed on Modal serverless GPUs
+- Evo2 large genomic language model for likelihood-based variant scoring
+- External genomic data services from UCSC and NCBI
+
+---
+
+## Table of Contents
+
+1. [What You Are Building](#what-you-are-building)
+2. [Science Foundations](#science-foundations)
+3. [System Architecture at a Glance](#system-architecture-at-a-glance)
+4. [Repository Map](#repository-map)
+5. [Frontend Architecture](#frontend-architecture)
+6. [Backend Architecture](#backend-architecture)
+7. [Sender and Receiver Flows](#sender-and-receiver-flows)
+8. [Evo2 Inference Internals](#evo2-inference-internals)
+9. [External APIs and Data Contracts](#external-apis-and-data-contracts)
+10. [Deployment Architecture](#deployment-architecture)
+11. [Zero-to-Hero Setup Guide](#zero-to-hero-setup-guide)
+12. [Verification Checklist](#verification-checklist)
+13. [Troubleshooting](#troubleshooting)
+14. [Performance and Scaling Notes](#performance-and-scaling-notes)
+15. [Responsible Use](#responsible-use)
+16. [Roadmap Ideas](#roadmap-ideas)
+17. [References](#references)
+
+---
+
+## What You Are Building
+
+This application answers one core question:
+
+"Given a specific single nucleotide change in a gene, does the mutation look likely benign or likely pathogenic?"
+
+At runtime, the system:
+
+1. Takes a user-selected genomic position and alternative base (A/T/G/C).
+2. Fetches a reference sequence window around the mutation.
+3. Scores both reference and mutated sequences with Evo2.
+4. Computes a delta likelihood score.
+5. Maps that score to a binary interpretation with a confidence estimate.
+6. Displays results alongside known ClinVar labels when available.
+
+---
+
+## Science Foundations
+
+### 1) DNA, Genes, and SNVs
+
+- DNA uses a 4-letter alphabet: A, T, G, C.
+- Genes are functional regions on chromosomes.
+- An SNV changes one nucleotide at one genomic position.
+
+Example:
+
+- Reference base at position = A
+- Variant base = G
+- Written as A>G
+
+### 2) Variant Effect Prediction
+
+Variant effect prediction estimates whether a variant likely disrupts biological function.
+
+- "Likely pathogenic" means the variant pattern resembles harmful variants more strongly.
+- "Likely benign" means the variant pattern resembles non-harmful variants more strongly.
+
+Important: this is a research/decision-support signal, not a standalone clinical diagnosis.
+
+### 3) Why a Language Model for DNA?
+
+Evo2 is a genomic language model. Like text LLMs learn token patterns, Evo2 learns nucleotide patterns.
+
+- A biologically plausible sequence tends to receive a relatively higher likelihood.
+- A disruptive mutation can reduce sequence likelihood in context.
+
+### 4) Core Scoring Logic Used Here
+
+The backend computes:
+
+$$
+\Delta = s_{variant} - s_{reference}
+$$
+
+Where:
+
+- $s_{reference}$ is Evo2 score for the unmodified sequence window
+- $s_{variant}$ is Evo2 score after substituting one nucleotide
+- More negative $\Delta$ indicates stronger loss-of-function tendency
+
+The app currently uses calibrated constants from BRCA1 benchmarking:
+
+- Threshold: $t = -0.0009178519$
+- LOF standard deviation: $\sigma_{lof} = 0.0015140239$
+- Benign/FUNC standard deviation: $\sigma_{func} = 0.0009016589$
+
+Decision rule:
+
+$$
+\mathrm{prediction} =
+\begin{cases}
+\mathrm{Likely\ pathogenic}, & \Delta < t \\
+\mathrm{Likely\ benign}, & \Delta \ge t
+\end{cases}
+$$
+
+Confidence rule:
+
+$$
+\mathrm{confidence} =
+\begin{cases}
+\min(1, \frac{|\Delta - t|}{\sigma_{lof}}), & \Delta < t \\
+\min(1, \frac{|\Delta - t|}{\sigma_{func}}), & \Delta \ge t
+\end{cases}
+$$
+
+---
+
+## System Architecture at a Glance
+
+```mermaid
+flowchart LR
+		U[User] --> FE[Next.js Frontend]
+		FE -->|Search genes| NCBI1[NCBI Clinical Tables API]
+		FE -->|Gene details / ClinVar| NCBI2[NCBI E-utilities APIs]
+		FE -->|Genome assemblies / sequences| UCSC[UCSC Genome API]
+		FE -->|POST variant request| BE[Modal FastAPI Endpoint]
+		BE -->|Fetch local sequence window| UCSC
+		BE --> EVO2[Evo2 Model on H100 GPU]
+		EVO2 --> BE
+		BE --> FE
+		FE --> U
+```
+
+### Core Runtime Components
+
+- Frontend app: gene discovery, sequence browsing, variant entry, comparison UI
+- Backend service: variant scoring endpoint and model lifecycle
+- Model layer: Evo2 sequence likelihood scoring
+- Data providers: UCSC + NCBI (gene metadata and known variants)
+
+---
+
+## Repository Map
+
+```text
+variant-analysis-evo2/
+├── README.md
+├── evo2-backend/
+│   ├── main.py                      # Modal app, FastAPI endpoint, variant scoring
+│   ├── requirements.txt
+│   ├── debug_*.py                   # flash-attn and runtime diagnostics
+│   ├── patched_attn_interface*.py   # patch outputs/prototypes
+│   ├── test_*.py                    # patch/import experiments
+│   └── evo2/                        # Evo2 source submodule
+│       ├── evo2/models.py           # model loading + high-level APIs
+│       ├── evo2/scoring.py          # tokenization/logprob/score pipeline
+│       └── evo2/configs/*.yml       # model architecture configs
+└── evo2-frontend/
+		├── src/app/page.tsx             # entry page and search/browse logic
+		├── src/components/*             # gene/variant UI modules
+		├── src/utils/genome-api.ts      # external API adapter layer
+		└── src/env.js                   # environment validation
+```
+
+---
+
+## Frontend Architecture
+
+### Stack
+
+- Next.js 15 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS + shadcn/ui
+- Zod + @t3-oss/env-nextjs for env validation
+
+### Main Frontend Responsibilities
+
+1. Genome and chromosome selection
+2. Gene search and selection
+3. Gene sequence visualization with positional interaction
+4. Variant submission to backend
+5. ClinVar listing and side-by-side comparison with Evo2
+
+### Primary Components
+
+- `src/app/page.tsx`
+	- Controls app mode (`search` or `browse`)
+	- Loads available genomes and chromosomes
+	- Renders gene result table and opens selected gene in `GeneViewer`
+
+- `src/components/gene-viewer.tsx`
+	- Orchestrates gene details, sequence loading, ClinVar loading
+	- Connects child components and shared state
+
+- `src/components/variant-analysis.tsx`
+	- Custom variant entry
+	- Calls backend endpoint and renders prediction/confidence
+	- Detects if current position overlaps known ClinVar SNV
+
+- `src/components/known-variants.tsx`
+	- Renders ClinVar variants in a table
+	- Triggers per-variant Evo2 analysis
+	- Opens comparison modal when results are available
+
+- `src/components/gene-sequence.tsx`
+	- Displays sequence window with slider and base coloring
+	- Click nucleotide to pre-fill variant position/reference
+
+- `src/components/variant-comparison-modal.tsx`
+	- ClinVar vs Evo2 side-by-side assessment
+
+### Frontend Component Diagram
+
+```mermaid
+flowchart TD
+		HP[HomePage] --> GV[GeneViewer]
+
+		GV --> VA[VariantAnalysis]
+		GV --> KV[KnownVariants]
+		GV --> GS[GeneSequence]
+		GV --> GI[GeneInformation]
+		GV --> VCM[VariantComparisonModal]
+
+		GS -->|onSequenceClick position/base| GV
+		GV -->|sequencePosition + referenceSequence| VA
+
+		KV -->|Analyze SNV| API[genome-api.ts]
+		VA -->|Analyze custom variant| API
+		HP -->|searchGenes/getGenomes/getChromosomes| API
+		GV -->|fetchGeneDetails/fetchSequence/fetchClinVar| API
+
+		API --> UCSC[UCSC APIs]
+		API --> NCBI[NCBI APIs]
+		API --> MODAL[Modal FastAPI URL]
+```
+
+### Frontend State and Interaction Highlights
+
+- Two entry modes:
+	- Search by symbol/name
+	- Browse by chromosome
+- Gene selection opens a focused analysis workspace (`GeneViewer`)
+- Sequence click drives a top-down variant-analysis workflow
+- Known variant row analysis enriches that row with `evo2Result`
+
+---
+
+## Backend Architecture
+
+### Stack
+
+- Modal serverless GPU runtime
+- FastAPI endpoint via `@modal.fastapi_endpoint`
+- Pydantic request model
+- Evo2 Python package from Arc Institute
+
+### Runtime Build Strategy
+
+`evo2-backend/main.py` builds a custom Modal image that:
+
+1. Starts from `nvidia/cuda:12.4.0-devel-ubuntu22.04` with Python 3.12.
+2. Installs PyTorch 2.4.0 CUDA 12.4 wheel.
+3. Clones and installs Evo2 with submodules.
+4. Replaces transformer-engine package with pinned compatible version.
+5. Installs flash-attn wheel.
+6. Applies an in-image patch to `vortex/ops/attn_interface.py` to stabilize return unpacking behavior.
+
+### Serving Model Lifecycle
+
+- `@app.cls(gpu="H100", max_containers=3, retries=2, scaledown_window=120)`
+- `@modal.enter()` loads `Evo2('evo2_7b')` once per warm container
+- Endpoint method handles request-level inference
+
+### Backend Inference Pipeline Diagram
+
+```mermaid
+flowchart TD
+		A[POST analyze_single_variant] --> B[Validate VariantRequest]
+		B --> C[get_genome_sequence from UCSC]
+		C --> D[Compute relative position in 8192bp window]
+		D --> E[Extract reference base]
+		E --> F[Construct variant sequence]
+		F --> G[score_sequences reference]
+		F --> H[score_sequences variant]
+		G --> I[Delta = variant - reference]
+		H --> I
+		I --> J[Apply threshold and confidence calibration]
+		J --> K[Return JSON response]
+```
+
+### API Contract
+
+#### Request
+
+```json
+{
+	"variant_position": 43119628,
+	"alternative": "G",
+	"genome": "hg38",
+	"chromosome": "chr17"
+}
+```
+
+#### Response
+
+```json
+{
+	"reference": "A",
+	"alternative": "G",
+	"delta_score": -0.001234,
+	"prediction": "Likely pathogenic",
+	"classification_confidence": 0.73,
+	"position": 43119628
+}
+```
+
+---
+
+## Sender and Receiver Flows
+
+This section explicitly maps who sends what to whom.
+
+### A) High-Level Sender/Receiver Table
+
+| Sender | Receiver | Message / Payload | Why it matters |
+|---|---|---|---|
+| User | HomePage | Search text or chromosome selection | Starts discovery flow |
+| HomePage | NCBI Clinical Tables | `terms` query | Finds genes |
+| HomePage | GeneViewer | Selected `GeneFromSearch` | Opens analysis context |
+| GeneViewer | NCBI E-utilities | `gene_id` lookup | Retrieves genomic bounds/details |
+| GeneViewer | UCSC | sequence query with start/end | Retrieves gene sequence window |
+| GeneViewer | NCBI ClinVar | region query | Loads known variants |
+| VariantAnalysis | Modal FastAPI | variant JSON payload | Runs Evo2 scoring |
+| KnownVariants | Modal FastAPI | SNV from ClinVar row | Batch-like row-level analysis |
+| Modal FastAPI | UCSC | centered 8192bp window query | Builds model input |
+| Modal FastAPI | Evo2 | reference + variant sequences | Produces scores and delta |
+| Backend | Frontend | prediction response JSON | UI rendering and comparison |
+
+### B) Sequence Diagram: Custom Variant Analysis
+
+```mermaid
+sequenceDiagram
+		participant U as User
+		participant GS as GeneSequence UI
+		participant VA as VariantAnalysis UI
+		participant FE as Frontend API Adapter
+		participant BE as Modal FastAPI
+		participant UCSC as UCSC Genome API
+		participant M as Evo2 Model
+
+		U->>GS: Click nucleotide at genomic position
+		GS->>VA: Send position + reference base
+		U->>VA: Enter alternative base (A/T/G/C) and submit
+		VA->>FE: analyzeVariantWithAPI(payload)
+		FE->>BE: POST / analyze_single_variant
+		BE->>UCSC: Request 8192bp centered window
+		UCSC-->>BE: Return DNA sequence
+		BE->>M: score(reference_sequence)
+		M-->>BE: reference_score
+		BE->>M: score(variant_sequence)
+		M-->>BE: variant_score
+		BE->>BE: delta + classification + confidence
+		BE-->>FE: JSON result
+		FE-->>VA: AnalysisResult
+		VA-->>U: Show prediction, delta, confidence
+```
+
+### C) Sequence Diagram: ClinVar Variant Comparison
+
+```mermaid
+sequenceDiagram
+		participant U as User
+		participant KV as KnownVariants UI
+		participant FE as Frontend API Adapter
+		participant BE as Modal FastAPI
+		participant VCM as Comparison Modal
+
+		U->>KV: Click Analyze with Evo2 on SNV row
+		KV->>KV: Parse position and ref>alt from title
+		KV->>FE: analyzeVariantWithAPI(row payload)
+		FE->>BE: POST variant request
+		BE-->>FE: Prediction result
+		FE-->>KV: evo2Result
+		KV->>VCM: Open comparison with ClinVar + Evo2
+		VCM-->>U: Show agreement/disagreement + confidence
+```
+
+---
+
+## Evo2 Inference Internals
+
+The Evo2 package under `evo2-backend/evo2/evo2` is the model core.
+
+### Model Variants (defined in `utils.py`)
+
+- `evo2_7b` (1M context)
+- `evo2_40b` (1M context)
+- `evo2_7b_base` (8k context)
+- `evo2_40b_base` (8k context)
+- `evo2_1b_base` (8k context)
+
+This project loads `evo2_7b` in production endpoint code.
+
+### Scoring Pipeline Inside Evo2
+
+```mermaid
+flowchart LR
+		S[Input DNA sequence list] --> T[CharLevelTokenizer]
+		T --> B[Batch tensor preparation + padding]
+		B --> F[StripedHyena forward pass]
+		F --> L[Logits per token]
+		L --> P[Log softmax and gather true-token probs]
+		P --> R[Reduce per sequence: mean or sum]
+		R --> O[Scalar score per sequence]
+```
+
+### Why Two Scores per Variant?
+
+For one SNV event, the backend scores:
+
+1. Original reference window
+2. Same window with exactly one nucleotide replaced
+
+The difference is the mutation effect signal used by this app.
+
+---
+
+## External APIs and Data Contracts
+
+### UCSC APIs
+
+| Purpose | Endpoint |
+|---|---|
+| List genome assemblies | `https://api.genome.ucsc.edu/list/ucscGenomes` |
+| List chromosomes by assembly | `https://api.genome.ucsc.edu/list/chromosomes?genome=<id>` |
+| Fetch DNA sequence range | `https://api.genome.ucsc.edu/getData/sequence?...` |
+
+### NCBI APIs
+
+| Purpose | Endpoint |
+|---|---|
+| Gene search | `https://clinicaltables.nlm.nih.gov/api/ncbi_genes/v3/search` |
+| Gene details | `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=gene...` |
+| ClinVar search and details | `esearch.fcgi` + `esummary.fcgi` on `db=clinvar` |
+
+### Internal Frontend API Adapter
+
+All external calls are centralized in:
+
+- `evo2-frontend/src/utils/genome-api.ts`
+
+This keeps UI components clean and gives a single place to evolve request/response parsing.
+
+---
+
+## Deployment Architecture
+
+```mermaid
+flowchart TD
+		DEV[Developer Machine]
+		FE[Next.js Frontend]
+		MODAL[Modal Cloud]
+		CTR[GPU Container H100]
+		VOL[Modal Volume: HF Cache]
+		UCSC[UCSC APIs]
+		NCBI[NCBI APIs]
+
+		DEV -->|npm run dev / build| FE
+		DEV -->|modal deploy main.py| MODAL
+		MODAL --> CTR
+		CTR <--> VOL
+
+		FE -->|Public internet requests| UCSC
+		FE -->|Public internet requests| NCBI
+		FE -->|POST variant analysis| CTR
+		CTR -->|Fetch centered sequence| UCSC
+```
+
+### Runtime Notes
+
+- Frontend directly calls UCSC and NCBI for browse/search metadata.
+- Frontend calls Modal endpoint for model inference.
+- Backend container caches model artifacts via mounted volume to reduce repeated downloads.
+
+---
+
+## Zero-to-Hero Setup Guide
+
+### 1) Prerequisites
+
+- Node.js 20+ and npm
+- Python 3.10+ on your local machine
+- Modal account + Modal CLI (`modal`)
+- Git with submodule support
+
+Note: backend cloud runtime itself uses Python 3.12 in the Modal image.
+
+### 2) Clone
+
+```bash
+git clone --recurse-submodules https://github.com/Andreaswt/variant-analysis-evo2.git
+cd variant-analysis-evo2
+```
+
+### 3) Backend Setup and Deploy
+
+```bash
+cd evo2-backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+modal setup
+modal run main.py
+modal deploy main.py
+```
+
+After deploy, copy the generated FastAPI web URL.
+
+### 4) Frontend Setup
+
+Create `evo2-frontend/.env.local`:
+
+```bash
+NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL=<your-modal-fastapi-url>
+```
+
+Then run:
+
+```bash
+cd ../evo2-frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+### 5) Suggested First Run
+
+1. Keep default genome: `hg38`
+2. Click "Try BRCA1 example"
+3. Select BRCA1 row
+4. Click a nucleotide in sequence or analyze a known ClinVar SNV
+5. Inspect prediction, delta score, confidence, and ClinVar comparison
+
+---
+
+## Verification Checklist
+
+Use this checklist after setup:
+
+- Genome assemblies load in UI
+- Chromosomes load after selecting assembly
+- Search returns genes (for example BRCA1)
+- Gene details and sequence render
+- Known variants load in ClinVar table
+- "Analyze variant" returns prediction and confidence
+- "Compare results" modal opens for analyzed known variants
+
+---
+
+## Troubleshooting
+
+### 1) Frontend env validation fails
+
+Cause:
+
+- Missing `NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL`
+
+Fix:
+
+- Add the env var to `.env.local`
+- Restart `npm run dev`
+
+### 2) Modal auth or deployment issues
+
+Cause:
+
+- `modal setup` not completed
+- wrong account/workspace
+
+Fix:
+
+- Re-run `modal setup`
+- Verify project appears in Modal dashboard
+
+### 3) Flash-attn or attention interface mismatch
+
+Cause:
+
+- return-value signature differences between installed CUDA/flash-attn/transformer-engine combinations
+
+Fix implemented in this repo:
+
+- The Modal image applies an in-place patch to `vortex/ops/attn_interface.py`
+- Debug/patch helper scripts in `evo2-backend/` document the patch journey:
+	- `debug_flash_attn.py`, `debug_flash_attn2.py`, `debug_returns.py`
+	- `download_file.py`, `parse.py`
+	- `patched_attn_interface.py`, `patched_attn_interface2.py`, `patched_attn_interface3.py`
+	- `test_patch.py`, `test_bypass.py`, `test_import.py`, `test_clone.py`
+
+### 4) No ClinVar variants shown
+
+Possible reasons:
+
+- No records in the selected region
+- temporary upstream API limits or failures
+
+Fix:
+
+- Try a different gene
+- click refresh in known variants panel
+
+### 5) Invalid variant input
+
+Rules in UI:
+
+- Position must be numeric
+- Alternative nucleotide must be one of `A`, `T`, `G`, `C`
+
+---
+
+## Performance and Scaling Notes
+
+- Backend container settings:
+	- GPU: H100
+	- `max_containers=3`
+	- `retries=2`
+	- `scaledown_window=120`
+- Inference does two model evaluations per request (reference + variant).
+- Sequence window length is fixed to 8192 bp in current endpoint logic.
+- HuggingFace cache volume helps reduce cold-start download overhead.
+
+Possible optimizations:
+
+1. Add request-level cache for repeated variants
+2. Batch row-level variant analyses
+3. Add lightweight queueing/backpressure for burst traffic
+4. Persist anonymized telemetry for latency/error dashboards
+
+---
+
+## Responsible Use
+
+- This tool is for research, education, and decision support.
+- Output should not be treated as a standalone clinical diagnosis.
+- Always validate with domain experts, orthogonal evidence, and clinical guidelines.
+
+---
+
+## Roadmap Ideas
+
+1. Multi-nucleotide variants and indels
+2. Bulk VCF upload and asynchronous batch scoring
+3. More calibration datasets beyond BRCA1
+4. Per-gene thresholds and uncertainty calibration
+5. User auth, job history, and exportable reports
+6. Monitoring dashboard for model performance drift
+
+---
+
+## References
+
+- Evo2 paper: https://www.biorxiv.org/content/10.1101/2025.02.18.638918v1
+- Evo2 repository: https://github.com/ArcInstitute/evo2
+- UCSC Genome Browser API: https://api.genome.ucsc.edu
+- NCBI E-utilities: https://www.ncbi.nlm.nih.gov/books/NBK25501/
+- ClinVar: https://www.ncbi.nlm.nih.gov/clinvar/
+
+---
+
+If you want, a follow-up can add an additional architecture appendix with per-file call graphs and expanded C4 Level 3 diagrams for each module.

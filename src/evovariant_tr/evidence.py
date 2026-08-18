@@ -16,8 +16,8 @@ from __future__ import annotations
 import csv
 import io
 import json
-from datetime import datetime, timezone
-from enum import Enum
+from datetime import UTC, datetime
+from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
@@ -36,7 +36,7 @@ class FinalPathWriteError(EvidenceStageError):
     """Raised when a non-final output targets a final-results path."""
 
 
-class EvidenceStage(str, Enum):
+class EvidenceStage(StrEnum):
     """Evidence maturity of a run or result.
 
     Serialization label is the enum value itself (e.g. ``"SYNTHETIC_TEST"``).
@@ -246,7 +246,7 @@ def promote(
         from_stage=record.evidence_stage,
         to_stage=target,
         reason=reason.strip(),
-        promoted_at=datetime.now(timezone.utc).isoformat(),
+        promoted_at=datetime.now(UTC).isoformat(),
     )
     if log is not None:
         log.append(event)

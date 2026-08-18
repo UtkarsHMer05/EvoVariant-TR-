@@ -12,7 +12,7 @@ import hashlib
 import json
 import subprocess
 import sys
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 import pytest
@@ -37,7 +37,7 @@ from evovariant_tr.manifest import (
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 VERIFY_CLI = REPO_ROOT / "scripts" / "verify_manifest.py"
-FIXED_TIME = datetime(2026, 8, 18, 12, 0, 0, tzinfo=timezone.utc)
+FIXED_TIME = datetime(2026, 8, 18, 12, 0, 0, tzinfo=UTC)
 
 
 def flip_one_bit(path: Path) -> None:
@@ -247,7 +247,10 @@ def test_clean_manifest_verifies(asset_tree: Path) -> None:
 def test_one_bit_corruption_fails_verification(asset_tree: Path) -> None:
     target = asset_tree / "clinvar_t0.txt"
     manifest = build_manifest(
-        "corruptible", asset_tree, [build_entry("clinvar_t0.txt", asset_tree)], created_at=FIXED_TIME
+        "corruptible",
+        asset_tree,
+        [build_entry("clinvar_t0.txt", asset_tree)],
+        created_at=FIXED_TIME,
     )
     flip_one_bit(target)
     failures = verify_manifest(manifest, asset_tree)

@@ -75,7 +75,10 @@ def test_qa_checkpoint_counts_match_validation_target(protocol: ProtocolConfig) 
     assert qa.gene_labels == 389
     assert qa.reference_mismatch_among_final_candidates == 0
     # Internal consistency: the funnel must add up.
-    assert qa.absent_at_t1 + qa.not_definitive_at_t1 + qa.below_two_stars + qa.final_temporal_n == qa.t0_unique_vus
+    resolved_funnel = (
+        qa.absent_at_t1 + qa.not_definitive_at_t1 + qa.below_two_stars + qa.final_temporal_n
+    )
+    assert resolved_funnel == qa.t0_unique_vus
     assert qa.n_blb + qa.n_plp == qa.final_temporal_n
 
 

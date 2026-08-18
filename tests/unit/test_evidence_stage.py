@@ -72,7 +72,8 @@ def test_every_stage_has_a_ui_safe_description() -> None:
     for stage in ALL_STAGES:
         description = stage.ui_description
         assert isinstance(description, str) and len(description) > 10
-        assert stage.value in description or stage.value.replace("_", " ").lower() in description.lower()
+        lowered = description.lower()
+        assert stage.value in description or stage.value.replace("_", " ").lower() in lowered
 
 
 def test_only_final_is_citable() -> None:

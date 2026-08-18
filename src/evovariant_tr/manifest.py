@@ -19,10 +19,9 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
-from datetime import date, datetime, timezone
-from enum import Enum
+from datetime import UTC, date, datetime
+from enum import StrEnum
 from pathlib import Path
-from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from pydantic import BaseModel, ConfigDict, field_validator
@@ -53,7 +52,7 @@ class ManifestError(RuntimeError):
     """Raised for manifest policy violations."""
 
 
-class CompressionType(str, Enum):
+class CompressionType(StrEnum):
     NONE = "none"
     GZIP = "gzip"
     ZIP = "zip"
@@ -146,8 +145,10 @@ class ManifestEntry(BaseModel):
     @field_validator("sha256", "uncompressed_sha256")
     @classmethod
     def _sha256_shape(cls, value: str | None) -> str | None:
-        if value is not None and not (len(value) == 64 and all(c in "0123456789abcdef" for c in value)):
-            raise ValueError("sha256 must be a 64-char lowercase hex string")
+        if value is not None:
+            valid = len(value) == 64 and all(c in "0123456789abcdef" for c in value)
+            if not valid:
+                raise ValueError("sha256 must be a 64-char lowercase hex string")
         return value
 
     @field_validator("path")
@@ -209,7 +210,7 @@ def build_entry(
         source_url=sanitize_source_url(source_url) if source_url else None,
         release_date=release_date,
         retrieved_at=(
-            retrieved_at.astimezone(timezone.utc).isoformat() if retrieved_at else None
+            retrieved_at.astimezone(UTC).isoformat() if retrieved_at else None
         ),
         description=description,
     )
@@ -230,8 +231,8 @@ def build_manifest(
     return Manifest(
         manifest_version=MANIFEST_VERSION,
         name=name,
-        created_at=(created_at or datetime.now(timezone.utc))
-        .astimezone(timezone.utc)
+        created_at=(created_at or datetime.now(UTC))
+        .astimezone(UTC)
         .isoformat(),
         entries=ordered,
     )

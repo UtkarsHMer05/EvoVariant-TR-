@@ -29,12 +29,12 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 022 | Implement official ClinVar archive discovery without guessing URLs | PASS | 2026-08-19 |
 | 023 | Download and verify the 2 January 2025 ClinVar archive | PASS | 2026-08-19 |
 | 024 | Download and verify the 6 August 2026 ClinVar archive | PASS | 2026-08-19 |
-| 025 | Build a version-aware ClinVar variant_summary parser | PENDING | |
-| 026 | Implement germline classification normalization | PENDING | |
-| 027 | Implement ClinVar review-status to star normalization | PENDING | |
-| 028 | Implement chromosome, coordinate, allele, and variant-type normalization | PENDING | |
-| 029 | Implement deterministic primary eligibility filters | PENDING | |
-| 030 | Implement deterministic t0-to-t1 temporal joining | PENDING | |
+| 025 | Build a version-aware ClinVar variant_summary parser | PASS | 2026-08-19 |
+| 026 | Implement germline classification normalization | PASS | 2026-08-19 |
+| 027 | Implement ClinVar review-status to star normalization | PASS | 2026-08-19 |
+| 028 | Implement chromosome, coordinate, allele, and variant-type normalization | PASS | 2026-08-19 |
+| 029 | Implement deterministic primary eligibility filters | PASS | 2026-08-19 |
+| 030 | Implement deterministic t0-to-t1 temporal joining | PASS | 2026-08-19 |
 | 031 | Select, acquire, and freeze the exact GRCh38 reference source | PENDING | |
 | 032 | Implement indexed local FASTA access | PENDING | |
 | 033 | Create exhaustive coordinate-convention tests | PENDING | |

@@ -10,7 +10,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 003 | Audit the legacy scientific behavior without accepting it as the new design | PASS | 2026-08-18 |
 | 004 | Audit the legacy backend implementation and identify unsafe coupling | PASS | 2026-08-18 |
 | 005 | Audit the legacy frontend and public-data interaction model | PASS | 2026-08-18 |
-| 006 | Reproduce the old project locally only as a baseline smoke test | PENDING | |
+| 006 | Reproduce the old project locally only as a baseline smoke test | PASS | 2026-08-18 |
 | 007 | Establish the new project identity and scientific naming | PENDING | |
 | 008 | Define the target monorepo architecture before moving code | PENDING | |
 | 009 | Write Architecture Decision Records for high-risk design choices | PENDING | |

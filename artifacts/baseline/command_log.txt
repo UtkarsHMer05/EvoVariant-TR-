@@ -1,0 +1,74 @@
+# Milestone 6 — Baseline smoke test command log
+# Date: 2026-08-18
+# Purpose: reproduce the OLD project locally as a baseline smoke test only.
+# Constraints honored: no scientific behavior repaired; no paid Modal GPU work;
+#   no old result promoted to research evidence.
+
+## Environment
+# python3 -> /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 (3.12.8)
+# node v20.20.2, npm 10.8.2
+# git 2.49.0
+
+## 1. Python syntax/compile smoke (no GPU, no imports of heavy deps)
+$ python3 -m compileall evo2-backend evaluation
+# -> compiled all .py files; exit 0 (PASS)
+$ python3 -m compileall -f -q evo2-backend evaluation
+# -> exit 0 (PASS)
+
+## 2. Local availability of backend/evaluator dependencies (system python3)
+$ python3 -c "import modal"        # ModuleNotFoundError: No module named 'modal'
+$ python3 -c "import pydantic"     # (present)
+$ python3 -c "import pandas"       # OK
+$ python3 -c "import numpy"        # OK
+$ python3 -c "import matplotlib"   # OK
+$ python3 -c "import seaborn"      # ModuleNotFoundError: No module named 'seaborn'
+$ python3 -c "import requests"     # OK
+$ python3 -c "import openpyxl"     # ModuleNotFoundError: No module named 'openpyxl'
+$ python3 -c "import fastapi"      # ModuleNotFoundError: No module named 'fastapi'
+$ python3 -c "import sklearn"      # ModuleNotFoundError: No module named 'sklearn'
+# Conclusion: system python3 lacks modal/seaborn/openpyxl/fastapi/sklearn.
+#   modal is GPU/cloud-only (not expected locally). The rest are CPU deps.
+
+## 3. Disposable CPU venv for evaluator static behavior (no endpoint calls)
+$ python3.12 -m venv .venv-baseline
+$ . .venv-baseline/bin/activate
+$ python -m pip install -U pip
+$ python -m pip install pandas numpy matplotlib seaborn scikit-learn openpyxl requests
+$ python -c "import pandas,numpy,matplotlib,seaborn,sklearn,openpyxl,requests"
+# -> ALL_EVAL_DEPS_IMPORT_OK
+
+## 4. Evaluator static behavior (import + pure functions; NO endpoint, NO GPU)
+# Harness note: first import attempt failed with AttributeError inside dataclasses
+#   because the dynamically loaded module was not registered in sys.modules. This is
+#   a test-harness artifact, NOT an evaluator bug. Fixed by registering the module
+#   in sys.modules before exec_module. Re-run results below.
+$ python - <<'EOF'  (see BASELINE_SMOKE_TEST.md for the script)
+# IMPORT_OK
+# METRICS_OK accuracy=0.8000 auroc=1.0000   (synthetic 5-row frame)
+# REPETITION_OK                              (two runs agree)
+# DIAGNOSTICS_OK {'500': 1}                  (failure preserved in diagnostics)
+# INVALID_INPUT_RAISES_OK: No successful calls, cannot compute metrics.
+# MISSING_XLSX_RAISES_OK                     (FileNotFoundError on bad path)
+
+## 5. Frontend install + typecheck (re-verified from Milestone 5)
+$ cd evo2-frontend && npm ci
+# -> success (external call: npm public registry; free)
+$ cd evo2-frontend && npm run typecheck
+# -> tsc --noEmit; exit 0 (PASS)
+
+## 6. Frontend build — as-is (no env override)
+$ cd evo2-frontend && npm run build
+# -> FAIL (environment-related): zod env validation rejects missing
+#    NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL ("Required").
+#    "Failed to load next.config.js" / "Build error occurred: Invalid environment variables"
+
+## 7. Frontend build — with placeholder env (no endpoint contacted during build)
+$ NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL="http://localhost:0-placeholder-not-a-real-endpoint" npm run build
+# -> FAIL (code-related): ESLint stage "Failed to compile."
+#    158 Error/Warning lines, dominated by @typescript-eslint/no-unsafe-* in
+#    src/utils/genome-api.ts (unsafe member access/assignment/call on `any`),
+#    plus prefer-nullish-coalescing and one no-unused-vars warning.
+
+## 8. Paid/GPU work
+# NONE. No Modal invocation, no GPU, no endpoint call, no cost incurred.
+# The old deployed endpoint was NOT contacted.

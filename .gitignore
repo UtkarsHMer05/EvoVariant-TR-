@@ -22,6 +22,11 @@ __pycache__/
 *.pyo
 *.pyd
 
+# Python virtual environments (global)
+.venv/
+.venv-*/
+venv/
+
 # Editor directories and files
 .vscode/*
 !.vscode/settings.json

@@ -18,7 +18,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 011 | Transcribe the frozen research protocol into canonical repository files | PASS | 2026-08-18 |
 | 012 | Define protocol and configuration schemas | PASS | 2026-08-18 |
 | 013 | Implement evidence-stage types and claim guards | PASS | 2026-08-18 |
-| 014 | Design the immutable experiment registry | PENDING | |
+| 014 | Design the immutable experiment registry | PASS | 2026-08-18 |
 | 015 | Implement deterministic file manifests and hashing | PENDING | |
 | 016 | Create the modern Python project scaffold | PENDING | |
 | 017 | Create the test taxonomy and minimum quality gates | PENDING | |

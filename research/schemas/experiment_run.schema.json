@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evovariant-tr.local/schemas/experiment_run.schema.json",
+  "title": "EvoVariant-TR experiment run record",
+  "description": "One immutable, append-only run record. Every scientific run must be identifiable and reproducible from this metadata alone.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "title",
+    "evidence_stage",
+    "status",
+    "protocol_hash",
+    "git_commit",
+    "git_dirty",
+    "data_manifests",
+    "reference_checksum",
+    "model_identity",
+    "scorer_config",
+    "comparator_versions",
+    "seed",
+    "hardware",
+    "command",
+    "created_at",
+    "updated_at",
+    "parent_run_id",
+    "output_paths",
+    "output_hashes"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[0-9]{8}T[0-9]{6}Z_[0-9a-f]{8}$"
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "evidence_stage": {
+      "enum": [
+        "SYNTHETIC_TEST",
+        "LEGACY_BASELINE",
+        "ENGINEERING_PILOT",
+        "PRELIMINARY",
+        "FINAL"
+      ]
+    },
+    "status": {
+      "enum": ["REGISTERED", "RUNNING", "COMPLETED", "FAILED", "ABORTED"]
+    },
+    "protocol_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "git_commit": { "type": ["string", "null"] },
+    "git_dirty": { "type": "boolean" },
+    "data_manifests": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "reference_checksum": { "type": ["string", "null"] },
+    "model_identity": { "type": ["string", "null"] },
+    "scorer_config": { "type": "object" },
+    "comparator_versions": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "seed": { "type": ["integer", "null"] },
+    "hardware": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "command": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "parent_run_id": { "type": ["string", "null"] },
+    "output_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "output_hashes": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    }
+  }
+}

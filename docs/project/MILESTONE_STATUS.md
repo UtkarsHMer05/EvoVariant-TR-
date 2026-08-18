@@ -35,8 +35,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 028 | Implement chromosome, coordinate, allele, and variant-type normalization | PASS | 2026-08-19 |
 | 029 | Implement deterministic primary eligibility filters | PASS | 2026-08-19 |
 | 030 | Implement deterministic t0-to-t1 temporal joining | PASS | 2026-08-19 |
-| 031 | Select, acquire, and freeze the exact GRCh38 reference source | PENDING | |
-| 032 | Implement indexed local FASTA access | PENDING | |
+| 031 | Select, acquire, and freeze the exact GRCh38 reference source | PASS | 2026-08-19 |
+| 032 | Implement indexed local FASTA access | PASS | 2026-08-19 |
 | 033 | Create exhaustive coordinate-convention tests | PENDING | |
 | 034 | Run reference-allele validation over candidate temporal variants | PENDING | |
 | 035 | Finalize duplicate-resolution policy and audit | PENDING | |

@@ -12,7 +12,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 005 | Audit the legacy frontend and public-data interaction model | PASS | 2026-08-18 |
 | 006 | Reproduce the old project locally only as a baseline smoke test | PASS | 2026-08-18 |
 | 007 | Establish the new project identity and scientific naming | PASS | 2026-08-18 |
-| 008 | Define the target monorepo architecture before moving code | PENDING | |
+| 008 | Define the target monorepo architecture before moving code | PASS | 2026-08-18 |
 | 009 | Write Architecture Decision Records for high-risk design choices | PENDING | |
 | 010 | Commit the untouched baseline audit and freeze the migration plan | PENDING | |
 | 011 | Transcribe the frozen research protocol into canonical repository files | PENDING | |

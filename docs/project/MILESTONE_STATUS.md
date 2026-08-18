@@ -19,7 +19,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 012 | Define protocol and configuration schemas | PASS | 2026-08-18 |
 | 013 | Implement evidence-stage types and claim guards | PASS | 2026-08-18 |
 | 014 | Design the immutable experiment registry | PASS | 2026-08-18 |
-| 015 | Implement deterministic file manifests and hashing | PENDING | |
+| 015 | Implement deterministic file manifests and hashing | PASS | 2026-08-18 |
 | 016 | Create the modern Python project scaffold | PENDING | |
 | 017 | Create the test taxonomy and minimum quality gates | PENDING | |
 | 018 | Create frontend migration scaffold under apps/web | PENDING | |

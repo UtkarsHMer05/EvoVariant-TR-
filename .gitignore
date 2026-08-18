@@ -35,13 +35,19 @@ venv/
 !.vscode/extensions.json
 *.sublime-workspace
 
-# Frontend (evo2-frontend - Next.js)
-evo2-frontend/node_modules/
-evo2-frontend/.next/
-evo2-frontend/out/
-evo2-frontend/.env*.local
-evo2-frontend/*.tsbuildinfo
-evo2-frontend/next-env.d.ts
+# Python coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Frontend (apps/web - Next.js, moved from evo2-frontend at M18)
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+apps/web/.env*.local
+apps/web/*.tsbuildinfo
+apps/web/next-env.d.ts
 
 # Backend (evo2-backend - Python/Modal)
 evo2-backend/evo2/

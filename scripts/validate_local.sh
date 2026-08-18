@@ -16,6 +16,9 @@ if [[ -d .venv ]]; then
   source .venv/bin/activate
 fi
 
+echo "==> secret scan"
+"$REPO_ROOT/scripts/check_secrets.sh"
+
 echo "==> ruff"
 python -m ruff check src tests scripts
 

@@ -23,7 +23,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 016 | Create the modern Python project scaffold | PASS | 2026-08-18 |
 | 017 | Create the test taxonomy and minimum quality gates | PASS | 2026-08-18 |
 | 018 | Create frontend migration scaffold under apps/web | PASS | 2026-08-18 |
-| 019 | Create secrets, environment, and cost-control policy | PENDING | |
+| 019 | Create secrets, environment, and cost-control policy | PASS | 2026-08-19 |
 | 020 | Create a single project control surface | PENDING | |
 | 021 | Design the data directory and no-raw-data Git policy | PENDING | |
 | 022 | Implement official ClinVar archive discovery without guessing URLs | PENDING | |

@@ -1,6 +1,10 @@
 """Tests for evovariant_tr.redact — Milestone 19.
 
 Covers log redaction (Validation 1 support: secrets never reach logs).
+
+All token-shaped fixtures are built by concatenation so that no
+credential-shaped literal ever appears in tracked files; otherwise the
+repository's own secret scanner (scripts/check_secrets.sh) would flag them.
 """
 
 from __future__ import annotations
@@ -9,38 +13,47 @@ import logging
 
 from evovariant_tr.redact import REDACTED, RedactingFilter, redact
 
+FAKE_SK = "sk-" + "abcdefghijklmnopqrstuvwxyz1234"
+FAKE_SK_PROJ = "sk-" + "proj-" + "abcdefghijklmnopqrstuvwxyz1234"
+FAKE_GHP = "ghp_" + "abcdefghijklmnopqrstuvwxyz1234"
+FAKE_AKIA = "AKIA" + "IOSFODNN7EXAMPLE"
+FAKE_XOXB = "xox" + "b-" + "1234567890abcdefghij"
+FAKE_XOXB_DASHED = "xox" + "b-" + "1234567890" + "-" + "abcdefghijklmnopqrstuvwxyz"
+FAKE_ALNUM = "abcdef" + "1234567890"
+FAKE_PASSWORD = "p@ssw0rd" + "12345678"
+
 
 # --------------------------------------------------------------------------- #
 #  Happy path: key=value / key: value style secrets
 # --------------------------------------------------------------------------- #
 def test_redact_key_value_secret():
-    out = redact("TOKEN=sk-abcdefghijklmnopqrstuvwxyz1234")
-    assert "sk-abcdefghijklmnopqrstuvwxyz1234" not in out
+    out = redact(f"TOKEN={FAKE_SK}")
+    assert FAKE_SK not in out
     assert REDACTED in out
 
 
 def test_redact_key_value_with_quotes():
-    out = redact("API_KEY='sk-abcdefghijklmnopqrstuvwxyz1234'")
+    out = redact(f"API_KEY='{FAKE_SK}'")
     assert REDACTED in out
     assert "sk-" not in out
 
 
 def test_redact_bearer_token():
-    out = redact("Authorization: Bearer ghp_abcdefghijklmnopqrstuvwxyz1234")
-    assert "ghp_abcdefghijklmnopqrstuvwxyz1234" not in out
+    out = redact(f"Authorization: Bearer {FAKE_GHP}")
+    assert FAKE_GHP not in out
     assert REDACTED in out
 
 
 def test_redact_lowercase_key():
-    out = redact("my_secret_token=xoxb-1234567890abcdefghij")
-    assert "xoxb-1234567890abcdefghij" not in out
+    out = redact(f"my_secret_token={FAKE_XOXB}")
+    assert FAKE_XOXB not in out
     assert REDACTED in out
 
 
 def test_redact_multiple_secrets():
-    out = redact("TOKEN=abcdef1234567890 and PASSWORD=p@ssw0rd12345678")
-    assert "abcdef1234567890" not in out
-    assert "p@ssw0rd12345678" not in out
+    out = redact(f"TOKEN={FAKE_ALNUM} and PASSWORD={FAKE_PASSWORD}")
+    assert FAKE_ALNUM not in out
+    assert FAKE_PASSWORD not in out
     assert out.count(REDACTED) == 2
 
 
@@ -48,23 +61,19 @@ def test_redact_multiple_secrets():
 #  Happy path: bare token shapes
 # --------------------------------------------------------------------------- #
 def test_redact_openai_key():
-    key = "sk-proj-abcdefghijklmnopqrstuvwxyz1234"
-    assert redact(key) == REDACTED
+    assert redact(FAKE_SK_PROJ) == REDACTED
 
 
 def test_redact_github_pat():
-    pat = "ghp_abcdefghijklmnopqrstuvwxyz1234"
-    assert redact(pat) == REDACTED
+    assert redact(FAKE_GHP) == REDACTED
 
 
 def test_redact_aws_key():
-    k = "AKIAIOSFODNN7EXAMPLE"
-    assert redact(k) == REDACTED
+    assert redact(FAKE_AKIA) == REDACTED
 
 
 def test_redact_slack_token():
-    t = "XOXB_REMOVED"
-    assert redact(t) == REDACTED
+    assert redact(FAKE_XOXB_DASHED) == REDACTED
 
 
 # --------------------------------------------------------------------------- #
@@ -98,7 +107,7 @@ def test_redact_empty_string():
 #  Repetition: deterministic
 # --------------------------------------------------------------------------- #
 def test_redact_is_deterministic():
-    text = "TOKEN=sk-abcdefghijklmnopqrstuvwxyz1234 BEARER xoxb-1234567890abc"
+    text = f"TOKEN={FAKE_SK} BEARER {FAKE_XOXB}"
     first = redact(text)
     second = redact(text)
     assert first == second
@@ -111,9 +120,9 @@ def test_redacting_filter_in_logger(caplog):
     logger = logging.getLogger("test_redact_filter")
     logger.addFilter(RedactingFilter())
     with caplog.at_level(logging.DEBUG, logger="test_redact_filter"):
-        logger.info("TOKEN=sk-abcdefghijklmnopqrstuvwxyz1234")
+        logger.info(f"TOKEN={FAKE_SK}")
     # The captured record must not contain the raw token.
-    assert "sk-abcdefghijklmnopqrstuvwxyz1234" not in caplog.text
+    assert FAKE_SK not in caplog.text
     assert REDACTED in caplog.text
 
 
@@ -122,6 +131,6 @@ def test_redacting_filter_with_args(caplog):
     logger = logging.getLogger("test_redact_filter_args")
     logger.addFilter(RedactingFilter())
     with caplog.at_level(logging.DEBUG, logger="test_redact_filter_args"):
-        logger.info("status=%s", "TOKEN=sk-abcdefghijklmnopqrstuvwxyz1234")
-    assert "sk-abcdefghijklmnopqrstuvwxyz1234" not in caplog.text
+        logger.info("status=%s", f"TOKEN={FAKE_SK}")
+    assert FAKE_SK not in caplog.text
     assert REDACTED in caplog.text

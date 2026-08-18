@@ -1,0 +1,174 @@
+# EvoVariant-TR frozen research protocol (machine-readable twin of PROTOCOL.md)
+# Any change to an immutable field requires a dated entry in DEVIATION_LOG.md.
+
+protocol_version: "1.0.0"
+frozen_date: "2026-08-18"
+project: "EvoVariant-TR"
+
+estimand:
+  question: >
+    Among unique normalized germline GRCh38 SNVs recorded as variants of uncertain
+    significance in the fixed historical ClinVar release t0 and later receiving a
+    definitive B/LB or P/LP classification meeting the prespecified review-status
+    quality gate at t1, how well does a frozen zero-shot Evo 2 allele-likelihood
+    score distinguish the direction of that later resolution?
+  design: temporal_generalization_benchmark
+  conditional_on: eventual_resolution
+  does_not_estimate:
+    - whether_every_vus_will_be_reclassified
+    - when_a_vus_will_be_reclassified
+    - patient_diagnosis
+    - treatment
+    - clinical_management
+    - causal_pathogenicity_truth
+
+temporal_design:
+  t0_release:
+    source: NCBI ClinVar archived variant_summary
+    release_date: "2025-01-02"
+    mutability: immutable_primary
+  t1_release:
+    source: NCBI ClinVar archived variant_summary
+    release_date: "2026-08-06"
+    mutability: immutable_primary
+  reference_assembly: GRCh38
+  primary_unit: unique_normalized_biallelic_acgt_germline_snv
+  t0_state: aggregate_vus
+  t1_outcomes:
+    positive: pathogenic_or_likely_pathogenic   # P/LP
+    negative: benign_or_likely_benign           # B/LB
+  primary_label_quality_gate:
+    min_review_stars: 2
+    mutability: immutable_primary
+
+qa_checkpoint_validation_target_only:
+  note: >
+    QA target only. Recompute from public archives; never inject these values;
+    never change filters to force them; document any discrepancy before scoring.
+  t0_unique_vus: 1403225
+  absent_at_t1: 3615
+  not_definitive_at_t1: 1389535
+  below_two_stars: 9051
+  final_temporal_n: 1024
+  n_blb: 614
+  n_plp: 410
+  gene_labels: 389
+  reference_mismatch_among_final_candidates: 0
+
+scoring_contract:
+  model_policy: zero_shot_frozen
+  score_definitions:
+    delta_fwd: "S(x_alt_fwd) - S(x_ref_fwd)"
+    delta_rc: "S(x_alt_rc) - S(x_ref_rc)"
+    delta_primary: "(delta_fwd + delta_rc) / 2"
+  retain_all_raw_components: true
+  required_fields_per_variant:
+    - ref_score_forward
+    - alt_score_forward
+    - delta_forward
+    - ref_score_rc
+    - alt_score_rc
+    - delta_rc
+    - delta_primary
+    - abs_fwd_rc_disagreement
+    - orientation_disagreement_flag
+    - canonical_variant_id
+    - window_coordinates
+    - local_mutation_index
+    - reference_sequence_hash
+    - alternate_sequence_hash
+    - model_checkpoint_identity
+    - official_package_source_revision
+    - runtime
+    - gpu_type
+    - software_environment
+    - run_id
+    - failure_status
+  forbid_mean_only_retention: true
+  forbid_direct_clinical_label_from_raw_score: true
+
+sequence_contract:
+  context_length_bp: 8192
+  window_convention_frozen_at_milestone: 41
+  assertions:
+    - "end - start == 8192"
+    - "len(sequence) == 8192"
+    - "sequence[variant_local_index] == declared_reference"
+    - "hamming_distance(reference_context, alternate_context) == 1"
+  legacy_formula_inherited: false
+
+calibration_contract:
+  test_cohort_used_for_fitting: never
+  calibration_source: variants_definitive_at_t0
+  primary_method: platt_logistic
+  fold_grouping: gene
+  unseen_gene_analysis: zero_gene_overlap
+  isotonic: sensitivity_only_with_adequate_n
+  forbidden_test_informed_choices:
+    - calibration_model
+    - threshold
+    - model_checkpoint
+    - context_length
+    - sequence_centering
+    - comparator
+    - subgroup
+    - score_sign_after_seeing_performance
+    - abstention_threshold
+
+statistics:
+  primary_endpoint: AUROC
+  primary_uncertainty:
+    method: gene_clustered_bootstrap_ci
+    confidence_level: 0.95
+    replicates: 2000
+    seed: 20260814
+  secondary_endpoints:
+    - AUPRC
+    - MCC
+    - balanced_accuracy
+    - sensitivity
+    - specificity
+    - precision
+    - brier_score
+    - negative_log_likelihood
+    - ece_with_binning_sensitivity
+    - reliability_data_and_plot
+    - coverage
+    - failure_reasons
+    - risk_coverage_curves
+    - abstention_selective_prediction
+    - runtime
+    - peak_memory
+    - cold_warm_behavior
+    - orientation_disagreement
+    - context_robustness
+    - gene_held_out_transport
+    - review_status_sensitivity
+    - consequence_coding_subgroups
+  confirmatory_comparisons:
+    resampling: paired_gene_clustered
+    multiple_comparison_correction: holm
+
+comparators:
+  core_feasible: [CADD, PhyloP]
+  conditional_preferred: GPN-Star
+  conditional_parity_fallback: GPN-MSA
+  conditional_valid_subset: AlphaMissense
+  stretch: Caduceus
+  required_metadata:
+    - version
+    - source
+    - license
+    - assembly
+    - allele_convention
+    - score_direction
+    - asset_checksum
+    - coverage
+    - missing_reason
+  missing_scores_policy: stay_missing_never_imputed_benign
+
+policy:
+  claim_safety: research_only
+  fabrication: forbidden
+  unavailable_marker: UNAVAILABLE
+  not_run_marker: NOT RUN

@@ -37,10 +37,26 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q"
+# Default runs exclude anything that can cost money or take a long time.
+# Gated tiers require an explicit flag (see tests/conftest.py):
+#   modal      -> --run-modal AND EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS
+#   scientific -> --run-scientific
+#   e2e        -> --run-e2e
+addopts = "-q -m \"not modal and not scientific and not e2e\""
+markers = [
+    "modal: tests that use Modal / paid GPU compute (gated, never run by default)",
+    "scientific: slow scientific validation tests (gated, never run by default)",
+    "e2e: end-to-end browser tests (gated, land at Milestone 97)",
+    "slow: long-running tests",
+]
 
 [tool.coverage.run]
 source = ["evovariant_tr"]
+
+[tool.coverage.report]
+# Minimum quality gate for core deterministic modules.
+fail_under = 95
+show_missing = true
 
 [tool.ruff]
 line-length = 100

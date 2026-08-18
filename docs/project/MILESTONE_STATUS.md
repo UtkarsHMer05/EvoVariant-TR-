@@ -24,8 +24,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 017 | Create the test taxonomy and minimum quality gates | PASS | 2026-08-18 |
 | 018 | Create frontend migration scaffold under apps/web | PASS | 2026-08-18 |
 | 019 | Create secrets, environment, and cost-control policy | PASS | 2026-08-19 |
-| 020 | Create a single project control surface | PENDING | |
-| 021 | Design the data directory and no-raw-data Git policy | PENDING | |
+| 020 | Create a single project control surface | PASS | 2026-08-19 |
+| 021 | Design the data directory and no-raw-data Git policy | PASS | 2026-08-19 |
 | 022 | Implement official ClinVar archive discovery without guessing URLs | PENDING | |
 | 023 | Download and verify the 2 January 2025 ClinVar archive | PENDING | |
 | 024 | Download and verify the 6 August 2026 ClinVar archive | PENDING | |

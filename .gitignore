@@ -61,3 +61,28 @@ evo2-backend/env/
 evo2-backend/*.env
 evo2-backend/.env
 evo2-backend/brca1_analysis_plot.png
+
+# Data directories (M21: no raw data tracked)
+# Raw public archives are downloaded at runtime and never committed.
+data/raw/
+# Derived datasets (computed, reproducible — regenerate via documented commands).
+data/derived/
+# Reference genomes (large, downloaded separately).
+data/reference/
+# Model caches (downloaded at runtime).
+data/model_cache/
+# Experiment runs (regenerated; only registry manifest + small summaries tracked).
+research/runs/*
+!research/runs/.gitkeep
+research/results/
+research/figures/
+research/tables/
+
+# Python mypy cache
+.mypy_cache/
+
+# Python pytest cache
+.pytest_cache/
+
+# Python ruff cache
+.ruff_cache/

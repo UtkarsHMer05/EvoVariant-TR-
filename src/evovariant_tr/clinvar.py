@@ -165,11 +165,23 @@ class ClinVarArchive:
 def build_archive_url(release: date) -> str:
     """Construct the FTP URL for a given release month's variant_summary.
 
-    The archive URL follows the official pattern:
-    ``archive/<YYYY>/variant_summary_<YYYY-MM>.txt.gz``
+    NCBI stores monthly archives in two layouts:
+    - 2014–2024: ``archive/<YYYY>/variant_summary_<YYYY-MM>.txt.gz``
+    - 2025 onward: ``archive/variant_summary_<YYYY-MM>.txt.gz`` (top-level)
+    This function returns the yearly-subdirectory URL. Use candidate URLs
+    for robust discovery.
     """
     filename = f"variant_summary_{release.year:04d}-{release.month:02d}.txt.gz"
     return urljoin(CLINVAR_ARCHIVE_DIR, f"{release.year}/{filename}")
+
+
+def _candidate_urls(release: date) -> list[str]:
+    """Return candidate URLs for a release, in priority order."""
+    filename = f"variant_summary_{release.year:04d}-{release.month:02d}.txt.gz"
+    return [
+        urljoin(CLINVAR_ARCHIVE_DIR, f"{release.year}/{filename}"),
+        urljoin(CLINVAR_ARCHIVE_DIR, filename),
+    ]
 
 
 def list_variant_summary_archives(

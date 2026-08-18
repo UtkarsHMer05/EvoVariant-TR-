@@ -1,0 +1,9 @@
+{
+  "file_name": "variant_summary_2026-08.txt.gz",
+  "name": "clinvar_variant_summary_2026-08",
+  "release_date": "2026-08-01",
+  "retrieved_at": "2026-08-18T23:18:58.215381+00:00",
+  "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
+  "size_bytes": 441792560,
+  "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/2026/variant_summary_2026-08.txt.gz"
+}

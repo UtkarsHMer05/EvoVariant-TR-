@@ -105,6 +105,15 @@ def test_build_archive_url():
     assert url == CLINVAR_ARCHIVE_DIR + "2025/variant_summary_2025-01.txt.gz"
 
 
+def test_candidate_urls_covers_both_layouts():
+    from evovariant_tr.clinvar import _candidate_urls
+
+    urls = _candidate_urls(date(2025, 1, 1))
+    assert len(urls) == 2
+    assert urls[0] == CLINVAR_ARCHIVE_DIR + "2025/variant_summary_2025-01.txt.gz"
+    assert urls[1] == CLINVAR_ARCHIVE_DIR + "variant_summary_2025-01.txt.gz"
+
+
 def test_find_archive_returns_none_when_not_found():
     listing = (
         '<a href="variant_summary_2024-01.txt.gz">v_2024-01</a></td>'

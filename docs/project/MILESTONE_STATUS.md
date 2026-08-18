@@ -37,8 +37,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 030 | Implement deterministic t0-to-t1 temporal joining | PASS | 2026-08-19 |
 | 031 | Select, acquire, and freeze the exact GRCh38 reference source | PASS | 2026-08-19 |
 | 032 | Implement indexed local FASTA access | PASS | 2026-08-19 |
-| 033 | Create exhaustive coordinate-convention tests | PENDING | |
-| 034 | Run reference-allele validation over candidate temporal variants | PENDING | |
+| 033 | Create exhaustive coordinate-convention tests | PASS | 2026-08-19 |
+| 034 | Run reference-allele validation over candidate temporal variants | PASS | 2026-08-19 |
 | 035 | Finalize duplicate-resolution policy and audit | PENDING | |
 | 036 | Build the primary temporal cohort from raw public archives | PENDING | |
 | 037 | Validate primary cohort counts and hashes against the research checkpoint | PENDING | |

@@ -26,7 +26,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 019 | Create secrets, environment, and cost-control policy | PASS | 2026-08-19 |
 | 020 | Create a single project control surface | PASS | 2026-08-19 |
 | 021 | Design the data directory and no-raw-data Git policy | PASS | 2026-08-19 |
-| 022 | Implement official ClinVar archive discovery without guessing URLs | PENDING | |
+| 022 | Implement official ClinVar archive discovery without guessing URLs | PASS | 2026-08-19 |
 | 023 | Download and verify the 2 January 2025 ClinVar archive | PENDING | |
 | 024 | Download and verify the 6 August 2026 ClinVar archive | PENDING | |
 | 025 | Build a version-aware ClinVar variant_summary parser | PENDING | |

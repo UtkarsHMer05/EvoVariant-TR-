@@ -22,7 +22,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 015 | Implement deterministic file manifests and hashing | PASS | 2026-08-18 |
 | 016 | Create the modern Python project scaffold | PASS | 2026-08-18 |
 | 017 | Create the test taxonomy and minimum quality gates | PASS | 2026-08-18 |
-| 018 | Create frontend migration scaffold under apps/web | PENDING | |
+| 018 | Create frontend migration scaffold under apps/web | PASS | 2026-08-18 |
 | 019 | Create secrets, environment, and cost-control policy | PENDING | |
 | 020 | Create a single project control surface | PENDING | |
 | 021 | Design the data directory and no-raw-data Git policy | PENDING | |

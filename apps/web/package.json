@@ -1,5 +1,5 @@
 {
-  "name": "variant-analysis-evo2-frontend",
+  "name": "evovariant-tr-web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -13,6 +13,7 @@
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
     "start": "next start",
+    "test": "echo \"no frontend tests yet; E2E lands at Milestone 97\" && exit 0",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

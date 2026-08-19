@@ -58,7 +58,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 051 | Re-verify current official Evo 2 installation requirements and pin a clean environment | PASS | 2026-08-19 |
 | 052 | Set up Modal for the NEW project without reusing old deployment identity | PASS | 2026-08-19 |
 | 053 | Build a clean Modal image for Evo 2 | PASS | 2026-08-19 |
-| 054 | Create persistent model-cache storage on Modal | PENDING | |
+| 054 | Create persistent model-cache storage on Modal | PASS | 2026-08-19 |
 | 055 | Run the first isolated Evo 2 model-load smoke test | PENDING | |
 | 056 | Run the official Evo 2 generation/inference self-test | PENDING | |
 | 057 | Validate official sequence-score semantics on tiny sequences | PENDING | |
@@ -67,12 +67,12 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 060 | Run a small registered multi-gene throughput and parity pilot | PENDING | |
 | 061 | Design the full scoring record and shard format | PENDING | |
 | 062 | Implement deterministic sharding | PENDING | |
-| 063 | Implement idempotent resume and retry semantics | PENDING | |
-| 064 | Implement explicit failure taxonomy and observability | PENDING | |
-| 065 | Implement the persistent Modal scoring service | PENDING | |
-| 066 | Implement asynchronous/background batch submission | PENDING | |
-| 067 | Run a 25-variant resumability and failure-recovery pilot | PENDING | |
-| 068 | Run a 100-variant performance-engineering pilot and finalize cost model | PENDING | |
+| 063 | Implement idempotent resume and retry semantics | PASS | 2026-08-19 |
+| 064 | Implement explicit failure taxonomy and observability | PASS | 2026-08-19 |
+| 065 | Implement the persistent Modal scoring service | WAIT | |
+| 066 | Implement asynchronous/background batch submission | PASS | 2026-08-19 |
+| 067 | Run a 25-variant resumability and failure-recovery pilot | WAIT | |
+| 068 | Run a 100-variant performance-engineering pilot and finalize cost model | WAIT | |
 | 069 | Enforce the explicit full-run approval gate | PENDING | |
 | 070 | Run and freeze full primary Evo 2 scoring | PENDING | |
 | 071 | Create a common comparator adapter contract | PENDING | |

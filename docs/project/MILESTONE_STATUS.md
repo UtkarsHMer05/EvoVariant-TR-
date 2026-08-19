@@ -42,19 +42,19 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 035 | Finalize duplicate-resolution policy and audit | PASS | 2026-08-19 |
 | 036 | Build the primary temporal cohort from raw public archives | PASS | 2026-08-19 |
 | 037 | Validate primary cohort counts and hashes against the research checkpoint | PASS | 2026-08-19 |
-| 038 | Build the disjoint definitive-at-t0 calibration cohort | PENDING | |
-| 039 | Enforce zero normalized-ID overlap and define gene-group splits | PENDING | |
-| 040 | Freeze cohort outputs and data-only QC package | PENDING | |
-| 041 | Freeze the exact 8,192-base sequence-window convention | PENDING | |
-| 042 | Implement exact reference-window generation | PENDING | |
-| 043 | Define and test chromosome-edge behavior | PENDING | |
-| 044 | Implement alternate-sequence mutation with strong invariants | PENDING | |
-| 045 | Implement reverse-complement variant transformation correctly | PENDING | |
-| 046 | Create deterministic sequence cache and provenance records | PENDING | |
-| 047 | Define the model-agnostic scorer interface | PENDING | |
-| 048 | Build a deterministic fake scorer for software tests only | PENDING | |
-| 049 | Define official Evo 2 parity requirements before GPU integration | PENDING | |
-| 050 | Run end-to-end scoring orchestration with fake scorer only | PENDING | |
+| 038 | Build the disjoint definitive-at-t0 calibration cohort | PASS | 2026-08-19 |
+| 039 | Enforce zero normalized-ID overlap and define gene-group splits | PASS | 2026-08-19 |
+| 040 | Freeze cohort outputs and data-only QC package | PASS | 2026-08-19 |
+| 041 | Freeze the exact 8,192-base sequence-window convention | PASS | 2026-08-19 |
+| 042 | Implement exact reference-window generation | PASS | 2026-08-19 |
+| 043 | Define and test chromosome-edge behavior | PASS | 2026-08-19 |
+| 044 | Implement alternate-sequence mutation with strong invariants | PASS | 2026-08-19 |
+| 045 | Implement reverse-complement variant transformation correctly | PASS | 2026-08-19 |
+| 046 | Create deterministic sequence cache and provenance records | PASS | 2026-08-19 |
+| 047 | Define the model-agnostic scorer interface | PASS | 2026-08-19 |
+| 048 | Build a deterministic fake scorer for software tests only | PASS | 2026-08-19 |
+| 049 | Define official Evo 2 parity requirements before GPU integration | PASS | 2026-08-19 |
+| 050 | Run end-to-end scoring orchestration with fake scorer only | PASS | 2026-08-19 |
 | 051 | Re-verify current official Evo 2 installation requirements and pin a clean environment | PENDING | |
 | 052 | Set up Modal for the NEW project without reusing old deployment identity | PENDING | |
 | 053 | Build a clean Modal image for Evo 2 | PENDING | |

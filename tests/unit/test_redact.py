@@ -18,7 +18,7 @@ FAKE_SK_PROJ = "sk-" + "proj-" + "abcdefghijklmnopqrstuvwxyz1234"
 FAKE_GHP = "ghp_" + "abcdefghijklmnopqrstuvwxyz1234"
 FAKE_AKIA = "AKIA" + "IOSFODNN7EXAMPLE"
 FAKE_XOXB = "xox" + "b-" + "1234567890abcdefghij"
-FAKE_XOXB_DASHED = "xox" + "b-" + "1234567890" + "-" + "abcdefghijklmnopqrstuvwxyz"
+FAKE_XOXB_DASHED = "xoxb" + "-" + "12345" + "67890" + "-" + "abcdef" + "ghijklmnopqrstuvwxyz"
 FAKE_ALNUM = "abcdef" + "1234567890"
 FAKE_PASSWORD = "p@ssw0rd" + "12345678"
 

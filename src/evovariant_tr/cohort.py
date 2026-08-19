@@ -232,7 +232,7 @@ def build_temporal_cohort(
     for record in iter_variant_summary(t0_path, assembly="GRCh38"):
         flow.total_t0_records += 1
 
-        if record.variant_type == "SNV" and record.germline:
+        if record.variant_type in ("SNV", "single nucleotide variant") and record.germline:
             flow.t0_germline_snv += 1
             if record.assembly == "GRCh38":
                 flow.t0_grch38 += 1

@@ -35,13 +35,18 @@ CLINVAR_REVIEW_STATUS_STARS: dict[str, int] = {
     "no assertion criteria and no literature": 0,
     "criteria provided, single submitter": 1,
     "criteria provided, multiple submitters": 2,
+    "criteria provided, multiple submitters, no conflicts": 2,
     "criteria provided, multiple submitters, conflicting interpretations": 2,
+    "criteria provided, conflicting classifications": 2,
     "reviewed by expert panel": 3,
     "reviewed by expert panel, conflicting interpretations": 3,
     "reviewed by expert panel, conflicting interpretations, no assertion criteria": 3,
     "practice guideline": 3,
     "practices guideline": 3,
     "other": 0,
+    "no classification provided": 0,
+    "no classification for the single variant": 0,
+    "no classifications from unflagged records": 0,
 }
 
 
@@ -64,15 +69,21 @@ CLINSIG_NORMALIZATION: dict[str, ClinicalSignificance] = {
     "Benign": ClinicalSignificance.BENIGN,
     "Likely_benign": ClinicalSignificance.LIKELY_BENIGN,
     "Benign/Likely_benign": ClinicalSignificance.BENIGN_LIKELY_BENIGN,
+    "Likely benign": ClinicalSignificance.LIKELY_BENIGN,
     "Pathogenic": ClinicalSignificance.PATHOGENIC,
     "Likely_pathogenic": ClinicalSignificance.LIKELY_PATHOGENIC,
+    "Likely pathogenic": ClinicalSignificance.LIKELY_PATHOGENIC,
     "Pathogenic/Likely_pathogenic": ClinicalSignificance.PATHOGENIC_LIKELY_PATHOGENIC,
+    "Pathogenic/Likely pathogenic": ClinicalSignificance.PATHOGENIC_LIKELY_PATHOGENIC,
     "Uncertain_significance": ClinicalSignificance.UNCERTAIN_SIGNIFICANCE,
+    "Uncertain significance": ClinicalSignificance.UNCERTAIN_SIGNIFICANCE,
     "not_provided": ClinicalSignificance.NOT_PROVIDED,
+    "not provided": ClinicalSignificance.NOT_PROVIDED,
     "other": ClinicalSignificance.OTHER,
+    "conflicting classifications of pathogenicity": ClinicalSignificance.CONFLICTING,
+    "conflicting interpretations": ClinicalSignificance.CONFLICTING,
     "conflicting interpretations (benign)": ClinicalSignificance.BENIGN,
     "conflicting interpretations (pathogenic)": ClinicalSignificance.PATHOGENIC,
-    "conflicting interpretations": ClinicalSignificance.CONFLICTING,
 }
 
 

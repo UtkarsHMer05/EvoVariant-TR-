@@ -60,8 +60,9 @@ def validate_cohort_json(cohort_path: Path) -> list[str]:
     n_pos = data.get("n_resolved_pathogenic", 0)
     n_neg = data.get("n_resolved_benign", 0)
     n_unc = data.get("n_unresolved", 0)
+    n_exc = data.get("n_excluded", 0)
 
-    if n_pos + n_neg + n_unc != n_total:
+    if n_pos + n_neg + n_unc + n_exc != n_total:
         errors.append(
             f"Count mismatch: {n_pos}+{n_neg}+{n_unc}={n_pos + n_neg + n_unc} "
             f"!= n_total={n_total}"

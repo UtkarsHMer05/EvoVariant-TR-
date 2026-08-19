@@ -25,7 +25,14 @@ GERMLINE_ORIGINS = frozenset(
     }
 )
 
-SNV_TYPE = "SNV"
+SNV_TYPES = frozenset(
+    {
+        "SNV",
+        "single nucleotide variant",
+    }
+)
+
+SNV_TYPE = "single nucleotide variant"
 
 
 def normalize_origin_simple(raw: str) -> str:
@@ -55,7 +62,7 @@ def classify_variant(record: VariantSummaryRecord) -> str | None:
     """
     if not record.germline:
         return None
-    if record.variant_type != SNV_TYPE:
+    if record.variant_type not in SNV_TYPES:
         return None
 
     clinsig = record.clinical_significance
@@ -89,7 +96,7 @@ def is_eligible_for_temporal_cohort(
     """
     if not record.germline:
         return False
-    if record.variant_type != SNV_TYPE:
+    if record.variant_type not in SNV_TYPES:
         return False
     if record.assembly != "GRCh38":
         return False

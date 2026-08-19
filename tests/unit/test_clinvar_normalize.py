@@ -239,4 +239,4 @@ def test_is_definitive_at_t1_conflicting_returns_none():
 
 
 def test_snv_type_constant():
-    assert SNV_TYPE == "SNV"
+    assert SNV_TYPE == "single nucleotide variant"

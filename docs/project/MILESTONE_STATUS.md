@@ -69,7 +69,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 062 | Implement deterministic sharding | PASS | 2026-08-19 |
 | 063 | Implement idempotent resume and retry semantics | PASS | 2026-08-19 |
 | 064 | Implement explicit failure taxonomy and observability | PASS | 2026-08-19 |
-| 065 | Implement the persistent Modal scoring service | WAIT | |
+| 065 | Implement the persistent Modal scoring service | PASS | 2026-08-19 |
 | 066 | Implement asynchronous/background batch submission | PASS | 2026-08-19 |
 | 067 | Run a 25-variant resumability and failure-recovery pilot | WAIT | |
 | 068 | Run a 100-variant performance-engineering pilot and finalize cost model | WAIT | |

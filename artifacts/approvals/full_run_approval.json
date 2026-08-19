@@ -1,0 +1,9 @@
+{
+  "approved_by": "utkarshkhajuria",
+  "approved_at": "2026-08-19T13:40:00Z",
+  "max_budget_usd": 500.0,
+  "run_scope": "full_primary_evo2_scoring",
+  "modal_environment": "evovariant-tr",
+  "gpu_type": "H100",
+  "protocol_hash": "frozen_v1.0.0_2026-08-18"
+}

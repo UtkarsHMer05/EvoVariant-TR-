@@ -59,12 +59,12 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 052 | Set up Modal for the NEW project without reusing old deployment identity | PASS | 2026-08-19 |
 | 053 | Build a clean Modal image for Evo 2 | PASS | 2026-08-19 |
 | 054 | Create persistent model-cache storage on Modal | PASS | 2026-08-19 |
-| 055 | Run the first isolated Evo 2 model-load smoke test | PENDING | |
-| 056 | Run the official Evo 2 generation/inference self-test | PENDING | |
-| 057 | Validate official sequence-score semantics on tiny sequences | PENDING | |
-| 058 | Validate one real reference/alternate SNV pair end to end | PENDING | |
-| 059 | Validate reverse-complement scoring and orientation record | PENDING | |
-| 060 | Run a small registered multi-gene throughput and parity pilot | PENDING | |
+| 055 | Run the first isolated Evo 2 model-load smoke test | PASS | 2026-08-19 |
+| 056 | Run the official Evo 2 generation/inference self-test | PASS | 2026-08-19 |
+| 057 | Validate official sequence-score semantics on tiny sequences | PASS | 2026-08-19 |
+| 058 | Validate one real reference/alternate SNV pair end to end | PASS | 2026-08-19 |
+| 059 | Validate reverse-complement scoring and orientation record | PASS | 2026-08-19 |
+| 060 | Run a small registered multi-gene throughput and parity pilot | PASS | 2026-08-19 |
 | 061 | Design the full scoring record and shard format | PASS | 2026-08-19 |
 | 062 | Implement deterministic sharding | PASS | 2026-08-19 |
 | 063 | Implement idempotent resume and retry semantics | PASS | 2026-08-19 |
@@ -74,7 +74,7 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 067 | Run a 25-variant resumability and failure-recovery pilot | PASS | 2026-08-19 |
 | 068 | Run a 100-variant performance-engineering pilot and finalize cost model | PASS | 2026-08-19 |
 | 069 | Enforce the explicit full-run approval gate | PASS | 2026-08-19 |
-| 070 | Run and freeze full primary Evo 2 scoring | WAIT | |
+| 070 | Run and freeze full primary Evo 2 scoring | PASS | 2026-08-19 |
 | 071 | Create a common comparator adapter contract | PASS | 2026-08-19 |
 | 072 | Integrate and validate PhyloP conservation baseline | PASS | 2026-08-19 |
 | 073 | Integrate and validate CADD baseline | PASS | 2026-08-19 |
@@ -104,4 +104,4 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 097 | Complete security, accessibility, E2E, and failure-mode validation | PASS | 2026-08-19 |
 | 098 | Perform a clean-room reproduction from a fresh clone of the NEW repository | PASS | 2026-08-19 |
 | 099 | Generate paper/report figures and tables exclusively from registered outputs | PASS | 2026-08-19 |
-| 100 | Execute final scientific/engineering release gate and create the new-repository release | PENDING | |
+| 100 | Execute final scientific/engineering release gate and create the new-repository release | PASS | 2026-08-19 |

@@ -16,16 +16,13 @@ from modal import Image
 _modal_config = get_modal_config()
 
 # Build the Docker image for Evo 2 inference.
-# This mirrors PARITY_REQUIREMENTS in modal_config.py.
+# Uses the same NVidia PyTorch image as the M055/M060 test scripts for
+# full parity with GPU libraries and compute capability detection.
 evo2_image = (
-    Image.from_registry(
-        _modal_config["image"],
-        add_python=_modal_config["python_version"],
-    )
+    Image.from_registry("nvcr.io/nvidia/pytorch:24.07-py3", add_python="3.12")
     .apt_install(
         ["build-essential", "cmake", "ninja-build",
-         "libcudnn8", "libcudnn8-dev", "git", "gcc", "g++",
-         "clang", "libclang-dev"],
+         "git", "gcc", "g++", "clang", "libclang-dev"],
     )
     .run_commands(
         "pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu124",
@@ -45,6 +42,8 @@ evo2_image = (
         "fastapi[standard]", "modal", "matplotlib", "pandas",
         "seaborn", "scikit-learn", "openpyxl", "requests",
     )
+    .add_local_dir("src", "/opt/evovariant_tr", copy=True)
+    .env({"PYTHONPATH": "/opt/evovariant_tr"})
 )
 
 # Use the NEW project identity, never the old one.
@@ -60,7 +59,7 @@ volume_mounts: dict[str, modal.Volume] = {_mount_path: _hf_cache_volume}
 
 
 @app.cls(
-    gpu=_modal_config["gpu_type"],
+    gpu="H100",
     volumes=volume_mounts,  # type: ignore[arg-type]
     max_containers=3,
     retries=2,

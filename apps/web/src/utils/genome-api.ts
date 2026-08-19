@@ -361,9 +361,7 @@ export async function analyzeVariantWithAPI({
   genomeId: string;
   chromosome: string;
 }): Promise<AnalysisResult> {
-  const url = `${env.NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL}`;
-
-  const response = await fetch(url, {
+  const response = await fetch("/api/score/variant", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

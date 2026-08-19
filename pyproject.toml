@@ -57,6 +57,14 @@ source = ["evovariant_tr"]
 # Minimum quality gate for core deterministic modules.
 fail_under = 95
 show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "raise RuntimeError",
+    "if not EV2_AVAILABLE",
+    "import modal",
+]
 
 [tool.ruff]
 line-length = 100

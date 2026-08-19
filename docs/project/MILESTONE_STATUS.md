@@ -55,9 +55,9 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 048 | Build a deterministic fake scorer for software tests only | PASS | 2026-08-19 |
 | 049 | Define official Evo 2 parity requirements before GPU integration | PASS | 2026-08-19 |
 | 050 | Run end-to-end scoring orchestration with fake scorer only | PASS | 2026-08-19 |
-| 051 | Re-verify current official Evo 2 installation requirements and pin a clean environment | PENDING | |
-| 052 | Set up Modal for the NEW project without reusing old deployment identity | PENDING | |
-| 053 | Build a clean Modal image for Evo 2 | PENDING | |
+| 051 | Re-verify current official Evo 2 installation requirements and pin a clean environment | PASS | 2026-08-19 |
+| 052 | Set up Modal for the NEW project without reusing old deployment identity | PASS | 2026-08-19 |
+| 053 | Build a clean Modal image for Evo 2 | PASS | 2026-08-19 |
 | 054 | Create persistent model-cache storage on Modal | PENDING | |
 | 055 | Run the first isolated Evo 2 model-load smoke test | PENDING | |
 | 056 | Run the official Evo 2 generation/inference self-test | PENDING | |

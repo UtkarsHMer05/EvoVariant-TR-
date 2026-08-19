@@ -24,7 +24,8 @@ evo2_image = (
     )
     .apt_install(
         ["build-essential", "cmake", "ninja-build",
-         "libcudnn8", "libcudnn8-dev", "git", "gcc", "g++"],
+         "libcudnn8", "libcudnn8-dev", "git", "gcc", "g++",
+         "clang", "libclang-dev"],
     )
     .run_commands(
         "pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu124",
@@ -38,27 +39,12 @@ evo2_image = (
         "https://github.com/Dao-AILab/flash-attention/releases/download/v2.6.3/"
         "flash_attn-2.6.3%2Bcu123torch2.4cxx11abiFALSE-cp312-cp312-linux_x86_64.whl",
     )
-    .run_commands(
-        "python3 -c \""
-        "import re, os, shutil; "
-        "path='/usr/local/lib/python3.12/site-packages/vortex/ops/attn_interface.py'; "
-        "f=open(path, 'r'); text=f.read(); f.close(); "
-        "text=text.replace('out, softmax_lse, S_dmask, rng_state = flash_attn_gpu.fwd(', "
-        "'res = flash_attn_gpu.fwd('); "
-        "text=text.replace('out, softmax_lse, S_dmask, rng_state = flash_attn_gpu.varlen_fwd(', "
-        "'res = flash_attn_gpu.varlen_fwd('); "
-        "text=text.replace('if torch.__version__ >= \\\"2.4.0\\\":', 'if False:'); "
-        "text=text.replace('return out, softmax_lse, S_dmask, rng_state', "
-        "'_unpack = (res[0], res[-3], res[-2], res[-1]) if isinstance(res, (tuple, list)) "
-        "else (res, None, None, None)\\n"
-        "    out, softmax_lse, S_dmask, rng_state = tuple((x.clone() if hasattr(x, 'clone') "
-        "else x) for x in _unpack)\\n"
-        "    return out, softmax_lse, S_dmask, rng_state'); "
-        "f=open(path, 'w'); f.write(text); "
-        "pycache='/usr/local/lib/python3.12/site-packages/vortex/ops/__pycache__'; "
-        "shutil.rmtree(pycache) if os.path.exists(pycache) else None\"",
+    .add_local_dir("scripts", "/opt/scripts", copy=True)
+    .run_commands("python3 /opt/scripts/patch_vortex.py")
+    .pip_install(
+        "fastapi[standard]", "modal", "matplotlib", "pandas",
+        "seaborn", "scikit-learn", "openpyxl", "requests",
     )
-    .pip_install_from_requirements("requirements.txt")
 )
 
 # Use the NEW project identity, never the old one.
@@ -75,7 +61,7 @@ volume_mounts: dict[str, modal.Volume] = {_mount_path: _hf_cache_volume}
 
 @app.cls(
     gpu=_modal_config["gpu_type"],
-    volumes=volume_mounts,
+    volumes=volume_mounts,  # type: ignore[arg-type]
     max_containers=3,
     retries=2,
     scaledown_window=120,
@@ -89,7 +75,7 @@ class Evo2ScorerService:
     """
 
     @modal.enter()
-    def load_evo2_model(self):
+    def load_evo2_model(self) -> None:
         """Load the Evo 2 model once per container lifecycle."""
         import _codecs
 
@@ -106,7 +92,7 @@ class Evo2ScorerService:
         print("Evo 2 model loaded successfully.")
 
     @modal.fastapi_endpoint(method="POST")
-    def score_variant(self, variant_data: dict):
+    def score_variant(self, variant_data: dict[str, object]) -> dict[str, object]:
         """Score a single variant using Evo 2.
 
         Request body:
@@ -115,10 +101,10 @@ class Evo2ScorerService:
             alternative: str (e.g., "T")
             genome: str (e.g., "hg38")
         """
-        chrom = variant_data["chromosome"]
-        pos = int(variant_data["variant_position"])
-        alt = variant_data["alternative"].upper()
-        genome = variant_data.get("genome", "hg38")
+        chrom = str(variant_data["chromosome"])
+        pos = int(str(variant_data["variant_position"]))
+        alt = str(variant_data["alternative"]).upper()
+        genome = str(variant_data.get("genome", "hg38"))
 
         print(f"Scoring variant: {chrom}:{pos} alt={alt} genome={genome}")
 
@@ -210,12 +196,12 @@ class Evo2ScorerService:
 
 
 @app.local_entrypoint()
-def main():
+def main() -> None:
     """Local entry point for testing the deployed service."""
     import requests
 
     service = Evo2ScorerService()
-    url = service.score_variant.web_url
+    url = service.score_variant.get_web_url()
     print(f"Service web URL: {url}")
 
     payload = {

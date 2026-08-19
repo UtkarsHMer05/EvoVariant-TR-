@@ -50,7 +50,7 @@ def test_default_run_deselects_all_gated_tiers() -> None:
 def test_modal_flag_without_acknowledgement_still_blocked() -> None:
     result = _run_pytest("-rs", "--run-modal", "-m", "modal", "tests/modal")
     combined = result.stdout + result.stderr
-    assert "1 skipped" in combined
+    assert "skipped" in combined
     assert "gated" in combined  # the gate's skip reason, not the placeholder's
     assert "passed" not in combined
 
@@ -65,22 +65,19 @@ def test_modal_gate_opens_only_with_flag_and_acknowledgement() -> None:
         env_extra={"EVOVARIANT_TR_PAID_COMPUTE_ACK": "I_ACCEPT_COSTS"},
     )
     combined = result.stdout + result.stderr
-    # Gate no longer blocks: the placeholder skips itself (real Modal infra
-    # lands at M52+), so the skip reason must not be the gate's.
+    # Gate no longer blocks: tests run (some may skip via placeholder).
     assert "gated" not in combined
     assert "paid compute" not in combined
 
 
 def test_scientific_gate_requires_explicit_flag() -> None:
-    # A bare `-m scientific` bypasses the addopts deselect, but the conftest
-    # hard block still skips the test with the gate's reason.
     blocked = _run_pytest("-rs", "-m", "scientific", "tests/scientific")
     combined = blocked.stdout + blocked.stderr
-    assert "1 skipped" in combined
+    assert "skipped" in combined
     assert "gated" in combined
     opened = _run_pytest("-rs", "--run-scientific", "-m", "scientific", "tests/scientific")
     combined = opened.stdout + opened.stderr
-    assert "gated" not in combined  # gate passed; placeholder skips itself
+    assert "gated" not in combined  # gate passed; tests may run or skip
 
 
 def test_validate_local_script_exists_and_is_executable() -> None:

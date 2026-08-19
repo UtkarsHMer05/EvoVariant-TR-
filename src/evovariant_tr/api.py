@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from evovariant_tr.fake_scorer import FakeScorer
 from evovariant_tr.metrics import compute_full_metrics
@@ -38,10 +38,29 @@ result_registry: dict[str, dict[str, Any]] = {}
 
 class VariantRequest(BaseModel):
     chrom: str = Field(..., description="Chromosome name")
-    start: int = Field(..., description="1-based start position")
-    ref: str = Field(..., description="Reference allele")
-    alt: str = Field(..., description="Alternate allele")
+    start: int = Field(..., description="1-based start position", ge=1)
+    ref: str = Field(..., description="Reference allele", min_length=1, max_length=32)
+    alt: str = Field(..., description="Alternate allele", min_length=1, max_length=32)
     strand: str = Field("forward", description="Strand: forward or reverse")
+    model_config = {"json_schema_extra": {
+        "examples": [{"chrom": "chr1", "start": 100, "ref": "A", "alt": "T"}]
+    }}
+
+    @field_validator("strand")
+    @classmethod
+    def validate_strand(cls, v: str) -> str:
+        if v not in ("forward", "reverse"):
+            raise ValueError("strand must be 'forward' or 'reverse'")
+        return v
+
+    @field_validator("ref", "alt")
+    @classmethod
+    def validate_alleles(cls, v: str) -> str:
+        import re as _re
+
+        if not _re.match(r"^[ACGTN]+$", v, _re.IGNORECASE):
+            raise ValueError("alleles must contain only nucleotide characters ACGTN")
+        return v.upper()
 
 
 class BatchVariantRequest(BaseModel):

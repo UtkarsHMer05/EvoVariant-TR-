@@ -1,6 +1,10 @@
 pydantic<3,>=2.13
 PyYAML>=6.0
 
+[api]
+fastapi>=0.115
+uvicorn>=0.30
+
 [comparators]
 pandas>=2.2
 numpy>=2.0

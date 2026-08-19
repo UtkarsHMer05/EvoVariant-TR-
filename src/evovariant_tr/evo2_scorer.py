@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING, Any
 
 from evovariant_tr.scorer import Scorer
 
-PARITY_REQUIREMENTS = {
+PARITY_REQUIREMENTS: dict[str, int | str] = {
     "context_length_bp": 8192,
     "assembly": "GRCh38",
     "model": "evo2_7b",
@@ -153,7 +153,8 @@ def check_evo2_parity() -> dict[str, Any]:
     # The following checks require torch, which is only available in the GPU environment.
     import torch  # noqa: PLC0415
 
-    cuda_ok = torch.cuda.is_available()  # pragma: no cover
+    min_vram: int = int(PARITY_REQUIREMENTS["min_vram_gb"])
+    cuda_ok = bool(torch.cuda.is_available())  # pragma: no cover
     checks.append({
         "name": "cuda_available",
         "status": "PASS" if cuda_ok else "FAIL",
@@ -164,8 +165,8 @@ def check_evo2_parity() -> dict[str, Any]:
     vram_ok = True  # pragma: no cover
     if cuda_ok:  # pragma: no cover
         props = torch.cuda.get_device_properties(0)
-        vram_gb = props.total_memory / (1024 ** 3)
-        vram_ok = vram_gb >= PARITY_REQUIREMENTS["min_vram_gb"]
+        vram_gb = float(props.total_memory / (1024 ** 3))
+        vram_ok = vram_gb >= float(min_vram)
     checks.append({
         "name": "min_vram",
         "status": "PASS" if vram_ok else "WARN",

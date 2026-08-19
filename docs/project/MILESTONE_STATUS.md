@@ -94,8 +94,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 086 | Annotate and analyze consequence/coding subgroups | PENDING | |
 | 087 | Analyze predictor coverage and structured missingness | PENDING | |
 | 088 | Implement risk-coverage and abstention analysis | PASS | 2026-08-19 |
-| 089 | Run structured error analysis | PENDING | |
-| 090 | Complete bias, validity, and limitation audits | PENDING | |
+| 089 | Run structured error analysis | PASS | 2026-08-19 |
+| 090 | Complete bias, validity, and limitation audits | PASS | 2026-08-19 |
 | 091 | Build the research FastAPI service around validated core modules | PASS | 2026-08-19 |
 | 092 | Implement asynchronous batch-job API and result registry views | PASS | 2026-08-19 |
 | 093 | Redesign the Next.js application as a research workbench | PASS | 2026-08-19 |

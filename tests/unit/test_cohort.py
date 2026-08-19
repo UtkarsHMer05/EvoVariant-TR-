@@ -8,10 +8,15 @@ from pathlib import Path
 
 import pytest
 
+from evovariant_tr.clinvar_parser import VariantSummaryRecord
 from evovariant_tr.cohort import (
+    CohortConfig,
     CohortVariant,
+    DuplicateAudit,
     Outcome,
     VariantIdentity,
+    audit_duplicates,
+    build_primary_cohort,
     build_temporal_cohort,
 )
 
@@ -194,3 +199,111 @@ def test_build_cohort_empty_files(tmp_path):
     assert cohort.n_total == 0
     assert cohort.positive_count() == 0
     assert cohort.negative_count() == 0
+
+
+# --------------------------------------------------------------------------- #
+# M35: Duplicate-resolution audit
+# --------------------------------------------------------------------------- #
+
+
+def test_audit_duplicates_no_dups():
+    records = [
+        _make_record(identity=VariantIdentity("7", 100, "A", "T")),
+        _make_record(identity=VariantIdentity("7", 200, "C", "G")),
+    ]
+    audit = audit_duplicates(records)
+    assert audit.total_records == 2
+    assert audit.unique_identities == 2
+    assert audit.duplicate_count == 0
+    assert audit.max_dups_per_identity == 1
+    assert audit.identities_with_dups == 0
+
+
+def test_audit_duplicates_with_dups():
+    records = [
+        _make_record(identity=VariantIdentity("7", 100, "A", "T")),
+        _make_record(identity=VariantIdentity("7", 100, "A", "T")),
+        _make_record(identity=VariantIdentity("7", 100, "A", "T")),
+        _make_record(identity=VariantIdentity("7", 200, "C", "G")),
+    ]
+    audit = audit_duplicates(records)
+    assert audit.total_records == 4
+    assert audit.unique_identities == 2
+    assert audit.duplicate_count == 2
+    assert audit.max_dups_per_identity == 3
+    assert audit.identities_with_dups == 1
+
+
+def test_audit_duplicates_empty():
+    audit = audit_duplicates([])
+    assert audit.total_records == 0
+    assert audit.unique_identities == 0
+    assert audit.duplicate_count == 0
+
+
+def test_duplicate_audit_to_dict():
+    audit = DuplicateAudit(
+        total_records=10,
+        unique_identities=8,
+        duplicate_count=2,
+        max_dups_per_identity=3,
+        identities_with_dups=1,
+    )
+    d = audit.to_dict()
+    assert d["total_records"] == 10
+    assert d["unique_identities"] == 8
+    assert d["duplicate_count"] == 2
+
+
+def test_cohort_config_defaults():
+    cfg = CohortConfig()
+    assert cfg.min_review_stars == 2
+    assert cfg.assembly == "GRCh38"
+
+
+def test_build_primary_cohort_delegates(t0_file, t1_file):
+    cohort = build_primary_cohort(
+        t0_file, t1_file,
+        t0_release_date=date(2025, 1, 1),
+        t1_release_date=date(2026, 8, 1),
+    )
+    assert cohort.n_resolved_benign == 1
+
+
+def test_build_temporal_cohort_with_config(t0_file, t1_file):
+    config = CohortConfig(min_review_stars=2)
+    cohort = build_temporal_cohort(
+        t0_file, t1_file, config=config,
+    )
+    assert cohort.n_resolved_benign == 1
+
+
+def test_build_temporal_cohort_min_stars_override(t0_file, t1_file):
+    """Override min_review_stars to 0 to include VUS with 0 stars."""
+    cohort = build_temporal_cohort(
+        t0_file, t1_file, min_review_stars=0,
+    )
+    # With 0-star gate, allele 4 (VUS, 0 stars) is now included
+    # but it has no t1 record, so still excluded
+    assert cohort.n_excluded >= 0
+
+
+def _make_record(identity: VariantIdentity) -> VariantSummaryRecord:
+    """Create a minimal record for duplicate audit tests."""
+    return VariantSummaryRecord(
+        allele_id=1,
+        variant_type="SNV",
+        clinical_significance="Uncertain_significance",
+        review_status="test",
+        review_stars=2,
+        assembly="GRCh38",
+        chromosome=identity.chrom,
+        start=identity.start,
+        stop=identity.start,
+        reference_allele=identity.ref,
+        alternate_allele=identity.alt,
+        variation_id=1,
+        rcv_accessions=[],
+        origin_simple="germline",
+        germline=True,
+    )

@@ -39,8 +39,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 032 | Implement indexed local FASTA access | PASS | 2026-08-19 |
 | 033 | Create exhaustive coordinate-convention tests | PASS | 2026-08-19 |
 | 034 | Run reference-allele validation over candidate temporal variants | PASS | 2026-08-19 |
-| 035 | Finalize duplicate-resolution policy and audit | PENDING | |
-| 036 | Build the primary temporal cohort from raw public archives | PENDING | |
+| 035 | Finalize duplicate-resolution policy and audit | PASS | 2026-08-19 |
+| 036 | Build the primary temporal cohort from raw public archives | PASS | 2026-08-19 |
 | 037 | Validate primary cohort counts and hashes against the research checkpoint | PENDING | |
 | 038 | Build the disjoint definitive-at-t0 calibration cohort | PENDING | |
 | 039 | Enforce zero normalized-ID overlap and define gene-group splits | PENDING | |

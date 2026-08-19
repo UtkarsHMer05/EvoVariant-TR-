@@ -204,7 +204,8 @@ def build_temporal_cohort(
     t1_path: str | Path,
     t0_release_date: date | None = None,
     t1_release_date: date | None = None,
-    min_review_stars: int = MIN_REVIEW_STARS,
+    min_review_stars: int | None = None,
+    config: CohortConfig | None = None,
 ) -> TemporalCohort:
     """Build the temporal VUS-resolution cohort from t0 and t1 snapshots.
 
@@ -213,11 +214,14 @@ def build_temporal_cohort(
         t1_path: Path to t1 variant_summary.txt.gz
         t0_release_date: Release date of the t0 snapshot
         t1_release_date: Release date of the t1 snapshot
-        min_review_stars: Minimum review stars for inclusion
+        min_review_stars: Minimum review stars for inclusion (overrides config)
+        config: Cohort configuration (defaults to CohortConfig())
 
     Returns:
         A TemporalCohort with variants and flow counts.
     """
+    cfg = config or CohortConfig()
+    stars = min_review_stars if min_review_stars is not None else cfg.min_review_stars
     flow = CohortFlow()
     flow.t0_release_date = t0_release_date  # type: ignore[attr-defined]
     flow.t1_release_date = t1_release_date  # type: ignore[attr-defined]
@@ -245,7 +249,7 @@ def build_temporal_cohort(
 
     vus_variants: dict[VariantIdentity, VariantSummaryRecord] = {}
     for identity, record in t0_dedup.items():
-        if is_vus_at_t0(record, min_review_stars=min_review_stars):
+        if is_vus_at_t0(record, min_review_stars=stars):
             flow.t0_vus_meets_star_gate += 1
             vus_variants[identity] = record
 
@@ -323,6 +327,87 @@ def build_temporal_cohort(
         flow=flow,
         t0_release_date=t0_release_date,
         t1_release_date=t1_release_date,
+    )
+
+    return cohort
+
+
+@dataclass
+class DuplicateAudit:
+    """Audit results for duplicate variant resolution."""
+
+    total_records: int = 0
+    unique_identities: int = 0
+    duplicate_count: int = 0
+    max_dups_per_identity: int = 0
+    identities_with_dups: int = 0
+
+    def to_dict(self) -> dict[str, int]:
+        return {
+            "total_records": self.total_records,
+            "unique_identities": self.unique_identities,
+            "duplicate_count": self.duplicate_count,
+            "max_dups_per_identity": self.max_dups_per_identity,
+            "identities_with_dups": self.identities_with_dups,
+        }
+
+
+def audit_duplicates(
+    records: list[VariantSummaryRecord],
+) -> DuplicateAudit:
+    """Audit duplicate variants by (chrom, start, ref, alt) identity.
+
+    Returns counts for CONSORT flow reporting.
+    """
+    identity_counts: Counter[VariantIdentity] = Counter()
+    for record in records:
+        identity = VariantIdentity.from_record(record)
+        identity_counts[identity] += 1
+
+    total = len(records)
+    unique = len(identity_counts)
+    dups = total - unique
+    max_dups = max(identity_counts.values()) if identity_counts else 0
+    identities_with_dups = sum(1 for c in identity_counts.values() if c > 1)
+
+    return DuplicateAudit(
+        total_records=total,
+        unique_identities=unique,
+        duplicate_count=dups,
+        max_dups_per_identity=max_dups,
+        identities_with_dups=identities_with_dups,
+    )
+
+
+@dataclass
+class CohortConfig:
+    """Configuration for cohort construction (frozen by convention)."""
+
+    min_review_stars: int = MIN_REVIEW_STARS
+    assembly: str = "GRCh38"
+    min_last_evaluated_date: date | None = field(default=None)
+
+
+def build_primary_cohort(
+    t0_path: str | Path,
+    t1_path: str | Path,
+    t0_release_date: date | None = None,
+    t1_release_date: date | None = None,
+    config: CohortConfig | None = None,
+) -> TemporalCohort:
+    """Build the primary temporal cohort from raw public archives.
+
+    This is the production entry point for cohort construction. It applies
+    all eligibility filters, duplicate resolution, and temporal joining.
+    """
+    cfg = config or CohortConfig()
+
+    cohort = build_temporal_cohort(
+        t0_path,
+        t1_path,
+        t0_release_date=t0_release_date,
+        t1_release_date=t1_release_date,
+        config=cfg,
     )
 
     return cohort

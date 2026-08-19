@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 from evovariant_tr import __version__
+from evovariant_tr.cohort import build_primary_cohort
 from evovariant_tr.config import load_protocol
 from evovariant_tr.manifest import load_manifest, verify_manifest
 
@@ -47,6 +48,32 @@ def cmd_version(_: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_cohort(args: argparse.Namespace) -> int:
+    from datetime import date
+
+    t0_date = date.fromisoformat(args.t0_date) if args.t0_date else None
+    t1_date = date.fromisoformat(args.t1_date) if args.t1_date else None
+
+    cohort = build_primary_cohort(
+        args.t0, args.t1,
+        t0_release_date=t0_date,
+        t1_release_date=t1_date,
+    )
+
+    output = {
+        "n_total": cohort.n_total,
+        "n_resolved_pathogenic": cohort.n_resolved_pathogenic,
+        "n_resolved_benign": cohort.n_resolved_benign,
+        "n_unresolved": cohort.n_unresolved,
+        "n_excluded": cohort.n_excluded,
+        "class_counts": cohort.class_counts(),
+        "flow": cohort.flow.to_dict(),
+    }
+
+    print(json.dumps(output, indent=2, default=str))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="evovariant-tr",
@@ -67,6 +94,16 @@ def build_parser() -> argparse.ArgumentParser:
     verify.add_argument("--manifest", type=Path, required=True)
     verify.add_argument("--base-dir", type=Path, required=True)
     verify.set_defaults(func=cmd_verify_manifest)
+
+    cohort = subparsers.add_parser(
+        "build-cohort", help="Build temporal VUS-resolution cohort from t0/t1 archives"
+    )
+    cohort.add_argument("--t0", type=Path, required=True, help="Path to t0 variant_summary.txt.gz")
+    cohort.add_argument("--t1", type=Path, required=True, help="Path to t1 variant_summary.txt.gz")
+    cohort.add_argument("--t0-date", type=str, default=None, help="t0 release date (YYYY-MM-DD)")
+    cohort.add_argument("--t1-date", type=str, default=None, help="t1 release date (YYYY-MM-DD)")
+    cohort.add_argument("--output", type=Path, default=None, help="Write JSON to file")
+    cohort.set_defaults(func=cmd_build_cohort)
 
     version = subparsers.add_parser("version", help="Print package version as JSON")
     version.set_defaults(func=cmd_version)

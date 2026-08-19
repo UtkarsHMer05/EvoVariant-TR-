@@ -71,8 +71,8 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 064 | Implement explicit failure taxonomy and observability | PASS | 2026-08-19 |
 | 065 | Implement the persistent Modal scoring service | PASS | 2026-08-19 |
 | 066 | Implement asynchronous/background batch submission | PASS | 2026-08-19 |
-| 067 | Run a 25-variant resumability and failure-recovery pilot | WAIT | |
-| 068 | Run a 100-variant performance-engineering pilot and finalize cost model | WAIT | |
+| 067 | Run a 25-variant resumability and failure-recovery pilot | PASS | 2026-08-19 |
+| 068 | Run a 100-variant performance-engineering pilot and finalize cost model | PASS | 2026-08-19 |
 | 069 | Enforce the explicit full-run approval gate | PASS | 2026-08-19 |
 | 070 | Run and freeze full primary Evo 2 scoring | WAIT | |
 | 071 | Create a common comparator adapter contract | PASS | 2026-08-19 |

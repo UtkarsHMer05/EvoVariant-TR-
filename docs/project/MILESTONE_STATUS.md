@@ -98,10 +98,10 @@ Status values: `PENDING` | `IN PROGRESS` | `PASS` | `BLOCKED` | `FAILED`.
 | 090 | Complete bias, validity, and limitation audits | PENDING | |
 | 091 | Build the research FastAPI service around validated core modules | PASS | 2026-08-19 |
 | 092 | Implement asynchronous batch-job API and result registry views | PASS | 2026-08-19 |
-| 093 | Redesign the Next.js application as a research workbench | PENDING | |
-| 094 | Implement safe single-variant research analysis UI | PENDING | |
-| 095 | Implement batch and benchmark dashboard | PENDING | |
-| 096 | Implement Methods and Provenance mode | PENDING | |
+| 093 | Redesign the Next.js application as a research workbench | PASS | 2026-08-19 |
+| 094 | Implement safe single-variant research analysis UI | PASS | 2026-08-19 |
+| 095 | Implement batch and benchmark dashboard | PASS | 2026-08-19 |
+| 096 | Implement Methods and Provenance mode | PASS | 2026-08-19 |
 | 097 | Complete security, accessibility, E2E, and failure-mode validation | PENDING | |
 | 098 | Perform a clean-room reproduction from a fresh clone of the NEW repository | PENDING | |
 | 099 | Generate paper/report figures and tables exclusively from registered outputs | PENDING | |

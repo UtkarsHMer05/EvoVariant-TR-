@@ -20,6 +20,7 @@ dependencies = [
 modal = ["modal>=0.64"]
 plotting = ["matplotlib>=3.9", "seaborn>=0.13"]
 comparators = ["pandas>=2.2", "numpy>=2.0"]
+api = ["fastapi>=0.115", "uvicorn>=0.30"]
 dev = [
     "pytest>=8.3",
     "pytest-cov>=5.0",

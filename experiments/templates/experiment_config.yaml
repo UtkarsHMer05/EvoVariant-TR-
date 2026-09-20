@@ -1,0 +1,50 @@
+run_id: null
+experiment_family: null
+protocol_version: null
+dataset_manifest: null
+split_manifest: null
+
+model:
+  name: null
+  checkpoint: null
+  revision: null
+  source: null
+
+input:
+  assembly: GRCh38
+  context_length: null
+  orientation: null
+
+features:
+  layers: []
+  pooling: null
+  include_raw_score: false
+
+training:
+  enabled: false
+  classifier: null
+  seed: 42
+  class_weight: null
+  params: {}
+
+hpo:
+  enabled: false
+  study_name: null
+  objective: null
+  direction: maximize
+  n_trials: null
+
+calibration:
+  method: null
+
+ensemble:
+  method: null
+  members: []
+
+compute:
+  backend: local
+  modal_gpu: null
+  max_estimated_cost_usd: null
+
+output:
+  run_dir: null

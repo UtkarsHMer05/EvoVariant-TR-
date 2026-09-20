@@ -1,0 +1,74 @@
+{
+  "CODEX_MASTER_PROMPT.md": {
+    "bytes": 36392,
+    "sha256": "fe33d23e2c3ece265aadfb2f3bd0e5a72da7854f445708f085dc2dfc6efe0b3a"
+  },
+  "README_START_HERE.md": {
+    "bytes": 2582,
+    "sha256": "0d9e92056f1daea344f52865612c504e92a8ea4ef3f898c6768147850a7281d7"
+  },
+  "docs/agent/AGENT_CHECKLIST.md": {
+    "bytes": 1111,
+    "sha256": "5132c9be35d5ab33ee02ff1bb78b047805f1344e659e2de55cc21fce080de734"
+  },
+  "docs/agent/ARCHITECTURE.md": {
+    "bytes": 2052,
+    "sha256": "2f4f7a121c87c3690ec8e460f6a834374dc9179bb5683c98aa81591e4860f286"
+  },
+  "docs/agent/DECISIONS.md": {
+    "bytes": 2766,
+    "sha256": "5a3a8383dcbebaaf9fe49b02503e521b6af3d6da218fcd03525deb911b3b6450"
+  },
+  "docs/agent/EXPERIMENT_PLAN.md": {
+    "bytes": 2375,
+    "sha256": "cddda45db6c62b4680cf59dda785cbf34c86712e9dc49971eaa1b6e681b921dd"
+  },
+  "docs/agent/METRICS_AND_STATISTICS.md": {
+    "bytes": 1449,
+    "sha256": "44b41ffb65ff821d88286c3d442636ab817c2d6a25adffb5ad4ebd3edc6c8133"
+  },
+  "docs/agent/MODAL_COMPUTE_POLICY.md": {
+    "bytes": 1984,
+    "sha256": "d222a67f000c1dcd74a95caac21c223ab43748533b43f210f1879c41ffdfb2f6"
+  },
+  "docs/agent/PHASE_LEDGER.md": {
+    "bytes": 1215,
+    "sha256": "410c570e44025efa93fe75509088113fa37ae2c05c1f706042b52e01c994c5ff"
+  },
+  "docs/agent/PRD.md": {
+    "bytes": 2798,
+    "sha256": "52092d70b24704970d54f6928cb79a30abd81a0be7bb7deafd8396052400b832"
+  },
+  "docs/agent/PROJECT_STATE.md": {
+    "bytes": 1605,
+    "sha256": "29ced33502dd6525c5183cec79e1f8732383009159f906eafb173adeb85e0361"
+  },
+  "docs/agent/RESULT_ARTIFACTS.md": {
+    "bytes": 711,
+    "sha256": "bea19f6b256834e6f8c16b4526ab3209eaad55334eab6cd5bb84896a039fda33"
+  },
+  "docs/agent/RISKS_AND_LIMITATIONS.md": {
+    "bytes": 1135,
+    "sha256": "9182745d90e89d4a66c351c0b79907672e76f73f22a663b8160ec2993ae9ca9c"
+  },
+  "docs/agent/RUNBOOK.md": {
+    "bytes": 1245,
+    "sha256": "daa9dc1a3ec91498dc4b013b8a23eee2836cfc15ee0f449db835872baf03d851"
+  },
+  "docs/agent/TESTING_AND_VALIDATION.md": {
+    "bytes": 2142,
+    "sha256": "5ecae8d338123391e8693687d80061c8b660f1805af646a9f8d8911fc9618465"
+  },
+  "docs/agent/UI_SPEC.md": {
+    "bytes": 1622,
+    "sha256": "b2b9d8c97cb1ba00386f8fc35eb1202accaaf252a2f9ee3eca3daa4a1e5aa6ec"
+  },
+  "experiments/templates/experiment_config.yaml": {
+    "bytes": 674,
+    "sha256": "e22711e6f7ea5f0cbf428d2d70460172ad78d94aa0714c6a5bcbdd6e1e9458c8"
+  },
+  "research/ml_extension/PROTOCOL.md": {
+    "bytes": 3933,
+    "sha256": "ea67dad0cd90d07de82563ac50ea1b1c8118361ff4f734cfcad5ff615ef2ce94"
+  }
+}

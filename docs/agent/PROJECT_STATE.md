@@ -18,7 +18,7 @@ committed browser E2E coverage for the no-fabrication workbench journeys. No mod
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `bd7647c` (clone-safe browser E2E gate).
+Last passing source baseline: `4817ef2` (final phase-status blocker reconciliation).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -34,6 +34,7 @@ Final gate documentation commit: `942e042`.
 Frontend lint-gate implementation commit: `1d9cf43`.
 Browser workbench E2E commit: `7f6c1b1`.
 Browser gate clone-safety fix: `bd7647c`.
+Phase-status blocker reconciliation commit: `4817ef2`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`

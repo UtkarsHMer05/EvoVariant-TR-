@@ -238,6 +238,8 @@ For each PASS append:
 - Committed browser E2E — PASS: `make web-e2e` runs three Playwright tests against a production
   Next server, covering 14-area navigation/blocked state, protocol metadata loading, and
   client-side allele validation without a scorer call.
+- `4817ef2` reconciles the generated Phase 16/18/19 status blockers so they no longer report the
+  resolved browser gate as missing.
 - Gate decision: BLOCKED. The frontend lint/build/browser gates pass, but no registered
   scientific outputs exist to populate result panels; browser coverage does not substitute for
   scientific result evidence.

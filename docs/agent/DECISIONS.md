@@ -591,7 +591,8 @@ and registry-driven figures exist.
 Validation:
 Commit `7f6c1b1` adds the suite and `bd7647c` makes its environment clone-safe. `make web-e2e`
 passes 3 Playwright tests against the production build locally and from the final clean clone.
-No scientific output or paid-compute artifact is created.
+Commit `4817ef2` removes stale browser-E2E blocker text from the Phase 16, 18, and 19 status
+surfaces. No scientific output or paid-compute artifact is created.
 
 ## Template for new decisions
 

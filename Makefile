@@ -246,8 +246,8 @@ ui-check: ## Record/run the Phase 16 research workbench gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 16 --family UI \
 		--command-name ui-check --output research/runs/phase16_ui_status.json \
-		--blocker "browser E2E coverage is not implemented in the repository" \
-		--blocker "registered experiment outputs are unavailable"
+		--blocker "registered experiment outputs are unavailable" \
+		--blocker "scientific result panels remain evidence-gated until immutable outputs exist"
 
 .PHONY: figures
 figures: ## Record/run the Phase 17 registry-driven figures gate
@@ -262,7 +262,7 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
 		--blocker "dependent scientific phases remain blocked" \
-		--blocker "browser E2E, figure-regeneration, and paid-compute gates are unresolved"
+		--blocker "figure-regeneration, registered-result, and paid-compute gates are unresolved"
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface
@@ -270,7 +270,7 @@ clean-room: ## Run the free reproducibility status surface
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
 		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
 		--blocker "gated Modal smoke and registry-driven figure regeneration were not run" \
-		--blocker "browser E2E coverage is not implemented in the repository"
+		--blocker "registered scientific outputs are unavailable for figure/result regeneration"
 
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)

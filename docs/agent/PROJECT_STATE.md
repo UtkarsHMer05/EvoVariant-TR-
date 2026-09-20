@@ -18,7 +18,7 @@ registry-driven figure output. No model
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `459ad11` (research-workbench UI and frontend route fixes).
+Last passing source baseline: `942e042` (clean-room validation and remaining-gate reconciliation).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -27,6 +27,10 @@ Phase 4 implementation commit: `cc7de42`.
 Phase 5 implementation commit: `473d314`.
 Later-phase CPU contract/control-surface commit: `7127fc7`.
 Research-workbench UI commit: `459ad11`.
+Clean-bootstrap dependency commit: `22dac0f`.
+Clone-safe clean-room test commit: `e52d7ab`.
+Generated-metadata hygiene commit: `421a7ef`.
+Final gate documentation commit: `942e042`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`

@@ -629,6 +629,72 @@ manifest is stable across regeneration; temporary eligible fixtures become
 `make figures`, targeted Ruff, strict mypy, unit tests, and integration tests pass. No model
 weights, remote inference, locked-label selection, or paid compute was used.
 
+## D-032 — Align the immutable registry with the Section 21 result contract
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The existing append-only registry already recorded lifecycle, protocol, git, and output-hash
+metadata, but it did not persist the complete result-registry surface required by the master
+prompt. The verifier also constructed a registry without an explicit repository root, so a
+completed record's output hashes could not be checked reliably when the registry was inspected
+from another working directory.
+
+Decision:
+Extend `RunRecord` and the JSON Schema with the required experiment family, lifecycle timestamps,
+dataset/split hashes, model/checkpoint/source/license identity, preprocessing and feature
+versions, config, GPU, runtime/cost, metrics, artifact paths, failure reason, and notes. New
+records populate these fields; transitions revalidate the full record before persistence,
+disallow metrics on non-completed records, and require completed artifacts to remain hashable.
+Update the verifier to accept `--repo-root` and recompute hashes for every completed record.
+Backward-compatible Pydantic defaults allow existing fixture records to be read while new
+scientific records cannot omit the required JSON fields when serialized.
+
+Alternatives:
+Leave the old lifecycle-only schema, store result metadata outside the registry, or trust the
+recorded hashes without recomputation. These were rejected because they would weaken the
+reproducibility and failure-accounting contract.
+
+Consequences:
+The registry can now carry the metadata needed for later scientific runs without creating one.
+The current registry remains empty, so no benchmark or result evidence is promoted. Tampered
+completed outputs now fail verification explicitly.
+
+Validation:
+Commit `800e016`; `make validate` passes with 619 tests, 33 deselected, and 95.31% coverage;
+`make schema-verify`, `make registry-verify`, targeted registry tests, Ruff, and strict mypy pass.
+
+## D-033 — Expose registry metadata through a fail-closed read-only workbench surface
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The workbench had an Experiment Registry tab, but its status was static and could not distinguish
+an empty registry from an actual completed scientific run. The project has no current scientific
+result artifacts, so a UI integration must not expose raw values or imply downstream readiness.
+
+Decision:
+Add a dynamic `/api/registry` GET route that reads append-only run records and returns only run
+identity, status, evidence stage, experiment family, timestamps, model name, and artifact counts.
+The route marks the surface `READY` only when a `COMPLETED` PRELIMINARY or FINAL run exists; an
+empty or malformed registry remains blocked or returns an explicit error. The workbench overview
+and registry tab consume this metadata, retain blocked empty states, and omit metrics, file
+locations, and clinical labels.
+
+Alternatives:
+Keep the static status, expose full run JSON to the browser, or mark the registry ready when any
+planned/engineering record exists. These were rejected because they would either hide actual
+state or overstate scientific evidence.
+
+Consequences:
+The UI is now connected to the real control plane while preserving the evidence boundary. The
+current empty registry is visibly blocked, and downstream panels remain independently gated.
+
+Validation:
+Commit `800e016`; frontend ESLint, TypeScript, Next production build, contract tests, and
+`make web-e2e` pass with four local Playwright tests. The required scoped impeccable detector
+reported no findings after the UI change.
+
 ## Template for new decisions
 
 ### D-XXX — Title

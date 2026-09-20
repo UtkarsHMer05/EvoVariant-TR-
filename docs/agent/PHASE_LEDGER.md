@@ -268,6 +268,29 @@ For each PASS append:
   compute, figure, and registered-result gates remain unresolved. No tag, release, deployment,
   or publication was created. Spend remains `$0`.
 
+## Registry and workbench control-plane follow-up — 2026-09-21
+
+- Implementation commit: `800e016` (`feat: expose verified registry metadata surface`).
+- The immutable `RunRecord` and `research/schemas/experiment_run.schema.json` now cover the
+  master prompt's Section 21 metadata: experiment family, lifecycle timestamps, dataset/split
+  hashes, model/checkpoint/source/license fields, preprocessing/feature versions, config,
+  seed/hardware/GPU, runtime and cost, metrics, artifact paths, failure reason, and notes.
+- Registry transitions revalidate metadata before writing. Non-completed records cannot carry
+  scientific metrics; completed records require output paths and hashes; `scripts/verify_registry.py`
+  now checks every completed record against an explicit repository root, including tamper
+  detection. The checked-in registry remains empty, so this is control-plane evidence only.
+- The Next.js `/api/registry` route and Experiment Registry workbench tab now read safe metadata
+  from the real registry. With no run records, the route and overview remain `BLOCKED`; no raw
+  metrics, file locations, or clinical labels are exposed. Four Playwright tests cover the local
+  browser surface, including the empty-registry state.
+- Validation: `make validate` — PASS (`619 passed, 33 deselected, 1 warning`, `95.31%`); `make
+  web-check` — PASS; `make web-e2e` — PASS (4); `make schema-verify` — PASS; `make
+  registry-verify` — PASS; `git diff --check` — PASS before commit.
+- Gate decision: this follow-up passes its engineering/control-plane gate but does not change the
+  scientific status. Phases 6–19 remain `BLOCKED` pending the Phase 3 QA decision, verified model
+  and checkpoint evidence, authorized Modal pilot, registered scientific outputs, and
+  registry-driven figure artifacts.
+
 ## Frontend lint and local-gate follow-up — 2026-09-21
 
 - Implementation commit: `1d9cf43` (`fix: clear frontend lint gate`).

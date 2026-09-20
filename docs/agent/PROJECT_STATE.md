@@ -18,7 +18,7 @@ committed browser E2E coverage for the no-fabrication workbench journeys. No mod
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `cb304c9` (registry-driven figure-input integrity follow-up).
+Last passing source baseline: `800e016` (verified result-registry metadata and UI surface).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -35,6 +35,7 @@ Frontend lint-gate implementation commit: `1d9cf43`.
 Browser workbench E2E commit: `7f6c1b1`.
 Browser gate clone-safety fix: `bd7647c`.
 Phase-status blocker reconciliation commit: `4817ef2`.
+Verified result-registry metadata and UI surface commit: `800e016`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -134,8 +135,20 @@ verified facts are:
   single-variant rendering, blocked temporal empty state, and protocol metadata loading. The
   full frontend source tree now passes ESLint with zero errors/warnings, and the canonical
   `make web-check` target runs that lint gate plus TypeScript and the Next production build. The
-  committed Playwright workbench suite passes through `make web-e2e` with three local browser
-  tests covering navigation, blocked empty state, protocol metadata, and client validation.
+  committed Playwright workbench suite passes through `make web-e2e` with four local browser
+  tests covering navigation, blocked empty state, protocol metadata, registry empty state, and
+  client validation.
+- The result registry now carries the Section 21 metadata surface (`experiment_family`, lifecycle
+  timestamps, dataset/split hashes, model/checkpoint/source/license identity, preprocessing and
+  feature versions, config, hardware/GPU, runtime/cost, metrics, artifact paths, failure reason,
+  and notes). Non-completed records cannot carry scientific metrics, completed artifacts are
+  revalidated before persistence, and `scripts/verify_registry.py` checks completed output hashes
+  against the explicit repository root. No current registry record was created by this change.
+- The `/api/registry` endpoint and Experiment Registry tab expose only safe run metadata and
+  artifact counts. The route returns `BLOCKED` for the current empty registry and fails closed on
+  malformed metadata; it does not expose raw metrics, source paths, or clinical labels. The
+  overview derives its registry status from the endpoint rather than hard-coding a scientific
+  result state.
 
 ## Experiments and artifacts
 
@@ -225,3 +238,22 @@ paid Modal work without the corresponding gate.
 - `npm ci` reproduced the known 13-vulnerability report (2 low, 2 moderate, 8 high, 1 critical);
   no automatic audit fix was applied. This clean-room result is engineering evidence only and
   does not create model, benchmark, or paid-compute evidence.
+
+## Current registry/workbench follow-up — 2026-09-21
+
+- Verified implementation commit: `800e016` (`feat: expose verified registry metadata surface`).
+- The Section 21 result-registry metadata contract is now represented in the Pydantic model and
+  JSON Schema. Completed records are hash-checked by `scripts/verify_registry.py` using an
+  explicit repository root, and status transitions revalidate the record before persistence.
+- The current checked-in registry has no run records. The new `/api/registry` route therefore
+  returns a safe `BLOCKED` summary with zero registered runs, and the Experiment Registry tab
+  shows a truthful empty state. No metrics, output paths, or clinical labels are exposed by this
+  surface.
+- Local validation after the implementation commit: `make validate` passed with 619 tests, 33
+  deselected, one existing Starlette deprecation warning, and 95.31% coverage; `make web-check`,
+  `make web-e2e` (4 tests), `make schema-verify`, and `make registry-verify` passed. The scoped
+  impeccable UI detector returned no findings. These are engineering/control-plane gates only.
+- No new model, checkpoint, scientific result, figure, Modal invocation, deployment, release, or
+  spend was created. The next authorized scientific action remains explicit compute/model access
+  plus resolution or approval of the Phase 3 QA discrepancy; until then Phases 6–19 remain
+  blocked.

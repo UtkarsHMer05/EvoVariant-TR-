@@ -69,8 +69,13 @@ class FakeScorer(Scorer):
         if not ref_seq:
             return 0.0, 0.0, 0.0
 
-        # Compute alternate sequence
-        from evovariant_tr.sequence_mutate import apply_variant_to_reference
+        # Compute alternate sequence. The reference sequence scored in the
+        # reverse orientation must be the reverse-complement too; mixing a
+        # forward reference with an RC alternate would invalidate the delta.
+        from evovariant_tr.sequence_mutate import (
+            apply_variant_to_reference,
+            reverse_complement,
+        )
 
         try:
             alt_seq = apply_variant_to_reference(
@@ -79,7 +84,8 @@ class FakeScorer(Scorer):
         except (ValueError, IndexError):
             return 0.0, 0.0, 0.0
 
-        ref_score = self._hash_score(ref_seq)
+        model_ref_seq = reverse_complement(ref_seq) if strand == "reverse" else ref_seq
+        ref_score = self._hash_score(model_ref_seq)
         alt_score = self._hash_score(alt_seq)
         delta = alt_score - ref_score
 

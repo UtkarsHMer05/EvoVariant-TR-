@@ -14,16 +14,18 @@ from pathlib import Path
 
 import pytest
 
-from evovariant_tr.api import app
+from evovariant_tr.api import create_app
 from evovariant_tr.cost_policy import (
     COST_ACK_ENV,
     CostPolicyError,
     assert_paid_compute_allowed,
 )
+from evovariant_tr.fake_scorer import FakeScorer
 from evovariant_tr.scoring_record import ScoreStatus, ScoringRecord
 from evovariant_tr.utils import deterministic_hash
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+app = create_app(FakeScorer(scale=1.0))
 
 
 # --------------------------------------------------------------------------- #

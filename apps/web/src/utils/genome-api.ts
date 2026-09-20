@@ -47,23 +47,44 @@ export interface ClinvarVariant {
   gene_sort: string;
   chromosome: string;
   location: string;
-  evo2Result?: {
-    prediction: string;
-    delta_score: number;
-    classification_confidence: number;
-  };
+  evo2Result?: ResearchScore;
   isAnalyzing?: boolean;
   evo2Error?: string;
 }
 
-export interface AnalysisResult {
-  position: number;
+export interface ResearchScore {
+  variant: string;
+  normalized_variant_id: string;
+  assembly: string;
+  chromosome: string;
+  position_1based: number;
   reference: string;
-  alternative: string;
-  delta_score: number;
-  prediction: string;
-  classification_confidence: number;
+  alternate: string;
+  reference_score: number;
+  alternate_score: number;
+  score_delta: number;
+  delta_forward: number | null;
+  delta_reverse: number | null;
+  delta_primary: number;
+  orientation_disagreement: number | null;
+  raw_scores: Record<string, {
+    reference_score: number;
+    alternate_score: number;
+    delta: number;
+  }>;
+  status: string;
+  provenance: {
+    scorer: string;
+    scorer_version: string;
+    orientation_requested: string;
+    context_length_bp: number;
+    scoring_semantics: string;
+    research_only: boolean;
+    classification: "not_provided";
+  };
 }
+
+export type AnalysisResult = ResearchScore;
 
 export async function getAvailableGenomes() {
   const apiUrl = "https://api.genome.ucsc.edu/list/ucscGenomes";
@@ -352,11 +373,13 @@ export async function fetchClinvarVariants(
 
 export async function analyzeVariantWithAPI({
   position,
+  reference,
   alternative,
   genomeId,
   chromosome,
 }: {
   position: number;
+  reference: string;
   alternative: string;
   genomeId: string;
   chromosome: string;
@@ -367,10 +390,12 @@ export async function analyzeVariantWithAPI({
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      variant_position: position,
-      alternative: alternative,
-      genome: genomeId,
+      assembly: genomeId === "hg38" ? "GRCh38" : genomeId,
       chromosome: chromosome,
+      position_1based: position,
+      reference,
+      alternate: alternative,
+      orientation: "both",
     }),
   });
 

@@ -11,6 +11,11 @@ from __future__ import annotations
 
 import modal
 from evovariant_tr.modal_config import get_modal_config, get_modal_volumes
+from evovariant_tr.sequence_mutate import reverse_complement
+from evovariant_tr.sequence_window import (
+    CONTEXT_LENGTH_BP,
+    compute_window_coordinates_with_shift,
+)
 from modal import Image
 
 _modal_config = get_modal_config()
@@ -95,17 +100,29 @@ class Evo2ScorerService:
         """Score a single variant using Evo 2.
 
         Request body:
+            assembly/genome: GRCh38/hg38
             chromosome: str (e.g., "chr17")
-            variant_position: int (1-based)
-            alternative: str (e.g., "T")
-            genome: str (e.g., "hg38")
+            position_1based/variant_position: int (1-based)
+            reference/ref: str
+            alternate/alternative/alt: str
         """
-        chrom = str(variant_data["chromosome"])
-        pos = int(str(variant_data["variant_position"]))
-        alt = str(variant_data["alternative"]).upper()
+        chrom = str(variant_data.get("chromosome", variant_data.get("chrom", "")))
+        pos = int(str(variant_data.get("position_1based", variant_data.get("variant_position"))))
+        declared_ref = str(variant_data.get("reference", variant_data.get("ref", ""))).upper()
+        alt = str(
+            variant_data.get(
+                "alternate",
+                variant_data.get("alternative", variant_data.get("alt", "")),
+            )
+        ).upper()
         genome = str(variant_data.get("genome", "hg38"))
 
-        print(f"Scoring variant: {chrom}:{pos} alt={alt} genome={genome}")
+        if not chrom or not declared_ref or not alt:
+            raise ValueError("chromosome, reference, and alternate are required")
+        if len(declared_ref) != 1 or len(alt) != 1 or declared_ref == alt:
+            raise ValueError("the canonical Modal scorer accepts distinct SNVs only")
+
+        print(f"Scoring variant: {chrom}:{pos} {declared_ref}>{alt} genome={genome}")
 
         sequence, seq_start = self._fetch_genome_sequence(
             position=pos, genome=genome, chromosome=chrom,
@@ -120,39 +137,102 @@ class Evo2ScorerService:
             )
 
         ref = sequence[relative_pos]
+        if ref != declared_ref:
+            raise ValueError(
+                f"reference allele mismatch at {chrom}:{pos}: "
+                f"declared={declared_ref}, fetched={ref}"
+            )
 
         alt_seq = (
             sequence[:relative_pos] + alt + sequence[relative_pos + 1:]
         )
 
-        ref_ll = self.model.score_sequences([sequence])[0]
-        alt_ll = self.model.score_sequences([alt_seq])[0]
-        delta = alt_ll - ref_ll
+        forward_ref = self._score_sequence(sequence)
+        forward_alt = self._score_sequence(alt_seq)
+        reverse_ref = self._score_sequence(reverse_complement(sequence))
+        reverse_alt = self._score_sequence(reverse_complement(alt_seq))
+        delta_fwd = forward_alt - forward_ref
+        delta_rc = reverse_alt - reverse_ref
+        delta_primary = (delta_fwd + delta_rc) / 2
 
         return {
             "variant": f"{chrom}:g.{pos}{ref}>{alt}",
-            "reference_score": float(ref_ll),
-            "alternate_score": float(alt_ll),
-            "score_delta": float(delta),
+            "normalized_variant_id": f"GRCh38:{chrom}:{pos}:{ref}>{alt}",
+            "assembly": "GRCh38",
+            "chromosome": chrom,
+            "position_1based": pos,
+            "reference": ref,
+            "alternate": alt,
+            "reference_score": float(forward_ref),
+            "alternate_score": float(forward_alt),
+            "score_delta": float(delta_primary),
+            "delta_forward": float(delta_fwd),
+            "delta_reverse": float(delta_rc),
+            "delta_primary": float(delta_primary),
+            "orientation_disagreement": float(abs(delta_fwd - delta_rc)),
+            "raw_scores": {
+                "forward": {
+                    "reference_score": float(forward_ref),
+                    "alternate_score": float(forward_alt),
+                    "delta": float(delta_fwd),
+                },
+                "reverse": {
+                    "reference_score": float(reverse_ref),
+                    "alternate_score": float(reverse_alt),
+                    "delta": float(delta_rc),
+                },
+            },
             "status": "completed",
             "provenance": {
                 "scorer": "evo2_7b",
-                "context_length": 8192,
-                "strand": "forward",
-                "scoring_semantics": "log_likelihood_ratio",
+                "context_length_bp": CONTEXT_LENGTH_BP,
+                "orientation": "forward_and_reverse",
+                "scoring_semantics": "alternate_minus_reference_log_likelihood",
+                "research_only": True,
+                "classification": "not_provided",
             },
         }
 
+    def _score_sequence(self, sequence: str) -> float:
+        """Convert the official Evo2 score output to a scalar float."""
+        if len(sequence) != CONTEXT_LENGTH_BP:
+            raise ValueError(
+                f"Evo2 input must contain exactly {CONTEXT_LENGTH_BP} bases, "
+                f"got {len(sequence)}"
+            )
+        raw = self.model.score_sequences([sequence])[0]
+        return float(raw.item() if hasattr(raw, "item") else raw)
+
+    def _fetch_chromosome_length(self, genome: str, chromosome: str) -> int:
+        """Fetch chromosome size so edge windows can be shifted exactly."""
+        import requests
+
+        response = requests.get(
+            f"https://api.genome.ucsc.edu/list/chromosomes?genome={genome}",
+            timeout=30,
+        )
+        response.raise_for_status()
+        payload = response.json()
+        chromosomes = payload.get("chromosomes", {})
+        if chromosome not in chromosomes:
+            raise ValueError(f"UCSC did not return chromosome size for {chromosome}")
+        return int(chromosomes[chromosome])
+
     def _fetch_genome_sequence(
         self, position: int, genome: str, chromosome: str,
-        window_size: int = 8192,
+        window_size: int = CONTEXT_LENGTH_BP,
     ) -> tuple[str, int]:
         """Fetch a sequence window from the UCSC API."""
         import requests
 
-        half_window = window_size // 2
-        start = max(0, position - 1 - half_window)
-        end = position - 1 + half_window + 1
+        if window_size != CONTEXT_LENGTH_BP:
+            raise ValueError(f"the frozen scorer context is exactly {CONTEXT_LENGTH_BP} bases")
+        chrom_len = self._fetch_chromosome_length(genome, chromosome)
+        window_start, window_stop, _ = compute_window_coordinates_with_shift(
+            chrom_len, position
+        )
+        start = window_start - 1
+        end = window_stop
 
         print(
             f"Fetching {window_size}bp window around position {position} "
@@ -164,7 +244,7 @@ class Evo2ScorerService:
             f"https://api.genome.ucsc.edu/getData/sequence?genome={genome}"
             f";chrom={chromosome};start={start};end={end}"
         )
-        response = requests.get(api_url)
+        response = requests.get(api_url, timeout=30)
 
         if response.status_code != 200:
             raise Exception(
@@ -180,10 +260,10 @@ class Evo2ScorerService:
 
         sequence = genome_data.get("dna", "").upper()
         expected_length = end - start
-        if len(sequence) != expected_length:
-            print(
-                f"Warning: received sequence length ({len(sequence)}) "
-                f"differs from expected ({expected_length})"
+        if len(sequence) != expected_length or len(sequence) != CONTEXT_LENGTH_BP:
+            raise ValueError(
+                f"UCSC returned {len(sequence)} bases; expected exactly "
+                f"{CONTEXT_LENGTH_BP} for coordinates {chromosome}:{start}-{end}"
             )
 
         print(

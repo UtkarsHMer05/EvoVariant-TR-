@@ -106,7 +106,7 @@ frontend-build: ## Typecheck + production build of apps/web
 .PHONY: protocol-verify
 protocol-verify: ## Validate the frozen research protocol YAML
 	$(MAKE) check-venv
- 	$(PYTHON) -m evovariant_tr.cli validate-protocol --protocol $(PROTOCOL)
+	$(PYTHON) -m evovariant_tr.cli validate-protocol --protocol $(PROTOCOL)
 
 .PHONY: ml-protocol-verify
 ml-protocol-verify: ## Validate the additive ML-extension control plane and hashes

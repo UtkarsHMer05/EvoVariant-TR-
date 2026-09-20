@@ -218,6 +218,57 @@ Consequences:
 An ensemble is not promoted merely because its aggregate accuracy is similar to a
 member; complementary validation errors are required.
 
+## D-018 — Canonical research scoring is raw, orientation-aware, and fail-closed
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The pre-handoff API, Modal adapter, and frontend accepted different variant field names and
+mixed a synthetic scorer with BRCA1-derived threshold/confidence behavior. The root window
+formula also did not guarantee the frozen 8,192-base context.
+
+Decision:
+All research scoring requests normalize to a canonical GRCh38 payload with a 1-based
+position, explicit reference and alternate alleles, and an explicit orientation policy.
+Scoring must validate exact context length, coordinates, reference-allele agreement, SNV
+constraints, and orientation. The result retains raw forward and reverse-complement scores,
+their deltas, primary delta, and disagreement. It must not claim a clinical prediction,
+confidence, or pathogenic/benign threshold classification.
+
+Consequences:
+Synthetic scoring remains test-only. The default API is unavailable until an explicit scorer
+is configured. Frontend and proxy consumers can share one contract, while research artifacts
+retain enough raw information to audit orientation and downstream transformations.
+
+Validation:
+`make validate`, canonical scoring/API contract tests, the frontend legacy-classification
+scan, and `git diff --check` passed in the Phase 2 checkpoint.
+
+## D-019 — Real Modal pilot is a mandatory evidence gate
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The master prompt requires one real Modal pilot before treating the compute foundation or
+Evo2 path as operational. Local fakes, static source inspection, and unit tests cannot prove
+account access, image build, model loading, GPU inference, or measured cost.
+
+Decision:
+Do not mark Phase 2 or Phase 4 compute gates PASS without a real, reproducible Modal pilot
+with explicit account/authentication evidence, the canonical app/cache identity, a tiny
+validated request, and a cost record. If CLI/authentication or paid-compute acknowledgement
+is unavailable, record the phase as BLOCKED and continue only with independent local work.
+
+Consequences:
+No GPU spend, deployment, model download, or “pilot passed” claim may be inferred from the
+local test suite. A later authorized run must append exact command/output, artifact hashes,
+runtime identity, and measured spend before closing the gate.
+
+Validation:
+Phase 2 local gates passed, but no verified Modal CLI/account authentication or
+paid-compute acknowledgement was present in this environment; the Phase 2 ledger therefore
+records `BLOCKED`.
+
 ## Template for new decisions
 
 ### D-XXX — Title

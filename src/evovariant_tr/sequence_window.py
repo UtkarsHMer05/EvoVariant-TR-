@@ -132,6 +132,8 @@ def validate_window_coordinates(
     window_len = window_stop - window_start + 1
     if window_len > CONTEXT_LENGTH_BP:
         errors.append(f"Window too long: {window_len} > {CONTEXT_LENGTH_BP}")
+    elif window_len < CONTEXT_LENGTH_BP:
+        errors.append(f"Window too short: {window_len} < {CONTEXT_LENGTH_BP}")
     if variant_pos < window_start or variant_pos > window_stop:
         errors.append(
             f"Variant position {variant_pos} not in window "
@@ -214,6 +216,10 @@ def generate_reference_window(
         fasta_p = Path(fasta_path)
         fai_p = Path(fai_path)
         seq = _read_fasta_region(fasta_p, fai_p, chrom, window_start, window_stop)
+
+    sequence_errors = validate_sequence_content(seq)
+    if sequence_errors:
+        raise ValueError("invalid reference window: " + "; ".join(sequence_errors))
 
     return ReferenceWindow(
         chrom=chrom,

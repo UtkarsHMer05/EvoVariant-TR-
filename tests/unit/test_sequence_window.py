@@ -126,6 +126,16 @@ def test_validate_window_coordinates_too_long():
     assert any("too long" in e for e in errors)
 
 
+def test_validate_window_coordinates_too_short():
+    errors = validate_window_coordinates(
+        chrom_len=100000,
+        window_start=1,
+        window_stop=8191,
+        variant_pos=4096,
+    )
+    assert any("too short" in e for e in errors)
+
+
 def test_validate_window_coordinates_variant_outside():
     errors = validate_window_coordinates(
         chrom_len=100000,

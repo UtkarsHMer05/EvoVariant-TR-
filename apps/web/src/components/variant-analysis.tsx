@@ -21,7 +21,6 @@ import {
   getNucleotideColorClass,
 } from "~/utils/coloring-utils";
 import { Button } from "./ui/button";
-import { match } from "node:assert";
 import { Zap } from "lucide-react";
 
 export interface VariantAnalysisHandle {
@@ -95,14 +94,21 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
         setVariantError("Nucleotides must be A, C, G or T");
         return;
       }
+      if (!variantReference) {
+        setVariantError(
+          "Reference base is required. Select a position in the loaded reference sequence first.",
+        );
+        return;
+      }
 
       setIsAnalyzing(true);
       setVariantError(null);
 
       try {
-        const data = await analyzeVariantWithAPI({
-          position,
-          alternative: alt,
+      const data = await analyzeVariantWithAPI({
+        position,
+        reference: variantReference,
+        alternative: alt,
           genomeId,
           chromosome,
         });
@@ -124,8 +130,8 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
         </CardHeader>
         <CardContent className="pb-4">
           <p className="mb-4 text-xs text-[#3c4f3d]/80">
-            Predict the impact of genetic variants using the Evo2 deep learning
-            model.
+            Inspect raw forward and reverse-complement model signals for research
+            use. This view does not provide a clinical classification.
           </p>
           <div className="flex flex-wrap items-end gap-4">
             <div>
@@ -301,11 +307,11 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
                       Variant
                     </div>
                     <div className="text-sm">
-                      {gene?.symbol} {variantResult.position}{" "}
+                      {gene?.symbol} {variantResult.position_1based}{" "}
                       <span className="font-mono">
                         {variantResult.reference}
                         {">"}
-                        {variantResult.alternative}
+                        {variantResult.alternate}
                       </span>
                     </div>
                   </div>
@@ -314,40 +320,21 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
                       Delta likelihood score
                     </div>
                     <div className="text-sm">
-                      {variantResult.delta_score.toFixed(6)}
+                      {variantResult.delta_primary.toFixed(6)}
                     </div>
                     <div className="text-xs text-[#3c4f3d]/60">
-                      Negative score indicates loss of function
+                      Raw alternate-minus-reference research signal; not a clinical label
                     </div>
                   </div>
                 </div>
                 <div>
                   <div className="text-xs font-medium text-[#3c4f3d]/70">
-                    Prediction
+                    Orientation components
                   </div>
-                  <div
-                    className={`inline-block rounded-lg px-3 py-1 text-xs ${getClassificationColorClasses(variantResult.prediction)}`}
-                  >
-                    {variantResult.prediction}
-                  </div>
-                  <div className="mt-3">
-                    <div className="text-xs font-medium text-[#3c4f3d]/70">
-                      Confidence
-                    </div>
-                    <div className="mt-1 h-2 w-full rounded-full bg-[#e9eeea]">
-                      <div
-                        className={`h-2 rounded-full ${variantResult.prediction.includes("pathogenic") ? "bg-red-600" : "bg-green-600"}`}
-                        style={{
-                          width: `${Math.min(100, variantResult.classification_confidence * 100)}%`,
-                        }}
-                      ></div>
-                    </div>
-                    <div className="mt-1 text-right text-xs text-[#3c4f3d]/60">
-                      {Math.round(
-                        variantResult.classification_confidence * 100,
-                      )}
-                      %
-                    </div>
+                  <div className="space-y-1 text-xs text-[#3c4f3d]/70">
+                    <div>Forward: {variantResult.delta_forward?.toFixed(6) ?? "UNAVAILABLE"}</div>
+                    <div>Reverse-complement: {variantResult.delta_reverse?.toFixed(6) ?? "UNAVAILABLE"}</div>
+                    <div>Disagreement: {variantResult.orientation_disagreement?.toFixed(6) ?? "UNAVAILABLE"}</div>
                   </div>
                 </div>
               </div>

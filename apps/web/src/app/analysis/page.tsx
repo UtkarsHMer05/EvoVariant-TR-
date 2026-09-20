@@ -18,23 +18,36 @@ import { Alert, AlertDescription } from "~/components/ui/alert";
 
 type ScoreResponse = {
   variant: string;
+  normalized_variant_id: string;
+  assembly: string;
+  chromosome: string;
+  position_1based: number;
+  reference: string;
+  alternate: string;
   reference_score: number;
   alternate_score: number;
   score_delta: number;
+  delta_forward: number | null;
+  delta_reverse: number | null;
+  delta_primary: number;
+  orientation_disagreement: number | null;
   status: string;
   provenance: {
     scorer: string;
     scorer_version: string;
-    strand: string;
-    context_length: number;
+    orientation_requested: string;
+    context_length_bp: number;
+    research_only: boolean;
   };
 };
 
 type ProtocolInfo = {
   protocol_version: string;
+  ml_extension_protocol_version: string;
   context_length_bp: number;
   scorer: string;
-  scorer_version: string;
+  scorer_version: string | null;
+  research_only: boolean;
 };
 
 const CHROMOSOMES = [
@@ -49,7 +62,7 @@ export default function VariantAnalysisPage() {
   const [position, setPosition] = useState("43044295");
   const [ref, setRef] = useState("C");
   const [alt, setAlt] = useState("T");
-  const [strand, setStrand] = useState("forward");
+  const [orientation, setOrientation] = useState("both");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ScoreResponse | null>(null);
@@ -73,11 +86,12 @@ export default function VariantAnalysisPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chrom,
-          start: parseInt(position),
-          ref,
-          alt,
-          strand,
+          assembly: "GRCh38",
+          chromosome: chrom,
+          position_1based: parseInt(position),
+          reference: ref,
+          alternate: alt,
+          orientation,
         }),
       });
 
@@ -212,15 +226,16 @@ export default function VariantAnalysisPage() {
 
                   <div className="md:col-span-1">
                     <Label className="text-xs font-normal text-[#3c4f3d]/70">
-                      Strand
+                      Orientation
                     </Label>
-                    <Select value={strand} onValueChange={setStrand}>
+                    <Select value={orientation} onValueChange={setOrientation}>
                       <SelectTrigger className="h-9 border-[#3c4f3d]/10">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="forward">Forward</SelectItem>
-                        <SelectItem value="reverse">Reverse</SelectItem>
+                        <SelectItem value="both">Forward + reverse-complement</SelectItem>
+                        <SelectItem value="forward">Forward only</SelectItem>
+                        <SelectItem value="reverse">Reverse-complement only</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -239,7 +254,7 @@ export default function VariantAnalysisPage() {
                     onClick={loadExample}
                     className="border-[#3c4f3d]/10"
                   >
-                    BRCA1 Example
+                    Load example
                   </Button>
                 </div>
 
@@ -260,7 +275,7 @@ export default function VariantAnalysisPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pb-4">
-                  <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
                     <div>
                       <p className="text-xs text-[#3c4f3d]/60">Variant</p>
                       <p className="font-medium text-[#3c4f3d]">
@@ -269,10 +284,10 @@ export default function VariantAnalysisPage() {
                     </div>
                     <div>
                       <p className="text-xs text-[#3c4f3d]/60">
-                        Score Delta
+                        Primary delta signal
                       </p>
                       <p className="font-medium text-[#de8246]">
-                        {result.score_delta.toFixed(4)}
+                        {result.delta_primary.toFixed(4)}
                       </p>
                     </div>
                     <div>
@@ -291,14 +306,21 @@ export default function VariantAnalysisPage() {
                         {result.alternate_score.toFixed(4)}
                       </p>
                     </div>
+                    <div>
+                      <p className="text-xs text-[#3c4f3d]/60">FWD / RC</p>
+                      <p className="font-medium text-[#3c4f3d]">
+                        {result.delta_forward?.toFixed(4) ?? "N/A"} / {result.delta_reverse?.toFixed(4) ?? "N/A"}
+                      </p>
+                    </div>
                   </div>
 
                   <div className="mt-4 rounded-md bg-[#e9eeea]/50 p-3">
                     <p className="text-xs text-[#3c4f3d]/60">
                       Scorer: {result.provenance.scorer}{" "}
                       v{result.provenance.scorer_version}
-                      {" · "}Strand: {result.provenance.strand}
-                      {" · "}Context: {result.provenance.context_length}bp
+                      {" · "}Orientation: {result.provenance.orientation_requested}
+                      {" · "}Context: {result.provenance.context_length_bp}bp
+                      {" · "}Research signal only; no clinical classification
                     </p>
                   </div>
                 </CardContent>

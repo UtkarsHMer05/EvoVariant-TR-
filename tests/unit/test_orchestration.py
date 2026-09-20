@@ -37,9 +37,9 @@ def _write_gz(path: Path, rows: list[list[str]]) -> Path:
 @pytest.fixture
 def mock_fasta(tmp_path: Path) -> Path:
     """Create a small mock FASTA for testing."""
-    # chr1 with 1000 bases of A, C at position 4096
+    # chr1 is long enough to satisfy the frozen 8,192-base window contract.
     fasta = tmp_path / "ref.fasta"
-    seq = list("C" * 5000 + "A" * 500)
+    seq = list("C" * 10000)
     # Put a C at position 1000 (1-based: 1001) for easy testing
     seq[999] = "G"
     seq = "".join(seq)
@@ -52,11 +52,11 @@ def mock_fasta(tmp_path: Path) -> Path:
 
     # Create .fai index
     # >chr1\n = 6 bytes
-    # 70 chars per line, 5500 total bases
+    # 70 chars per line, 10000 total bases
     # line_width = 71 (70 + newline)
     # offset = 6 (after >chr1\n)
     fai = tmp_path / "ref.fasta.fai"
-    fai.write_text("chr1\t5500\t6\t70\t71\t0\n")
+    fai.write_text("chr1\t10000\t6\t70\t71\t0\n")
     return fasta
 
 

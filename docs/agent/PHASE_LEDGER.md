@@ -6,7 +6,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 |---:|---|---|---|
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
-| 2 | Canonical scoring repair | PENDING | |
+| 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; required real Modal pilot is unavailable because no verified Modal CLI/account authentication or paid-compute acknowledgement is present. See completion record below. |
 | 3 | ML dataset + locked splits | PENDING | |
 | 4 | Modal compute foundation | PENDING | |
 | 5 | Model registry + adapters | PENDING | |
@@ -73,3 +73,33 @@ For each PASS append:
 - Spend: `$0`; no model weights, locked labels, or Modal resources used.
 - Gate decision: PASS for the control-plane phase. Phase 2 may begin; Phase 3 and later remain
   dependent on repaired scoring and verified data/control artifacts.
+
+## Phase 2 completion record — 2026-09-21
+
+- Implementation: canonical scoring, API/proxy, Modal adapter, and research-workbench UI
+  repairs are in the Phase 2 implementation checkpoint; the source commit is recorded in
+  the next ledger update after the working tree is committed.
+- Contract changes: exact 8,192-base windows; coordinate/allele/SNV/orientation invariants;
+  forward and reverse-complement raw components; explicit primary-delta and disagreement
+  fields; canonical GRCh38 payload aliases; fail-closed unconfigured services; no fake
+  production scorer; and no threshold/confidence/clinical classification in the research UI.
+- Validation commands and results:
+  - `make validate` — PASS: secret scan, Ruff, strict mypy (36 source files), `567 passed,
+    33 deselected, 1 warning`, and `95.17%` coverage.
+  - `make protocol-verify` — PASS.
+  - `make registry-verify` — PASS.
+  - `make ml-protocol-verify` — PASS.
+  - Scientific tests — `7 passed, 1 skipped`.
+  - E2E tests — `14 passed, 1 skipped, 1 warning`.
+  - Frontend legacy-classification scan — PASS; no `prediction`, threshold, confidence, or
+    pathogenic/benign classification logic remains in `apps/web/src`.
+  - `git diff --check` — PASS.
+- Frozen original protocol SHA-256 remains
+  `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
+- Spend: `$0`; no model weights, locked labels, Modal deployment, or GPU call was run.
+- Blocking evidence: a real Modal pilot is an explicit Phase 2 gate, but this environment has
+  no verified Modal CLI/account authentication and no user-provided paid-compute
+  acknowledgement. Local/fake tests cannot substitute for that gate.
+- Gate decision: `BLOCKED` for the complete Phase 2 gate. Phase 3 data/split work may proceed
+  independently because it is controlled by the frozen protocol and does not require a paid
+  Modal run. Phase 4 compute work remains gated.

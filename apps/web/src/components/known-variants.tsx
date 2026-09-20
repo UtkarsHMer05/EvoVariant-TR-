@@ -21,7 +21,6 @@ import {
   ExternalLink,
   RefreshCw,
   Search,
-  Shield,
   Zap,
 } from "lucide-react";
 import { getClassificationColorClasses } from "~/utils/coloring-utils";
@@ -78,6 +77,7 @@ export default function KnownVariants({
     try {
       const data = await analyzeVariantWithAPI({
         position: variantDetails.position,
+        reference: variantDetails.reference,
         alternative: variantDetails.alternative,
         genomeId: genomeId,
         chromosome: gene.chrom,
@@ -186,11 +186,13 @@ export default function KnownVariants({
                       </div>
                       {variant.evo2Result && (
                         <div className="mt-2">
-                          <div
-                            className={`flex w-fit items-center gap-1 rounded-md px-2 py-1 text-center ${getClassificationColorClasses(variant.evo2Result.prediction)}`}
-                          >
-                            <Shield className="h-3 w-3" />
-                            <span>Evo2: {variant.evo2Result.prediction}</span>
+                          <div className="space-y-1 rounded-md bg-[#e9eeea]/60 px-2 py-1 text-xs text-[#3c4f3d]">
+                            <div>Research signal: {variant.evo2Result.delta_primary.toFixed(6)}</div>
+                            <div className="text-[#3c4f3d]/60">
+                              FWD {variant.evo2Result.delta_forward?.toFixed(4) ?? "UNAVAILABLE"}
+                              {" · "}
+                              RC {variant.evo2Result.delta_reverse?.toFixed(4) ?? "UNAVAILABLE"}
+                            </div>
                           </div>
                         </div>
                       )}
@@ -216,7 +218,7 @@ export default function KnownVariants({
                               ) : (
                                 <>
                                   <Zap className="mr-1 inline-block h-3 w-3" />
-                                  Analyze with Evo2
+                                Analyze research signal
                                 </>
                               )}
                             </Button>

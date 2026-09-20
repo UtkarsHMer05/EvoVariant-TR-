@@ -2,11 +2,43 @@
 
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
-from evovariant_tr.api import app
+from evovariant_tr.api import VariantRequest, app, create_app
+from evovariant_tr.fake_scorer import FakeScorer
 
-client = TestClient(app)
+client = TestClient(create_app(FakeScorer(scale=1.0)))
+
+
+def test_default_app_does_not_construct_fake_scorer():
+    default_client = TestClient(app)
+    response = default_client.get("/health")
+    assert response.status_code == 200
+    assert response.json()["scorer"] == "unconfigured"
+
+
+def test_default_app_refuses_unconfigured_scoring():
+    default_client = TestClient(app)
+    response = default_client.post(
+        "/score/variant",
+        json={"chromosome": "chr1", "position_1based": 100, "reference": "A", "alternate": "T"},
+    )
+    assert response.status_code == 503
+
+
+def test_variant_request_normalizes_transport_aliases_and_rejects_invalid_values():
+    request = VariantRequest(chrom="1", start=10, ref="a", alt="t", strand="forward")
+    assert request.chromosome == "chr1"
+    assert request.reference == "A"
+    assert request.orientation == "forward"
+    with pytest.raises(ValidationError):
+        VariantRequest(assembly="hg19", chrom="chr1", start=10, ref="A", alt="T")
+    with pytest.raises(ValidationError):
+        VariantRequest(chrom="", start=10, ref="A", alt="T")
+    with pytest.raises(ValidationError):
+        VariantRequest(chrom="chr1", start=10, ref="N", alt="T")
 
 
 def test_health_endpoint():
@@ -56,6 +88,20 @@ def test_score_single_variant_reverse_strand():
     assert data["status"] == "completed"
 
 
+def test_score_single_variant_rejects_non_snv_and_supports_single_orientation():
+    response = client.post("/score/variant", json={
+        "chrom": "chr1", "start": 100, "ref": "AT", "alt": "GC",
+    })
+    assert response.status_code == 422
+    response = client.post("/score/variant", json={
+        "chrom": "chr1", "start": 100, "ref": "A", "alt": "T", "orientation": "reverse",
+    })
+    assert response.status_code == 200
+    data = response.json()
+    assert data["delta_forward"] is None
+    assert data["delta_reverse"] is not None
+
+
 def test_score_batch_variants():
     response = client.post("/score/batch", json={
         "variants": [
@@ -69,6 +115,19 @@ def test_score_batch_variants():
     assert data["scored"] == 2
     assert len(data["results"]) == 2
     assert data["failures"] == []
+
+
+def test_score_batch_records_invalid_variant_as_failure():
+    response = client.post("/score/batch", json={
+        "variants": [
+            {"chrom": "chr1", "start": 100, "ref": "AT", "alt": "GC"},
+            {"chrom": "chr1", "start": 200, "ref": "C", "alt": "G"},
+        ],
+    })
+    assert response.status_code == 200
+    data = response.json()
+    assert data["scored"] == 1
+    assert data["failed"] == 1
 
 
 def test_submit_batch_job():

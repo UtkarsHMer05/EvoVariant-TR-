@@ -36,6 +36,7 @@ Browser workbench E2E commit: `7f6c1b1`.
 Browser gate clone-safety fix: `bd7647c`.
 Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
+Current README/status reconciliation commit: `0db7e8b`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -278,3 +279,8 @@ paid Modal work without the corresponding gate.
   1,402,895 unique valid normalized IDs; 11 rows fail the frozen ACGT/SNV coordinate rules.
   The handoff target is 1,403,225, a 330-ID difference. The archived file hash matches its
   manifest, so no filter was altered to force the target and downstream scoring remains blocked.
+- `README.md` was reconciled with the current control plane in `0db7e8b`: it no longer presents
+  the retired BRCA1 threshold/confidence classifier, historical legacy milestones, or an old Modal
+  endpoint as current scientific evidence. It now directs reviewers to the persistent phase state,
+  documents the frozen estimand and current counts, and distinguishes free local validation from
+  paid/remote gates.

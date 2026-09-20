@@ -315,6 +315,20 @@ For each PASS append:
   be resolved from source evidence or approved through the dated deviation process before any
   model output or locked-test claim is registered.
 
+## Phase 19 README/status reconciliation — 2026-09-21
+
+- Documentation commit: `0db7e8b` (`docs: align README with current research gates`).
+- The repository README was rewritten to match the authoritative control plane. It now describes
+  the frozen temporal estimand, the observed Phase 3 counts and unresolved QA discrepancy, the
+  empty result registry, the blocked registry-driven figure surface, the no-spend Modal boundary,
+  the four-test workbench browser gate, and the exact free/local validation commands.
+- Retired BRCA1 threshold/confidence claims, unverified historical Modal endpoint claims, and
+  historical milestone PASS statements were removed from the current README. Legacy reports stay
+  available under `docs/project/` with an explicit historical boundary.
+- Gate decision: documentation reconciliation `PASS`; no scientific status changed. The final
+  release gate remains `BLOCKED / PARTIAL` because no verified model, paid/remote inference,
+  registered scientific result, or eligible figure input exists.
+
 ## Frontend lint and local-gate follow-up — 2026-09-21
 
 - Implementation commit: `1d9cf43` (`fix: clear frontend lint gate`).

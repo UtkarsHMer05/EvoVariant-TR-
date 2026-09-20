@@ -731,6 +731,38 @@ the counts above; no tracked protocol/data rule changed; and the fresh clean-roo
 `e798c20` passed all free local engineering gates while retaining an empty registry and blocked
 figure manifest.
 
+## D-035 — Make the repository README reflect current evidence, not legacy claims
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The legacy root README still described a BRCA1 threshold/confidence classifier, an old Modal
+endpoint, and historical milestone PASS statements as if they were current EvoVariant-TR ML
+extension evidence. Those claims conflicted with the repaired research-only API, empty model and
+result registries, current cost gate, and the authoritative phase ledger.
+
+Decision:
+Rewrite `README.md` as the current reviewer entry point. It states the frozen temporal estimand,
+observed archive-derived counts, unresolved Phase 3 discrepancy, free/local validation commands,
+registry/UI/figure behavior, paid-compute boundary, legacy-evidence boundary, and current
+`BLOCKED / PARTIAL` release status. Historical reports remain available under `docs/project/`
+but are explicitly not current ML-extension result evidence.
+
+Alternatives:
+Keep the legacy README and rely on the agent-only control files, or silently edit the old claims
+in place while retaining the historical success narrative. These were rejected because a fresh
+reviewer would otherwise receive an unsafe and materially misleading project summary.
+
+Consequences:
+The root README is now consistent with the master prompt and persistent project-control files.
+It does not claim model execution, deployment, clinical validity, release, or scientific results
+that have not been evidenced.
+
+Validation:
+Commit `0db7e8b`; `git diff --check` passed before commit. The README-only commit changed no
+executable code; the exact implementation baseline `800e016` and clean-room evidence at `e798c20`
+remain documented separately.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -20,7 +20,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
-| 16 | Research workbench UI | BLOCKED | `459ad11`, `make web-check` PASS, local browser smoke PASS; automated browser E2E and registered outputs are absent. |
+| 16 | Research workbench UI | BLOCKED | `459ad11` plus the frontend lint-gate follow-up, `make web-check` PASS (ESLint/typecheck/build), local browser smoke PASS; automated browser E2E and registered outputs are absent. |
 | 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; registry-driven figure contract exists, but no result artifact exists to render. |
 | 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, and explicit tiers PASS; gated Modal smoke, figure regeneration, and automated browser E2E remain unrun. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and browser E2E gates remain unresolved. |
@@ -228,24 +228,25 @@ For each PASS append:
   forward/RC details, provenance, and explicit unavailable states for calibration, uncertainty,
   abstention, and comparator evidence. It contains no clinical classification logic or invented
   experiment metrics.
-- `make web-check` — PASS: `npx tsc --noEmit` and Next.js 15.3.1 production build. Changed UI
-  and route files pass ESLint. The Next 15 dynamic-route `params` contract was repaired for
-  batch and results routes.
+- `make web-check` — PASS: full frontend ESLint (zero errors/warnings), `npx tsc --noEmit`, and
+  Next.js 15.3.1 production build. The Next 15 dynamic-route `params` contract was repaired
+  for batch and results routes.
 - Local production-server browser smoke — PASS: all 14 tabs discoverable; single-variant
   form renders; temporal area shows an intentional blocked state; Methods & Provenance loads
   `/api/protocol`; no hidden manual edits were used. The snapshot is temporary evidence outside
   the repository, not a substitute for committed browser E2E coverage.
 - Gate decision: BLOCKED. Automated browser E2E coverage is not implemented, and no registered
-  scientific outputs exist to populate result panels. Full legacy frontend ESLint remains a
-  separate unresolved gate with 143 errors and 17 warnings outside the changed surface.
+  scientific outputs exist to populate result panels. The frontend lint gate itself is now
+  resolved; this does not substitute for browser E2E or scientific result evidence.
 
 ## Phase 17–19 completion record — 2026-09-21
 
 - Phase 17 figure/table generation has a registry-driven artifact contract and an explicit
   `make figures` status surface, but it correctly records `BLOCKED` because no completed result
   artifact exists to render.
-- Phase 18 security/default validation is locally green (`make validate`); the frontend build is
-  green (`make web-check`). A fresh clone with `make bootstrap` and `make frontend-install`
+- Phase 18 security/default validation is locally green (`make validate`); the frontend lint,
+  typecheck, and build gate is green (`make web-check`). A fresh clone with `make bootstrap` and
+  `make frontend-install`
   reproduced the default suite, scientific tier, E2E/API tier, protocol/schema/model-registry
   checks, and frontend build; the clone remained clean after installation. Gated Modal smoke,
   registry-driven figure regeneration, and automated browser E2E remain unrun. `npm ci` reports
@@ -254,3 +255,17 @@ For each PASS append:
 - Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
   compute, figure, and browser E2E gates remain unresolved. No tag, release, deployment, or
   publication was created. Spend remains `$0`.
+
+## Frontend lint and local-gate follow-up — 2026-09-21
+
+- Implementation commit: `1d9cf43` (`fix: clear frontend lint gate`).
+- The legacy frontend source tree was audited and repaired without changing the research-only
+  evidence boundary. Async event/effect calls now handle rejected promises explicitly, React
+  hook dependencies are declared, the forward-ref component has a stable display name, and the
+  UCSC/NCBI/ClinVar utility uses explicit response shapes instead of untyped JSON member access.
+- Full source lint passes with zero errors and zero warnings. `make web-check` now invokes the
+  repository-local ESLint Node entrypoint, TypeScript, and the production Next build; using the
+  Node entrypoint avoids a host checkout executable-bit failure from `node_modules/.bin/eslint`.
+- The follow-up is engineering-gate evidence only. It creates no model outputs, does not alter
+  the frozen protocol, and does not resolve the paid Modal, model-inclusion, Phase 3 QA, browser
+  E2E, figure, or result-registry blockers.

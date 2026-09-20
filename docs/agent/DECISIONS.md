@@ -526,6 +526,40 @@ Commit `e52d7ab` updates the fallback checks and commit `421a7ef` untracks gener
 A fresh clone at `421a7ef` passed `make validate`, `make web-check`, `make test-scientific`,
 `make test-e2e`, protocol/schema/model-registry checks, and remained clean after installation.
 
+## D-029 — The canonical frontend gate includes full lint and typed legacy API boundaries
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The workbench surface already passed targeted lint, typecheck, build, and browser smoke checks,
+but the full legacy `apps/web/src` tree still had 143 lint errors and 17 warnings. The Makefile
+frontend gate also checked only TypeScript and the production build, so a clean build could leave
+an unverified lint surface.
+
+Decision:
+Repair the existing frontend lint findings with behavior-preserving changes: explicitly handle
+floating promises, declare React hook dependencies, remove unused imports, set the forward-ref
+display name, use nullish/optional-safe access where required, and define response shapes for the
+UCSC, NCBI Clinical Tables, NCBI E-utilities, and ClinVar JSON boundaries. Make `frontend-build`
+run the repository-local ESLint entrypoint before TypeScript and the production build.
+
+Alternatives:
+Exclude legacy files, weaken the lint rules, add blanket disable comments, or leave the
+Makefile gate partial. These were rejected because they would hide defects and make the local
+frontend gate less reproducible.
+
+Consequences:
+The full frontend source tree is now statically clean and the canonical `make web-check` gate
+covers lint, typecheck, and production build. This is engineering evidence only; it does not
+authorize model downloads, paid compute, or scientific result generation.
+
+Validation:
+Commit `1d9cf43` implements the source/Makefile changes. Full ESLint passes with zero
+errors/warnings; `make web-check` passes; `make validate` passes
+with 610 tests, 33 deselected, and 95.34% coverage; `make test-scientific` passes 7 tests with 1
+explicit skip; `make test-e2e` passes 14 tests with 1 explicit skip; protocol, schema, model
+registry, registry, clean-room, and no-spend Modal preflight checks pass.
+
 ## Template for new decisions
 
 ### D-XXX — Title

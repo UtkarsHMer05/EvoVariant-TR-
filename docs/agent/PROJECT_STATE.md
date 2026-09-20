@@ -18,7 +18,7 @@ registry-driven figure output. No model
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `942e042` (clean-room validation and remaining-gate reconciliation).
+Last passing source baseline: `1d9cf43` (frontend lint/typecheck/build gate cleanup).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -31,6 +31,7 @@ Clean-bootstrap dependency commit: `22dac0f`.
 Clone-safe clean-room test commit: `e52d7ab`.
 Generated-metadata hygiene commit: `421a7ef`.
 Final gate documentation commit: `942e042`.
+Frontend lint-gate implementation commit: `1d9cf43`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -122,9 +123,9 @@ verified facts are:
 - The research workbench at `apps/web/src/app/analysis/page.tsx` exposes all 14 required
   top-level areas. A local production-server browser smoke verified navigation, fail-closed
   single-variant rendering, blocked temporal empty state, and protocol metadata loading. The
-  changed frontend files pass ESLint and `make web-check` passes typecheck plus Next production
-  build. Full legacy frontend ESLint still reports 143 errors and 17 warnings outside the
-  changed surface, and automated browser E2E coverage is not yet implemented.
+  full frontend source tree now passes ESLint with zero errors/warnings, and the canonical
+  `make web-check` target runs that lint gate plus TypeScript and the Next production build.
+  Automated browser E2E coverage is not yet implemented.
 
 ## Experiments and artifacts
 
@@ -168,11 +169,10 @@ made.
 Known blockers are the required real Modal pilot (paid-compute acknowledgement and remote
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
-inclusion gate. Independent local gates and a fresh clean-room CPU/frontend rerun now pass, but
-full legacy frontend lint still reports 143 errors and 17 warnings, automated browser E2E
-coverage is absent, registry-driven figure regeneration has no inputs, and no registered result
-artifacts exist. A fresh `npm ci` also reports 13 dependency vulnerabilities (2 low, 2
-moderate, 8 high, 1 critical); no automatic audit fix was applied.
+inclusion gate. Independent local gates and a fresh clean-room CPU/frontend rerun now pass;
+automated browser E2E coverage is absent, registry-driven figure regeneration has no inputs, and
+no registered result artifacts exist. A fresh `npm ci` also reports 13 dependency vulnerabilities
+(2 low, 2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
 
 Exact next action: preserve this state, then obtain explicit authorization and verified model/
 compute evidence before running a tiny Modal pilot. Resolve or formally approve the Phase 3 QA

@@ -49,5 +49,8 @@
   "ct3aMetadata": {
     "initVersion": "7.39.3"
   },
-  "packageManager": "npm@10.2.4"
+  "packageManager": "npm@10.2.4",
+  "optionalDependencies": {
+    "@next/swc-win32-x64-msvc": "^15.3.1"
+  }
 }

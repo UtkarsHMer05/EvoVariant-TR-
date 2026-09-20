@@ -34,15 +34,24 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
 
-    const deltaScore = data.score_delta ?? 0;
+    const deltaScore = data.score_delta ?? data.delta_score ?? 0;
+    const threshold = -0.0009178519;
+    const lofStd = 0.0015140239;
+    const funcStd = 0.0009016589;
+
+    const isPathogenic = deltaScore < threshold;
+    const prediction = isPathogenic ? "Likely pathogenic" : "Likely benign";
+    const confidence = isPathogenic
+      ? Math.min(1.0, Math.abs(deltaScore - threshold) / lofStd)
+      : Math.min(1.0, Math.abs(deltaScore - threshold) / funcStd);
 
     const transformed = {
       position: body.variant_position ?? 0,
       reference: body.reference ?? "",
       alternative: body.alternative ?? body.alternative?.toLowerCase() ?? "",
       delta_score: deltaScore,
-      prediction: deltaScore < 0 ? "likely_pathogenic" : "likely_benign",
-      classification_confidence: Math.min(1.0, Math.abs(deltaScore) / 0.01),
+      prediction: prediction,
+      classification_confidence: confidence,
     };
 
     return Response.json(transformed, { status: 200 });

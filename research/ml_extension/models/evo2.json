@@ -1,0 +1,37 @@
+{
+  "model_id": "evo2",
+  "status": "PLANNED",
+  "model_name": "Evo2 7B",
+  "source": "https://github.com/ArcInstitute/evo2",
+  "license": "NOT_VERIFIED",
+  "checkpoint": "evo2_7b",
+  "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "input_contract": {
+    "assembly": "GRCh38",
+    "alphabet": "ACGT",
+    "context_lengths_bp": [8192],
+    "variant_scoring": true
+  },
+  "score_contract": {
+    "score_semantics": "reference_vs_alternate_log_likelihood_ratio",
+    "score_direction": "unknown",
+    "orientation_support": "forward_and_reverse"
+  },
+  "capabilities": {
+    "raw_score": true,
+    "embeddings": true,
+    "fine_tuning": false,
+    "batch": true
+  },
+  "hardware": {
+    "backend": "modal",
+    "gpu": "H100",
+    "memory_gb": 80
+  },
+  "provenance": {
+    "verified_at": null,
+    "verification_status": "DEFERRED",
+    "notes": "Required candidate. Pinned source identity is recorded, but official package parity, weights, GPU load, tiny inference, and measured cost remain unverified.",
+    "asset_checksum": null
+  }
+}

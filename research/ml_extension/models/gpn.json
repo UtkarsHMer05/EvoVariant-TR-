@@ -1,0 +1,37 @@
+{
+  "model_id": "gpn",
+  "status": "PLANNED",
+  "model_name": "GPN / GPN-MSA",
+  "source": "https://github.com/songlab-cal/gpn",
+  "license": "NOT_VERIFIED",
+  "checkpoint": null,
+  "revision": null,
+  "input_contract": {
+    "assembly": null,
+    "alphabet": "ACGT",
+    "context_lengths_bp": [],
+    "variant_scoring": false
+  },
+  "score_contract": {
+    "score_semantics": "not_verified",
+    "score_direction": "unknown",
+    "orientation_support": "unknown"
+  },
+  "capabilities": {
+    "raw_score": false,
+    "embeddings": false,
+    "fine_tuning": false,
+    "batch": false
+  },
+  "hardware": {
+    "backend": "not_verified",
+    "gpu": null,
+    "memory_gb": null
+  },
+  "provenance": {
+    "verified_at": null,
+    "verification_status": "NOT_VERIFIED",
+    "notes": "Candidate retained for feasibility review only. Existing deterministic comparator code is a fixture path and is not an official GPN result.",
+    "asset_checksum": null
+  }
+}

@@ -112,6 +112,38 @@ def cmd_modal_smoke(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_verify_model_registry(args: argparse.Namespace) -> int:
+    """Verify model manifests and report the explicit inclusion boundary."""
+    from evovariant_tr.model_registry import (
+        included_models,
+        load_model_registry,
+        verify_model_registry,
+    )
+
+    failures = verify_model_registry(args.models_dir, schema_path=args.schema)
+    if failures:
+        print(f"FAIL: {len(failures)} model registry checks failed:")
+        for failure in failures:
+            print(f"  - {failure}")
+        return 1
+    models = load_model_registry(args.models_dir, schema_path=args.schema)
+    included = included_models(models)
+    statuses = {model.model_id: model.status for model in models}
+    print(
+        json.dumps(
+            {
+                "status": "PASS",
+                "manifest_count": len(models),
+                "included_count": len(included),
+                "statuses": statuses,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
 def cmd_build_cohort(args: argparse.Namespace) -> int:
     from datetime import date
 
@@ -205,6 +237,18 @@ def build_parser() -> argparse.ArgumentParser:
         help="Require paid acknowledgement for the separately authorized remote runner",
     )
     modal_smoke.set_defaults(func=cmd_modal_smoke)
+
+    model_registry = subparsers.add_parser(
+        "verify-model-registry",
+        help="Verify schema-conformant model candidate manifests",
+    )
+    model_registry.add_argument(
+        "--models-dir", type=Path, default=Path("research/ml_extension/models")
+    )
+    model_registry.add_argument(
+        "--schema", type=Path, default=Path("research/schemas/model_manifest.schema.json")
+    )
+    model_registry.set_defaults(func=cmd_verify_model_registry)
 
     return parser
 

@@ -144,6 +144,11 @@ registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)
 	$(MAKE) check-venv
 	$(PYTHON) scripts/verify_registry.py --registry-dir $(REGISTRY)
 
+.PHONY: model-registry-verify
+model-registry-verify: ## Verify ML-extension model candidate manifests (free/local)
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli verify-model-registry
+
 # ---------------------------------------------------------------------------
 # GPU targets — COST MONEY, never default, explicit acknowledgement required
 # ---------------------------------------------------------------------------

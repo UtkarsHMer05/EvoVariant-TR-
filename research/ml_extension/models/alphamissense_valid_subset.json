@@ -1,0 +1,37 @@
+{
+  "model_id": "alphamissense_valid_subset",
+  "status": "PLANNED",
+  "model_name": "AlphaMissense valid missense subset",
+  "source": "https://github.com/google-deepmind/alphamissense",
+  "license": "NOT_VERIFIED",
+  "checkpoint": null,
+  "revision": null,
+  "input_contract": {
+    "assembly": "GRCh38",
+    "alphabet": "A/C/G/T SNVs",
+    "context_lengths_bp": [],
+    "variant_scoring": true
+  },
+  "score_contract": {
+    "score_semantics": "missense_pathogenicity_score",
+    "score_direction": "unknown",
+    "orientation_support": "not_applicable"
+  },
+  "capabilities": {
+    "raw_score": true,
+    "embeddings": false,
+    "fine_tuning": false,
+    "batch": false
+  },
+  "hardware": {
+    "backend": "not_verified",
+    "gpu": null,
+    "memory_gb": null
+  },
+  "provenance": {
+    "verified_at": null,
+    "verification_status": "NOT_VERIFIED",
+    "notes": "Comparator candidate is restricted to an applicable missense subset. No annotation release, checksum, license, or local source has been verified; non-missense records must be explicitly missing rather than assigned a score.",
+    "asset_checksum": null
+  }
+}

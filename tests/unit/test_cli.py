@@ -21,6 +21,14 @@ def test_version_command(capsys: pytest.CaptureFixture[str]) -> None:
     assert payload == {"package": "evovariant-tr", "version": __version__}
 
 
+def test_verify_model_registry_command(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["verify-model-registry"]) == 0
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["status"] == "PASS"
+    assert payload["manifest_count"] == 7
+    assert payload["included_count"] == 0
+
+
 def test_validate_protocol_command(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["validate-protocol", "--protocol", str(PROTOCOL)]) == 0
     out = capsys.readouterr().out

@@ -1,0 +1,37 @@
+{
+  "model_id": "cadd",
+  "status": "PLANNED",
+  "model_name": "CADD",
+  "source": "https://cadd.gs.washington.edu/",
+  "license": "NOT_VERIFIED",
+  "checkpoint": null,
+  "revision": null,
+  "input_contract": {
+    "assembly": "GRCh38",
+    "alphabet": "A/C/G/T SNVs",
+    "context_lengths_bp": [],
+    "variant_scoring": true
+  },
+  "score_contract": {
+    "score_semantics": "annotator_score",
+    "score_direction": "unknown",
+    "orientation_support": "not_applicable"
+  },
+  "capabilities": {
+    "raw_score": true,
+    "embeddings": false,
+    "fine_tuning": false,
+    "batch": false
+  },
+  "hardware": {
+    "backend": "not_verified",
+    "gpu": null,
+    "memory_gb": null
+  },
+  "provenance": {
+    "verified_at": null,
+    "verification_status": "NOT_VERIFIED",
+    "notes": "Comparator candidate retained for a later official annotation-source review. The existing deterministic CADD comparator is synthetic fixture behavior and cannot enter scientific evidence.",
+    "asset_checksum": null
+  }
+}

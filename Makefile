@@ -239,7 +239,7 @@ web-check: ## Run the frontend lint/typecheck/build gate
 
 .PHONY: web-e2e
 web-e2e: ## Run committed Playwright workbench journeys (local browser only)
-	cd apps/web && node node_modules/playwright/cli.js install chromium && npm run test:e2e
+	cd apps/web && node node_modules/playwright/cli.js install chromium && NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL="$${NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL:-http://127.0.0.1:8000}" npm run test:e2e
 
 .PHONY: ui-check
 ui-check: ## Record/run the Phase 16 research workbench gate

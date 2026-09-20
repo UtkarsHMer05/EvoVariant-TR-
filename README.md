@@ -1,583 +1,298 @@
 # EvoVariant-TR
 
-**EvoVariant-TR** — *Temporal Resolution of Variants of Uncertain Significance with Frozen Zero-Shot Evo 2 Allele-Likelihood Scoring.*
+EvoVariant-TR is research software for a frozen temporal benchmark of genomic
+variant-effect scores. The project preserves the original zero-shot Evo 2
+estimand and adds a separately controlled ML-extension surface for future
+representations, classical models, calibration, ensembling, and robustness
+experiments.
 
-A full-stack, research-grade platform for scoring human genetic variants using the Evo 2 genomic language model. The system fetches reference sequence context, computes allele log-likelihoods with Evo 2, and produces variant-effect scores for ClinVar VUS (Variant of Uncertain Significance) resolution benchmarking.
+> **Research-only boundary:** this repository does not provide a clinical
+> diagnosis, treatment recommendation, or patient-level risk estimate. Raw
+> sequence signals and any future calibrated study probabilities are meaningful
+> only under their registered protocol and evidence stage.
 
-> :warning: **Research-only software.** Outputs are study probabilities under a specific temporal benchmark protocol — not a clinical diagnosis for any individual. See [Responsible Use](#responsible-use).
+## Current verified status
 
----
+The current branch is `research/evovariant-tr`. The project-control state is
+`BLOCKED / PARTIAL` at the final release gate. The free/local engineering
+surfaces are reproducible, but the scientific execution gates are intentionally
+closed:
 
-## Table of Contents
+| Area | Current evidence |
+|---|---|
+| Frozen protocol and ML-extension control plane | PASS; the original protocol hash is preserved. |
+| Phase 3 data and splits | Structural invariants PASS, with a documented QA-count discrepancy; downstream scoring is blocked until resolved or approved by deviation. |
+| Model registry | Seven schema-valid candidate manifests; zero included models with verified parity/smoke evidence. |
+| Modal | No-spend CLI/account preflight only; no deployment, model-weight download, remote inference, or measured cost. |
+| Experiment registry | Empty; no scientific result artifact is registered. |
+| Research workbench | Frontend build and four browser tests PASS; scientific panels remain evidence-gated. |
+| Figures and tables | Registry-driven manifest is deterministic but `BLOCKED` because no eligible completed scientific outputs exist. |
+| Spend | `$0` measured and estimated for the work completed here. |
 
-1. [Quick Start](#quick-start)
-2. [What It Does](#what-it-does)
-3. [Science Foundations](#science-foundations)
-4. [System Architecture](#system-architecture)
-5. [Repository Map](#repository-map)
-6. [Frontend Guide](#frontend-guide)
-7. [Backend & Deployment](#backend--deployment)
-8. [Development](#development)
-9. [GPU / Paid Compute](#gpu--paid-compute)
-10. [Testing](#testing)
-11. [Data & Protocol](#data--protocol)
-12. [Troubleshooting](#troubleshooting)
-13. [Responsible Use](#responsible-use)
-14. [References](#references)
+The authoritative execution state is maintained in
+[`CODEX_MASTER_PROMPT.md`](CODEX_MASTER_PROMPT.md),
+[`docs/agent/PROJECT_STATE.md`](docs/agent/PROJECT_STATE.md),
+[`docs/agent/PHASE_LEDGER.md`](docs/agent/PHASE_LEDGER.md), and
+[`docs/agent/DECISIONS.md`](docs/agent/DECISIONS.md). Historical milestone
+reports under `docs/project/` are retained as history and are not a substitute
+for the current ML-extension gate.
 
----
+## Quick start: free local validation
 
-## Quick Start
+The default setup and validation path does not install CUDA or download model
+weights.
 
 ```bash
-# 1. Clone and set up Python environment
-git clone https://github.com/utkarshmer05/evovariant-tr.git
-cd evovariant-tr
 make bootstrap
-
-# 2. Run full local validation (free, CPU-only)
+cd apps/web && npm ci && cd ../..
 make validate
-
-# 3. Start frontend
-cd apps/web
-npm install
-npm run dev -- --port 3001
-
-# 4. Open in browser
-open http://localhost:3001
+make web-check
+make web-e2e
 ```
 
-For GPU-powered variant scoring, see [GPU / Paid Compute](#gpu--paid-compute).
+Useful additional checks are:
 
----
+```bash
+make protocol-verify
+make ml-protocol-verify
+make schema-verify
+make model-registry-verify
+make registry-verify
+make test-scientific
+make test-e2e
+make figures
+```
 
-## What It Does
+At the verified current baseline, `make validate` passes 619 tests with 33
+deselected and 95.31% coverage. The scientific tier passes 7 tests with 1
+explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
+`make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
+are recorded in the project-control files.
 
-EvoVariant-TR answers: **"Given a specific single nucleotide change in a gene, does the mutation look likely benign or likely pathogenic?"**
+## What the project measures
 
-At runtime, the system:
+The frozen primary estimand is:
 
-1. Takes a user-selected genomic position and alternative base (A/T/G/C).
-2. Fetches a reference sequence window (8,192 bp centered on the variant).
-3. Scores both reference and mutated sequences with Evo 2.
-4. Computes a delta log-likelihood score.
-5. Maps that score to a prediction with a confidence estimate.
-6. Displays results alongside known ClinVar classifications.
+> Among unique normalized germline GRCh38 SNVs recorded as VUS in the fixed
+> historical ClinVar release at t0 and later receiving a definitive B/LB or
+> P/LP classification meeting the prespecified review-status gate at t1, how
+> well does a frozen zero-shot Evo 2 allele-likelihood score distinguish the
+> direction of that later resolution?
 
-### Example Workflow
+The primary protocol fixes:
 
-1. Search for a gene (e.g., `BRCA1`) or browse by chromosome.
-2. Click a nucleotide in the sequence view to pre-fill a variant position.
-3. Select an alternative base and submit.
-4. View the Evo 2 variant-effect score, prediction, and ClinVar comparison.
+- t0: ClinVar `variant_summary` archived for 2025-01-02;
+- t1: ClinVar `variant_summary` archived for 2026-08-06;
+- assembly: GRCh38;
+- unit: unique normalized biallelic A/C/G/T germline SNV;
+- t1 outcomes: P/LP versus B/LB with the primary review-status gate;
+- sequence context: exactly 8,192 bases;
+- score: forward and reverse-complement raw components retained, with
+  `delta_primary = (delta_fwd + delta_rc) / 2`;
+- calibration and threshold choices: never fit using locked-test labels.
 
----
+The Phase 3 archives are hash-verified. Their current recomputation yields
+1,402,895 unique valid t0 VUS IDs and 946 final temporal records (536 B/LB,
+410 P/LP). The validation-only handoff target was 1,403,225 and 1,024. The
+difference is documented and has not been tuned away; no model scoring is
+authorized until the discrepancy is resolved from source evidence or accepted
+through the dated deviation process.
 
-## Science Foundations
-
-### DNA, Genes, and SNVs
-
-- DNA uses a 4-letter alphabet: **A**, **T**, **G**, **C**.
-- Genes are functional regions on chromosomes.
-- An SNV changes one nucleotide at one genomic position.
-
-Example: Reference base `A` at position 43044295, variant base `T` → written as `A>T`.
-
-### Variant Effect Prediction
-
-Variant effect prediction estimates whether a variant likely disrupts biological function:
-
-- **Likely pathogenic** — variant pattern resembles harmful variants more strongly.
-- **Likely benign** — variant pattern resembles non-harmful variants more strongly.
-
-:warning: This is a research/decision-support signal, not a standalone clinical diagnosis.
-
-### Why a Language Model for DNA?
-
-Evo 2 is a genomic language model. Like text LLMs learn token patterns, Evo 2 learns nucleotide patterns. A biologically plausible sequence receives a relatively higher likelihood; a disruptive mutation can reduce sequence likelihood in context.
-
-### Core Scoring Logic
-
-The backend computes:
-
-$$\Delta = s_{variant} - s_{reference}$$
-
-Where:
-- $s_{reference}$ is the Evo 2 score for the unmodified sequence window
-- $s_{variant}$ is the Evo 2 score after substituting one nucleotide
-- More negative $\Delta$ indicates stronger loss-of-function tendency
-
-**Decision rule:**
-
-$$\mathrm{prediction} = \begin{cases} \mathrm{Likely\ pathogenic}, & \Delta < t \\ \mathrm{Likely\ benign}, & \Delta \ge t \end{cases}$$
-
-Where $t$ is the calibrated threshold from the BRCA1 benchmark.
-
-**Confidence rule:**
-
-$$\mathrm{confidence} = \min\left(1, \frac{|\Delta - t|}{\sigma}\right)$$
-
-Where $\sigma$ depends on the prediction class (LOF or benign/FUNC standard deviation).
-
----
-
-## System Architecture
+## Architecture
 
 ```mermaid
 flowchart LR
-    U[User] --> FE[Next.js Frontend]
-    FE -->|Gene search| NCBI1[NCBI Genes API]
-    FE -->|Gene details + ClinVar| NCBI2[NCBI E-utilities API]
-    FE -->|Genome assemblies + sequences| UCSC[UCSC Genome API]
-    FE -->|POST variant request| BE[Modal FastAPI Endpoint]
-    BE -->|Fetch sequence window| UCSC
-    BE --> EVO2[Evo2 Model on H100 GPU]
-    EVO2 --> BE
-    BE --> FE
-    FE --> U
+    P[ Frozen protocol ] --> C[ ML control plane ]
+    T0[ ClinVar t0 archive ] --> D[ Phase 3 audit and split builder ]
+    T1[ ClinVar t1 archive ] --> D
+    C --> R[ Model registry ]
+    D --> G{ Data and model gates }
+    R --> G
+    G -->|future authorized run| M[ Modal Evo 2 execution ]
+    M --> E[ Immutable experiment registry ]
+    E --> F[ Registry-driven figures and tables ]
+    E --> W[ Next.js research workbench ]
+    W --> U[ Research-only user surface ]
 ```
 
-### Components
+The current repository contains the contracts and fail-closed execution
+scaffolding. The diagram does not claim that Modal deployment, model weights,
+inference, or scientific outputs currently exist.
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| **Frontend** | Next.js 15, React 19, TypeScript, Tailwind CSS | Interactive genome exploration and variant analysis UI |
-| **API Gateway** | Next.js API Routes | Proxies requests to Modal backend (avoids CORS) |
-| **Backend** | Modal serverless GPU, FastAPI, Python 3.12 | Evo 2 model serving and variant scoring |
-| **Model** | Evo 2 (7B parameters) | Genomic sequence likelihood scoring |
-| **Data Sources** | UCSC Genome Browser API, NCBI ClinVar | Gene metadata, sequences, and known variants |
-
----
-
-## Repository Map
+## Repository map
 
 ```text
-evovariant-tr/
-├── README.md                           # This file
-├── COMMAND_REFERENCE.md                # Canonical command reference
-├── Makefile                            # Single project control surface
-├── pyproject.toml                      # Python package definition (evovariant_tr)
-├── requirements.txt                    # Backend runtime requirements
-├── evo2_scorer_app.py                  # Modal deployment entry point
-├── AGENTS.md                           # Agent instructions
-│
-├── apps/
-│   └── web/                            # Next.js frontend
-│       ├── src/app/                    # App Router pages
-│       ├── src/components/             # UI components
-│       ├── src/utils/genome-api.ts     # External API adapter layer
-│       └── src/env.js                  # Environment validation
-│
-├── src/
-│   └── evovariant_tr/                  # Core Python package
-│       ├── api.py                      # Public API interface
-│       ├── batch.py                    # Batch processing & resumability
-│       ├── cli.py                      # CLI entrypoint
-│       ├── clinvar.py                  # ClinVar parsing & normalization
-│       ├── cohort.py                   # Cohort construction
-│       ├── config.py                   # Configuration management
-│       ├── cost_policy.py              # Cost control & approval policies
-│       ├── evo2_scorer.py              # Evo 2 model scoring interface
-│       ├── fake_scorer.py              # Deterministic test scorer
-│       ├── manifest.py                 # File manifest & hashing
-│       ├── metrics.py                  # Scoring metrics & evaluation
-│       ├── modal_config.py             # Modal configuration
-│       ├── model_cache.py              # Model caching
-│       ├── registry.py                 # Experiment registry
-│       ├── scorer.py                   # Scorer interface
-│       ├── scoring_record.py           # Scoring result records
-│       ├── sequence_cache.py           # Sequence caching
-│       ├── sequence_window.py          # Sequence window extraction
-│       └── ...                         # More modules (full list below)
-│
-├── scripts/                            # Operational scripts
-│   ├── check_secrets.sh                # Secret scanner
-│   ├── deploy_modal.sh                 # Modal deployment script
-│   ├── patch_vortex.py                 # Attention interface compatibility patch
-│   ├── validate_local.sh               # Full local validation
-│   ├── verify_manifest.py              # Manifest verification
-│   └── verify_registry.py              # Registry verification
-│
-├── tests/                              # Test suite (570 tests)
-│   ├── unit/                           # Unit tests
-│   ├── contract/                       # Contract tests
-│   ├── integration/                    # Integration tests
-│   ├── scientific/                     # Scientific validation tests
-│   ├── modal/                          # Modal infrastructure tests
-│   └── e2e/                            # End-to-end tests
-│
-├── research/                           # Research protocol & outputs
-│   ├── protocol/protocol.yaml          # Frozen research protocol (v1.0.0)
-│   ├── schemas/                        # Schema definitions
-│   ├── data_manifests/                 # Data manifests
-│   └── results/                        # Scoring results (frozen)
-│
-├── data/                               # Local data (gitignored)
-│   └── manifests/                      # File manifests
-│
-├── artifacts/                          # Generated artifacts
-│   └── approvals/                      # Approval artifacts
-│       └── full_run_approval.json      # Full-run GPU approval
-│
-├── docs/                               # Documentation
-│   ├── project/                        # Project documentation
-│   ├── terminology/                    # Scientific terminology
-│   └── ...                             # Other docs
-│
-└── evaluation/                       # Evaluation framework
+.
+├── CODEX_MASTER_PROMPT.md       # authoritative execution instruction
+├── COMMAND_REFERENCE.md         # free/gated command reference
+├── Makefile                     # project control surface
+├── docs/agent/                  # persistent state, decisions, ledger, runbook
+├── research/protocol/           # frozen original protocol and deviation log
+├── research/ml_extension/       # additive ML protocol, model registry, split policy
+├── research/schemas/             # strict JSON Schemas
+├── experiments/registry/        # append-only run records (currently empty)
+├── src/evovariant_tr/           # typed research and control-plane package
+├── apps/web/                    # Next.js research workbench
+├── evo2_scorer_app.py           # gated Modal entrypoint; not deployment evidence
+├── scripts/                     # validation, manifest, registry, and operational tools
+├── tests/                       # unit, contract, integration, scientific, API/E2E, Modal
+└── data/                        # local/ignored archives and derived Phase 3 outputs
 ```
 
----
+## Research workbench
 
-## Frontend Guide
-
-### Stack
-
-- **Next.js 15** (App Router)
-- **React 19** + TypeScript
-- **Tailwind CSS** + shadcn/ui components
-- **Zod** + @t3-oss/env-nextjs for environment validation
-- **Turbopack** for fast dev compilation
-
-### Development
+Run the frontend from `apps/web` after installing its dependencies:
 
 ```bash
 cd apps/web
-npm install          # or: npm ci
-npm run dev          # Starts on http://localhost:3001
-npm run build        # Production build
-npx tsc --noEmit     # TypeScript type checking
-npm run lint         # ESLint
+npm run dev -- --port 3001
 ```
 
-### Environment Variables
+Open `/analysis` to inspect the evidence-gated workbench. It exposes all 14
+required areas:
 
-Create `apps/web/.env.local`:
+- Overview;
+- Single Variant Research Analysis;
+- Temporal VUS Explorer;
+- Model Benchmark;
+- Representation / Layer Analysis;
+- Training & Hyperparameter Experiments;
+- Fine-Tuning Experiments;
+- Ensemble Analysis;
+- Calibration & Abstention;
+- Robustness & Ablation;
+- Error Analysis;
+- Batch VCF/CSV;
+- Methods & Provenance;
+- Experiment Registry.
+
+The current UI can load frozen protocol metadata and can render raw research
+signals only when an explicitly configured real scorer serves them. It does not
+fall back to `FakeScorer`, derive clinical labels, invent metrics, or mark
+downstream areas ready because a planned run exists. The Experiment Registry
+tab reads safe metadata from `/api/registry`; the current empty registry is
+shown as `BLOCKED`.
+
+## Data and reproducibility
+
+The local archive-backed Phase 3 command is:
 
 ```bash
-# Modal scoring endpoint URL
-NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL=https://utkarshmer05--evovariant-tr-evo2scorerservice-score-variant.modal.run
+make data-qc
 ```
 
-### Main Components
+It rebuilds ignored record-level outputs under
+`data/derived/ml_extension/phase3/` and validates deterministic split and
+leakage invariants. The current split manifest hash is
+`96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, and its
+content split hash is
+`bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
 
-| Component | File | Purpose |
-|---|---|---|
-| **HomePage** | `src/app/page.tsx` | Gene search and chromosome browsing |
-| **GeneViewer** | `src/components/gene-viewer.tsx` | Orchestrates gene analysis workspace |
-| **VariantAnalysis** | `src/components/variant-analysis.tsx` | Variant entry and prediction display |
-| **GeneSequence** | `src/components/gene-sequence.tsx` | Sequence visualization with slider |
-| **KnownVariants** | `src/components/known-variants.tsx` | ClinVar variants table |
-| **ComparisonModal** | `src/components/variant-comparison-modal.tsx` | ClinVar vs Evo2 comparison |
+The raw archives are local, ignored data. Their identity is recorded in:
 
----
+- `research/data_manifests/clinvar_t0.json`;
+- `research/data_manifests/clinvar_t1.json`;
+- `research/ml_extension/splits/phase3_manifest_summary.json`.
 
-## Backend & Deployment
+The summary is the reviewable source of truth for the discrepancy and explicitly
+sets `model_scoring_allowed` to false until the gate is resolved.
 
-### Architecture
+## Experiment registry and figures
 
-The backend is a **Modal serverless GPU application** that:
-
-1. **Loads Evo 2** (`evo2_7b`) once per warm container via `@modal.enter()`
-2. **Scores variants** via a FastAPI web endpoint
-3. **Fetches sequence context** from the UCSC API
-4. **Returns JSON** with reference/variant scores and predictions
-
-### Deployment
+Every future run must be registered with protocol, git, dataset/split, model,
+license, configuration, hardware, runtime/cost, metrics, artifact, and failure
+metadata. The registry is append-only, terminal states are final, and completed
+output hashes are recomputed by:
 
 ```bash
-# Ensure cost acknowledgement is set
-export EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS
-
-# Deploy
-./scripts/deploy_modal.sh
-# or: modal deploy evo2_scorer_app.py
+make registry-verify
 ```
 
-### Container Configuration
+The Section 21 metadata contract is implemented in
+`src/evovariant_tr/registry.py` and
+`research/schemas/experiment_run.schema.json`. The current registry contains no
+run records.
 
-| Setting | Value |
-|---|---|
-| **GPU** | NVIDIA H100 80GB |
-| **Base Image** | nvcr.io/nvidia/pytorch:24.07-py3 |
-| **CUDA** | 12.4 |
-| **PyTorch** | 2.4.0+cu124 |
-| **Transformer-Engine** | 1.13 |
-| **Flash-Attention** | 2.6.3 |
-| **Max Containers** | 3 |
-| **Retries** | 2 |
-| **Scale-down** | 120s |
-
-### API Contract
-
-#### Request
-
-```json
-{
-  "chromosome": "chr17",
-  "variant_position": 43044295,
-  "alternative": "T",
-  "genome": "hg38"
-}
-```
-
-#### Response
-
-```json
-{
-  "variant": "chr17:g.43044295A>T",
-  "reference_score": -0.964,
-  "alternate_score": -0.964,
-  "score_delta": 0.0,
-  "status": "completed",
-  "provenance": {
-    "scorer": "evo2_7b",
-    "context_length": 8192,
-    "strand": "forward",
-    "scoring_semantics": "log_likelihood_ratio"
-  }
-}
-```
-
----
-
-## Development
-
-### Prerequisites
-
-- **Python 3.12** (required)
-- **Node.js 20+** and npm
-- **Modal CLI** (`pip install modal`) — for GPU deployment only
-- **Git** — for repository operations
-
-### Environment Setup
+Figure and table input discovery is deliberately registry-driven:
 
 ```bash
-# Python backend
-make bootstrap              # Creates .venv, installs core + dev dependencies
-
-# Frontend
-cd apps/web
-npm install                 # or: npm ci
-
-# Activate Python environment
-source .venv/bin/activate
+make figures
 ```
 
-### Makefile Commands
+This writes a deterministic metadata manifest under the ignored
+`research/runs/` directory. With no eligible completed PRELIMINARY or FINAL
+outputs it reports `BLOCKED` and produces no scientific curves, tables, or
+placeholder metrics.
 
-| Command | Description |
-|---|---|
-| `make help` | Show all available targets |
-| `make bootstrap` | Set up Python environment |
-| `make validate` | Full local validation (free) |
-| `make lint` | Ruff linter |
-| `make typecheck` | mypy strict type checking |
-| `make test` | Run unit, contract, integration tests |
-| `make coverage` | Run tests with coverage |
-| `make protocol-verify` | Validate frozen protocol |
-| `make gpu-pilot` | Run GPU pilot (requires cost ack) |
-| `make gpu-full` | Run full GPU scoring (requires approval) |
+## Modal and paid compute
 
-### Direct Commands
+The Modal configuration is intentionally gated. The canonical planned identity
+is app `evovariant-tr`, volume `hf_cache`, H100, the pinned NGC PyTorch image,
+and Evo2 revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`.
 
 ```bash
-# Validation
-ruff check src tests scripts
-mypy --strict src
-pytest tests/unit tests/contract tests/integration -q
-
-# Protocol verification
-evovariant-tr validate-protocol --protocol research/protocol/protocol.yaml
-
-# CLI
-evovariant-tr --help
+make modal-smoke
 ```
 
----
+This is a no-spend preflight. A successful preflight proves only local CLI
+installation/account authentication; it is not deployment, model availability,
+weight availability, inference, or cost evidence.
 
-## GPU / Paid Compute
+Paid execution requires the explicit acknowledgement
+`EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS` and the project-specific approval
+gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. Do not deploy, download
+weights, or invoke remote inference while the Phase 3 discrepancy, model
+inclusion, and user approval gates remain unresolved.
 
-:warning: **These operations incur paid GPU costs on Modal.**
+## Phase status
 
-### Cost Control Policy
+The dependency-ordered phase decisions are maintained in
+[`docs/agent/PHASE_LEDGER.md`](docs/agent/PHASE_LEDGER.md). In brief:
 
-All paid compute is gated by:
+- Phases 0 and 1 are complete;
+- the Phase 2–5 local/control-plane work is implemented, but the required remote
+  compute, model parity, or cohort gates are not complete;
+- Phases 6–15 have explicit blocked status artifacts and no scientific metrics;
+- Phase 16's frontend/build/browser engineering gate passes, but its scientific
+  result dependency is absent;
+- Phase 17's registry-driven manifest is deterministic but has no eligible
+  inputs;
+- Phase 18's free clean-room gate passes, while gated Modal and scientific
+  figure evidence remain unavailable;
+- Phase 19 remains blocked and no release, tag, deployment, or publication is
+  claimed.
 
-1. **Environment variable**: `EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS`
-2. **Approval artifact**: `artifacts/approvals/full_run_approval.json` (for full runs)
-3. **Modal identity check**: The old project identity (`variant-analysis-evo2`) is forbidden
+## Legacy evidence boundary
 
-### Running GPU Tests
+The repository retains historical legacy application code, reports, and ignored
+evaluation snapshots for auditability. They are not current ML-extension
+results. In particular, the former BRCA1 threshold/confidence classifier and
+old Modal endpoint identity must not be used as evidence for the frozen temporal
+benchmark. Current code fails closed when a real scorer or registered artifact
+is unavailable.
 
-```bash
-export EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS
+## Responsible use
 
-# Pilot run (small, multi-gene)
-make gpu-pilot
+ClinVar review stars are a review-status proxy, not biological certainty. The
+benchmark is conditional on eventual historical resolution and does not estimate
+whether every VUS will be reclassified, when it will be reclassified, patient
+diagnosis, treatment, clinical management, or causal pathogenicity.
 
-# Full primary scoring (requires approval artifact)
-make gpu-full
-```
-
-### Full-Run Approval
-
-Create `artifacts/approvals/full_run_approval.json`:
-
-```json
-{
-  "approved_by": "your-name",
-  "approved_at": "2026-08-19T13:40:00Z",
-  "max_budget_usd": 500.0,
-  "run_scope": "full_primary_evo2_scoring",
-  "modal_environment": "evovariant-tr",
-  "gpu_type": "H100",
-  "protocol_hash": "frozen_v1.0.0_2026-08-18"
-}
-```
-
----
-
-## Testing
-
-### Test Taxonomy
-
-| Tier | Markers | Cost | Description |
-|---|---|---|---|
-| Unit | (default) | Free | Pure logic tests |
-| Contract | (default) | Free | Interface & schema tests |
-| Integration | (default) | Free | Multi-component tests |
-| Scientific | `--run-scientific` | Free | Scientific validation |
-| E2E | `--run-e2e` | Free | End-to-end tests |
-| Modal | `--run-modal` | Paid | GPU infrastructure tests |
-
-### Running Tests
-
-```bash
-# Default (free tiers only)
-make test
-
-# Include scientific and e2e (free)
-pytest --run-scientific --run-e2e tests/
-
-# Include modal (paid)
-EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS \
-  pytest --run-modal tests/ -o "addopts="
-```
-
-### Current Status
-
-```
-ruff check:        All checks passed
-mypy --strict:     Success: no issues found in 35 source files
-pytest:            570 passed, 3 skipped
-```
-
----
-
-## Data & Protocol
-
-### Research Protocol
-
-The frozen protocol is at `research/protocol/protocol.yaml` (v1.0.0, frozen 2026-08-18).
-
-```bash
-# Validate protocol
-make protocol-verify
-
-# Or directly
-evovariant-tr validate-protocol
-```
-
-### Data Sources
-
-| Source | Purpose |
-|---|---|
-| ClinVar (2025-01-02 & 2026-08-06) | VUS cohorts and classifications |
-| GRCh38 reference | Reference genome sequence |
-| UCSC Genome API | Sequence context for variant scoring |
-| NCBI E-utilities | Gene metadata and ClinVar details |
-
-### Cohort
-
-- **Primary cohort**: Temporal variants resolved between t0 and t1
-- **Calibration cohort**: Definitive variants at t0 for threshold calibration
-- **Gene groups**: Disjoint gene splits for cross-validation
-
----
-
-## Troubleshooting
-
-### Frontend: env validation fails
-
-```
-invalid_type: Required at path: NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL
-```
-
-**Fix**: Create `apps/web/.env.local` with the Modal endpoint URL (see above).
-
-### Backend: Modal container fails to start
-
-Check that you have:
-
-1. Authenticated with Modal: `modal login`
-2. Set cost acknowledgement: `export EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS`
-3. Old project identity is not used: the app must be named `evovariant-tr`
-
-### Backend: FP8 / compute capability error
-
-```
-RuntimeError: Device compute capability 8.9 or higher required for FP8 execution.
-```
-
-This indicates the GPU doesn't meet FP8 requirements. Ensure you're using an H100 GPU (compute capability 9.0).
-
-### Frontend: Hydration failed warning
-
-This is a browser extension artifact. It does not affect functionality. Refresh the page or try an incognito window.
-
-### No ClinVar variants shown
-
-- Try a different gene
-- Click refresh in the known variants panel
-- Check if the UCSC/NCBI APIs are responding
-
----
-
-## Responsible Use
-
-**EvoVariant-TR is research software.** All outputs are study probabilities under a specific temporal benchmark protocol:
-
-- The system produces **variant-effect scores**, not clinical diagnoses.
-- Calibrated outputs are **study probabilities**, not clinical probabilities for an individual.
-- The benchmark measures **discrimination of later resolution direction** among historically-VUS variants.
-- Every user-facing surface must display the **research-only** boundary.
-
-See `docs/terminology/EVIDENCE_STAGES.md` for evidence stage definitions and `docs/terminology/GLOSSARY.md` for scientific term definitions.
-
----
+Never present a raw model score, calibrated study probability, or empty-state
+status as a clinical conclusion. Preserve protocol hashes, data hashes, model
+identity, evidence stage, failure records, and cost records for every future
+run.
 
 ## References
 
-- **Evo2 paper**: [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.02.18.638918v1)
-- **Evo2 repository**: https://github.com/ArcInstitute/evo2
-- **UCSC Genome Browser API**: https://api.genome.ucsc.edu
-- **NCBI E-utilities**: https://www.ncbi.nlm.nih.gov/books/NBK25501/
-- **ClinVar**: https://www.ncbi.nlm.nih.gov/clinvar/
-- **Transformer Engine**: https://github.com/NVIDIA/TransformerEngine
-- **Flash-Attention**: https://github.com/Dao-AILab/flash-attention
-
----
-
-## Milestone Status
-
-This project follows a 100-milestone development process. Current status:
-
-- **M001–M054**: All PASS (repository setup, protocol, data, testing infrastructure)
-- **M055**: PASS — Evo 2 model-load smoke test on Modal H100
-- **M056**: PASS — Official Evo 2 generation/inference self-test
-- **M057–M060**: PASS — Sequence scoring, SNV pairs, reverse-complement, throughput validation
-- **M061–M099**: PASS — Scoring records, batch system, Modal service, comparators, metrics, API, UI, security, reproduction, figures
-- **M100**: PASS — Final release gate executed
-
-Full milestone ledger: `docs/project/MILESTONE_STATUS.md`
+- [Frozen original protocol](research/protocol/PROTOCOL.md)
+- [ML-extension protocol](research/ml_extension/PROTOCOL.md)
+- [Command reference](COMMAND_REFERENCE.md)
+- [Project state](docs/agent/PROJECT_STATE.md)
+- [Phase ledger](docs/agent/PHASE_LEDGER.md)
+- [Decisions](docs/agent/DECISIONS.md)
+- [Testing and validation](docs/agent/TESTING_AND_VALIDATION.md)
+- [Modal compute policy](docs/agent/MODAL_COMPUTE_POLICY.md)
+- [Evo2 repository](https://github.com/ArcInstitute/evo2)
+- [UCSC Genome Browser API](https://api.genome.ucsc.edu)
+- [NCBI ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)

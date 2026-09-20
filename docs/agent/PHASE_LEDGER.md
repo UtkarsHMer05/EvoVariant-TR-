@@ -6,24 +6,24 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 |---:|---|---|---|
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
-| 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; required real Modal pilot is unavailable because no verified Modal CLI/account authentication or paid-compute acknowledgement is present. See completion record below. |
+| 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; the no-spend Modal preflight is authenticated, but the required real remote pilot and paid-compute acknowledgement are absent. See completion record below. |
 | 3 | ML dataset + locked splits | PASS | `research/ml_extension/splits/phase3_manifest_summary.json`; generated split manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, structural leakage/QC invariants pass; QA-count discrepancy is documented and blocks downstream model scoring until reconciled. |
 | 4 | Modal compute foundation | BLOCKED | Local foundation and no-spend preflight pass in `cc7de42`; mandatory tiny remote inference, cache-hit evidence, and measured cost record remain unavailable without paid-compute acknowledgement. See completion record below. |
 | 5 | Model registry + adapters | BLOCKED | Seven schema-valid candidate manifests and a fail-closed adapter framework pass locally in `473d314`; zero candidates have verified parity plus tiny smoke evidence, so no model is included. See completion record below. |
-| 6 | Zero-shot multi-model benchmark | PENDING | |
-| 7 | Embedding/representation extraction | PENDING | |
-| 8 | Downstream supervised models | PENDING | |
-| 9 | Hyperparameter optimization | PENDING | |
-| 10 | Fine-tuning / PEFT | PENDING | |
-| 11 | Ensemble/meta-classifier | PENDING | |
-| 12 | Calibration + abstention | PENDING | |
-| 13 | Ablation + robustness | PENDING | |
-| 14 | Locked statistical evaluation | PENDING | |
-| 15 | Batch research pipeline | PENDING | |
-| 16 | Research workbench UI | PENDING | |
-| 17 | Figures/tables/report artifacts | PENDING | |
-| 18 | Security + clean-room reproducibility | PENDING | |
-| 19 | Final release gate | PENDING | |
+| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; no included model, unresolved Phase 3 QA discrepancy, and no Phase 4 pilot. |
+| 7 | Embedding/representation extraction | BLOCKED | `research/runs/phase7_rep_status.json`; no verified feature API or Phase 6 benchmark artifact. |
+| 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
+| 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
+| 10 | Fine-tuning / PEFT | BLOCKED | `research/runs/phase10_ft_status.json`; official training path, GPU smoke, and paid acknowledgement are absent. |
+| 11 | Ensemble/meta-classifier | BLOCKED | `research/runs/phase11_ens_status.json`; no registered base predictions or OOF inputs. |
+| 12 | Calibration + abstention | BLOCKED | `research/runs/phase12_cal_abs_status.json`; no development predictions and no authorized locked-label selection. |
+| 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
+| 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
+| 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
+| 16 | Research workbench UI | BLOCKED | `459ad11`, `make web-check` PASS, local browser smoke PASS; automated browser E2E and registered outputs are absent. |
+| 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; registry-driven figure contract exists, but no result artifact exists to render. |
+| 18 | Security + clean-room reproducibility | BLOCKED | `make validate` and `make web-check` PASS; clean clone/reinstall, figure regeneration, and automated browser E2E remain unrun. |
+| 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, clean-room, and browser E2E gates remain unresolved. |
 
 For each PASS append:
 - commit,
@@ -96,9 +96,10 @@ For each PASS append:
 - Frozen original protocol SHA-256 remains
   `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
 - Spend: `$0`; no model weights, locked labels, Modal deployment, or GPU call was run.
-- Blocking evidence: a real Modal pilot is an explicit Phase 2 gate, but this environment has
-  no verified Modal CLI/account authentication and no user-provided paid-compute
-  acknowledgement. Local/fake tests cannot substitute for that gate.
+- Blocking evidence: a real Modal pilot is an explicit Phase 2 gate. The no-spend preflight now
+  reports authenticated CLI access, but there is no user-provided paid-compute acknowledgement
+  and no remote function, image build, model load, or inference evidence. Local/fake tests cannot
+  substitute for that gate.
 - Gate decision: `BLOCKED` for the complete Phase 2 gate. Phase 3 data/split work may proceed
   independently because it is controlled by the frozen protocol and does not require a paid
   Modal run. Phase 4 compute work remains gated.
@@ -195,3 +196,57 @@ For each PASS append:
 - Independent work allowed next: CPU-only contract/framework work for later experiment families;
   no zero-shot benchmark or representation artifact may be promoted until at least the required
   model candidate and the Phase 3/4 gates are resolved.
+
+## Later-phase CPU framework completion record — 2026-09-21
+
+- Implementation commit: `7127fc7` (`feat: add gated ML experiment control surface`).
+- Added deterministic, CPU-only contracts for benchmark planning, feature hashing and split
+  disjointness, supervised classifiers, validation-only HPO, OOF ensemble stacking, predeclared
+  ablation/robustness plans, registry-driven figure manifests, batch CSV validation/progress,
+  and immutable experiment status artifacts.
+- Every later-phase Make target now has one documented control-surface command. When its
+  dependency is not evidenced, the target writes an explicit `BLOCKED` artifact under ignored
+  `research/runs/phase*_status.json` with blockers and an empty metrics object. No synthetic
+  fixture is promoted as a scientific result.
+- `make validate` — PASS: secret scan, Ruff, strict mypy over 51 source files, `610 passed,
+  33 deselected, 1 warning`, and `95.34%` coverage.
+- `make ml-protocol-verify`, `make schema-verify`, `make protocol-verify`, `make
+  model-registry-verify`, and `git diff --check` — PASS at the implementation checkpoint.
+- Status surfaces for Phases 6–15, 17, and 19 are `BLOCKED`; Phase 10 is not represented as a
+  successful adaptation or as a paid-compute result. Spend remains `$0`.
+- Gate decision: independent framework work PASS; scientific execution phases remain BLOCKED by
+  model/compute/data evidence and must not be promoted from the status artifacts.
+
+## Phase 16 completion record — 2026-09-21
+
+- Implementation commit: `459ad11` (`feat: expose evidence-gated research workbench`).
+- The UI exposes all required areas: Overview; Single Variant Research Analysis; Temporal VUS
+  Explorer; Model Benchmark; Representation / Layer Analysis; Training & Hyperparameter
+  Experiments; Fine-Tuning Experiments; Ensemble Analysis; Calibration & Abstention; Robustness
+  & Ablation; Error Analysis; Batch VCF/CSV; Methods & Provenance; and Experiment Registry.
+- Single-variant output renders normalized variant, assembly, context length, raw scorer fields,
+  forward/RC details, provenance, and explicit unavailable states for calibration, uncertainty,
+  abstention, and comparator evidence. It contains no clinical classification logic or invented
+  experiment metrics.
+- `make web-check` — PASS: `npx tsc --noEmit` and Next.js 15.3.1 production build. Changed UI
+  and route files pass ESLint. The Next 15 dynamic-route `params` contract was repaired for
+  batch and results routes.
+- Local production-server browser smoke — PASS: all 14 tabs discoverable; single-variant
+  form renders; temporal area shows an intentional blocked state; Methods & Provenance loads
+  `/api/protocol`; no hidden manual edits were used. The snapshot is temporary evidence outside
+  the repository, not a substitute for committed browser E2E coverage.
+- Gate decision: BLOCKED. Automated browser E2E coverage is not implemented, and no registered
+  scientific outputs exist to populate result panels. Full legacy frontend ESLint remains a
+  separate unresolved gate with 143 errors and 17 warnings outside the changed surface.
+
+## Phase 17–19 completion record — 2026-09-21
+
+- Phase 17 figure/table generation has a registry-driven artifact contract and an explicit
+  `make figures` status surface, but it correctly records `BLOCKED` because no completed result
+  artifact exists to render.
+- Phase 18 security/default validation is locally green (`make validate`); the frontend build is
+  green (`make web-check`). A clean clone/dependency reinstall, automated browser E2E, and
+  figure regeneration from a clean environment were not run, so clean-room status is `BLOCKED`.
+- Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases and the
+  clean-room/browser gates remain unresolved. No tag, release, deployment, or publication was
+  created. Spend remains `$0`.

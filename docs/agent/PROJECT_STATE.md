@@ -4,21 +4,27 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 5 — Model registry and adapter framework`
+Current phase: `PHASE 19 — Final release gate` (independent local work complete; gated
+scientific phases remain blocked)
 
-Phase status: `BLOCKED` at the mandatory model-inclusion gate. The schema-validated registry and
-common fail-closed adapter layer are complete, but zero candidates have verified official
-source/license/checkpoint parity plus a tiny smoke result. Evo2 remains required and deferred
-behind the Phase 3 QA discrepancy, the Phase 4 paid Modal pilot, and unavailable local model
-packages. No model download, training, HPO, or fine-tuning has been started.
+Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository now has the
+schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
+contracts for later experiment families, a complete evidence-gated research-workbench UI, and
+passing local Python/frontend build gates. No candidate model has verified parity/smoke evidence,
+no paid Modal pilot or model-weight download has run, no scientific result artifact is registered,
+and the repository still lacks automated browser E2E coverage and a clean-room rerun. No model
+download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
+started.
 
-Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
+Last passing source baseline: `459ad11` (research-workbench UI and frontend route fixes).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
 Phase 3 implementation commit: `f2dcc1f`.
 Phase 4 implementation commit: `cc7de42`.
 Phase 5 implementation commit: `473d314`.
+Later-phase CPU contract/control-surface commit: `7127fc7`.
+Research-workbench UI commit: `459ad11`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -57,9 +63,9 @@ verified facts are:
   remains unchanged.
 - Ruff, strict mypy, protocol checks, synthetic scientific tests, API contract tests, and
   synthetic API E2E tests pass through the repaired local environment.
-- At the Phase 0/2 checkpoint, `make validate` passed with 567 tests and 95.17% coverage;
-  the current Phase 4 gate passes with secret scan, Ruff, strict mypy over 40 source files,
-  `591 passed, 33 deselected, 1 warning`, and 95.21% coverage.
+- Historical Phase 0/2/4 checkpoints remain recorded in the phase ledger. The current local gate
+  passes secret scan, Ruff, strict mypy over 51 source files, `610 passed, 33 deselected, 1
+  warning`, and `95.34%` coverage.
 - The canonical scoring contract now enforces exact 8,192-base windows, explicit coordinate
   and allele invariants, forward and reverse-complement raw components, and a consistency
   check for the reported primary delta.
@@ -95,26 +101,46 @@ verified facts are:
   candidate remains `PLANNED` with `NOT_VERIFIED` or `DEFERRED` provenance, so no candidate can
   silently enter a benchmark. `Evo2Adapter` reports deferred parity when the local package/GPU
   path is absent; other adapters report deferred official-source/smoke evidence.
-- `data/raw/` is absent; ignored historical research results reference unavailable raw files,
-  mismatch frozen protocol dates/QA counts, and are not current evidence. The experiment
-  registry has no run records.
+- Official ClinVar t0/t1 archives are present under the ignored `data/raw/clinvar/` paths and
+  match the checked-in manifests. The generated Phase 3 record-level outputs remain ignored;
+  the tracked summary preserves the QA-count discrepancy, and the experiment registry still
+  has no scientific run records.
+- The later-phase CPU-only framework is present in `experiment_control.py`, `benchmark.py`,
+  `feature_store.py`, `supervised.py`, `hpo.py`, `ensemble.py`, `analysis_plans.py`,
+  `figure_artifacts.py`, and `batch_pipeline.py`. It enforces validation-only selection,
+  locked-test guards, content hashes, OOF stacking, frozen config hashes, and refusal to attach
+  metrics to non-completed status artifacts.
+- The required phase command surface now writes explicit no-result status artifacts for Phases
+  6–19 under ignored `research/runs/phase*_status.json`. These artifacts contain blockers and
+  no metrics; they do not promote synthetic fixtures to scientific evidence.
+- The research workbench at `apps/web/src/app/analysis/page.tsx` exposes all 14 required
+  top-level areas. A local production-server browser smoke verified navigation, fail-closed
+  single-variant rendering, blocked temporal empty state, and protocol metadata loading. The
+  changed frontend files pass ESLint and `make web-check` passes typecheck plus Next production
+  build. Full legacy frontend ESLint still reports 143 errors and 17 warnings outside the
+  changed surface, and automated browser E2E coverage is not yet implemented.
 
 ## Experiments and artifacts
 
 Completed experiments: none in the ML extension. Phase 0 ran only free local deterministic,
 scientific, and API validation tiers; Phase 3 ran only public-data parsing, cohort auditing,
-and split construction, not model inference or outcome optimization.
+and split construction; later phases ran only CPU contract tests and status surfaces, not model
+inference or outcome optimization.
 
 Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CAL-*`, `ABS-*`,
 `ABL-*`, `ROB-*`, and `STAT-*` work. Phase 3 data/split artifacts are complete; zero-shot
-scoring is held behind the QA discrepancy review and real Modal gate.
+scoring is held behind the QA discrepancy review, model-inclusion evidence, and real Modal gate.
+The status artifacts for Phases 6–15, 17, and 19 are explicit `BLOCKED` records; Phase 16 is
+blocked on automated browser E2E and registered outputs; Phase 18 is blocked on clean-room and
+browser E2E evidence.
 
 Last experiment run: none.
 
 Last generated artifacts: ignored record-level Phase 3 outputs under
 `data/derived/ml_extension/phase3/`, with the reviewable summary and hashes at
 `research/ml_extension/splits/phase3_manifest_summary.json`; schema-validated candidate model
-manifests under `research/ml_extension/models/`. No model result artifact was generated.
+manifests under `research/ml_extension/models/`; and ignored no-result status artifacts under
+`research/runs/`. No model result artifact was generated.
 
 Current Modal assets: source scaffolding plus a validated no-spend preflight. The root app and
 `modal_config.py` use `evovariant-tr`, H100, `hf_cache`, the pinned image, and the pinned Evo2
@@ -136,10 +162,12 @@ made.
 Known blockers are the required real Modal pilot (paid-compute acknowledgement and remote
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
-inclusion gate. The frontend still has pre-existing lint and Next 15 dynamic-route build
-failures outside the scoring contract.
+inclusion gate. Independent local gates now pass, but full legacy frontend lint still reports
+143 errors and 17 warnings, automated browser E2E coverage is absent, clean-room reproduction
+has not been run, and no registered result artifacts exist.
 
-Exact next action: preserve the Phase 3 audit, obtain or verify model evidence only through the
-authorized model-source/compute gates, and build later CPU-only experiment contracts without
-promoting synthetic or unverified outputs. Do not run model scoring, read locked labels for
-selection, or start paid Modal work without the corresponding gate.
+Exact next action: preserve this state, then obtain explicit authorization and verified model/
+compute evidence before running a tiny Modal pilot. Resolve or formally approve the Phase 3 QA
+deviation before scoring; add automated browser E2E and clean-room evidence before releasing.
+Do not run model scoring, read locked labels for selection, or start paid Modal work without the
+corresponding gate.

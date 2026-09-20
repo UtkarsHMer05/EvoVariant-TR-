@@ -82,6 +82,16 @@ test: ## Run the default test tiers (unit + contract + integration; free)
 	$(MAKE) check-venv
 	$(PYTHON) -m pytest
 
+.PHONY: test-scientific
+test-scientific: ## Run the explicit scientific validation tier (free/local)
+	$(MAKE) check-venv
+	$(PYTHON) -m pytest --run-scientific -m scientific tests/scientific
+
+.PHONY: test-e2e
+test-e2e: ## Run the explicit browser/API E2E tier (no paid compute)
+	$(MAKE) check-venv
+	$(PYTHON) -m pytest --run-e2e -m e2e tests/e2e
+
 .PHONY: coverage
 coverage: ## Run tests with the 95% coverage floor
 	$(MAKE) check-venv

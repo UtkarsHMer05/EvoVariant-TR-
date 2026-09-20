@@ -265,9 +265,8 @@ local test suite. A later authorized run must append exact command/output, artif
 runtime identity, and measured spend before closing the gate.
 
 Validation:
-Phase 2 local gates passed, but no verified Modal CLI/account authentication or
-paid-compute acknowledgement was present in this environment; the Phase 2 ledger therefore
-records `BLOCKED`.
+The no-spend preflight now reports Modal CLI/account authentication, but no remote pilot or
+paid-compute acknowledgement is present; the Phase 2 ledger therefore remains `BLOCKED`.
 
 ## D-020 — ClinVar VCF-normalized fields define the split identity
 Status: ACCEPTED
@@ -411,6 +410,90 @@ Validation:
 `make model-registry-verify` reports seven valid manifests and zero included candidates;
 registry/adapter tests cover duplicate IDs, schema failures, inclusion verification, readiness
 states, provenance, and the no-download default adapter map.
+
+## D-025 — Non-completed phase artifacts must be metric-free
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The dependency-gated phases cannot execute scientific work while model, data, compute, or
+authorization evidence is missing. A command that merely returns a non-zero exit or an empty
+directory is difficult to audit and can be mistaken for a missing implementation.
+
+Decision:
+Every later-phase control-surface command writes a structured status artifact with phase,
+family, blockers, inputs, and status. `BLOCKED`, `DEFERRED`, `NOT_RUN`, and `FAILED` artifacts
+must contain no scientific metrics. Only an explicitly `COMPLETED` artifact may carry metrics.
+
+Alternatives:
+Write placeholder metric values, use an unstructured log only, or silently skip the phase.
+These were rejected because they obscure the difference between unavailable evidence and a
+negative result.
+
+Consequences:
+The research workbench and release ledger can display an honest empty state. Later authorized
+runs must create a new completed immutable artifact rather than mutating a blocked record.
+
+Validation:
+`tests/unit/test_experiment_framework.py` covers metric rejection, atomic status writes, and
+round-trip reads. The Phase 6–19 Make targets generate empty-metrics `BLOCKED` records.
+
+## D-026 — CPU-only experiment contracts do not authorize scientific execution
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The master prompt requires benchmark, feature, training, HPO, adaptation, ensemble,
+calibration, robustness, batch, and figure work, but the current registry contains no included
+model and the required compute/data gates are unresolved.
+
+Decision:
+Implement and test the deterministic contracts, freeze guards, leakage checks, and status
+surfaces locally, while keeping all dependent execution phases blocked. Synthetic fixtures are
+permitted only in unit tests and are never promoted to the result registry.
+
+Alternatives:
+Run deterministic comparator fixtures as if they were model outputs, use the locked cohort to
+fill missing dependencies, or download unverified model weights. These were rejected because
+they would change the estimand or fabricate model evidence.
+
+Consequences:
+Another agent can continue from explicit interfaces and failure artifacts without confusing
+engineering readiness with scientific completion. Model inclusion, Modal authorization, and the
+Phase 3 QA decision remain prerequisites for real outputs.
+
+Validation:
+Commit `7127fc7`; `make validate` passes with 610 tests and 95.34% coverage; all later-phase
+status commands complete without scientific metrics.
+
+## D-027 — The workbench renders registry state and evidence-gated empty states
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The handoff asks for a research workbench covering 14 areas, but no completed ML-extension
+result artifacts currently exist. A dashboard filled with example numbers would look complete
+while violating the no-fabrication boundary.
+
+Decision:
+Expose all required areas in the top-level navigation. The single-variant surface may show raw
+scorer/provenance fields from its API response; calibration, uncertainty, comparator, benchmark,
+training, batch, figure, and registry panels show explicit blocked/pending states until their
+registered artifacts exist. Protocol identity fields are loaded from `/api/protocol`.
+
+Alternatives:
+Hide unfinished areas, hard-code historical counts/metrics, or show clinical labels from raw
+signals. These were rejected because the UI must expose actual ML work and preserve research-only
+semantics.
+
+Consequences:
+The local UI is useful for reviewing project state without implying scientific results. A later
+registry/API integration can populate the same panels without changing their evidence boundary.
+
+Validation:
+Commit `459ad11`; `tests/contract/test_frontend_workbench_contract.py`, changed-file ESLint,
+`make web-check`, and a local production-server Playwright browser smoke passed. Automated
+browser E2E and registered outputs remain explicit blockers.
 
 ## Template for new decisions
 

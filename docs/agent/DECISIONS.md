@@ -269,6 +269,58 @@ Phase 2 local gates passed, but no verified Modal CLI/account authentication or
 paid-compute acknowledgement was present in this environment; the Phase 2 ledger therefore
 records `BLOCKED`.
 
+## D-020 — ClinVar VCF-normalized fields define the split identity
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The official `variant_summary` archives contain `na` in the legacy
+`ReferenceAllele`/`AlternateAllele` columns for many GRCh38 SNV rows, while the corresponding
+VCF-normalized alleles and position are present in `ReferenceAlleleVCF`, `AlternateAlleleVCF`,
+and `PositionVCF`. Using the legacy fields collapses distinct SNVs and cannot satisfy the
+frozen A/C/G/T unit.
+
+Decision:
+For valid GRCh38 biallelic SNVs, Phase 3 uses the VCF-normalized fields when present and
+falls back to the legacy fields only for older fixtures that lack those columns. The
+canonical split identity is `GRCh38:<chromosome>:<position_1based>:<reference>><alternate>`
+with uppercase alleles and a normalized chromosome prefix.
+
+Consequences:
+The parser, fast cohort path, calibration path, and ML split builder now share the same
+identity semantics. Historical ignored results built from legacy allele fields are not treated
+as current evidence and must be regenerated before scoring.
+
+Validation:
+The real t0/t1 archive audit, parser VCF-field unit test, split manifest schema validation,
+and zero-overlap checks passed. Archive hashes match the checked-in data manifests.
+
+## D-021 — Preserve the frozen QA discrepancy as evidence
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The recomputed public archives do not reproduce every validation-only handoff checkpoint
+count, even after correcting archive URL layout, VCF normalization, and the t0/t1 review-gate
+interpretation.
+
+Decision:
+Record the exact recomputed counts, source hashes, structural invariants, and investigation
+notes in `research/ml_extension/splits/phase3_manifest_summary.json`. Do not alter immutable
+filters or select a normalization merely to force the historical target. Do not start model
+scoring until the discrepancy is resolved or a dated deviation explicitly accepts the revised
+cohort and its estimand impact.
+
+Consequences:
+Phase 3 can pass its structural leakage/QC gate, while downstream zero-shot and supervised
+results remain blocked. Synthetic tests and historical ignored result files remain clearly
+separate from current scientific evidence.
+
+Validation:
+The generated split manifest has zero normalized-ID overlap, zero train/validation gene
+overlap, zero duplicate IDs, zero locked-test overlap, deterministic rebuild, and valid JSON
+Schema conformance; the QA-count comparison remains documented as unresolved.
+
 ## Template for new decisions
 
 ### D-XXX — Title

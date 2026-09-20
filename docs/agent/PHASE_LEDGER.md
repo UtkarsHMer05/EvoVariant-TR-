@@ -7,7 +7,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
 | 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; required real Modal pilot is unavailable because no verified Modal CLI/account authentication or paid-compute acknowledgement is present. See completion record below. |
-| 3 | ML dataset + locked splits | PENDING | |
+| 3 | ML dataset + locked splits | PASS | `research/ml_extension/splits/phase3_manifest_summary.json`; generated split manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, structural leakage/QC invariants pass; QA-count discrepancy is documented and blocks downstream model scoring until reconciled. |
 | 4 | Modal compute foundation | PENDING | |
 | 5 | Model registry + adapters | PENDING | |
 | 6 | Zero-shot multi-model benchmark | PENDING | |
@@ -102,3 +102,41 @@ For each PASS append:
 - Gate decision: `BLOCKED` for the complete Phase 2 gate. Phase 3 data/split work may proceed
   independently because it is controlled by the frozen protocol and does not require a paid
   Modal run. Phase 4 compute work remains gated.
+
+## Phase 3 completion record — 2026-09-21
+
+- Implementation commit: `f2dcc1f` (`feat: build reproducible ML extension splits`).
+- Source archives were downloaded from official NCBI ClinVar archive URLs and verified against
+  the checked-in manifests:
+  - t0 `288267418` bytes,
+    `931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa`.
+  - t1 `441792560` bytes,
+    `230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500`.
+- The downloader now handles the official 2025+ archive-root layout and accepts exact
+  protocol release dates. The parser and fast cohort paths use ClinVar VCF-normalized
+  position/reference/alternate fields when present; the archive's legacy allele fields are
+  `na` for these SNVs.
+- Commands and results:
+  - `make data-qc` — PASS; generated the ignored record-level temporal audit, locked-ID file,
+    and full split manifest under `data/derived/ml_extension/phase3/`.
+  - Generated split manifest validates against `research/schemas/split_manifest.schema.json`.
+  - `make ml-protocol-verify` — PASS.
+  - `make schema-verify` — PASS.
+  - Targeted Phase 3 tests — `66 passed` across parser, cohort, calibration, and split tests.
+  - Ruff and strict mypy — PASS (`37 source files`).
+- Recomputed cohort: 1,402,895 t0 unique VUS; 3,459 absent at t1; 1,098,941 below the
+  two-star outcome gate; 299,549 not definitive; 946 final temporal records (536 B/LB,
+  410 P/LP); two gene annotation changes; zero structural reference mismatches.
+- Development split: 239,992 records with 191,957 TRAIN and 48,035 VALIDATION; 9,682 and 57
+  whole-gene groups respectively; normalized-ID overlap, gene overlap, duplicate IDs, and
+  locked-test overlap are all zero.
+- Split hash: `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
+- QA discrepancy: the validation-only handoff target expected 1,403,225 t0 VUS and 1,024
+  final records (614 B/LB, 410 P/LP). The archive hashes match, VCF fields are used, and the
+  t0 star-gate interpretation is corrected; the remaining difference is preserved rather than
+  tuned away. See the tracked Phase 3 summary for the investigation and limitation.
+- Spend: `$0`; local CPU only; no model weights, locked-test tuning, Modal deployment, or GPU
+  call was run.
+- Gate decision: `PASS` for zero overlap, deterministic rebuild, schema validity, and QC
+  invariants. Downstream zero-shot scoring is not authorized by this record until the QA
+  discrepancy is resolved or a dated protocol deviation is approved.

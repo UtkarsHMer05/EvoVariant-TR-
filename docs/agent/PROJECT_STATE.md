@@ -4,16 +4,18 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 2 — Canonical scoring pipeline repair`
+Current phase: `PHASE 3 — ML dataset and locked splits`
 
-Phase status: `BLOCKED` at the required real-Modal-pilot sub-gate, with all local
-implementation and validation gates passing. No model download, training, HPO, fine-tuning,
-locked-test evaluation, or paid Modal work has been started.
+Phase status: `PASS` for the structural Phase 3 gate, with the frozen QA-count discrepancy
+documented and downstream model scoring explicitly blocked until it is resolved or formally
+accepted as a protocol deviation. No model download, training, HPO, fine-tuning, or paid
+Modal work has been started.
 
 Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
-Phase 2 implementation commit: `45c2a47`.
+Phase 2 implementation commits: `45c2a47`, `3f385fe`.
+Phase 3 implementation commit: `f2dcc1f`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -66,6 +68,15 @@ verified facts are:
   unavailable.
 - A real Modal pilot remains unverified: no Modal CLI/account authentication or paid-compute
   acknowledgement is available in this environment, so no deployment or GPU spend was run.
+- Phase 3 recomputed the public archives into a streaming temporal audit and a gene-grouped
+  development split. The structural gate is green: 239,992 development records, 191,957
+  TRAIN, 48,035 VALIDATION, 946 locked temporal records, zero normalized-ID overlap, zero
+  train/validation gene overlap, zero duplicate split IDs, and deterministic rebuild.
+- The recomputed temporal cohort is not identical to the handoff QA target: 1,402,895 t0 VUS,
+  946 final temporal records (536 B/LB and 410 P/LP), and two t0/t1 gene annotation changes.
+  The source archive hashes match the checked-in manifests. The full discrepancy audit is in
+  `research/ml_extension/splits/phase3_manifest_summary.json`; model scoring remains blocked
+  until it is resolved or explicitly approved through the deviation process.
 - Modal identities/configuration disagree: canonical current app decision D-011 is
   `evovariant-tr`, while stale `evovariant-tr-v2`, `hf_cache`, A100/H100, and dedicated-volume
   references remain to be reconciled. No current Modal auth/deployment was verified.
@@ -76,15 +87,19 @@ verified facts are:
 ## Experiments and artifacts
 
 Completed experiments: none in the ML extension. Phase 0 ran only free local deterministic,
-scientific, and API validation tiers.
+scientific, and API validation tiers; Phase 3 ran only public-data parsing, cohort auditing,
+and split construction, not model inference or outcome optimization.
 
 Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CAL-*`, `ABS-*`,
-`ABL-*`, `ROB-*`, and `STAT-*` work. Phase 1 control-plane artifacts are complete.
+`ABL-*`, `ROB-*`, and `STAT-*` work. Phase 3 data/split artifacts are complete; zero-shot
+scoring is held behind the QA discrepancy review and real Modal gate.
 
 Last experiment run: none.
 
-Last generated artifact: `docs/agent/BASELINE_AUDIT.md` plus this control-plane update; no
-scientific result artifact was generated.
+Last generated artifacts: ignored record-level Phase 3 outputs under
+`data/derived/ml_extension/phase3/`, with the reviewable summary and hashes at
+`research/ml_extension/splits/phase3_manifest_summary.json`. No model result artifact was
+generated.
 
 Current Modal assets: source scaffolding only. The root app names `evovariant-tr` and uses an
 H100 class plus a volume named `hf_cache`; `modal_config.py` defaults to A100 and also returns
@@ -95,17 +110,20 @@ Monthly budget assumption: approximately `$30/month` included compute as stated 
 prompt; pricing and credits were not queried in Phase 0. The historical `$500` approval file
 is not treated as current ML-extension authorization.
 
-Estimated spend to date: `$0` for this Phase 0 audit.
+Estimated spend to date: `$0` for local validation and Phase 3 data work.
 
-Measured spend to date: `$0`; no Modal/GPU or old endpoint call was made.
+Measured spend to date: `$0`; no Modal/GPU, model-weight download, or old endpoint call was
+made.
 
 ## Known blockers and exact next action
 
 Known blockers are the required real Modal pilot (missing verified CLI/auth/paid-compute
-acknowledgement), missing raw archives, unresolved Modal identity/cache inventory, and the
-absence of verified model weights/checkpoints. The frontend still has pre-existing lint and
-Next 15 dynamic-route build failures outside the Phase 2 scoring contract.
+acknowledgement), the unresolved discrepancy between the recomputed temporal cohort and the
+validation-only QA target, unresolved Modal identity/cache inventory, and the absence of
+verified model weights/checkpoints. The frontend still has pre-existing lint and Next 15
+dynamic-route build failures outside the scoring contract.
 
-Exact next action: proceed to Phase 3 data and locked-split implementation using the frozen
-protocol and additive control plane. Do not treat synthetic fixtures or historical ignored
-results as scientific evidence, and do not start paid Modal work without the pilot gate.
+Exact next action: use the Phase 3 audit to reconcile the QA discrepancy without changing
+immutable protocol fields, while independently implementing the cost-aware Modal foundation
+and evidence-gated model registry. Do not run model scoring, read locked labels for selection,
+or start paid Modal work without the corresponding gate.

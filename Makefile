@@ -106,7 +106,17 @@ frontend-build: ## Typecheck + production build of apps/web
 .PHONY: protocol-verify
 protocol-verify: ## Validate the frozen research protocol YAML
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli validate-protocol --protocol $(PROTOCOL)
+ 	$(PYTHON) -m evovariant_tr.cli validate-protocol --protocol $(PROTOCOL)
+
+.PHONY: ml-protocol-verify
+ml-protocol-verify: ## Validate the additive ML-extension control plane and hashes
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli validate-ml-control-plane --repo-root .
+
+.PHONY: schema-verify
+schema-verify: ## Validate all checked-in JSON Schemas
+	$(MAKE) check-venv
+	$(PYTHON) -c "import json; from pathlib import Path; import jsonschema; [jsonschema.Draft202012Validator.check_schema(json.loads(p.read_text())) for p in Path('research/schemas').glob('*.schema.json')]; print('OK: all research schemas valid')"
 
 .PHONY: data-verify
 data-verify: ## Verify a file manifest against on-disk data (MANIFEST=... BASE_DIR=...)

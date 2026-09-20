@@ -101,6 +101,123 @@ Validation:
 `evo2_scorer_app.py`, `src/evovariant_tr/cost_policy.py`, `artifacts/approvals/full_run_approval.json`,
 and the identity search recorded in `docs/agent/BASELINE_AUDIT.md`.
 
+## D-012 — Freeze the ML extension as an additive control plane
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The original temporal zero-shot protocol is immutable, while the ML extension needs
+machine-readable rules for development data, model selection, features, HPO, and
+locked-test sequencing.
+
+Decision:
+The ML extension is governed by `research/ml_extension/protocol.yaml` and
+`split_policy.yaml`. These files are additive and carry the exact SHA-256 of the
+original `research/protocol/protocol.yaml`. No extension choice may rewrite or
+reinterpret the original protocol.
+
+Consequences:
+Extension artifacts must identify their extension protocol version separately from
+the original protocol version. A protocol-hash check is part of the control-plane
+command and contract tests.
+
+Validation:
+`make ml-protocol-verify` equivalent CLI invocation passed; original protocol hash
+remained `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
+
+## D-013 — Use strict schemas for extension manifests and cost records
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The existing registry schema predates the ML-extension model, split, experiment, and
+cost metadata requirements.
+
+Decision:
+Additive JSON Schemas govern model manifests, split manifests, experiment configs, and
+cost-ledger entries. Unknown fields are rejected at schema boundaries, and schema
+documents are validated as Draft 2020-12 documents.
+
+Consequences:
+Future phases must register provenance, capability, split, and cost metadata before
+promoting an experiment result. The checked-in experiment template must conform to its
+schema.
+
+Validation:
+The four extension schemas and `experiments/templates/experiment_config.yaml` pass
+contract validation.
+
+## D-014 — Model candidate inclusion is evidence-gated
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The handoff names several possible predictors, but no current source, license,
+checkpoint revision, input contract, or runtime evidence was verified for all of them.
+
+Decision:
+Every candidate begins as planned/unverified. Inclusion requires official-source,
+license, checkpoint/revision, input, score-direction, hardware, capability, and tiny
+smoke evidence. Unsupported candidates are recorded as `INFEASIBLE` or `UNAVAILABLE`,
+never silently substituted.
+
+Consequences:
+The benchmark may contain fewer than the preferred candidate count when runtime or
+license evidence is unavailable. Evo2 remains required and cannot be replaced by a
+synthetic result.
+
+## D-015 — Cache identity includes all scientific and model dimensions
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+Downstream HPO and ensemble work must not trigger repeated foundation-model inference
+or accidentally reuse incompatible outputs.
+
+Decision:
+Cache keys include model, checkpoint, revision, preprocessing, assembly, context,
+orientation, layer, and normalized variant ID. Raw scores and embeddings retain shape,
+dtype, and content hashes.
+
+Consequences:
+Any mismatch is a cache miss. Cache records are provenance artifacts rather than an
+opaque performance optimization.
+
+## D-016 — HPO and adaptation are validation-only and resource-gated
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The locked temporal cohort must remain untouched during model and configuration
+selection, and full Evo2 adaptation may exceed the available compute budget.
+
+Decision:
+HPO, early stopping, calibration, abstention, and ensemble selection use development
+training/validation data only. Fine-tuning proceeds from frozen features to PEFT and
+then full fine-tuning only when official tooling, a smoke test, measured cost, and an
+approval gate justify it. Compute deferral is a valid recorded outcome.
+
+Consequences:
+Viewing locked-test labels cannot trigger iterative tuning. Failed or deferred
+adaptation remains in the registry as evidence.
+
+## D-017 — Stacking must use out-of-fold development predictions
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+An ensemble meta-classifier trained on in-sample base predictions would leak base-model
+training outcomes and overstate performance.
+
+Decision:
+Stacking uses out-of-fold train predictions, validation-only member selection and
+weights, and a frozen configuration before locked-test evaluation. Error overlap and
+disagreement are reported before ensemble selection.
+
+Consequences:
+An ensemble is not promoted merely because its aggregate accuracy is similar to a
+member; complementary validation errors are required.
+
 ## Template for new decisions
 
 ### D-XXX — Title

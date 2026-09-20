@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evovariant-tr.local/schemas/experiment_config.schema.json",
+  "title": "EvoVariant-TR ML experiment configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "experiment_family", "protocol_version", "dataset_manifest", "split_manifest", "model", "input", "features", "training", "hpo", "calibration", "ensemble", "compute", "output"],
+  "properties": {
+    "run_id": { "type": ["string", "null"] },
+    "experiment_family": { "type": ["string", "null"], "pattern": "^(ZS|REP|CLF|HPO|FT|ENS|CAL|ABS|ABL|ROB|STAT)(-.+)?$" },
+    "protocol_version": { "type": ["string", "null"] },
+    "dataset_manifest": { "type": ["string", "null"] },
+    "split_manifest": { "type": ["string", "null"] },
+    "model": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "checkpoint", "revision", "source"],
+      "properties": {
+        "name": { "type": ["string", "null"] }, "checkpoint": { "type": ["string", "null"] },
+        "revision": { "type": ["string", "null"] }, "source": { "type": ["string", "null"] }
+      }
+    },
+    "input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assembly", "context_length", "orientation"],
+      "properties": { "assembly": { "type": "string" }, "context_length": { "type": ["integer", "null"], "minimum": 1 }, "orientation": { "type": ["string", "null"] } }
+    },
+    "features": {
+      "type": "object", "additionalProperties": false,
+      "required": ["layers", "pooling", "include_raw_score"],
+      "properties": { "layers": { "type": "array", "items": { "type": "integer" } }, "pooling": { "type": ["string", "null"] }, "include_raw_score": { "type": "boolean" } }
+    },
+    "training": {
+      "type": "object", "additionalProperties": false,
+      "required": ["enabled", "classifier", "seed", "class_weight", "params"],
+      "properties": { "enabled": { "type": "boolean" }, "classifier": { "type": ["string", "null"] }, "seed": { "type": "integer" }, "class_weight": { "type": ["string", "null"] }, "params": { "type": "object" } }
+    },
+    "hpo": {
+      "type": "object", "additionalProperties": false,
+      "required": ["enabled", "study_name", "objective", "direction", "n_trials"],
+      "properties": { "enabled": { "type": "boolean" }, "study_name": { "type": ["string", "null"] }, "objective": { "type": ["string", "null"] }, "direction": { "enum": ["maximize", "minimize"] }, "n_trials": { "type": ["integer", "null"], "minimum": 1 } }
+    },
+    "calibration": { "type": "object", "additionalProperties": false, "required": ["method"], "properties": { "method": { "type": ["string", "null"] } } },
+    "ensemble": { "type": "object", "additionalProperties": false, "required": ["method", "members"], "properties": { "method": { "type": ["string", "null"] }, "members": { "type": "array", "items": { "type": "string" } } } },
+    "compute": { "type": "object", "additionalProperties": false, "required": ["backend", "modal_gpu", "max_estimated_cost_usd"], "properties": { "backend": { "enum": ["local", "modal"] }, "modal_gpu": { "type": ["string", "null"] }, "max_estimated_cost_usd": { "type": ["number", "null"], "minimum": 0 } } },
+    "output": { "type": "object", "additionalProperties": false, "required": ["run_dir"], "properties": { "run_dir": { "type": ["string", "null"] } } }
+  }
+}

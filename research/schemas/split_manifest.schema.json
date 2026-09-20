@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evovariant-tr.local/schemas/split_manifest.schema.json",
+  "title": "EvoVariant-TR ML split manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_id", "policy_id", "source_manifest_hash", "split_hash", "records", "counts", "invariants"],
+  "properties": {
+    "manifest_id": { "type": "string", "minLength": 1 },
+    "policy_id": { "type": "string", "minLength": 1 },
+    "source_manifest_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "split_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["normalized_variant_id", "gene_symbol", "label", "split"],
+        "properties": {
+          "normalized_variant_id": { "type": "string", "minLength": 1 },
+          "gene_symbol": { "type": ["string", "null"] },
+          "label": { "enum": [0, 1] },
+          "split": { "enum": ["TRAIN", "VALIDATION", "LOCKED_TEST"] }
+        }
+      }
+    },
+    "counts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+    "invariants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalized_id_overlap", "train_validation_gene_overlap", "locked_test_overlap", "deterministic"],
+      "properties": {
+        "normalized_id_overlap": { "type": "integer", "minimum": 0 },
+        "train_validation_gene_overlap": { "type": "integer", "minimum": 0 },
+        "locked_test_overlap": { "type": "integer", "minimum": 0 },
+        "deterministic": { "type": "boolean" }
+      }
+    }
+  }
+}

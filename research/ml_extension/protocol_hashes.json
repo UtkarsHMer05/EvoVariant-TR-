@@ -1,0 +1,13 @@
+{
+  "hash_record_version": "1",
+  "original_protocol_path": "research/protocol/protocol.yaml",
+  "original_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+  "files": {
+    "research/ml_extension/protocol.yaml": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+    "research/ml_extension/split_policy.yaml": "99c55a377ea5b0419d88ff14c1c120901f4f19cb5fe7460ad2d2b863b991d8c4",
+    "research/schemas/cost_ledger.schema.json": "7abd7519ed3406b67a28e8f6457506b341d70a05d83a9dc31f933e1aa163b773",
+    "research/schemas/experiment_config.schema.json": "8f1fa8311cdb8a57a133fc901e2dd85757bdcb755a7b14eb55db9182f16d1e7e",
+    "research/schemas/model_manifest.schema.json": "2409da7db4656467fb661c34a5a47f57400aced2058a53295d5a52237fb65109",
+    "research/schemas/split_manifest.schema.json": "e8f9de9f055be21193a86ea7bb6c3f4618ce4c836ad626684e6d23c6799bf86b"
+  }
+}

@@ -5,7 +5,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | Phase | Title | Status | Evidence |
 |---:|---|---|---|
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
-| 1 | Control plane + ML protocol | PENDING | |
+| 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
 | 2 | Canonical scoring repair | PENDING | |
 | 3 | ML dataset + locked splits | PENDING | |
 | 4 | Modal compute foundation | PENDING | |
@@ -53,3 +53,24 @@ For each PASS append:
 - Gate decision: PASS for diagnostic documentation only. Do not begin model download, training,
   HPO, fine-tuning, locked evaluation, or paid Modal work. Phase 1 remains pending and is not
   started in this turn.
+
+## Phase 1 completion record — 2026-09-21
+
+- Implementation commit: recorded by the immediately following documentation update after the
+  Phase 1 commit; no source model or paid compute work was run.
+- Control-plane files: `research/ml_extension/protocol.yaml`, `split_policy.yaml`, and
+  `protocol_hashes.json`.
+- Schemas: `model_manifest.schema.json`, `split_manifest.schema.json`,
+  `experiment_config.schema.json`, and `cost_ledger.schema.json`.
+- Commands: `python3.12 -m evovariant_tr.cli validate-ml-control-plane --repo-root .` passed;
+  targeted contract tests passed (`8 passed` including the frozen protocol contract), Ruff and
+  strict mypy passed (`35 source files`).
+- Original protocol SHA-256 remained
+  `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
+- Extension protocol SHA-256:
+  `374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c`.
+- Decisions added: D-012 through D-017 covering separation, schemas, model feasibility,
+  cache identity, validation-only selection, adaptation gating, and out-of-fold stacking.
+- Spend: `$0`; no model weights, locked labels, or Modal resources used.
+- Gate decision: PASS for the control-plane phase. Phase 2 may begin; Phase 3 and later remain
+  dependent on repaired scoring and verified data/control artifacts.

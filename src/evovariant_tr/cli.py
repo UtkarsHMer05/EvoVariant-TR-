@@ -14,6 +14,7 @@ from pathlib import Path
 from evovariant_tr import __version__
 from evovariant_tr.cohort import build_primary_cohort
 from evovariant_tr.config import load_protocol
+from evovariant_tr.control_plane import verify_ml_control_plane
 from evovariant_tr.manifest import load_manifest, verify_manifest
 
 DEFAULT_PROTOCOL = Path("research/protocol/protocol.yaml")
@@ -45,6 +46,18 @@ def cmd_verify_manifest(args: argparse.Namespace) -> int:
 
 def cmd_version(_: argparse.Namespace) -> int:
     print(json.dumps({"package": "evovariant-tr", "version": __version__}))
+    return 0
+
+
+def cmd_validate_ml_control_plane(args: argparse.Namespace) -> int:
+    """Validate additive ML-extension files without changing the frozen protocol."""
+    failures = verify_ml_control_plane(args.repo_root)
+    if failures:
+        print(f"FAIL: {len(failures)} ML control-plane checks failed:")
+        for failure in failures:
+            print(f"  - {failure}")
+        return 1
+    print("OK: ML-extension control plane validated and frozen protocol hash preserved")
     return 0
 
 
@@ -107,6 +120,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     version = subparsers.add_parser("version", help="Print package version as JSON")
     version.set_defaults(func=cmd_version)
+
+    ml_control = subparsers.add_parser(
+        "validate-ml-control-plane",
+        help="Validate the additive ML-extension protocol, schemas, and hashes",
+    )
+    ml_control.add_argument("--repo-root", type=Path, default=Path("."))
+    ml_control.set_defaults(func=cmd_validate_ml_control_plane)
 
     return parser
 

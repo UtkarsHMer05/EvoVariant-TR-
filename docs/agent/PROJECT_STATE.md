@@ -4,14 +4,14 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 0 — Diagnostic snapshot and safety baseline`
+Current phase: `PHASE 1 — Control plane and ML-extension protocol`
 
-Phase status: `PASS` for the diagnostic gate only. Phase 1 has not started. No model
-download, training, HPO, fine-tuning, locked-test evaluation, or paid Modal work is allowed
-under this checkpoint.
+Phase status: `PASS` for the control-plane gate. Phase 2 is next. No model download,
+training, HPO, fine-tuning, locked-test evaluation, or paid Modal work has been started.
 
-Last passing commit: `a5604eebec449dc95983f7570c483c443aa15bd8` (baseline; no commit created by
-this audit)
+Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
+Phase 0 handoff checkpoint: `89e5751`.
+The Phase 1 implementation commit is recorded in the Phase 1 ledger entry after commit.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -43,6 +43,11 @@ verified facts are:
 
 - Original protocol YAML hash is intact:
   `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
+- Phase 1 control plane is present under `research/ml_extension/`, with a machine-readable
+  extension protocol, split policy, hash record, and strict JSON Schemas for model, split,
+  experiment, and cost records.
+- `validate-ml-control-plane` and the new contract tests pass; the original protocol hash
+  remains unchanged.
 - Ruff, strict mypy, protocol checks, empty-registry verification, synthetic scientific tests,
   and synthetic API E2E tests pass when invoked through available interpreters.
 - `make validate` is not green: repository shell scripts are mode `100644`, and the `.venv`
@@ -70,7 +75,7 @@ Completed experiments: none in the ML extension. Phase 0 ran only free local det
 scientific, and API validation tiers.
 
 Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CAL-*`, `ABS-*`,
-`ABL-*`, `ROB-*`, and `STAT-*` work. Phase 1 control-plane artifacts are also pending.
+`ABL-*`, `ROB-*`, and `STAT-*` work. Phase 1 control-plane artifacts are complete.
 
 Last experiment run: none.
 
@@ -96,7 +101,7 @@ Known blockers are the findings above, especially the scientific scoring contrac
 classification, missing raw archives, incomplete registry/control plane, identity drift, and
 validation permissions.
 
-Exact next action, only after an explicit move beyond this Phase 0 checkpoint: begin Phase 1 by
-creating the machine-readable ML-extension protocol twin, split/model/experiment/cost schemas,
-and additive ADR records while preserving the original protocol hash. Do not take that action
-in this turn; the user requested Phase 0 only.
+Exact next action: begin Phase 2 by repairing the canonical scoring contract. The repair must
+preserve the frozen original protocol, enforce exact 8192-base windows, retain forward and RC
+raw components, remove production fake-scorer defaults and legacy thresholding, and add contract
+tests before any real model or paid compute work.

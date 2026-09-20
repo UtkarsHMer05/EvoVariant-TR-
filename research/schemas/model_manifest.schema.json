@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evovariant-tr.local/schemas/model_manifest.schema.json",
+  "title": "EvoVariant-TR model manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "model_id",
+    "status",
+    "model_name",
+    "source",
+    "license",
+    "checkpoint",
+    "revision",
+    "input_contract",
+    "score_contract",
+    "capabilities",
+    "hardware",
+    "provenance"
+  ],
+  "properties": {
+    "model_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$" },
+    "status": {
+      "enum": ["PLANNED", "INCLUDED", "AVAILABLE", "INFEASIBLE", "EXCLUDED", "UNAVAILABLE"]
+    },
+    "model_name": { "type": "string", "minLength": 1 },
+    "source": { "type": "string", "minLength": 1 },
+    "license": { "type": "string", "minLength": 1 },
+    "checkpoint": { "type": ["string", "null"] },
+    "revision": { "type": ["string", "null"] },
+    "input_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assembly", "alphabet", "context_lengths_bp", "variant_scoring"],
+      "properties": {
+        "assembly": { "type": ["string", "null"] },
+        "alphabet": { "type": "string", "minLength": 1 },
+        "context_lengths_bp": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+        "variant_scoring": { "type": "boolean" }
+      }
+    },
+    "score_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score_semantics", "score_direction", "orientation_support"],
+      "properties": {
+        "score_semantics": { "type": "string", "minLength": 1 },
+        "score_direction": { "enum": ["higher_is_more_pathogenic", "higher_is_more_benign", "unknown"] },
+        "orientation_support": { "enum": ["forward", "forward_and_reverse", "not_applicable", "unknown"] }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_score", "embeddings", "fine_tuning", "batch"],
+      "properties": {
+        "raw_score": { "type": "boolean" },
+        "embeddings": { "type": "boolean" },
+        "fine_tuning": { "type": "boolean" },
+        "batch": { "type": "boolean" }
+      }
+    },
+    "hardware": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["backend", "gpu", "memory_gb"],
+      "properties": {
+        "backend": { "type": "string", "minLength": 1 },
+        "gpu": { "type": ["string", "null"] },
+        "memory_gb": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verified_at", "verification_status", "notes"],
+      "properties": {
+        "verified_at": { "type": ["string", "null"] },
+        "verification_status": { "enum": ["NOT_VERIFIED", "VERIFIED", "FAILED", "DEFERRED"] },
+        "notes": { "type": "string" },
+        "asset_checksum": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
+      }
+    }
+  }
+}

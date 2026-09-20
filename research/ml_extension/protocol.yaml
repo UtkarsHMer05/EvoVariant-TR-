@@ -1,0 +1,152 @@
+# Machine-readable control plane for the separate EvoVariant-TR ML extension.
+# This file does not replace research/protocol/protocol.yaml. Its hash and the
+# original protocol hash are recorded in protocol_hashes.json.
+
+protocol_id: evovariant-tr-ml-extension
+protocol_version: "1.0.0"
+status: frozen_for_development
+frozen_at: "2026-09-21"
+project: EvoVariant-TR
+relationship_to_original: separate_ml_extension
+
+original_protocol:
+  path: research/protocol/protocol.yaml
+  sha256: 78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525
+  estimand_preserved: true
+
+estimand:
+  question: >
+    Among eligible labeled variants separated from the locked temporal cohort,
+    does a model built from frozen genomic foundation-model signals improve
+    validation-only discrimination of later ClinVar resolution direction?
+  locked_test_estimand: >
+    The original temporal t0-VUS to t1-definitive resolution direction remains
+    the confirmatory locked test and is evaluated only after all choices are frozen.
+  does_not_estimate:
+    - clinical_diagnosis
+    - treatment_or_management
+    - causal_pathogenicity
+    - resolution_for_every_vus
+
+data_contract:
+  assembly: GRCh38
+  variant_unit: unique_normalized_biallelic_acgt_germline_snv
+  normalized_id_fields:
+    - assembly
+    - chromosome
+    - position_1based
+    - reference
+    - alternate
+  labels:
+    positive: resolved_pathogenic
+    negative: resolved_benign
+  locked_test:
+    source: original_frozen_temporal_protocol
+    t0_release_date: "2025-01-02"
+    t1_release_date: "2026-08-06"
+    label_quality_gate: "minimum_2_review_stars"
+    expected_validation_target_only_n: 1024
+    labels_must_not_be_read_before_freeze: true
+  development:
+    source_policy: public_records_with_labels_available_at_or_before_development_cutoff
+    development_cutoff: "2025-01-02"
+    must_exclude_locked_test_ids: true
+    group_key: gene_symbol
+    require_gene_grouped_validation: true
+    raw_archives_required: true
+
+split_policy:
+  path: research/ml_extension/split_policy.yaml
+  seed: 20260814
+  train_fraction: 0.8
+  validation_fraction: 0.2
+  test_fraction: 0.0
+  development_test_policy: no_development_test
+  group_key: gene_symbol
+  normalized_id_key: normalized_variant_id
+  split_labels:
+    - TRAIN
+    - VALIDATION
+    - LOCKED_TEST
+  invariants:
+    - no_normalized_id_overlap_between_any_splits
+    - no_gene_overlap_between_train_and_validation_when_group_mode_enabled
+    - locked_test_ids_are_not_present_in_development_manifests
+    - split_manifest_is_content_hashed
+
+selection_policy:
+  primary_validation_metric: auroc
+  tie_breakers:
+    - auprc
+    - mcc
+    - lower_complexity
+    - lower_estimated_cost_usd
+  hpo_validation_only: true
+  calibration_validation_only: true
+  abstention_validation_only: true
+  ensemble_selection_validation_only: true
+  score_direction_must_be_declared_before_locked_test: true
+
+model_tracks:
+  required:
+    - evo2
+  preferred_candidates:
+    - nucleotide_transformer
+    - caduceus
+    - gpn
+  comparators:
+    - cadd
+    - phylop
+    - alphamissense_valid_subset
+  candidate_status_policy: verify_official_source_license_revision_and_smoke_before_inclusion
+  infeasible_models_are_registered: true
+
+feature_policy:
+  foundation_model_outputs_are_cached: true
+  cache_key_fields:
+    - model_id
+    - checkpoint
+    - model_revision
+    - preprocessing_revision
+    - assembly
+    - context_length_bp
+    - orientation
+    - layer
+    - normalized_variant_id
+  raw_scores_retained: true
+  embeddings_must_store_shape_dtype_and_hash: true
+
+compute_policy:
+  default_backend: local_cpu_for_data_metrics_and_classical_ml
+  gpu_backend: modal
+  canonical_modal_app: evovariant-tr
+  reserve_fraction: 0.2
+  paid_compute_ack_env: EVOVARIANT_TR_PAID_COMPUTE_ACK
+  paid_compute_ack_value: I_ACCEPT_COSTS
+  no_paid_compute_in_default_tests: true
+  full_finetuning_requires_separate_approval: true
+
+experiments:
+  minimum_families:
+    - ZS
+    - REP
+    - CLF
+    - HPO
+    - FT
+    - ENS
+    - CAL
+    - ABS
+    - ABL
+    - ROB
+    - STAT
+  locked_test_run_once_after_freeze: true
+  result_registry: experiments/registry
+  cost_ledger_schema: research/schemas/cost_ledger.schema.json
+
+claim_policy:
+  evidence_stage_required: true
+  research_only_language: true
+  unavailable_marker: UNAVAILABLE
+  not_run_marker: NOT RUN
+  fabrication_forbidden: true
+  final_outputs_require_clean_git_tree: true

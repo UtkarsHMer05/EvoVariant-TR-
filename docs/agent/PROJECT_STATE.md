@@ -13,8 +13,7 @@ locked-test evaluation, or paid Modal work has been started.
 Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
-Phase 2 implementation commit: pending in this checkpoint; the source repair is complete
-and will be recorded before Phase 3 work begins.
+Phase 2 implementation commit: `45c2a47`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`

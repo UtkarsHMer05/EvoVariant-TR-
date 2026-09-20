@@ -76,9 +76,8 @@ For each PASS append:
 
 ## Phase 2 completion record — 2026-09-21
 
-- Implementation: canonical scoring, API/proxy, Modal adapter, and research-workbench UI
-  repairs are in the Phase 2 implementation checkpoint; the source commit is recorded in
-  the next ledger update after the working tree is committed.
+- Implementation commit: `45c2a47` (`feat: repair canonical research scoring contract`).
+  Canonical scoring, API/proxy, Modal adapter, and research-workbench UI repairs are included.
 - Contract changes: exact 8,192-base windows; coordinate/allele/SNV/orientation invariants;
   forward and reverse-complement raw components; explicit primary-delta and disagreement
   fields; canonical GRCh38 payload aliases; fail-closed unconfigured services; no fake

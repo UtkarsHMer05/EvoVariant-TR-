@@ -49,11 +49,11 @@ check-venv:
 	@test -x $(PYTHON) || { echo "ERROR: $(PYTHON) not found. Run: make bootstrap" >&2; exit 2; }
 
 .PHONY: bootstrap
-bootstrap: ## Create .venv and install the core package + dev extras (CPU only, free)
+bootstrap: ## Create .venv and install core, API, and dev extras (CPU only, free)
 	python3.12 -m venv $(VENV)
 	$(PYTHON) -m pip install -U pip -q
-	$(PYTHON) -m pip install -e ".[dev]"
-	@echo "OK: $(VENV) ready (CPU only; no CUDA/GPU packages installed)"
+	$(PYTHON) -m pip install -e ".[dev,api]"
+	@echo "OK: $(VENV) ready (CPU only; no CUDA/GPU packages installed; API extra included)"
 
 # ---------------------------------------------------------------------------
 # Validation (all free, CPU/local only)

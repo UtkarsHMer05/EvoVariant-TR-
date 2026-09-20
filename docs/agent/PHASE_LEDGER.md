@@ -249,14 +249,13 @@ For each PASS append:
   artifact exists to render.
 - Phase 18 security/default validation is locally green (`make validate`); the frontend lint,
   typecheck, and build gate is green (`make web-check`). A final clone at
-  `/private/tmp/EvoVariant_TR_final_clean.SZkTWU` from `3f1496b` ran `make bootstrap`,
+  `/private/tmp/EvoVariant_TR_browser_final.bIkxop` from `bd7647c` ran `make bootstrap`,
   `make frontend-install`, the default suite, scientific tier, E2E/API tier,
-  protocol/control-plane/schema/model-registry checks, registry verification, and the full
-  frontend gate; it remained clean after installation. Gated Modal smoke, registry-driven figure
-  regeneration remain unrun. The clean clone's `make web-e2e` also passes three browser tests.
-  `npm ci` reports 13 dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical), so
-  the overall Phase 18 gate is `BLOCKED` despite the clean-room CPU/frontend/browser subgate
-  passing.
+  protocol/control-plane/schema/model-registry checks, registry verification, the full frontend
+  gate, and `make web-e2e` with three passing browser tests; it remained clean after installation.
+  Gated Modal smoke and registry-driven figure regeneration remain unrun. `npm ci` reports 13
+  dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical), so the overall Phase 18
+  gate is `BLOCKED` despite the clean-room CPU/frontend/browser subgate passing.
 - Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
   compute, figure, and registered-result gates remain unresolved. No tag, release, deployment,
   or publication was created. Spend remains `$0`.

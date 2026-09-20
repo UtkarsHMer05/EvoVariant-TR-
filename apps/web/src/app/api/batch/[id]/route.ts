@@ -7,15 +7,15 @@ import type { NextRequest } from "next/server";
 import { env } from "~/env";
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } },
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
 ) {
-  const jobId = params.id;
+  const { id: jobId } = await params;
   const baseUrl = env.NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL;
 
   try {
     const response = await fetch(`${baseUrl}/batch/${jobId}`);
-    const data = await response.json();
+    const data: unknown = await response.json();
     return Response.json(data, { status: response.status });
   } catch (error) {
     console.error("Batch status error:", error);

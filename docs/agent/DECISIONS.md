@@ -321,6 +321,63 @@ The generated split manifest has zero normalized-ID overlap, zero train/validati
 overlap, zero duplicate IDs, zero locked-test overlap, deterministic rebuild, and valid JSON
 Schema conformance; the QA-count comparison remains documented as unresolved.
 
+## D-022 — Use one canonical Modal execution identity and pinned Evo2 source
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The handoff contained conflicting Modal app names, volume names, GPU defaults, and Evo2
+references. An execution path that silently creates a new volume or tracks a moving source
+revision would make cache and cost evidence non-reproducible.
+
+Decision:
+The active Modal identity is app `evovariant-tr`, existing volume `hf_cache` mounted at
+`/root/.cache/huggingface`, H100, image `nvcr.io/nvidia/pytorch:24.07-py3`, and Evo2 repository
+revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`. The app must fail closed when the named
+volume is unavailable (`create_if_missing=False`). The Modal CLI preflight may verify local
+installation and account authentication, but it cannot be treated as deployment or inference
+evidence.
+
+Alternatives:
+Retain stale `evovariant-tr-v2`/A100/dedicated-volume values, create resources automatically,
+or track an unpinned Evo2 branch. These were rejected because they obscure identity and cost.
+
+Consequences:
+All later model/cache/cost artifacts reference one explicit execution identity. A real pilot
+still needs separate authorization and remote evidence; local configuration does not imply
+that the app, volume, weights, or GPU function exists remotely.
+
+Validation:
+`make modal-smoke` reports `modal_installed: true` and `modal_authenticated: true` without
+invoking a remote workload. Local config and deployment-guard tests pass.
+
+## D-023 — Cache and cost evidence are first-class Phase 4 artifacts
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+Later benchmark, feature, HPO, ensemble, and batch phases must be resumable without mixing
+results from different model revisions, preprocessing contracts, orientations, layers, or
+variants. Missing prices or deferred work must not be represented as invented zeros.
+
+Decision:
+Cache identities include model, checkpoint, model revision, preprocessing revision, assembly,
+context length, orientation, layer, and normalized variant ID. Cache writes are atomic and
+payload/identity hashes are checked on read. Runtime telemetry records wall time, host, GPU
+type, and optional CUDA peak memory. Cost ledger entries are append-only and permit null cost
+fields for local, planned, failed, or deferred work; retryable external failures are bounded
+and idempotent.
+
+Consequences:
+Cache hits are scientifically auditable rather than opaque optimizations. A phase cannot
+claim measured cost from a plan or a preflight. Later remote runs must append actual runtime,
+cache-hit, approval, and measured-cost evidence before their gate can pass.
+
+Validation:
+The Phase 4 test suite covers identity mismatch, payload tampering, atomic-write cleanup,
+shard resume/retry behavior, CPU and CUDA-shaped telemetry, and negative cost constraints.
+`make validate` passes with 591 tests and 95.21% coverage.
+
 ## Template for new decisions
 
 ### D-XXX — Title

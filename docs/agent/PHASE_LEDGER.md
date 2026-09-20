@@ -8,7 +8,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
 | 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; required real Modal pilot is unavailable because no verified Modal CLI/account authentication or paid-compute acknowledgement is present. See completion record below. |
 | 3 | ML dataset + locked splits | PASS | `research/ml_extension/splits/phase3_manifest_summary.json`; generated split manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, structural leakage/QC invariants pass; QA-count discrepancy is documented and blocks downstream model scoring until reconciled. |
-| 4 | Modal compute foundation | PENDING | |
+| 4 | Modal compute foundation | BLOCKED | Local foundation and no-spend preflight pass in `cc7de42`; mandatory tiny remote inference, cache-hit evidence, and measured cost record remain unavailable without paid-compute acknowledgement. See completion record below. |
 | 5 | Model registry + adapters | PENDING | |
 | 6 | Zero-shot multi-model benchmark | PENDING | |
 | 7 | Embedding/representation extraction | PENDING | |
@@ -140,3 +140,31 @@ For each PASS append:
 - Gate decision: `PASS` for zero overlap, deterministic rebuild, schema validity, and QC
   invariants. Downstream zero-shot scoring is not authorized by this record until the QA
   discrepancy is resolved or a dated protocol deviation is approved.
+
+## Phase 4 completion record — 2026-09-21
+
+- Implementation commit: `cc7de42` (`feat: add cost-aware Modal execution foundation`).
+- Local foundation: canonical Modal app/image/GPU/volume identity, pinned Evo2 repository
+  revision, fail-closed named-volume behavior, persistent content-addressed prediction cache,
+  atomic cache writes, full cache identity dimensions, shard persistence, bounded retry policy,
+  CPU-safe GPU telemetry, and append-only cost ledger.
+- Commands and results:
+  - `make validate` — PASS: secret scan, Ruff, strict mypy over 40 source files, `591 passed,
+    33 deselected, 1 warning`, and `95.21%` coverage.
+  - `make ml-protocol-verify` — PASS.
+  - `make schema-verify` — PASS.
+  - `make protocol-verify` — PASS; frozen original protocol hash remains
+    `78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525`.
+  - `make modal-smoke` — PASS as a no-spend preflight only: `modal_installed: true`,
+    `modal_authenticated: true`; no remote invocation requested. The generated ledger record
+    is `PLANNED` with null estimated/measured USD and no approval artifact.
+  - `git diff --check` — PASS before the implementation commit.
+- Paid compute and scientific execution: no Modal function, image build, model-weight download,
+  model load, GPU inference, or deployment was run. Estimated and measured spend remain `$0`.
+- Gate decision: `BLOCKED` for the complete Phase 4 gate. The master prompt requires a tiny
+  reproducible remote inference, a verified cache hit, and a cost record. Only the local cache
+  contract and no-spend preflight are evidenced here; the remote pilot requires an explicit
+  paid-compute acknowledgement and remains deferred.
+- Independent work allowed next: Phase 5 registry/adapters and all non-executing provenance,
+  feasibility, and contract infrastructure. Scientific scoring remains blocked by both this
+  gate and the unresolved Phase 3 QA discrepancy.

@@ -258,14 +258,14 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
 		--blocker "dependent scientific phases remain blocked" \
-		--blocker "browser E2E and clean-room gates are unresolved"
+		--blocker "browser E2E, figure-regeneration, and paid-compute gates are unresolved"
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
 		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
-		--blocker "clean clone and dependency reinstall were not run in this checkout" \
+		--blocker "gated Modal smoke and registry-driven figure regeneration were not run" \
 		--blocker "browser E2E coverage is not implemented in the repository"
 
 .PHONY: registry-verify

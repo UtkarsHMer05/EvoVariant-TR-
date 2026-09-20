@@ -22,8 +22,8 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
 | 16 | Research workbench UI | BLOCKED | `459ad11`, `make web-check` PASS, local browser smoke PASS; automated browser E2E and registered outputs are absent. |
 | 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; registry-driven figure contract exists, but no result artifact exists to render. |
-| 18 | Security + clean-room reproducibility | BLOCKED | `make validate` and `make web-check` PASS; clean clone/reinstall, figure regeneration, and automated browser E2E remain unrun. |
-| 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, clean-room, and browser E2E gates remain unresolved. |
+| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, and explicit tiers PASS; gated Modal smoke, figure regeneration, and automated browser E2E remain unrun. |
+| 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and browser E2E gates remain unresolved. |
 
 For each PASS append:
 - commit,
@@ -245,8 +245,12 @@ For each PASS append:
   `make figures` status surface, but it correctly records `BLOCKED` because no completed result
   artifact exists to render.
 - Phase 18 security/default validation is locally green (`make validate`); the frontend build is
-  green (`make web-check`). A clean clone/dependency reinstall, automated browser E2E, and
-  figure regeneration from a clean environment were not run, so clean-room status is `BLOCKED`.
-- Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases and the
-  clean-room/browser gates remain unresolved. No tag, release, deployment, or publication was
-  created. Spend remains `$0`.
+  green (`make web-check`). A fresh clone with `make bootstrap` and `make frontend-install`
+  reproduced the default suite, scientific tier, E2E/API tier, protocol/schema/model-registry
+  checks, and frontend build; the clone remained clean after installation. Gated Modal smoke,
+  registry-driven figure regeneration, and automated browser E2E remain unrun. `npm ci` reports
+  13 dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical), so the overall Phase 18
+  gate is `BLOCKED` despite the clean-room CPU/build subgate passing.
+- Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
+  compute, figure, and browser E2E gates remain unresolved. No tag, release, deployment, or
+  publication was created. Spend remains `$0`.

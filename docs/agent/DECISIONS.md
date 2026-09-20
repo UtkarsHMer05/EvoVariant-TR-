@@ -495,6 +495,37 @@ Commit `459ad11`; `tests/contract/test_frontend_workbench_contract.py`, changed-
 `make web-check`, and a local production-server Playwright browser smoke passed. Automated
 browser E2E and registered outputs remain explicit blockers.
 
+## D-028 — Clean-room validation must not depend on ignored historical outputs
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The legacy clean-room tests required `research/results/*.json`, but that directory is ignored
+and contains historical snapshots that are not current ML-extension evidence. A genuine clone
+therefore failed before validation even though the tracked Phase 3 manifest and control plane
+were present.
+
+Decision:
+When ignored legacy results are present, the tests continue validating their JSON contracts.
+When they are absent, clean-room checks use the tracked Phase 3 manifest summary and its
+structural invariants instead. Generated Python package metadata under `src/evovariant_tr.egg-info`
+is ignored rather than tracked, so dependency installation does not dirty a clean clone.
+
+Alternatives:
+Commit stale result snapshots, copy ignored files into every clean clone, or skip the checks
+without a tracked fallback. These were rejected because they would make historical artifacts a
+hidden scientific dependency.
+
+Consequences:
+The clean-room suite validates the current tracked evidence boundary and remains runnable from
+a fresh clone. Historical result files may still be inspected locally, but they are not promoted
+to the current registry.
+
+Validation:
+Commit `e52d7ab` updates the fallback checks and commit `421a7ef` untracks generated metadata.
+A fresh clone at `421a7ef` passed `make validate`, `make web-check`, `make test-scientific`,
+`make test-e2e`, protocol/schema/model-registry checks, and remained clean after installation.
+
 ## Template for new decisions
 
 ### D-XXX — Title

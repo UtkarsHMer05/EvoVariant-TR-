@@ -21,8 +21,8 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
 | 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`; `make web-check` and `make web-e2e` PASS, local browser smoke PASS; registered scientific outputs are absent. |
-| 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; registry-driven figure contract exists, but no result artifact exists to render. |
-| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and `make web-e2e` PASS; gated Modal smoke and figure regeneration remain unrun. |
+| 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; deterministic registry manifest generation and hash verification now run, but no eligible completed result artifact exists to render. |
+| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and registered result artifacts remain unresolved. |
 
 For each PASS append:
@@ -247,17 +247,20 @@ For each PASS append:
 ## Phase 17–19 completion record — 2026-09-21
 
 - Phase 17 figure/table generation has a registry-driven artifact contract and an explicit
-  `make figures` status surface, but it correctly records `BLOCKED` because no completed result
-  artifact exists to render.
+  `make figures` status surface. The follow-up manifest is deterministic, checks recorded
+  output hashes, excludes non-scientific evidence stages, and correctly records `BLOCKED`
+  because no eligible completed result artifact exists to render. The former legacy generator's
+  synthetic demo curves were removed; no historical ignored snapshot was promoted.
 - Phase 18 security/default validation is locally green (`make validate`); the frontend lint,
   typecheck, and build gate is green (`make web-check`). A final clone at
   `/private/tmp/EvoVariant_TR_browser_final.bIkxop` from `bd7647c` ran `make bootstrap`,
   `make frontend-install`, the default suite, scientific tier, E2E/API tier,
   protocol/control-plane/schema/model-registry checks, registry verification, the full frontend
   gate, and `make web-e2e` with three passing browser tests; it remained clean after installation.
-  Gated Modal smoke and registry-driven figure regeneration remain unrun. `npm ci` reports 13
-  dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical), so the overall Phase 18
-  gate is `BLOCKED` despite the clean-room CPU/frontend/browser subgate passing.
+  The registry-driven figure manifest command now runs, but reports `BLOCKED` with no scientific
+  inputs; gated Modal smoke remains unrun. `npm ci` reports 13 dependency vulnerabilities (2 low,
+  2 moderate, 8 high, 1 critical), so the overall Phase 18 gate is `BLOCKED` despite the clean-room
+  CPU/frontend/browser subgate passing.
 - Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
   compute, figure, and registered-result gates remain unresolved. No tag, release, deployment,
   or publication was created. Spend remains `$0`.

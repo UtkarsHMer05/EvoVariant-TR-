@@ -50,6 +50,28 @@ def test_phase_status_command_writes_no_result_artifact(
     assert "phase.json" in capsys.readouterr().out
 
 
+def test_generate_figure_manifest_command_is_truthful_without_runs(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    output = tmp_path / "figure-manifest.json"
+    assert main(
+        [
+            "generate-figure-manifest",
+            "--registry",
+            str(tmp_path / "registry"),
+            "--repo-root",
+            str(tmp_path),
+            "--output",
+            str(output),
+        ]
+    ) == 0
+    payload = json.loads(output.read_text(encoding="utf-8"))
+    assert payload["status"] == "BLOCKED"
+    assert payload["eligible_completed_run_count"] == 0
+    assert "metrics" not in payload
+    assert "BLOCKED" in capsys.readouterr().out
+
+
 def test_validate_protocol_command(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["validate-protocol", "--protocol", str(PROTOCOL)]) == 0
     out = capsys.readouterr().out

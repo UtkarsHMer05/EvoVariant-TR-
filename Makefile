@@ -252,9 +252,8 @@ ui-check: ## Record/run the Phase 16 research workbench gate
 .PHONY: figures
 figures: ## Record/run the Phase 17 registry-driven figures gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 17 --family FIG \
-		--command-name figures --output research/runs/phase17_fig_status.json \
-		--blocker "no registered benchmark/result artifacts exist"
+	$(PYTHON) -m evovariant_tr.cli generate-figure-manifest \
+		--registry $(REGISTRY) --repo-root . --output research/runs/phase17_fig_status.json
 
 .PHONY: release-check
 release-check: ## Record/run the Phase 19 final release gate
@@ -269,8 +268,8 @@ clean-room: ## Run the free reproducibility status surface
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
 		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
-		--blocker "gated Modal smoke and registry-driven figure regeneration were not run" \
-		--blocker "registered scientific outputs are unavailable for figure/result regeneration"
+		--blocker "gated Modal smoke remains unrun" \
+		--blocker "registry-driven figure manifest is BLOCKED because no eligible completed scientific outputs exist"
 
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)

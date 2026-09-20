@@ -85,6 +85,17 @@ evovariant-tr verify-manifest --manifest data/manifests/clinvar_t0.json --base-d
 evovariant-tr version
 ```
 
+Generate the Phase 17 registry-input manifest (free/local; it reports `BLOCKED` when no
+eligible completed scientific runs exist and never invents metrics):
+
+```bash
+make figures
+evovariant-tr generate-figure-manifest \
+  --registry experiments/registry \
+  --repo-root . \
+  --output research/runs/phase17_fig_status.json
+```
+
 ## 5. Frontend commands
 
 ```bash

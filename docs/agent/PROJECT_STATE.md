@@ -181,12 +181,31 @@ Known blockers are the required real Modal pilot (paid-compute acknowledgement a
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
 inclusion gate. Independent local gates, committed browser E2E, and a fresh clean-room
-CPU/frontend rerun now pass; registry-driven figure regeneration has no inputs, and no
-registered result artifacts exist. A fresh `npm ci` also reports 13 dependency vulnerabilities
-(2 low, 2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
+CPU/frontend rerun now pass. The registry-driven figure manifest now runs with hash verification,
+but reports `BLOCKED` because no eligible completed scientific result artifacts exist; no result
+artifacts are registered. A fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
+2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
 
 Exact next action: preserve this state, then obtain explicit authorization and verified model/
 compute evidence before running a tiny Modal pilot. Resolve or formally approve the Phase 3 QA
-deviation before scoring; add registered result artifacts and registry-driven figure evidence
-before releasing. Do not run model scoring, read locked labels for selection, or start paid Modal
-work without the corresponding gate.
+deviation before scoring; add registered result artifacts and complete registry-driven figure
+rendering before releasing. Do not run model scoring, read locked labels for selection, or start
+paid Modal work without the corresponding gate.
+
+## Figure-input integrity follow-up — 2026-09-21
+
+- `src/evovariant_tr/figure_artifacts.py` now builds a deterministic Phase 17 manifest from
+  hash-verified `COMPLETED` PRELIMINARY/FINAL registry runs only. The manifest contains source
+  paths, run identities, hashes, required figure specifications, and blockers, but no metrics.
+- `evovariant-tr generate-figure-manifest` and `make figures` write the manifest under the
+  ignored `research/runs/` surface and return successfully while exposing `status: BLOCKED` when
+  inputs are absent. This preserves an auditable gate artifact without treating a blocked gate as
+  a scientific pass.
+- The historical `research/scripts/generate_figures.py` compatibility entry point now delegates
+  to the current registry manifest. Its prior synthetic 100-record demo curves and reads from
+  ignored historical `research/results/` snapshots were removed; those snapshots remain
+  historical and unpromoted.
+- Tests cover empty-registry determinism, deletion/regeneration hash stability, eligible output
+  hash verification, tamper blocking, CLI output, and the legacy entry-point guard. Targeted
+  Ruff, strict mypy, unit/integration tests, and `make figures` passed; the Phase 17 scientific
+  gate remains BLOCKED because there are no real registered outputs.

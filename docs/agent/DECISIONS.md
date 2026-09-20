@@ -594,6 +594,40 @@ passes 3 Playwright tests against the production build locally and from the fina
 Commit `4817ef2` removes stale browser-E2E blocker text from the Phase 16, 18, and 19 status
 surfaces. No scientific output or paid-compute artifact is created.
 
+## D-031 — Figure generation must fail closed on unregistered or synthetic inputs
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The legacy M099 `research/scripts/generate_figures.py` read ignored historical snapshots and
+constructed 100 synthetic scoring records for demonstration ROC, PR, calibration, and score
+distribution files. Those files could be mistaken for current ML-extension evidence even though
+the experiment registry was empty.
+
+Decision:
+Make the Phase 17 control surface registry-driven and metadata-only until real result artifacts
+exist. A figure-input manifest may expose only hash-verified `COMPLETED` PRELIMINARY/FINAL runs;
+missing inputs, excluded stages, and hash mismatches remain explicit blockers. The compatibility
+script delegates to this manifest and never emits synthetic curves or promotes ignored historical
+snapshots. The manifest is deterministic so delete-and-regenerate checks can compare hashes.
+
+Alternatives:
+Keep the legacy demo curves, use the ignored cohort snapshots as current inputs, or silently
+return an empty figure directory. These were rejected because each would blur the boundary
+between software demonstrations, historical baseline material, and current registered science.
+
+Consequences:
+`make figures` now produces an auditable `BLOCKED` manifest with no metrics while the registry
+has no eligible completed outputs. Once authorized runs exist, their output hashes and source
+paths are available to a renderer without changing the evidence policy. Phase 17 and dependent
+release gates remain blocked until actual registered results and rendered artifacts exist.
+
+Validation:
+The empty-registry manifest is stable across regeneration; temporary eligible fixtures become
+`READY` only when all required source files are hash-verified; tampering blocks the manifest;
+`make figures`, targeted Ruff, strict mypy, unit tests, and integration tests pass. No model
+weights, remote inference, locked-label selection, or paid compute was used.
+
 ## Template for new decisions
 
 ### D-XXX — Title

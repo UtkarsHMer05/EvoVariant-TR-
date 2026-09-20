@@ -144,6 +144,34 @@ def cmd_verify_model_registry(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_generate_figure_manifest(args: argparse.Namespace) -> int:
+    """Generate the Phase 17 registry-input manifest without fabricating metrics."""
+    from evovariant_tr.figure_artifacts import (
+        build_registry_figure_manifest,
+        write_figure_manifest,
+    )
+    from evovariant_tr.registry import Registry
+
+    registry = Registry(args.registry, repo_root=args.repo_root)
+    manifest = build_registry_figure_manifest(registry, repo_root=args.repo_root)
+    output = write_figure_manifest(args.output, manifest)
+    print(
+        json.dumps(
+            {
+                "status": manifest["status"],
+                "artifact": str(output),
+                "available_figures": len(manifest["available_figures"]),
+                "blockers": manifest["blockers"],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    # The command successfully produced the truthful gate artifact even when
+    # the gate is blocked. The manifest status is the acceptance signal.
+    return 0
+
+
 def cmd_deferred_phase(args: argparse.Namespace) -> int:
     """Record a truthful no-result status for a gated later phase."""
     from evovariant_tr.experiment_control import deferred_artifact, write_artifact
@@ -264,6 +292,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--schema", type=Path, default=Path("research/schemas/model_manifest.schema.json")
     )
     model_registry.set_defaults(func=cmd_verify_model_registry)
+
+    figure_manifest = subparsers.add_parser(
+        "generate-figure-manifest",
+        help="Generate a hash-verified registry input manifest for Phase 17 figures",
+    )
+    figure_manifest.add_argument(
+        "--registry", type=Path, default=Path("experiments/registry")
+    )
+    figure_manifest.add_argument("--repo-root", type=Path, default=Path("."))
+    figure_manifest.add_argument(
+        "--output", type=Path, default=Path("research/runs/phase17_fig_status.json")
+    )
+    figure_manifest.set_defaults(func=cmd_generate_figure_manifest)
 
     deferred = subparsers.add_parser(
         "phase-status",

@@ -378,6 +378,40 @@ The Phase 4 test suite covers identity mismatch, payload tampering, atomic-write
 shard resume/retry behavior, CPU and CUDA-shaped telemetry, and negative cost constraints.
 `make validate` passes with 591 tests and 95.21% coverage.
 
+## D-024 — Model manifests are visible before inclusion, but adapters fail closed
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The extension requires Evo2 plus feasible alternatives and specialized comparators, but a
+candidate name or deterministic fixture implementation does not prove an official source,
+license, checkpoint revision, input parity, score semantics, or runtime capability.
+
+Decision:
+Maintain one schema-validated manifest per candidate under
+`research/ml_extension/models/`. Planned/deferred candidates remain visible for audit but are
+not benchmark inputs. Only `INCLUDED` or `AVAILABLE` candidates with `VERIFIED` provenance may
+pass the registry inclusion gate. The common adapter layer returns structured readiness and
+raises `AdapterUnavailable` instead of downloading weights or returning synthetic scientific
+scores. Evo2 remains required and receives a dedicated parity-aware adapter; all other current
+candidates remain deferred until their official paths are verified.
+
+Alternatives:
+Treat the existing deterministic comparator hashes as scientific baselines, mark every named
+candidate available from its repository URL, or silently omit infeasible candidates. These were
+rejected because they would fabricate evidence or make exclusions unauditable.
+
+Consequences:
+Phase 5 can pass schema and provenance infrastructure while remaining `BLOCKED` on the model
+inclusion gate. Zero-shot, embedding, and downstream results cannot be generated from the
+current registry. Later authorized work must add a dated verified manifest and tiny smoke
+artifact before using a candidate.
+
+Validation:
+`make model-registry-verify` reports seven valid manifests and zero included candidates;
+registry/adapter tests cover duplicate IDs, schema failures, inclusion verification, readiness
+states, provenance, and the no-download default adapter map.
+
 ## Template for new decisions
 
 ### D-XXX — Title

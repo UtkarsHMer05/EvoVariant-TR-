@@ -4,14 +4,13 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 4 — Modal compute foundation`
+Current phase: `PHASE 5 — Model registry and adapter framework`
 
-Phase status: `BLOCKED` at the mandatory real Modal pilot gate. The local compute foundation,
-cache, telemetry, cost-ledger, retry, and smoke-preflight implementation is validated, but no
-paid-compute acknowledgement was provided and no remote GPU inference was authorized or run.
-The Phase 3 QA-count discrepancy also continues to block scientific model scoring until it is
-resolved or formally accepted as a dated protocol deviation. No model download, training, HPO,
-or fine-tuning has been started.
+Phase status: `BLOCKED` at the mandatory model-inclusion gate. The schema-validated registry and
+common fail-closed adapter layer are complete, but zero candidates have verified official
+source/license/checkpoint parity plus a tiny smoke result. Evo2 remains required and deferred
+behind the Phase 3 QA discrepancy, the Phase 4 paid Modal pilot, and unavailable local model
+packages. No model download, training, HPO, or fine-tuning has been started.
 
 Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
 Phase 0 handoff checkpoint: `89e5751`.
@@ -19,6 +18,7 @@ Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
 Phase 3 implementation commit: `f2dcc1f`.
 Phase 4 implementation commit: `cc7de42`.
+Phase 5 implementation commit: `473d314`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -90,6 +90,11 @@ verified facts are:
   and Evo2 repository revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`. The app fails closed
   when the named volume is absent instead of silently creating an unapproved resource. Stale
   historical configuration remains documented as historical evidence, not as an active target.
+- Phase 5 model registry verification passes for seven candidate manifests under
+  `research/ml_extension/models/`; the included-model count is intentionally zero. Every
+  candidate remains `PLANNED` with `NOT_VERIFIED` or `DEFERRED` provenance, so no candidate can
+  silently enter a benchmark. `Evo2Adapter` reports deferred parity when the local package/GPU
+  path is absent; other adapters report deferred official-source/smoke evidence.
 - `data/raw/` is absent; ignored historical research results reference unavailable raw files,
   mismatch frozen protocol dates/QA counts, and are not current evidence. The experiment
   registry has no run records.
@@ -108,8 +113,8 @@ Last experiment run: none.
 
 Last generated artifacts: ignored record-level Phase 3 outputs under
 `data/derived/ml_extension/phase3/`, with the reviewable summary and hashes at
-`research/ml_extension/splits/phase3_manifest_summary.json`. No model result artifact was
-generated.
+`research/ml_extension/splits/phase3_manifest_summary.json`; schema-validated candidate model
+manifests under `research/ml_extension/models/`. No model result artifact was generated.
 
 Current Modal assets: source scaffolding plus a validated no-spend preflight. The root app and
 `modal_config.py` use `evovariant-tr`, H100, `hf_cache`, the pinned image, and the pinned Evo2
@@ -130,11 +135,11 @@ made.
 
 Known blockers are the required real Modal pilot (paid-compute acknowledgement and remote
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
-validation-only QA target, and the absence of verified model weights/checkpoints. The frontend
-still has pre-existing lint and Next 15 dynamic-route build failures outside the scoring
-contract.
+validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
+inclusion gate. The frontend still has pre-existing lint and Next 15 dynamic-route build
+failures outside the scoring contract.
 
-Exact next action: preserve the Phase 3 audit, implement the Phase 5 registry/adapter and
-feasibility evidence paths without downloading or scoring a model, and keep all scientific
-execution behind the discrepancy/deviation and paid-compute gates. Do not run model scoring,
-read locked labels for selection, or start paid Modal work without the corresponding gate.
+Exact next action: preserve the Phase 3 audit, obtain or verify model evidence only through the
+authorized model-source/compute gates, and build later CPU-only experiment contracts without
+promoting synthetic or unverified outputs. Do not run model scoring, read locked labels for
+selection, or start paid Modal work without the corresponding gate.

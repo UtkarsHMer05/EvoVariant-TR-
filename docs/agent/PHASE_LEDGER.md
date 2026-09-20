@@ -9,7 +9,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; required real Modal pilot is unavailable because no verified Modal CLI/account authentication or paid-compute acknowledgement is present. See completion record below. |
 | 3 | ML dataset + locked splits | PASS | `research/ml_extension/splits/phase3_manifest_summary.json`; generated split manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, structural leakage/QC invariants pass; QA-count discrepancy is documented and blocks downstream model scoring until reconciled. |
 | 4 | Modal compute foundation | BLOCKED | Local foundation and no-spend preflight pass in `cc7de42`; mandatory tiny remote inference, cache-hit evidence, and measured cost record remain unavailable without paid-compute acknowledgement. See completion record below. |
-| 5 | Model registry + adapters | PENDING | |
+| 5 | Model registry + adapters | BLOCKED | Seven schema-valid candidate manifests and a fail-closed adapter framework pass locally in `473d314`; zero candidates have verified parity plus tiny smoke evidence, so no model is included. See completion record below. |
 | 6 | Zero-shot multi-model benchmark | PENDING | |
 | 7 | Embedding/representation extraction | PENDING | |
 | 8 | Downstream supervised models | PENDING | |
@@ -168,3 +168,30 @@ For each PASS append:
 - Independent work allowed next: Phase 5 registry/adapters and all non-executing provenance,
   feasibility, and contract infrastructure. Scientific scoring remains blocked by both this
   gate and the unresolved Phase 3 QA discrepancy.
+
+## Phase 5 completion record — 2026-09-21
+
+- Implementation commit: `473d314` (`feat: add evidence-gated model registry and adapters`).
+- Registry artifacts: seven strict JSON manifests under `research/ml_extension/models/` for
+  Evo2, Nucleotide Transformer, Caduceus, GPN, CADD, PhyloP, and the applicable AlphaMissense
+  subset. Each manifest records status, source, license state, checkpoint/revision state, input
+  and score contract, capabilities, hardware, and provenance verification state.
+- Adapter framework: `ModelAdapter`, structured readiness evidence, fail-closed deferred
+  adapters, and an Evo2 adapter that can only execute with explicit parity evidence and an
+  injected/verified scorer. Importing or building the default adapter map does not download
+  packages or checkpoints.
+- Commands and results:
+  - `make model-registry-verify` — PASS: seven manifests schema-valid; included count `0`.
+  - `make schema-verify` — PASS.
+  - Targeted registry/adapter/CLI tests — PASS (`14 passed`).
+  - Full coverage run — PASS (`601 passed, 33 deselected, 1 warning`, `95.28%` coverage).
+  - `git diff --check` — PASS before the implementation commit.
+- Gate decision: `BLOCKED`. The phase requires each included model to pass official source,
+  license, checkpoint/revision, input/score contract, hardware, and tiny parity/smoke evidence.
+  The current local environment has no verified model package/checkpoint path and the project
+  has no paid-compute acknowledgement. Planned manifests and deterministic comparator fixtures
+  are not benchmark evidence.
+- Spend: `$0`; no model weights, remote model execution, or GPU work was run.
+- Independent work allowed next: CPU-only contract/framework work for later experiment families;
+  no zero-shot benchmark or representation artifact may be promoted until at least the required
+  model candidate and the Phase 3/4 gates are resolved.

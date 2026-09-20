@@ -17,9 +17,14 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = REPO_ROOT / "scripts" / "verify_registry.py"
 
 
-def _run(registry_dir: Path) -> subprocess.CompletedProcess[str]:
+def _run(
+    registry_dir: Path, *, repo_root: Path | None = None
+) -> subprocess.CompletedProcess[str]:
+    command = [sys.executable, str(SCRIPT), "--registry-dir", str(registry_dir)]
+    if repo_root is not None:
+        command.extend(["--repo-root", str(repo_root)])
     return subprocess.run(
-        [sys.executable, str(SCRIPT), "--registry-dir", str(registry_dir)],
+        command,
         capture_output=True,
         text=True,
         check=False,
@@ -119,3 +124,45 @@ def test_clean_registry_passes(tmp_path: Path) -> None:
     result = _run(tmp_path)
     assert result.returncode == 0, result.stdout + result.stderr
     assert "verified" in result.stdout
+
+
+def test_tampered_completed_output_is_reported(tmp_path: Path) -> None:
+    runs = tmp_path / "runs"
+    runs.mkdir()
+    output = tmp_path / "artifacts" / "metrics.json"
+    output.parent.mkdir(parents=True)
+    output.write_text('{"status": "fixture"}\n', encoding="utf-8")
+    import hashlib
+
+    record = {
+        "run_id": "run_20260819T000000Z_00000001",
+        "title": "completed fixture",
+        "evidence_stage": "ENGINEERING_PILOT",
+        "status": "COMPLETED",
+        "protocol_hash": "a" * 64,
+        "git_commit": None,
+        "git_dirty": False,
+        "data_manifests": {},
+        "reference_checksum": None,
+        "model_identity": None,
+        "scorer_config": {},
+        "comparator_versions": {},
+        "seed": None,
+        "hardware": {},
+        "command": "fixture",
+        "created_at": "2026-08-19T00:00:00Z",
+        "updated_at": "2026-08-19T00:00:00Z",
+        "parent_run_id": None,
+        "output_paths": ["artifacts/metrics.json"],
+        "output_hashes": {
+            "artifacts/metrics.json": hashlib.sha256(output.read_bytes()).hexdigest()
+        },
+    }
+    (runs / "run_20260819T000000Z_00000001.json").write_text(
+        json.dumps(record), encoding="utf-8"
+    )
+    output.write_text('{"status": "tampered"}\n', encoding="utf-8")
+
+    result = _run(tmp_path, repo_root=tmp_path)
+    assert result.returncode == 1
+    assert "output hashes are not reproducible" in result.stdout + result.stderr

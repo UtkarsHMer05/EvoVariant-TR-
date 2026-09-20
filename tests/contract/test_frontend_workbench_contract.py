@@ -6,6 +6,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WORKBENCH = REPO_ROOT / "apps" / "web" / "src" / "app" / "analysis" / "page.tsx"
+REGISTRY_ROUTE = REPO_ROOT / "apps" / "web" / "src" / "app" / "api" / "registry" / "route.ts"
 
 
 def test_workbench_exposes_all_required_top_level_areas() -> None:
@@ -39,3 +40,13 @@ def test_workbench_does_not_derive_clinical_labels_or_placeholder_metrics() -> N
     assert "Comparator evidence" in source
     assert "pathogenic" not in source.lower()
     assert "benign" not in source.lower()
+
+
+def test_registry_surface_is_read_only_and_metadata_only() -> None:
+    source = REGISTRY_ROUTE.read_text(encoding="utf-8")
+    assert "export async function GET" in source
+    assert "completed_scientific_run_count" in source
+    assert "artifact_count" in source
+    assert "metrics" not in source.lower()
+    assert "model_source" not in source
+    assert "license_record" not in source

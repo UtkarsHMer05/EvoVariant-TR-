@@ -25,7 +25,28 @@
     "updated_at",
     "parent_run_id",
     "output_paths",
-    "output_hashes"
+    "output_hashes",
+    "experiment_family",
+    "started_at",
+    "completed_at",
+    "dataset_manifest_hash",
+    "split_manifest_hash",
+    "model_name",
+    "checkpoint",
+    "model_revision",
+    "model_source",
+    "license_record",
+    "preprocessing_version",
+    "feature_version",
+    "config",
+    "GPU",
+    "runtime_seconds",
+    "estimated_cost_usd",
+    "measured_cost_usd",
+    "metrics",
+    "artifact_paths",
+    "failure_reason",
+    "notes"
   ],
   "properties": {
     "run_id": {
@@ -75,6 +96,36 @@
     "output_hashes": {
       "type": "object",
       "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
-    }
+    },
+    "experiment_family": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "minLength": 1 },
+    "completed_at": { "type": ["string", "null"] },
+    "dataset_manifest_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "split_manifest_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "model_name": { "type": ["string", "null"] },
+    "checkpoint": { "type": ["string", "null"] },
+    "model_revision": { "type": ["string", "null"] },
+    "model_source": { "type": ["string", "null"] },
+    "license_record": { "type": "object" },
+    "preprocessing_version": { "type": ["string", "null"] },
+    "feature_version": { "type": ["string", "null"] },
+    "config": { "type": "object" },
+    "GPU": { "type": ["string", "null"] },
+    "runtime_seconds": { "type": ["number", "null"], "minimum": 0 },
+    "estimated_cost_usd": { "type": ["number", "null"], "minimum": 0 },
+    "measured_cost_usd": { "type": ["number", "null"], "minimum": 0 },
+    "metrics": { "type": "object" },
+    "artifact_paths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "failure_reason": { "type": ["string", "null"] },
+    "notes": { "type": ["string", "null"] }
   }
 }

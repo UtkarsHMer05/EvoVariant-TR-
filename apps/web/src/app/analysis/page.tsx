@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AlertCircle, Shield } from "lucide-react";
 import { Alert, AlertDescription } from "~/components/ui/alert";
 import { Button } from "~/components/ui/button";
@@ -55,6 +55,27 @@ type ProtocolInfo = {
   context_length_bp: number;
   research_only: boolean;
   classification_logic: string;
+};
+
+type RegistryRunSummary = {
+  run_id: string;
+  title: string;
+  status: string;
+  evidence_stage: string;
+  experiment_family: string;
+  model_name: string | null;
+  created_at: string | null;
+  completed_at: string | null;
+  artifact_count: number;
+};
+
+type RegistrySummary = {
+  status: "READY" | "BLOCKED";
+  registered_run_count: number;
+  completed_scientific_run_count: number;
+  artifact_count: number;
+  blockers: string[];
+  runs: RegistryRunSummary[];
 };
 
 type WorkbenchStatus = "READY" | "BLOCKED" | "PENDING";
@@ -263,6 +284,142 @@ function EmptyAreaPanel({ area }: { area: ResearchArea }) {
   );
 }
 
+function RegistryPanel({
+  summary,
+  loading,
+  error,
+  onRetry,
+}: {
+  summary: RegistrySummary | null;
+  loading: boolean;
+  error: string | null;
+  onRetry: () => void;
+}) {
+  return (
+    <Card className="gap-0 border-none bg-white py-0 shadow-sm">
+      <CardHeader className="border-b border-[#3c4f3d]/10 py-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-base font-normal text-[#3c4f3d]">
+              Experiment Registry
+            </CardTitle>
+            <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
+              Read-only metadata from append-only run records. Scientific result values remain
+              hidden until their registered artifacts pass the project gates.
+            </CardDescription>
+          </div>
+          <StatusPill status={summary?.status ?? "BLOCKED"} />
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-5 py-5">
+        {loading && (
+          <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4 text-sm text-[#3c4f3d]/65">
+            Reading registry metadata…
+          </div>
+        )}
+
+        {!loading && error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" aria-hidden="true" />
+            <AlertDescription className="flex flex-wrap items-center justify-between gap-3">
+              <span>{error}</span>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onRetry}
+                className="border-current/20 bg-transparent"
+              >
+                Retry registry read
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {!loading && !error && summary && (
+          <>
+            <dl className="grid gap-4 sm:grid-cols-3">
+              {[
+                ["Registered runs", summary.registered_run_count],
+                ["Completed scientific runs", summary.completed_scientific_run_count],
+                ["Registered artifacts", summary.artifact_count],
+              ].map(([label, value]) => (
+                <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3">
+                  <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                    {label}
+                  </dt>
+                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">{value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {summary.blockers.length > 0 && (
+              <div className="rounded-md border border-dashed border-[#de8246]/35 bg-[#fff8f2] p-4">
+                <p className="text-sm font-medium text-[#3c4f3d]">
+                  No completed scientific output is promoted from this registry.
+                </p>
+                <ul className="mt-2 space-y-1 text-sm leading-6 text-[#3c4f3d]/65">
+                  {summary.blockers.map((blocker) => (
+                    <li key={blocker}>• {blocker}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {summary.runs.length > 0 ? (
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                  Registered run metadata
+                </h3>
+                <div className="mt-2 overflow-x-auto rounded-md border border-[#3c4f3d]/10">
+                  <table className="w-full min-w-[760px] text-left text-sm">
+                    <thead className="bg-[#f7f9f7] text-xs text-[#3c4f3d]/60">
+                      <tr>
+                        <th className="px-3 py-2 font-medium">Run</th>
+                        <th className="px-3 py-2 font-medium">Family</th>
+                        <th className="px-3 py-2 font-medium">Stage</th>
+                        <th className="px-3 py-2 font-medium">Status</th>
+                        <th className="px-3 py-2 font-medium">Artifacts</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {summary.runs.map((run) => (
+                        <tr key={run.run_id} className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]">
+                          <td className="px-3 py-3">
+                            <p className="font-medium">{run.title}</p>
+                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">{run.run_id}</p>
+                          </td>
+                          <td className="px-3 py-3">{run.experiment_family}</td>
+                          <td className="px-3 py-3">{run.evidence_stage}</td>
+                          <td className="px-3 py-3">{run.status}</td>
+                          <td className="px-3 py-3">{run.artifact_count}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-3 text-xs leading-5 text-[#3c4f3d]/55">
+                  This surface intentionally omits scientific metric values and file locations.
+                  Use the immutable registry record and verifier for artifact-level inspection.
+                </p>
+              </div>
+            ) : (
+              <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4">
+                <p className="text-sm font-medium text-[#3c4f3d]">
+                  No completed scientific run records are registered.
+                </p>
+                <p className="mt-1 text-sm leading-6 text-[#3c4f3d]/65">
+                  The registry is present but empty. Downstream result panels remain blocked
+                  until a real run is registered and its outputs are hash-verifiable.
+                </p>
+              </div>
+            )}
+          </>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function VariantAnalysisPage() {
   const [chrom, setChrom] = useState("chr17");
   const [position, setPosition] = useState("43044295");
@@ -273,6 +430,35 @@ export default function VariantAnalysisPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ScoreResponse | null>(null);
   const [protocol, setProtocol] = useState<ProtocolInfo | null>(null);
+  const [registry, setRegistry] = useState<RegistrySummary | null>(null);
+  const [registryLoading, setRegistryLoading] = useState(true);
+  const [registryError, setRegistryError] = useState<string | null>(null);
+
+  const loadRegistry = useCallback(async () => {
+    setRegistryLoading(true);
+    setRegistryError(null);
+    try {
+      const response = await fetch("/api/registry", { cache: "no-store" });
+      const payload: unknown = await response.json();
+      if (!response.ok) {
+        throw new Error(readErrorDetail(payload) ?? "Registry metadata is unavailable");
+      }
+      setRegistry(payload as RegistrySummary);
+    } catch (requestError) {
+      setRegistry(null);
+      setRegistryError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Registry metadata is unavailable",
+      );
+    } finally {
+      setRegistryLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    void loadRegistry();
+  }, [loadRegistry]);
 
   const handleSubmit = async () => {
     const numericPosition = Number(position);
@@ -341,8 +527,20 @@ export default function VariantAnalysisPage() {
     setError(null);
   };
 
-  const nonInteractiveAreas = RESEARCH_AREAS.filter(
-    (area) => !["overview", "single-variant", "methods-provenance"].includes(area.id),
+  const registryReady =
+    registry !== null && registry.completed_scientific_run_count > 0;
+  const displayAreas = RESEARCH_AREAS.map((area) => {
+    if (area.id !== "registry" || !registryReady) return area;
+    return {
+      ...area,
+      status: "READY" as const,
+      description: "Registered scientific runs and artifact-count metadata.",
+      artifact: "Verified experiment run records",
+    };
+  });
+  const nonInteractiveAreas = displayAreas.filter(
+    (area) =>
+      !["overview", "single-variant", "methods-provenance", "registry"].includes(area.id),
   );
 
   return (
@@ -367,7 +565,7 @@ export default function VariantAnalysisPage() {
         <Tabs defaultValue="overview" className="space-y-6">
           <div className="w-full overflow-x-auto pb-1" aria-label="Research workbench areas">
             <TabsList className="min-w-max bg-[#e9eeea]">
-              {RESEARCH_AREAS.map((area) => (
+              {displayAreas.map((area) => (
                 <TabsTrigger
                   key={area.id}
                   value={area.id}
@@ -397,9 +595,11 @@ export default function VariantAnalysisPage() {
               <Alert className="border-[#de8246]/30 bg-[#fff8f2] text-[#3c4f3d]">
                 <AlertCircle className="h-4 w-4 text-[#de8246]" aria-hidden="true" />
                 <AlertDescription>
-                  Research-only surface. The current registry has no included model outputs;
-                  remote compute and downstream scientific selection remain gated by the
-                  project-control files.
+                  Research-only surface. {registryError
+                    ? "Registry metadata could not be loaded; downstream scientific selection remains gated."
+                    : registryReady
+                      ? `${registry?.completed_scientific_run_count} completed scientific run is registered; downstream panels still require their own evidence gates.`
+                      : "The current registry has no completed scientific outputs; remote compute and downstream scientific selection remain gated by the project-control files."}
                 </AlertDescription>
               </Alert>
             </section>
@@ -409,7 +609,13 @@ export default function VariantAnalysisPage() {
                 ["Protocol", "READY", "Frozen control plane"],
                 ["Model registry", "BLOCKED", "No included model"],
                 ["Compute pilot", "BLOCKED", "No remote invocation"],
-                ["Result registry", "BLOCKED", "No promoted outputs"],
+                [
+                  "Result registry",
+                  registryReady ? "READY" : "BLOCKED",
+                  registryReady
+                    ? `${registry?.completed_scientific_run_count} completed scientific run`
+                    : "No promoted outputs",
+                ],
               ].map(([label, status, detail]) => (
                 <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-white px-4 py-4 shadow-sm">
                   <p className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">{label}</p>
@@ -432,7 +638,7 @@ export default function VariantAnalysisPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="grid gap-x-8 gap-y-1 py-3 md:grid-cols-2">
-                {RESEARCH_AREAS.map((area) => (
+                {displayAreas.map((area) => (
                   <div
                     key={area.id}
                     className="flex items-center justify-between gap-4 border-b border-[#3c4f3d]/8 py-3"
@@ -663,6 +869,15 @@ export default function VariantAnalysisPage() {
               <EmptyAreaPanel area={area} />
             </TabsContent>
           ))}
+
+          <TabsContent value="registry">
+            <RegistryPanel
+              summary={registry}
+              loading={registryLoading}
+              error={registryError}
+              onRetry={() => void loadRegistry()}
+            />
+          </TabsContent>
 
           <TabsContent value="methods-provenance" className="space-y-6">
             <Card className="gap-0 border-none bg-white py-0 shadow-sm">

@@ -28,14 +28,16 @@ if str(SRC) not in sys.path:
 from evovariant_tr.registry import (  # noqa: E402
     Registry,
     RegistryError,
+    RunStatus,
     validate_final_gate,
+    verify_output_hashes,
 )
 
 
-def verify_registry(registry_dir: Path) -> list[str]:
+def verify_registry(registry_dir: Path, *, repo_root: Path = REPO_ROOT) -> list[str]:
     """Return a list of human-readable failures (empty list = healthy)."""
     failures: list[str] = []
-    registry = Registry(registry_dir)
+    registry = Registry(registry_dir, repo_root=repo_root)
 
     try:
         records = registry.list_runs()
@@ -53,6 +55,11 @@ def verify_registry(registry_dir: Path) -> list[str]:
             validate_final_gate(record)
         except RegistryError as exc:
             failures.append(str(exc))
+        if record.status is RunStatus.COMPLETED:
+            try:
+                verify_output_hashes(record, repo_root)
+            except RegistryError as exc:
+                failures.append(str(exc))
 
     log_path = registry.log_path
     if log_path.is_file():
@@ -77,13 +84,19 @@ def main(argv: list[str] | None = None) -> int:
         default=Path("experiments/registry"),
         help="Registry root directory (contains runs/ and log.jsonl)",
     )
+    parser.add_argument(
+        "--repo-root",
+        type=Path,
+        default=REPO_ROOT,
+        help="Repository root used for FINAL-tree and output-hash verification",
+    )
     args = parser.parse_args(argv)
 
     if not args.registry_dir.is_dir():
         print(f"OK: registry dir {args.registry_dir} does not exist yet (nothing to verify)")
         return 0
 
-    failures = verify_registry(args.registry_dir)
+    failures = verify_registry(args.registry_dir, repo_root=args.repo_root)
     if failures:
         print(f"FAIL: {len(failures)} registry verification failure(s):")
         for failure in failures:

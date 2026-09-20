@@ -26,7 +26,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from evovariant_tr.evidence import EvidenceStage
 
@@ -133,6 +133,31 @@ class RunRecord(BaseModel):
     parent_run_id: str | None
     output_paths: tuple[str, ...]
     output_hashes: dict[str, str]
+    # Section 21 of CODEX_MASTER_PROMPT.md requires every registered experiment
+    # to carry an explicit result-registry metadata surface. Defaults preserve
+    # read compatibility with pre-metadata fixture records; Registry.register
+    # populates these fields for every new record.
+    experiment_family: str = "UNSPECIFIED"
+    started_at: str = Field(default_factory=utc_now_iso)
+    completed_at: str | None = None
+    dataset_manifest_hash: str | None = None
+    split_manifest_hash: str | None = None
+    model_name: str | None = None
+    checkpoint: str | None = None
+    model_revision: str | None = None
+    model_source: str | None = None
+    license_record: dict[str, Any] = Field(default_factory=dict)
+    preprocessing_version: str | None = None
+    feature_version: str | None = None
+    config: dict[str, Any] = Field(default_factory=dict)
+    GPU: str | None = None
+    runtime_seconds: float | None = None
+    estimated_cost_usd: float | None = None
+    measured_cost_usd: float | None = None
+    metrics: dict[str, Any] = Field(default_factory=dict)
+    artifact_paths: tuple[str, ...] = ()
+    failure_reason: str | None = None
+    notes: str | None = None
 
     @field_validator("run_id")
     @classmethod
@@ -148,12 +173,41 @@ class RunRecord(BaseModel):
             raise ValueError("protocol_hash must be a 64-char lowercase SHA-256 hex string")
         return value
 
+    @field_validator("experiment_family")
+    @classmethod
+    def _non_empty_family(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("experiment_family must be non-empty")
+        return value
+
+    @field_validator("dataset_manifest_hash", "split_manifest_hash")
+    @classmethod
+    def _valid_optional_hash(cls, value: str | None) -> str | None:
+        if value is not None and not _SHA256_HEX.match(value):
+            raise ValueError("manifest hashes must be 64-char lowercase SHA-256 hex strings")
+        return value
+
+    @field_validator("runtime_seconds", "estimated_cost_usd", "measured_cost_usd")
+    @classmethod
+    def _non_negative_measurement(cls, value: float | None) -> float | None:
+        if value is not None and value < 0:
+            raise ValueError("runtime and cost measurements must be non-negative")
+        return value
+
     @field_validator("title", "command")
     @classmethod
     def _non_empty(cls, value: str) -> str:
         if not value.strip():
             raise ValueError("field must be non-empty")
         return value
+
+    @model_validator(mode="after")
+    def _validate_result_surface(self) -> RunRecord:
+        if self.status is not RunStatus.COMPLETED and self.metrics:
+            raise ValueError("non-completed registry records cannot carry scientific metrics")
+        if self.artifact_paths and self.artifact_paths != self.output_paths:
+            raise ValueError("artifact_paths must match output_paths when both are recorded")
+        return self
 
 
 def validate_final_gate(record: RunRecord) -> None:
@@ -250,6 +304,20 @@ class Registry:
         seed: int | None = None,
         hardware: dict[str, str] | None = None,
         parent_run_id: str | None = None,
+        experiment_family: str = "UNSPECIFIED",
+        dataset_manifest_hash: str | None = None,
+        split_manifest_hash: str | None = None,
+        model_name: str | None = None,
+        checkpoint: str | None = None,
+        model_revision: str | None = None,
+        model_source: str | None = None,
+        license_record: dict[str, Any] | None = None,
+        preprocessing_version: str | None = None,
+        feature_version: str | None = None,
+        config: dict[str, Any] | None = None,
+        gpu: str | None = None,
+        estimated_cost_usd: float | None = None,
+        notes: str | None = None,
         now: datetime | None = None,
     ) -> RunRecord:
         if parent_run_id is not None:
@@ -281,6 +349,21 @@ class Registry:
             parent_run_id=parent_run_id,
             output_paths=(),
             output_hashes={},
+            experiment_family=experiment_family,
+            started_at=utc_now_iso(now),
+            dataset_manifest_hash=dataset_manifest_hash,
+            split_manifest_hash=split_manifest_hash,
+            model_name=model_name,
+            checkpoint=checkpoint,
+            model_revision=model_revision,
+            model_source=model_source,
+            license_record=license_record or {},
+            preprocessing_version=preprocessing_version,
+            feature_version=feature_version,
+            config=config or {},
+            GPU=gpu,
+            estimated_cost_usd=estimated_cost_usd,
+            notes=notes,
         )
         validate_final_gate(record)
         self._append_record(record)
@@ -297,6 +380,10 @@ class Registry:
         output_paths: Sequence[str] | None = None,
         outputs_base_dir: str | Path | None = None,
         reason: str | None = None,
+        metrics: dict[str, Any] | None = None,
+        runtime_seconds: float | None = None,
+        measured_cost_usd: float | None = None,
+        notes: str | None = None,
         now: datetime | None = None,
     ) -> RunRecord:
         current = self.load(run_id)
@@ -319,14 +406,37 @@ class Registry:
         else:
             hashes = dict(current.output_hashes)
             updated_paths = current.output_paths
+        updated_at = utc_now_iso(now)
         updated = current.model_copy(
             update={
                 "status": status,
-                "updated_at": utc_now_iso(now),
+                "updated_at": updated_at,
+                "completed_at": updated_at if status in TERMINAL_STATUSES else current.completed_at,
                 "output_paths": updated_paths,
                 "output_hashes": hashes,
+                "artifact_paths": updated_paths,
+                "metrics": metrics if metrics is not None else current.metrics,
+                "runtime_seconds": (
+                    runtime_seconds if runtime_seconds is not None else current.runtime_seconds
+                ),
+                "measured_cost_usd": (
+                    measured_cost_usd
+                    if measured_cost_usd is not None
+                    else current.measured_cost_usd
+                ),
+                "failure_reason": (
+                    reason
+                    if status in {RunStatus.FAILED, RunStatus.ABORTED} and reason
+                    else current.failure_reason
+                ),
+                "notes": notes if notes is not None else current.notes,
             }
         )
+        # ``model_copy(update=...)`` intentionally skips Pydantic validation;
+        # re-validate before persisting so status/metrics, hash, and metadata
+        # invariants also apply to transitions.
+        updated = RunRecord.model_validate(updated.model_dump(mode="json"))
+        validate_final_gate(updated)
         self._replace_record(updated)
         event: dict[str, Any] = {
             "event": "transition",

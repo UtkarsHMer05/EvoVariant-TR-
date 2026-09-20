@@ -272,6 +272,79 @@ def test_lifecycle_to_completed_with_output_hashes(
     assert completed.output_hashes == {relative.as_posix(): hash_file(output)}
 
 
+def test_result_registry_metadata_and_terminal_measurements(
+    registry: Registry, clean_repo: Path
+) -> None:
+    record = registry.register(
+        **register_kwargs(
+            experiment_family="ZS-evo2",
+            dataset_manifest_hash=PROTOCOL_HASH,
+            split_manifest_hash="a" * 64,
+            model_name="Evo2",
+            checkpoint="evo2_7b",
+            model_revision="revision",
+            model_source="https://example.invalid/evo2",
+            license_record={"status": "fixture"},
+            preprocessing_version="pre-v1",
+            feature_version="feature-v1",
+            config={"context_length": 8192},
+            gpu="H100",
+            estimated_cost_usd=1.25,
+        )
+    )
+    assert record.experiment_family == "ZS-evo2"
+    assert record.started_at
+    assert record.completed_at is None
+    assert record.GPU == "H100"
+
+    output = clean_repo / "artifacts" / "benchmark.json"
+    output.parent.mkdir(parents=True)
+    output.write_text('{"status": "fixture"}\n', encoding="utf-8")
+    completed = registry.transition(
+        record.run_id,
+        RunStatus.COMPLETED,
+        output_paths=[str(output.relative_to(clean_repo))],
+        outputs_base_dir=clean_repo,
+        metrics={"metric": "fixture"},
+        runtime_seconds=2.5,
+        measured_cost_usd=0.75,
+        notes="fixture completion",
+    )
+    assert completed.completed_at
+    assert completed.artifact_paths == completed.output_paths
+    assert completed.metrics == {"metric": "fixture"}
+    assert completed.runtime_seconds == 2.5
+    assert completed.measured_cost_usd == 0.75
+    assert completed.notes == "fixture completion"
+
+
+def test_non_completed_registry_record_rejects_metrics() -> None:
+    with pytest.raises(ValidationError, match="scientific metrics"):
+        RunRecord(
+            run_id="run_20260818T000000Z_deadbeef",
+            title="t",
+            evidence_stage=EvidenceStage.ENGINEERING_PILOT,
+            status=RunStatus.RUNNING,
+            protocol_hash=PROTOCOL_HASH,
+            git_commit=None,
+            git_dirty=False,
+            data_manifests={},
+            reference_checksum=None,
+            model_identity=None,
+            scorer_config={},
+            comparator_versions={},
+            seed=None,
+            hardware={},
+            command="cmd",
+            created_at="2026-08-18T00:00:00+00:00",
+            updated_at="2026-08-18T00:00:00+00:00",
+            parent_run_id=None,
+            output_paths=(),
+            output_hashes={},
+            metrics={"auc_roc": 0.5},
+        )
+
+
 def test_completed_requires_output_paths(registry: Registry) -> None:
     record = registry.register(**register_kwargs())
     with pytest.raises(RegistryError, match="output_paths"):

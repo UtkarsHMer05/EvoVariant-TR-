@@ -30,6 +30,30 @@ test.describe("research workbench", () => {
     await expect(page.getByText("Research-only")).toBeVisible();
   });
 
+  test("shows the registry as blocked when no scientific run is registered", async ({
+    page,
+    request,
+  }) => {
+    const response = await request.get("/api/registry");
+    expect(response.ok()).toBeTruthy();
+    const payload = (await response.json()) as {
+      status: string;
+      registered_run_count: number;
+      completed_scientific_run_count: number;
+      runs: unknown[];
+    };
+    expect(payload.status).toBe("BLOCKED");
+    expect(payload.registered_run_count).toBe(0);
+    expect(payload.completed_scientific_run_count).toBe(0);
+    expect(payload.runs).toEqual([]);
+
+    await expect(page.getByText("No promoted outputs", { exact: true })).toBeVisible();
+    await page.getByRole("tab", { name: "Experiment Registry" }).click();
+    await expect(
+      page.getByText("No completed scientific run records are registered."),
+    ).toBeVisible();
+  });
+
   test("rejects invalid client-side variant input without a scorer call", async ({
     page,
   }) => {

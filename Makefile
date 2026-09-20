@@ -106,8 +106,8 @@ frontend-install: ## Install frontend dependencies (npm ci, apps/web)
 	cd apps/web && npm ci
 
 .PHONY: frontend-build
-frontend-build: ## Typecheck + production build of apps/web
-	cd apps/web && npx tsc --noEmit && NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL="$${NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL:-http://localhost:8000}" npm run build
+frontend-build: ## Lint + typecheck + production build of apps/web
+	cd apps/web && node node_modules/eslint/bin/eslint.js src && npx tsc --noEmit && NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL="$${NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL:-http://localhost:8000}" npm run build
 
 # ---------------------------------------------------------------------------
 # Data / protocol / registry verification (all free, CPU/local only)

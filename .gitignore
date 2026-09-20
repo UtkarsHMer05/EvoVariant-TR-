@@ -21,6 +21,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+src/evovariant_tr.egg-info/
 
 # Python virtual environments (global)
 .venv/

@@ -1,2 +1,0 @@
-[console_scripts]
-evovariant-tr = evovariant_tr.cli:main

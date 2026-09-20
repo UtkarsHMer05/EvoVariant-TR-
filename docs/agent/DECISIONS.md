@@ -558,7 +558,8 @@ Commit `1d9cf43` implements the source/Makefile changes. Full ESLint passes with
 errors/warnings; `make web-check` passes; `make validate` passes
 with 610 tests, 33 deselected, and 95.34% coverage; `make test-scientific` passes 7 tests with 1
 explicit skip; `make test-e2e` passes 14 tests with 1 explicit skip; protocol, schema, model
-registry, registry, clean-room, and no-spend Modal preflight checks pass.
+registry, registry, clean-room, and no-spend Modal preflight checks pass. A final clone from
+`3f1496b` reproduced these gates and ended with a clean Git status.
 
 ## Template for new decisions
 

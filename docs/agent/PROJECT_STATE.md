@@ -120,6 +120,12 @@ verified facts are:
 - The required phase command surface now writes explicit no-result status artifacts for Phases
   6–19 under ignored `research/runs/phase*_status.json`. These artifacts contain blockers and
   no metrics; they do not promote synthetic fixtures to scientific evidence.
+- A final clean clone at `/private/tmp/EvoVariant_TR_final_clean.SZkTWU` from commit `3f1496b`
+  passed `make bootstrap`, `make frontend-install`, `make validate`, the full `make web-check`
+  (ESLint, TypeScript, and Next production build), `make test-scientific`, `make test-e2e`,
+  protocol/control-plane/schema/model-registry checks, and registry verification. Its final Git
+  status was clean. `npm ci` reproduced the known 13-vulnerability report; no automatic audit
+  fix was applied.
 - The research workbench at `apps/web/src/app/analysis/page.tsx` exposes all 14 required
   top-level areas. A local production-server browser smoke verified navigation, fail-closed
   single-variant rendering, blocked temporal empty state, and protocol metadata loading. The

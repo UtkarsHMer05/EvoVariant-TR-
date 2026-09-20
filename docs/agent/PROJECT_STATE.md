@@ -11,7 +11,7 @@ training, HPO, fine-tuning, locked-test evaluation, or paid Modal work has been 
 
 Last passing source baseline: `a5604eebec449dc95983f7570c483c443aa15bd8`.
 Phase 0 handoff checkpoint: `89e5751`.
-The Phase 1 implementation commit is recorded in the Phase 1 ledger entry after commit.
+Phase 1 implementation commit: `1f777b5`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`

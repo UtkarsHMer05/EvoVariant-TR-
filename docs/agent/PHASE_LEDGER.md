@@ -56,8 +56,7 @@ For each PASS append:
 
 ## Phase 1 completion record — 2026-09-21
 
-- Implementation commit: recorded by the immediately following documentation update after the
-  Phase 1 commit; no source model or paid compute work was run.
+- Implementation commit: `1f777b5`; no source model or paid compute work was run.
 - Control-plane files: `research/ml_extension/protocol.yaml`, `split_policy.yaml`, and
   `protocol_hashes.json`.
 - Schemas: `model_manifest.schema.json`, `split_manifest.schema.json`,

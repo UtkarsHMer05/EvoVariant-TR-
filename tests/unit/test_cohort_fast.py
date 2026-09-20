@@ -80,12 +80,12 @@ def test_build_cohort_fast_basic(t0_file, t1_file):
         t0_release_date=date(2025, 1, 1),
         t1_release_date=date(2026, 8, 1),
     )
-    # t0 VUS with 2+ stars: alleles 1 and 2 (allele 4 has 0 stars)
-    assert cohort["n_total"] == 2
+    # The frozen protocol has no t0 star gate: alleles 1, 2, and 4 are VUS.
+    assert cohort["n_total"] == 3
     assert cohort["n_resolved_pathogenic"] == 1
     assert cohort["n_resolved_benign"] == 1
     assert cohort["n_unresolved"] == 0
-    assert cohort["n_excluded"] == 0
+    assert cohort["n_excluded"] == 1
 
 
 def test_build_cohort_fast_flow(t0_file, t1_file):
@@ -94,7 +94,7 @@ def test_build_cohort_fast_flow(t0_file, t1_file):
     assert flow["total_t0_records"] == 4
     assert flow["t0_germline_snv"] == 4
     assert flow["t0_grch38"] == 4
-    assert flow["t0_vus_meets_star_gate"] == 2
+    assert flow["t0_vus_meets_star_gate"] == 3
     assert flow["t1_pathogenic"] == 1
     assert flow["t1_benign"] == 1
 

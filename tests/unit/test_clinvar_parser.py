@@ -155,6 +155,20 @@ def test_parse_record_benign():
     assert record.last_evaluated is None
 
 
+def test_parse_record_prefers_vcf_normalized_variant_fields():
+    header = parse_header(
+        SAMPLE_HEADER + "\tPositionVCF\tReferenceAlleleVCF\tAlternateAlleleVCF"
+    )
+    fields = SAMPLE_VUS_ROW + ["117260530", "A", "T"]
+    fields[7] = "117260531"
+    fields[8] = "na"
+    fields[9] = "na"
+    record = parse_record(fields, header, row_number=2)
+    assert record.start == 117260530
+    assert record.reference_allele == "A"
+    assert record.alternate_allele == "T"
+
+
 def test_parse_record_invalid_allele_id():
     header = parse_header(SAMPLE_HEADER)
     bad_row = list(SAMPLE_VUS_ROW)

@@ -1,0 +1,87 @@
+{
+  "dataset_id": "evovariant-tr-phase3-v1",
+  "status": "PASS_WITH_QA_DISCREPANCY_DOCUMENTED",
+  "protocol_id": "evovariant-tr-ml-extension",
+  "original_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+  "source_archives": {
+    "t0": {
+      "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+      "manifest": "research/data_manifests/clinvar_t0.json",
+      "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
+      "size_bytes": 288267418,
+      "release_date": "2025-01-02"
+    },
+    "t1": {
+      "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
+      "manifest": "research/data_manifests/clinvar_t1.json",
+      "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
+      "size_bytes": 441792560,
+      "release_date": "2026-08-06"
+    }
+  },
+  "source_manifest_hash": "854210537eebd87f8390eee8bfc4d77072dc8df86f0ccaffc246edb781783c00",
+  "generated_artifacts": {
+    "directory": "data/derived/ml_extension/phase3",
+    "split_manifest": "data/derived/ml_extension/phase3/split_manifest.json",
+    "split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
+    "temporal_audit": "data/derived/ml_extension/phase3/temporal_audit.json",
+    "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json"
+  },
+  "temporal_audit": {
+    "t0_unique_vus": 1402895,
+    "absent_at_t1": 3459,
+    "below_two_stars": 1098941,
+    "not_definitive_at_t1": 299549,
+    "final_temporal_n": 946,
+    "n_blb": 536,
+    "n_plp": 410,
+    "gene_labels": 946,
+    "reference_mismatch_count": 0,
+    "gene_mismatch_count": 2,
+    "t0_duplicate_vus_ids": 0,
+    "t1_conflicting_duplicate_ids": 0
+  },
+  "development_split": {
+    "TRAIN": 191957,
+    "VALIDATION": 48035,
+    "LOCKED_TEST": 946,
+    "development_total": 239992,
+    "development_positive": 46429,
+    "development_negative": 193563,
+    "train_genes": 9682,
+    "validation_genes": 57
+  },
+  "invariants": {
+    "normalized_id_overlap": 0,
+    "train_validation_gene_overlap": 0,
+    "locked_test_overlap": 0,
+    "duplicate_normalized_ids": 0,
+    "deterministic_rebuild": true,
+    "generated_manifest_schema_valid": true
+  },
+  "qa_checkpoint_comparison": {
+    "target_is_validation_only": true,
+    "target_t0_unique_vus": 1403225,
+    "target_absent_at_t1": 3615,
+    "target_not_definitive_at_t1": 1389535,
+    "target_below_two_stars": 9051,
+    "target_final_temporal_n": 1024,
+    "target_n_blb": 614,
+    "target_n_plp": 410,
+    "target_gene_labels": 389,
+    "target_reference_mismatch_count": 0,
+    "discrepancy_investigation": [
+      "The archived byte sizes and SHA-256 values match the checked-in source manifests.",
+      "The t1 archive is served from the official archive root; the old archive/2026 URL was a 404 and was corrected in the downloader and manifest.",
+      "The current archive uses ReferenceAlleleVCF, AlternateAlleleVCF, and PositionVCF for normalized SNVs; legacy ReferenceAllele/AlternateAllele fields are na for these rows.",
+      "The t0 protocol state is aggregate VUS without a t0 star gate; the >=2-star gate is applied to t1 outcomes and t0-definitive development labels.",
+      "The remaining count differences are preserved as an unresolved archive/normalization discrepancy and must not be tuned away before model scoring."
+    ],
+    "model_scoring_allowed": false
+  },
+  "limitations": [
+    "Reference mismatch is audited between matched t0/t1 variant identities; a genome FASTA reference-base audit is not included in this CPU archive pass.",
+    "The locked-test labels are used only to construct the locked manifest and audit; they are not used for development assignment or model selection."
+  ]
+}

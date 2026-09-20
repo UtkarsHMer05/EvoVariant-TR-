@@ -1,8 +1,8 @@
 {
   "file_name": "variant_summary_2025-01.txt.gz",
   "name": "clinvar_variant_summary_2025-01",
-  "release_date": "2025-01-01",
-  "retrieved_at": "2026-08-18T23:16:30.681505+00:00",
+  "release_date": "2025-01-02",
+  "retrieved_at": "2026-09-20T20:57:17.646492+00:00",
   "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
   "size_bytes": 288267418,
   "source_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/variant_summary_2025-01.txt.gz"

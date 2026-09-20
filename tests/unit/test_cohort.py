@@ -99,13 +99,13 @@ def test_build_cohort_resolves_variants(t0_file, t1_file):
     )
 
     # t0 had 4 records, all germline SNV on GRCh38
-    # VUS at t0 with >=2 stars: only allele 2 (allele 1 has 1 star = below gate)
-    assert cohort.flow.t0_vus_meets_star_gate == 1
+    # The frozen protocol has no t0 star gate: alleles 1, 2, and 4 are VUS.
+    assert cohort.flow.t0_vus_meets_star_gate == 3
 
-    # Variant 2 (VUS at t0) resolves to Benign at t1
-    assert cohort.n_resolved_pathogenic == 0
+    # Variants 1 and 2 resolve; variant 4 has no t1 record.
+    assert cohort.n_resolved_pathogenic == 1
     assert cohort.n_resolved_benign == 1
-    assert cohort.n_excluded == 0
+    assert cohort.n_excluded == 1
 
 
 def test_build_cohort_flow_counts(t0_file, t1_file):

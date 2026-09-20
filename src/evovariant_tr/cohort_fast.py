@@ -67,6 +67,35 @@ REVIEW_STARS: dict[str, int] = {
 }
 
 
+def _variant_fields(
+    parts: list[str],
+    col: dict[str, int],
+) -> tuple[int, str, str] | None:
+    """Use ClinVar's VCF-normalized allele columns when present."""
+    position_raw = parts[col["PositionVCF"]] if "PositionVCF" in col else ""
+    if position_raw in ("", "-"):
+        position_raw = parts[col["Start"]]
+    try:
+        start = int(position_raw)
+    except ValueError:
+        return None
+    reference = (
+        parts[col["ReferenceAlleleVCF"]]
+        if "ReferenceAlleleVCF" in col
+        else parts[col["ReferenceAllele"]]
+    )
+    alternate = (
+        parts[col["AlternateAlleleVCF"]]
+        if "AlternateAlleleVCF" in col
+        else parts[col["AlternateAllele"]]
+    )
+    if reference in ("", "-"):
+        reference = parts[col["ReferenceAllele"]]
+    if alternate in ("", "-"):
+        alternate = parts[col["AlternateAllele"]]
+    return start, reference, alternate
+
+
 class FastOutcome(StrEnum):
     RESOLVED_PATHOGENIC = "resolved_pathogenic"
     RESOLVED_BENIGN = "resolved_benign"
@@ -108,9 +137,9 @@ class FastCohortFlow:
 
 def _load_t0_vus(
     path: str | Path,
-    min_stars: int = MIN_REVIEW_STARS,
+    min_stars: int | None = None,
 ) -> tuple[dict[tuple[str, int, str, str], dict[str, Any]], dict[str, int]]:
-    """Load t0 snapshot, collecting only VUS germline SNVs with >= min_stars.
+    """Load t0 snapshot, collecting all VUS germline GRCh38 SNVs by default.
 
     Returns (vus_dict, counts).
     vus_dict maps identity -> {stars, allele_id, gene, raw_clinsig, review_status}
@@ -145,8 +174,9 @@ def _load_t0_vus(
 
             counts["germline_snv"] += 1
             assembly = parts[col["Assembly"]]
-            if assembly == "GRCh38":
-                counts["grch38"] += 1
+            if assembly != "GRCh38":
+                continue
+            counts["grch38"] += 1
 
             clinsig_raw = parts[col["ClinicalSignificance"]]
             clinsig = CLINSIG_MAP.get(clinsig_raw)
@@ -156,13 +186,22 @@ def _load_t0_vus(
 
             review_status = parts[col["ReviewStatus"]]
             stars = REVIEW_STARS.get(review_status.strip(), 0)
-            if stars < min_stars:
+            if min_stars is not None and stars < min_stars:
                 continue
 
             chrom = parts[col["Chromosome"]]
-            start = int(parts[col["Start"]])
-            ref = parts[col["ReferenceAllele"]]
-            alt = parts[col["AlternateAllele"]]
+            variant_fields = _variant_fields(parts, col)
+            if variant_fields is None:
+                continue
+            start, ref, alt = variant_fields
+            if (
+                len(ref) != 1
+                or len(alt) != 1
+                or ref.upper() not in "ACGT"
+                or alt.upper() not in "ACGT"
+                or ref.upper() == alt.upper()
+            ):
+                continue
             identity = (chrom, start, ref, alt)
 
             gene_idx = col.get("GeneSymbol")
@@ -222,8 +261,9 @@ def _load_t1_snapshots(
 
             counts["germline_snv"] += 1
             assembly = parts[col["Assembly"]]
-            if assembly == "GRCh38":
-                counts["grch38"] += 1
+            if assembly != "GRCh38":
+                continue
+            counts["grch38"] += 1
 
             clinsig_raw = parts[col["ClinicalSignificance"]]
             clinsig = CLINSIG_MAP.get(clinsig_raw, "OTHER")
@@ -232,9 +272,18 @@ def _load_t1_snapshots(
             stars = REVIEW_STARS.get(review_status.strip(), 0)
 
             chrom = parts[col["Chromosome"]]
-            start = int(parts[col["Start"]])
-            ref = parts[col["ReferenceAllele"]]
-            alt = parts[col["AlternateAllele"]]
+            variant_fields = _variant_fields(parts, col)
+            if variant_fields is None:
+                continue
+            start, ref, alt = variant_fields
+            if (
+                len(ref) != 1
+                or len(alt) != 1
+                or ref.upper() not in "ACGT"
+                or alt.upper() not in "ACGT"
+                or ref.upper() == alt.upper()
+            ):
+                continue
             identity = (chrom, start, ref, alt)
 
             gene_idx = col.get("GeneSymbol")
@@ -270,7 +319,7 @@ def build_cohort_fast(
     flow = FastCohortFlow()
 
     # Pass 1: Load t0 VUS
-    t0_vus, t0_counts = _load_t0_vus(t0_path, min_review_stars)
+    t0_vus, t0_counts = _load_t0_vus(t0_path)
     flow.total_t0_records = t0_counts["total"]
     flow.t0_germline_snv = t0_counts["germline_snv"]
     flow.t0_grch38 = t0_counts["grch38"]
@@ -293,6 +342,11 @@ def build_cohort_fast(
         if t1_rec is None:
             excluded += 1
             flow.excluded_no_t1_record += 1
+            continue
+
+        if t1_rec["stars"] < min_review_stars:
+            unresolved += 1
+            flow.t1_unresolved += 1
             continue
 
         flow.t1_definitive_meets_star_gate += 1

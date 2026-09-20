@@ -8,6 +8,6 @@
     "research/schemas/cost_ledger.schema.json": "7abd7519ed3406b67a28e8f6457506b341d70a05d83a9dc31f933e1aa163b773",
     "research/schemas/experiment_config.schema.json": "8f1fa8311cdb8a57a133fc901e2dd85757bdcb755a7b14eb55db9182f16d1e7e",
     "research/schemas/model_manifest.schema.json": "2409da7db4656467fb661c34a5a47f57400aced2058a53295d5a52237fb65109",
-    "research/schemas/split_manifest.schema.json": "e8f9de9f055be21193a86ea7bb6c3f4618ce4c836ad626684e6d23c6799bf86b"
+    "research/schemas/split_manifest.schema.json": "f66780dd445b7e2b2cfd41e067e2284c3cf1b855f031260a56abf4ecb0201e21"
   }
 }

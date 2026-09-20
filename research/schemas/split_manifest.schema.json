@@ -15,12 +15,31 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["normalized_variant_id", "gene_symbol", "label", "split"],
+        "required": [
+          "normalized_variant_id",
+          "assembly",
+          "chromosome",
+          "position_1based",
+          "reference",
+          "alternate",
+          "gene_symbol",
+          "label",
+          "split",
+          "source_release",
+          "source_record_hash"
+        ],
         "properties": {
           "normalized_variant_id": { "type": "string", "minLength": 1 },
+          "assembly": { "const": "GRCh38" },
+          "chromosome": { "type": "string", "minLength": 1 },
+          "position_1based": { "type": "integer", "minimum": 1 },
+          "reference": { "type": "string", "pattern": "^[ACGT]$" },
+          "alternate": { "type": "string", "pattern": "^[ACGT]$" },
           "gene_symbol": { "type": ["string", "null"] },
           "label": { "enum": [0, 1] },
-          "split": { "enum": ["TRAIN", "VALIDATION", "LOCKED_TEST"] }
+          "split": { "enum": ["TRAIN", "VALIDATION", "LOCKED_TEST"] },
+          "source_release": { "type": "string", "minLength": 1 },
+          "source_record_hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
         }
       }
     },
@@ -28,11 +47,12 @@
     "invariants": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["normalized_id_overlap", "train_validation_gene_overlap", "locked_test_overlap", "deterministic"],
+      "required": ["normalized_id_overlap", "train_validation_gene_overlap", "locked_test_overlap", "duplicate_normalized_ids", "deterministic"],
       "properties": {
         "normalized_id_overlap": { "type": "integer", "minimum": 0 },
         "train_validation_gene_overlap": { "type": "integer", "minimum": 0 },
         "locked_test_overlap": { "type": "integer", "minimum": 0 },
+        "duplicate_normalized_ids": { "type": "integer", "minimum": 0 },
         "deterministic": { "type": "boolean" }
       }
     }

@@ -124,6 +124,16 @@ data-verify: ## Verify a file manifest against on-disk data (MANIFEST=... BASE_D
 	@test -n "$(MANIFEST)" || { echo "ERROR: set MANIFEST=path/to/manifest.json" >&2; exit 2; }
 	$(PYTHON) scripts/verify_manifest.py --manifest $(MANIFEST) --base-dir $(BASE_DIR)
 
+.PHONY: data-qc
+data-qc: ## Recompute the temporal audit and deterministic ML-extension split manifests
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli build-ml-splits \
+		--t0 data/raw/clinvar/variant_summary_2025-01.txt.gz \
+		--t1 data/raw/clinvar/variant_summary_2026-08.txt.gz \
+		--t0-manifest research/data_manifests/clinvar_t0.json \
+		--t1-manifest research/data_manifests/clinvar_t1.json \
+		--output-dir data/derived/ml_extension/phase3
+
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)
 	$(MAKE) check-venv

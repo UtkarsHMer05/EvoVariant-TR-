@@ -49,6 +49,11 @@ def build_candidate_urls(release: date) -> list[str]:
     - 2025 onward: ``archive/variant_summary_<YYYY-MM>.txt.gz`` (top-level)
     """
     filename = f"variant_summary_{release.year:04d}-{release.month:02d}.txt.gz"
+    if release.year >= 2025:
+        return [
+            urljoin(CLINVAR_ARCHIVE_DIR, filename),
+            urljoin(CLINVAR_ARCHIVE_DIR, f"{release.year}/{filename}"),
+        ]
     return [
         urljoin(CLINVAR_ARCHIVE_DIR, f"{release.year}/{filename}"),
         urljoin(CLINVAR_ARCHIVE_DIR, filename),
@@ -126,6 +131,10 @@ def main(argv: list[str] | None = None) -> int:
         "--manifest", type=Path, default=None,
         help="Path to write the data manifest JSON"
     )
+    parser.add_argument(
+        "--release-date", type=date.fromisoformat, default=None,
+        help="Exact archive release date (YYYY-MM-DD); defaults to the first of the month",
+    )
     args = parser.parse_args(argv)
 
     filename = f"variant_summary_{args.release.year:04d}-{args.release.month:02d}.txt.gz"
@@ -154,7 +163,7 @@ def main(argv: list[str] | None = None) -> int:
     manifest_entry = {
         "name": f"clinvar_variant_summary_{args.release.year:04d}-{args.release.month:02d}",
         "source_url": url,
-        "release_date": args.release.isoformat(),
+        "release_date": (args.release_date or args.release).isoformat(),
         "retrieved_at": retrieved,
         "file_name": filename,
         "size_bytes": size,

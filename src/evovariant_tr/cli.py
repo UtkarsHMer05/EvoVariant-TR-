@@ -61,6 +61,22 @@ def cmd_validate_ml_control_plane(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_ml_splits(args: argparse.Namespace) -> int:
+    """Build the Phase 3 temporal audit and development split artifacts."""
+    from evovariant_tr.splits import build_phase3_artifacts
+
+    summary = build_phase3_artifacts(
+        args.t0,
+        args.t1,
+        output_dir=args.output_dir,
+        t0_manifest=args.t0_manifest,
+        t1_manifest=args.t1_manifest,
+        seed=args.seed,
+    )
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return 0 if summary["status"] == "PASS" else 1
+
+
 def cmd_build_cohort(args: argparse.Namespace) -> int:
     from datetime import date
 
@@ -127,6 +143,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     ml_control.add_argument("--repo-root", type=Path, default=Path("."))
     ml_control.set_defaults(func=cmd_validate_ml_control_plane)
+
+    splits = subparsers.add_parser(
+        "build-ml-splits",
+        help="Audit the temporal cohort and build deterministic development splits",
+    )
+    splits.add_argument("--t0", type=Path, required=True)
+    splits.add_argument("--t1", type=Path, required=True)
+    splits.add_argument("--t0-manifest", type=Path, required=True)
+    splits.add_argument("--t1-manifest", type=Path, required=True)
+    splits.add_argument("--output-dir", type=Path, required=True)
+    splits.add_argument("--seed", type=int, default=20260814)
+    splits.set_defaults(func=cmd_build_ml_splits)
 
     return parser
 

@@ -220,8 +220,6 @@ def build_temporal_cohort(
     Returns:
         A TemporalCohort with variants and flow counts.
     """
-    cfg = config or CohortConfig()
-    stars = min_review_stars if min_review_stars is not None else cfg.min_review_stars
     flow = CohortFlow()
     flow.t0_release_date = t0_release_date  # type: ignore[attr-defined]
     flow.t1_release_date = t1_release_date  # type: ignore[attr-defined]
@@ -249,7 +247,9 @@ def build_temporal_cohort(
 
     vus_variants: dict[VariantIdentity, VariantSummaryRecord] = {}
     for identity, record in t0_dedup.items():
-        if is_vus_at_t0(record, min_review_stars=stars):
+        # The frozen primary protocol has no t0 review-star gate.  The >=2-star
+        # quality gate applies to the later t1 outcome, not initial VUS status.
+        if is_vus_at_t0(record, min_review_stars=0):
             flow.t0_vus_meets_star_gate += 1
             vus_variants[identity] = record
 

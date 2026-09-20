@@ -17,7 +17,12 @@ from pathlib import Path
 from typing import Any
 
 from evovariant_tr.clinvar_parser import parse_header
-from evovariant_tr.cohort_fast import CLINSIG_MAP, REVIEW_STARS, SNV_TYPES
+from evovariant_tr.cohort_fast import (
+    CLINSIG_MAP,
+    REVIEW_STARS,
+    SNV_TYPES,
+    _variant_fields,
+)
 
 MIN_REVIEW_STARS = 2
 
@@ -155,9 +160,10 @@ def _load_definitive_snapshot(
                 continue
 
             chrom = parts[col["Chromosome"]]
-            start = int(parts[col["Start"]])
-            ref = parts[col["ReferenceAllele"]]
-            alt = parts[col["AlternateAllele"]]
+            variant_fields = _variant_fields(parts, col)
+            if variant_fields is None:
+                continue
+            start, ref, alt = variant_fields
             identity = (chrom, start, ref, alt)
 
             gene_idx = col.get("GeneSymbol")
@@ -214,9 +220,10 @@ def _load_all_snapshot(
                 continue
 
             chrom = parts[col["Chromosome"]]
-            start = int(parts[col["Start"]])
-            ref = parts[col["ReferenceAllele"]]
-            alt = parts[col["AlternateAllele"]]
+            variant_fields = _variant_fields(parts, col)
+            if variant_fields is None:
+                continue
+            start, ref, alt = variant_fields
             identity = (chrom, start, ref, alt)
 
             clinsig_raw = parts[col["ClinicalSignificance"]]
@@ -381,9 +388,10 @@ def check_disjoint(
             clinsig_raw = parts[col["ClinicalSignificance"]]
             clinsig = CLINSIG_MAP.get(clinsig_raw, "OTHER")
             chrom = parts[col["Chromosome"]]
-            start = int(parts[col["Start"]])
-            ref = parts[col["ReferenceAllele"]]
-            alt = parts[col["AlternateAllele"]]
+            variant_fields = _variant_fields(parts, col)
+            if variant_fields is None:
+                continue
+            start, ref, alt = variant_fields
             identity = (chrom, start, ref, alt)
 
             existing = best.get(identity)

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://evovariant-tr.local/schemas/figure_bundle.schema.json",
+  "title": "EvoVariant-TR registry-driven Phase 17 export bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "source_manifest_sha256",
+    "required_figure_count",
+    "required_table_count",
+    "outputs",
+    "blockers",
+    "scientific_outputs_included"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0" },
+    "status": { "enum": ["BLOCKED", "READY"] },
+    "source_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "required_figure_count": { "type": "integer", "minimum": 0 },
+    "required_table_count": { "type": "integer", "minimum": 0 },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "path", "sha256"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["figure", "table", "report"] },
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "scientific_outputs_included": { "type": "boolean" }
+  }
+}

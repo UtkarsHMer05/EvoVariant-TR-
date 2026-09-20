@@ -96,6 +96,21 @@ evovariant-tr generate-figure-manifest \
   --output research/runs/phase17_fig_status.json
 ```
 
+Render the deterministic Phase 17 export bundle from that manifest. A blocked manifest writes
+only `research/figures/bundle_manifest.json` and removes outputs listed by the previous bundle;
+it never creates placeholder figures or tables:
+
+```bash
+evovariant-tr render-figure-bundle \
+  --manifest research/runs/phase17_fig_status.json \
+  --repo-root . \
+  --output-dir research/figures
+```
+
+When the manifest is `READY`, the bundle contains registry-derived SVG figures, JSON tables,
+`methods.md`, `limitations.md`, `compute_cost.json`, and `model_provenance.json` under the
+ignored `research/figures/bundle/` directory. `make figures` runs both commands.
+
 ## 5. Frontend commands
 
 ```bash

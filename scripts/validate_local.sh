@@ -29,6 +29,6 @@ echo "==> pytest (default tiers: unit, contract, integration)"
 python -m pytest
 
 echo "==> coverage floor (core deterministic modules)"
-python -m pytest --cov --cov-report=term -q
+python -m pytest --cov --cov-report=term --cov-fail-under=95 -q
 
 echo "==> validate_local: ALL GATES PASSED"

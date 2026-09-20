@@ -172,6 +172,32 @@ def cmd_generate_figure_manifest(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_render_figure_bundle(args: argparse.Namespace) -> int:
+    """Render the registry-driven Phase 17 export bundle."""
+    from evovariant_tr.figure_artifacts import render_figure_bundle
+
+    manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+    output = render_figure_bundle(
+        manifest,
+        repo_root=args.repo_root,
+        output_dir=args.output_dir,
+    )
+    bundle = json.loads(output.read_text(encoding="utf-8"))
+    print(
+        json.dumps(
+            {
+                "status": bundle["status"],
+                "artifact": str(output),
+                "output_count": len(bundle["outputs"]),
+                "blockers": bundle["blockers"],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
 def cmd_deferred_phase(args: argparse.Namespace) -> int:
     """Record a truthful no-result status for a gated later phase."""
     from evovariant_tr.experiment_control import deferred_artifact, write_artifact
@@ -305,6 +331,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--output", type=Path, default=Path("research/runs/phase17_fig_status.json")
     )
     figure_manifest.set_defaults(func=cmd_generate_figure_manifest)
+
+    figure_bundle = subparsers.add_parser(
+        "render-figure-bundle",
+        help="Render deterministic registry-driven Phase 17 figures, tables, and reports",
+    )
+    figure_bundle.add_argument("--manifest", type=Path, required=True)
+    figure_bundle.add_argument("--repo-root", type=Path, default=Path("."))
+    figure_bundle.add_argument(
+        "--output-dir", type=Path, default=Path("research/figures")
+    )
+    figure_bundle.set_defaults(func=cmd_render_figure_bundle)
 
     deferred = subparsers.add_parser(
         "phase-status",

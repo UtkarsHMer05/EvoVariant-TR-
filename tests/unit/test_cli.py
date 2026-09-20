@@ -72,6 +72,40 @@ def test_generate_figure_manifest_command_is_truthful_without_runs(
     assert "BLOCKED" in capsys.readouterr().out
 
 
+def test_render_figure_bundle_command_reports_blocked_manifest(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    manifest = tmp_path / "figure-manifest.json"
+    manifest.write_text(
+        json.dumps(
+            {
+                "status": "BLOCKED",
+                "required_figures": [],
+                "required_tables": [],
+                "blockers": ["fixture blocker"],
+            }
+        ),
+        encoding="utf-8",
+    )
+    assert main(
+        [
+            "render-figure-bundle",
+            "--manifest",
+            str(manifest),
+            "--repo-root",
+            str(tmp_path),
+            "--output-dir",
+            str(tmp_path / "figures"),
+        ]
+    ) == 0
+    payload = json.loads(
+        (tmp_path / "figures" / "bundle_manifest.json").read_text(encoding="utf-8")
+    )
+    assert payload["status"] == "BLOCKED"
+    assert payload["outputs"] == []
+    assert "BLOCKED" in capsys.readouterr().out
+
+
 def test_validate_protocol_command(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["validate-protocol", "--protocol", str(PROTOCOL)]) == 0
     out = capsys.readouterr().out

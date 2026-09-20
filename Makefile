@@ -254,6 +254,8 @@ figures: ## Record/run the Phase 17 registry-driven figures gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli generate-figure-manifest \
 		--registry $(REGISTRY) --repo-root . --output research/runs/phase17_fig_status.json
+	$(PYTHON) -m evovariant_tr.cli render-figure-bundle \
+		--manifest research/runs/phase17_fig_status.json --repo-root . --output-dir research/figures
 
 .PHONY: release-check
 release-check: ## Record/run the Phase 19 final release gate

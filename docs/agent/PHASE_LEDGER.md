@@ -291,6 +291,30 @@ For each PASS append:
   and checkpoint evidence, authorized Modal pilot, registered scientific outputs, and
   registry-driven figure artifacts.
 
+## Phase 3 discrepancy audit and final clean-room validation — 2026-09-21
+
+- `make data-qc` was rerun against the manifest-verified local archives. The recomputed temporal
+  audit remains 1,402,895 unique t0 VUS, 3,459 absent at t1, 1,098,941 below the t1 two-star
+  gate, 299,549 not definitive, and 946 final records (536 B/LB, 410 P/LP). The generated split
+  manifest SHA-256 remains `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`
+  and the split hash remains `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
+- Direct raw-row accounting finds 1,402,906 exact `Uncertain significance` rows in the filtered
+  t0 GRCh38 germline-SNV stream, with 11 rows rejected by the frozen valid single-base rules;
+  no duplicate normalized IDs were found. This confirms the current 1,402,895 count and leaves
+  the 330-ID difference from the validation-only handoff target unresolved. No protocol field,
+  filter, archive, or normalization rule was changed to force agreement.
+- A fresh clone at `/private/tmp/EvoVariant_cleanroom_800e016.CxTXjC` from `e798c20` passed
+  bootstrap, dependency installation, `make validate` (619 tests, 95.31% coverage), scientific
+  and API/E2E tiers, protocol/control-plane/schema/model-registry/registry verification, the
+  production frontend build, the four-test Playwright suite, and blocked figure-manifest
+  generation. Its tracked status remained clean; `npm ci` reproduced the known 13-vulnerability
+  report. The deterministic blocked figure manifest hash was
+  `c5169b2c052d129ef0bf9eaab67d13365a4237bcfd28686100f4a1ae970e1805`.
+- Gate decision: engineering reproducibility is `PASS`; Phase 3 scientific acceptance remains
+  `PASS_WITH_QA_DISCREPANCY_DOCUMENTED`, and Phases 6–19 remain `BLOCKED`. The discrepancy must
+  be resolved from source evidence or approved through the dated deviation process before any
+  model output or locked-test claim is registered.
+
 ## Frontend lint and local-gate follow-up — 2026-09-21
 
 - Implementation commit: `1d9cf43` (`fix: clear frontend lint gate`).

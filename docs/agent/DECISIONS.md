@@ -695,6 +695,42 @@ Commit `800e016`; frontend ESLint, TypeScript, Next production build, contract t
 `make web-e2e` pass with four local Playwright tests. The required scoped impeccable detector
 reported no findings after the UI change.
 
+## D-034 — Preserve the Phase 3 archive discrepancy instead of tuning the cohort
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The handoff's validation-only QA checkpoint expects 1,403,225 unique t0 VUS and 1,024 final
+temporal records, while a fresh `make data-qc` run over the manifest-verified archives produces
+1,402,895 unique valid t0 VUS and 946 final records. A direct streaming audit of the t0 archive
+found 1,402,906 exact `Uncertain significance` rows before 11 invalid/self/noncanonical rows are
+rejected. The t0 archive SHA-256 matches `research/data_manifests/clinvar_t0.json`.
+
+Decision:
+Keep the archive-derived cohort and its zero-overlap, deterministic split artifacts as the
+current engineering result, retain the discrepancy in the tracked Phase 3 summary and ledger,
+and block model scoring until the difference is resolved from source evidence or approved by a
+dated protocol deviation. Do not change the VUS string filter, germline rule, assembly rule,
+coordinate normalization, allele validity rule, or duplicate policy merely to reproduce a QA
+count.
+
+Alternatives:
+Inject the handoff target, broaden filters until the counts match, substitute another archive,
+or treat the structural split pass as permission to score. These were rejected because each
+would risk changing the frozen estimand or converting a validation target into observed evidence.
+
+Consequences:
+The data-only structural gate remains reproducible and reviewable, but the downstream zero-shot,
+representation, training, calibration, ensemble, locked-test, figure, and release gates remain
+blocked. The exact raw-accounting evidence makes the remaining investigation concrete for a
+future approved deviation review.
+
+Validation:
+`make data-qc` reproduced the existing split and audit hashes; the direct archive audit found
+the counts above; no tracked protocol/data rule changed; and the fresh clean-room clone from
+`e798c20` passed all free local engineering gates while retaining an empty registry and blocked
+figure manifest.
+
 ## Template for new decisions
 
 ### D-XXX — Title

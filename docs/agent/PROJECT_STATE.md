@@ -257,3 +257,24 @@ paid Modal work without the corresponding gate.
   spend was created. The next authorized scientific action remains explicit compute/model access
   plus resolution or approval of the Phase 3 QA discrepancy; until then Phases 6–19 remain
   blocked.
+
+## Final clean-room follow-up — 2026-09-21
+
+- Fresh clone: `/private/tmp/EvoVariant_cleanroom_800e016.CxTXjC`, commit `e798c20`
+  (`docs: record registry control-plane follow-up`). The clone's final tracked Git status was
+  clean after `make bootstrap`, `make frontend-install`, all validation commands, figure-manifest
+  generation, and browser tests.
+- Clean-room evidence: `make validate` passed with 619 tests, 33 deselected, one dependency
+  warning, and 95.31% coverage; `make test-scientific` passed 7 with 1 explicit skip; `make
+  test-e2e` passed 14 with 1 explicit skip; ML protocol, frozen protocol, schema, model-registry,
+  and registry verification passed; `make web-check` passed; and `make web-e2e` passed all 4
+  Playwright tests. `npm ci` reproduced 13 vulnerabilities (2 low, 2 moderate, 8 high, 1
+  critical); no audit fix was applied.
+- Clean-room `make figures` produced the same blocked registry manifest hash
+  `c5169b2c052d129ef0bf9eaab67d13365a4237bcfd28686100f4a1ae970e1805`. The clone has no raw
+  ClinVar archives, so data-QC remains a local archive-backed check rather than a clean-room
+  scientific result.
+- A direct streaming audit of the checked-in t0 archive found 1,402,906 exact VUS rows and
+  1,402,895 unique valid normalized IDs; 11 rows fail the frozen ACGT/SNV coordinate rules.
+  The handoff target is 1,403,225, a 330-ID difference. The archived file hash matches its
+  manifest, so no filter was altered to force the target and downstream scoring remains blocked.

@@ -623,7 +623,8 @@ paths are available to a renderer without changing the evidence policy. Phase 17
 release gates remain blocked until actual registered results and rendered artifacts exist.
 
 Validation:
-The empty-registry manifest is stable across regeneration; temporary eligible fixtures become
+Commit `cb304c9` implements the fail-closed manifest and compatibility guard. The empty-registry
+manifest is stable across regeneration; temporary eligible fixtures become
 `READY` only when all required source files are hash-verified; tampering blocks the manifest;
 `make figures`, targeted Ruff, strict mypy, unit tests, and integration tests pass. No model
 weights, remote inference, locked-label selection, or paid compute was used.

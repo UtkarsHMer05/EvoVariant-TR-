@@ -18,7 +18,7 @@ committed browser E2E coverage for the no-fabrication workbench journeys. No mod
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `4817ef2` (final phase-status blocker reconciliation).
+Last passing source baseline: `cb304c9` (registry-driven figure-input integrity follow-up).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -194,6 +194,7 @@ paid Modal work without the corresponding gate.
 
 ## Figure-input integrity follow-up — 2026-09-21
 
+- Implementation commit: `cb304c9` (`fix: fail closed for registry-driven figures`).
 - `src/evovariant_tr/figure_artifacts.py` now builds a deterministic Phase 17 manifest from
   hash-verified `COMPLETED` PRELIMINARY/FINAL registry runs only. The manifest contains source
   paths, run identities, hashes, required figure specifications, and blockers, but no metrics.

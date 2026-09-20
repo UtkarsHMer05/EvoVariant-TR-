@@ -250,7 +250,8 @@ For each PASS append:
   `make figures` status surface. The follow-up manifest is deterministic, checks recorded
   output hashes, excludes non-scientific evidence stages, and correctly records `BLOCKED`
   because no eligible completed result artifact exists to render. The former legacy generator's
-  synthetic demo curves were removed; no historical ignored snapshot was promoted.
+  synthetic demo curves were removed; no historical ignored snapshot was promoted. Implementation
+  commit: `cb304c9` (`fix: fail closed for registry-driven figures`).
 - Phase 18 security/default validation is locally green (`make validate`); the frontend lint,
   typecheck, and build gate is green (`make web-check`). A final clone at
   `/private/tmp/EvoVariant_TR_browser_final.bIkxop` from `bd7647c` ran `make bootstrap`,

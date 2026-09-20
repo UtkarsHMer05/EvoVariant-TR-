@@ -492,8 +492,9 @@ registry/API integration can populate the same panels without changing their evi
 
 Validation:
 Commit `459ad11`; `tests/contract/test_frontend_workbench_contract.py`, changed-file ESLint,
-`make web-check`, and a local production-server Playwright browser smoke passed. Automated
-browser E2E and registered outputs remain explicit blockers.
+`make web-check`, and a local production-server Playwright browser smoke passed. The follow-up
+commit `7f6c1b1` adds the committed three-test `make web-e2e` suite; registered outputs remain an
+explicit blocker.
 
 ## D-028 — Clean-room validation must not depend on ignored historical outputs
 Status: ACCEPTED
@@ -560,6 +561,36 @@ with 610 tests, 33 deselected, and 95.34% coverage; `make test-scientific` passe
 explicit skip; `make test-e2e` passes 14 tests with 1 explicit skip; protocol, schema, model
 registry, registry, clean-room, and no-spend Modal preflight checks pass. A final clone from
 `3f1496b` reproduced these gates and ended with a clean Git status.
+
+## D-030 — Browser E2E covers the evidence-gated workbench without scientific fixtures
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The workbench needed committed browser coverage for navigation, loading, blocked, and validation
+journeys, but no real model output or registered scientific result exists yet. A browser suite
+must not turn synthetic values into scientific evidence or require a paid scorer.
+
+Decision:
+Add a small Playwright suite under `apps/web/tests/e2e/` and a `make web-e2e` target. The suite
+runs against a production Next server and verifies the 14-area navigation, the explicit blocked
+Temporal VUS empty state, protocol metadata loading from `/api/protocol`, and client-side allele
+validation that exits before a scorer request. The target installs only the local Chromium test
+browser and never invokes Modal, model weights, or a scoring service.
+
+Alternatives:
+Keep the milestone placeholder skip, test only static source strings, or mock a scientific score
+and mark the result panels complete. These were rejected because the first two would not verify a
+real browser interaction and the last would violate the evidence boundary.
+
+Consequences:
+The frontend browser gate is reproducible and covers critical no-fabrication behavior. Phase 16
+and Phase 18 still cannot pass their full project gates until registered outputs, gated compute,
+and registry-driven figures exist.
+
+Validation:
+Commit `7f6c1b1`; `make web-e2e` passes 3 Playwright tests against the production build. No
+scientific output or paid-compute artifact is created.
 
 ## Template for new decisions
 

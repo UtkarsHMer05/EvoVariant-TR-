@@ -13,8 +13,8 @@ contracts for later experiment families, a complete evidence-gated research-work
 passing local Python/frontend build gates. The fresh clean-room clone now reproduces the default
 CPU suite and frontend build after dependency installation. No candidate model has verified
 parity/smoke evidence, no paid Modal pilot or model-weight download has run, no scientific result
-artifact is registered, and the repository still lacks automated browser E2E coverage and
-registry-driven figure output. No model
+artifact is registered, and registry-driven figure output has no inputs. The repository now has
+committed browser E2E coverage for the no-fabrication workbench journeys. No model
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
@@ -130,8 +130,9 @@ verified facts are:
   top-level areas. A local production-server browser smoke verified navigation, fail-closed
   single-variant rendering, blocked temporal empty state, and protocol metadata loading. The
   full frontend source tree now passes ESLint with zero errors/warnings, and the canonical
-  `make web-check` target runs that lint gate plus TypeScript and the Next production build.
-  Automated browser E2E coverage is not yet implemented.
+  `make web-check` target runs that lint gate plus TypeScript and the Next production build. The
+  committed Playwright workbench suite passes through `make web-e2e` with three local browser
+  tests covering navigation, blocked empty state, protocol metadata, and client validation.
 
 ## Experiments and artifacts
 
@@ -144,8 +145,9 @@ Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CA
 `ABL-*`, `ROB-*`, and `STAT-*` work. Phase 3 data/split artifacts are complete; zero-shot
 scoring is held behind the QA discrepancy review, model-inclusion evidence, and real Modal gate.
 The status artifacts for Phases 6–15, 17, and 19 are explicit `BLOCKED` records; Phase 16 is
-blocked on automated browser E2E and registered outputs; Phase 18 is blocked on browser E2E,
-figure, and paid-compute evidence, although the clean-room CPU/build rerun itself now passes.
+blocked on registered outputs even though its local browser E2E and build gates pass; Phase 18
+is blocked on gated Modal smoke and figure evidence, although the clean-room CPU/frontend rerun
+itself now passes.
 
 Last experiment run: none.
 
@@ -175,13 +177,13 @@ made.
 Known blockers are the required real Modal pilot (paid-compute acknowledgement and remote
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
-inclusion gate. Independent local gates and a fresh clean-room CPU/frontend rerun now pass;
-automated browser E2E coverage is absent, registry-driven figure regeneration has no inputs, and
-no registered result artifacts exist. A fresh `npm ci` also reports 13 dependency vulnerabilities
+inclusion gate. Independent local gates, committed browser E2E, and a fresh clean-room
+CPU/frontend rerun now pass; registry-driven figure regeneration has no inputs, and no
+registered result artifacts exist. A fresh `npm ci` also reports 13 dependency vulnerabilities
 (2 low, 2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
 
 Exact next action: preserve this state, then obtain explicit authorization and verified model/
 compute evidence before running a tiny Modal pilot. Resolve or formally approve the Phase 3 QA
-deviation before scoring; add automated browser E2E and registry-driven figure evidence before
-releasing. Do not run model scoring, read locked labels for selection, or start paid Modal work
-without the corresponding gate.
+deviation before scoring; add registered result artifacts and registry-driven figure evidence
+before releasing. Do not run model scoring, read locked labels for selection, or start paid Modal
+work without the corresponding gate.

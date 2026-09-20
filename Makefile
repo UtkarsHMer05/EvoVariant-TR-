@@ -234,8 +234,12 @@ batch-run: ## Record/run the Phase 15 batch pipeline gate
 		--blocker "remote batch smoke is not run"
 
 .PHONY: web-check
-web-check: ## Run the frontend typecheck/build gate
+web-check: ## Run the frontend lint/typecheck/build gate
 	$(MAKE) frontend-build
+
+.PHONY: web-e2e
+web-e2e: ## Run committed Playwright workbench journeys (local browser only)
+	cd apps/web && node node_modules/playwright/cli.js install chromium && npm run test:e2e
 
 .PHONY: ui-check
 ui-check: ## Record/run the Phase 16 research workbench gate

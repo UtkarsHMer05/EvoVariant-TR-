@@ -8,12 +8,9 @@ import "./src/env.js";
 const config = {
   reactStrictMode: false,
   eslint: {
-    // Milestone 18 is a pure move: the 141 lint errors below are pre-existing
-    // legacy debt documented in docs/project/reports/milestone_006.md (mostly
-    // @typescript-eslint/no-unsafe-* in genome-api.ts). Fixing them here would
-    // risk changing behavior during the move (Validation 3). The debt stays
-    // visible via `npm run lint` / `npm run check` and is cleaned up in the
-    // Milestone 93 frontend redesign.
+    // ESLint runs as an explicit pre-build step in the repository Makefile.
+    // Next skips duplicate build-time linting so production builds stay focused
+    // on compilation and type validity.
     ignoreDuringBuilds: true,
   },
 };

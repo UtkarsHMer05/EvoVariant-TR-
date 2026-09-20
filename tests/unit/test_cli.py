@@ -29,6 +29,27 @@ def test_verify_model_registry_command(capsys: pytest.CaptureFixture[str]) -> No
     assert payload["included_count"] == 0
 
 
+def test_phase_status_command_writes_no_result_artifact(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    output = tmp_path / "phase.json"
+    assert main(
+        [
+            "phase-status",
+            "--phase",
+            "6",
+            "--family",
+            "ZS",
+            "--output",
+            str(output),
+            "--blocker",
+            "fixture gate",
+        ]
+    ) == 0
+    assert json.loads(output.read_text(encoding="utf-8"))["status"] == "BLOCKED"
+    assert "phase.json" in capsys.readouterr().out
+
+
 def test_validate_protocol_command(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["validate-protocol", "--protocol", str(PROTOCOL)]) == 0
     out = capsys.readouterr().out

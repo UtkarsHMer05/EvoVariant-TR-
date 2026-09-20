@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 
 class ModelRegistryError(ValueError):
@@ -40,7 +40,7 @@ class RegisteredModel:
 
     def to_dict(self) -> dict[str, Any]:
         """Return a detached JSON-compatible copy of the manifest."""
-        return json.loads(json.dumps(self.data))
+        return cast(dict[str, Any], json.loads(json.dumps(self.data)))
 
 
 def _validate_schema(data: dict[str, Any], schema_path: Path) -> None:

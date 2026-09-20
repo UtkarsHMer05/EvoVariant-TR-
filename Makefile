@@ -139,6 +139,125 @@ modal-smoke: ## Run a no-spend Modal preflight and append a deferred/planned cos
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli modal-smoke
 
+# ---------------------------------------------------------------------------
+# ML-extension phase surfaces (free/local; gated phases record status only)
+# ---------------------------------------------------------------------------
+
+.PHONY: benchmark-zero-shot
+benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 6 --family ZS \
+		--command-name benchmark-zero-shot --output research/runs/phase6_zs_status.json \
+		--blocker "no included model has verified parity and tiny smoke evidence" \
+		--blocker "Phase 3 QA discrepancy unresolved" --blocker "Phase 4 Modal pilot not run"
+
+.PHONY: extract-features
+extract-features: ## Record/run the Phase 7 representation extraction gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 7 --family REP \
+		--command-name extract-features --output research/runs/phase7_rep_status.json \
+		--blocker "no verified model feature API is included" \
+		--blocker "Phase 6 zero-shot benchmark is blocked"
+
+.PHONY: train
+train: ## Record/run the Phase 8 downstream training gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 8 --family CLF \
+		--command-name train --output research/runs/phase8_clf_status.json \
+		--blocker "verified frozen feature cache is unavailable" \
+		--blocker "Phase 7 representation extraction is blocked"
+
+.PHONY: hpo
+hpo: ## Record/run the Phase 9 validation-only HPO gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 9 --family HPO \
+		--command-name hpo --output research/runs/phase9_hpo_status.json \
+		--blocker "no registered development feature artifact exists" \
+		--blocker "Phase 8 training is blocked"
+
+.PHONY: finetune-smoke
+finetune-smoke: ## Record/run the Phase 10 PEFT/fine-tuning gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 10 --family FT \
+		--command-name finetune-smoke --output research/runs/phase10_ft_status.json \
+		--blocker "official training path and tiny GPU smoke are unverified" \
+		--blocker "paid Modal acknowledgement is absent"
+
+.PHONY: ensemble
+ensemble: ## Record/run the Phase 11 ensemble gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 11 --family ENS \
+		--command-name ensemble --output research/runs/phase11_ens_status.json \
+		--blocker "registered base-model predictions are unavailable" \
+		--blocker "OOF stack inputs do not exist"
+
+.PHONY: evaluate
+evaluate: ## Record/run the Phase 14 locked statistical evaluation gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 14 --family STAT \
+		--command-name evaluate --output research/runs/phase14_stat_status.json \
+		--blocker "frozen model/configuration does not exist" \
+		--blocker "locked test evaluation is not authorized"
+
+.PHONY: calibration-abstention
+calibration-abstention: ## Record/run the Phase 12 calibration and abstention gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 12 --family CAL_ABS \
+		--command-name calibration-abstention --output research/runs/phase12_cal_abs_status.json \
+		--blocker "no registered development predictions exist" \
+		--blocker "locked-test labels are unavailable for selection"
+
+.PHONY: robustness-ablation
+robustness-ablation: ## Record/run the Phase 13 ablation and robustness gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 13 --family ABL_ROB \
+		--command-name robustness-ablation --output research/runs/phase13_abl_rob_status.json \
+		--blocker "frozen base-model outputs do not exist" \
+		--blocker "predeclared matrix cannot be evaluated yet"
+
+.PHONY: batch-run
+batch-run: ## Record/run the Phase 15 batch pipeline gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 15 --family BATCH \
+		--command-name batch-run --output research/runs/phase15_batch_status.json \
+		--blocker "no authorized executable model adapter is included" \
+		--blocker "remote batch smoke is not run"
+
+.PHONY: web-check
+web-check: ## Run the frontend typecheck/build gate
+	$(MAKE) frontend-build
+
+.PHONY: ui-check
+ui-check: ## Record/run the Phase 16 research workbench gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 16 --family UI \
+		--command-name ui-check --output research/runs/phase16_ui_status.json \
+		--blocker "browser E2E coverage is not implemented in the repository" \
+		--blocker "registered experiment outputs are unavailable"
+
+.PHONY: figures
+figures: ## Record/run the Phase 17 registry-driven figures gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 17 --family FIG \
+		--command-name figures --output research/runs/phase17_fig_status.json \
+		--blocker "no registered benchmark/result artifacts exist"
+
+.PHONY: release-check
+release-check: ## Record/run the Phase 19 final release gate
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
+		--command-name release-check --output research/runs/phase19_release_status.json \
+		--blocker "dependent scientific phases remain blocked" \
+		--blocker "browser E2E and clean-room gates are unresolved"
+
+.PHONY: clean-room
+clean-room: ## Run the free reproducibility status surface
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
+		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
+		--blocker "clean clone and dependency reinstall were not run in this checkout" \
+		--blocker "browser E2E coverage is not implemented in the repository"
+
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)
 	$(MAKE) check-venv

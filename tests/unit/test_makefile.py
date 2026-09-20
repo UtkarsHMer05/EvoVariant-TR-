@@ -127,7 +127,7 @@ def test_gpu_full_requires_approval_artifact() -> None:
 def test_no_destructive_clean_target() -> None:
     makefile = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
     for line in makefile.splitlines():
-        if line.startswith("clean"):
+        if line.startswith("clean") and not line.startswith("clean-room"):
             raise AssertionError(f"destructive generic target found: {line!r}")
         if "rm -rf" in line or "rm -f" in line:
             raise AssertionError(f"hidden destructive command found: {line!r}")

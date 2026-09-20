@@ -144,6 +144,21 @@ def cmd_verify_model_registry(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_deferred_phase(args: argparse.Namespace) -> int:
+    """Record a truthful no-result status for a gated later phase."""
+    from evovariant_tr.experiment_control import deferred_artifact, write_artifact
+
+    artifact = deferred_artifact(
+        phase=args.phase,
+        family=args.family,
+        blockers=tuple(args.blocker),
+        inputs={"command": args.command_name},
+    )
+    output = write_artifact(args.output, artifact)
+    print(json.dumps({"status": artifact.status.value, "artifact": str(output)}, indent=2))
+    return 0
+
+
 def cmd_build_cohort(args: argparse.Namespace) -> int:
     from datetime import date
 
@@ -249,6 +264,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--schema", type=Path, default=Path("research/schemas/model_manifest.schema.json")
     )
     model_registry.set_defaults(func=cmd_verify_model_registry)
+
+    deferred = subparsers.add_parser(
+        "phase-status",
+        help="Record an explicit blocked/deferred status for a gated phase",
+    )
+    deferred.add_argument("--phase", type=int, required=True)
+    deferred.add_argument("--family", required=True)
+    deferred.add_argument("--command-name", default="phase-status")
+    deferred.add_argument("--output", type=Path, required=True)
+    deferred.add_argument("--blocker", action="append", required=True)
+    deferred.set_defaults(func=cmd_deferred_phase)
 
     return parser
 

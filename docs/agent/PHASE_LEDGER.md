@@ -253,15 +253,17 @@ For each PASS append:
   synthetic demo curves were removed; no historical ignored snapshot was promoted. Implementation
   commit: `cb304c9` (`fix: fail closed for registry-driven figures`).
 - Phase 18 security/default validation is locally green (`make validate`); the frontend lint,
-  typecheck, and build gate is green (`make web-check`). A final clone at
-  `/private/tmp/EvoVariant_TR_browser_final.bIkxop` from `bd7647c` ran `make bootstrap`,
+  typecheck, and build gate is green (`make web-check`). A fresh clone at
+  `/private/tmp/EvoVariant_cleanroom_final.CQSZD3` from `613c7a6` ran `make bootstrap`,
   `make frontend-install`, the default suite, scientific tier, E2E/API tier,
   protocol/control-plane/schema/model-registry checks, registry verification, the full frontend
-  gate, and `make web-e2e` with three passing browser tests; it remained clean after installation.
-  The registry-driven figure manifest command now runs, but reports `BLOCKED` with no scientific
-  inputs; gated Modal smoke remains unrun. `npm ci` reports 13 dependency vulnerabilities (2 low,
-  2 moderate, 8 high, 1 critical), so the overall Phase 18 gate is `BLOCKED` despite the clean-room
-  CPU/frontend/browser subgate passing.
+  gate, `make figures`, and `make web-e2e` with three passing browser tests; it remained clean
+  after installation. The figure manifest hash was
+  `c5169b2c052d129ef0bf9eaab67d13365a4237bcfd28686100f4a1ae970e1805` and its status was
+  explicitly `BLOCKED` because no scientific inputs exist; gated Modal smoke remains unrun.
+  `npm ci` reports 13 dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical), so
+  the overall Phase 18 gate is `BLOCKED` despite the clean-room CPU/frontend/browser subgate
+  passing.
 - Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
   compute, figure, and registered-result gates remain unresolved. No tag, release, deployment,
   or publication was created. Spend remains `$0`.

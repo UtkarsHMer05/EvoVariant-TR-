@@ -149,8 +149,8 @@ Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CA
 scoring is held behind the QA discrepancy review, model-inclusion evidence, and real Modal gate.
 The status artifacts for Phases 6–15, 17, and 19 are explicit `BLOCKED` records; Phase 16 is
 blocked on registered outputs even though its local browser E2E and build gates pass; Phase 18
-is blocked on gated Modal smoke and figure evidence, although the clean-room CPU/frontend rerun
-itself now passes.
+is blocked on gated Modal smoke and figure evidence, although the clean-room CPU/frontend/browser
+rerun at the current committed HEAD now passes.
 
 Last experiment run: none.
 
@@ -210,3 +210,18 @@ paid Modal work without the corresponding gate.
   hash verification, tamper blocking, CLI output, and the legacy entry-point guard. Targeted
   Ruff, strict mypy, unit/integration tests, and `make figures` passed; the Phase 17 scientific
   gate remains BLOCKED because there are no real registered outputs.
+
+## Current clean-room follow-up — 2026-09-21
+
+- Fresh clone: `/private/tmp/EvoVariant_cleanroom_final.CQSZD3`, commit
+  `613c7a63e9f7c2aaa5d55c63e2cec250d4007939` (`docs: record figure manifest gate`).
+- From that clone, `make bootstrap`, `make frontend-install`, `make validate` (615 tests,
+  95.35% coverage), `make web-check`, `make test-scientific` (7 passed, 1 skipped),
+  `make test-e2e` (14 passed, 1 skipped), `make web-e2e` (3 passed), protocol/control-plane/
+  schema/model-registry/registry checks, and `make figures` all completed successfully.
+- The clean clone's tracked Git status remained clean after dependency installation and all
+  commands. The deterministic blocked figure manifest hash was
+  `c5169b2c052d129ef0bf9eaab67d13365a4237bcfd28686100f4a1ae970e1805`.
+- `npm ci` reproduced the known 13-vulnerability report (2 low, 2 moderate, 8 high, 1 critical);
+  no automatic audit fix was applied. This clean-room result is engineering evidence only and
+  does not create model, benchmark, or paid-compute evidence.

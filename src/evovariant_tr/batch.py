@@ -193,6 +193,58 @@ def check_resume_state(job_dir: str | Path) -> dict[str, Any]:
     }
 
 
+def write_shard_result(job_dir: str | Path, result: ShardResult) -> Path:
+    """Atomically persist one shard result for idempotent resume."""
+    target_dir = Path(job_dir) / "shards"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target = target_dir / f"{result.shard_id}.json"
+    payload = {
+        "shard_id": result.shard_id,
+        "status": result.status,
+        "scored": result.scored,
+        "errors": result.errors,
+        "timing_ms": result.timing_ms,
+        "completed_at": result.completed_at or datetime.now(UTC).isoformat(),
+    }
+    temporary = target.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    temporary.replace(target)
+    return target
+
+
+def load_shard_result(job_dir: str | Path, shard_id: str) -> ShardResult | None:
+    """Load a previously persisted shard result, if present."""
+    target = Path(job_dir) / "shards" / f"{shard_id}.json"
+    if not target.is_file():
+        return None
+    data = json.loads(target.read_text(encoding="utf-8"))
+    return ShardResult(
+        shard_id=str(data["shard_id"]),
+        status=str(data["status"]),
+        scored=list(data.get("scored", [])),
+        errors=list(data.get("errors", [])),
+        timing_ms=float(data.get("timing_ms", 0.0)),
+        completed_at=str(data.get("completed_at", "")),
+    )
+
+
+def retryable_failure(kind: FailureKind) -> bool:
+    """Return whether retrying can plausibly change an external failure."""
+    return kind in {
+        FailureKind.GPU_ERROR,
+        FailureKind.NETWORK_ERROR,
+        FailureKind.TIMEOUT,
+        FailureKind.MODEL_ERROR,
+    }
+
+
+def retry_backoff_seconds(attempt: int, base_seconds: float = 2.0) -> float:
+    """Bounded exponential backoff for idempotent transient retries."""
+    if attempt < 0:
+        raise ValueError("attempt must be non-negative")
+    return min(300.0, base_seconds * float(2**attempt))
+
+
 def classify_error(error_message: str, error_type: str | None = None) -> FailureKind:
     """Classify an error into the failure taxonomy."""
     msg_lower = error_message.lower()

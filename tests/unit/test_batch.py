@@ -6,6 +6,8 @@ import json
 from datetime import UTC
 from pathlib import Path
 
+import pytest
+
 from evovariant_tr.batch import (
     BatchJob,
     FailureKind,
@@ -18,7 +20,11 @@ from evovariant_tr.batch import (
     create_job_id,
     create_shards,
     load_job_manifest,
+    load_shard_result,
+    retry_backoff_seconds,
+    retryable_failure,
     save_job_manifest,
+    write_shard_result,
 )
 from evovariant_tr.cohort_fast import FastVariant
 
@@ -120,6 +126,21 @@ def test_check_resume_state_no_manifest(tmp_path: Path):
     assert state["progress"] == 0.0
 
 
+def test_check_resume_state_with_manifest_but_no_shards(tmp_path: Path):
+    job_dir = tmp_path / "jobs" / "empty"
+    job_dir.mkdir(parents=True)
+    (job_dir / "job_manifest.json").write_text(
+        json.dumps({"total_shards": 2, "job_id": "empty"})
+    )
+    state = check_resume_state(job_dir)
+    assert state == {
+        "is_resumable": True,
+        "completed_shards": [],
+        "failed_shards": [],
+        "progress": 0.0,
+    }
+
+
 def test_check_resume_state_with_completed_shards(tmp_path: Path):
     job_dir = tmp_path / "jobs" / "test"
     shards_dir = job_dir / "shards"
@@ -154,6 +175,29 @@ def test_check_resume_state_with_failed_shards(tmp_path: Path):
 
     state = check_resume_state(job_dir)
     assert "failed_1" in state["failed_shards"]
+
+
+def test_shard_result_round_trip_and_retry_policy(tmp_path: Path) -> None:
+    result = ShardResult(
+        shard_id="abc",
+        status="completed",
+        scored=[{"id": "v1"}],
+        completed_at="2026-09-21T00:00:00+00:00",
+    )
+    write_shard_result(tmp_path, result)
+    loaded = load_shard_result(tmp_path, "abc")
+    assert loaded is not None
+    assert loaded.scored == [{"id": "v1"}]
+    assert load_shard_result(tmp_path, "missing") is None
+    assert retryable_failure(FailureKind.NETWORK_ERROR) is True
+    assert retryable_failure(FailureKind.OUT_OF_MEMORY) is False
+    assert retry_backoff_seconds(0) == 2.0
+    assert retry_backoff_seconds(10) == 300.0
+
+
+def test_retry_backoff_rejects_negative_attempt() -> None:
+    with pytest.raises(ValueError, match="non-negative"):
+        retry_backoff_seconds(-1)
 
 
 # --------------------------------------------------------------------------- #
@@ -203,6 +247,10 @@ def test_classify_error_with_type():
 
 def test_classify_error_with_type_runtime():
     assert classify_error("Bad input", "RuntimeError") == FailureKind.MODEL_ERROR
+
+
+def test_classify_error_with_index_type():
+    assert classify_error("Bad input", "IndexError") == FailureKind.SEQUENCE_ERROR
 
 
 # --------------------------------------------------------------------------- #

@@ -24,14 +24,18 @@ fi
 
 echo "==> Cost acknowledgement verified."
 
-# Verify old project identity is not used as the Modal App name (M19)
-if grep -q 'modal\.App("variant-analysis-evo2"' evo2_scorer_app.py 2>/dev/null; then
-    echo "ERROR: old project identity 'variant-analysis-evo2' found in app."
-    echo "REFUSED: old deployment identity forbidden (M19)."
+# Verify the canonical current project identity and reject legacy identities (M19).
+if grep -Eq 'variant-analysis-evo2|evovariant-tr-v2' evo2_scorer_app.py src/evovariant_tr/modal_config.py; then
+    echo "ERROR: a legacy Modal identity was found in the active deployment files."
+    echo "REFUSED: legacy deployment identity forbidden (M19)."
+    exit 1
+fi
+if ! grep -q 'CANONICAL_MODAL_APP = "evovariant-tr"' src/evovariant_tr/modal_config.py; then
+    echo "ERROR: canonical Modal app identity is not declared."
     exit 1
 fi
 
-echo "==> Old project identity check passed."
+echo "==> Canonical Modal identity check passed (evovariant-tr)."
 echo "==> Deploying to Modal..."
 
 modal deploy evo2_scorer_app.py

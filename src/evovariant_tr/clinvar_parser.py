@@ -320,7 +320,9 @@ def parse_record(
     origin_simple = get("OriginSimple")
     germline = is_germline(origin_simple)
 
-    position_vcf = _parse_int(get("PositionVCF"))
+    variant_type = get("Type")
+    use_vcf_snv_fields = variant_type in ("SNV", "single nucleotide variant")
+    position_vcf = _parse_int(get("PositionVCF")) if use_vcf_snv_fields else None
     start = position_vcf if position_vcf is not None else _parse_int(get("Start"))
     if start is None:
         raise ValueError(f"row {row_number}: invalid Start: {get('Start')!r}")
@@ -329,8 +331,8 @@ def parse_record(
     if stop is None:
         raise ValueError(f"row {row_number}: invalid Stop: {get('Stop')!r}")
 
-    reference_vcf = get("ReferenceAlleleVCF")
-    alternate_vcf = get("AlternateAlleleVCF")
+    reference_vcf = get("ReferenceAlleleVCF") if use_vcf_snv_fields else ""
+    alternate_vcf = get("AlternateAlleleVCF") if use_vcf_snv_fields else ""
     reference_allele = (
         reference_vcf if reference_vcf not in ("", "-") else get("ReferenceAllele")
     )
@@ -340,7 +342,7 @@ def parse_record(
 
     return VariantSummaryRecord(
         allele_id=allele_id,
-        variant_type=get("Type"),
+        variant_type=variant_type,
         clinical_significance=clinical_significance,
         review_status=review_status,
         review_stars=review_status_to_stars(raw_review_status),

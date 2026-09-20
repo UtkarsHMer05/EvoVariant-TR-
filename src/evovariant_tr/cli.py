@@ -77,6 +77,41 @@ def cmd_build_ml_splits(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "PASS" else 1
 
 
+def cmd_modal_smoke(args: argparse.Namespace) -> int:
+    """Run a safe Modal preflight and record unavailable/deferred evidence."""
+    from evovariant_tr.cost_ledger import append_entry, new_entry
+    from evovariant_tr.modal_config import check_modal_environment
+
+    environment = check_modal_environment()
+    installed = environment.get("modal_installed") is True
+    authenticated = environment.get("modal_authenticated") is True
+    ready = installed and authenticated
+    if ready and args.execute:
+        from evovariant_tr.cost_policy import assert_paid_compute_allowed
+
+        assert_paid_compute_allowed()
+        raise RuntimeError(
+            "real Modal execution is intentionally explicit and must be implemented by "
+            "the authorized pilot runner"
+        )
+    notes = (
+        "Modal preflight passed; no remote invocation requested"
+        if ready
+        else f"Modal smoke deferred: environment={environment}"
+    )
+    entry = new_entry(
+        run_id=args.run_id,
+        workload="evo2_modal_smoke",
+        backend="modal" if ready else "unavailable",
+        gpu_type="H100" if ready else None,
+        status="PLANNED" if ready else "DEFERRED",
+        notes=notes,
+    )
+    append_entry(args.ledger, entry)
+    print(json.dumps({"environment": environment, "ledger_entry": entry.to_dict()}, indent=2))
+    return 0
+
+
 def cmd_build_cohort(args: argparse.Namespace) -> int:
     from datetime import date
 
@@ -155,6 +190,21 @@ def build_parser() -> argparse.ArgumentParser:
     splits.add_argument("--output-dir", type=Path, required=True)
     splits.add_argument("--seed", type=int, default=20260814)
     splits.set_defaults(func=cmd_build_ml_splits)
+
+    modal_smoke = subparsers.add_parser(
+        "modal-smoke",
+        help="Run a no-spend Modal preflight and append a cost-ledger record",
+    )
+    modal_smoke.add_argument(
+        "--ledger", type=Path, default=Path("research/runs/cost_ledger.jsonl")
+    )
+    modal_smoke.add_argument("--run-id", default="modal-smoke-preflight")
+    modal_smoke.add_argument(
+        "--execute",
+        action="store_true",
+        help="Require paid acknowledgement for the separately authorized remote runner",
+    )
+    modal_smoke.set_defaults(func=cmd_modal_smoke)
 
     return parser
 

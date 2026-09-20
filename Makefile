@@ -134,6 +134,11 @@ data-qc: ## Recompute the temporal audit and deterministic ML-extension split ma
 		--t1-manifest research/data_manifests/clinvar_t1.json \
 		--output-dir data/derived/ml_extension/phase3
 
+.PHONY: modal-smoke
+modal-smoke: ## Run a no-spend Modal preflight and append a deferred/planned cost record
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli modal-smoke
+
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)
 	$(MAKE) check-venv

@@ -9,6 +9,13 @@ from pathlib import Path
 from evovariant_tr.splits import (
     VALIDATION,
     CompactRecord,
+    SnapshotStats,
+    _assign_groups,
+    _choose_best,
+    _classification,
+    _collect_t0,
+    _group_key,
+    _iter_compact_records,
     audit_temporal_cohort,
     build_development_split,
     build_phase3_artifacts,
@@ -145,3 +152,112 @@ def test_phase3_artifacts_are_serialized_with_hashes(tmp_path: Path) -> None:
     assert summary["status"] == "PASS"
     assert len(summary["source_manifest_hash"]) == 64
     assert (tmp_path / "out" / "split_manifest.json").is_file()
+
+
+def test_split_helpers_cover_malformed_and_noncanonical_source_rows(
+    tmp_path: Path,
+) -> None:
+    assert _classification("Benign") == ("benign", 0)
+    assert _classification("not_provided") == ("other", None)
+
+    empty = tmp_path / "empty.txt.gz"
+    with gzip.open(empty, "wt", encoding="utf-8"):
+        pass
+    assert list(_iter_compact_records(empty, SnapshotStats())) == []
+
+    wrong_assembly = _row("2", "Pathogenic", "reviewed by expert panel", "2", "T", "GENE")
+    wrong_assembly[4] = "GRCh37"
+    non_snv = _row("3", "Pathogenic", "reviewed by expert panel", "3", "T", "GENE")
+    non_snv[1] = "Deletion"
+    somatic = _row("4", "Pathogenic", "reviewed by expert panel", "4", "T", "GENE")
+    somatic[12] = "somatic"
+    bad_position = _row("5", "Pathogenic", "reviewed by expert panel", "5", "T", "GENE")
+    bad_position[6] = "not-an-int"
+    invalid_base = _row("6", "Pathogenic", "reviewed by expert panel", "6", "N", "GENE")
+    short = ["too", "short"]
+    source = tmp_path / "malformed.txt.gz"
+    _write_gz(source, [short, wrong_assembly, non_snv, somatic, bad_position, invalid_base])
+    stats = SnapshotStats()
+    records = list(_iter_compact_records(source, stats))
+    assert records == []
+    assert stats.total_rows == 6
+    assert stats.malformed_rows == 2
+    assert stats.grch38_rows == 4
+    assert stats.germline_snv_rows == 2
+
+
+def test_split_helpers_choose_best_and_preserve_unknown_groups(tmp_path: Path) -> None:
+    first = _record("GRCh38:1:1:A>T", "GENE_A", 1, "a" * 64)
+    second = _record("GRCh38:1:1:A>T", "GENE_A", 0, "b" * 64)
+    selected: dict[str, CompactRecord] = {}
+    conflicts: set[str] = set()
+    _choose_best(selected, first, conflicts)
+    _choose_best(selected, second, conflicts)
+    assert selected[first.normalized_variant_id] == second
+    assert first.normalized_variant_id in conflicts
+    assert _group_key(_record("GRCh38:1:2:A>T", "", 1, "c" * 64)).startswith("UNKNOWN:")
+
+    all_train = _assign_groups(
+        [
+            _record("GRCh38:1:3:A>T", "GENE_A", 1, "d" * 64),
+            _record("GRCh38:1:4:A>T", "GENE_B", 0, "e" * 64),
+        ],
+        seed=1,
+        validation_fraction=0.0,
+    )
+    assert VALIDATION in all_train.values()
+
+    duplicate_records = [
+        {"normalized_variant_id": "same", "split": "TRAIN", "gene_symbol": "GENE"},
+        {"normalized_variant_id": "same", "split": "TRAIN", "gene_symbol": "GENE"},
+    ]
+    invariants = validate_split_records(duplicate_records, set())
+    assert invariants["duplicate_normalized_ids"] == 1
+
+
+def test_split_helpers_cover_temporal_categories_and_overlap(tmp_path: Path) -> None:
+    overlap_path = _write_gz(
+        tmp_path / "overlap.txt.gz",
+        [
+            _row("1", "Uncertain significance", "reviewed by expert panel", "1", "T", "GENE"),
+            _row("2", "Pathogenic", "reviewed by expert panel", "1", "T", "GENE"),
+            _row("3", "Pathogenic", "criteria provided, single submitter", "2", "C", "GENE"),
+        ],
+    )
+    vus, definitive, stats, overlap, _ = _collect_t0(overlap_path)
+    assert len(vus) == 1
+    assert len(definitive) == 0
+    assert overlap == 1
+    assert stats.definitive_rows == 1
+
+    t1_rows = [
+        _row("20", "Benign", "no assertion criteria", "11", "T", "GENE_B"),
+        _row("21", "Uncertain significance", "reviewed by expert panel", "12", "T", "GENE_C"),
+        _row("22", "Benign", "reviewed by expert panel", "13", "T", "GENE_CHANGED"),
+        _row("23", "Pathogenic", "reviewed by expert panel", "14", "T", "GENE_E"),
+        _row("24", "Benign", "reviewed by expert panel", "14", "T", "GENE_E"),
+        _row("25", "Pathogenic", "reviewed by expert panel", "14", "T", "GENE_E"),
+    ]
+    alternate_reference = _row(
+        "26", "Pathogenic", "reviewed by expert panel", "14", "T", "GENE_E"
+    )
+    alternate_reference[8] = "C"
+    t1_rows.append(alternate_reference)
+    audit = audit_temporal_cohort(
+        _write_gz(tmp_path / "temporal-t0-copy.txt.gz", [
+            _row("10", "Uncertain significance", "reviewed by expert panel", "10", "T", "GENE_A"),
+            _row("11", "Uncertain significance", "reviewed by expert panel", "11", "T", "GENE_B"),
+            _row("12", "Uncertain significance", "reviewed by expert panel", "12", "T", "GENE_C"),
+            _row("13", "Uncertain significance", "reviewed by expert panel", "13", "T", "GENE_D"),
+            _row("14", "Uncertain significance", "reviewed by expert panel", "14", "T", "GENE_E"),
+        ]),
+        _write_gz(tmp_path / "temporal-t1.txt.gz", t1_rows),
+    )
+    assert audit.absent_at_t1 == 1
+    assert audit.below_two_stars == 1
+    assert audit.not_definitive_at_t1 == 1
+    assert audit.n_blb >= 1
+    assert audit.n_plp >= 1
+    assert audit.gene_mismatch_count == 1
+    assert audit.reference_mismatch_count == 1
+    assert audit.t1_conflicting_duplicate_ids >= 1

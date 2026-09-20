@@ -225,8 +225,8 @@ class RuntimeConfig(StrictModel):
     mutate scientific choices because they live in a separate validated object.
     """
 
-    modal_app_name: str = "evovariant-tr-v2"
-    modal_volume_name: str = "evovariant-tr-model-cache"
+    modal_app_name: str = "evovariant-tr"
+    modal_volume_name: str = "hf_cache"
     gpu: str = "H100"
     hf_cache_mount_path: str = "/root/.cache/huggingface"
 

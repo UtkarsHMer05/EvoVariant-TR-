@@ -10,12 +10,22 @@ deployment identity (variant-analysis-evo2), per M19 cost-control policy.
 from __future__ import annotations
 
 import modal
-from evovariant_tr.modal_config import get_modal_config, get_modal_volumes
+from evovariant_tr.cache_identity import CacheIdentity, ContentAddressedCache
+from evovariant_tr.modal_config import (
+    CANONICAL_MODAL_APP,
+    CANONICAL_MODAL_VOLUME,
+    EVO2_REPOSITORY,
+    EVO2_REPOSITORY_REVISION,
+    HF_CACHE_MOUNT_PATH,
+    get_modal_config,
+    get_modal_volumes,
+)
 from evovariant_tr.sequence_mutate import reverse_complement
 from evovariant_tr.sequence_window import (
     CONTEXT_LENGTH_BP,
     compute_window_coordinates_with_shift,
 )
+from evovariant_tr.telemetry import TelemetryTimer
 from modal import Image
 
 _modal_config = get_modal_config()
@@ -24,15 +34,16 @@ _modal_config = get_modal_config()
 # Uses the same NVidia PyTorch image as the M055/M060 test scripts for
 # full parity with GPU libraries and compute capability detection.
 evo2_image = (
-    Image.from_registry("nvcr.io/nvidia/pytorch:24.07-py3", add_python="3.12")
+    Image.from_registry(_modal_config["image"], add_python="3.12")
     .apt_install(
         ["build-essential", "cmake", "ninja-build",
          "git", "gcc", "g++", "clang", "libclang-dev"],
     )
     .run_commands(
         "pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu124",
-        "git clone --recurse-submodules https://github.com/ArcInstitute/evo2.git "
-        "&& cd evo2 && pip install .",
+        f"git clone --recurse-submodules {EVO2_REPOSITORY} evo2 "
+        f"&& cd evo2 && git checkout {EVO2_REPOSITORY_REVISION} "
+        "&& git submodule update --init --recursive && pip install .",
     )
     .run_commands(
         "pip uninstall -y transformer-engine transformer_engine",
@@ -52,19 +63,22 @@ evo2_image = (
 )
 
 # Use the NEW project identity, never the old one.
-app = modal.App("evovariant-tr", image=evo2_image)
+app = modal.App(CANONICAL_MODAL_APP, image=evo2_image)
 
 # Volumes for model caching.
 _volumes = get_modal_volumes()
-_hf_cache_volume = modal.Volume.from_name("hf_cache", create_if_missing=True)
-_mount_path = "/root/.cache/huggingface"
+_hf_cache_volume = modal.Volume.from_name(
+    CANONICAL_MODAL_VOLUME,
+    create_if_missing=False,
+)
+_mount_path = HF_CACHE_MOUNT_PATH
 
 # Volume mount configuration.
 volume_mounts: dict[str, modal.Volume] = {_mount_path: _hf_cache_volume}
 
 
 @app.cls(
-    gpu="H100",
+    gpu=_modal_config["gpu_type"],
     volumes=volume_mounts,  # type: ignore[arg-type]
     max_containers=3,
     retries=2,
@@ -93,6 +107,9 @@ class Evo2ScorerService:
 
         print("Loading Evo 2 model...")
         self.model = Evo2("evo2_7b")
+        self.prediction_cache = ContentAddressedCache(
+            f"{HF_CACHE_MOUNT_PATH}/evovariant-tr/predictions"
+        )
         print("Evo 2 model loaded successfully.")
 
     @modal.fastapi_endpoint(method="POST")
@@ -122,6 +139,27 @@ class Evo2ScorerService:
         if len(declared_ref) != 1 or len(alt) != 1 or declared_ref == alt:
             raise ValueError("the canonical Modal scorer accepts distinct SNVs only")
 
+        canonical_chrom = chrom if chrom.startswith("chr") else f"chr{chrom}"
+        normalized_id = f"GRCh38:{canonical_chrom}:{pos}:{declared_ref}>{alt}"
+        cache_identity = CacheIdentity(
+            model_id="evo2",
+            checkpoint="evo2_7b",
+            model_revision=EVO2_REPOSITORY_REVISION,
+            preprocessing_revision="grch38-8192-v1",
+            assembly="GRCh38",
+            context_length_bp=CONTEXT_LENGTH_BP,
+            orientation="forward_and_reverse",
+            layer="raw_scores",
+            normalized_variant_id=normalized_id,
+        )
+        cached = self.prediction_cache.get(cache_identity)
+        if cached is not None:
+            result = dict(cached.payload)
+            provenance = dict(result.get("provenance", {}))
+            provenance["cache_hit"] = True
+            result["provenance"] = provenance
+            return result
+
         print(f"Scoring variant: {chrom}:{pos} {declared_ref}>{alt} genome={genome}")
 
         sequence, seq_start = self._fetch_genome_sequence(
@@ -147,17 +185,18 @@ class Evo2ScorerService:
             sequence[:relative_pos] + alt + sequence[relative_pos + 1:]
         )
 
-        forward_ref = self._score_sequence(sequence)
-        forward_alt = self._score_sequence(alt_seq)
-        reverse_ref = self._score_sequence(reverse_complement(sequence))
-        reverse_alt = self._score_sequence(reverse_complement(alt_seq))
+        with TelemetryTimer(gpu_type=str(_modal_config["gpu_type"])) as timer:
+            forward_ref = self._score_sequence(sequence)
+            forward_alt = self._score_sequence(alt_seq)
+            reverse_ref = self._score_sequence(reverse_complement(sequence))
+            reverse_alt = self._score_sequence(reverse_complement(alt_seq))
         delta_fwd = forward_alt - forward_ref
         delta_rc = reverse_alt - reverse_ref
         delta_primary = (delta_fwd + delta_rc) / 2
 
-        return {
+        result = {
             "variant": f"{chrom}:g.{pos}{ref}>{alt}",
-            "normalized_variant_id": f"GRCh38:{chrom}:{pos}:{ref}>{alt}",
+            "normalized_variant_id": normalized_id,
             "assembly": "GRCh38",
             "chromosome": chrom,
             "position_1based": pos,
@@ -188,10 +227,16 @@ class Evo2ScorerService:
                 "context_length_bp": CONTEXT_LENGTH_BP,
                 "orientation": "forward_and_reverse",
                 "scoring_semantics": "alternate_minus_reference_log_likelihood",
+                "model_revision": EVO2_REPOSITORY_REVISION,
+                "cache_hit": False,
                 "research_only": True,
                 "classification": "not_provided",
             },
         }
+        if timer.result is not None:
+            result["telemetry"] = timer.result.to_dict()
+        self.prediction_cache.put(cache_identity, result)
+        return result
 
     def _score_sequence(self, sequence: str) -> float:
         """Convert the official Evo2 score output to a scalar float."""

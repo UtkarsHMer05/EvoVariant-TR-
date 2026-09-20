@@ -261,7 +261,8 @@ def test_protocol_config_cannot_carry_deployment_fields(raw_protocol: dict) -> N
 def test_runtime_config_defaults_are_deployment_only() -> None:
     runtime = RuntimeConfig()
     assert runtime.gpu == "H100"
-    assert runtime.modal_app_name == "evovariant-tr-v2"
+    assert runtime.modal_app_name == "evovariant-tr"
+    assert runtime.modal_volume_name == "hf_cache"
     # Deployment config exposes no scientific knobs at all.
     scientific_fields = {
         "context_length_bp",

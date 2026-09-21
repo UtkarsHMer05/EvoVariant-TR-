@@ -803,3 +803,16 @@ figures from the single pilot record.
 - No scientific status changed: the Phase6A bounded PASS remains the latest authorized remote
   work, the full Phase 6/7 chain still needs a current exact-scope approval, and the downstream
   phases still need real immutable artifacts.
+
+## Current Modal preflight and billing snapshot — 2026-09-21
+
+- `make modal-smoke` verified `modal_installed=true` and `modal_authenticated=true`, then wrote a
+  `PLANNED` cost-ledger entry with `gpu_count=0`, null estimated/measured USD, and the explicit
+  note `no remote invocation requested`. This is authentication evidence only, not workload
+  authorization.
+- Read-only `modal billing summary` reported `$13.00` metered cost and `$0.00` billed cost. The
+  read-only `modal app list` showed zero tasks for the listed deployed and stopped app entries.
+  These are workspace-level observations and not a per-request invoice.
+- No remote endpoint was invoked, no model was downloaded, and no new paid workload was started.
+  The full Phase 6/7 execution remains blocked pending a current approval matching protocol hash
+  `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3` and exact workload scope.

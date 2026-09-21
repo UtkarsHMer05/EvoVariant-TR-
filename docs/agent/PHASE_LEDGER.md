@@ -750,3 +750,14 @@ gate state.
   push was performed.
 - Gate decision: free local/control-plane refresh `PASS`; scientific completion remains
   `BLOCKED / PARTIAL` pending current exact-scope approval and immutable scientific artifacts.
+
+## Current Modal preflight and billing snapshot — 2026-09-21
+
+- `make modal-smoke` passed the no-spend preflight with installed/authenticated Modal, zero GPU
+  count, `PLANNED` status, and no remote invocation. No Phase 6/7 workload was started.
+- Fresh read-only workspace evidence: `modal billing summary` reported `$13.00` metered and
+  `$0.00` billed; `modal app list` showed zero tasks for the listed app entries. These values are
+  workspace observations, not per-request invoice measurements.
+- Gate decision: authentication/preflight `PASS`; paid scientific execution remains
+  `BLOCKED` until a current exact-scope approval matches the frozen protocol hash and names the
+  workload.

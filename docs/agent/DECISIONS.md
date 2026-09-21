@@ -2122,6 +2122,33 @@ and the Phase 6-19 status commands all completed with truthful output. The front
 reported two existing Turbopack warnings about dynamic filesystem access in
 `apps/web/src/app/api/registry/route.ts`; no warning was promoted to a failure.
 
+## D-074 — Record the current no-spend Modal preflight boundary
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The development environment now has Modal authentication, but authentication is not approval for
+new paid work. The checkpoint needs fresh workspace-level billing and task evidence without
+launching a model or endpoint.
+
+Decision:
+Use `make modal-smoke` as the no-spend authentication/preflight check. Record its result as
+`PLANNED` with zero GPU count and no measured or estimated per-request cost. Treat `modal billing
+summary` and `modal app list` as workspace observations only; they are not a substitute for a
+current exact-scope approval or a per-request invoice.
+
+Consequences:
+Modal authentication is verified, but the full Phase 6/7 workload remains blocked. The fresh
+workspace snapshot reports `$13.00` metered cost and `$0.00` billed cost; the listed deployed and
+stopped app entries have zero tasks. No remote invocation, model download, training, or paid
+workload was started by this preflight.
+
+Validation:
+`make modal-smoke` returned `modal_installed=true`, `modal_authenticated=true`, `gpu_count=0`,
+`status=PLANNED`, and the note `no remote invocation requested`. The read-only billing and app
+listing commands completed successfully.
+
 ## Template for new decisions
 
 ### D-XXX — Title

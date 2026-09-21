@@ -73,12 +73,26 @@ class BatchJob:
     failed_shards: list[str] = field(default_factory=list)
     retry_count: int = 0
 
+    def __post_init__(self) -> None:
+        if self.total_variants < 0:
+            raise ValueError("total_variants cannot be negative")
+        if self.shard_size <= 0:
+            raise ValueError("shard_size must be positive")
+
+    @property
+    def total_shards(self) -> int:
+        """Return the deterministic shard count persisted in the manifest."""
+        if self.total_variants == 0:
+            return 0
+        return (self.total_variants + self.shard_size - 1) // self.shard_size
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "job_id": self.job_id,
             "cohort_name": self.cohort_name,
             "total_variants": self.total_variants,
             "shard_size": self.shard_size,
+            "total_shards": self.total_shards,
             "status": self.status,
             "created_at": self.created_at,
             "completed_at": self.completed_at,
@@ -106,6 +120,12 @@ def create_shards(
     n_ranks: int = 1,
 ) -> list[ShardSpec]:
     """Split variants into deterministic shards for parallel processing."""
+    if shard_size <= 0:
+        raise ValueError("shard_size must be positive")
+    if batch_size <= 0:
+        raise ValueError("batch_size must be positive")
+    if n_ranks <= 0:
+        raise ValueError("n_ranks must be positive")
     shards: list[ShardSpec] = []
     identities = [
         (v.chrom, v.start, v.ref, v.alt) for v in variants

@@ -108,6 +108,10 @@ Active branch/worktree: `research/evovariant-tr` at
   wall-rate bound is about `$55,835.221` for the current 1,402,895-variant t0 cohort, or about
   `$6,979.403` under an explicitly unmeasured perfect 8x batch-throughput scenario. No Phase 6
   launch is authorized by this estimate.
+- The local Phase 15 job manifest now persists its computed `total_shards` denominator and rejects
+  non-positive variant/shard/batch/rank sizes before work is queued. This closes a resume-progress
+  accounting bug in the free local contract; it does not establish remote batch parity or authorize
+  a paid run.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

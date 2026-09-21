@@ -85,6 +85,24 @@ def test_create_shards_empty():
     assert len(shards) == 0
 
 
+@pytest.mark.parametrize(
+    ("shard_size", "batch_size", "n_ranks", "message"),
+    [
+        (0, 1, 1, "shard_size"),
+        (1, 0, 1, "batch_size"),
+        (1, 1, 0, "n_ranks"),
+    ],
+)
+def test_create_shards_rejects_invalid_execution_sizes(
+    shard_size: int,
+    batch_size: int,
+    n_ranks: int,
+    message: str,
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        create_shards([], shard_size=shard_size, batch_size=batch_size, n_ranks=n_ranks)
+
+
 # --------------------------------------------------------------------------- #
 # M67: Resume and retry
 # --------------------------------------------------------------------------- #
@@ -118,6 +136,14 @@ def test_save_and_load_job_manifest(tmp_path: Path):
     assert loaded["cohort_name"] == "vus_cohort"
     assert loaded["status"] == "completed"
     assert loaded["total_variants"] == 380776
+    assert loaded["total_shards"] == 381
+
+
+def test_batch_job_rejects_invalid_sizes() -> None:
+    with pytest.raises(ValueError, match="total_variants"):
+        BatchJob(job_id="bad", cohort_name="cohort", total_variants=-1, shard_size=10)
+    with pytest.raises(ValueError, match="shard_size"):
+        BatchJob(job_id="bad", cohort_name="cohort", total_variants=1, shard_size=0)
 
 
 def test_check_resume_state_no_manifest(tmp_path: Path):

@@ -1130,6 +1130,36 @@ The artifact `artifacts/modal/phase6_preflight_cost_estimate_20260921.json` pars
 current read-only workspace summary, source pilot inputs, cohort counts, assumptions, confidence,
 and required approvals. No additional remote invocation was made.
 
+## D-047 — Persist the resumability denominator in every batch manifest
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+`BatchJob.to_dict()` persisted total variants and shard size but omitted `total_shards`. A job
+manifest produced by the serializer could therefore be read by `check_resume_state()` with its
+fallback denominator of one, overstating progress after a restart.
+
+Decision:
+Validate non-negative job sizes, derive and persist `total_shards` from total variants and shard
+size, and reject non-positive shard, model-batch, or rank sizes before deterministic sharding.
+Cover the serialized denominator and invalid-input behavior with unit tests.
+
+Alternatives:
+Keep the fallback denominator, infer it only when reading old manifests, or trust callers to add
+the field manually. These were rejected because a newly written manifest must be self-consistent
+and invalid execution parameters should fail before queueing work.
+
+Consequences:
+Local batch resume progress is now auditable and deterministic for manifests written by the
+canonical serializer. Older hand-authored manifests remain readable through the existing fallback;
+the remote Phase 15 recovery gate remains blocked until a real authorized smoke.
+
+Validation:
+`./.venv/bin/pytest -q tests/unit/test_batch.py` passed with 34 tests; Ruff and strict mypy passed
+for the changed module. No Modal invocation or scientific output was created.
+
 ## Template for new decisions
 
 ### D-XXX — Title

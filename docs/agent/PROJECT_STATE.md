@@ -1286,3 +1286,38 @@ families were not invented.
 - This reconciliation is `PASS` and does not authorize a full run. A new approval is still
   required for the formal 64-row preflight; the frozen manifests and locked-test boundary remain
   unchanged.
+
+## Formal 64-row preflight checkpoint — 2026-09-21
+
+- The separate approval `artifacts/approvals/formal_64_preflight_20260921.json` was validated
+  against execution HEAD `dae42a265f64601af91e209dfcd3c9e5c963ecd2`, with a `$0.75` hard cap and
+  `$0.65` safety stop. It authorized only the formal 64-row Evo2 preflight, cache/resume,
+  provenance, and cost measurement; the approval was not reused for a full run.
+- The formal sample passed at the row level. Exactly 64 records were selected from the frozen
+  4,000-row formal development manifest by ascending
+  `SHA256(normalized_variant_id|ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1)`;
+  selection was label-blind and did not use CADD, PhyloP, predictions, or locked-test data.
+  Descriptive coverage was TRAIN 46, VALIDATION 18, 21 chromosomes represented, and 58 unique
+  genes. All 64 rows returned finite canonical forward/reverse scores with zero reference
+  mismatches, zero duplicate or unexpected IDs, zero locked rows, and no labels sent to Modal.
+- The durable Modal run was app `ap-BJUiZPDuBbdkxaEsbPougn`, function
+  `fu-eIxtQurXxHVYM46hfWauMo`, container `ta-01M32K7GE601S233HNHWQQ30DR`, and FunctionCalls
+  `fc-01M32K7G6760X0W60KQGVJV94A` and `fc-01M32K9XNR6CT9100REY2KQMCH`. The same plan was
+  resumed in app `ap-YTtOeacENcg8Cz5M0jBHys`; two persisted shards were reused and the resume
+  invocation made zero remote calls. The detailed log evidence is
+  `artifacts/modal_diagnostics/formal_64_preflight_modal_evidence_20260921.json`.
+- The measured preflight wall-rate estimate was `$0.135088` for 62 new remote rows, below the
+  `$0.65` safety stop. The frozen projection nevertheless scales that measured rate to
+  `$8.593340` for the 3,944 new Evo2 rows and `$9.198277` for formal Phase 6/7 including the
+  frozen NT/Caduceus estimates. This exceeds both the intended `$7.75` runner stop and `$8.00`
+  bounded formal plan.
+- The durable gate is
+  `artifacts/phase6/formal_budgeted_preflight_gate_20260921_formal64_jsonsafe_retry.json` with
+  status `FAIL_FORMAL_PREFLIGHT` and exactly one recommendation:
+  `FORMAL_PREFLIGHT_FIX_REQUIRED`. The full 4,000-row run, NT/Caduceus extraction, locked-test
+  inference, Phase 14, fine-tuning, deployment, and release were not started. Phase 6 remains
+  blocked and no dependent phase is promoted.
+- Modal workspace billing observed `$19.96` around the formal run and `$19.98` at the final
+  read-only inventory check, with `$0.00` billed; these are workspace-level observations, not a
+  per-run invoice. `modal container list --json` is empty. Formal manifests and the locked-test
+  cohort remain unchanged.

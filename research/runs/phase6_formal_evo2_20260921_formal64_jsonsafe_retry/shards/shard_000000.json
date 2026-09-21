@@ -1,0 +1,932 @@
+{
+  "client_wall_rate_estimate_usd": 0.086558,
+  "client_wall_seconds": 78.887972,
+  "execution_plan_sha256": "cc884bd20f054c301d2e64ab85f3c385b4f3435d6c0989b24da7041f235b3ec2",
+  "function_call_id": "fc-01M32K7G6760X0W60KQGVJV94A",
+  "historical_cache_hits": 0,
+  "payload_sha256": "80b516df1c8becfe2c6a23f92dd69bdcd26f7195dd083d869395ef4b50c9fa67",
+  "remote_new_records": 32,
+  "remote_provenance": {
+    "all_scores_finite": true,
+    "checkpoint": "evo2_7b",
+    "container_id": null,
+    "container_invocation_index": 1,
+    "context_length_bp": 8192,
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "gpu_total_memory_bytes": 85017624576,
+    "gpu_type": "H100",
+    "model_id": "evo2_7b",
+    "model_load_seconds": 15.155286,
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "model_sequence_batch_size": 8,
+    "orientation": "forward_and_reverse",
+    "peak_container_rss_bytes": 18753961984,
+    "peak_gpu_memory_allocated_bytes": 18075978752,
+    "peak_gpu_memory_reserved_bytes": 22267559936,
+    "remote_method_seconds": 46.652927,
+    "score_semantics": "alternate_minus_reference_log_likelihood",
+    "variants_per_second": 0.685916
+  },
+  "rows": [
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00013959407806396484,
+      "delta_primary": 0.00023496150970458984,
+      "delta_reverse": 0.00033032894134521484,
+      "failure_reason": null,
+      "gene_symbol": "ARFGEF2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:20:49013912:C>T",
+      "orientation_disagreement": 0.00019073486328125,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0183137655258179,
+        "alternate_reverse": -1.021653413772583,
+        "reference_forward": -1.0184533596038818,
+        "reference_reverse": -1.0219837427139282
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0002771615982055664,
+      "delta_primary": 0.0003236532211303711,
+      "delta_reverse": 0.0003701448440551758,
+      "failure_reason": null,
+      "gene_symbol": "MLH1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:3:37008948:C>G",
+      "orientation_disagreement": 9.298324584960938e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.8934290409088135,
+        "alternate_reverse": -0.8944756388664246,
+        "reference_forward": -0.893706202507019,
+        "reference_reverse": -0.8948457837104797
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -5.817413330078125e-05,
+      "delta_primary": 9.238719940185547e-07,
+      "delta_reverse": 6.002187728881836e-05,
+      "failure_reason": null,
+      "gene_symbol": "SLX4",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:16:3608728:A>G",
+      "orientation_disagreement": 0.00011819601058959961,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9484038352966309,
+        "alternate_reverse": -0.9275611042976379,
+        "reference_forward": -0.9483456611633301,
+        "reference_reverse": -0.9276211261749268
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 9.179115295410156e-05,
+      "delta_primary": 0.00014519691467285156,
+      "delta_reverse": 0.00019860267639160156,
+      "failure_reason": null,
+      "gene_symbol": "PDGFB",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:22:39235742:C>G",
+      "orientation_disagreement": 0.0001068115234375,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1747909784317017,
+        "alternate_reverse": -1.1733248233795166,
+        "reference_forward": -1.1748827695846558,
+        "reference_reverse": -1.1735234260559082
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0017203092575073242,
+      "delta_primary": -0.010034263134002686,
+      "delta_reverse": -0.018348217010498047,
+      "failure_reason": null,
+      "gene_symbol": "NF1",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:17:31265340:G>A",
+      "orientation_disagreement": 0.016627907752990723,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0292279720306396,
+        "alternate_reverse": -1.0483938455581665,
+        "reference_forward": -1.0275076627731323,
+        "reference_reverse": -1.0300456285476685
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00027441978454589844,
+      "delta_primary": 0.00023180246353149414,
+      "delta_reverse": 0.00018918514251708984,
+      "failure_reason": null,
+      "gene_symbol": "NBN",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:8:89982589:T>C",
+      "orientation_disagreement": 8.52346420288086e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0995497703552246,
+        "alternate_reverse": -1.0929290056228638,
+        "reference_forward": -1.0998241901397705,
+        "reference_reverse": -1.0931181907653809
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0007814168930053711,
+      "delta_primary": -0.0010774731636047363,
+      "delta_reverse": -0.0013735294342041016,
+      "failure_reason": null,
+      "gene_symbol": "BICD2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:9:92720645:C>G",
+      "orientation_disagreement": 0.0005921125411987305,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0101912021636963,
+        "alternate_reverse": -1.0141170024871826,
+        "reference_forward": -1.009409785270691,
+        "reference_reverse": -1.0127434730529785
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00019991397857666016,
+      "delta_primary": 0.00018066167831420898,
+      "delta_reverse": 0.0001614093780517578,
+      "failure_reason": null,
+      "gene_symbol": "SUFU",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:10:102597229:C>T",
+      "orientation_disagreement": 3.8504600524902344e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.170162320137024,
+        "alternate_reverse": -1.1663028001785278,
+        "reference_forward": -1.1703622341156006,
+        "reference_reverse": -1.1664642095565796
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 6.890296936035156e-05,
+      "delta_primary": 0.0001653432846069336,
+      "delta_reverse": 0.0002617835998535156,
+      "failure_reason": null,
+      "gene_symbol": "MRPS22",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:3:139357107:A>G",
+      "orientation_disagreement": 0.00019288063049316406,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1328387260437012,
+        "alternate_reverse": -1.1386386156082153,
+        "reference_forward": -1.1329076290130615,
+        "reference_reverse": -1.1389003992080688
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00010836124420166016,
+      "delta_primary": 0.00013068318367004395,
+      "delta_reverse": 0.00015300512313842773,
+      "failure_reason": null,
+      "gene_symbol": "ISCA1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:9:86271915:C>T",
+      "orientation_disagreement": 4.464387893676758e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.7892510890960693,
+        "alternate_reverse": -0.786347508430481,
+        "reference_forward": -0.789359450340271,
+        "reference_reverse": -0.7865005135536194
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.01581805944442749,
+      "delta_primary": -0.009213447570800781,
+      "delta_reverse": -0.0026088356971740723,
+      "failure_reason": null,
+      "gene_symbol": "PHEX",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:X:22226479:G>C",
+      "orientation_disagreement": 0.013209223747253418,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9364711046218872,
+        "alternate_reverse": -0.9322851300239563,
+        "reference_forward": -0.9206530451774597,
+        "reference_reverse": -0.9296762943267822
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 1.3232231140136719e-05,
+      "delta_primary": 2.491474151611328e-05,
+      "delta_reverse": 3.6597251892089844e-05,
+      "failure_reason": null,
+      "gene_symbol": "AMPD1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:1:114677215:C>G",
+      "orientation_disagreement": 2.3365020751953125e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0181713104248047,
+        "alternate_reverse": -1.019551396369934,
+        "reference_forward": -1.0181845426559448,
+        "reference_reverse": -1.0195879936218262
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00010925531387329102,
+      "delta_primary": -7.209181785583496e-05,
+      "delta_reverse": -3.4928321838378906e-05,
+      "failure_reason": null,
+      "gene_symbol": "BRCA2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:13:32340123:A>C",
+      "orientation_disagreement": 7.432699203491211e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9750207662582397,
+        "alternate_reverse": -0.987032949924469,
+        "reference_forward": -0.9749115109443665,
+        "reference_reverse": -0.9869980216026306
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0003076791763305664,
+      "delta_primary": -0.00047725439071655273,
+      "delta_reverse": -0.0006468296051025391,
+      "failure_reason": null,
+      "gene_symbol": "FBN1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:15:48411140:T>C",
+      "orientation_disagreement": 0.00033915042877197266,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.125967025756836,
+        "alternate_reverse": -1.1127468347549438,
+        "reference_forward": -1.1256593465805054,
+        "reference_reverse": -1.1121000051498413
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00046879053115844727,
+      "delta_primary": -0.0006453990936279297,
+      "delta_reverse": -0.0008220076560974121,
+      "failure_reason": null,
+      "gene_symbol": "OLFM2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:19:9936480:C>A",
+      "orientation_disagreement": 0.00035321712493896484,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9628186821937561,
+        "alternate_reverse": -0.9670335054397583,
+        "reference_forward": -0.9623498916625977,
+        "reference_reverse": -0.9662114977836609
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0006936788558959961,
+      "delta_primary": -0.0006597638130187988,
+      "delta_reverse": -0.0006258487701416016,
+      "failure_reason": null,
+      "gene_symbol": "AQP2",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:12:49951041:G>A",
+      "orientation_disagreement": 6.783008575439453e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0508747100830078,
+        "alternate_reverse": -1.0344691276550293,
+        "reference_forward": -1.0501810312271118,
+        "reference_reverse": -1.0338432788848877
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0018068552017211914,
+      "delta_primary": -0.004729509353637695,
+      "delta_reverse": -0.007652163505554199,
+      "failure_reason": null,
+      "gene_symbol": "ATP7B",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:13:51970666:G>A",
+      "orientation_disagreement": 0.005845308303833008,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9862260818481445,
+        "alternate_reverse": -1.0109198093414307,
+        "reference_forward": -0.9844192266464233,
+        "reference_reverse": -1.0032676458358765
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.005099892616271973,
+      "delta_primary": -0.01243475079536438,
+      "delta_reverse": -0.019769608974456787,
+      "failure_reason": null,
+      "gene_symbol": "MFSD8",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:4:127939952:C>T",
+      "orientation_disagreement": 0.014669716358184814,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9263721108436584,
+        "alternate_reverse": -0.93598473072052,
+        "reference_forward": -0.9212722182273865,
+        "reference_reverse": -0.9162151217460632
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.021098017692565918,
+      "delta_primary": -0.014387726783752441,
+      "delta_reverse": -0.007677435874938965,
+      "failure_reason": null,
+      "gene_symbol": "PKHD1",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:6:51659382:C>A",
+      "orientation_disagreement": 0.013420581817626953,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.980637788772583,
+        "alternate_reverse": -0.9872997999191284,
+        "reference_forward": -0.9595397710800171,
+        "reference_reverse": -0.9796223640441895
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -5.626678466796875e-05,
+      "delta_primary": -0.001240551471710205,
+      "delta_reverse": -0.0024248361587524414,
+      "failure_reason": null,
+      "gene_symbol": "CSMD1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:8:3190030:G>A",
+      "orientation_disagreement": 0.0023685693740844727,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1083942651748657,
+        "alternate_reverse": -1.1168310642242432,
+        "reference_forward": -1.1083379983901978,
+        "reference_reverse": -1.1144062280654907
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.008092761039733887,
+      "delta_primary": -0.005686581134796143,
+      "delta_reverse": -0.0032804012298583984,
+      "failure_reason": null,
+      "gene_symbol": "SPTAN1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:9:128574702:T>C",
+      "orientation_disagreement": 0.004812359809875488,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9775049686431885,
+        "alternate_reverse": -0.9762693047523499,
+        "reference_forward": -0.9694122076034546,
+        "reference_reverse": -0.9729889035224915
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0009592771530151367,
+      "delta_primary": 0.0007004141807556152,
+      "delta_reverse": 0.00044155120849609375,
+      "failure_reason": null,
+      "gene_symbol": "LAMB3",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:1:209629854:A>G",
+      "orientation_disagreement": 0.000517725944519043,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0417553186416626,
+        "alternate_reverse": -1.0473932027816772,
+        "reference_forward": -1.0427145957946777,
+        "reference_reverse": -1.0478347539901733
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004489421844482422,
+      "delta_primary": -0.00037920475006103516,
+      "delta_reverse": -0.0003094673156738281,
+      "failure_reason": null,
+      "gene_symbol": "BRCA2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:13:32397919:T>G",
+      "orientation_disagreement": 0.00013947486877441406,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0807785987854004,
+        "alternate_reverse": -1.0701018571853638,
+        "reference_forward": -1.0803296566009521,
+        "reference_reverse": -1.06979238986969
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00012755393981933594,
+      "delta_primary": 0.00015783309936523438,
+      "delta_reverse": 0.0001881122589111328,
+      "failure_reason": null,
+      "gene_symbol": "COL5A1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:9:134812212:T>A",
+      "orientation_disagreement": 6.0558319091796875e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1615030765533447,
+        "alternate_reverse": -1.170941948890686,
+        "reference_forward": -1.161630630493164,
+        "reference_reverse": -1.1711300611495972
+      },
+      "split": "VALIDATION"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004974603652954102,
+      "delta_primary": -0.004159897565841675,
+      "delta_reverse": -0.00782233476638794,
+      "failure_reason": null,
+      "gene_symbol": "VPS13B",
+      "label": 1,
+      "normalized_variant_id": "GRCh38:8:99384315:C>T",
+      "orientation_disagreement": 0.007324874401092529,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9049544930458069,
+        "alternate_reverse": -0.9114709496498108,
+        "reference_forward": -0.9044570326805115,
+        "reference_reverse": -0.9036486148834229
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0028055310249328613,
+      "delta_primary": -0.0019293725490570068,
+      "delta_reverse": -0.0010532140731811523,
+      "failure_reason": null,
+      "gene_symbol": "HCN4",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:15:73322506:C>T",
+      "orientation_disagreement": 0.001752316951751709,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9566168189048767,
+        "alternate_reverse": -0.9211141467094421,
+        "reference_forward": -0.9538112878799438,
+        "reference_reverse": -0.920060932636261
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004044771194458008,
+      "delta_primary": -0.00048351287841796875,
+      "delta_reverse": -0.0005625486373901367,
+      "failure_reason": null,
+      "gene_symbol": "SAMD11",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:1:943937:C>T",
+      "orientation_disagreement": 0.00015807151794433594,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0034440755844116,
+        "alternate_reverse": -1.0047272443771362,
+        "reference_forward": -1.0030395984649658,
+        "reference_reverse": -1.004164695739746
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0009618997573852539,
+      "delta_primary": -0.0010830163955688477,
+      "delta_reverse": -0.0012041330337524414,
+      "failure_reason": null,
+      "gene_symbol": "BLZF1",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:1:169376813:C>A",
+      "orientation_disagreement": 0.0002422332763671875,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1128977537155151,
+        "alternate_reverse": -1.1104506254196167,
+        "reference_forward": -1.1119358539581299,
+        "reference_reverse": -1.1092464923858643
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0003603696823120117,
+      "delta_primary": -0.00033017992973327637,
+      "delta_reverse": -0.000299990177154541,
+      "failure_reason": null,
+      "gene_symbol": "RDH12",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:14:67729330:G>A",
+      "orientation_disagreement": 6.03795051574707e-05,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.9356770515441895,
+        "alternate_reverse": -0.9341074824333191,
+        "reference_forward": -0.9353166818618774,
+        "reference_reverse": -0.9338074922561646
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0004406571388244629,
+      "delta_primary": 0.00014644861221313477,
+      "delta_reverse": -0.00014775991439819336,
+      "failure_reason": null,
+      "gene_symbol": "SALL4",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:20:51784837:G>C",
+      "orientation_disagreement": 0.0005884170532226562,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -0.7703268527984619,
+        "alternate_reverse": -0.7607342004776001,
+        "reference_forward": -0.7707675099372864,
+        "reference_reverse": -0.7605864405632019
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 5.745887756347656e-05,
+      "delta_primary": -1.6570091247558594e-05,
+      "delta_reverse": -9.059906005859375e-05,
+      "failure_reason": null,
+      "gene_symbol": "TNNT2",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:1:201362034:G>A",
+      "orientation_disagreement": 0.0001480579376220703,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.1058261394500732,
+        "alternate_reverse": -1.1137346029281616,
+        "reference_forward": -1.1058835983276367,
+        "reference_reverse": -1.113644003868103
+      },
+      "split": "TRAIN"
+    },
+    {
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00013577938079833984,
+      "delta_primary": -4.947185516357422e-06,
+      "delta_reverse": -0.0001456737518310547,
+      "failure_reason": null,
+      "gene_symbol": "VIM",
+      "label": 0,
+      "normalized_variant_id": "GRCh38:10:17235159:C>T",
+      "orientation_disagreement": 0.00028145313262939453,
+      "provenance": {
+        "checkpoint": "evo2_7b",
+        "context_length_bp": 8192,
+        "label_attached_after_remote_response": true,
+        "model_id": "evo2_7b",
+        "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood"
+      },
+      "raw_scores": {
+        "alternate_forward": -1.0678492784500122,
+        "alternate_reverse": -1.0776711702346802,
+        "reference_forward": -1.0679850578308105,
+        "reference_reverse": -1.0775254964828491
+      },
+      "split": "TRAIN"
+    }
+  ],
+  "shard_index": 0,
+  "source_ids": [
+    "GRCh38:20:49013912:C>T",
+    "GRCh38:3:37008948:C>G",
+    "GRCh38:16:3608728:A>G",
+    "GRCh38:22:39235742:C>G",
+    "GRCh38:17:31265340:G>A",
+    "GRCh38:8:89982589:T>C",
+    "GRCh38:9:92720645:C>G",
+    "GRCh38:10:102597229:C>T",
+    "GRCh38:3:139357107:A>G",
+    "GRCh38:9:86271915:C>T",
+    "GRCh38:X:22226479:G>C",
+    "GRCh38:1:114677215:C>G",
+    "GRCh38:13:32340123:A>C",
+    "GRCh38:15:48411140:T>C",
+    "GRCh38:19:9936480:C>A",
+    "GRCh38:12:49951041:G>A",
+    "GRCh38:13:51970666:G>A",
+    "GRCh38:4:127939952:C>T",
+    "GRCh38:6:51659382:C>A",
+    "GRCh38:8:3190030:G>A",
+    "GRCh38:9:128574702:T>C",
+    "GRCh38:1:209629854:A>G",
+    "GRCh38:13:32397919:T>G",
+    "GRCh38:9:134812212:T>A",
+    "GRCh38:8:99384315:C>T",
+    "GRCh38:15:73322506:C>T",
+    "GRCh38:1:943937:C>T",
+    "GRCh38:1:169376813:C>A",
+    "GRCh38:14:67729330:G>A",
+    "GRCh38:20:51784837:G>C",
+    "GRCh38:1:201362034:G>A",
+    "GRCh38:10:17235159:C>T"
+  ],
+  "status": "COMPLETED"
+}

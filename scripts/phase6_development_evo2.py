@@ -733,7 +733,11 @@ def main() -> None:
     shard_documents: list[dict[str, Any]] = []
     estimated_usd = 0.0
     rate_samples: list[float] = []
-    stop_reason = "full development cohort completed"
+    stop_reason = (
+        "formal sample completed"
+        if FORMAL_MODE and FORMAL_LIMIT
+        else "full development cohort completed"
+    )
     failure: str | None = None
     historical_cache = _load_historical_cache()
 
@@ -969,7 +973,7 @@ def main() -> None:
             "stored_shards_reused": stored_shards_reused,
             "cache_hit_records": cache_hits,
             "historical_cache_reuse_records": historical_cache_hits,
-            "total_cache_hit_records": cache_hits + historical_cache_hits,
+            "total_cache_hit_records": cache_hits,
             "new_remote_records": remote_new_records,
             "remote_invocations": remote_invocations,
             "resume_policy": "verified completed shards are skipped; tampering fails closed",

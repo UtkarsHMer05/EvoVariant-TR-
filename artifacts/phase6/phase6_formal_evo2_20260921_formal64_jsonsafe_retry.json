@@ -1,0 +1,160 @@
+{
+  "acceptance": {
+    "duplicate_results": 0,
+    "invalid_aggregate_scores": 0,
+    "labels_sent": false,
+    "locked_test_rows": 0,
+    "nonfinite_forward_scores": 0,
+    "nonfinite_reverse_complement_scores": 0,
+    "reference_mismatches": 0,
+    "returned_valid_rows": 64,
+    "selected_rows": 64,
+    "unexpected_ids": 0
+  },
+  "approval_artifact": "artifacts/approvals/formal_64_preflight_20260921.json",
+  "artifact_id": "phase6-formal-evo2-20260921-formal64_jsonsafe_retry",
+  "cache": {
+    "cache_hit_records": 64,
+    "cache_root": "research/runs/phase6_formal_evo2_20260921_formal64_jsonsafe_retry/shards",
+    "completed_shards": 2,
+    "historical_cache_reuse_records": 2,
+    "new_remote_records": 62,
+    "new_shards": 0,
+    "remote_invocations": 0,
+    "resume_policy": "verified completed shards are skipped; tampering fails closed",
+    "stored_shards_reused": 2,
+    "total_cache_hit_records": 64
+  },
+  "cost": {
+    "approval_max_budget_usd": 0.75,
+    "cumulative_client_wall_rate_estimate_usd": 0.135088,
+    "gpu_rate_usd_per_hour": 3.95,
+    "interpretation": "rate-based wall-time estimate; Modal CLI billing is workspace-level, not a per-run invoice",
+    "measured_invoice_usd": null,
+    "pricing_source": "https://modal.com/pricing",
+    "rate_estimate_stop_usd": 0.65
+  },
+  "dataset": {
+    "counts": {
+      "TRAIN": 3199,
+      "VALIDATION": 801,
+      "total": 4000
+    },
+    "development_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "execution_limit": 64,
+    "execution_record_count": 64,
+    "formal_manifest_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "full_development_records": 4000,
+    "locked_ids_excluded": true,
+    "locked_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "ordering": "ascending SHA256(normalized_variant_id|FORMAL_PREFLIGHT_SEED) with normalized ID tie-break",
+    "processed_records": 64,
+    "processed_split_counts": {
+      "TRAIN": 46,
+      "VALIDATION": 18
+    },
+    "remaining_records": 0,
+    "selection_description": {
+      "chromosome_distribution": {
+        "1": 8,
+        "10": 3,
+        "11": 2,
+        "12": 1,
+        "13": 4,
+        "14": 1,
+        "15": 4,
+        "16": 1,
+        "17": 5,
+        "19": 5,
+        "2": 2,
+        "20": 2,
+        "22": 2,
+        "3": 7,
+        "4": 1,
+        "5": 3,
+        "6": 1,
+        "7": 2,
+        "8": 4,
+        "9": 5,
+        "X": 1
+      },
+      "label_blind": true,
+      "selection_seed": "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1",
+      "train_count": 46,
+      "unique_gene_count": 58,
+      "validation_count": 18
+    },
+    "selection_seed": "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1",
+    "source_record_count": 4000
+  },
+  "git": {
+    "commit": "dae42a265f64601af91e209dfcd3c9e5c963ecd2",
+    "dirty": false
+  },
+  "modal_billing": {
+    "after": {
+      "captured_at_utc": "2026-09-21T18:24:06.868657+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.96  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.81  \n    Volumes:            3.37  \n  Credits:            -16.59  \n  Free Storage:        -3.37  \n  Billed Cost:         $0.00  \n                              \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-21T18:24:05.280366+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.96  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.81  \n    Volumes:            3.37  \n  Credits:            -16.59  \n  Free Storage:        -3.37  \n  Billed Cost:         $0.00  \n                              \n"
+    }
+  },
+  "model": {
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "model_sequence_batch_size": 8,
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "outputs": {
+    "execution_plan": "research/runs/phase6_formal_evo2_20260921_formal64_jsonsafe_retry/execution_plan.json",
+    "execution_plan_sha256": "cc884bd20f054c301d2e64ab85f3c385b4f3435d6c0989b24da7041f235b3ec2",
+    "predictions_jsonl": "research/runs/phase6_formal_evo2_20260921_formal64_jsonsafe_retry/predictions.jsonl",
+    "predictions_sha256": "26377b43896658a5312fc90bde9c99947341c9360baef4ec8ab2314b1a0da11d"
+  },
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "recorded_at_utc": "2026-09-21T18:24:06.868688+00:00",
+  "runtime": {
+    "elapsed_local_seconds": 1.611136,
+    "estimated_usd_per_new_remote_record": 0.002178839,
+    "failure": null,
+    "function_call_ids": [
+      "fc-01M32K7G6760X0W60KQGVJV94A",
+      "fc-01M32K9XNR6CT9100REY2KQMCH"
+    ],
+    "model_load_seconds": 15.155286,
+    "remote_container_ids": [],
+    "remote_score_seconds": 87.946463,
+    "resume": {
+      "remote_invocations_this_execution": 0,
+      "stored_shards_reused": 2,
+      "zero_recomputation": true
+    },
+    "stop_reason": "formal sample completed",
+    "total_remote_wall_seconds": 123.118167,
+    "variants_per_remote_score_second": 0.704974
+  },
+  "scientific_boundary": {
+    "formal_sample_complete": true,
+    "full_development_cohort_complete": false,
+    "labels_sent_to_modal": false,
+    "locked_test_labels_accessed": false,
+    "metrics_claimed": false,
+    "phase14_started": false,
+    "training_hpo_finetuning_started": false
+  },
+  "status": "PASS_FORMAL_SAMPLE"
+}

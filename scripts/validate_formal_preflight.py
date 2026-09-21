@@ -186,10 +186,8 @@ def main() -> int:
         if isinstance(cache, dict)
         else processed - historical_hits
     )
-    if isinstance(cache, dict) and int(cache.get("total_cache_hit_records", 0)) != (
-        int(cache.get("cache_hit_records", 0)) + historical_hits
-    ):
-        errors.append("cache-hit accounting is inconsistent")
+    if isinstance(cache, dict) and int(cache.get("total_cache_hit_records", 0)) != processed:
+        errors.append("cache-hit accounting is inconsistent after resume")
     cost = sample.get("cost")
     measured_sample_usd = (
         float(cost.get("cumulative_client_wall_rate_estimate_usd", math.nan))

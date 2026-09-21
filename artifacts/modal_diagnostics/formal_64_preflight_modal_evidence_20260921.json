@@ -1,0 +1,74 @@
+{
+  "artifact_id": "formal-64-preflight-modal-evidence-20260921",
+  "recorded_at": "2026-09-21",
+  "execution_artifact": "artifacts/phase6/phase6_formal_evo2_20260921_formal64_jsonsafe_retry.json",
+  "gate_artifact": "artifacts/phase6/formal_budgeted_preflight_gate_20260921_formal64_jsonsafe_retry.json",
+  "formal_preflight_app": {
+    "app_id": "ap-BJUiZPDuBbdkxaEsbPougn",
+    "function_id": "fu-eIxtQurXxHVYM46hfWauMo",
+    "container_id": "ta-01M32K7GE601S233HNHWQQ30DR",
+    "function_call_ids": [
+      "fc-01M32K7G6760X0W60KQGVJV94A",
+      "fc-01M32K9XNR6CT9100REY2KQMCH"
+    ],
+    "status": "PASS_FORMAL_SAMPLE",
+    "log_evidence_command": "modal app logs ap-BJUiZPDuBbdkxaEsbPougn --show-function-id --show-function-call-id --show-container-id"
+  },
+  "resume_validation_app": {
+    "app_id": "ap-YTtOeacENcg8Cz5M0jBHys",
+    "remote_function_calls": 0,
+    "remote_container_id": null,
+    "status": "PASS_FORMAL_SAMPLE",
+    "resume_evidence": "The same two persisted shards were read and verified; no new FunctionCall or remote worker was created."
+  },
+  "selection": {
+    "sample_size": 64,
+    "train": 46,
+    "validation": 18,
+    "unique_genes": 58,
+    "selection_seed": "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1",
+    "label_blind": true,
+    "locked_test_rows": 0
+  },
+  "acceptance": {
+    "selected_rows": 64,
+    "returned_valid_rows": 64,
+    "reference_mismatches": 0,
+    "nonfinite_forward_scores": 0,
+    "nonfinite_reverse_complement_scores": 0,
+    "invalid_aggregate_scores": 0,
+    "unexpected_ids": 0,
+    "duplicate_results": 0,
+    "labels_sent": false,
+    "locked_test_rows": 0,
+    "resume_zero_recomputation": true
+  },
+  "cost": {
+    "approval_hard_cap_usd": 0.75,
+    "approval_safety_stop_usd": 0.65,
+    "rate_estimate_usd": 0.135088,
+    "measured_invoice_usd": null,
+    "billing_before_after_run_workspace_metered_usd": 19.96,
+    "billing_after_read_only_inventory_workspace_metered_usd": 19.98,
+    "workspace_billed_usd": 0.0,
+    "billing_interpretation": "Workspace-level Modal billing evidence, not a per-run invoice."
+  },
+  "gate": {
+    "status": "FAIL_FORMAL_PREFLIGHT",
+    "projected_evo2_usd": 8.593339870967743,
+    "projected_formal_phase6_7_usd": 9.19827685413441,
+    "formal_runner_safety_stop_usd": 7.75,
+    "formal_hard_cap_usd": 8.0,
+    "recommendation": "FORMAL_PREFLIGHT_FIX_REQUIRED",
+    "reason": "Measured 64-row new-remote rate projects above both the intended $7.75 safety stop and $8.00 bounded formal plan; no full run was launched."
+  },
+  "scientific_boundary": {
+    "formal_manifests_modified": false,
+    "locked_test_accessed": false,
+    "full_4000_row_run_started": false,
+    "nt_caduceus_full_extraction_started": false,
+    "phase14_started": false,
+    "fine_tuning_started": false,
+    "deployment_or_release_started": false
+  }
+}

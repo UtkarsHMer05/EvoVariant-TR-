@@ -2828,6 +2828,46 @@ The provenance gate is `PASS`; it permits creation of the separately scoped form
 preflight approval but does not authorize the full 4,000-row run, NT/Caduceus extraction, locked
 test, Phase 14, fine-tuning, context sweeps, deployment, or release.
 
+## D-094 — Fail the formal study closed when the measured preflight exceeds the bounded plan
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-085 only for the measured outcome of this formal 64-row attempt; it does not alter
+the frozen ML-DEV-BUDGETED-001 manifests or the locked-test boundary.
+
+Context:
+The successful JSON-safe H100/Evo2 ladder resolved infrastructure readiness and a fresh
+formal-only approval authorized a hash-selected 64-row preflight at `$0.75` hard / `$0.65` safety.
+The row-level execution returned 64 valid results and the persisted shards resumed without remote
+recomputation, but the measured new-remote wall rate was higher than the planning rate.
+
+Decision:
+Accept the row-level sample as `PASS_FORMAL_SAMPLE`, then fail the formal precompute gate closed
+because measured-rate scaling projects `$8.593340` for the 3,944 new Evo2 rows and `$9.198277`
+for the frozen Phase 6/7 plan including NT/Caduceus. Both values exceed the intended `$7.75`
+runner safety stop and `$8.00` bounded plan. Do not launch the 4,000-row run under this
+approval, and do not manipulate batching, context, orientation, or scoring semantics to force a
+lower projection.
+
+Evidence:
+`artifacts/phase6/phase6_formal_evo2_20260921_formal64_jsonsafe_retry.json` records 64 selected
+and returned rows, TRAIN/VALIDATION coverage, exact model revision, finite scores, and the zero-
+remote-call resume. `artifacts/phase6/formal_budgeted_preflight_gate_20260921_formal64_jsonsafe_retry.json`
+records `FAIL_FORMAL_PREFLIGHT` and the single recommendation
+`FORMAL_PREFLIGHT_FIX_REQUIRED`. Modal identities and billing observations are preserved in
+`artifacts/modal_diagnostics/formal_64_preflight_modal_evidence_20260921.json`.
+
+Consequences:
+The formal Evo2 preflight is scientifically complete at sample scope but does not authorize the
+full study. The full 4,000-row run, NT/Caduceus extraction, locked evaluation, Phase 14, training,
+deployment, release, and publication remain unstarted or blocked. A future continuation needs a
+new exact-scope decision that addresses the measured projection; this record does not widen the
+budget.
+
+Validation:
+`make validate` and `git diff --check` passed before the paid run. The preflight approval,
+provenance reconciliation, formal manifest hashes, and locked-test manifest were verified. Modal
+reported `$0.00` billed at the available workspace snapshots and no active containers remained.
+
 ## Template for new decisions
 
 ### D-XXX — Title

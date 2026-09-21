@@ -1,0 +1,31 @@
+{
+  "approval_artifact": "artifacts/approvals/formal_64_preflight_20260921.json",
+  "approval_max_budget_usd": 0.75,
+  "checkpoint": "evo2_7b",
+  "cohort_splits": [
+    "TRAIN",
+    "VALIDATION"
+  ],
+  "context_length_bp": 8192,
+  "development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "execution_mode": "FORMAL_64_PREFLIGHT",
+  "execution_plan_sha256": "cc884bd20f054c301d2e64ab85f3c385b4f3435d6c0989b24da7041f235b3ec2",
+  "formal_manifest_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "formal_preflight": true,
+  "formal_record_limit": 64,
+  "gpu_type": "H100",
+  "labels_remote_transport": false,
+  "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+  "model_id": "evo2_7b",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "model_sequence_batch_size": 8,
+  "orientation": "forward_and_reverse",
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "rate_estimate_stop_usd": 0.65,
+  "record_count": 4000,
+  "run_id": "phase6-formal-evo2-20260921-formal64_jsonsafe_retry",
+  "score_semantics": "alternate_minus_reference_log_likelihood",
+  "selection_seed": "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1",
+  "sequence_construction": "local frozen GRCh38 FASTA + deterministic SNV mutation",
+  "shard_size": 32
+}

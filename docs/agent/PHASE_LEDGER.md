@@ -1104,3 +1104,27 @@ genuine unavailable evidence, not values to infer.
   GRCh38 / 8192-bp / forward+reverse / alternate-minus-reference contract.
 - Evidence artifact: `artifacts/modal_diagnostics/evo2_provenance_reconciliation_20260921.json`.
   The formal 64-row preflight has not started and needs its separate `$0.75` / `$0.65` approval.
+
+## Formal 64-row preflight — 2026-09-21
+
+- The exact-scope approval was validated at execution HEAD
+  `dae42a265f64601af91e209dfcd3c9e5c963ecd2`, with `$0.75` hard and `$0.65` safety limits.
+  Its scope excluded the full 4,000-row run, NT/Caduceus extraction, locked test, Phase 14,
+  fine-tuning, context sweeps, deployment, and release.
+- Row-level sample gate: `PASS_FORMAL_SAMPLE`. The 64 rows were selected label-blind from the
+  frozen formal development manifest using the frozen SHA256 ID-plus-seed ranking. Coverage was
+  TRAIN 46, VALIDATION 18, 21 chromosomes, and 58 unique genes. All 64 canonical scores were
+  finite and complete; reference mismatches, unexpected IDs, duplicates, locked rows, and remote
+  labels were all zero/false.
+- Durable execution evidence: app `ap-BJUiZPDuBbdkxaEsbPougn`, function
+  `fu-eIxtQurXxHVYM46hfWauMo`, container `ta-01M32K7GE601S233HNHWQQ30DR`, and calls
+  `fc-01M32K7G6760X0W60KQGVJV94A` / `fc-01M32K9XNR6CT9100REY2KQMCH`. The resume app
+  `ap-YTtOeacENcg8Cz5M0jBHys` reused both shards with zero remote invocations.
+- Formal projection gate: `FAIL_FORMAL_PREFLIGHT`. Measured preflight estimate `$0.135088` was
+  below the `$0.65` preflight safety stop, but measured-rate scaling projected Evo2 at `$8.593340`
+  and formal Phase 6/7 at `$9.198277`, above the intended `$7.75` safety stop and `$8.00` plan.
+  Evidence is in `artifacts/phase6/formal_budgeted_preflight_gate_20260921_formal64_jsonsafe_retry.json`
+  and `artifacts/modal_diagnostics/formal_64_preflight_modal_evidence_20260921.json`.
+- Gate recommendation is exactly `FORMAL_PREFLIGHT_FIX_REQUIRED`. No full formal run or dependent
+  GPU phase was launched; Phases 7/8/9/11/12/13/14/15/18/19 remain blocked, Phase 10 remains
+  `DEFERRED_BY_COMPUTE`, and Phase 16 remains partial.

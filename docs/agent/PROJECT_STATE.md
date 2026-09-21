@@ -739,7 +739,8 @@ figures from the single pilot record.
 
 - Implemented `src/evovariant_tr/analysis_pipeline.py` and `scripts/analyze_ensemble.py`.
   `make ensemble` now runs this local analysis only when explicit prediction/model paths are
-  supplied; otherwise it writes the existing blocked status artifact.
+  supplied; otherwise it writes the existing blocked status artifact. Implementation commit:
+  `a3df7ac` (`feat: add validation-only ensemble analysis`).
 - The loader rejects duplicate `(variant, split, model)` rows, malformed/non-finite scores,
   missing labels, and locked-test rows by default. The analysis requires common VALIDATION IDs,
   computes diversity/error overlap/correlation, fixed weighted aggregation, AUROC/AUPRC and
@@ -750,3 +751,15 @@ figures from the single pilot record.
 - Validation evidence: `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff,
   secret scan, and 95.00% coverage. `make ensemble` defaulted to a blocked status artifact with
   no network or paid compute.
+
+## Current status-surface reconciliation — 2026-09-21
+
+- Updated the Phase 6, Phase 7, and Phase 19 Make status surfaces and the zero-shot benchmark
+  blocker artifact to match the accepted current state. They no longer report the accepted Phase
+  3 discrepancy or the superseded pre-Phase6A model-roster wording as active blockers.
+- Current blockers now state the exact missing dependencies: a current approval for the full
+  workload, full-cohort batch/endpoint parity, completed Phase 6/7 scientific artifacts, locked
+  evaluation, and registry/figure gates.
+- `make benchmark-zero-shot`, `make extract-features`, and `make release-check` were rerun and
+  each remained `BLOCKED` without network or paid compute. `make validate` passed with 679 tests,
+  33 deselected, strict mypy, Ruff, secret scan, and 95.00% coverage.

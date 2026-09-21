@@ -97,8 +97,8 @@ def benchmark_status(
         family="ZS",
         blockers=[
             plan.reason,
-            "Phase 3 QA discrepancy unresolved",
-            "full-cohort execution gate not passed",
+            "current exact-scope approval and batch parity evidence are absent",
+            "no completed Phase 6 scientific result is registered",
         ],
         inputs={"plan": plan.to_dict()},
     )

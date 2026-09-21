@@ -201,9 +201,9 @@ benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 6 --family ZS \
 		--command-name benchmark-zero-shot --output research/runs/phase6_zs_status.json \
-		--blocker "Phase 3 QA discrepancy remains materially unresolved" \
-		--blocker "Phase 5 multi-model track is formally deferred with only Evo2 included" \
-		--blocker "full-cohort execution authorization and batch parity evidence are absent"
+		--blocker "current approval does not cover the exact full Phase 6 workload" \
+		--blocker "full-cohort batch parity and endpoint execution evidence are absent" \
+		--blocker "no completed Phase 6 scientific result is registered"
 
 .PHONY: phase-execute
 phase-execute: ## Run an explicitly approved, resumable Phase 6/7 execution (PHASE_EXEC_ARGS=...)
@@ -216,8 +216,8 @@ extract-features: ## Record/run the Phase 7 representation extraction gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 7 --family REP \
 		--command-name extract-features --output research/runs/phase7_rep_status.json \
-		--blocker "Evo2 embedding extraction is source-level only; no remote feature smoke or completed cache exists" \
-		--blocker "Phase 6 zero-shot benchmark is blocked"
+		--blocker "no approved full Phase 7 extraction or completed feature cache exists" \
+		--blocker "Phase 6 zero-shot outputs are not registered"
 
 .PHONY: train
 train: ## Record/run the Phase 8 downstream training gate
@@ -329,8 +329,8 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
-		--blocker "Phase 3 discrepancy remains unresolved and the Phase 5 multi-model track is deferred" \
-		--blocker "figure-regeneration, registered-result, and paid-compute gates are unresolved"
+		--blocker "Phase 6/7 and downstream scientific result artifacts are unresolved" \
+		--blocker "locked evaluation, figure-regeneration, registry, and current approval gates are unresolved"
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface

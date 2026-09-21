@@ -591,13 +591,22 @@ gate state.
 - Added `src/evovariant_tr/analysis_pipeline.py` and `scripts/analyze_ensemble.py`. The path is
   local CPU-only, requires common validation identities, records disagreement/error overlap and
   correlation, and uses fixed weighted aggregation before computing calibration and abstention
-  artifacts.
+  artifacts. Implementation commit: `a3df7ac` (`feat: add validation-only ensemble analysis`).
 - Locked-test rows are rejected by default; incomplete/duplicate model coverage and invalid
   scores fail closed. The abstention adapter receives logit-transformed probabilities so its
   zero-centered decision convention is explicit rather than assumed.
 - Evidence: `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff, secret scan,
   and 95.00% coverage. No real predictions or registry outputs were produced; `make ensemble`
   remains blocked unless explicit artifact/model paths are supplied.
+
+## Current status-surface reconciliation — 2026-09-21
+
+- Updated the current Phase 6/7/release status commands and the zero-shot benchmark status
+  artifact so their blockers match the accepted Phase3/Phase5/Phase6A state. Historical entries
+  retain their original wording; no historical evidence was rewritten.
+- Rerun evidence: `make benchmark-zero-shot`, `make extract-features`, and `make release-check`
+  all returned truthful `BLOCKED` artifacts with no network or paid compute. `make validate`
+  passed with 679 tests, 33 deselected, strict mypy, Ruff, secret scan, and 95.00% coverage.
 
 ## Phase 19 README/status reconciliation — 2026-09-21
 

@@ -2018,7 +2018,36 @@ base predictions.
 Validation:
 `make ensemble` remains a truthful `BLOCKED` status surface unless explicit prediction/model
 paths are supplied. `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff,
-secret scan, and 95.00% coverage. The new analysis contract suite passed 3 tests.
+secret scan, and 95.00% coverage. The new analysis contract suite passed 3 tests. Implementation
+commit: `a3df7ac` (`feat: add validation-only ensemble analysis`).
+
+## D-071 — Keep phase status surfaces aligned with the accepted continuation state
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+After the Phase3 recovery/deviation and Phase6A qualification, several Make/benchmark status
+messages still described the earlier pre-recovery state. A stale blocker message is itself a
+reproducibility defect because it can misdirect the next agent and contradict the persistent
+project state.
+
+Decision:
+Phase 6 status surfaces must identify the actual blockers: no current exact-scope approval, no
+full-cohort batch parity/endpoint evidence, and no registered scientific Phase 6 result. Phase 7
+must identify the absent approved full extraction and feature cache. Release status must identify
+unresolved scientific artifacts, locked evaluation, registry/figure, and approval gates. The
+accepted Phase 3 ML-extension deviation and Phase6A PASS are not reported as current blockers.
+
+Consequences:
+Status artifacts remain `BLOCKED` without inventing a run, but their reasons now match the
+authoritative state. Historical ledger entries retain their original wording as historical
+evidence; only current command surfaces were changed.
+
+Validation:
+`make benchmark-zero-shot`, `make extract-features`, and `make release-check` each wrote
+truthful blocked status artifacts. `make validate` passed with 679 tests, 33 deselected, strict
+mypy, Ruff, secret scan, and 95.00% coverage. The change is local-only and has no compute cost.
 
 ## Template for new decisions
 

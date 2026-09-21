@@ -1030,6 +1030,73 @@ The four status targets were rerun after the Makefile update; their JSON blocker
 current Phase 3/5/6/15/18/19 control-file state. `make validate` and the targeted contract gates
 remain passing.
 
+## D-044 — Make the local Evo2 batch contract genuinely batched
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The local `Evo2Scorer.score_batch` surface existed before a real Evo2 adapter was verified, but it
+implemented the batch by calling the model once per variant and orientation. That was compatible
+with unit-level interfaces but did not provide the intended model-batch execution path for Phase
+15 or a useful basis for remote parity.
+
+Decision:
+Prepare the forward/RC reference and alternate sequences for every valid row, then submit them to
+`Evo2.score_sequences` in chunks no larger than `Evo2ScorerConfig.batch_size`. Preserve the
+existing `ScoringResult` row mapping and per-row validation failures, and retain raw reference,
+alternate, and delta values. Add a deterministic fake-model regression that proves chunking and
+mapping without importing weights or invoking Modal.
+
+Alternatives:
+Keep the one-call-per-sequence implementation, or silently increase the batch size for a remote
+pilot. Both were rejected: the first leaves the batch contract nominal, while the second would
+change paid-compute behavior without a separately bounded approval and remote parity test.
+
+Consequences:
+The local adapter is now suitable for a later authorized batch parity test. This decision does
+not authorize a full cohort, locked-test scoring, model download, or Modal batch invocation. The
+Phase 15 gate remains `BLOCKED` until remote batch behavior and kill/restart recovery are evidenced.
+
+Validation:
+`./.venv/bin/pytest -q tests/unit/test_evo2_scorer.py` passed with 8 tests, including a fake-model
+test that submits four sequences as chunks of 3 and 1 and checks exact row mapping and delta
+arithmetic. No paid compute or scientific result artifact was created.
+
+## D-045 — Keep the Modal batch endpoint bounded and undeployed pending parity approval
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The Phase 15 control surface needs a true remote batch path, but the current approval artifact
+only covers the corrected single-variant Evo2 pilot, cache miss/hit evidence, and a bounded model
+smoke. Deploying or invoking a new endpoint would change the paid-compute scope and would not by
+itself resolve the Phase 3 cohort discrepancy or Phase 5 multi-model gate.
+
+Decision:
+Add a source-level `score_batch` endpoint to `evo2_scorer_app.py` with an eight-variant request
+limit, eight-sequence model chunks, the canonical four-score orientation payload, persistent cache
+identity, input-order preservation, and explicit completed/partial/failed responses. Keep the
+endpoint undeployed until a new bounded approval authorizes a remote batch parity and recovery
+smoke.
+
+Alternatives:
+Deploy immediately under the existing single-variant approval, or implement a sequential wrapper
+that calls the single endpoint for each row. Both were rejected because the first exceeds the
+recorded scope and the second would not test actual model batching.
+
+Consequences:
+Phase 15 has a reviewable implementation surface and no additional spend, but its scientific and
+remote execution gate remains `BLOCKED`. The deployed app and the recorded Phase 2/4 artifact
+remain unchanged.
+
+Validation:
+Ruff, strict mypy, Python compilation, the eight Evo2 adapter unit tests, and a no-spend source
+helper smoke passed. No deployment, model download, batch result, or paid request was performed.
+
 ## Template for new decisions
 
 ### D-XXX — Title

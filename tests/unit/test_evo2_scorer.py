@@ -6,12 +6,15 @@ import json
 
 import pytest
 
+from evovariant_tr import evo2_scorer as evo2_scorer_module
 from evovariant_tr.evo2_scorer import (
     PARITY_REQUIREMENTS,
     Evo2Scorer,
     Evo2ScorerConfig,
     check_evo2_parity,
 )
+from evovariant_tr.sequence_mutate import VariantIdentity
+from evovariant_tr.sequence_window import ReferenceWindow
 
 
 def test_parity_requirements():
@@ -71,3 +74,64 @@ def test_check_evo2_parity_returns_json():
     result = check_evo2_parity()
     json_str = json.dumps(result)
     assert "context_length_bp" in json_str
+
+
+def test_evo2_batch_uses_model_batches_and_preserves_row_mapping(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The adapter must submit sequence chunks, not one request per row."""
+
+    class FakeModel:
+        def __init__(self) -> None:
+            self.calls: list[list[str]] = []
+
+        def score_sequences(self, sequences: list[str]) -> list[float]:
+            self.calls.append(list(sequences))
+            return [float(sum(ord(base) for base in sequence)) for sequence in sequences]
+
+    sequence = "A" * 4096 + "CGT" + "T" * 4093
+    window = ReferenceWindow(
+        chrom="chr1",
+        start=46035,
+        stop=54226,
+        ref_sequence=sequence,
+        variant_offset=4096,
+    )
+    window_second = ReferenceWindow(
+        chrom="chr1",
+        start=46035,
+        stop=54226,
+        ref_sequence=sequence,
+        variant_offset=4097,
+    )
+    variants = [
+        (
+            window,
+            VariantIdentity("chr1", 50131, "C", "T"),
+            "forward",
+        ),
+        (
+            window_second,
+            VariantIdentity("chr1", 50132, "G", "A"),
+            "reverse",
+        ),
+    ]
+    fake_model = FakeModel()
+    scorer = object.__new__(Evo2Scorer)
+    scorer._config = Evo2ScorerConfig(batch_size=3)
+    scorer._model = fake_model
+    monkeypatch.setattr(evo2_scorer_module, "EV2_AVAILABLE", True)
+
+    result = scorer.score_batch(variants)
+
+    assert result.total == 2
+    assert result.failed == []
+    assert len(result.scored) == 2
+    assert [len(call) for call in fake_model.calls] == [3, 1]
+    assert result.scored[0].identity.start == 50131
+    assert result.scored[1].identity.start == 50132
+    assert result.scored[0].metadata["model_batch_size"] == 3
+    assert all(
+        item.score_delta == item.alternate_score - item.reference_score
+        for item in result.scored
+    )

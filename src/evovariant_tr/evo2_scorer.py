@@ -106,44 +106,109 @@ class Evo2Scorer(Scorer):
         if not EV2_AVAILABLE:  # pragma: no cover
             raise RuntimeError("Evo 2 not available in this environment")
 
-        if len(ref_window.ref_sequence) != self.context_length_bp:  # pragma: no cover
+        ref_seq, alt_seq = self._prepare_variant_sequences(
+            ref_window, variant, strand
+        )  # pragma: no cover
+        ref_ll, alt_ll = self._score_sequences([ref_seq, alt_seq])  # pragma: no cover
+        return ref_ll, alt_ll, alt_ll - ref_ll  # pragma: no cover
+
+    def _prepare_variant_sequences(
+        self,
+        ref_window: Any,
+        variant: Any,
+        strand: str,
+    ) -> tuple[str, str]:  # pragma: no cover
+        """Build the reference and alternate sequences for one orientation."""
+        if len(ref_window.ref_sequence) != self.context_length_bp:
             raise ValueError(
                 f"reference window must contain exactly {self.context_length_bp} bases"
             )
         from evovariant_tr.sequence_mutate import apply_variant_to_reference  # noqa: PLC0415
 
-        alt_seq = apply_variant_to_reference(  # pragma: no cover
+        alt_seq = apply_variant_to_reference(
             ref_window.ref_sequence, variant, ref_window.variant_offset, strand=strand,
         )
-        ref_seq = (  # pragma: no cover
+        ref_seq = (
             reverse_complement(ref_window.ref_sequence)
             if strand == "reverse"
             else ref_window.ref_sequence
         )
+        if len(alt_seq) != self.context_length_bp:
+            raise ValueError(
+                f"alternate sequence must contain exactly {self.context_length_bp} bases"
+            )
+        return ref_seq, alt_seq
 
-        ref_ll = self._compute_log_likelihood(ref_seq)  # pragma: no cover
-        alt_ll = self._compute_log_likelihood(alt_seq)  # pragma: no cover
-        return ref_ll, alt_ll, alt_ll - ref_ll  # pragma: no cover
+    def _score_sequences(self, sequences: list[str]) -> list[float]:  # pragma: no cover
+        """Score sequences in model-sized chunks and return scalar scores.
 
-    def _compute_log_likelihood(self, sequence: str) -> float:  # pragma: no cover
-        """Compute the log-likelihood of a sequence under Evo 2."""
+        ``Evo2.score_sequences`` accepts a list of sequences.  The previous
+        implementation called it once per sequence, which made the adapter's
+        batch contract nominal rather than actual.  Chunking is kept here so a
+        caller can submit a large cohort without implicitly exceeding the
+        configured model batch size.
+        """
         if not EV2_AVAILABLE:  # pragma: no cover
             raise RuntimeError("Evo 2 not available in this environment")
-        raw = self._model.score_sequences([sequence])  # pragma: no cover
-        value = raw[0] if isinstance(raw, (list, tuple)) else raw[0]
-        if hasattr(value, "item"):
-            value = value.item()
-        return float(value)  # pragma: no cover
+        if not sequences:
+            return []
+        if any(len(sequence) != self.context_length_bp for sequence in sequences):
+            raise ValueError(
+                f"every Evo 2 input must contain exactly {self.context_length_bp} bases"
+            )
+
+        model_batch_size = max(1, int(self._config.batch_size))
+        scores: list[float] = []
+        for start in range(0, len(sequences), model_batch_size):
+            batch = sequences[start:start + model_batch_size]
+            raw = self._model.score_sequences(batch)
+            values = list(raw)
+            if len(values) != len(batch):
+                raise ValueError(
+                    "Evo 2 returned a score count different from the input batch"
+                )
+            for value in values:
+                if hasattr(value, "item"):
+                    value = value.item()
+                scores.append(float(value))
+        return scores
 
     def score_batch(self, variants: list[tuple[Any, Any, str]]) -> Any:  # pragma: no cover
+        """Score variants using batched model calls while isolating bad rows."""
         started = time.perf_counter()
         scored: list[ScoredVariant] = []
         failed: list[tuple[Any, str]] = []
+        prepared: list[tuple[Any, Any, str, str, str]] = []
+        sequence_batch: list[str] = []
         for ref_window, variant, strand in variants:
             try:
-                ref_score, alt_score, delta = self.score_variant(
-                    ref_window, variant, strand=strand
+                ref_seq, alt_seq = self._prepare_variant_sequences(
+                    ref_window, variant, strand
                 )
+                prepared.append((ref_window, variant, strand, ref_seq, alt_seq))
+                sequence_batch.extend((ref_seq, alt_seq))
+            except Exception as exc:  # pragma: no cover - GPU validation path
+                failed.append((variant, str(exc)))
+
+        try:
+            sequence_scores = self._score_sequences(sequence_batch)
+        except Exception as exc:  # pragma: no cover - GPU failure path
+            for _, variant, _, _, _ in prepared:
+                failed.append((variant, str(exc)))
+            sequence_scores = []
+
+        if sequence_scores:
+            if len(sequence_scores) != 2 * len(prepared):
+                error = "Evo 2 returned an incomplete batch result"
+                for _, variant, _, _, _ in prepared:
+                    failed.append((variant, error))
+                sequence_scores = []
+
+        if sequence_scores:
+            for index, (ref_window, variant, strand, _, _) in enumerate(prepared):
+                ref_score = sequence_scores[2 * index]
+                alt_score = sequence_scores[2 * index + 1]
+                delta = alt_score - ref_score
                 scored.append(
                     ScoredVariant(
                         identity=variant,
@@ -152,11 +217,16 @@ class Evo2Scorer(Scorer):
                         alternate_score=alt_score,
                         score_delta=delta,
                         allele_likelihood=delta,
-                        metadata={"strand": strand, "provenance": self.provenance()},
+                        metadata={
+                            "strand": strand,
+                            "model_batch_size": min(
+                                max(1, int(self._config.batch_size)),
+                                len(sequence_batch),
+                            ),
+                            "provenance": self.provenance(),
+                        },
                     )
                 )
-            except Exception as exc:  # pragma: no cover - GPU failure path
-                failed.append((variant, str(exc)))
         return ScoringResult(
             scored=scored,
             failed=failed,

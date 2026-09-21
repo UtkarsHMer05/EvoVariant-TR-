@@ -86,6 +86,25 @@ Active branch/worktree: `research/evovariant-tr` at
   handoff target. The official archive directory exposes the same recorded t0 file; no alternate
   target archive or target ID list was found in the repository or supplied handoff attachment.
 
+## Current engineering follow-up — 2026-09-21
+
+- The local `Evo2Scorer.score_batch` adapter now prepares forward/RC reference and alternate
+  sequences for all valid rows and submits them to `Evo2.score_sequences` in configured model-sized
+  chunks. A deterministic fake-model regression proves chunking, row-to-score mapping, and raw
+  delta arithmetic without importing model weights or spending on Modal.
+- `evo2_scorer_app.py` now also contains a bounded source-level `score_batch` endpoint with the
+  same canonical raw-score payload, persistent cache identities, input-order preservation, and
+  partial-failure reporting. The source helper was checked with a no-spend fake-model smoke; it
+  has not been deployed or invoked remotely.
+- This is an adapter implementation improvement, not remote batch-parity evidence. The deployed
+  canonical Modal app still exposes the verified single-variant endpoint only; the Phase 15 gate
+  therefore remains `BLOCKED` until a separately authorized remote batch smoke and recovery test
+  are completed after the Phase 3 and model-inclusion gates are resolved.
+
+The dated records below are retained as historical evidence. The latest `Current state`,
+`Current authoritative execution update`, and follow-up sections at the top of this file override
+older wording when a historical entry describes an earlier phase status or pre-pilot state.
+
 ## Handoff extraction
 
 - All 18 entries in `HANDOFF_MANIFEST.json` were extracted root-relative and verified by exact

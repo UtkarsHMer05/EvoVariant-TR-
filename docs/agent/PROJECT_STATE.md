@@ -69,6 +69,10 @@ Active branch/worktree: `research/evovariant-tr` at
   Modal billing is recorded as workspace-level evidence only: metered cost moved from `$11.49`
   before remote requests to `$11.82` after the corrected pilot family, billed cost remained
   `$0.00`, and no exact per-request invoice amount is asserted.
+- The latest read-only `modal billing summary` after the pilot reports workspace metered cost
+  `$11.99` (`$8.78` deployed apps and `$3.21` volumes) and billed cost `$0.00`. The provider's
+  negative credits/free-storage fields are not interpreted as a remaining-credit balance, and
+  this snapshot does not establish a per-request measured USD amount.
 - Superseded failure evidence is preserved in
   `artifacts/modal/phase2_pilot_20260921_failed_attempts.json`. The first deployment loaded
   `evo2_7b` successfully but failed at UCSC chromosome lookup because raw `10` was passed instead
@@ -350,10 +354,10 @@ Estimated spend to date: local validation and Phase 3 data work were `$0`; the a
 family has rate-based wall-time estimates of approximately `$0.084` across the cold failure,
 corrected miss, and cache-hit proxy records. This is an estimate, not an invoice.
 
-Measured spend to date: Modal reports workspace metered cost `$11.82`, billed cost `$0.00`, and
-the observed pilot-family workspace delta is approximately `$0.33` from the pre-remote baseline.
-Per-request measured USD is unavailable; the failed old `variant-analysis-evo2` app was not
-called.
+Measured spend to date: the latest Modal workspace snapshot reports metered cost `$11.99` and
+billed cost `$0.00`; the observed corrected pilot-family workspace delta remains approximately
+`$0.33` from the pre-remote baseline recorded in the pilot artifact. Per-request measured USD is
+unavailable; the failed old `variant-analysis-evo2` app was not called.
 
 ## Known blockers and exact next action
 

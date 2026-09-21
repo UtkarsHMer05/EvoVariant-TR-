@@ -719,7 +719,8 @@ figures from the single pilot record.
 - Implemented `src/evovariant_tr/downstream_pipeline.py` plus
   `scripts/train_from_features.py` and `scripts/hpo_from_features.py`. The existing `make train`
   and `make hpo` targets now execute these local scripts only when explicit feature/config paths
-  are provided; with no paths they continue to emit truthful blocked status artifacts.
+  are provided; with no paths they continue to emit truthful blocked status artifacts. Implementation
+  commit: `af97560` (`feat: add local downstream training and hpo runners`).
 - The feature loader verifies JSONL content hashes, model/layer identity, binary labels, gene
   metadata, split membership, normalized-ID uniqueness, and train/validation identity and gene
   disjointness. `LOCKED_TEST` rows are rejected rather than filtered.

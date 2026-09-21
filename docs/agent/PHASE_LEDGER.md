@@ -573,7 +573,8 @@ gate state.
   and Phase 9 remain `BLOCKED / NOT STARTED` because no real Phase 7 feature cache exists.
 - Added `src/evovariant_tr/downstream_pipeline.py`, `scripts/train_from_features.py`, and
   `scripts/hpo_from_features.py`. `make train` and `make hpo` retain blocked status behavior by
-  default and run only when explicit feature/config paths are supplied.
+  default and run only when explicit feature/config paths are supplied. Implementation commit:
+  `af97560` (`feat: add local downstream training and hpo runners`).
 - The loader verifies feature hashes and model/layer identity, requires TRAIN/VALIDATION labels
   and gene metadata, rejects LOCKED_TEST and duplicate IDs, and enforces train/validation
   identity and gene separation before fitting. Baselines fit only on TRAIN; metrics and HPO

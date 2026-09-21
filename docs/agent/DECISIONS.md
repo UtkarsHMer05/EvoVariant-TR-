@@ -1980,7 +1980,8 @@ Validation:
 `make train` and `make hpo` remain truthful `BLOCKED` status surfaces when `FEATURES` and, for
 HPO, `HPO_CONFIGS` are unset. With explicit paths they invoke only the local CPU scripts.
 `make validate` passed with 676 tests, 33 deselected, strict mypy, Ruff, secret scan, and 95.01%
-coverage. The new downstream contract suite passed 4 tests.
+coverage. The new downstream contract suite passed 4 tests. Implementation commit: `af97560`
+(`feat: add local downstream training and hpo runners`).
 
 ## Template for new decisions
 

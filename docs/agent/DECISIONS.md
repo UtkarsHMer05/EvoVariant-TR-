@@ -2089,6 +2089,39 @@ secret scanning, and 95.04% coverage. `make evaluate` with default variables wro
 status artifact and made no network or paid-compute request. Implementation commit: `1423577`
 (`feat: add frozen locked evaluation guard`).
 
+## D-073 — Refresh all no-spend control-plane and downstream status surfaces
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+After the Phase 14 engineering guard was added, the remaining local gates needed a fresh run so
+the checkpoint would distinguish current reproducibility evidence from older historical runs.
+These commands must not be used to imply that absent remote inference or scientific result
+artifacts exist.
+
+Decision:
+Run the free protocol, schema, registry, scientific-test, E2E, frontend, figure, and downstream
+status commands and preserve their actual outcomes. Treat the control-plane checks as PASS only
+for their respective local contracts. Treat the scientific Phase 6-19 surfaces as BLOCKED when
+their required remote predictions, feature artifacts, locked results, or registry inputs are
+absent. Preserve the frontend build warnings as warnings rather than hiding them.
+
+Consequences:
+The current no-spend checkpoint is reproducible: ML protocol, schema, model-registry, and
+experiment-registry checks pass; the scientific tier is 7 passed/1 skipped; the E2E tier is
+14 passed/1 skipped; and the frontend build succeeds. The figure manifest has zero available
+figures, and Phase 6/7/8/9/11/12/13/14/15/16/17/18/19 status surfaces remain blocked. No
+remote endpoint, model download, training, locked evaluation, deployment, release, or push was
+performed by this refresh.
+
+Validation:
+`make ml-protocol-verify`, `make schema-verify`, `make model-registry-verify`, `make
+registry-verify`, `make test-scientific`, `make test-e2e`, `make web-check`, `make figures`,
+and the Phase 6-19 status commands all completed with truthful output. The frontend build
+reported two existing Turbopack warnings about dynamic filesystem access in
+`apps/web/src/app/api/registry/route.ts`; no warning was promoted to a failure.
+
 ## Template for new decisions
 
 ### D-XXX — Title

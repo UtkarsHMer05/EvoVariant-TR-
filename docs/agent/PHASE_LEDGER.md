@@ -735,3 +735,18 @@ gate state.
   source files, Ruff, secret scan, and 95.04% coverage.
 - Dependency: a real approved Phase 7/downstream artifact chain and current exact-scope approval
   are required before any locked evaluation can be considered. Phases 15-19 remain blocked.
+
+## Fresh no-spend gate refresh — 2026-09-21
+
+- Local control-plane PASS evidence: ML protocol, schema, model-registry, and experiment-registry
+  verification all passed. The registry still contains no scientific result records.
+- Software validation evidence: `make test-scientific` passed 7 with 1 skip; `make test-e2e` passed
+  14 with 1 skip; and `make web-check` passed ESLint, TypeScript, and the Next production build.
+  The frontend build emitted two non-fatal Turbopack dynamic-filesystem tracing warnings for
+  `apps/web/src/app/api/registry/route.ts`.
+- Figure/status evidence: `make figures` produced zero available figures and `BLOCKED` manifests;
+  the Phase 6-19 status surfaces remained blocked for their documented missing dependencies. No
+  remote endpoint, model download, training, HPO, locked evaluation, deployment, release, or
+  push was performed.
+- Gate decision: free local/control-plane refresh `PASS`; scientific completion remains
+  `BLOCKED / PARTIAL` pending current exact-scope approval and immutable scientific artifacts.

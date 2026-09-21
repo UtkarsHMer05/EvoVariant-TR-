@@ -784,3 +784,22 @@ figures from the single pilot record.
   files, Ruff, secret scanning, and 95.04% coverage. The remaining Phase 15-19 gates are still
   blocked by absent real Phase 6/7/downstream artifacts, locked results, registry inputs, and
   current exact-scope approval.
+
+## Fresh no-spend gate refresh — 2026-09-21
+
+- `make ml-protocol-verify`, `make schema-verify`, `make model-registry-verify`, and
+  `make registry-verify` passed. The model registry reports 7 manifests with 1 included model
+  (`evo2`) and the remaining candidates explicitly `SUBSET_ONLY` or `DEFERRED_BY_COMPUTE`.
+- `make test-scientific` passed 7 tests with 1 explicit skip, and `make test-e2e` passed 14 tests
+  with 1 explicit skip. These are local software/control-plane evidence only; they do not prove
+  remote model inference or scientific cohort completion.
+- `make web-check` passed ESLint, TypeScript, and the production build. Next.js emitted two
+  non-fatal Turbopack warnings that dynamic filesystem access in
+  `apps/web/src/app/api/registry/route.ts` broadens tracing; this warning remains recorded rather
+  than suppressed.
+- `make figures` regenerated an explicit `BLOCKED` manifest with zero available figures because
+  no completed PRELIMINARY or FINAL run outputs are registered. Phase 6/7/8/9/11/12/13/14/15/16/
+  17/18/19 status commands likewise remained `BLOCKED` with no network or paid compute.
+- No scientific status changed: the Phase6A bounded PASS remains the latest authorized remote
+  work, the full Phase 6/7 chain still needs a current exact-scope approval, and the downstream
+  phases still need real immutable artifacts.

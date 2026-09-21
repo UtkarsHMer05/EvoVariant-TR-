@@ -173,6 +173,17 @@ This writes `artifacts/phase6/formal_budgeted_preflight_gate_20260921.json`. The
 refuses to start unless that artifact is `PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET` and its projected
 cumulative additional cost is at or below the `$7.75` safety stop.
 
+If the preflight terminates before a worker returns rows, preserve the failed sample artifact and
+the Modal app logs, verify that no active container remains, refresh billing, and stop. Do not
+interpret a transport or scheduling failure as a scientific result, retry indefinitely, or launch
+the full workload without a passing gate. The 2026-09-21 checkpoint had two such failures with
+zero rows and unchanged billing; the formal run therefore remains blocked pending an external
+Modal scheduling/transport resolution and a fresh explicit continuation decision.
+
+The runner now uses Modal 1.5.4's durable `FunctionCall` path (`spawn` followed by bounded
+`get(timeout=900)`) and explicitly sets the H100 class startup timeout to 900 seconds. This is a
+recovery-path correction only; it does not authorize another paid attempt or change the budget.
+
 After formal Evo2 completes, run:
 
 ```bash

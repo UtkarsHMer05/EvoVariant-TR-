@@ -27,7 +27,7 @@ closed:
 | Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
 | Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
 | Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/11 applicable tables sourced from the development subset; the fine-tuning table is explicitly `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` because Phase 10 is deferred, and a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
-| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap; workspace billed cost is `$0.00` and per-request measured USD is unavailable. |
+| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap. The later `$8.00`-authorized formal 64-row preflight was attempted twice but lost its Modal stream before any worker returned a row; billing remained `$0.00` and no full formal workload was launched. |
 
 The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
 the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a
@@ -337,8 +337,11 @@ The dependency-ordered phase decisions are maintained in
   deferred GPN, and subset-only AlphaMissense;
 - Phase 6/7 and Phases 8/9/11/12/13 are partial development-subset evidence
   only; no full-cohort or locked-test claim is made;
-- `ML-DEV-BUDGETED-001` is a frozen no-spend formal-study design only; no new Evo2,
-  Nucleotide Transformer, or Caduceus scoring has run;
+- `ML-DEV-BUDGETED-001` is a frozen formal-study design with a validated `$8.00` approval and
+  `$7.75` runner stop. Its exact CADD/PhyloP comparator artifacts are complete, but two bounded
+  64-row Evo2 preflight attempts failed before any worker returned a row, so no new Evo2,
+  Nucleotide Transformer, or Caduceus scoring has completed and the full formal run remains
+  blocked by `FAIL_FORMAL_PREFLIGHT`;
 - Phase 10 is formally deferred by compute, and Phase 14/15 remain scientifically
   blocked; Phase 15 has a local label-free planning/recovery contract but no
   authorized remote batch execution;

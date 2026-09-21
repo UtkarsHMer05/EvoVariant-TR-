@@ -9,11 +9,13 @@ Current phase: `PHASE 6/7 FORMAL BUDGETED PRE-COMPUTE GATE / PHASE 15/16/17 LOCA
 fresh exact-scope `$5.00` development approval was used for a bounded Evo2 TRAIN/VALIDATION
 prefix and the dependent CPU-only development stages; their verified PRELIMINARY summaries are
 now connected to the experiment registry and read-only workbench. The additive
-`ML-DEV-BUDGETED-001` design is frozen locally. The latest user-prioritized checkpoint now
-authorizes up to `$8.00` of additional Modal compute with a `$7.75` runner safety stop; no new
-Modal job has been launched in that authorization window yet.)
+`ML-DEV-BUDGETED-001` design is frozen locally. The latest user-prioritized checkpoint authorized
+up to `$8.00` of additional Modal compute with a `$7.75` runner safety stop; two bounded 64-row
+preflight attempts were launched under that authorization, but both failed before any scientific
+row completed because the Modal stream terminated during H100 scheduling. No successful new
+scoring or representation extraction exists.)
 
-Phase status: `BLOCKED / PARTIAL / FORMAL COMPUTE AUTHORIZED, PRE-COMPUTE GATE OPEN` at the final
+Phase status: `BLOCKED / PARTIAL / FORMAL PRE-COMPUTE FAILED EXTERNALLY` at the final
 release gate.
 The repository retains the schema-validated control plane, fail-closed model registry/adapters,
 deterministic CPU-only contracts for later experiment families, evidence-gated workbench, and
@@ -94,10 +96,15 @@ download, or paid workload has been launched yet.
   with 1,109 explicit missing rows, PhyloP100way hg38 has 3,997/4,000 usable values with 3 missing
   rows, and AlphaMissense has zero eligible missense rows/predictions in this cohort. Evidence is
   in `artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json` and its three
-  hash-addressed child artifacts; no labels were read for scoring and Modal was not invoked. The
-  next permitted actions are the commit gate, a fresh exact-scope approval artifact, a deterministic
-  64-row Evo2 preflight, the local preflight projection gate, and then resumable formal work only
-  if the measured projection remains below the `$7.75` safety stop.
+  hash-addressed child artifacts; no labels were read for scoring and Modal was not invoked. Two
+  exact-scope 64-row Evo2 preflight attempts then failed before a worker/container produced a
+  score: `ap-3nvzpB5VADtBwNaoF5aOmA` and `ap-2yoBkvnIItyhk0pULH36CA` both ended with
+  `StreamTerminatedError: Connection lost`. The final sample artifact is
+  `artifacts/phase6/phase6_formal_evo2_20260921_sample64.json` with zero completed shards,
+  zero remote rows, and unchanged `$19.33` metered / `$0.00` billed workspace billing. The local
+  `FAIL_FORMAL_PREFLIGHT` gate therefore blocks the full 4,000-row run and dependent formal
+  representations; no further paid retry is authorized without resolving the external Modal
+  scheduling/transport failure and obtaining a fresh explicit continuation decision.
 
 The untracked `.agents/` tree is a pre-existing local skills/workspace surface and is preserved;
 it is not part of the scientific amendment.

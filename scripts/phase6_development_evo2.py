@@ -351,9 +351,16 @@ def _prepare_batch(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     retries=0,
     scaledown_window=120,
     timeout=MAX_MODAL_BATCH_SECONDS,
+    startup_timeout=MAX_MODAL_BATCH_SECONDS,
 )
 class DevelopmentEvo2Worker:
-    """Warm H100 worker using the already qualified Evo2 model contract."""
+    """Warm H100 worker using the already qualified Evo2 model contract.
+
+    Calls are submitted with ``spawn`` and retrieved through the durable
+    ``FunctionCall.get`` path. This avoids tying a long H100 queue/startup
+    interval to the synchronous client output stream, which previously ended
+    with ``StreamTerminatedError`` before a worker returned a result.
+    """
 
     @modal.enter()
     def load_model(self) -> None:
@@ -720,7 +727,11 @@ def main() -> None:
                 break
             call_started = time.monotonic()
             try:
-                response = cast(dict[str, Any], worker.score_batch.remote(payload))
+                function_call = worker.score_batch.spawn(payload)
+                response = cast(
+                    dict[str, Any],
+                    function_call.get(timeout=MAX_MODAL_BATCH_SECONDS),
+                )
             except Exception as exc:  # noqa: BLE001 - preserve external failure evidence
                 failure = f"{type(exc).__name__}: {exc}"
                 stop_reason = "remote execution failed; no automatic retry was attempted"

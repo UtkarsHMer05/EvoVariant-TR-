@@ -84,7 +84,8 @@ def main() -> int:
     if sample.get("scientific_boundary", {}).get("labels_sent_to_modal") is not False:
         errors.append("sample artifact does not prove labels were excluded from Modal")
     model = sample.get("model")
-    if not isinstance(model, dict) or model.get("model_revision") != (
+    sample_revision = model.get("revision") if isinstance(model, dict) else None
+    if not isinstance(model, dict) or sample_revision != (
         "4b509ec2a22d6de472659f908bcb0714265ad3a7"
     ):
         errors.append("sample artifact model revision is not the approved Evo2 revision")
@@ -154,16 +155,24 @@ def main() -> int:
     )
     # The checked-in estimate is the minimum frozen planning basis.  The
     # measured sample rate can only increase the Evo2 component.
-    measured_rate = measured_sample_usd / remote_new_rows if remote_new_rows > 0 else math.nan
-    scaled_evo2 = measured_rate * FORMAL_NEW_ROWS if math.isfinite(measured_rate) else math.inf
-    projected_evo2 = max(estimate_evo2, scaled_evo2)
-    projected_total = projected_evo2 + estimate_nt + estimate_cad
-    if projected_total > SAFETY_STOP_USD:
+    measured_rate = (
+        measured_sample_usd / remote_new_rows if remote_new_rows > 0 else None
+    )
+    scaled_evo2 = (
+        measured_rate * FORMAL_NEW_ROWS
+        if measured_rate is not None and math.isfinite(measured_rate)
+        else None
+    )
+    projected_evo2 = max(estimate_evo2, scaled_evo2) if scaled_evo2 is not None else None
+    projected_total = (
+        projected_evo2 + estimate_nt + estimate_cad if projected_evo2 is not None else None
+    )
+    if projected_total is not None and projected_total > SAFETY_STOP_USD:
         errors.append(
             "projected cumulative additional cost exceeds safety stop: "
             f"{projected_total:.6f} > {SAFETY_STOP_USD:.2f}"
         )
-    if projected_total > HARD_CAP_USD:
+    if projected_total is not None and projected_total > HARD_CAP_USD:
         errors.append(
             "projected cumulative additional cost exceeds hard cap: "
             f"{projected_total:.6f} > {HARD_CAP_USD:.2f}"

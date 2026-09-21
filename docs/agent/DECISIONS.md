@@ -2550,6 +2550,65 @@ The formal study remains staged and fail-closed. A fast or incomplete sample can
 authorize the full run; conversely, a full run cannot be launched based only on a planning number.
 The 946-row locked test, Phase 14, and final/release claims remain outside this decision.
 
+## D-086 — Stop after two identical Modal preflight stream failures
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: The immediate retry portion of D-085 for this authorization window
+
+Context:
+The exact-scope approval and comparator gates passed, but the deterministic 64-row Evo2 preflight
+was attempted twice under the approved `$8.00` hard cap and `$7.75` runner safety stop. Both
+attempts completed image construction and then ended before any H100 worker/container returned a
+score, with `StreamTerminatedError: Connection lost`. Modal billing remained `$19.33` metered and
+`$0.00` billed before and after, and no active container remained.
+
+Decision:
+Stop paid execution at the failed preflight gate. Preserve the final failed sample artifact and
+the `FAIL_FORMAL_PREFLIGHT` projection artifact. Do not launch the 4,000-row Evo2 run, NT/Caduceus
+representation extraction, or downstream formal Phases 6-13 until the external Modal
+scheduling/transport problem is resolved and a fresh explicit continuation decision authorizes a
+new bounded attempt.
+
+Consequences:
+The formal 4,000-row study is not a PASS and has no scientific metrics. The old 2,848-row Evo2
+prefix remains preliminary, the 946-row locked test remains untouched, Phase 14 remains blocked,
+and no final, release, deployment, publication, or clinical claim is made. Local control-plane
+and comparator evidence remains valid and reusable.
+
+Validation:
+`artifacts/phase6/phase6_formal_evo2_20260921_sample64.json` records `FAILED`, zero completed
+shards, zero remote rows, and `labels_sent_to_modal: false`; the two app IDs are recorded in the
+phase ledger and project state; `artifacts/phase6/formal_budgeted_preflight_gate_20260921.json`
+records `FAIL_FORMAL_PREFLIGHT` and no full-launch authorization.
+
+## D-087 — Use durable Modal FunctionCall polling for the next bounded attempt
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: The synchronous result-collection path in the formal Evo2 runner
+
+Context:
+Both failed preflight attempts ended after approximately five minutes with no worker/container
+score and `StreamTerminatedError: Connection lost`. The runner used the synchronous
+`worker.score_batch.remote(...)` result path, which ties queue/startup waiting to the client output
+stream. The installed Modal SDK is 1.5.4 and exposes a durable `.spawn()` FunctionCall with
+server-side `.get(timeout=...)` polling.
+
+Decision:
+Change the formal Evo2 runner to submit each shard through `score_batch.spawn(...)` and retrieve
+the result through `FunctionCall.get(timeout=900)`. Set the class startup timeout explicitly to
+the same 900-second bounded batch timeout. Preserve `retries=0`, the atomic shard contract, the
+existing approval caps, and the two-failure stop; this change does not authorize a new paid run.
+
+Consequences:
+The next approved attempt can survive a long H100 queue/startup interval without depending on the
+synchronous client output stream. A missing, timed-out, non-finite, incomplete, or otherwise
+invalid response still fails closed, and the cost guard remains unchanged. The current failed
+preflight artifact is not rewritten or promoted.
+
+Validation:
+The recovery-path code passes `make validate`, including 703 tests, strict mypy, Ruff, secret
+scan, and 95.02% coverage. No new Modal request was made after the two failed attempts.
+
 ## Template for new decisions
 
 ### D-XXX — Title

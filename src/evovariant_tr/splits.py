@@ -28,6 +28,7 @@ from evovariant_tr.clinvar_parser import (
     parse_header,
     review_status_to_stars,
 )
+from evovariant_tr.manifest import ManifestError, load_manifest, verify_manifest
 
 ASSEMBLY = "GRCh38"
 MIN_REVIEW_STARS = 2
@@ -547,6 +548,24 @@ def _split_hash(records: list[dict[str, Any]]) -> str:
     return digest.hexdigest()
 
 
+def _verify_source_archive(data_path: Path, manifest_path: Path) -> None:
+    """Fail closed unless one manifest entry exactly verifies the source archive."""
+    manifest = load_manifest(manifest_path)
+    if len(manifest.entries) != 1 or manifest.entries[0].path != data_path.name:
+        raise ManifestError(
+            f"source manifest {manifest_path} must contain exactly {data_path.name!r}"
+        )
+    failures = verify_manifest(manifest, data_path.parent)
+    if failures:
+        report = "; ".join(
+            f"{failure.path}: {failure.kind} ({failure.detail})"
+            for failure in failures
+        )
+        raise ManifestError(
+            f"source archive verification failed for {data_path}: {report}"
+        )
+
+
 def validate_split_records(
     records: list[dict[str, Any]],
     locked_test_ids: set[str],
@@ -594,8 +613,15 @@ def build_phase3_artifacts(
     seed: int = 20260814,
 ) -> dict[str, Any]:
     """Build ignored record-level outputs and a small reviewable summary."""
-    t0_vus, definitive, t0_stats, t0_overlap, t0_conflicts = _collect_t0(t0_path)
-    temporal = audit_temporal_cohort(t0_path, t1_path)
+    t0_source = Path(t0_path)
+    t1_source = Path(t1_path)
+    t0_manifest_path = Path(t0_manifest)
+    t1_manifest_path = Path(t1_manifest)
+    _verify_source_archive(t0_source, t0_manifest_path)
+    _verify_source_archive(t1_source, t1_manifest_path)
+
+    t0_vus, definitive, t0_stats, t0_overlap, t0_conflicts = _collect_t0(t0_source)
+    temporal = audit_temporal_cohort(t0_source, t1_source)
     locked_test_ids = {
         record["normalized_variant_id"] for record in temporal.final_records
     }
@@ -607,8 +633,8 @@ def build_phase3_artifacts(
     split_invariants = validate_split_records(split_records, locked_test_ids)
     split_hash = _split_hash(split_records)
     source_hash_payload = {
-        "t0_manifest_sha256": sha256_file(t0_manifest),
-        "t1_manifest_sha256": sha256_file(t1_manifest),
+        "t0_manifest_sha256": sha256_file(t0_manifest_path),
+        "t1_manifest_sha256": sha256_file(t1_manifest_path),
     }
     source_manifest_hash = hashlib.sha256(
         json.dumps(source_hash_payload, sort_keys=True, separators=(",", ":")).encode(
@@ -658,8 +684,8 @@ def build_phase3_artifacts(
         "dataset_id": "evovariant-tr-phase3-v1",
         "protocol_id": "evovariant-tr-ml-extension",
         "source_archives": {
-            "t0": {"path": str(t0_path), "manifest": str(t0_manifest)},
-            "t1": {"path": str(t1_path), "manifest": str(t1_manifest)},
+            "t0": {"path": str(t0_source), "manifest": str(t0_manifest_path)},
+            "t1": {"path": str(t1_source), "manifest": str(t1_manifest_path)},
         },
         "source_manifest_hash": source_manifest_hash,
         "split_manifest": {

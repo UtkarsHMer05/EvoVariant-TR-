@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import gzip
-import json
 from pathlib import Path
 
+import pytest
+
+from evovariant_tr.manifest import ManifestError, build_entry, build_manifest, write_manifest
 from evovariant_tr.splits import (
     VALIDATION,
     CompactRecord,
@@ -143,10 +145,14 @@ def test_phase3_artifacts_are_serialized_with_hashes(tmp_path: Path) -> None:
         [_row("1", "Pathogenic", "reviewed by expert panel", "1", "T", "GENE_A")],
     )
     t1 = _write_gz(tmp_path / "t1.txt.gz", [])
-    t0_manifest = tmp_path / "t0.json"
-    t1_manifest = tmp_path / "t1.json"
-    t0_manifest.write_text(json.dumps({"name": "t0"}), encoding="utf-8")
-    t1_manifest.write_text(json.dumps({"name": "t1"}), encoding="utf-8")
+    t0_manifest = write_manifest(
+        build_manifest("t0", tmp_path, [build_entry(t0.name, tmp_path)]),
+        tmp_path / "t0.json",
+    )
+    t1_manifest = write_manifest(
+        build_manifest("t1", tmp_path, [build_entry(t1.name, tmp_path)]),
+        tmp_path / "t1.json",
+    )
     summary = build_phase3_artifacts(
         t0,
         t1,
@@ -157,6 +163,32 @@ def test_phase3_artifacts_are_serialized_with_hashes(tmp_path: Path) -> None:
     assert summary["status"] == "PASS"
     assert len(summary["source_manifest_hash"]) == 64
     assert (tmp_path / "out" / "split_manifest.json").is_file()
+
+
+def test_phase3_artifacts_fail_closed_on_source_archive_mismatch(tmp_path: Path) -> None:
+    t0 = _write_gz(
+        tmp_path / "t0.txt.gz",
+        [_row("1", "Pathogenic", "reviewed by expert panel", "1", "T", "GENE_A")],
+    )
+    t1 = _write_gz(tmp_path / "t1.txt.gz", [])
+    t0_manifest = write_manifest(
+        build_manifest("t0", tmp_path, [build_entry(t0.name, tmp_path)]),
+        tmp_path / "t0.json",
+    )
+    t1_manifest = write_manifest(
+        build_manifest("t1", tmp_path, [build_entry(t1.name, tmp_path)]),
+        tmp_path / "t1.json",
+    )
+    t0.write_bytes(t0.read_bytes() + b"tampered")
+
+    with pytest.raises(ManifestError, match="source archive verification failed"):
+        build_phase3_artifacts(
+            t0,
+            t1,
+            output_dir=tmp_path / "out",
+            t0_manifest=t0_manifest,
+            t1_manifest=t1_manifest,
+        )
 
 
 def test_split_helpers_cover_malformed_and_noncanonical_source_rows(

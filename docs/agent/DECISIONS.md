@@ -2649,6 +2649,36 @@ environment/timeouts, billing snapshot, CPU PASS, detached PASS, H100 diagnostic
 not-run downstream layers. `make validate` passed 703 tests with 95.02% coverage before the
 evidence commit; all diagnostic apps were stopped and `modal container list` was empty.
 
+## D-089 — Correct the isolated H100 diagnostic image without rerunning paid compute
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The bounded H100 diagnostic allocated a real H100 container but failed at `import torch` because
+the probe image added Python 3.12 without installing the PyTorch package into that interpreter.
+The existing formal Evo2 image already uses the known-good CUDA 12.4 PyTorch installation command.
+Independent local Phase 3, scientific, frontend, and browser gates can continue without another
+GPU request.
+
+Decision:
+Update `scripts/modal_h100_diagnostic.py` to install the same pinned `torch==2.4.0` wheel from
+the CUDA 12.4 PyTorch index used by the qualified formal image. Validate the correction with
+Ruff, strict mypy, and Python compilation only. Do not rerun the H100 diagnostic, mount
+`hf_cache`, load Evo2, or retry the formal 64-row preflight until a fresh explicit continuation
+authorizes that external execution.
+
+Consequences:
+The local client/container definition now addresses the observed dependency failure, but H100
+CUDA readiness remains unverified after the correction. The historical failure artifact is not
+rewritten. The exact recommendation remains `CLIENT_FIX_REQUIRED` until the corrected image is
+verified under a new authorized diagnostic; no formal study gate changes.
+
+Validation:
+`make data-qc`, `make phase3-audit`, and `make phase3-reference-audit` passed the current local
+data gates. The corrected H100 script passes Ruff, strict mypy, and compilation. No new Modal
+H100 or formal app was started in this continuation.
+
 ## Template for new decisions
 
 ### D-XXX — Title

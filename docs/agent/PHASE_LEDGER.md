@@ -990,3 +990,24 @@ genuine unavailable evidence, not values to infer.
   dependent GPU/downstream phases remain blocked. The durable report is
   `artifacts/modal_diagnostics/formal_preflight_failure_analysis_20260921.json`; its sole
   recommendation is `CLIENT_FIX_REQUIRED` before any new H100-layer diagnostic or formal retry.
+
+## Independent local gate refresh after the Modal diagnostic stop — 2026-09-21
+
+- `make data-qc` PASSed with deterministic regeneration, zero normalized-ID overlap, zero
+  TRAIN/VALIDATION gene overlap, zero locked-test overlap, 239,992 development rows, and split
+  hash `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
+- `make phase3-audit` PASSed all current source, temporal, deterministic, schema/hash, SNV,
+  and leakage gates. `make phase3-reference-audit` independently PASSed all 946 authoritative
+  temporal records against GRCh38; the refreshed evidence is
+  `artifacts/reference/grch38_validation_20260921.json`.
+- Protocol, ML-control-plane, schema, model-registry, experiment-registry, scientific-test,
+  frontend-build, and browser E2E gates pass. The browser tier is 4/4; the scientific tier is
+  7 passed with 1 documented skip. Phase 16 remains `PARTIAL` because its nine registered runs
+  are preliminary and no final run exists.
+- The minimal H100 diagnostic script now installs the same pinned PyTorch version used by the
+  qualified formal image. This correction is locally linted/typechecked/compiled only; the
+  original remote H100 failure remains the authoritative diagnostic outcome until a fresh
+  continuation authorizes verification. Phase 6 remains `FAIL_FORMAL_PREFLIGHT`.
+- Phase 17 final figures, Phase 18 clean-room reproduction, and Phase 19 release remain
+  `BLOCKED` for their documented missing scientific/final evidence. No status is promoted from
+  code presence or preliminary data alone.

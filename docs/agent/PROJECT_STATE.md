@@ -1124,3 +1124,28 @@ families were not invented.
   PASS, the full formal workload remains refused, no formal rows were accepted, labels were not
   sent remotely, and the locked test, training, HPO, fine-tuning, Phase 14, release, deployment,
   and publication boundaries remain untouched.
+
+## Independent local gate refresh after the Modal diagnostic stop — 2026-09-21
+
+- `make data-qc` completed `PASS` with deterministic regeneration, zero normalized-ID overlap,
+  zero TRAIN/VALIDATION gene overlap, zero locked-test overlap, 239,992 development records,
+  and split hash `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
+- `make phase3-audit` completed `PASS`; every current Phase 3 gate passed, including source
+  archive/hash verification, temporal resolution, deterministic regeneration, normalized
+  GRCh38 SNV identity, split leakage checks, and the ML-DEV-001 target-identity reconciliation
+  boundary. `make phase3-reference-audit` independently checked all 946 authoritative temporal
+  records and returned `PASS`. The refreshed tracked artifact is
+  `artifacts/reference/grch38_validation_20260921.json`.
+- The free validation sweep remains green: protocol verification, ML control-plane verification,
+  schema verification, model-registry verification (7 manifests, 1 included), experiment
+  registry verification, and the scientific tier (`7 passed, 1 skipped`) all passed. The
+  frontend production gate passed and `make web-e2e` passed all 4 browser journeys.
+- The H100 diagnostic definition now mirrors the already-qualified formal image by installing
+  `torch==2.4.0` from the CUDA 12.4 PyTorch index after adding Python 3.12. Ruff, strict mypy,
+  and local compilation pass for this correction. No remote H100 rerun was made; the prior
+  `ModuleNotFoundError` evidence remains immutable and the recommendation remains
+  `CLIENT_FIX_REQUIRED` until a fresh authorized diagnostic verifies the corrected image.
+- Phase 17 remains `BLOCKED` with zero final outputs, Phase 18 remains `BLOCKED` because a full
+  clean-room scientific Modal reproduction is unrun, and Phase 19 remains `BLOCKED` because the
+  registry is preliminary and full locked/final artifacts do not exist. These are independent
+  evidence gaps, not reasons to fabricate PASS results.

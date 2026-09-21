@@ -1,7 +1,7 @@
 {
   "artifact_id": "phase3-reference-validation-20260921",
   "assembly": "GRCh38",
-  "checked_at": "2026-09-21T07:40:40.630682+00:00",
+  "checked_at": "2026-09-21T16:58:46.764681+00:00",
   "checked_variant_count": 946,
   "decision": "all authoritative temporal records match the independent GRCh38 base audit",
   "fai": {

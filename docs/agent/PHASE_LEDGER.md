@@ -11,7 +11,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
 | 5 | Model registry + adapters | BLOCKED | Seven source-audited manifests pass schema verification; Evo2 is the only included model after real smoke. Six candidates are explicit `INFEASIBLE`/deferred records, so the multi-model inclusion gate remains open. |
 | 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; Phase 3 QA discrepancy remains material, only Evo2 is verified, full-cohort authorization/batch-parity evidence is absent, and prelaunch cost scenarios are recorded in `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`. |
-| 7 | Embedding/representation extraction | BLOCKED | `research/runs/phase7_rep_status.json`; fixed Evo2 embedding contract is source-level only, with no remote feature smoke/cache and no Phase 6 benchmark artifact. |
+| 7 | Embedding/representation extraction | BLOCKED | `df7a340`; `research/runs/phase7_rep_status.json`; fixed Evo2 embedding contract is source-level only, with no remote feature smoke/cache and no Phase 6 benchmark artifact. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
 | 10 | Fine-tuning / PEFT | BLOCKED | `research/runs/phase10_ft_status.json`; official training path, GPU smoke, and paid acknowledgement are absent. |

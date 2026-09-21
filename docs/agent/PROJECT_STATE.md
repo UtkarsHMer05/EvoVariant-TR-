@@ -19,8 +19,8 @@ seven candidates, but Evo2 is the only included model; the other six are explici
 infeasible with source-backed reasons. No full benchmark, training, HPO, fine-tuning, locked-test
 evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `739310d` (frontend dependency/lint hardening; current Python and
-web gates pass).
+Latest validated source baseline: `df7a340` (gated Evo2 embedding contract; current Python and web
+gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.

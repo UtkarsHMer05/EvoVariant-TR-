@@ -13,7 +13,7 @@ now connected to the experiment registry and read-only workbench.)
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
-frontend build gates. Seven completed `PRELIMINARY` registry runs now expose only hash-verified
+frontend build gates. Nine completed `PRELIMINARY` registry runs now expose only hash-verified
 development-subset summaries and partial figure sources; no result is promoted to `FINAL`. The
 approved Modal run produced 2,848 verified Evo2 development rows
 (2,276 TRAIN, 572 VALIDATION) from the 239,992-row development cohort and stopped at a
@@ -60,7 +60,7 @@ Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
 The frontend dependency/lint hardening was validated and committed in `739310d`. Continuation
 implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, `1423577`, `7fd912f`, `c53dfdb`,
-`69a2e4f`, and `0f1c5a4`; continuation documentation/status commits are `e39d3a3`, `b49b96a`,
+`69a2e4f`, `0f1c5a4`, and `c0ad1ad`; continuation documentation/status commits are `e39d3a3`, `b49b96a`,
 `e115d23`, `8264c70`, and `9f4a07c`. The current development runner and local feature/ablation
 adapters are covered by the latest validation pass recorded below.
 

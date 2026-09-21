@@ -1011,3 +1011,7 @@ genuine unavailable evidence, not values to infer.
 - Phase 17 final figures, Phase 18 clean-room reproduction, and Phase 19 release remain
   `BLOCKED` for their documented missing scientific/final evidence. No status is promoted from
   code presence or preliminary data alone.
+- The current no-spend phase-status refresh returns `BLOCKED` for Phases 6/7/8/9/11/12/13/14/15,
+  `DEFERRED_BY_COMPUTE` for Phase 10, `PARTIAL` for Phase 16, and `BLOCKED` for Phases 17/18/19.
+  `make modal-smoke` authenticates successfully but records `gpu_count: 0`, `PLANNED`, and no
+  remote invocation.

@@ -1149,3 +1149,7 @@ families were not invented.
   clean-room scientific Modal reproduction is unrun, and Phase 19 remains `BLOCKED` because the
   registry is preliminary and full locked/final artifacts do not exist. These are independent
   evidence gaps, not reasons to fabricate PASS results.
+- The current no-spend status surface is explicit: Phase 6/7/8/9/11/12/13/14/15 status commands
+  return `BLOCKED`, Phase 10 returns `DEFERRED_BY_COMPUTE`, Phase 16 returns `PARTIAL`, and
+  Phases 17/18/19 return `BLOCKED`. `make modal-smoke` passes authentication with `gpu_count: 0`,
+  `status: PLANNED`, and no remote invocation.

@@ -66,8 +66,9 @@ gate state.
 - The current free control-surface rerun passed the scientific/API E2E, ML protocol, schema,
   model-registry, and result-registry checks. The Modal preflight recorded authenticated
   `evovariant-tr` access as `PLANNED` with zero GPU count and no remote invocation. Regenerated
-  Phase 6 and 8–19 statuses, the Phase 17 figure bundle, and Phase 19 release check remain
-  `BLOCKED` with empty metrics/output surfaces.
+  Phase 6 and 8–9, 11–19 statuses, the Phase 17 figure bundle, and Phase 19 release check remain
+  `BLOCKED` with empty metrics/output surfaces; Phase 10 is separately `DEFERRED` with empty
+  metrics.
 - The same current-checkout rerun passed `make web-check` and all 4 `make web-e2e` journeys;
   only the documented non-failing Next tracing warnings were emitted.
 - Phase 10's optional adaptation requirement is now formally `DEFERRED` rather than represented

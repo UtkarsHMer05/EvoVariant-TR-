@@ -125,8 +125,9 @@ Active branch/worktree: `research/evovariant-tr` at
   skipped`), API E2E tier (`14 passed, 1 skipped`), ML protocol, JSON Schema, model-registry
   (`7` manifests, `1` included), and result-registry checks. `make modal-smoke` confirmed the
   approved `evovariant-tr` Modal environment and authentication while recording `PLANNED` with
-  zero GPU count and no remote invocation. Regenerated Phase 6 and 8–19 status surfaces,
-  figures, and release checks remain explicitly `BLOCKED` with no metrics or scientific outputs.
+  zero GPU count and no remote invocation. Regenerated Phase 6 and 8–9, 11–19 status surfaces,
+  figures, and release checks remain explicitly `BLOCKED` with no metrics or scientific outputs;
+  Phase 10 is the separately recorded no-metrics `DEFERRED` status.
 - The current frontend rerun also passed `make web-check` (ESLint, TypeScript, and Next production
   build) and `make web-e2e` (4 Playwright journeys). The build emitted only the known non-failing
   dynamic-registry filesystem and parent-package-lock tracing warnings.

@@ -159,7 +159,7 @@ benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 6 --family ZS \
 		--command-name benchmark-zero-shot --output research/runs/phase6_zs_status.json \
 		--blocker "Phase 3 QA discrepancy remains materially unresolved" \
-		--blocker "Phase 5 multi-model inclusion gate has only Evo2 included" \
+		--blocker "Phase 5 multi-model track is formally deferred with only Evo2 included" \
 		--blocker "full-cohort execution authorization and batch parity evidence are absent"
 
 .PHONY: extract-features

@@ -1,6 +1,6 @@
 # Phase Ledger — EvoVariant-TR ML Extension
 
-Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | SUBSET_ONLY
+Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | DEFERRED_BY_COMPUTE | SUBSET_ONLY
 
 | Phase | Title | Status | Evidence |
 |---:|---|---|---|
@@ -10,20 +10,67 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 | 3 | ML dataset + locked splits | PASS | `ML-DEV-001`/`ML-DEV-002`, `artifacts/phase3_integrity_audit_20260921.json`, independent `artifacts/reference/grch38_validation_20260921.json`, and authoritative manifests under `research/ml_extension/splits/`; 946 locked records, 536 B/LB, 410 P/LP, reference mismatches 0, deterministic regeneration PASS. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
 | 5 | Model registry + adapters | PASS / ROSTER FINAL | `artifacts/model_audit/phase5_final_roster_20260921.json`; Evo2 is `INCLUDED_RAW_SCORE`, Nucleotide Transformer/Caduceus are separated `INCLUDED_EMBEDDING_TRACK` decisions, CADD/PhyloP are public CPU-comparator contracts, GPN is `DEFERRED`, and AlphaMissense is `SUBSET_ONLY`; no full extraction or benchmark ran. |
-| 6 | Zero-shot multi-model benchmark | PARTIAL / BOUNDED DEVELOPMENT EVO2 | `artifacts/phase6/phase6_development_evo2_20260921.json`; 2,848 TRAIN/VALIDATION Evo2 rows were scored under the fresh $5 development approval. The full 239,992-record development cohort, locked benchmark, and multi-model benchmark were not run. |
-| 7 | Embedding/representation extraction | PARTIAL / RAW-SCORE FEATURE ADAPTER ONLY | `research/runs/phase7_development_subset_20260921/evo2_raw_score_features.json` and `.jsonl`; the verified Evo2 raw-score subset was adapted into four local features. NT/Caduceus feature extraction and a full representation cache were not run under the remaining cap. |
+| 6 | Zero-shot multi-model benchmark | PARTIAL / FORMAL PRE-COMPUTE GATE OPEN | The 2,848-row Evo2 run remains `PRELIMINARY` in `artifacts/phase6/phase6_development_evo2_20260921.json`. `ML-DEV-BUDGETED-001` freezes a 4,000-record development subset and records the prefix audit, population-vs-subset QC, manifest hashes, and cost plan under `research/ml_extension/splits/formal_budgeted_20260921/`. Exact formal CADD/PhyloP/AlphaMissense comparator artifacts now PASS before GPU: CADD 2,891/4,000 usable, PhyloP 3,997/4,000 usable, AlphaMissense zero eligible predictions; no labels were read for scoring and Modal was not invoked. The latest user checkpoint authorizes up to `$8.00` with a `$7.75` runner stop; the fresh approval, commit, and 64-row Evo2 preflight remain gates, and no new Evo2 scoring was run yet. |
+| 7 | Embedding/representation extraction | PARTIAL / FORMAL MATRIX GATED, NO NEW EXTRACTION | `research/runs/phase7_development_subset_20260921/evo2_raw_score_features.json` and `.jsonl` remain preliminary raw-score adapters. The formal amendment reserves the same 4,000 records for Evo2, NT, Caduceus, CADD, PhyloP, and eligible-only AlphaMissense; exact CPU comparator qualification is complete, while the predeclared NT/Caduceus layer matrix remains approval-gated and no new representation extraction has run. |
 | 8 | Downstream supervised models | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase8_development_subset_20260921/baselines/training_summary.json`; logistic, stump, and MLP baselines fit TRAIN and report VALIDATION only on the 2,848-row subset. |
 | 9 | Hyperparameter optimization | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase9_development_subset_20260921/hpo/hpo_metadata.json`; bounded logistic HPO selected on VALIDATION only. |
-| 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
+| 10 | Fine-tuning / PEFT | DEFERRED_BY_COMPUTE | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
 | 11 | Ensemble/meta-classifier | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase11_12_development_subset_20260921/equal_weight_logistic_mlp_analysis.json`; fixed 50/50 validation-only analysis from real subset predictions, not a full or registered result. |
 | 12 | Calibration + abstention | PARTIAL / DEVELOPMENT CALIBRATION SUBSET | `artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json`; Platt and isotonic maps fit TRAIN-only and evaluated on VALIDATION, alongside the fixed risk-coverage diagnostics. No locked-test selection. |
 | 13 | Ablation + robustness | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase13_development_subset_20260921/ablation_robustness.json` plus `artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json`; orientation/feature, learning-curve, and calibration-effect CPU cells ran, while context shifts, embeddings, and external comparators remain deferred. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED / LOCAL CONTRACT READY | `scripts/plan_batch.py`, `src/evovariant_tr/batch_pipeline.py`; label-free CSV/VCF parsing, immutable input/model plan, caller-supplied cost estimate, injected scorer, hash-verified resumable shards, failure taxonomy, and deterministic export are locally covered. Remote batch parity, kill/restart recovery, full-cohort authorization, and remote smoke remain absent. |
 | 16 | Research workbench UI | PARTIAL / PRELIMINARY REGISTRY CONNECTED | `scripts/verify_ui_registry.py`, `research/runs/phase16_ui_status.json`; nine completed PRELIMINARY runs are hash-verified and visible through the read-only registry route, which now reports `PARTIAL` until a `FINAL` run exists. Scientific panels remain evidence-gated. `make web-check` and four-test `make web-e2e` PASS. |
-| 17 | Figures/tables/report artifacts | BLOCKED / PARTIAL SOURCES | `14d9593`, `research/runs/phase17_fig_status.json`, and `research/figures/preliminary/preliminary_bundle_manifest.json`; 9/19 figure families and 9/12 tables have real subset sources. The final bundle remains blocked by 10 missing source families and produces zero final outputs; a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
+| 17 | Figures/tables/report artifacts | BLOCKED / CONDITIONAL GATE + PARTIAL SOURCES | `research/runs/phase17_fig_status.json` and `research/figures/preliminary/preliminary_bundle_manifest.json`; 9/19 figure families and 9/11 applicable tables have real subset sources. The `fine_tuning_summary` table is `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` because Phase 10 is `DEFERRED_BY_COMPUTE`. Nine core source families and a completed `FINAL` run are still missing, so the final bundle produces zero outputs; the separate non-promotable preliminary bundle contains 18 development-stage outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED / CONTROL SURFACE ONLY | Fresh clone/free-gate evidence remains valid; `research/runs/phase18_clean_room_status.json` now records that full scientific Modal reproduction is unrun and complete figure-source regeneration is missing. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; the PRELIMINARY registry is connected, but full-cohort science, locked evaluation, complete figures, and final-release evidence remain unresolved. |
+
+## Current formal development design checkpoint — 2026-09-21
+
+- `ML-DEV-BUDGETED-001` is an additive development-study amendment, not a rewrite of the
+  frozen 239,992-record population or the existing 2,848-row preliminary history. The 946-record
+  temporal cohort remains untouched `LOCKED_TEST`.
+- The prefix audit reconstructs the exact old rule as ascending
+  `SHA256(normalized_variant_id)` followed by a budget stop. It does not match the frozen manifest
+  row prefix, and representativeness is `NOT_ESTABLISHED`. The audit includes class, split, gene,
+  chromosome, position, variant type, source release, archived review status, and temporal metadata
+  availability. Consequence type and submission date were unavailable in the available schemas.
+- The formal subset has 4,000 records: TRAIN 3,199 (2,645 negative, 554 positive), VALIDATION
+  801 (581 negative, 220 positive), 3,226 negative and 774 positive overall, and 1,927 unique
+  genes. Hash selection is within frozen split/class strata using seed
+  `ML-DEV-BUDGETED-001|2026-09-21|sha256-v1`; selection does not read model predictions. TRAIN and
+  VALIDATION remain gene-disjoint, the subset has zero locked-test overlap, and 56 IDs overlap the
+  preliminary prefix for cache accounting only.
+- Formal artifacts are under
+  `research/ml_extension/splits/formal_budgeted_20260921/`: train, validation, and combined
+  manifests; `prefix_audit.json`; `population_vs_subset_QC.json`; `manifest_hashes.json`;
+  `source_metadata_aggregate.json`; and `cost_estimate.json`. The same exact manifests are reserved
+  for the predeclared raw-score and representation tracks and the common classifier matrix.
+- The local cost plan estimates Evo2 `$6.506744` for 3,944 new variants, NT `$0.378539`, Caduceus
+  `$0.226398`, and `$7.111681` total. The previous `$5.00` approval is consumed. The latest
+  explicit user authorization permits an `$8.00` hard cap and `$7.75` runner stop; the fresh
+  approval artifact, comparator evidence, and 64-row Evo2 preflight remain required before the
+  full formal workload. The read-only billing snapshot is provider-workspace evidence only, not an
+  invoice or approval.
+- The independent cache-reuse verifier PASSed exactly 56 compatible historical Evo2 rows after
+  checking model revision, 8,192-bp context, orientation, score semantics, shard payload hashes,
+  and aggregate arithmetic. The old prefix remains `PRELIMINARY` and is not treated as a formal
+  sample.
+- Exact formal comparator qualification completed locally before any GPU request. The aggregate
+  artifact is `artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json`
+  (`PASS_WITH_ALPHA_MISSENSE_DEFERRED`); CADD v1.7 coverage is 2,891/4,000, PhyloP100way hg38
+  coverage is 3,997/4,000, and AlphaMissense remains eligible-only with zero predictions. The
+  child artifact hashes are recorded in the aggregate; missing comparator values remain missing
+  and are never imputed as zeros or labels.
+- Local validation is green: `make validate` reports 703 passed, 33 deselected, strict mypy over
+  57 source files, Ruff, secret scan, and 95.02% coverage; the focused figure suite reports 13
+  passed. `make budgeted-study-design`, `make finetune-smoke`, `make figures`,
+  `make registry-verify`, `make ui-check`, `make web-check`, and four local browser E2E tests pass.
+  These are engineering/control-plane gates and do not promote a scientific run.
+- Phase 10 remains `DEFERRED_BY_COMPUTE`. The final figure gate now permits an explicit
+  `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` conditional family for the fine-tuning summary while
+  keeping mandatory core sources and a completed `FINAL` run blocking. The `finetune-smoke`
+  command surface now emits the same explicit status.
 
 ## Latest recovery, reference, and pre-Phase-6 checkpoint — 2026-09-21
 

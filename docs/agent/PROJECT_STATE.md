@@ -4,23 +4,27 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 15/16/17 LOCAL CONTINUATION / PARTIAL`
+Current phase: `PHASE 6/7 FORMAL BUDGETED PRE-COMPUTE GATE / PHASE 15/16/17 LOCAL CONTINUATION`
 (Phases 0-5 required gates and the separately approved Phase6A qualification are complete. A
 fresh exact-scope `$5.00` development approval was used for a bounded Evo2 TRAIN/VALIDATION
 prefix and the dependent CPU-only development stages; their verified PRELIMINARY summaries are
-now connected to the experiment registry and read-only workbench. The local Phase 15 batch
-planning/recovery contract and a separate non-promotable Phase 17 preliminary bundle are now
-implemented and validated without new paid compute.)
+now connected to the experiment registry and read-only workbench. The additive
+`ML-DEV-BUDGETED-001` design is frozen locally. The latest user-prioritized checkpoint now
+authorizes up to `$8.00` of additional Modal compute with a `$7.75` runner safety stop; no new
+Modal job has been launched in that authorization window yet.)
 
-Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
-schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
-contracts for later experiment families, evidence-gated workbench, and passing local Python/
-frontend build gates. Nine completed `PRELIMINARY` registry runs now expose only hash-verified
-development-subset summaries and partial figure sources; no result is promoted to `FINAL`. The
-local batch surface now validates label-free CSV/VCF input, persists a hashed immutable plan,
-supports injected-scoring shard recovery, and exports only hash-verified plan-order rows; it
-does not invoke Modal or create scientific outputs during planning. The final figure renderer
-still emits no outputs while ten source families are missing, while the separate preliminary
+Phase status: `BLOCKED / PARTIAL / FORMAL COMPUTE AUTHORIZED, PRE-COMPUTE GATE OPEN` at the final
+release gate.
+The repository retains the schema-validated control plane, fail-closed model registry/adapters,
+deterministic CPU-only contracts for later experiment families, evidence-gated workbench, and
+passing local Python/frontend build gates. Nine completed `PRELIMINARY` registry runs now expose
+only hash-verified development-subset summaries; no result is promoted to `FINAL`. The local
+batch surface now validates label-free CSV/VCF input, persists a hashed immutable plan, supports
+injected-scoring shard recovery, and exports only hash-verified plan-order rows; it does not
+invoke Modal or create scientific outputs during planning. The final figure renderer still emits
+no outputs: nine of nineteen figure families and nine of eleven applicable tables are sourced,
+one fine-tuning table is explicitly not applicable because Phase 10 is deferred, nine core source
+families remain missing, and no completed `FINAL` run is registered. The separate preliminary
 renderer emits 18 explicitly non-promotable development-stage files. The
 approved Modal run produced 2,848 verified Evo2 development rows
 (2,276 TRAIN, 572 VALIDATION) from the 239,992-row development cohort and stopped at a
@@ -38,6 +42,65 @@ AlphaMissense. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE`; Phase 14 and a
 deployment, publication, and clinical-classification surfaces remain excluded or blocked. The
 registry/UI connection is `PARTIAL`, and Phase 17 remains blocked until every required source
 family is present.
+
+## Current budgeted development checkpoint — 2026-09-21
+
+The latest user-prioritized checkpoint is recorded in
+`research/ml_extension/AMENDMENT_ML-DEV-BUDGETED-001.md` and the formal artifacts under
+`research/ml_extension/splits/formal_budgeted_20260921/`. The new explicit user authorization is
+recorded in the persistent decision log; the exact approval artifact must still be materialized
+and validated after the current validated changes are committed. No additional Modal job, model
+download, or paid workload has been launched yet.
+
+- The available development population remains 239,992 records: 191,957 TRAIN and 48,035
+  VALIDATION; the 946-record temporal cohort remains untouched `LOCKED_TEST`.
+- The existing 2,848-record Evo2 prefix is reconstructed exactly as an ascending
+  `SHA256(normalized_variant_id)` prefix stopped by a budget reserve. It does not match the frozen
+  manifest row prefix, and its representativeness is `NOT_ESTABLISHED`; all derived runs remain
+  `PRELIMINARY`.
+- The metadata audit covers class, split, gene, chromosome, position, variant type, source
+  release, archived t0 review status, and archived t0 `last_evaluated` availability. Submission
+  date and consequence type were unavailable in the frozen manifest and archived schema. Gene TVD
+  is `0.4251876397`, chromosome TVD `0.03507732795`, class TVD `0.0059606154`, split TVD
+  `0.0006901915`, and review-status TVD `0.0040953378`; descriptive similarity does not establish
+  representation.
+- `ML-DEV-BUDGETED-001` freezes a 4,000-record hash-selected subset: TRAIN 3,199 (2,645
+  negative, 554 positive), VALIDATION 801 (581 negative, 220 positive), 3,226 negative and 774
+  positive overall, and 1,927 unique genes. The selection is stratified by frozen split and class,
+  uses the seed `ML-DEV-BUDGETED-001|2026-09-21|sha256-v1`, preserves zero TRAIN/VALIDATION gene
+  overlap and zero locked-test overlap, and overlaps the old prefix in 56 IDs. It reads no model
+  predictions and never changes the 239,992-record population.
+- Formal manifest hashes are: development
+  `f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782`, TRAIN
+  `32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1`, VALIDATION
+  `b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b`, and the complete
+  hash index is in `manifest_hashes.json`.
+- The cost plan estimates 3,944 new Evo2 variants at `$6.506744`, NT at `$0.378539`, Caduceus at
+  `$0.226398`, and `$7.111681` total using measured Phase6/Phase6A rates. The previous `$5.00`
+  approval is exhausted. The latest explicit user authorization permits an `$8.00` hard cap and
+  `$7.75` runner safety stop; the fresh approval artifact is still pending the commit gate. The
+  read-only workspace billing snapshot captured `$19.27` metered, `$0.00` billed, `$8.78` deployed apps,
+  `$7.12` ephemeral apps, `$3.37` volumes, `-$15.90` credits, and `-$3.37` free storage. This
+  provider summary is not an invoice or authorization.
+- Validation after the amendment passes `make validate` with 703 tests, 33 deselected, strict
+  mypy over 57 source files, Ruff, secret scan, and 95.02% coverage. The focused figure suite
+  passes 13 tests; `make budgeted-study-design`, `make finetune-smoke`, `make figures`,
+  `make registry-verify`, `make ui-check`, `make web-check`, and four local `make web-e2e` tests
+  pass. The figure manifest remains truthfully `BLOCKED` with zero final outputs and an explicit
+  Phase 10 non-applicable entry.
+- Historical cache verification has independently PASSed for exactly 56 scientifically compatible
+  Evo2 rows; no other historical prefix row is eligible for implicit reuse. Exact formal CPU
+  comparator qualification has now PASSed before GPU work: CADD v1.7 has 2,891/4,000 usable values
+  with 1,109 explicit missing rows, PhyloP100way hg38 has 3,997/4,000 usable values with 3 missing
+  rows, and AlphaMissense has zero eligible missense rows/predictions in this cohort. Evidence is
+  in `artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json` and its three
+  hash-addressed child artifacts; no labels were read for scoring and Modal was not invoked. The
+  next permitted actions are the commit gate, a fresh exact-scope approval artifact, a deterministic
+  64-row Evo2 preflight, the local preflight projection gate, and then resumable formal work only
+  if the measured projection remains below the `$7.75` safety stop.
+
+The untracked `.agents/` tree is a pre-existing local skills/workspace surface and is preserved;
+it is not part of the scientific amendment.
 
 Historical latest source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
 freeze-summary/control baseline). The latest code-bearing continuation before the current

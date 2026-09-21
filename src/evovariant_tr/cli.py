@@ -440,7 +440,7 @@ def build_parser() -> argparse.ArgumentParser:
     deferred.add_argument("--blocker", action="append", required=True)
     deferred.add_argument(
         "--status",
-        choices=("BLOCKED", "DEFERRED", "NOT_RUN", "FAILED"),
+        choices=("BLOCKED", "DEFERRED", "DEFERRED_BY_COMPUTE", "NOT_RUN", "FAILED"),
         default="BLOCKED",
         help="Status to record; defaults to BLOCKED and never permits metrics.",
     )

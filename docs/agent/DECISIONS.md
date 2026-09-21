@@ -2368,6 +2368,188 @@ Implementation commit `6196dc5`; `make figures` produced the blocked final manif
 separate non-promotable preliminary manifest; `make registry-verify`, `make ui-check`,
 `make web-check`, and `make web-e2e` pass. No remote or paid compute was used.
 
+## D-081 — Keep conditional figure families explicit without weakening the final gate
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The registry-driven Phase 17 manifest had a required `finetuning.json` table source even though
+the project-control record already marked Phase 10 fine-tuning `DEFERRED_BY_COMPUTE`. Treating that
+conditional source as an unconditional missing source would make the final bundle permanently
+blocked for a study decision that is explicitly allowed by the master plan. Treating it as
+available would fabricate evidence.
+
+Decision:
+Extend the figure/table manifest contract with explicit applicability metadata. A conditional
+source may become `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` only when an exact decision artifact
+exists and has the expected status. For the current Phase 10 decision, `finetuning.json` is
+documented as not applicable with the reason that fine-tuning was not executed due to the compute
+budget deferral. The final bundle still requires every mandatory core source, a hash-valid
+completed `FINAL` registry run, and all applicable outputs.
+
+Alternatives:
+Keep fine-tuning unconditionally blocking, silently omit the family, fabricate a placeholder
+plot/table, or make all missing families conditional. These were rejected because they either
+misrepresent an explicit deferral or weaken the core scientific gate.
+
+Consequences:
+The manifest schema is `1.2`. The current final status remains `BLOCKED`: nine of nineteen figure
+families and nine of eleven applicable tables are available, nine core source families are still
+missing, and no `FINAL` run is registered. The fine-tuning table is visible in the manifest's
+not-applicable list with its decision artifact and reason. The existing preliminary outputs remain
+non-promotable.
+
+Validation:
+`tests/unit/test_figure_artifacts.py` passes 13 tests; strict mypy passes for the touched figure
+source and Ruff passes for the touched source, test, and design script; `make figures` produces a blocked final manifest and a separate
+non-promotable preliminary bundle without invoking Modal.
+
+## D-082 — Freeze a deterministic budgeted development subset before new scoring
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The existing 2,848-record Evo2 development run was an ascending SHA-256 normalized-ID prefix
+stopped by a paid-compute safety reserve. Its downstream artifacts are valid `PRELIMINARY`
+engineering/research evidence but are not a formal model-selection sample. Sequentially scoring
+all 239,992 available development records is not financially justified, and the existing `$5.00`
+approval is exhausted.
+
+Decision:
+Adopt additive study amendment `ML-DEV-BUDGETED-001`. Keep the complete 239,992-record frozen
+development population and the untouched 946-record `LOCKED_TEST`. Before any future scoring,
+freeze a 4,000-record subset with a 5,000-record maximum without another approval. Select within
+the frozen TRAIN/VALIDATION and class strata by ascending
+`SHA256(normalized_variant_id + '|' + 'ML-DEV-BUDGETED-001|2026-09-21|sha256-v1')` using the
+largest-remainder allocation. Do not read model predictions for selection, and use the same exact
+manifests for every formal track.
+
+The frozen allocation is TRAIN 3,199 (2,645 negative, 554 positive) and VALIDATION 801 (581
+negative, 220 positive), totaling 3,226 negative and 774 positive records across 1,927 unique
+genes. TRAIN/VALIDATION gene overlap and locked-test overlap are zero; 56 IDs overlap the old
+prefix and are counted only as potential cache reuse.
+
+Alternatives:
+Resume sequential full-population scoring, continue using the first/old prefix as formal, select
+by model predictions, or tune subset size against locked-test outcomes. These were rejected because
+they exceed the budget rationale, fail reproducibility or leakage controls, or turn the locked test
+into a selection instrument.
+
+Consequences:
+The protocol amendment, formal train/validation/development manifests, population-vs-subset QC,
+metadata audit, source metadata aggregate, and manifest hash index are stored under
+`research/ml_extension/splits/formal_budgeted_20260921/`. The audit concludes that the old prefix
+is `NOT_ESTABLISHED` as representative. The cost plan estimates Evo2 `$6.506744`, NT `$0.378539`,
+Caduceus `$0.226398`, and `$7.111681` total using measured rates. No new Modal job or model
+download is authorized by this decision; a fresh exact-scope approval and reserve are required.
+
+Validation:
+`scripts/design_budgeted_development_study.py` completes the audit and design twice
+idempotently, with no network or paid-compute call. The formal subset has unique IDs, remains in
+the authoritative population, preserves frozen split/class/gene constraints, has zero locked-test
+overlap, and has stable SHA-256 manifest hashes. The amendment is recorded in
+`research/ml_extension/AMENDMENT_ML-DEV-BUDGETED-001.md`.
+
+## D-083 — Use an explicit compute-deferral status for the Phase 10 command surface
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The authoritative Phase 10 decision and conditional figure policy use `DEFERRED_BY_COMPUTE`, but
+the generic `phase-status` CLI and `make finetune-smoke` surface only emitted the less specific
+`DEFERRED` value.
+
+Decision:
+Add `DEFERRED_BY_COMPUTE` to the execution-status and CLI contracts, and make
+`make finetune-smoke` emit that exact status. Preserve the generic `DEFERRED` value for other
+resource or workflow deferrals that do not have the Phase 10 compute-specific decision.
+
+Consequences:
+The Phase 10 status is now machine-readable and consistent across the decision artifact, phase
+ledger, figure applicability policy, CLI, and Make surface. This does not authorize training or
+change the compute boundary.
+
+Validation:
+`make finetune-smoke` writes `research/runs/phase10_ft_status.json` with
+`status: DEFERRED_BY_COMPUTE`; the CLI and experiment-framework tests pass, and strict mypy/Ruff
+pass for the touched source and test.
+
+## D-084 — Execute the exact-scope ML-DEV-BUDGETED-001 continuation under the new user authorization
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: The no-spend-only execution boundary in D-082 for this authorization window; it does not alter the frozen amendment or historical preliminary results.
+
+Context:
+The additive `ML-DEV-BUDGETED-001` design is frozen at 4,000 development records, but the prior
+`$5.00` approval was consumed by the 2,848-row preliminary Evo2 prefix. The user has now supplied
+an explicit checkpoint authorizing the formal development study with a maximum additional Modal
+compute of `$8.00` and a runner safety stop of `$7.75`. This authorization is narrower than the
+master protocol: it excludes the 946-record locked test, Phase 14, full-population scoring,
+fine-tuning, context/center GPU sweeps, GPN GPU work, deployment, release, and publication.
+
+Decision:
+Proceed through the pre-Phase-14 boundary only after the current validated changes are committed
+and a fresh approval artifact is created and validated against the current ML protocol hash,
+formal manifest hashes, combined record-set hash, current commit, model revision, H100 identity,
+exact workloads, and stop conditions. Materialize CADD/PhyloP evidence for the exact 4,000 rows
+before GPU work. Run a deterministic 64-row Evo2 preflight, compare its measured rate with the
+frozen estimate, and continue resumably only while the `$7.75` safety stop and `$8.00` hard cap
+remain satisfied. Reuse only the 56 rows independently verified as scientifically compatible
+historical cache results. Extract the predeclared NT and Caduceus layers with labels excluded from
+the remote boundary, then perform Phases 6-13 locally on TRAIN/VALIDATION only and stop before
+Phase 14. Phase 10 remains `DEFERRED_BY_COMPUTE`.
+
+Alternatives:
+Continue the previous no-spend stop, silently widen the budget, score all 4,000 immediately,
+reuse the old prefix as a formal sample, score the locked cohort, or replace missing comparator
+values with zeros or class labels. These were rejected because the new user authorization permits
+the exact formal study but does not waive its staged-cost, provenance, leakage, or stop controls.
+
+Consequences:
+The formal runner and representation runner are approval-gated, resumable, and fail closed on
+hash, identity, provenance, schema, projection, or budget violations. The formal 4,000-row result
+will supersede neither the preliminary 2,848-row artifact nor the locked cohort. A separate
+authorization is still required for Phase 14 and any final or release claim.
+
+Validation:
+The protocol hash is refreshed to the additive amendment, the frozen formal manifest hashes and
+`b4559171...` combined record-set hash are independently verified, the cost wording reports the
+positive `$2.111681` excess over the old cap, and local engineering gates remain green before the
+new approval is written.
+
+## D-085 — Require exact formal comparator qualification and a measured Evo2 preflight projection
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The formal development amendment permits CADD, PhyloP, AlphaMissense, Evo2, Nucleotide
+Transformer, and Caduceus tracks on one exact 4,000-row TRAIN/VALIDATION cohort. The new user
+authorization is bounded by a `$7.75` runner stop and an `$8.00` hard cap, so the frozen planning
+estimate alone is not sufficient evidence to launch the full Evo2 workload.
+
+Decision:
+Complete exact-cohort CADD/PhyloP/AlphaMissense qualification locally before GPU work and require
+a deterministic 64-row Evo2 preflight before the full 4,000-row Evo2 run. The preflight must
+verify completion, finite four-view scores, hash-verified predictions, remote label exclusion,
+historical-cache accounting, and a conservative measured cost projection. The full runner refuses
+to start unless the local projection artifact passes and remains at or below `$7.75`.
+
+Evidence:
+`artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json` records CADD
+coverage 2,891/4,000, PhyloP coverage 3,997/4,000, AlphaMissense zero eligible predictions,
+`modal_invoked: false`, and `labels_read_for_scoring: false`. Missing comparator values remain
+explicitly missing. `scripts/validate_formal_preflight.py` writes the separate measured projection
+gate after the sample artifact exists.
+
+Consequences:
+The formal study remains staged and fail-closed. A fast or incomplete sample cannot silently
+authorize the full run; conversely, a full run cannot be launched based only on a planning number.
+The 946-row locked test, Phase 14, and final/release claims remain outside this decision.
+
 ## Template for new decisions
 
 ### D-XXX — Title

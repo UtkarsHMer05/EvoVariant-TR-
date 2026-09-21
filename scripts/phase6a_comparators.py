@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Qualify CPU comparator lookups for the frozen Phase6A cohort.
+"""Qualify CPU comparator lookups for a frozen development or locked cohort.
 
 This runner is deliberately separate from the model benchmark.  It performs
-only public, CPU/network lookups for the 946-record locked cohort and writes
-complete row-level artifacts with explicit missingness.  It never reads the
+only public, CPU/network lookups for the explicitly supplied cohort and writes
+complete row-level artifacts with explicit missingness. It never reads the
 ClinVar label into a comparator row and never invokes Modal or a GPU.
 
 The CADD API and UCSC REST API are used as reproducible lookup surfaces.  A
@@ -34,12 +34,11 @@ from urllib.request import Request, urlopen
 
 import certifi
 
-LOCKED_MANIFEST = Path(
-    "research/ml_extension/splits/authoritative_locked_test_manifest.json"
-)
+LOCKED_MANIFEST = Path("research/ml_extension/splits/authoritative_locked_test_manifest.json")
 T1_ARCHIVE = Path("data/raw/clinvar/variant_summary_2026-08.txt.gz")
 DEFAULT_OUTPUT_DIR = Path("artifacts/phase6a/comparators")
 DEFAULT_CACHE = Path("data/derived/ml_extension/phase6a/comparator_lookup_cache.json")
+PROTOCOL_HASHES = Path("research/ml_extension/protocol_hashes.json")
 
 CADD_VERSION = "GRCh38-v1.7"
 CADD_API_VERSION = "v1.0"
@@ -53,9 +52,7 @@ PHYLOP_API_TEMPLATE = (
     "https://api.genome.ucsc.edu/getData/track?genome=hg38;track=phyloP100way;"
     "chrom=chr{chromosome};start={start_0based};end={end_0based_exclusive}"
 )
-MISSENSE_RE = re.compile(
-    r"p\.(?:[A-Z][a-z]{2}|[A-Z])\d+(?:[A-Z][a-z]{2}|[A-Z])(?:$|[),;\s])"
-)
+MISSENSE_RE = re.compile(r"p\.(?:[A-Z][a-z]{2}|[A-Z])\d+(?:[A-Z][a-z]{2}|[A-Z])(?:$|[),;\s])")
 NON_MISSENSE_RE = re.compile(r"p\.(?:=|[A-Za-z*]+(?:Ter|\*|fs|del|ins|dup|ext|\?))")
 
 
@@ -65,6 +62,16 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1 << 20), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _current_protocol_hash(repo_root: Path) -> str:
+    path = repo_root / PROTOCOL_HASHES
+    document = _load_json(path, {})
+    files = document.get("files") if isinstance(document, dict) else None
+    value = files.get("research/ml_extension/protocol.yaml") if isinstance(files, dict) else None
+    if not isinstance(value, str) or len(value) != 64:
+        raise ValueError(f"current ML-extension protocol hash is unavailable: {path}")
+    return value
 
 
 def _canonical_hash(value: Any) -> str:
@@ -244,14 +251,29 @@ def _manifest_rows(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]], st
     manifest = json.loads(path.read_text(encoding="utf-8"))
     rows = manifest.get("records")
     if not isinstance(rows, list) or not all(isinstance(row, dict) for row in rows):
-        raise ValueError("locked manifest records must be a list of objects")
-    if len(rows) != 946:
-        raise ValueError(f"Phase6A requires the 946-record locked cohort, got {len(rows)}")
-    record_hash = _canonical_hash(rows)
+        raise ValueError("cohort manifest records must be a list of objects")
+    expected_total = manifest.get("record_count")
+    if expected_total is None and isinstance(manifest.get("counts"), dict):
+        expected_total = manifest["counts"].get("total")
+    if expected_total is not None and len(rows) != int(expected_total):
+        raise ValueError(
+            f"cohort manifest record count does not match its metadata: "
+            f"expected {expected_total}, got {len(rows)}"
+        )
+    record_rows = [
+        {
+            key: value
+            for key, value in row.items()
+            if key not in {"sampling_hash", "sampling_stratum"}
+        }
+        for row in rows
+    ]
+    record_hash = _canonical_hash(record_rows)
     if record_hash != manifest.get("record_set_sha256"):
-        raise ValueError("locked manifest record_set_sha256 does not match its records")
-    if str(manifest.get("assembly")) != "GRCh38":
-        raise ValueError("locked manifest assembly must be GRCh38")
+        raise ValueError("cohort manifest record_set_sha256 does not match its records")
+    assemblies = {str(row.get("assembly")) for row in rows}
+    if assemblies != {"GRCh38"}:
+        raise ValueError("cohort manifest assembly must be uniformly GRCh38")
     return manifest, rows, record_hash
 
 
@@ -503,12 +525,14 @@ def run(
     max_workers: int,
 ) -> dict[str, Any]:
     manifest, rows, record_hash = _manifest_rows(manifest_path)
-    if manifest.get("counts", {}).get("total") != len(rows):
-        raise ValueError("locked manifest counts.total does not match its records")
+    expected_total = manifest.get("record_count")
+    if expected_total is None and isinstance(manifest.get("counts"), dict):
+        expected_total = manifest["counts"].get("total")
+    if expected_total is not None and int(expected_total) != len(rows):
+        raise ValueError("cohort manifest total does not match its records")
     if not t1_archive.is_file():
         raise FileNotFoundError(
-            "missing exact source archive for AlphaMissense eligibility: "
-            f"{t1_archive}"
+            f"missing exact source archive for AlphaMissense eligibility: {t1_archive}"
         )
     cache = _load_cache(cache_path)
 
@@ -605,7 +629,7 @@ def run(
             "manifest_path": str(manifest_path.relative_to(repo_root)),
             "manifest_sha256": _sha256(manifest_path),
             "record_set_sha256": record_hash,
-            "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+            "protocol_hash": _current_protocol_hash(repo_root),
         },
         "comparators": {
             "cadd": {

@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-09-21T00:00:00Z",
+  "hashes": {
+    "cost_estimate.json": "29c00a3cf67401580b94c8a118cc22207790046f4d9b14161c04de900395902c",
+    "formal_development_manifest.json": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_train_manifest.json": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+    "formal_validation_manifest.json": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "population_vs_subset_QC.json": "4a5b4f13935a628cba447bbb7c18dd61d4620c9836056f2ec64cd7140ef866f3",
+    "prefix_audit.json": "fc16ea4d39dc214ce1083bf04e8ce866e640db8f58036bd1f23917e205da46c6",
+    "source_metadata_aggregate.json": "bb8fe3ab40dfb4cd8fe15267ba02144ec585dcee2dce9d49eab7d50871bd3228"
+  },
+  "hashing": "SHA-256 over exact UTF-8 JSON bytes with stable indentation and sorted keys",
+  "study_id": "ML-DEV-BUDGETED-001"
+}

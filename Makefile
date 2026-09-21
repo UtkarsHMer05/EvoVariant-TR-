@@ -206,6 +206,42 @@ modal-smoke: ## Run a no-spend Modal preflight and append a deferred/planned cos
 # ML-extension phase surfaces (free/local; gated phases record status only)
 # ---------------------------------------------------------------------------
 
+.PHONY: budgeted-study-design
+budgeted-study-design: ## Audit the old prefix and freeze the no-spend formal development design
+	$(MAKE) check-venv
+	$(PYTHON) scripts/design_budgeted_development_study.py
+
+.PHONY: formal-budgeted-approval-verify
+formal-budgeted-approval-verify: ## Validate the exact-scope ML-DEV-BUDGETED-001 approval artifact
+	$(MAKE) check-venv
+	$(PYTHON) scripts/validate_ml_dev_budgeted_approval.py
+
+.PHONY: formal-budgeted-evo2
+formal-budgeted-evo2: ## Run the approval-gated formal Evo2 score workload (FORMAL_LIMIT/FORMAL_SUFFIX optional)
+	$(MAKE) check-venv
+	@test "$${$(COST_ACK_ENV)}" = "$(COST_ACK_VALUE)" || { \
+		echo "REFUSED: set $(COST_ACK_ENV)=$(COST_ACK_VALUE) for formal Evo2 work" >&2; \
+		exit 1; \
+	}
+	EVOVARIANT_TR_FORMAL_MODE=1 \
+	EVOVARIANT_TR_FORMAL_LIMIT="$(FORMAL_LIMIT)" \
+	EVOVARIANT_TR_FORMAL_RUN_SUFFIX="$(FORMAL_SUFFIX)" \
+	$(VENV)/bin/modal run scripts/phase6_development_evo2.py
+
+.PHONY: formal-budgeted-preflight-verify
+formal-budgeted-preflight-verify: ## Validate the completed 64-row formal Evo2 preflight and project full cost
+	$(MAKE) check-venv
+	$(PYTHON) scripts/validate_formal_preflight.py
+
+.PHONY: formal-budgeted-representations
+formal-budgeted-representations: ## Run the approval-gated formal NT/Caduceus representation matrix
+	$(MAKE) check-venv
+	@test "$${$(COST_ACK_ENV)}" = "$(COST_ACK_VALUE)" || { \
+		echo "REFUSED: set $(COST_ACK_ENV)=$(COST_ACK_VALUE) for formal representation work" >&2; \
+		exit 1; \
+	}
+	$(VENV)/bin/modal run scripts/formal_budgeted_representations.py
+
 .PHONY: benchmark-zero-shot
 benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 	$(MAKE) check-venv
@@ -260,7 +296,7 @@ finetune-smoke: ## Record/run the Phase 10 PEFT/fine-tuning gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 10 --family FT \
 		--command-name finetune-smoke --output research/runs/phase10_ft_status.json \
-		--status DEFERRED \
+		--status DEFERRED_BY_COMPUTE \
 		--blocker "official training path and tiny GPU smoke are unverified" \
 		--blocker "adaptation is formally deferred by compute and current approval scope"
 

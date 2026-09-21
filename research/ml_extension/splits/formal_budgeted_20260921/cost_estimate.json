@@ -1,0 +1,75 @@
+{
+  "approval_status": "NO_NEW_MODAL_AUTHORIZATION",
+  "caduceus": {
+    "config": {
+      "model_load_seconds": 4.873484,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.050366,
+      "variant_batch_size": 1
+    },
+    "estimated_seconds": 206.337484,
+    "estimated_usd": 0.22639807272222223,
+    "interpretation": "Phase6A warm throughput plus one model load; no cache exists for the formal subset"
+  },
+  "current_modal_billing_snapshot": {
+    "captured_at_utc": "2026-09-21T14:57:38.629608+00:00",
+    "command": "modal billing summary",
+    "interpretation": "workspace-level provider summary, not a per-run invoice or a compute approval",
+    "returncode": 0,
+    "status": "READ_ONLY_SNAPSHOT",
+    "stderr": "",
+    "stdout": "                              \n  Metered Cost:        19.27  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.12  \n    Volumes:            3.37  \n  Free Storage:        -3.37  \n  Credits:            -15.90  \n  Billed Cost:         $0.00  \n                              \n"
+  },
+  "estimated_total_phase6_7_usd": 7.111681157323971,
+  "evo2": {
+    "basis": "conservative scaling of the approved Phase 6 effective wall-rate estimate",
+    "estimated_seconds": 5930.197221508428,
+    "estimated_usd": 6.506744174157304,
+    "interpretation": "rate-based wall-time estimate; not an invoice",
+    "new_variants": 3944,
+    "phase6_effective_seconds_per_variant": 1.5035997011938205,
+    "phase6_processed_records": 2848,
+    "phase6_rate_estimate_usd": 4.698582,
+    "phase6a_best_warm_config": {
+      "lower_bound_estimated_usd": 6.011483826902778,
+      "model_load_seconds": 37.512655,
+      "model_sequence_batch_size": 2,
+      "sample_variants": 8,
+      "seconds_per_variant": 1.379642
+    }
+  },
+  "expected_reserve_after_run": {
+    "estimated_excess_over_previous_cap_usd": 2.1116811573239707,
+    "previous_cap_usd": 5.0,
+    "reason": "Estimated workload exceeds the previous $5.00 cap by $2.111681; the prior approval is consumed and no new budget cap was authorized by the planning instruction.",
+    "status": "UNAVAILABLE_UNTIL_FRESH_APPROVAL"
+  },
+  "formal_counts": {
+    "cached_evo2_overlap": 56,
+    "new_evo2_variants_required": 3944,
+    "total": 4000
+  },
+  "gpu_rate_usd_per_hour": 3.95,
+  "inputs": {
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "phase6_artifact": "artifacts/phase6/phase6_development_evo2_20260921.json",
+    "phase6_artifact_sha256": "be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5",
+    "phase6a_evo2_artifact": "artifacts/phase6a/phase6a_evo2_throughput_20260921.json",
+    "phase6a_evo2_artifact_sha256": "6015e40620d4d10adc355f0e8dd8edd9ae8751a3311b769be3f1b706b8251bb8",
+    "phase6a_representation_artifact": "artifacts/phase6a/phase6a_representation_throughput_20260921.json",
+    "phase6a_representation_artifact_sha256": "48240f71602ae25570ebad2e52d5579a19f2f4bfa848e3f149b6083c71829372"
+  },
+  "nucleotide_transformer": {
+    "config": {
+      "model_load_seconds": 4.401488,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.085149,
+      "variant_batch_size": 1
+    },
+    "estimated_seconds": 344.997488,
+    "estimated_usd": 0.37853891044444443,
+    "interpretation": "Phase6A warm throughput plus one model load; no cache exists for the formal subset"
+  },
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "study_id": "ML-DEV-BUDGETED-001"
+}

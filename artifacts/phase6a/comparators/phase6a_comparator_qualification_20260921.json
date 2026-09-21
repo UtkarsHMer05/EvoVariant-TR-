@@ -1,0 +1,62 @@
+{
+  "artifact_id": "phase6a-comparator-qualification-20260921",
+  "artifact_paths": [
+    "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+    "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+    "artifacts/phase6a/comparators/formal_budgeted_20260921/alphamissense_eligibility_20260921.json"
+  ],
+  "cache": {
+    "path": "data/derived/ml_extension/formal_budgeted_20260921_comparator_lookup_cache.json",
+    "purpose": "resumable raw API observations; not a scientific result registry entry",
+    "sha256": "3a5e1623699c37b45dbd729211eaea9d604052f470caa62ae0b9fb9ec60bc98b"
+  },
+  "comparators": {
+    "alphamissense": {
+      "artifact": "artifacts/phase6a/comparators/formal_budgeted_20260921/alphamissense_eligibility_20260921.json",
+      "artifact_sha256": "e5e8d6f013a7bb1e9c025e395c1dcab355c7dc27581e4c45aa46db75d1b7a7a1",
+      "eligible_missense_n": 0,
+      "prediction_coverage_fraction_of_eligible": null,
+      "prediction_coverage_n": 0
+    },
+    "cadd": {
+      "artifact": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+      "artifact_sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+      "coverage": {
+        "available": 2891,
+        "coverage_fraction": 0.72275,
+        "missing": 1109,
+        "total": 4000
+      },
+      "lookup_status_counts": {
+        "HTTP_OK": 4000
+      }
+    },
+    "phylop": {
+      "artifact": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+      "artifact_sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+      "coverage": {
+        "available": 3997,
+        "coverage_fraction": 0.99925,
+        "missing": 3,
+        "total": 4000
+      },
+      "lookup_status_counts": {
+        "HTTP_OK": 4000
+      }
+    }
+  },
+  "decision": "CADD and PhyloP are now available as full-cohort CPU comparator artifacts with row-level missingness. AlphaMissense has an auditable missense eligibility denominator but remains subset-only with zero prediction coverage. These artifacts do not authorize or constitute the Evo2 benchmark.",
+  "execution": {
+    "gpu_invoked": false,
+    "labels_read_for_scoring": false,
+    "locked_record_count": 4000,
+    "manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "modal_invoked": false,
+    "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+    "record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44"
+  },
+  "recorded_at_utc": "2026-09-21T15:55:52.316446+00:00",
+  "status": "PASS_WITH_ALPHA_MISSENSE_DEFERRED",
+  "summary_artifact": "artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json"
+}

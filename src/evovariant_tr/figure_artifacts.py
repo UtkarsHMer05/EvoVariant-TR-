@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 from xml.sax.saxutils import escape
 
-from evovariant_tr.evidence import AGGREGATE_ALLOWED_STAGES
+from evovariant_tr.evidence import AGGREGATE_ALLOWED_STAGES, EvidenceStage
 from evovariant_tr.registry import (
     Registry,
     RegistryError,
@@ -25,8 +25,21 @@ from evovariant_tr.registry import (
     verify_output_hashes,
 )
 
-FIGURE_MANIFEST_SCHEMA_VERSION = "1.1"
+FIGURE_MANIFEST_SCHEMA_VERSION = "1.2"
 BUNDLE_SCHEMA_VERSION = "1.0"
+
+# Conditional families are disabled only by an explicit, status-checked project
+# decision artifact. They are never silently removed from the study contract.
+CONDITIONAL_SOURCE_POLICIES: dict[str, dict[str, str]] = {
+    "finetuning.json": {
+        "phase": "10",
+        "status": "DEFERRED_BY_COMPUTE",
+        "reason": (
+            "Phase 10 fine-tuning was not executed due to the documented compute budget deferral."
+        ),
+        "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+    }
+}
 
 
 @dataclass(frozen=True)
@@ -307,9 +320,7 @@ def require_artifact_fields(artifact: dict[str, Any], fields: tuple[str, ...]) -
 
 
 def _stable_json_bytes(value: Any) -> bytes:
-    return (
-        json.dumps(value, indent=2, sort_keys=True, ensure_ascii=True) + "\n"
-    ).encode("utf-8")
+    return (json.dumps(value, indent=2, sort_keys=True, ensure_ascii=True) + "\n").encode("utf-8")
 
 
 def _load_rows(path: Path) -> list[dict[str, Any]]:
@@ -437,6 +448,22 @@ def _eligible_run_metadata(record: Any) -> dict[str, Any]:
     }
 
 
+def _conditional_source_policies(repo_root: Path) -> dict[str, dict[str, str]]:
+    """Return conditional policies only when their decision artifact agrees."""
+    active: dict[str, dict[str, str]] = {}
+    for source, policy in CONDITIONAL_SOURCE_POLICIES.items():
+        decision_path = repo_root / policy["decision_artifact"]
+        if not decision_path.is_file():
+            continue
+        try:
+            decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(decision, dict) and decision.get("status") == policy["status"]:
+            active[source] = dict(policy)
+    return active
+
+
 def build_registry_figure_manifest(
     registry: Registry,
     *,
@@ -447,11 +474,15 @@ def build_registry_figure_manifest(
     Only completed PRELIMINARY or FINAL runs can supply current inputs. The
     manifest includes source metadata and field-validation errors, never row
     values or metrics. A renderer may proceed only when all required figures
-    and tables have valid registered sources.
+    and tables have valid registered sources *and* at least one completed
+    FINAL run contributes the registered source surface. Preliminary runs can
+    populate the review bundle, but cannot promote it to the final bundle.
     """
     root = Path(repo_root).resolve()
+    conditional_policies = _conditional_source_policies(root)
     source_records: dict[str, list[dict[str, str]]] = {}
     eligible_runs: list[dict[str, Any]] = []
+    eligible_final_run_count = 0
     excluded_runs: list[dict[str, str]] = []
     blockers: list[str] = []
     all_runs = registry.list_runs()
@@ -481,6 +512,8 @@ def build_registry_figure_manifest(
                 "output_hashes": dict(sorted(record.output_hashes.items())),
             }
         )
+        if record.evidence_stage is EvidenceStage.FINAL:
+            eligible_final_run_count += 1
         for output_path in normalized_paths:
             source_name = Path(output_path).name
             source_records.setdefault(source_name, []).append(
@@ -498,6 +531,8 @@ def build_registry_figure_manifest(
     available_figures: list[dict[str, Any]] = []
     required_tables: list[dict[str, Any]] = []
     available_tables: list[dict[str, Any]] = []
+    not_applicable_figures: list[dict[str, str]] = []
+    not_applicable_tables: list[dict[str, str]] = []
     missing_sources: set[str] = set()
     invalid_sources: set[str] = set()
 
@@ -505,6 +540,34 @@ def build_registry_figure_manifest(
         sources, invalid = _source_records_for_spec(source_records, figure, root)
         missing = sorted(source for source, entries in sources.items() if not entries)
         entry = figure.to_dict()
+        policy = next(
+            (
+                conditional_policies[source]
+                for source in figure.source_artifacts
+                if source in conditional_policies
+            ),
+            None,
+        )
+        if policy is not None:
+            entry["applicability"] = "NOT_APPLICABLE_WITH_DOCUMENTED_REASON"
+            entry["applicability_reason"] = policy["reason"]
+            entry["decision_artifact"] = policy["decision_artifact"]
+            entry["available"] = False
+            entry["missing_sources"] = []
+            entry["source_records"] = sources
+            not_applicable_figures.append(
+                {
+                    "figure_id": figure.figure_id,
+                    "source_artifact": figure.source_artifacts[0],
+                    "phase": policy["phase"],
+                    "status": policy["status"],
+                    "reason": policy["reason"],
+                    "decision_artifact": policy["decision_artifact"],
+                }
+            )
+            required_figures.append(entry)
+            continue
+        entry["applicability"] = "REQUIRED"
         entry["available"] = not missing and not invalid
         entry["missing_sources"] = missing
         entry["source_records"] = sources
@@ -520,6 +583,34 @@ def build_registry_figure_manifest(
         sources, invalid = _source_records_for_spec(source_records, table, root)
         missing = sorted(source for source, entries in sources.items() if not entries)
         entry = table.to_dict()
+        policy = next(
+            (
+                conditional_policies[source]
+                for source in table.source_artifacts
+                if source in conditional_policies
+            ),
+            None,
+        )
+        if policy is not None:
+            entry["applicability"] = "NOT_APPLICABLE_WITH_DOCUMENTED_REASON"
+            entry["applicability_reason"] = policy["reason"]
+            entry["decision_artifact"] = policy["decision_artifact"]
+            entry["available"] = False
+            entry["missing_sources"] = []
+            entry["source_records"] = sources
+            not_applicable_tables.append(
+                {
+                    "table_id": table.table_id,
+                    "source_artifact": table.source_artifacts[0],
+                    "phase": policy["phase"],
+                    "status": policy["status"],
+                    "reason": policy["reason"],
+                    "decision_artifact": policy["decision_artifact"],
+                }
+            )
+            required_tables.append(entry)
+            continue
+        entry["applicability"] = "REQUIRED"
         entry["available"] = not missing and not invalid
         entry["missing_sources"] = missing
         entry["source_records"] = sources
@@ -533,6 +624,11 @@ def build_registry_figure_manifest(
 
     if not eligible_runs:
         blockers.append("no completed PRELIMINARY or FINAL run outputs are registered")
+    if eligible_final_run_count == 0:
+        blockers.append(
+            "no completed FINAL run outputs are registered; preliminary sources "
+            "cannot produce the final bundle"
+        )
     if missing_sources:
         blockers.append(
             "missing registered source artifact(s): " + ", ".join(sorted(missing_sources))
@@ -546,8 +642,8 @@ def build_registry_figure_manifest(
     status = (
         "READY"
         if not blockers
-        and len(available_figures) == len(REQUIRED_FIGURES)
-        and len(available_tables) == len(REQUIRED_TABLES)
+        and len(available_figures) == len(REQUIRED_FIGURES) - len(not_applicable_figures)
+        and len(available_tables) == len(REQUIRED_TABLES) - len(not_applicable_tables)
         else "BLOCKED"
     )
     return {
@@ -555,6 +651,15 @@ def build_registry_figure_manifest(
         "status": status,
         "registered_run_count": len(all_runs),
         "eligible_completed_run_count": len(eligible_runs),
+        "eligible_final_run_count": eligible_final_run_count,
+        "applicable_required_figure_count": len(REQUIRED_FIGURES) - len(not_applicable_figures),
+        "applicable_required_table_count": len(REQUIRED_TABLES) - len(not_applicable_tables),
+        "not_applicable_figure_families": sorted(
+            not_applicable_figures, key=lambda entry: entry["figure_id"]
+        ),
+        "not_applicable_table_families": sorted(
+            not_applicable_tables, key=lambda entry: entry["table_id"]
+        ),
         "eligible_runs": eligible_runs,
         "excluded_completed_runs": sorted(excluded_runs, key=lambda entry: entry["run_id"]),
         "required_figures": required_figures,
@@ -665,8 +770,7 @@ def _render_svg(spec: FigureSpec, rows: list[dict[str, Any]]) -> bytes:
         '<rect width="100%" height="100%" fill="white"/>',
         f'<text x="{width / 2:.1f}" y="28" text-anchor="middle" '
         f'font-family="sans-serif" font-size="18">{escape(spec.title)}</text>',
-        f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_height}" '
-        'stroke="#333"/>',
+        f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_height}" stroke="#333"/>',
         f'<line x1="{left}" y1="{top + plot_height}" x2="{left + plot_width}" '
         f'y2="{top + plot_height}" stroke="#333"/>',
         f'<text x="{left + plot_width / 2:.1f}" y="{height - 18}" text-anchor="middle" '
@@ -709,12 +813,11 @@ def _render_svg(spec: FigureSpec, rows: list[dict[str, Any]]) -> bytes:
             )
     if numeric_x:
         elements.append(
-            f'<polyline points="{" ".join(points)}" fill="none" stroke="#2563eb" '
-            'stroke-width="2"/>'
+            f'<polyline points="{" ".join(points)}" fill="none" stroke="#2563eb" stroke-width="2"/>'
         )
     elements.append(
         '<text x="790" y="468" text-anchor="end" font-family="sans-serif" font-size="10">'
-        'source-derived</text>'
+        "source-derived</text>"
     )
     elements.append("</svg>")
     return ("\n".join(elements) + "\n").encode("utf-8")
@@ -797,8 +900,14 @@ def _blocked_bundle(
         "schema_version": BUNDLE_SCHEMA_VERSION,
         "status": "BLOCKED",
         "source_manifest_sha256": manifest_hash,
-        "required_figure_count": len(manifest.get("required_figures", [])),
-        "required_table_count": len(manifest.get("required_tables", [])),
+        "required_figure_count": manifest.get(
+            "applicable_required_figure_count", len(manifest.get("required_figures", []))
+        ),
+        "required_table_count": manifest.get(
+            "applicable_required_table_count", len(manifest.get("required_tables", []))
+        ),
+        "not_applicable_figure_families": manifest.get("not_applicable_figure_families", []),
+        "not_applicable_table_families": manifest.get("not_applicable_table_families", []),
         "outputs": [],
         "blockers": sorted(set(blockers)),
         "scientific_outputs_included": False,
@@ -868,6 +977,14 @@ def render_figure_bundle(
                 )
             )
         eligible_runs = list(manifest.get("eligible_runs", []))
+        applicable_figure_count = manifest.get(
+            "applicable_required_figure_count", len(REQUIRED_FIGURES)
+        )
+        applicable_table_count = manifest.get(
+            "applicable_required_table_count", len(REQUIRED_TABLES)
+        )
+        not_applicable_figure_count = len(manifest.get("not_applicable_figure_families", []))
+        not_applicable_table_count = len(manifest.get("not_applicable_table_families", []))
         methods = (
             "# Methods\n\n"
             "This bundle was generated from hash-verified outputs of completed "
@@ -875,8 +992,10 @@ def render_figure_bundle(
             "from source artifact rows; no values are entered by the renderer.\n\n"
             f"- Source manifest SHA-256: `{manifest_hash}`\n"
             f"- Eligible completed runs: `{len(eligible_runs)}`\n"
-            f"- Figure families: `{len(REQUIRED_FIGURES)}`\n"
-            f"- Required tables: `{len(REQUIRED_TABLES)}`\n"
+            f"- Applicable required figure families: `{applicable_figure_count}`\n"
+            f"- Applicable required tables: `{applicable_table_count}`\n"
+            f"- Not-applicable figure families: `{not_applicable_figure_count}`\n"
+            f"- Not-applicable table families: `{not_applicable_table_count}`\n"
         ).encode()
         limitations = (
             b"# Limitations\n\n"
@@ -932,8 +1051,14 @@ def render_figure_bundle(
         "schema_version": BUNDLE_SCHEMA_VERSION,
         "status": "READY",
         "source_manifest_sha256": manifest_hash,
-        "required_figure_count": len(REQUIRED_FIGURES),
-        "required_table_count": len(REQUIRED_TABLES),
+        "required_figure_count": manifest.get(
+            "applicable_required_figure_count", len(REQUIRED_FIGURES)
+        ),
+        "required_table_count": manifest.get(
+            "applicable_required_table_count", len(REQUIRED_TABLES)
+        ),
+        "not_applicable_figure_families": manifest.get("not_applicable_figure_families", []),
+        "not_applicable_table_families": manifest.get("not_applicable_table_families", []),
         "outputs": output_records,
         "blockers": [],
         "scientific_outputs_included": True,

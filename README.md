@@ -26,8 +26,17 @@ closed:
 | Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
 | Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
 | Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
-| Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/12 tables sourced from the development subset; a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
+| Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/11 applicable tables sourced from the development subset; the fine-tuning table is explicitly `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` because Phase 10 is deferred, and a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
 | Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap; workspace billed cost is `$0.00` and per-request measured USD is unavailable. |
+
+The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
+the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a
+4,000-record subset from the 239,992-record development population: 3,199 TRAIN and 801
+VALIDATION, with 3,226 negative and 774 positive rows, 1,927 unique genes, zero
+TRAIN/VALIDATION gene overlap, zero locked-test overlap, and 56 IDs overlapping the old prefix
+for cache accounting only. The old prefix audit concludes `NOT_ESTABLISHED` for
+representativeness. The formal manifests, QC, hashes, and cost plan are in
+`research/ml_extension/splits/formal_budgeted_20260921/`.
 
 The authoritative execution state is maintained in
 [`CODEX_MASTER_PROMPT.md`](CODEX_MASTER_PROMPT.md),
@@ -65,8 +74,8 @@ make phase3-audit
 make phase3-freeze
 ```
 
-At the verified current baseline, `make validate` passes 700 tests with 33
-deselected and 95.01% coverage. The scientific tier passes 7 tests with 1
+At the verified current baseline, `make validate` passes 703 tests with 33
+deselected and 95.02% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
 are recorded in the project-control files.
@@ -233,11 +242,14 @@ make figures
 This writes a deterministic metadata manifest under the ignored
 `research/runs/` directory and a bundle manifest under
 `research/figures/bundle_manifest.json`. The Phase 17 contract covers all 19
-required figure families and 12 required tables. The final renderer reports
+required figure families and 12 declared tables. The final renderer reports
 `BLOCKED`, removes only outputs listed by the prior final bundle manifest, and
 produces no final scientific figures, tables, placeholder metrics, or inferred
-values while ten required source families are missing. `make figures` also
-writes a separate `PARTIAL` manifest at
+values while nine mandatory source families are missing and no completed `FINAL`
+run is registered. The conditional `fine_tuning_summary` table is explicitly
+`NOT_APPLICABLE_WITH_DOCUMENTED_REASON` under the recorded Phase 10
+`DEFERRED_BY_COMPUTE` decision; this does not waive any mandatory core source.
+`make figures` also writes a separate `PARTIAL` manifest at
 `research/figures/preliminary/preliminary_bundle_manifest.json`; it contains 9
 development-stage figure outputs and 9 tables (18 files total), is marked
 `evidence_stage: PRELIMINARY` and `promotable: false`, and must not be treated
@@ -264,6 +276,22 @@ The sample command writes a `PLANNED` status under ignored
 `research/runs/phase15_batch_plan/`. Remote batch parity, kill/restart evidence,
 full-cohort execution, and any paid batch workload remain separately blocked and
 require a new exact-scope approval.
+
+## Budgeted development design (no-spend checkpoint)
+
+Before any new scoring, run the local audit/design command:
+
+```bash
+make budgeted-study-design
+```
+
+It reconstructs the old prefix selection, compares available metadata against all 239,992
+development records, freezes `ML-DEV-BUDGETED-001`, and writes idempotent manifests and QC. It
+does not read model predictions for selection and does not invoke Modal. The measured-rate cost
+plan is `$6.506744` for 3,944 new Evo2 variants, `$0.378539` for NT, `$0.226398` for Caduceus,
+and `$7.111681` total. The previous `$5.00` approval is exhausted; the expected reserve is
+unavailable until a fresh exact-scope approval, so the command must be completed and reviewed
+before any paid workload is considered.
 
 ## Modal and paid compute
 
@@ -309,6 +337,8 @@ The dependency-ordered phase decisions are maintained in
   deferred GPN, and subset-only AlphaMissense;
 - Phase 6/7 and Phases 8/9/11/12/13 are partial development-subset evidence
   only; no full-cohort or locked-test claim is made;
+- `ML-DEV-BUDGETED-001` is a frozen no-spend formal-study design only; no new Evo2,
+  Nucleotide Transformer, or Caduceus scoring has run;
 - Phase 10 is formally deferred by compute, and Phase 14/15 remain scientifically
   blocked; Phase 15 has a local label-free planning/recovery contract but no
   authorized remote batch execution;

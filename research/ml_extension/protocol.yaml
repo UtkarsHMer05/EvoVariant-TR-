@@ -4,12 +4,13 @@
 
 protocol_id: evovariant-tr-ml-extension
 protocol_version: "1.1.0"
-status: frozen_for_development_with_dated_deviation
+status: frozen_for_development_with_dated_deviations_and_additive_amendment
 frozen_at: "2026-09-21"
 project: EvoVariant-TR
 relationship_to_original: separate_ml_extension
 protocol_deviation_id: ML-DEV-001
 reference_deviation_id: ML-DEV-002
+protocol_amendment_id: ML-DEV-BUDGETED-001
 
 original_protocol:
   path: research/protocol/protocol.yaml
@@ -64,6 +65,39 @@ data_contract:
     group_key: gene_symbol
     require_gene_grouped_validation: true
     raw_archives_required: true
+
+budgeted_development_amendment:
+  amendment_id: ML-DEV-BUDGETED-001
+  date: "2026-09-21"
+  population_manifest_path: data/derived/ml_extension/phase3/split_manifest.json
+  population_total: 239992
+  locked_test_total: 946
+  locked_test_untouched: true
+  target_total: 4000
+  maximum_total_without_new_approval: 5000
+  sampling_seed: ML-DEV-BUDGETED-001|2026-09-21|sha256-v1
+  selection_rule: sha256_normalized_id_within_split_and_label_strata_largest_remainder
+  selection_uses_model_predictions: false
+  formal_manifest_directory: research/ml_extension/splits/formal_budgeted_20260921
+  formal_manifest_paths:
+    - research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json
+    - research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json
+    - research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json
+  tracks:
+    raw_scores:
+      - evo2
+      - cadd
+      - phylop
+      - alphamissense_eligible_subset_only
+    representations:
+      - evo2_raw_score_features
+      - nucleotide_transformer
+      - caduceus
+  predeclared_layers:
+    nucleotide_transformer: [8, 16, 24]
+    caduceus: [4, 8, 16]
+  no_new_modal_authorization: true
+  fresh_exact_scope_approval_required: true
   reference:
     assembly: GRCh38
     source_manifest_path: data/manifests/grch38.json

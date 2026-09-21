@@ -64,12 +64,12 @@ def test_phase_status_command_can_record_formal_deferral(
             "--output",
             str(output),
             "--status",
-            "DEFERRED",
+            "DEFERRED_BY_COMPUTE",
             "--blocker",
             "training path requires separate approval",
         ]
     ) == 0
-    assert json.loads(output.read_text(encoding="utf-8"))["status"] == "DEFERRED"
+    assert json.loads(output.read_text(encoding="utf-8"))["status"] == "DEFERRED_BY_COMPUTE"
     assert "deferred-phase.json" in capsys.readouterr().out
 
 

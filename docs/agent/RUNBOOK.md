@@ -103,6 +103,87 @@ shards before writing JSONL.
 Remote batch parity, kill/restart recovery, full-cohort execution, and any paid compute remain
 blocked until a new exact-scope approval and a fresh remote smoke satisfy the master prompt.
 
+## ML-DEV-BUDGETED-001 local design checkpoint
+
+The existing 2,848-row Evo2 prefix is preliminary and must not be promoted to the formal
+model-selection study. Before requesting any new compute, run the no-spend audit and subset design:
+
+```bash
+make budgeted-study-design
+```
+
+The command reconstructs the prefix's ascending `SHA256(normalized_variant_id)` selection,
+compares available development metadata against all 239,992 records, and writes the frozen
+4,000-record train/validation manifests, QC, hash index, and cost plan under
+`research/ml_extension/splits/formal_budgeted_20260921/`. Selection is stratified by the frozen
+split and class, uses the recorded amendment seed, preserves gene-disjoint train/validation and
+zero locked-test overlap, and never reads model predictions. The same manifests are required for
+Evo2, CADD, PhyloP, eligible-only AlphaMissense, NT, and Caduceus tracks.
+
+This is a local planning command only. It does not call Modal, download weights, run scoring,
+extract representations, fit classifiers, tune hyperparameters, fine-tune, or evaluate the locked
+test. The current rate-based plan is `$7.111681` total (`$6.506744` Evo2, `$0.378539` NT,
+`$0.226398` Caduceus), with 3,944 new Evo2 variants after 56 prefix overlaps. The previous
+`$5.00` approval is exhausted. The latest explicit user authorization permits an `$8.00` hard cap
+and `$7.75` runner safety stop, but the fresh approval artifact must be created from the committed
+validated state and pass its exact hash checks before Modal work.
+
+Before remote work, materialize the exact formal comparator evidence and verify the historical
+cache reuse artifact:
+
+```bash
+make formal-budgeted-approval-verify  # after the fresh approval artifact exists
+```
+
+The comparator utility is CPU/network-only and must be run against
+`formal_development_manifest.json`, recording CADD v1.7, UCSC phyloP100way hg38, coverage,
+missingness, lookup failures, score semantics, source versions, and artifact hashes. The fresh
+approval must include the current ML protocol hash, the three formal manifest hashes, the combined
+record-set hash, the 56-row cache-reuse verification hash, the current commit, exact model
+revisions, H100, the `$8.00` hard cap, `$7.75` safety stop, and all excluded workloads.
+
+The completed comparator qualification for this checkpoint is
+`artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json`; it records CADD
+2,891/4,000 coverage, PhyloP 3,997/4,000 coverage, AlphaMissense zero eligible predictions,
+`modal_invoked: false`, and `labels_read_for_scoring: false`. Do not replace its missing values
+with zeros or labels.
+
+Run the deterministic 64-row Evo2 preflight first:
+
+```bash
+EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS \
+  make formal-budgeted-evo2 FORMAL_LIMIT=64 FORMAL_SUFFIX=sample64
+```
+
+Inspect the resulting sample artifact for reference-allele parity, all four orientation views,
+finite scores, shard hash/resume behavior, and measured cost. Continue with `FORMAL_SUFFIX=full`
+only after the local gate below passes and the measured projection for the new 3,944-variant
+workload plus the NT/Caduceus plan remains below `$8.00` and the runner safety stop is not crossed.
+The full Evo2 runner reuses only
+the 56 independently verified historical rows, sends no labels remotely, and writes atomic
+resumable shards.
+
+Materialize and validate the measured projection before the full run:
+
+```bash
+make formal-budgeted-preflight-verify
+```
+
+This writes `artifacts/phase6/formal_budgeted_preflight_gate_20260921.json`. The full runner
+refuses to start unless that artifact is `PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET` and its projected
+cumulative additional cost is at or below the `$7.75` safety stop.
+
+After formal Evo2 completes, run:
+
+```bash
+EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS make formal-budgeted-representations
+```
+
+This extracts all predeclared NT layers 8/16/24 and Caduceus layers 4/8/16 in one forward pass
+per shard, persists reference/alternate/orientation vectors and aggregate delta, absolute,
+cosine, distance, and provenance fields, and joins labels locally only. Stop all workers and
+refresh billing before beginning the local Phase 6-13 CPU matrix.
+
 ## Local downstream training and HPO
 
 Once a verified Phase 7 development feature artifact exists, run CPU-only downstream work with

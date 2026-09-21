@@ -25,6 +25,11 @@ REQUIRED_TARGETS = (
     "data-verify",
     "protocol-verify",
     "registry-verify",
+    "budgeted-study-design",
+    "formal-budgeted-approval-verify",
+    "formal-budgeted-evo2",
+    "formal-budgeted-preflight-verify",
+    "formal-budgeted-representations",
     "gpu-pilot",
     "gpu-full",
 )

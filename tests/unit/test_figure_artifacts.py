@@ -10,6 +10,9 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
+import evovariant_tr.figure_artifacts as figure_artifacts
 from evovariant_tr.evidence import EvidenceStage
 from evovariant_tr.figure_artifacts import (
     REQUIRED_FIGURES,
@@ -101,12 +104,17 @@ def _write_sources(tmp_path: Path, *, invalid_benchmark: bool = False) -> list[s
     return output_paths
 
 
-def _completed_fixture(tmp_path: Path, *, invalid_benchmark: bool = False) -> Registry:
+def _completed_fixture(
+    tmp_path: Path,
+    *,
+    invalid_benchmark: bool = False,
+    evidence_stage: EvidenceStage = EvidenceStage.PRELIMINARY,
+) -> Registry:
     registry = _registry(tmp_path)
     output_paths = _write_sources(tmp_path, invalid_benchmark=invalid_benchmark)
     record = registry.register(
         title="temporary preliminary figure-input fixture",
-        evidence_stage=EvidenceStage.PRELIMINARY,
+        evidence_stage=evidence_stage,
         command="pytest tests/unit/test_figure_artifacts.py",
         protocol_hash=PROTOCOL_HASH,
         experiment_family="TEST_FIXTURE",
@@ -128,6 +136,22 @@ def _completed_fixture(tmp_path: Path, *, invalid_benchmark: bool = False) -> Re
     return registry
 
 
+def _relabel_fixture_as_final(registry: Registry) -> None:
+    """Make a fixture record FINAL without exercising the registry final gate.
+
+    Registry final-gate behavior is covered by registry tests. This helper
+    isolates the figure-manifest contract while keeping the temporary fixture
+    independent of a clean committed Git repository.
+    """
+    records = registry.list_runs()
+    assert len(records) == 1
+    record = records[0].model_copy(update={"evidence_stage": EvidenceStage.FINAL})
+    registry._record_path(record.run_id).write_text(  # noqa: SLF001 - test fixture setup
+        json.dumps(record.model_dump(mode="json"), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
 def test_empty_registry_manifest_and_blocked_bundle_are_stable(tmp_path: Path) -> None:
     registry = _registry(tmp_path)
     first = build_registry_figure_manifest(registry, repo_root=tmp_path)
@@ -136,6 +160,7 @@ def test_empty_registry_manifest_and_blocked_bundle_are_stable(tmp_path: Path) -
     assert first == second
     assert first["status"] == "BLOCKED"
     assert first["eligible_completed_run_count"] == 0
+    assert first["eligible_final_run_count"] == 0
     assert first["available_figures"] == []
     assert first["available_tables"] == []
     assert not first.get("metrics")
@@ -166,8 +191,20 @@ def test_manifest_uses_all_hash_verified_eligible_outputs(tmp_path: Path) -> Non
     registry = _completed_fixture(tmp_path)
     manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
 
+    assert manifest["status"] == "BLOCKED"
+    assert manifest["eligible_completed_run_count"] == 1
+    assert manifest["eligible_final_run_count"] == 0
+    assert any("preliminary sources cannot produce" in blocker for blocker in manifest["blockers"])
+
+
+def test_manifest_requires_a_completed_final_run_for_promotion(tmp_path: Path) -> None:
+    registry = _completed_fixture(tmp_path)
+    _relabel_fixture_as_final(registry)
+    manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
+
     assert manifest["status"] == "READY"
     assert manifest["eligible_completed_run_count"] == 1
+    assert manifest["eligible_final_run_count"] == 1
     assert {entry["figure_id"] for entry in manifest["available_figures"]} == {
         spec.figure_id for spec in REQUIRED_FIGURES
     }
@@ -188,6 +225,7 @@ def test_invalid_required_fields_block_manifest(tmp_path: Path) -> None:
 
 def test_ready_bundle_regenerates_identically_and_cleans_listed_outputs(tmp_path: Path) -> None:
     registry = _completed_fixture(tmp_path)
+    _relabel_fixture_as_final(registry)
     manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
     output_dir = tmp_path / "figures"
     bundle_path = render_figure_bundle(manifest, repo_root=tmp_path, output_dir=output_dir)
@@ -206,6 +244,66 @@ def test_ready_bundle_regenerates_identically_and_cleans_listed_outputs(tmp_path
     assert "metrics" not in json.loads(
         (output_dir / "bundle" / "model_provenance.json").read_text(encoding="utf-8")
     )
+
+
+def test_deferred_finetuning_is_not_applicable_with_documented_reason(tmp_path: Path) -> None:
+    registry = _completed_fixture(tmp_path)
+    _relabel_fixture_as_final(registry)
+    decision = tmp_path / "artifacts" / "modal" / "phase10_adaptation_deferral_20260921.json"
+    decision.parent.mkdir(parents=True, exist_ok=True)
+    decision.write_text(
+        json.dumps({"status": "DEFERRED_BY_COMPUTE"}) + "\n",
+        encoding="utf-8",
+    )
+
+    manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
+
+    assert manifest["status"] == "READY"
+    assert manifest["applicable_required_figure_count"] == len(REQUIRED_FIGURES)
+    assert manifest["applicable_required_table_count"] == len(REQUIRED_TABLES) - 1
+    assert len(manifest["available_figures"]) == len(REQUIRED_FIGURES)
+    assert len(manifest["available_tables"]) == len(REQUIRED_TABLES) - 1
+    assert manifest["not_applicable_figure_families"] == []
+    assert manifest["not_applicable_table_families"][0]["table_id"] == "fine_tuning_summary"
+    assert "compute budget deferral" in manifest["not_applicable_table_families"][0]["reason"]
+
+    bundle_path = render_figure_bundle(
+        manifest,
+        repo_root=tmp_path,
+        output_dir=tmp_path / "figures",
+    )
+    bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+    assert bundle["status"] == "READY"
+    assert bundle["required_figure_count"] == len(REQUIRED_FIGURES)
+    assert bundle["not_applicable_table_families"][0]["phase"] == "10"
+
+
+def test_conditional_policy_can_mark_figure_family_not_applicable(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    registry = _completed_fixture(tmp_path)
+    _relabel_fixture_as_final(registry)
+    decision = tmp_path / "artifacts" / "modal" / "conditional-figure.json"
+    decision.parent.mkdir(parents=True, exist_ok=True)
+    decision.write_text(json.dumps({"status": "DEFERRED_TEST"}) + "\n", encoding="utf-8")
+    policy = {
+        "phase": "test",
+        "status": "DEFERRED_TEST",
+        "reason": "The fixture family is conditionally excluded for this contract test.",
+        "decision_artifact": "artifacts/modal/conditional-figure.json",
+    }
+    monkeypatch.setitem(figure_artifacts.CONDITIONAL_SOURCE_POLICIES, "benchmark.json", policy)
+
+    manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
+
+    assert manifest["status"] == "READY"
+    assert manifest["applicable_required_figure_count"] == len(REQUIRED_FIGURES) - 2
+    assert manifest["applicable_required_table_count"] == len(REQUIRED_TABLES) - 1
+    assert {entry["figure_id"] for entry in manifest["not_applicable_figure_families"]} == {
+        "model_auroc",
+        "model_auprc",
+    }
+    assert manifest["not_applicable_table_families"][0]["source_artifact"] == "benchmark.json"
 
 
 def test_preliminary_bundle_exports_available_sources_without_promotion(tmp_path: Path) -> None:
@@ -256,6 +354,7 @@ def test_tampered_registered_output_blocks_manifest(tmp_path: Path) -> None:
     manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
     assert manifest["status"] == "BLOCKED"
     assert manifest["eligible_completed_run_count"] == 0
+    assert manifest["eligible_final_run_count"] == 0
     assert any("not reproducible" in blocker for blocker in manifest["blockers"])
 
 
@@ -275,9 +374,7 @@ def test_ineligible_completed_stage_is_excluded(tmp_path: Path) -> None:
     )
 
     manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
-    assert any(
-        entry["run_id"] == record.run_id for entry in manifest["excluded_completed_runs"]
-    )
+    assert any(entry["run_id"] == record.run_id for entry in manifest["excluded_completed_runs"])
 
 
 def test_renderer_rejects_source_path_traversal(tmp_path: Path) -> None:
@@ -320,9 +417,9 @@ def test_artifact_parser_and_path_guards_fail_closed(tmp_path: Path) -> None:
     for index, (content, message) in enumerate(
         (
             ("[]", "no rows"),
-        ("[1]", "every artifact row"),
-        ("1", "top-level artifact"),
-        ("{", "not valid JSON"),
+            ("[1]", "every artifact row"),
+            ("1", "top-level artifact"),
+            ("{", "not valid JSON"),
         )
     ):
         invalid = tmp_path / f"invalid-{index}.json"

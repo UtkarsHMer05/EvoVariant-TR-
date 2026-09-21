@@ -1,0 +1,1152 @@
+{
+  "artifact_id": "formal-budgeted-cache-reuse-verification-20260921",
+  "cache_identity_boundary": {
+    "content_addressed_cache_key": null,
+    "note": "The historical runner recorded verified shard payloads rather than a separate content-addressed cache key. Reuse is limited to these 56 rows after exact model/provenance/identity/raw-score verification; no representativeness claim is made and no other historical row is implicitly reused.",
+    "status": "COMPATIBLE_HISTORICAL_SHARD_ROWS"
+  },
+  "current_protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "formal_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "historical_artifact_path": "artifacts/phase6/phase6_development_evo2_20260921.json",
+  "historical_artifact_sha256": "be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5",
+  "historical_execution_plan_path": "research/runs/phase6_development_evo2_20260921/execution_plan.json",
+  "historical_execution_plan_sha256": "62cac2f4f46d3deba068885d0869b30890f89f1b42bdcb7a06fb35373930610e",
+  "historical_predictions_path": "research/runs/phase6_development_evo2_20260921/predictions.jsonl",
+  "historical_predictions_sha256": "04baecf2d547ffd8ccaafa5eeeb2f11d2cccb46696f7cb9445ab317d133ba16d",
+  "model": {
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "record_count": 56,
+  "source_protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "status": "PASS_COMPATIBLE_CACHE_REUSE_56",
+  "study_id": "ML-DEV-BUDGETED-001",
+  "verified_rows": [
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 5.614757537841797e-05,
+      "delta_primary": -0.00012478232383728027,
+      "delta_reverse": -0.0003057122230529785,
+      "gene_symbol": "MYPN",
+      "normalized_variant_id": "GRCh38:10:68174198:G>T",
+      "orientation_disagreement": 0.0003618597984313965,
+      "raw_scores": {
+        "alternate_forward": -1.005362629890442,
+        "alternate_reverse": -0.9926950335502625,
+        "reference_forward": -1.0054187774658203,
+        "reference_reverse": -0.9923893213272095
+      },
+      "source_payload_sha256": "053b145cf47b1b1922d1d5358db77dc7efe270f8dda3027ab3ab3b848244876f",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000072.json",
+      "source_shard_sha256": "57163ce339c997d015230c1875cdad6b3dab1f2484c7101d9b924c6fe9587a1a",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.007030606269836426,
+      "delta_primary": -0.00646442174911499,
+      "delta_reverse": -0.005898237228393555,
+      "gene_symbol": "PRF1",
+      "normalized_variant_id": "GRCh38:10:70600517:C>G",
+      "orientation_disagreement": 0.001132369041442871,
+      "raw_scores": {
+        "alternate_forward": -1.0249567031860352,
+        "alternate_reverse": -1.024202823638916,
+        "reference_forward": -1.0179260969161987,
+        "reference_reverse": -1.0183045864105225
+      },
+      "source_payload_sha256": "4696561e4f9e96b82b7f3fe896a6451a60d67aed1b496c95349230715ed9e33b",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000026.json",
+      "source_shard_sha256": "0c11f3ed2454c77be8b83772e69de44f54e13622712d3ed72b209fc83d617207",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00019228458404541016,
+      "delta_primary": -0.00017255544662475586,
+      "delta_reverse": -0.00015282630920410156,
+      "gene_symbol": "DLG5",
+      "normalized_variant_id": "GRCh38:10:77796547:C>T",
+      "orientation_disagreement": 3.9458274841308594e-05,
+      "raw_scores": {
+        "alternate_forward": -1.060438871383667,
+        "alternate_reverse": -1.068373441696167,
+        "reference_forward": -1.0602465867996216,
+        "reference_reverse": -1.068220615386963
+      },
+      "source_payload_sha256": "9c965f8bdea1fe77dc50fb97f7beffb21049061ec98ad4016f7ecd8ae6b4ea64",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000081.json",
+      "source_shard_sha256": "35fec535b568a35ccda8701d7864dc5a2d473f1c260d38a10a029911d0396463",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00013637542724609375,
+      "delta_primary": 0.00016897916793823242,
+      "delta_reverse": 0.0004743337631225586,
+      "gene_symbol": "PAX6",
+      "normalized_variant_id": "GRCh38:11:31785976:C>T",
+      "orientation_disagreement": 0.0006107091903686523,
+      "raw_scores": {
+        "alternate_forward": -1.130537986755371,
+        "alternate_reverse": -1.1397825479507446,
+        "reference_forward": -1.130401611328125,
+        "reference_reverse": -1.1402568817138672
+      },
+      "source_payload_sha256": "90372ac51bdd403be16e1d8c97f105885e542c8ff1f3e2266fc0d4db25432421",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000016.json",
+      "source_shard_sha256": "0d58ae11f94ed253178b8810c8eff056a13c4e00ed5e2a7bc26c07847677b13b",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -5.4001808166503906e-05,
+      "delta_primary": 4.285573959350586e-05,
+      "delta_reverse": 0.00013971328735351562,
+      "gene_symbol": "CACNA1C",
+      "normalized_variant_id": "GRCh38:12:2685754:C>T",
+      "orientation_disagreement": 0.00019371509552001953,
+      "raw_scores": {
+        "alternate_forward": -1.1371201276779175,
+        "alternate_reverse": -1.1384212970733643,
+        "reference_forward": -1.137066125869751,
+        "reference_reverse": -1.1385610103607178
+      },
+      "source_payload_sha256": "418a592286d9fe1208bf79fc441c2cea3531119ad0bed127748cad1173336c5b",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000018.json",
+      "source_shard_sha256": "7c0b8564f037a79cbc23f587aff108d4d677de6df09197b84f2a2c2565c0c61e",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00025540590286254883,
+      "delta_primary": 0.0003515779972076416,
+      "delta_reverse": 0.0004477500915527344,
+      "gene_symbol": "DNM1L",
+      "normalized_variant_id": "GRCh38:12:32720456:G>C",
+      "orientation_disagreement": 0.00019234418869018555,
+      "raw_scores": {
+        "alternate_forward": -0.8351202011108398,
+        "alternate_reverse": -0.8357062935829163,
+        "reference_forward": -0.8353756070137024,
+        "reference_reverse": -0.836154043674469
+      },
+      "source_payload_sha256": "468c01b6a2e22a3c6b384c51b8e7aeceebab8bfc2425ba541a5e34f2f43370ab",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000025.json",
+      "source_shard_sha256": "4eef4455e4ac0c8882d30f7cc66173aede759e0905c2399fc4d9daab542ee748",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0002897977828979492,
+      "delta_primary": 0.00012487173080444336,
+      "delta_reverse": -4.00543212890625e-05,
+      "gene_symbol": "KCNA1",
+      "normalized_variant_id": "GRCh38:12:4914547:T>C",
+      "orientation_disagreement": 0.0003298521041870117,
+      "raw_scores": {
+        "alternate_forward": -1.0129731893539429,
+        "alternate_reverse": -1.0521191358566284,
+        "reference_forward": -1.0132629871368408,
+        "reference_reverse": -1.0520790815353394
+      },
+      "source_payload_sha256": "39023000e2258314252c1c8b7d06f7b03b09394f12dacce4ae7cc62a406a8603",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000005.json",
+      "source_shard_sha256": "9711eedc3cc67955795367bc8cc4832066bc92f04744c79a93263a385dbf51fe",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0011374950408935547,
+      "delta_primary": 0.0005660653114318848,
+      "delta_reverse": -5.364418029785156e-06,
+      "gene_symbol": "KRT6B",
+      "normalized_variant_id": "GRCh38:12:52452017:T>C",
+      "orientation_disagreement": 0.0011428594589233398,
+      "raw_scores": {
+        "alternate_forward": -1.0347082614898682,
+        "alternate_reverse": -1.0521034002304077,
+        "reference_forward": -1.0358457565307617,
+        "reference_reverse": -1.052098035812378
+      },
+      "source_payload_sha256": "95be40fafe517b69829cf9aa0b456bd04368cbd62f9961311d4e01fc943c60fb",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000048.json",
+      "source_shard_sha256": "5b0d0cb793bbee8028bf3925d942d48632f3c08d3d5805377b159fbe024e2145",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 7.939338684082031e-05,
+      "delta_primary": 0.00014472007751464844,
+      "delta_reverse": 0.00021004676818847656,
+      "gene_symbol": "POC1B",
+      "normalized_variant_id": "GRCh38:12:89491871:G>T",
+      "orientation_disagreement": 0.00013065338134765625,
+      "raw_scores": {
+        "alternate_forward": -1.0315157175064087,
+        "alternate_reverse": -1.0338536500930786,
+        "reference_forward": -1.0315951108932495,
+        "reference_reverse": -1.034063696861267
+      },
+      "source_payload_sha256": "73ea352cf1fd80a95d2060b67a48330a20014121d2a8a77147a3c55efde1e375",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000083.json",
+      "source_shard_sha256": "cc7576932b8116285ec912085a885f7e1ca9701a709c7ea3e97fa45533ee8bf0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0002930760383605957,
+      "delta_primary": -0.0003689229488372803,
+      "delta_reverse": -0.00044476985931396484,
+      "gene_symbol": "BRCA2",
+      "normalized_variant_id": "GRCh38:13:32379997:T>C",
+      "orientation_disagreement": 0.00015169382095336914,
+      "raw_scores": {
+        "alternate_forward": -0.9705837965011597,
+        "alternate_reverse": -0.967790961265564,
+        "reference_forward": -0.9702907204627991,
+        "reference_reverse": -0.96734619140625
+      },
+      "source_payload_sha256": "4e594481cd560b0e9745ae8b7122ebe04bf6e62d2a100ae1a98a8e8ea13736e5",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000028.json",
+      "source_shard_sha256": "c25a2b7d4dbcbacaf9d88e8481a1eb850644ec689d89772b134b0f6a72e64a48",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 4.172325134277344e-05,
+      "delta_primary": -0.0001703500747680664,
+      "delta_reverse": -0.00038242340087890625,
+      "gene_symbol": "SLC25A15",
+      "normalized_variant_id": "GRCh38:13:40799070:T>C",
+      "orientation_disagreement": 0.0004241466522216797,
+      "raw_scores": {
+        "alternate_forward": -1.1436938047409058,
+        "alternate_reverse": -1.146742582321167,
+        "reference_forward": -1.1437355279922485,
+        "reference_reverse": -1.146360158920288
+      },
+      "source_payload_sha256": "ee6cd099aab394330c2f0898b20ba051139dde134438370c5395c0521fc0fdd4",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000030.json",
+      "source_shard_sha256": "1723ea74541a1be807cd5d0ae6b01d02fe4b34b1c8f2a63e3a02e8badfd5e4c6",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -3.063678741455078e-05,
+      "delta_primary": 3.37064266204834e-05,
+      "delta_reverse": 9.804964065551758e-05,
+      "gene_symbol": "MYH6",
+      "normalized_variant_id": "GRCh38:14:23389693:C>A",
+      "orientation_disagreement": 0.00012868642807006836,
+      "raw_scores": {
+        "alternate_forward": -0.9518454670906067,
+        "alternate_reverse": -0.9513319730758667,
+        "reference_forward": -0.9518148303031921,
+        "reference_reverse": -0.9514300227165222
+      },
+      "source_payload_sha256": "bdb1ab45ff6fcd449bd870c2a7c080f955d49291f0b6a51a4c69c46a18ce594c",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000003.json",
+      "source_shard_sha256": "d82e947521a769384e9e5cc277551740458b2dfab4ee9d8865f5eb5a74132287",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0005647540092468262,
+      "delta_primary": -0.0003687143325805664,
+      "delta_reverse": -0.00017267465591430664,
+      "gene_symbol": "MYH6",
+      "normalized_variant_id": "GRCh38:14:23390155:G>A",
+      "orientation_disagreement": 0.00039207935333251953,
+      "raw_scores": {
+        "alternate_forward": -0.9336801171302795,
+        "alternate_reverse": -0.9311355948448181,
+        "reference_forward": -0.9331153631210327,
+        "reference_reverse": -0.9309629201889038
+      },
+      "source_payload_sha256": "4d32d4c117b4d0343d9aff46f5af3376dbcf798794eb40fecf72f90e14f23d98",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000019.json",
+      "source_shard_sha256": "c68fb12db523f6fc903d202c8a81320eff5380237f44f7bd572a71e6e6eabbd0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0010703206062316895,
+      "delta_primary": -0.0018723607063293457,
+      "delta_reverse": -0.002674400806427002,
+      "gene_symbol": "CCDC88C",
+      "normalized_variant_id": "GRCh38:14:91273077:G>A",
+      "orientation_disagreement": 0.0016040802001953125,
+      "raw_scores": {
+        "alternate_forward": -0.9811859130859375,
+        "alternate_reverse": -1.0010790824890137,
+        "reference_forward": -0.9801155924797058,
+        "reference_reverse": -0.9984046816825867
+      },
+      "source_payload_sha256": "49e67c85ed72ae24898f0fb113144c3e1f2a6ff200c2545f212e09dcfae1ceed",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000046.json",
+      "source_shard_sha256": "c5e780b727f13133bc6945d65267e3968bfaac559ff946383722f7cd4ff22cb2",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00037592649459838867,
+      "delta_primary": 0.0003134012222290039,
+      "delta_reverse": 0.00025087594985961914,
+      "gene_symbol": "KNL1",
+      "normalized_variant_id": "GRCh38:15:40611486:A>G",
+      "orientation_disagreement": 0.00012505054473876953,
+      "raw_scores": {
+        "alternate_forward": -0.7708225846290588,
+        "alternate_reverse": -0.7709988355636597,
+        "reference_forward": -0.7711985111236572,
+        "reference_reverse": -0.7712497115135193
+      },
+      "source_payload_sha256": "3025416c56e1a0ccbb4907cf8be3f6880ae016453f914181b321a3c6b477f517",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000074.json",
+      "source_shard_sha256": "a51ee96dd511b1d993d278638370a8562616ef20d5d5f2ff3275caf76d148007",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.004820823669433594,
+      "delta_primary": -0.004299283027648926,
+      "delta_reverse": -0.003777742385864258,
+      "gene_symbol": "FBN1",
+      "normalized_variant_id": "GRCh38:15:48489970:C>T",
+      "orientation_disagreement": 0.001043081283569336,
+      "raw_scores": {
+        "alternate_forward": -1.1177595853805542,
+        "alternate_reverse": -1.1190812587738037,
+        "reference_forward": -1.1129387617111206,
+        "reference_reverse": -1.1153035163879395
+      },
+      "source_payload_sha256": "6e56a9c59d513af88c15042001505d51892df5b9e81b716456500735be4ce893",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000069.json",
+      "source_shard_sha256": "9ad0d791311d74a0cf072cfa9807a076ea42a7e2d6e49009828b374e5f6ddf1e",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0006107091903686523,
+      "delta_primary": -0.0005748867988586426,
+      "delta_reverse": -0.0005390644073486328,
+      "gene_symbol": "SMAD6",
+      "normalized_variant_id": "GRCh38:15:66703751:C>T",
+      "orientation_disagreement": 7.164478302001953e-05,
+      "raw_scores": {
+        "alternate_forward": -1.0103814601898193,
+        "alternate_reverse": -0.9909974336624146,
+        "reference_forward": -1.0097707509994507,
+        "reference_reverse": -0.9904583692550659
+      },
+      "source_payload_sha256": "b32a5ae5798b4750f02b27502700c080a993732c37067838dffe4ea98ba912cd",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000043.json",
+      "source_shard_sha256": "0b5c5f672d1b0407e0af00973f0f8665842514b4483539937ac7b72c4e241d09",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0028380155563354492,
+      "delta_primary": -0.003853440284729004,
+      "delta_reverse": -0.004868865013122559,
+      "gene_symbol": "POLG",
+      "normalized_variant_id": "GRCh38:15:89333553:G>A",
+      "orientation_disagreement": 0.0020308494567871094,
+      "raw_scores": {
+        "alternate_forward": -1.1158350706100464,
+        "alternate_reverse": -1.0995010137557983,
+        "reference_forward": -1.112997055053711,
+        "reference_reverse": -1.0946321487426758
+      },
+      "source_payload_sha256": "053b145cf47b1b1922d1d5358db77dc7efe270f8dda3027ab3ab3b848244876f",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000072.json",
+      "source_shard_sha256": "57163ce339c997d015230c1875cdad6b3dab1f2484c7101d9b924c6fe9587a1a",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 9.250640869140625e-05,
+      "delta_primary": 9.143352508544922e-05,
+      "delta_reverse": 9.036064147949219e-05,
+      "gene_symbol": "ABAT",
+      "normalized_variant_id": "GRCh38:16:8783734:T>A",
+      "orientation_disagreement": 2.1457672119140625e-06,
+      "raw_scores": {
+        "alternate_forward": -1.004818320274353,
+        "alternate_reverse": -1.0090421438217163,
+        "reference_forward": -1.0049108266830444,
+        "reference_reverse": -1.0091325044631958
+      },
+      "source_payload_sha256": "a258cfbbd78ac2e5681c294535115a58036831238c438b7e9d1e44b9d46f5e26",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000012.json",
+      "source_shard_sha256": "b881deab8d045258babd4020fa85a95d93a224521fab999bed9c59b88ea6a566",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0005633831024169922,
+      "delta_primary": 0.0008688569068908691,
+      "delta_reverse": 0.001174330711364746,
+      "gene_symbol": "SLC22A31",
+      "normalized_variant_id": "GRCh38:16:89198693:C>T",
+      "orientation_disagreement": 0.0006109476089477539,
+      "raw_scores": {
+        "alternate_forward": -1.009211778640747,
+        "alternate_reverse": -1.0082595348358154,
+        "reference_forward": -1.009775161743164,
+        "reference_reverse": -1.0094338655471802
+      },
+      "source_payload_sha256": "95be40fafe517b69829cf9aa0b456bd04368cbd62f9961311d4e01fc943c60fb",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000048.json",
+      "source_shard_sha256": "5b0d0cb793bbee8028bf3925d942d48632f3c08d3d5805377b159fbe024e2145",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.001189887523651123,
+      "delta_primary": -0.001383066177368164,
+      "delta_reverse": -0.001576244831085205,
+      "gene_symbol": "BRCA1",
+      "normalized_variant_id": "GRCh38:17:43092803:G>A",
+      "orientation_disagreement": 0.00038635730743408203,
+      "raw_scores": {
+        "alternate_forward": -0.9200665354728699,
+        "alternate_reverse": -0.9095349907875061,
+        "reference_forward": -0.9188766479492188,
+        "reference_reverse": -0.9079587459564209
+      },
+      "source_payload_sha256": "d29420c71f1f5a62e2a856cb5a9ed5b50236843a77b62e8a1d1f9960bebab1a3",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000007.json",
+      "source_shard_sha256": "569b98340f50c2b52af18fc9cf9d62fc9cc37db9e83c0a54a5c108b1d7ad32ca",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00035691261291503906,
+      "delta_primary": -0.0002486109733581543,
+      "delta_reverse": -0.00014030933380126953,
+      "gene_symbol": "GUCY2D",
+      "normalized_variant_id": "GRCh38:17:8007183:G>A",
+      "orientation_disagreement": 0.00021660327911376953,
+      "raw_scores": {
+        "alternate_forward": -0.9791547656059265,
+        "alternate_reverse": -1.00563383102417,
+        "reference_forward": -0.9787978529930115,
+        "reference_reverse": -1.0054935216903687
+      },
+      "source_payload_sha256": "053b145cf47b1b1922d1d5358db77dc7efe270f8dda3027ab3ab3b848244876f",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000072.json",
+      "source_shard_sha256": "57163ce339c997d015230c1875cdad6b3dab1f2484c7101d9b924c6fe9587a1a",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004717111587524414,
+      "delta_primary": -0.0004398822784423828,
+      "delta_reverse": -0.0004080533981323242,
+      "gene_symbol": "TCF4",
+      "normalized_variant_id": "GRCh38:18:55269972:A>G",
+      "orientation_disagreement": 6.365776062011719e-05,
+      "raw_scores": {
+        "alternate_forward": -1.2805685997009277,
+        "alternate_reverse": -1.2814875841140747,
+        "reference_forward": -1.2800968885421753,
+        "reference_reverse": -1.2810795307159424
+      },
+      "source_payload_sha256": "71ca18b65e93ea7adbd6d20ab80dfab61398c53daadc1b367f7c5efa9ef921c7",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000013.json",
+      "source_shard_sha256": "2ba33292641b3da9a489a2b4ba4a19fecf8672de9350aaee3832b6463203078e",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0007274746894836426,
+      "delta_primary": -0.00042128562927246094,
+      "delta_reverse": -0.0001150965690612793,
+      "gene_symbol": "GCDH",
+      "normalized_variant_id": "GRCh38:19:12893544:G>T",
+      "orientation_disagreement": 0.0006123781204223633,
+      "raw_scores": {
+        "alternate_forward": -0.7636892795562744,
+        "alternate_reverse": -0.7593353986740112,
+        "reference_forward": -0.7629618048667908,
+        "reference_reverse": -0.75922030210495
+      },
+      "source_payload_sha256": "693fc3a6f850b45cf0b66bf87d8137db157b672763bacfb08bb837269446cde0",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000014.json",
+      "source_shard_sha256": "709b925a36fec1e6b0788026976abce2544a51dbd76f89a8108f26d6ab5e57ee",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00019097328186035156,
+      "delta_primary": -0.0002827942371368408,
+      "delta_reverse": -0.0003746151924133301,
+      "gene_symbol": "CYP4F22",
+      "normalized_variant_id": "GRCh38:19:15540749:C>G",
+      "orientation_disagreement": 0.00018364191055297852,
+      "raw_scores": {
+        "alternate_forward": -0.7729875445365906,
+        "alternate_reverse": -0.7751660346984863,
+        "reference_forward": -0.7727965712547302,
+        "reference_reverse": -0.774791419506073
+      },
+      "source_payload_sha256": "8c6d82d8bbd6ee0e278de98c5d403dbdc070d53951d7ae5774f87d79b69f2acb",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000086.json",
+      "source_shard_sha256": "bfff01e13e91641d9b3947c94e006ceb889841f6adde63b657dfe9cf1177c007",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -5.507469177246094e-05,
+      "delta_primary": 7.24494457244873e-05,
+      "delta_reverse": 0.00019997358322143555,
+      "gene_symbol": "SIX5",
+      "normalized_variant_id": "GRCh38:19:45766287:C>G",
+      "orientation_disagreement": 0.0002550482749938965,
+      "raw_scores": {
+        "alternate_forward": -0.8584612607955933,
+        "alternate_reverse": -0.8922726511955261,
+        "reference_forward": -0.8584061861038208,
+        "reference_reverse": -0.8924726247787476
+      },
+      "source_payload_sha256": "415ac1870d4e3d4f859d7e58582dfd70527cc440835c161fc9c913b7c46e75f0",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000077.json",
+      "source_shard_sha256": "784c5f5bcf13039b9d5aa6290068bfa3475a61bf8f3bf2f57b2fe049c23a33a7",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0022484660148620605,
+      "delta_primary": -0.0017789900302886963,
+      "delta_reverse": -0.001309514045715332,
+      "gene_symbol": "ARHGEF18",
+      "normalized_variant_id": "GRCh38:19:7467322:C>A",
+      "orientation_disagreement": 0.0009389519691467285,
+      "raw_scores": {
+        "alternate_forward": -0.8968291878700256,
+        "alternate_reverse": -0.896211564540863,
+        "reference_forward": -0.8945807218551636,
+        "reference_reverse": -0.8949020504951477
+      },
+      "source_payload_sha256": "5b209d4c791d1cd6b499c69f5d2e27a7998e77bff656fa5cecb7780c68f0ad66",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000031.json",
+      "source_shard_sha256": "90bbdf518c89843731612ecd96908700b25385ad328767846d16dfc29ece0d22",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0002390146255493164,
+      "delta_primary": 0.00010979175567626953,
+      "delta_reverse": -1.9431114196777344e-05,
+      "gene_symbol": "TARS2",
+      "normalized_variant_id": "GRCh38:1:150498580:C>T",
+      "orientation_disagreement": 0.00025844573974609375,
+      "raw_scores": {
+        "alternate_forward": -0.6913946866989136,
+        "alternate_reverse": -0.6802842020988464,
+        "reference_forward": -0.6916337013244629,
+        "reference_reverse": -0.6802647709846497
+      },
+      "source_payload_sha256": "7dc2bbc8915de53937bf03389d3df87ff1c6fd1d7336635ef48ba827d3cb5213",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000001.json",
+      "source_shard_sha256": "66e5af7c6addcb2782ec8f37512d6130fcb0a0545104f474323575a65f69d25c",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0006200075149536133,
+      "delta_primary": -0.00041496753692626953,
+      "delta_reverse": -0.00020992755889892578,
+      "gene_symbol": "NTRK1",
+      "normalized_variant_id": "GRCh38:1:156879176:C>T",
+      "orientation_disagreement": 0.0004100799560546875,
+      "raw_scores": {
+        "alternate_forward": -1.0807253122329712,
+        "alternate_reverse": -1.0596576929092407,
+        "reference_forward": -1.0801053047180176,
+        "reference_reverse": -1.0594477653503418
+      },
+      "source_payload_sha256": "bf33a876e602b2eaaaa9b1d047e9bc4d85b1c0ba7f32eaac74b3ae89dc2cff3c",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000082.json",
+      "source_shard_sha256": "cff8826eb8376b9818f80b9c07005fbb2caa91910731779c13bd1d2289088e37",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00024378299713134766,
+      "delta_primary": -0.00021436810493469238,
+      "delta_reverse": -0.0001849532127380371,
+      "gene_symbol": "ATP1A2",
+      "normalized_variant_id": "GRCh38:1:160129491:G>C",
+      "orientation_disagreement": 5.882978439331055e-05,
+      "raw_scores": {
+        "alternate_forward": -1.0004055500030518,
+        "alternate_reverse": -0.9966385960578918,
+        "reference_forward": -1.0001617670059204,
+        "reference_reverse": -0.9964536428451538
+      },
+      "source_payload_sha256": "7dc2bbc8915de53937bf03389d3df87ff1c6fd1d7336635ef48ba827d3cb5213",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000001.json",
+      "source_shard_sha256": "66e5af7c6addcb2782ec8f37512d6130fcb0a0545104f474323575a65f69d25c",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0001380443572998047,
+      "delta_primary": -0.0002041459083557129,
+      "delta_reverse": -0.0002702474594116211,
+      "gene_symbol": "KCNH1",
+      "normalized_variant_id": "GRCh38:1:210920004:A>C",
+      "orientation_disagreement": 0.0001322031021118164,
+      "raw_scores": {
+        "alternate_forward": -1.0571274757385254,
+        "alternate_reverse": -1.0591410398483276,
+        "reference_forward": -1.0569894313812256,
+        "reference_reverse": -1.058870792388916
+      },
+      "source_payload_sha256": "4d32d4c117b4d0343d9aff46f5af3376dbcf798794eb40fecf72f90e14f23d98",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000019.json",
+      "source_shard_sha256": "c68fb12db523f6fc903d202c8a81320eff5380237f44f7bd572a71e6e6eabbd0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0002701878547668457,
+      "delta_primary": -0.00039145350456237793,
+      "delta_reverse": -0.0005127191543579102,
+      "gene_symbol": "FMN2",
+      "normalized_variant_id": "GRCh38:1:240207791:C>T",
+      "orientation_disagreement": 0.00024253129959106445,
+      "raw_scores": {
+        "alternate_forward": -0.8762988448143005,
+        "alternate_reverse": -0.8541327118873596,
+        "reference_forward": -0.8760286569595337,
+        "reference_reverse": -0.8536199927330017
+      },
+      "source_payload_sha256": "a53f593f226e38938b61a69d67d11bc4eba5ada829881bbf2fda571dcdf636a5",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000032.json",
+      "source_shard_sha256": "fff100b38508db8fa5fcc6387355d9579c62b70dc09fc1e6170ab91f9d7dd123",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -4.553794860839844e-05,
+      "delta_primary": -0.00010380148887634277,
+      "delta_reverse": -0.0001620650291442871,
+      "gene_symbol": "TMC2",
+      "normalized_variant_id": "GRCh38:20:2641352:T>C",
+      "orientation_disagreement": 0.00011652708053588867,
+      "raw_scores": {
+        "alternate_forward": -0.9023568630218506,
+        "alternate_reverse": -0.8969027996063232,
+        "reference_forward": -0.9023113250732422,
+        "reference_reverse": -0.896740734577179
+      },
+      "source_payload_sha256": "6e977d7e8a970c8592f9f12d1436e49c423b642ac429c147b477e24f95695986",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000024.json",
+      "source_shard_sha256": "6ecf4e347510191c0008435e56897e647f964ab9b700da92b52262d22321b408",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00457155704498291,
+      "delta_primary": -0.010172247886657715,
+      "delta_reverse": -0.01577293872833252,
+      "gene_symbol": "PANK2",
+      "normalized_variant_id": "GRCh38:20:3889670:C>G",
+      "orientation_disagreement": 0.01120138168334961,
+      "raw_scores": {
+        "alternate_forward": -1.025687336921692,
+        "alternate_reverse": -1.0377227067947388,
+        "reference_forward": -1.021115779876709,
+        "reference_reverse": -1.0219497680664062
+      },
+      "source_payload_sha256": "d59d894ccd5b3591b28f8974912cdd6a808d414aa3f4c7f3fb012f44394273a2",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000052.json",
+      "source_shard_sha256": "4a501538098793ea051a2d9f5e54d5a553a9df04903b31835fbf6a6d39f4e5bf",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0006216764450073242,
+      "delta_primary": 0.00046771764755249023,
+      "delta_reverse": 0.00031375885009765625,
+      "gene_symbol": "PRODH",
+      "normalized_variant_id": "GRCh38:22:18913156:A>G",
+      "orientation_disagreement": 0.00030791759490966797,
+      "raw_scores": {
+        "alternate_forward": -1.1045472621917725,
+        "alternate_reverse": -1.100287914276123,
+        "reference_forward": -1.1051689386367798,
+        "reference_reverse": -1.1006016731262207
+      },
+      "source_payload_sha256": "6c57bdf5f562bcaadf451baf9c3d7bae100d176aa24dc6d7c50755eb235b06b5",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000080.json",
+      "source_shard_sha256": "b24cf1a0bbf79ec8ec0bf3ad3b52cacca596d72a5998e6a2795dd7c5bd7384f1",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0003451108932495117,
+      "delta_primary": 0.0002925693988800049,
+      "delta_reverse": 0.00024002790451049805,
+      "gene_symbol": "CHEK2",
+      "normalized_variant_id": "GRCh38:22:28711987:G>A",
+      "orientation_disagreement": 0.00010508298873901367,
+      "raw_scores": {
+        "alternate_forward": -0.9160604476928711,
+        "alternate_reverse": -0.9176062941551208,
+        "reference_forward": -0.9164055585861206,
+        "reference_reverse": -0.9178463220596313
+      },
+      "source_payload_sha256": "bf36e6a63eb0143f5b90dd8d325d1d82c1c5ee3d0df0b17afed7f738662ead5f",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000070.json",
+      "source_shard_sha256": "a05d90fb3b4b65254975642e934399bce6351617698e8a7e4da2dd53a697f3ab",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0002689361572265625,
+      "delta_primary": 0.00013053417205810547,
+      "delta_reverse": -7.867813110351562e-06,
+      "gene_symbol": "NEB",
+      "normalized_variant_id": "GRCh38:2:151552662:G>C",
+      "orientation_disagreement": 0.00027680397033691406,
+      "raw_scores": {
+        "alternate_forward": -1.0485413074493408,
+        "alternate_reverse": -1.0426043272018433,
+        "reference_forward": -1.0488102436065674,
+        "reference_reverse": -1.042596459388733
+      },
+      "source_payload_sha256": "51d9bfb13e5b893a175b19e0df4459dfc172db7cc32b0643bc347d132512592f",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000055.json",
+      "source_shard_sha256": "28c97ecb7543657ad71da96d72d27393abe1e77560481bdaa58402e7818eeabb",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0011865496635437012,
+      "delta_primary": -0.0012395977973937988,
+      "delta_reverse": -0.0012926459312438965,
+      "gene_symbol": "DNAH7",
+      "normalized_variant_id": "GRCh38:2:195864222:A>G",
+      "orientation_disagreement": 0.00010609626770019531,
+      "raw_scores": {
+        "alternate_forward": -0.9737694263458252,
+        "alternate_reverse": -0.9754190444946289,
+        "reference_forward": -0.9725828766822815,
+        "reference_reverse": -0.974126398563385
+      },
+      "source_payload_sha256": "73ea352cf1fd80a95d2060b67a48330a20014121d2a8a77147a3c55efde1e375",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000083.json",
+      "source_shard_sha256": "cc7576932b8116285ec912085a885f7e1ca9701a709c7ea3e97fa45533ee8bf0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00026679039001464844,
+      "delta_primary": -0.00019302964210510254,
+      "delta_reverse": -0.00011926889419555664,
+      "gene_symbol": "APOB",
+      "normalized_variant_id": "GRCh38:2:21011027:T>C",
+      "orientation_disagreement": 0.0001475214958190918,
+      "raw_scores": {
+        "alternate_forward": -0.6660758256912231,
+        "alternate_reverse": -0.6074632406234741,
+        "reference_forward": -0.6658090353012085,
+        "reference_reverse": -0.6073439717292786
+      },
+      "source_payload_sha256": "49e67c85ed72ae24898f0fb113144c3e1f2a6ff200c2545f212e09dcfae1ceed",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000046.json",
+      "source_shard_sha256": "c5e780b727f13133bc6945d65267e3968bfaac559ff946383722f7cd4ff22cb2",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00027358531951904297,
+      "delta_primary": 0.00017887353897094727,
+      "delta_reverse": 8.416175842285156e-05,
+      "gene_symbol": "DRC1",
+      "normalized_variant_id": "GRCh38:2:26440301:G>A",
+      "orientation_disagreement": 0.0001894235610961914,
+      "raw_scores": {
+        "alternate_forward": -1.1146684885025024,
+        "alternate_reverse": -1.1150026321411133,
+        "reference_forward": -1.1149420738220215,
+        "reference_reverse": -1.1150867938995361
+      },
+      "source_payload_sha256": "4e594481cd560b0e9745ae8b7122ebe04bf6e62d2a100ae1a98a8e8ea13736e5",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000028.json",
+      "source_shard_sha256": "c25a2b7d4dbcbacaf9d88e8481a1eb850644ec689d89772b134b0f6a72e64a48",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -2.562999725341797e-05,
+      "delta_primary": -7.906556129455566e-05,
+      "delta_reverse": -0.00013250112533569336,
+      "gene_symbol": "MSH2",
+      "normalized_variant_id": "GRCh38:2:47475176:C>T",
+      "orientation_disagreement": 0.00010687112808227539,
+      "raw_scores": {
+        "alternate_forward": -0.9880194067955017,
+        "alternate_reverse": -0.9865285754203796,
+        "reference_forward": -0.9879937767982483,
+        "reference_reverse": -0.986396074295044
+      },
+      "source_payload_sha256": "90372ac51bdd403be16e1d8c97f105885e542c8ff1f3e2266fc0d4db25432421",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000016.json",
+      "source_shard_sha256": "0d58ae11f94ed253178b8810c8eff056a13c4e00ed5e2a7bc26c07847677b13b",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00010001659393310547,
+      "delta_primary": -0.00010704994201660156,
+      "delta_reverse": -0.00011408329010009766,
+      "gene_symbol": "FYCO1",
+      "normalized_variant_id": "GRCh38:3:45920350:C>T",
+      "orientation_disagreement": 1.4066696166992188e-05,
+      "raw_scores": {
+        "alternate_forward": -1.2448643445968628,
+        "alternate_reverse": -1.2504631280899048,
+        "reference_forward": -1.2447643280029297,
+        "reference_reverse": -1.2503490447998047
+      },
+      "source_payload_sha256": "3c74d78b4c83843dead3c4d6eb52456f8a1c0fd4e1ae2a04f3d82d8bb396108c",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000042.json",
+      "source_shard_sha256": "23e085ae62fd616b48367f4eae272d207bcb0b1511199d7dce7c942f9dab49ce",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00010776519775390625,
+      "delta_primary": -0.0001742243766784668,
+      "delta_reverse": -0.00024068355560302734,
+      "gene_symbol": "FLNB",
+      "normalized_variant_id": "GRCh38:3:58131797:G>A",
+      "orientation_disagreement": 0.0001329183578491211,
+      "raw_scores": {
+        "alternate_forward": -1.1494039297103882,
+        "alternate_reverse": -1.1467275619506836,
+        "reference_forward": -1.1492961645126343,
+        "reference_reverse": -1.1464868783950806
+      },
+      "source_payload_sha256": "f521b0899ebb05983b9fb910b3ba97079ecb47a2d7c6ded687304a3c58d54345",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000054.json",
+      "source_shard_sha256": "7cae0a9302707870440518af25682c1be13eadae75f4c93b7fb5c577db5cdd64",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0008572936058044434,
+      "delta_primary": -0.0010217726230621338,
+      "delta_reverse": -0.0011862516403198242,
+      "gene_symbol": "CRELD1",
+      "normalized_variant_id": "GRCh38:3:9938029:C>G",
+      "orientation_disagreement": 0.00032895803451538086,
+      "raw_scores": {
+        "alternate_forward": -0.7616907954216003,
+        "alternate_reverse": -0.7602385878562927,
+        "reference_forward": -0.7608335018157959,
+        "reference_reverse": -0.7590523362159729
+      },
+      "source_payload_sha256": "4e079c3a0029c35a1513b3a7c67a63c66ab1adc18f48d979db3f5c40a2e276ee",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000078.json",
+      "source_shard_sha256": "d7cfcc8053dcb99e1a7aeebf0c341dd90766afc209bbeca7b6f14405220d09da",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004355907440185547,
+      "delta_primary": -0.0004787445068359375,
+      "delta_reverse": -0.0005218982696533203,
+      "gene_symbol": "LEF1",
+      "normalized_variant_id": "GRCh38:4:108163655:C>T",
+      "orientation_disagreement": 8.630752563476562e-05,
+      "raw_scores": {
+        "alternate_forward": -1.2474013566970825,
+        "alternate_reverse": -1.2539160251617432,
+        "reference_forward": -1.246965765953064,
+        "reference_reverse": -1.2533941268920898
+      },
+      "source_payload_sha256": "6c57bdf5f562bcaadf451baf9c3d7bae100d176aa24dc6d7c50755eb235b06b5",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000080.json",
+      "source_shard_sha256": "b24cf1a0bbf79ec8ec0bf3ad3b52cacca596d72a5998e6a2795dd7c5bd7384f1",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -3.743171691894531e-05,
+      "delta_primary": 4.482269287109375e-05,
+      "delta_reverse": 0.0001270771026611328,
+      "gene_symbol": "FABP2",
+      "normalized_variant_id": "GRCh38:4:119320990:C>T",
+      "orientation_disagreement": 0.00016450881958007812,
+      "raw_scores": {
+        "alternate_forward": -0.9836412668228149,
+        "alternate_reverse": -0.9828505516052246,
+        "reference_forward": -0.983603835105896,
+        "reference_reverse": -0.9829776287078857
+      },
+      "source_payload_sha256": "98895354ff6bfe4cb5685f1740600bd93a4e12e5d6e9aac6b1ab30639faf60a7",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000027.json",
+      "source_shard_sha256": "f51c9851823ebfc4246b237f4bb5c99d24b734ae36c0ae49c44376e20f9f4122",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.009160995483398438,
+      "delta_primary": -0.0060416460037231445,
+      "delta_reverse": -0.0029222965240478516,
+      "gene_symbol": "APC",
+      "normalized_variant_id": "GRCh38:5:112827194:C>T",
+      "orientation_disagreement": 0.006238698959350586,
+      "raw_scores": {
+        "alternate_forward": -1.0526549816131592,
+        "alternate_reverse": -1.0493186712265015,
+        "reference_forward": -1.0434939861297607,
+        "reference_reverse": -1.0463963747024536
+      },
+      "source_payload_sha256": "3c74d78b4c83843dead3c4d6eb52456f8a1c0fd4e1ae2a04f3d82d8bb396108c",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000042.json",
+      "source_shard_sha256": "23e085ae62fd616b48367f4eae272d207bcb0b1511199d7dce7c942f9dab49ce",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00021606683731079102,
+      "delta_primary": -0.00020179152488708496,
+      "delta_reverse": -0.0001875162124633789,
+      "gene_symbol": "SH3TC2",
+      "normalized_variant_id": "GRCh38:5:149028421:G>A",
+      "orientation_disagreement": 2.855062484741211e-05,
+      "raw_scores": {
+        "alternate_forward": -0.9924588203430176,
+        "alternate_reverse": -1.0453252792358398,
+        "reference_forward": -0.9922427535057068,
+        "reference_reverse": -1.0451377630233765
+      },
+      "source_payload_sha256": "73ea352cf1fd80a95d2060b67a48330a20014121d2a8a77147a3c55efde1e375",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000083.json",
+      "source_shard_sha256": "cc7576932b8116285ec912085a885f7e1ca9701a709c7ea3e97fa45533ee8bf0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00040280818939208984,
+      "delta_primary": -5.1915645599365234e-05,
+      "delta_reverse": 0.0002989768981933594,
+      "gene_symbol": "PKHD1",
+      "normalized_variant_id": "GRCh38:6:52056526:C>T",
+      "orientation_disagreement": 0.0007017850875854492,
+      "raw_scores": {
+        "alternate_forward": -1.0837488174438477,
+        "alternate_reverse": -1.112825632095337,
+        "reference_forward": -1.0833460092544556,
+        "reference_reverse": -1.1131246089935303
+      },
+      "source_payload_sha256": "94d75d742ad561749fcc0e28eb438b714498b29b27456b10b33c6ffc8fda862d",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000068.json",
+      "source_shard_sha256": "ba64ddf46205c12954b09e7bf42548a7ca6daa11cb8fde3033079279a697000d",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0006734132766723633,
+      "delta_primary": -0.00066375732421875,
+      "delta_reverse": -0.0006541013717651367,
+      "gene_symbol": "ADGRB1",
+      "normalized_variant_id": "GRCh38:8:142543671:C>T",
+      "orientation_disagreement": 1.9311904907226562e-05,
+      "raw_scores": {
+        "alternate_forward": -1.0673214197158813,
+        "alternate_reverse": -1.0864670276641846,
+        "reference_forward": -1.066648006439209,
+        "reference_reverse": -1.0858129262924194
+      },
+      "source_payload_sha256": "71ca18b65e93ea7adbd6d20ab80dfab61398c53daadc1b367f7c5efa9ef921c7",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000013.json",
+      "source_shard_sha256": "2ba33292641b3da9a489a2b4ba4a19fecf8672de9350aaee3832b6463203078e",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00023949146270751953,
+      "delta_primary": -9.644031524658203e-05,
+      "delta_reverse": -0.0004323720932006836,
+      "gene_symbol": "VPS13B",
+      "normalized_variant_id": "GRCh38:8:99859410:C>G",
+      "orientation_disagreement": 0.0006718635559082031,
+      "raw_scores": {
+        "alternate_forward": -1.1681166887283325,
+        "alternate_reverse": -1.1705235242843628,
+        "reference_forward": -1.16835618019104,
+        "reference_reverse": -1.170091152191162
+      },
+      "source_payload_sha256": "4d32d4c117b4d0343d9aff46f5af3376dbcf798794eb40fecf72f90e14f23d98",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000019.json",
+      "source_shard_sha256": "c68fb12db523f6fc903d202c8a81320eff5380237f44f7bd572a71e6e6eabbd0",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.00041419267654418945,
+      "delta_primary": -0.0003820359706878662,
+      "delta_reverse": -0.00034987926483154297,
+      "gene_symbol": "NOTCH1",
+      "normalized_variant_id": "GRCh38:9:136517885:G>A",
+      "orientation_disagreement": 6.431341171264648e-05,
+      "raw_scores": {
+        "alternate_forward": -0.968263566493988,
+        "alternate_reverse": -0.9740511775016785,
+        "reference_forward": -0.9678493738174438,
+        "reference_reverse": -0.9737012982368469
+      },
+      "source_payload_sha256": "98895354ff6bfe4cb5685f1740600bd93a4e12e5d6e9aac6b1ab30639faf60a7",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000027.json",
+      "source_shard_sha256": "f51c9851823ebfc4246b237f4bb5c99d24b734ae36c0ae49c44376e20f9f4122",
+      "split": "VALIDATION"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.00018596649169921875,
+      "delta_primary": 0.00023066997528076172,
+      "delta_reverse": 0.0002753734588623047,
+      "gene_symbol": "CDKL5;RS1",
+      "normalized_variant_id": "GRCh38:X:18650540:G>A",
+      "orientation_disagreement": 8.940696716308594e-05,
+      "raw_scores": {
+        "alternate_forward": -1.0659939050674438,
+        "alternate_reverse": -1.0573631525039673,
+        "reference_forward": -1.066179871559143,
+        "reference_reverse": -1.0576385259628296
+      },
+      "source_payload_sha256": "b64afba0d6fc7910f9745ab1ce7d1dc7a853b48e922ed9ce17bc2cc6d2ae31ed",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000062.json",
+      "source_shard_sha256": "68aa9b14090ed45827c29bb03c11a942553f1d19b2df814991efda058c51b0a2",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": 0.0001341104507446289,
+      "delta_primary": 0.00012665987014770508,
+      "delta_reverse": 0.00011920928955078125,
+      "gene_symbol": "IL1RAPL1",
+      "normalized_variant_id": "GRCh38:X:29399393:C>A",
+      "orientation_disagreement": 1.4901161193847656e-05,
+      "raw_scores": {
+        "alternate_forward": -1.095657467842102,
+        "alternate_reverse": -1.0939052104949951,
+        "reference_forward": -1.0957915782928467,
+        "reference_reverse": -1.094024419784546
+      },
+      "source_payload_sha256": "8c9f9fab86784495c128f98fb96451511c99611c97722c4e401f88e00ef87108",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000002.json",
+      "source_shard_sha256": "9496f590caaf325af8b821f91397f57cd46348696cbababff2f2f1045e69ca7f",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0002690553665161133,
+      "delta_primary": 3.68952751159668e-05,
+      "delta_reverse": 0.0003428459167480469,
+      "gene_symbol": "TAB3",
+      "normalized_variant_id": "GRCh38:X:30855128:C>T",
+      "orientation_disagreement": 0.0006119012832641602,
+      "raw_scores": {
+        "alternate_forward": -0.9965733289718628,
+        "alternate_reverse": -1.0036300420761108,
+        "reference_forward": -0.9963042736053467,
+        "reference_reverse": -1.0039728879928589
+      },
+      "source_payload_sha256": "13f32193933076636a9215e9efaf2a4f9369f3324d122351b67172282fdf6ef7",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000036.json",
+      "source_shard_sha256": "aba8ed2023f861d403491f1ef9224ddf2090a1507e8c2e3c30956d756a6762f4",
+      "split": "TRAIN"
+    },
+    {
+      "cache_reuse_basis": "verified_historical_completed_shard",
+      "coverage_status": "COMPLETED",
+      "delta_forward": -0.0004490017890930176,
+      "delta_primary": -0.0005534887313842773,
+      "delta_reverse": -0.0006579756736755371,
+      "gene_symbol": "DDX3X",
+      "normalized_variant_id": "GRCh38:X:41345699:C>T",
+      "orientation_disagreement": 0.00020897388458251953,
+      "raw_scores": {
+        "alternate_forward": -0.7157571315765381,
+        "alternate_reverse": -0.825342059135437,
+        "reference_forward": -0.7153081297874451,
+        "reference_reverse": -0.8246840834617615
+      },
+      "source_payload_sha256": "9c965f8bdea1fe77dc50fb97f7beffb21049061ec98ad4016f7ecd8ae6b4ea64",
+      "source_shard": "research/runs/phase6_development_evo2_20260921/shards/shard_000081.json",
+      "source_shard_sha256": "35fec535b568a35ccda8701d7864dc5a2d473f1c260d38a10a029911d0396463",
+      "split": "TRAIN"
+    }
+  ]
+}

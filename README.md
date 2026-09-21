@@ -27,7 +27,7 @@ closed:
 | Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
 | Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
 | Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/11 applicable tables sourced from the development subset; the fine-tuning table is explicitly `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` because Phase 10 is deferred, and a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
-| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap. The later `$8.00`-authorized formal 64-row preflight was attempted twice but lost its Modal stream before any worker returned a row; billing remained `$0.00` and no full formal workload was launched. |
+| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap. The later `$8.00`-authorized formal 64-row preflight had two `StreamTerminatedError` failures; a third attempt already in flight reached Evo2 initialization but was interrupted before an accepted result. The subsequent diagnostic-only `$0.50` authorization passed CPU/detached transport but stopped on a missing `torch` dependency in the minimal H100 probe. Billing remains `$0.00` and no full formal workload was launched. |
 
 The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
 the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a
@@ -339,9 +339,11 @@ The dependency-ordered phase decisions are maintained in
   only; no full-cohort or locked-test claim is made;
 - `ML-DEV-BUDGETED-001` is a frozen formal-study design with a validated `$8.00` approval and
   `$7.75` runner stop. Its exact CADD/PhyloP comparator artifacts are complete, but two bounded
-  64-row Evo2 preflight attempts failed before any worker returned a row, so no new Evo2,
-  Nucleotide Transformer, or Caduceus scoring has completed and the full formal run remains
-  blocked by `FAIL_FORMAL_PREFLIGHT`;
+  64-row Evo2 preflight attempts failed with `StreamTerminatedError` before any worker returned
+  a row; a third attempt already in flight was interrupted after Evo2 initialization and is not
+  a PASS. The diagnostic-only transport follow-up passed CPU/detached checks but stopped on a
+  missing `torch` dependency in its minimal H100 probe, so no new formal result is accepted and
+  the full formal run remains blocked by `FAIL_FORMAL_PREFLIGHT`;
 - Phase 10 is formally deferred by compute, and Phase 14/15 remain scientifically
   blocked; Phase 15 has a local label-free planning/recovery contract but no
   authorized remote batch execution;

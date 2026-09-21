@@ -1153,3 +1153,37 @@ families were not invented.
   return `BLOCKED`, Phase 10 returns `DEFERRED_BY_COMPUTE`, Phase 16 returns `PARTIAL`, and
   Phases 17/18/19 return `BLOCKED`. `make modal-smoke` passes authentication with `gpu_count: 0`,
   `status: PLANNED`, and no remote invocation.
+
+## Corrected H100 diagnostic retry checkpoint — 2026-09-21
+
+- The corrected diagnostic approval is `artifacts/approvals/modal_h100_dependency_retry_20260921.json`,
+  bound to execution HEAD `14d8a9812d6bc776a21d3b8e6006cd46d2b89d9e`, the frozen protocol and
+  ML-DEV-BUDGETED-001 manifest hashes, Modal workspace/profile `utkarshmer05`, environment
+  `main`, and a hard cap of `$0.50` with a `$0.45` safety stop. It does not authorize the formal
+  64-row retry.
+- The corrected minimal H100 app `ap-ST5uHP1cHmdblqU4CIAncx` allocated container
+  `ta-01M32FFXEKXGSTP7SHMPF1KNTR`, function `fu-LUHgmjwLwoAdFTXNMmIEZ1`, and durable call
+  `fc-01M32FFX3DC90FWRZ419TX9NJX`. Modal logs show NVIDIA PyTorch 24.07 startup and PyTorch
+  `2.4.0a0+3bcc3cd`, so H100 scheduling, container startup, and remote PyTorch import are
+  evidenced as PASS.
+- The detached client then failed while deserializing the returned value:
+  `DeserializationError: Deserialization failed because the 'torch' module is not available in
+  the local environment.` The exact layer is local result deserialization after remote H100
+  execution, not H100 scheduling. The required CUDA result, GPU name, and compute capability
+  were not accepted by the local client.
+- The new evidence is `artifacts/modal_diagnostics/h100_dependency_retry_analysis_20260921.json`
+  and `artifacts/modal_diagnostics/h100_cuda_probe_20260921.json`. No `hf_cache` read, Evo2 load,
+  one-row score, eight-row score, formal 64-row retry, or locked-test access followed the
+  failure. The app is stopped and `modal container list` is empty.
+- A local follow-up fix now coerces every diagnostic return field to JSON-safe builtins in
+  `scripts/modal_h100_diagnostic.py`; it is committed at `e8ae239`. `make validate` passes with
+  704 tests, 33 deselected, strict mypy, Ruff, secret scan, and 95.02% coverage. Because the
+  existing approval is bound to `14d8a98`, no rerun was made after `e8ae239`; a future H100 retry
+  requires a fresh approval bound to the new HEAD.
+- Billing snapshots before and after the diagnostic both showed workspace metered cost `19.57`
+  and billed cost `$0.00`; this is workspace-level evidence, not a per-run invoice. The single
+  continuation state recorded for this stopped ladder is `PYTORCH_IMAGE_FIX_REQUIRED`, with the
+  precise remediation being plain-builtins result serialization at the client boundary.
+- Phase 6 remains `FAIL_FORMAL_PREFLIGHT`; all dependent scientific/downstream phases retain
+  their existing `BLOCKED`, `DEFERRED_BY_COMPUTE`, or `PARTIAL` status. No scientific result or
+  formal gate was promoted.

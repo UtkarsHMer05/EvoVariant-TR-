@@ -1015,3 +1015,22 @@ genuine unavailable evidence, not values to infer.
   `DEFERRED_BY_COMPUTE` for Phase 10, `PARTIAL` for Phase 16, and `BLOCKED` for Phases 17/18/19.
   `make modal-smoke` authenticates successfully but records `gpu_count: 0`, `PLANNED`, and no
   remote invocation.
+
+## Corrected H100 diagnostic retry checkpoint — 2026-09-21
+
+- The fresh diagnostic approval is bound to execution HEAD `14d8a98`, the frozen protocol and
+  ML-DEV-BUDGETED-001 manifest hashes, Modal workspace `utkarshmer05` / environment `main`, and
+  a `$0.50` hard cap with a `$0.45` safety stop. The formal 64-row retry remains excluded.
+- The corrected H100 diagnostic allocated `ap-ST5uHP1cHmdblqU4CIAncx` / container
+  `ta-01M32FFXEKXGSTP7SHMPF1KNTR`; logs show NVIDIA PyTorch 24.07 and PyTorch
+  `2.4.0a0+3bcc3cd`. H100 scheduling, startup, and remote PyTorch import therefore PASS.
+- The local detached client failed at result deserialization with
+  `DeserializationError: Deserialization failed because the 'torch' module is not available in
+  the local environment.` The CUDA result was not accepted, so the ladder stopped before
+  `hf_cache`, Evo2, one-row, or eight-row diagnostics. Evidence is in
+  `artifacts/modal_diagnostics/h100_dependency_retry_analysis_20260921.json`.
+- A plain-builtins serialization fix was committed at `e8ae239` and validated by `make validate`
+  (`704 passed, 33 deselected`, 95.02% coverage). No rerun followed because the approval remains
+  bound to `14d8a98`; a fresh approval is required for any retry. The single continuation state is
+  `PYTORCH_IMAGE_FIX_REQUIRED` (the concrete issue is client result serialization, not H100
+  scheduling). Phase 6 remains `FAIL_FORMAL_PREFLIGHT` and no downstream status is promoted.

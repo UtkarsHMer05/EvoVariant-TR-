@@ -2679,6 +2679,53 @@ Validation:
 data gates. The corrected H100 script passes Ruff, strict mypy, and compilation. No new Modal
 H100 or formal app was started in this continuation.
 
+## D-090 — Stop the corrected H100 diagnostic at the result-deserialization boundary
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None; constrains the diagnostic continuation authorized after D-089
+
+Context:
+The fresh continuation checkpoint authorized a corrected minimal H100 diagnostic under a new
+approval capped at `$0.50`, after the prior image failed with `ModuleNotFoundError: No module
+named 'torch'`. The corrected image installed the same pinned CUDA 12.4 PyTorch package used by
+the qualified formal image. The run used detached Modal execution and was not a formal cohort
+retry.
+
+Decision:
+Run only the corrected minimal H100 probe, then stop at the first new failure. App
+`ap-ST5uHP1cHmdblqU4CIAncx` allocated container `ta-01M32FFXEKXGSTP7SHMPF1KNTR`; logs showed
+NVIDIA PyTorch 24.07 and PyTorch `2.4.0a0+3bcc3cd`. Therefore H100 scheduling, container
+startup, and remote PyTorch import are PASS. The local `FunctionCall.get` path then failed with
+`DeserializationError: Deserialization failed because the 'torch' module is not available in the
+local environment.` The required CUDA result was not accepted. Do not run `hf_cache`, Evo2,
+one-row, eight-row, or formal 64-row work from this stopped attempt.
+
+The exact continuation label required by the checkpoint is `PYTORCH_IMAGE_FIX_REQUIRED`; the
+precise local remediation is to coerce all diagnostic return fields to plain JSON-safe builtins.
+That remediation is committed at `e8ae239` and passes `make validate`. The existing approval is
+bound to execution HEAD `14d8a98` and must not be silently rebound; any future H100 retry needs a
+fresh approval bound to the corrected HEAD.
+
+Alternatives:
+Treating the remote banner as a complete CUDA PASS was rejected because the result payload could
+not be decoded locally. Treating this as H100 scheduling unavailability or a Modal outage was
+rejected because the H100 container started and emitted the PyTorch banner. Continuing to
+`hf_cache` or Evo2 was rejected by the checkpoint stop rule.
+
+Consequences:
+The durable evidence is `artifacts/modal_diagnostics/h100_dependency_retry_analysis_20260921.json`
+and `artifacts/modal_diagnostics/h100_cuda_probe_20260921.json`; all previous failed app IDs and
+the original failure analysis remain preserved. Phase 6 remains `FAIL_FORMAL_PREFLIGHT`, and all
+dependent scientific/downstream phases retain their existing blocked or deferred statuses. No
+labels, locked-test data, or formal rows were sent to Modal.
+
+Validation:
+The corrected diagnostic source passes the source guard, Ruff, strict mypy, Python compilation,
+and `make validate` with 704 tests passed, 33 deselected, and 95.02% coverage. Modal app and
+container inventories were checked after execution; the diagnostic app was stopped and no active
+container remained. Workspace billing was `$0.00` billed before and after in the available
+workspace-level summaries.
+
 ## Template for new decisions
 
 ### D-XXX — Title

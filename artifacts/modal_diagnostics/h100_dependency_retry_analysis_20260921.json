@@ -1,0 +1,101 @@
+{
+  "artifact_id": "modal-h100-dependency-retry-analysis-20260921",
+  "recorded_at_utc": "2026-09-21T17:18:57Z",
+  "status": "STOPPED_AFTER_H100_RESULT_DESERIALIZATION_FAILURE",
+  "recommended_continuation_state": "PYTORCH_IMAGE_FIX_REQUIRED",
+  "recommendation_detail": "The corrected remote image imported PyTorch, but the local Modal client could not deserialize a returned value because it referenced the torch module. Coerce every diagnostic return field to plain builtins before any fresh H100 retry; do not continue to hf_cache or Evo2 under this failed attempt.",
+  "git": {
+    "execution_head": "14d8a9812d6bc776a21d3b8e6006cd46d2b89d9e",
+    "branch": "research/evovariant-tr",
+    "code_fix": "scripts/modal_h100_diagnostic.py installs torch==2.4.0 from the CUDA 12.4 index and probes 1.0*2.0",
+    "historical_report_preserved": "artifacts/modal_diagnostics/formal_preflight_failure_analysis_20260921.json"
+  },
+  "approval": {
+    "path": "artifacts/approvals/modal_h100_dependency_retry_20260921.json",
+    "hard_cap_usd": 0.5,
+    "safety_stop_usd": 0.45,
+    "formal_64_row_retry_authorized": false
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "study": {
+    "study_id": "ML-DEV-BUDGETED-001",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "locked_test_access": "PROHIBITED",
+    "labels_sent_to_modal": false
+  },
+  "modal": {
+    "profile": "utkarshmer05",
+    "workspace": "utkarshmer05",
+    "environment": "main",
+    "app_id": "ap-ST5uHP1cHmdblqU4CIAncx",
+    "function_id": "fu-LUHgmjwLwoAdFTXNMmIEZ1",
+    "function_call_id": "fc-01M32FFX3DC90FWRZ419TX9NJX",
+    "container_id": "ta-01M32FFXEKXGSTP7SHMPF1KNTR",
+    "diagnostic_script": "scripts/modal_h100_diagnostic.py",
+    "detached_execution": true
+  },
+  "diagnostic_table": {
+    "cpu_transport": "PASS; preserved prior app ap-23bynwYzoxKGO8TmPHVD9l",
+    "detached_cpu": "PASS; preserved prior app ap-wsZoBWHGk1jN57Td2HXlIM",
+    "h100_scheduling": "PASS; H100 container allocated",
+    "container_startup": "PASS; NVIDIA PyTorch 24.07 logs",
+    "pytorch_import": "PASS; PyTorch 2.4.0a0+3bcc3cd observed in remote banner",
+    "cuda_tensor": "FAIL_TO_ACCEPT; client result deserialization failed before validation",
+    "hf_cache": "NOT_RUN; stop rule",
+    "evo2_load": "NOT_RUN; stop rule",
+    "one_row_canonical_score": "NOT_RUN; stop rule",
+    "eight_row_canonical_score": "NOT_RUN; stop rule"
+  },
+  "failure": {
+    "layer": "local client result deserialization after remote container execution",
+    "exception": "DeserializationError: Deserialization failed because the 'torch' module is not available in the local environment.",
+    "remote_log_evidence": [
+      "H100 container ta-01M32FFXEKXGSTP7SHMPF1KNTR allocated",
+      "NVIDIA Release 24.07 banner emitted",
+      "PyTorch Version 2.4.0a0+3bcc3cd banner emitted",
+      "no remote Python traceback observed"
+    ],
+    "client_elapsed_ms": 43843.184041790664,
+    "remote_gpu_name": null,
+    "remote_cuda_version": null,
+    "remote_compute_capability": null,
+    "evo2_revision": null
+  },
+  "billing": {
+    "before": {
+      "metered_cost_usd": 19.57,
+      "billed_cost_usd": 0.0
+    },
+    "after": {
+      "metered_cost_usd": 19.57,
+      "billed_cost_usd": 0.0
+    },
+    "interpretation": "Workspace-level Modal summary, not a per-run invoice"
+  },
+  "scientific_boundary": {
+    "formal_64_row_preflight_retried": false,
+    "formal_4000_row_run_started": false,
+    "hf_cache_mutated": false,
+    "evo2_loaded": false,
+    "development_rows_scored": 0,
+    "locked_test_accessed": false,
+    "training_started": false,
+    "hpo_started": false,
+    "fine_tuning_started": false,
+    "phase14_started": false
+  },
+  "evidence": {
+    "probe_artifact": "artifacts/modal_diagnostics/h100_cuda_probe_20260921.json",
+    "app_logs_retrieved": true,
+    "active_containers_after_run": 0,
+    "prior_failed_formal_apps_preserved": [
+      "ap-3nvzpB5VADtBwNaoF5aOmA",
+      "ap-2yoBkvnIItyhk0pULH36CA",
+      "ap-TjBjZwIceAIK4Q6U8Y9B4l"
+    ]
+  }
+}

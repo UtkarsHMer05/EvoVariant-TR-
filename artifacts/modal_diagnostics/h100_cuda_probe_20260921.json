@@ -1,14 +1,27 @@
 {
+  "app_id": "ap-ST5uHP1cHmdblqU4CIAncx",
   "app_name": "evovariant-tr-modal-h100-diagnostic",
   "artifact_id": "modal-h100-cuda-probe-20260921",
-  "elapsed_ms": 12829.536708071828,
-  "exception": "ModuleNotFoundError: No module named 'torch'",
+  "container_id": "ta-01M32FFXEKXGSTP7SHMPF1KNTR",
+  "elapsed_ms": 43843.184041790664,
+  "exception": "DeserializationError: Deserialization failed because the 'torch' module is not available in the local environment.",
   "function": "cuda_probe",
-  "function_call_id": "fc-01M32DEA0TT4E2F5A3XNWEAW96",
+  "function_id": "fu-LUHgmjwLwoAdFTXNMmIEZ1",
+  "function_call_id": "fc-01M32FFX3DC90FWRZ419TX9NJX",
+  "failure_layer": "local client result deserialization after remote H100 execution",
   "gpu": "H100",
   "hf_access": false,
   "model_access": false,
+  "remote_observations": {
+    "h100_allocation": "PASS",
+    "container_startup": "PASS",
+    "pytorch_import": "PASS; NVIDIA PyTorch 24.07 banner reported PyTorch 2.4.0a0+3bcc3cd",
+    "cuda_tensor_result": "NOT_ACCEPTED; remote return payload could not be deserialized locally",
+    "cuda_gpu_name": "NOT_RETURNED",
+    "compute_capability": "NOT_RETURNED",
+    "remote_traceback": "none observed; the client failed while decoding the returned value"
+  },
   "status": "FAIL",
-  "submitted_at_ns": 1790008829820074000,
+  "submitted_at_ns": 1790010979294249000,
   "volume": null
 }

@@ -66,6 +66,59 @@ def test_evo2_readiness_reports_incomplete_and_failed_parity() -> None:
     assert failed.check_readiness().status is AdapterStatus.FAILED
 
 
+def test_evo2_default_parity_checker_remains_deferred_without_gpu() -> None:
+    report = Evo2Adapter(_evo2_manifest()).check_readiness()
+
+    assert report.status is AdapterStatus.DEFERRED
+    assert report.checks["torch_available"] == "SKIP"
+
+
+def test_evo2_adapter_rejects_empty_or_unreadable_remote_evidence() -> None:
+    manifest = _evo2_manifest()
+
+    empty = Evo2Adapter(
+        manifest,
+        parity_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "torch", "status": "PASS"}],
+        },
+        remote_smoke_checker=lambda: {"all_pass": True, "checks": []},
+    ).check_readiness()
+    assert empty.status is AdapterStatus.DEFERRED
+    assert empty.checks["remote_smoke"] == "NOT_VERIFIED"
+
+    def raises() -> dict[str, Any]:
+        raise RuntimeError("evidence file unavailable")
+
+    unreadable = Evo2Adapter(
+        manifest,
+        parity_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "torch", "status": "PASS"}],
+        },
+        remote_smoke_checker=raises,
+    ).check_readiness()
+    assert unreadable.status is AdapterStatus.FAILED
+    assert unreadable.checks["remote_smoke"] == "ERROR"
+
+
+def test_evo2_adapter_rejects_nonpassing_remote_check_status() -> None:
+    report = Evo2Adapter(
+        _evo2_manifest(),
+        parity_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "torch", "status": "PASS"}],
+        },
+        remote_smoke_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "real_inference", "status": "SKIP"}],
+        },
+    ).check_readiness()
+
+    assert report.status is AdapterStatus.DEFERRED
+    assert report.checks["remote_real_inference"] == "SKIP"
+
+
 def test_evo2_ready_adapter_requires_or_uses_injected_scorer() -> None:
     manifest = _evo2_manifest()
     def parity() -> dict[str, Any]:

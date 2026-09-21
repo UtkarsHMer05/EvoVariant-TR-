@@ -1235,6 +1235,40 @@ tests/modal -rs` passed 9 tests with one documented placeholder skip in 1.44 sec
 covered deterministic shards, persisted completed/failed states, progress reconstruction, retry
 classification, and shard serialization.
 
+## D-050 — Reject full-run approvals tied to stale protocol hashes
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The repository contains an old August full-run approval artifact whose schema is valid but whose
+protocol hash predates the frozen ML-extension protocol. The previous cost-policy loader checked
+fields, environment, and GPU type but did not compare the approval hash with the current control
+plane.
+
+Decision:
+Make `require_full_run_approval()` load the current ML-extension protocol hash from
+`research/ml_extension/protocol_hashes.json` and reject any approval whose hash differs. Keep the
+existing pilot approval separate because it is not a full-run approval and remains bounded to its
+recorded scope.
+
+Alternatives:
+Trust the human-readable approval scope, accept any non-empty hash, or silently rewrite the stale
+approval. These were rejected because a stale approval can authorize the wrong estimand, and
+rewriting an approval would invent user authority.
+
+Consequences:
+The stale August artifact cannot pass the full-run gate. A future full benchmark requires a new
+approval artifact explicitly tied to the current frozen protocol, in addition to the paid
+acknowledgement and scientific phase gates. No compute or scientific result was created by this
+change.
+
+Validation:
+The targeted cost-policy suite passes 26 tests; Ruff and strict mypy pass for the changed module.
+An explicit check reports `approval protocol_hash does not match the current frozen ML-extension
+protocol` for `artifacts/approvals/full_run_approval.json`.
+
 ## Template for new decisions
 
 ### D-XXX — Title

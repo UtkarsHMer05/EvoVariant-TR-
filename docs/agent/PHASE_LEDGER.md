@@ -42,6 +42,10 @@ gate state.
 - Frontend security/build/browser subgates: PASS in `739310d`. Next.js `16.3.5`, native flat
   ESLint configuration, direct ESLint package scripts, and PostCSS `8.5.28` are installed from
   the checked-in lockfile. Both full and production-only `npm audit` report zero vulnerabilities.
+- Paid-execution safety subgate: PASS for stale-approval rejection. `require_full_run_approval()`
+  now compares the approval artifact with the frozen hash in
+  `research/ml_extension/protocol_hashes.json`; the current stale August artifact is refused,
+  and the targeted cost-policy suite passes 26 tests. No paid command was launched.
 - Clean-room subgate: PASS from a fresh clone of `739310d`. `make bootstrap`, `make
   frontend-install`, `make validate`, `make test-scientific`, `make test-e2e`, protocol,
   ML-control-plane, schema, model-registry, and registry checks, `make web-check`, and the

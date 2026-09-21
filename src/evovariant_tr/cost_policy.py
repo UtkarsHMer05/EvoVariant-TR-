@@ -19,6 +19,7 @@ COST_ACK_ENV = "EVOVARIANT_TR_PAID_COMPUTE_ACK"
 COST_ACK_VALUE = "I_ACCEPT_COSTS"
 
 DEFAULT_APPROVAL_PATH = Path("artifacts/approvals/full_run_approval.json")
+DEFAULT_PROTOCOL_HASH_PATH = Path("research/ml_extension/protocol_hashes.json")
 
 # Approved Modal environment names and GPU types for the NEW project.
 APPROVED_MODAL_ENVIRONMENTS = frozenset({"evovariant-tr"})
@@ -116,8 +117,41 @@ def load_full_run_approval(path: str | Path = DEFAULT_APPROVAL_PATH) -> FullRunA
         raise CostPolicyError(f"invalid approval artifact {target}: {exc}") from exc
 
 
+def load_current_ml_protocol_hash(
+    path: str | Path = DEFAULT_PROTOCOL_HASH_PATH,
+) -> str:
+    """Read the current frozen ML-extension protocol hash from the control plane."""
+    target = Path(path)
+    try:
+        raw = json.loads(target.read_text(encoding="utf-8"))
+        files = raw["files"]
+        protocol_hash = files["research/ml_extension/protocol.yaml"]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise CostPolicyError(
+            f"cannot load current ML-extension protocol hash from {target}: {exc}"
+        ) from exc
+    if (
+        not isinstance(protocol_hash, str)
+        or len(protocol_hash) != 64
+        or any(character not in "0123456789abcdef" for character in protocol_hash)
+    ):
+        raise CostPolicyError(
+            f"current ML-extension protocol hash is invalid in {target}"
+        )
+    return protocol_hash
+
+
 def require_full_run_approval(
     path: str | Path = DEFAULT_APPROVAL_PATH,
+    *,
+    protocol_hash_path: str | Path = DEFAULT_PROTOCOL_HASH_PATH,
 ) -> FullRunApproval:
-    """Hard gate for the full primary scoring run (enforced again at M69)."""
-    return load_full_run_approval(path)
+    """Hard gate for full scoring, including current-protocol approval freshness."""
+    approval = load_full_run_approval(path)
+    current_protocol_hash = load_current_ml_protocol_hash(protocol_hash_path)
+    if approval.protocol_hash != current_protocol_hash:
+        raise CostPolicyError(
+            "approval protocol_hash does not match the current frozen "
+            f"ML-extension protocol ({current_protocol_hash})"
+        )
+    return approval

@@ -38,7 +38,9 @@ Purpose: prevent accidental credential exposure and unapproved GPU spending.
   `approved_by`, `approved_at`, `max_budget_usd`, `run_scope`,
   `modal_environment`, `gpu_type`, `protocol_hash`.
 - `cost_policy.require_full_run_approval()` raises `CostPolicyError` if the
-  artifact is missing or invalid. This gate is enforced again at M69.
+  artifact is missing or invalid, and also refuses an artifact whose
+  `protocol_hash` does not match the current frozen ML-extension hash in
+  `research/ml_extension/protocol_hashes.json`. This gate is enforced again at M69.
 - Smaller pilots (M55–68) are bounded by their registered scope and still
   require the paid-compute acknowledgement below.
 

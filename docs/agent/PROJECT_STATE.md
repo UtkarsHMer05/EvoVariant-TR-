@@ -109,6 +109,11 @@ Active branch/worktree: `research/evovariant-tr` at
   verification, `make web-check`, and four-test `make web-e2e`. Its `make figures` and
   `make release-check` surfaces correctly remained `BLOCKED` because no eligible scientific
   result artifacts are registered.
+- The full-run cost gate now verifies approval freshness against the current frozen ML-extension
+  protocol hash. The stale August approval is actively refused with a protocol-hash mismatch;
+  the targeted cost-policy suite passes 26 tests, Ruff and strict mypy pass, and no paid command
+  was launched. This prevents a structurally valid but scientifically stale approval from
+  authorizing future work.
 - These results close the frontend security/build/browser gates and the free CPU clean-room
   subgate. They do not change the scientific state: Phase 3's 330-ID discrepancy, Phase 5's
   single included model, absent authorized full-cohort/batch recovery evidence, empty result

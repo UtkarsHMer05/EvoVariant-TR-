@@ -68,7 +68,7 @@ def _valid_approval_kwargs():
         "run_scope": "full_primary_analysis",
         "modal_environment": "evovariant-tr",
         "gpu_type": "H100",
-        "protocol_hash": "sha256:" + "a" * 64,
+        "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
     }
 
 
@@ -167,3 +167,12 @@ def test_require_full_run_approval_forbidden_identity(tmp_path):
     bad.write_text(json.dumps(kw), encoding="utf-8")
     with pytest.raises(CostPolicyError, match="invalid approval artifact"):
         require_full_run_approval(bad)
+
+
+def test_require_full_run_approval_rejects_stale_protocol_hash(tmp_path):
+    approval = tmp_path / "approval.json"
+    kw = _valid_approval_kwargs()
+    kw["protocol_hash"] = "a" * 64
+    approval.write_text(json.dumps(kw), encoding="utf-8")
+    with pytest.raises(CostPolicyError, match="does not match the current frozen"):
+        require_full_run_approval(approval)

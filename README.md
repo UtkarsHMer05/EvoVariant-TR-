@@ -21,8 +21,8 @@ closed:
 | Area | Current evidence |
 |---|---|
 | Frozen protocol and ML-extension control plane | PASS; the original protocol hash is preserved. |
-| Phase 3 data and splits | Structural invariants PASS, with a documented QA-count discrepancy; downstream scoring is blocked until resolved or approved by deviation. |
-| Model registry | Seven schema-valid candidate manifests; Evo2 is included with verified provenance and one real smoke, while six candidates are explicitly deferred/infeasible. |
+| Phase 3 data and splits | PASS for the ML extension under dated `ML-DEV-001`/`ML-DEV-002`; authoritative locked cohort is 946 (536 B/LB, 410 P/LP), with independent GRCh38 validation and zero unresolved mismatches. |
+| Model registry and final Phase 5 roster | Seven schema-valid candidate manifests; the final roster separates Evo2 raw scoring, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only AlphaMissense. |
 | Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
 | Experiment registry | Empty; no scientific result artifact is registered. |
 | Research workbench | Frontend build and four browser tests PASS; scientific panels remain evidence-gated. |
@@ -61,10 +61,12 @@ make registry-verify
 make test-scientific
 make test-e2e
 make figures
+make phase3-audit
+make phase3-freeze
 ```
 
-At the verified current baseline, `make validate` passes 650 tests with 33
-deselected and 95.08% coverage. The scientific tier passes 7 tests with 1
+At the verified current baseline, `make validate` passes 656 tests with 33
+deselected and 95.12% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
 are recorded in the project-control files.
@@ -94,9 +96,12 @@ The primary protocol fixes:
 The Phase 3 archives are hash-verified. Their current recomputation yields
 1,402,895 unique valid t0 VUS IDs and 946 final temporal records (536 B/LB,
 410 P/LP). The validation-only handoff target was 1,403,225 and 1,024. The
-difference is documented and has not been tuned away; no model scoring is
-authorized until the discrepancy is resolved from source evidence or accepted
-through the dated deviation process.
+difference is documented and has not been tuned away. The exact historical identity set was
+not recoverable, so `ML-DEV-001` accepts the reproducible 946-record cohort for the ML extension
+only; the original zero-shot study remains historical evidence. `ML-DEV-002` freezes the Broad
+GATK hg38/v0 reference and its hashes for independent base validation. The pre-Phase-6
+checkpoint is complete, but no full model scoring or embedding extraction is authorized until a
+fresh scope-specific approval is recorded.
 
 ## Architecture
 
@@ -195,8 +200,10 @@ The raw archives are local, ignored data. Their identity is recorded in:
 - `research/data_manifests/clinvar_t1.json`;
 - `research/ml_extension/splits/phase3_manifest_summary.json`.
 
-The summary is the reviewable source of truth for the discrepancy and explicitly
-sets `model_scoring_allowed` to false until the gate is resolved.
+The summary is the reviewable source of truth for the discrepancy, deviations,
+reference validation, and authoritative cohort. It does not authorize a model
+run by itself; Phase 6/7 execution still requires the separate approval and
+checkpoint gates recorded in the project-control files.
 
 ## Experiment registry and figures
 
@@ -255,8 +262,8 @@ Paid execution requires the explicit acknowledgement
 gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current bounded
 approval covers the completed Phase 2/4 pilot family and the two Phase 5 smoke
 tests only; it does not authorize a full benchmark, training, HPO, fine-tuning,
-or locked-test run while the Phase 3 external gates and raw-score multi-model
-protocol remain unresolved.
+or locked-test run. Phase 3 is now resolved for the ML extension, but a fresh
+scope-specific approval is still required for any Phase 6/7 execution.
 
 ## Phase status
 
@@ -266,12 +273,13 @@ The dependency-ordered phase decisions are maintained in
 - Phases 0 and 1 are complete;
 - Phase 2 and Phase 4 pass their engineering gates with the corrected remote
   Evo2 miss/hit evidence;
-- Phase 3 has a complete local integrity audit, but remains blocked because the
-  target ID/source set and frozen GRCh38 FASTA/index are unavailable;
-- Phase 5 has two additional real checkpoint smoke tracks (`SUBSET_ONLY` for
-  Nucleotide Transformer and Caduceus), while only Evo2 is included for the
-  frozen raw-SNV score contract;
-- Phases 6–15 have explicit blocked status artifacts and no scientific metrics;
+- Phase 3 passes for the ML extension under `ML-DEV-001`/`ML-DEV-002`, with a
+  946-record authoritative locked cohort and independent reference validation;
+- Phase 5 has a final separated roster: Evo2 raw score, Nucleotide
+  Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
+  deferred GPN, and subset-only AlphaMissense;
+- Phase 6–15 have explicit blocked/not-started status artifacts and no
+  scientific metrics;
 - Phase 16's frontend/build/browser engineering gate passes, but its scientific
   result dependency is absent;
 - Phase 17's registry-driven manifest and export bundle are deterministic but

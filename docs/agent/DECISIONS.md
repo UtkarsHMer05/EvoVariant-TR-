@@ -1670,6 +1670,133 @@ the full seven-candidate roster, official sources, exact revisions, status, smok
 evidence, and workspace billing interpretation. The smoke wall-rate estimate was `$0.0152`; the
 post-smoke workspace snapshot was metered `$12.21122616` and billed `$0.00`.
 
+## D-062 — Accept the reproducible 946-record ML-extension cohort after exhaustive recovery
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-060 for the Phase 3 gate decision; preserves the historical zero-shot record
+
+Context:
+The handoff target of 1,403,225 t0 VUS identities and a 1,024-record temporal cohort (614
+B/LB, 410 P/LP) was documented only as aggregate counts. The final recovery search covered
+reachable history, deleted paths, all refs, reflog entries, unreachable objects, fetched remote
+heads/tags, repository artifacts, generated data, presentations, scripts, logs, local worktrees,
+and supplied attachments. The machine-readable search record reports 133 reachable commits,
+95 reflog entries, 91 reflog commits, 6 refs, 1 unreachable commit, 2 unreachable blobs, 12
+deleted paths, and one fetched remote branch head. No normalized-ID set or source-row manifest
+reconstructing the historical target was recovered.
+
+Decision:
+Keep the historical aggregate counts as validation-only evidence. Under ML-DEV-001 and ML
+extension protocol v1.1.0, freeze the manifest-verified current archive pipeline's 946-record
+cohort (536 B/LB, 410 P/LP, 946 gene labels). Do not invent records, manually add IDs, or tune
+filters to match the historical count. The original zero-shot study is not rewritten.
+
+Alternatives:
+Construct a synthetic 78-record B/LB supplement, relax the frozen filters, or treat aggregate
+counts as an identity manifest. These were rejected because none preserves source provenance or
+the original estimand.
+
+Consequences:
+The ML extension has a new denominator and is not directly comparable to reports based on the
+undocumented 1,024-record target without an explicit cohort caveat. Phase 3 can pass only after
+the independent GRCh38 reference-base audit and all freeze artifacts pass.
+
+Validation:
+`artifacts/phase3_recovery_search_20260921.json`, `research/ml_extension/DEVIATION_LOG.md`,
+and the final Phase 3 audit/freeze artifacts provide the search, source hashes, code commit,
+filter funnel, count delta, overlap/leakage checks, and deterministic-regeneration evidence.
+
+## D-063 — Freeze Broad GATK hg38/v0 as the ML-extension GRCh38 reference
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None; original protocol remains unchanged
+
+Context:
+The original protocol named `Homo_sapiens_assembly38.fasta` but did not specify an immutable
+provider object, accession/build detail, byte size, FASTA checksum, FAI checksum, or contig
+naming convention. That gap prevented independent base validation of the extension cohort.
+
+Decision:
+For the ML extension only, freeze the Broad Institute GATK Resource Bundle hg38/v0 uncompressed
+FASTA and its provided FAI. Record the source URLs, GRCh38/build identity, retrieval timestamp,
+sizes, SHA-256 values, chr-prefixed primary contig convention plus provider-supplied auxiliary
+contigs, and acquisition script in
+`data/manifests/grch38.json` and `research/scripts/acquire_grch38_reference.py`. Keep the large
+FASTA and FAI outside Git. Record the new reference decision as ML-DEV-002 rather than changing
+the original protocol.
+
+Consequences:
+The Phase 3 gate now requires an independently generated full-cohort base audit with zero
+unresolved mismatches. A missing or mismatched reference remains a hard failure; alleles are
+never changed to force a match.
+
+Validation:
+`artifacts/reference/grch38_validation_20260921.json` and the authoritative cohort hash
+manifest record the exact reference and report status. The expected FASTA SHA-256 is
+`93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564`; the expected FAI SHA-256
+is `edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b`.
+
+## D-064 — Finalize Phase 5 as separated raw, embedding, and public-comparator tracks
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-061 for the final Phase 5 roster only
+
+Context:
+Real bounded H100 smokes established finite hidden states/logits and synthetic ref/alt
+embedding plumbing for Nucleotide Transformer v2 and Caduceus, but neither checkpoint exposed
+the frozen Evo2-style raw REF-vs-ALT likelihood contract. The Phase 5 follow-up also checked
+whether public CADD and PhyloP assets could provide CPU lookup comparators without GPU
+recomputation.
+
+Decision:
+Record Evo2 as `INCLUDED_RAW_SCORE`; Nucleotide Transformer and Caduceus as
+`INCLUDED_EMBEDDING_TRACK` for a separately labeled future supervised representation phase;
+GPN as `DEFERRED` pending its matching 100-way alignment asset; CADD and PhyloP as
+`INCLUDED_RAW_SCORE` public comparator contracts with explicit non-foundation semantics and
+lookup-time missingness; and AlphaMissense as `SUBSET_ONLY` for valid mapped missense variants.
+Masked logits are not relabeled as raw allele-effect scores, and no public comparator asset is
+treated as present until its file manifest and cohort missingness report exist.
+
+Consequences:
+The exact Phase 6 raw foundation-model set remains Evo2 only. Nucleotide Transformer/Caduceus
+do not create Phase 6 results; CADD/PhyloP are low-GPU comparator candidates; all launches remain
+blocked pending the final Phase 3 artifacts and a fresh scope-specific approval.
+
+Validation:
+`artifacts/model_audit/phase5_final_roster_20260921.json` records the contracts, source URLs,
+coverage and missingness policy, checkpoint smoke evidence, and Phase 6/7 launch boundary.
+
+## D-065 — Record the final Phase 3 freeze hashes and preserve the pre-Phase-6 boundary
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: The hash values in the earlier recovery checkpoint sections; it does not change D-062, D-063, or D-064.
+
+Context:
+The recovery, independent GRCh38 validation, and final Phase 5 roster work passed. The first
+generated Phase 3 summary omitted historical provenance fields, so the freeze generator was
+corrected and committed before the authoritative manifests were regenerated. The historical
+1,024-record target remains unavailable and validation-only.
+
+Decision:
+Use the manifests generated by committed code `36063e8e1b65ddf1653347a5705e89115e52f1d5` as
+the current ML-extension control artifacts. Preserve the source archive metadata, historical
+target comparison, discrepancy investigation, and current PASS gate in the Phase 3 summary.
+Keep model scoring, full Phase 6/7 execution, training, HPO, fine-tuning, and locked-test
+evaluation blocked until a new scope-specific approval is granted.
+
+Validation:
+The authoritative locked-test manifest SHA-256 is
+`9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb`; the canonical record-set
+SHA-256 is `ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0`; the cohort
+manifest SHA-256 is `0d4386b34196a523ca43b50cc4242d4ecb01df2b40923fc0aa52f15d61c593b1`; and the
+restored Phase 3 summary SHA-256 is
+`654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420`. The integrity audit
+SHA-256 is `e0c79be4332347b79e1647f02a12f848ec0cf4da5d8250ec2f4a0b49c8284339`, and the
+independent reference report SHA-256 is
+`74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f`. The resulting cohort is
+946 total, 536 B/LB, 410 P/LP, 946 gene labels, and 367 unique genes, with zero unresolved
+reference mismatches and deterministic regeneration PASS.
+
 ## Template for new decisions
 
 ### D-XXX — Title

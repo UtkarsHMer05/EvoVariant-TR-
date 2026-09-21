@@ -1,0 +1,56 @@
+{
+  "authoritative_difference_from_historical_target": {
+    "blb": -78,
+    "final_temporal_n": -78,
+    "plp": 0,
+    "t0_unique_vus": -330
+  },
+  "code_commit": "36063e8e1b65ddf1653347a5705e89115e52f1d5",
+  "counts": {
+    "blb": 536,
+    "gene_labels": 946,
+    "plp": 410,
+    "total": 946,
+    "unique_genes": 367
+  },
+  "deviation_id": "ML-DEV-001",
+  "generated_at_utc": "2026-09-21T07:52:03.421196+00:00",
+  "historical_target_for_comparison_only": {
+    "blb": 614,
+    "final_temporal_n": 1024,
+    "plp": 410,
+    "t0_unique_vus": 1403225
+  },
+  "locked_test_manifest": {
+    "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
+  },
+  "manifest_id": "evovariant-tr-ml-extension-authoritative-cohort-v1",
+  "phase3_audit_status": "PASS",
+  "phase3_gate": "PASS",
+  "phase3_gate_basis": "ML-DEV-001 plus ML-DEV-002 plus independent reference PASS",
+  "protocol_version": "1.1.0",
+  "reference_source_manifest": {
+    "path": "data/manifests/grch38.json",
+    "sha256": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e"
+  },
+  "reference_status": "PASS",
+  "reference_validation": {
+    "path": "artifacts/reference/grch38_validation_20260921.json",
+    "sha256": "74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f"
+  },
+  "source_archives": {
+    "t0_sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
+    "t1_sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
+  },
+  "source_artifact_sha256": {
+    "integrity_audit": "e0c79be4332347b79e1647f02a12f848ec0cf4da5d8250ec2f4a0b49c8284339",
+    "locked_test_ids": "06d2641f08731c1802b10e58a76e734ba6e8f4a3ebb5687721cce9053cbe7112",
+    "phase3_summary": "8d194548eb02d9470ba4578b911e8b47dfdcb6aa618572b62f6d99354ac034fa",
+    "reference_manifest": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e",
+    "reference_validation": "74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f",
+    "split_manifest": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "temporal_audit": "6e67929e18421d1c7558d047bf06f3f9d5e6fe8390d968626f6cc1737f03cb41"
+  },
+  "status": "PASS"
+}

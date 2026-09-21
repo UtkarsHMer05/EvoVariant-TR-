@@ -1,0 +1,32 @@
+{
+  "code_commit": "36063e8e1b65ddf1653347a5705e89115e52f1d5",
+  "counts": {
+    "LOCKED_TEST": 946,
+    "TRAIN": 191957,
+    "VALIDATION": 48035,
+    "development_negative": 193563,
+    "development_positive": 46429,
+    "development_total": 239992,
+    "duplicate_normalized_ids": 0,
+    "locked_test_excluded_from_development": 946,
+    "t0_vus_overlap_with_development": 0,
+    "temporal_final_negative": 536,
+    "temporal_final_positive": 410,
+    "train_genes": 9682,
+    "validation_genes": 57
+  },
+  "deviation_id": "ML-DEV-001",
+  "generated_at_utc": "2026-09-21T07:52:03.421196+00:00",
+  "generated_split_manifest_path": "data/derived/ml_extension/phase3/split_manifest.json",
+  "generated_split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "invariants": {
+    "deterministic": true,
+    "duplicate_normalized_ids": 0,
+    "locked_test_overlap": 0,
+    "normalized_id_overlap": 0,
+    "train_validation_gene_overlap": 0
+  },
+  "manifest_id": "evovariant-tr-ml-extension-authoritative-split-summary-v1",
+  "protocol_version": "1.1.0",
+  "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722"
+}

@@ -1,79 +1,72 @@
 {
+  "code_commit": "36063e8e1b65ddf1653347a5705e89115e52f1d5",
   "dataset_id": "evovariant-tr-phase3-v1",
-  "status": "BLOCKED_EXTERNAL_EVIDENCE_AFTER_INTEGRITY_AUDIT",
-  "protocol_id": "evovariant-tr-ml-extension",
-  "original_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
-  "source_archives": {
-    "t0": {
-      "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
-      "manifest": "research/data_manifests/clinvar_t0.json",
-      "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
-      "size_bytes": 288267418,
-      "release_date": "2025-01-02"
-    },
-    "t1": {
-      "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
-      "manifest": "research/data_manifests/clinvar_t1.json",
-      "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
-      "size_bytes": 441792560,
-      "release_date": "2026-08-06"
-    }
-  },
-  "source_manifest_hash": "854210537eebd87f8390eee8bfc4d77072dc8df86f0ccaffc246edb781783c00",
-  "generated_artifacts": {
-    "directory": "data/derived/ml_extension/phase3",
-    "split_manifest": "data/derived/ml_extension/phase3/split_manifest.json",
-    "split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
-    "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
-    "temporal_audit": "data/derived/ml_extension/phase3/temporal_audit.json",
-    "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json",
-    "integrity_audit": "artifacts/phase3_integrity_audit_20260921.json",
-    "integrity_audit_sha256": "ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5",
-    "integrity_diagnostic": "artifacts/phase3_integrity_diagnostic_20260921.json"
-  },
-  "temporal_audit": {
-    "t0_unique_vus": 1402895,
-    "absent_at_t1": 3459,
-    "below_two_stars": 9049,
-    "not_definitive_at_t1": 1389441,
-    "final_temporal_n": 946,
-    "n_blb": 536,
-    "n_plp": 410,
-    "gene_labels": 946,
-    "reference_mismatch_count": 0,
-    "gene_mismatch_count": 2,
-    "t0_duplicate_vus_ids": 0,
-    "t1_conflicting_duplicate_ids": 0
-  },
   "development_split": {
+    "LOCKED_TEST": 946,
     "TRAIN": 191957,
     "VALIDATION": 48035,
-    "LOCKED_TEST": 946,
-    "development_total": 239992,
-    "development_positive": 46429,
     "development_negative": 193563,
+    "development_positive": 46429,
+    "development_total": 239992,
+    "duplicate_normalized_ids": 0,
+    "locked_test_excluded_from_development": 946,
+    "t0_vus_overlap_with_development": 0,
+    "temporal_final_negative": 536,
+    "temporal_final_positive": 410,
     "train_genes": 9682,
     "validation_genes": 57
   },
-  "invariants": {
-    "normalized_id_overlap": 0,
-    "train_validation_gene_overlap": 0,
-    "locked_test_overlap": 0,
-    "duplicate_normalized_ids": 0,
-    "deterministic_rebuild": true,
-    "generated_manifest_schema_valid": true
+  "deviation_ids": [
+    "ML-DEV-001",
+    "ML-DEV-002"
+  ],
+  "generated_artifacts": {
+    "authoritative_split_manifest": "research/ml_extension/splits/authoritative_split_manifest.json",
+    "cohort_manifest": "research/ml_extension/splits/authoritative_cohort_manifest.json",
+    "directory": "data/derived/ml_extension/phase3",
+    "exclusion_report": "research/ml_extension/splits/authoritative_exclusion_report.json",
+    "hash_manifest": "research/ml_extension/splits/authoritative_cohort_hashes.json",
+    "integrity_audit": "artifacts/phase3_integrity_audit_20260921.json",
+    "integrity_audit_sha256": "e0c79be4332347b79e1647f02a12f848ec0cf4da5d8250ec2f4a0b49c8284339",
+    "integrity_diagnostic": "artifacts/phase3_integrity_diagnostic_20260921.json",
+    "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json",
+    "locked_test_manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
+    "split_manifest": "data/derived/ml_extension/phase3/split_manifest.json",
+    "split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "temporal_audit": "data/derived/ml_extension/phase3/temporal_audit.json"
   },
+  "generated_at_utc": "2026-09-21T07:52:03.421196+00:00",
+  "historical_target_comparison": {
+    "difference": {
+      "final_temporal_n": -78,
+      "n_blb": -78,
+      "n_plp": 0,
+      "t0_unique_vus": -330
+    },
+    "final_temporal_n": 1024,
+    "n_blb": 614,
+    "n_plp": 410,
+    "t0_unique_vus": 1403225
+  },
+  "invariants": {
+    "deterministic": true,
+    "duplicate_normalized_ids": 0,
+    "locked_test_overlap": 0,
+    "normalized_id_overlap": 0,
+    "train_validation_gene_overlap": 0
+  },
+  "limitations": [
+    "The historical handoff target ID/source set is unavailable, so its aggregate counts cannot be reconciled at identity level; ML-DEV-001 governs the authoritative current cohort.",
+    "The authoritative current cohort is not numerically identical to the historical target; comparisons are descriptive only and no records were added or excluded to force aggregate matching.",
+    "The locked-test labels are used only to construct the locked manifest and audit; they are not used for development assignment or model selection."
+  ],
+  "original_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+  "phase3_gate": "PASS",
+  "phase3_gate_basis": "ML-DEV-001 plus ML-DEV-002 plus independent reference PASS",
+  "protocol_id": "evovariant-tr-ml-extension",
+  "protocol_version": "1.1.0",
   "qa_checkpoint_comparison": {
-    "target_is_validation_only": true,
-    "target_t0_unique_vus": 1403225,
-    "target_absent_at_t1": 3615,
-    "target_not_definitive_at_t1": 1389535,
-    "target_below_two_stars": 9051,
-    "target_final_temporal_n": 1024,
-    "target_n_blb": 614,
-    "target_n_plp": 410,
-    "target_gene_labels": 389,
-    "target_reference_mismatch_count": 0,
     "discrepancy_investigation": [
       "The archived byte sizes and SHA-256 values match the checked-in source manifests.",
       "The t1 archive is served from the official archive root; the old archive/2026 URL was a 404 and was corrected in the downloader and manifest.",
@@ -81,16 +74,60 @@
       "The t0 protocol state is aggregate VUS without a t0 star gate; the >=2-star gate is applied to t1 outcomes and t0-definitive development labels.",
       "The remaining count differences are preserved as an unresolved archive/normalization discrepancy and must not be tuned away before model scoring."
     ],
+    "historical_pre_deviation_status": "BLOCKED_EXTERNAL_EVIDENCE_AFTER_INTEGRITY_AUDIT",
+    "integrity_audit_blockers": [],
+    "integrity_audit_status": "PASS",
     "model_scoring_allowed": false,
-    "integrity_audit_status": "BLOCKED",
-    "integrity_audit_blockers": [
-      "handoff_target_identity_reconciliation: BLOCKED_MISSING_TARGET_ID_SET",
-      "independent_grch38_reference_base: NOT_RUN because the frozen FASTA and .fai are absent"
-    ]
+    "target_absent_at_t1": 3615,
+    "target_below_two_stars": 9051,
+    "target_final_temporal_n": 1024,
+    "target_gene_labels": 389,
+    "target_is_validation_only": true,
+    "target_n_blb": 614,
+    "target_n_plp": 410,
+    "target_not_definitive_at_t1": 1389535,
+    "target_reference_mismatch_count": 0,
+    "target_t0_unique_vus": 1403225
   },
-  "limitations": [
-    "Reference mismatch is audited between matched t0/t1 variant identities; the independent genome FASTA reference-base audit is explicitly NOT_RUN because the frozen FASTA and .fai are absent.",
-    "The handoff validation target ID/source set is unavailable, so the aggregate target counts cannot be reconciled at identity level.",
-    "The locked-test labels are used only to construct the locked manifest and audit; they are not used for development assignment or model selection."
-  ]
+  "reference_validation": {
+    "checked_variant_count": 946,
+    "manifest_path": "artifacts/reference/grch38_validation_20260921.json",
+    "manifest_sha256": "74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f",
+    "missing_coordinate_count": 0,
+    "source_manifest_path": "data/manifests/grch38.json",
+    "source_manifest_sha256": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e",
+    "status": "PASS",
+    "unresolved_reference_mismatch_count": 0
+  },
+  "source_archives": {
+    "t0": {
+      "manifest": "research/data_manifests/clinvar_t0.json",
+      "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+      "release_date": "2025-01-02",
+      "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
+      "size_bytes": 288267418
+    },
+    "t1": {
+      "manifest": "research/data_manifests/clinvar_t1.json",
+      "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
+      "release_date": "2026-08-06",
+      "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
+      "size_bytes": 441792560
+    }
+  },
+  "source_manifest_hash": "854210537eebd87f8390eee8bfc4d77072dc8df86f0ccaffc246edb781783c00",
+  "status": "PASS",
+  "temporal_audit": {
+    "absent_at_t1": 3459,
+    "below_two_stars": 9049,
+    "final_temporal_n": 946,
+    "gene_labels": 946,
+    "gene_mismatch_count": 2,
+    "n_blb": 536,
+    "n_plp": 410,
+    "not_definitive_at_t1": 1389441,
+    "reference_mismatch_count": 0,
+    "t0_unique_vus": 1402895,
+    "unique_genes": 367
+  }
 }

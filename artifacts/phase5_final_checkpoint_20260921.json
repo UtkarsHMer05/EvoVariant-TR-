@@ -1,0 +1,221 @@
+{
+  "artifact_id": "phase5-final-checkpoint-before-phase6-20260921",
+  "recorded_at": "2026-09-21",
+  "status": "CHECKPOINT_PHASE3_PASS_PHASE5_ROSTER_FINAL_PHASE6_NOT_STARTED",
+  "original_protocol": {
+    "path": "research/protocol/protocol.yaml",
+    "sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+    "unchanged": true
+  },
+  "ml_extension_protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "version": "1.1.0",
+    "sha256": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+    "deviation_ids": ["ML-DEV-001", "ML-DEV-002"]
+  },
+  "phase3": {
+    "status": "PASS",
+    "authoritative_locked_test_cohort": {
+      "total": 946,
+      "blb": 536,
+      "plp": 410,
+      "gene_labels": 946,
+      "unique_genes": 367
+    },
+    "development_split": {
+      "train": 191957,
+      "validation": 48035,
+      "locked_test": 946,
+      "train_genes": 9682,
+      "validation_genes": 57
+    },
+    "historical_target_for_comparison_only": {
+      "t0_unique_vus": 1403225,
+      "final_temporal_n": 1024,
+      "blb": 614,
+      "plp": 410,
+      "difference": {
+        "t0_unique_vus": -330,
+        "final_temporal_n": -78,
+        "blb": -78,
+        "plp": 0
+      }
+    },
+    "reference": {
+      "provider": "Broad Institute GATK Resource Bundle",
+      "assembly": "GRCh38 / GATK hg38 v0 Homo_sapiens_assembly38",
+      "fasta_url": "https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta",
+      "fai_url": "https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta.fai",
+      "manifest_path": "data/manifests/grch38.json",
+      "fasta_filename": "Homo_sapiens_assembly38.fasta",
+      "fasta_bytes": 3249912778,
+      "fasta_sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564",
+      "fai_filename": "Homo_sapiens_assembly38.fasta.fai",
+      "fai_bytes": 160928,
+      "fai_sha256": "edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b",
+      "contig_policy": "chr-prefixed primary chromosomes; provider-supplied auxiliary HLA/decoy names retained",
+      "reference_manifest_sha256": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e"
+    },
+    "validation": {
+      "reference_validation_status": "PASS",
+      "checked_variant_count": 946,
+      "unresolved_reference_mismatches": 0,
+      "missing_coordinates": 0,
+      "audit_path": "artifacts/phase3_integrity_audit_20260921.json",
+      "audit_sha256": "e0c79be4332347b79e1647f02a12f848ec0cf4da5d8250ec2f4a0b49c8284339",
+      "reference_report_path": "artifacts/reference/grch38_validation_20260921.json",
+      "reference_report_sha256": "74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f",
+      "test_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+      "test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+      "record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+      "cohort_manifest_sha256": "0d4386b34196a523ca43b50cc4242d4ecb01df2b40923fc0aa52f15d61c593b1",
+      "phase3_manifest_summary_sha256": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420",
+      "split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+      "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
+      "deterministic_regeneration": "PASS",
+      "normalized_id_overlap": 0,
+      "train_validation_gene_overlap": 0,
+      "locked_test_overlap": 0,
+      "prohibited_temporal_leakage": 0,
+      "code_commit": "36063e8e1b65ddf1653347a5705e89115e52f1d5"
+    }
+  },
+  "phase5": {
+    "status": "PASS_FOR_FINAL_ROSTER_ONLY",
+    "roster_artifact": "artifacts/model_audit/phase5_final_roster_20260921.json",
+    "evo2": "INCLUDED_RAW_SCORE",
+    "nucleotide_transformer": "INCLUDED_EMBEDDING_TRACK",
+    "caduceus": "INCLUDED_EMBEDDING_TRACK",
+    "gpn": "DEFERRED",
+    "cadd": "INCLUDED_RAW_SCORE",
+    "phylop": "INCLUDED_RAW_SCORE",
+    "alphamissense_valid_subset": "SUBSET_ONLY",
+    "raw_foundation_model_phase6_set": ["evo2"],
+    "representation_phase7_set": ["nucleotide_transformer", "caduceus"],
+    "public_cpu_comparator_set": ["cadd", "phylop"],
+    "no_full_cohort_model_run": true
+  },
+  "phase6_cost_estimate": {
+    "basis": "946-record authoritative locked temporal cohort; current t0 scale is included as a separate planning context",
+    "evo2": {
+      "expected_gpu": "H100",
+      "expected_runtime_seconds_sequential_wall_rate": 34353.9842,
+      "estimated_modal_cost_usd_sequential_wall_rate": 37.651,
+      "hypothetical_unmeasured_eight_way_runtime_seconds": 4294.248025,
+      "hypothetical_unmeasured_eight_way_cost_usd": 4.706,
+      "confidence": "LOW_OR_VERY_LOW",
+      "cache_storage": "persistent prediction cache; output size not measured for the full cohort",
+      "source": "artifacts/modal/phase6_preflight_cost_estimate_20260921.json"
+    },
+    "nucleotide_transformer": {
+      "expected_gpu": "not applicable to raw Phase 6; H100 only for a separately approved Phase 7 track",
+      "expected_runtime": "not estimated",
+      "estimated_modal_cost_usd": null,
+      "storage": "not estimated; full extraction not launched"
+    },
+    "caduceus": {
+      "expected_gpu": "not applicable to raw Phase 6; H100 only for a separately approved Phase 7 track",
+      "expected_runtime": "not estimated",
+      "estimated_modal_cost_usd": null,
+      "storage": "not estimated; full extraction not launched"
+    },
+    "gpn": {
+      "expected_gpu": "not estimated",
+      "expected_runtime": "deferred",
+      "estimated_modal_cost_usd": null,
+      "storage": "matching approximately 42 GB compressed 100-way alignment asset absent"
+    },
+    "cadd": {
+      "expected_gpu": "none for prescored local lookup",
+      "expected_runtime": "not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "public assets; official annotation bundle is approximately 300 GB; no asset downloaded"
+    },
+    "phylop": {
+      "expected_gpu": "none for local bigWig lookup",
+      "expected_runtime": "not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "UCSC hg38 phyloP100way bigWig is approximately 9.2 GB; no asset downloaded"
+    },
+    "alphamissense_valid_subset": {
+      "expected_gpu": "none for precomputed valid missense lookup",
+      "expected_runtime": "not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "subset asset and exact coverage not frozen"
+    },
+    "current_t0_scale_context": {
+      "variants": 1402895,
+      "evo2_sequential_wall_rate_cost_usd": 55835.221,
+      "evo2_hypothetical_unmeasured_eight_way_cost_usd": 6979.403,
+      "confidence": "LOW_OR_VERY_LOW"
+    },
+    "launch_authorized": false
+  },
+  "phase7_cost_estimate": {
+    "evo2": {
+      "expected_gpu": "H100",
+      "expected_runtime": "UNMEASURED; no remote embedding smoke",
+      "estimated_modal_cost_usd": null,
+      "storage": "feature cache size unmeasured"
+    },
+    "nucleotide_transformer": {
+      "expected_gpu": "H100",
+      "expected_runtime": "UNMEASURED full-cohort; synthetic smoke 3.543 seconds is not a cohort forecast",
+      "estimated_modal_cost_usd": null,
+      "synthetic_smoke_wall_rate_cost_usd": 0.0039,
+      "storage": "feature cache size unmeasured"
+    },
+    "caduceus": {
+      "expected_gpu": "H100",
+      "expected_runtime": "UNMEASURED full-cohort; synthetic smoke 10.297 seconds is not a cohort forecast",
+      "estimated_modal_cost_usd": null,
+      "synthetic_smoke_wall_rate_cost_usd": 0.0113,
+      "storage": "feature cache size unmeasured"
+    },
+    "gpn": {
+      "expected_gpu": "deferred",
+      "expected_runtime": "deferred",
+      "estimated_modal_cost_usd": null,
+      "storage": "deferred alignment asset"
+    },
+    "cadd": {
+      "expected_gpu": "none",
+      "expected_runtime": "CPU lookup not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "public prescored/annotation asset not downloaded"
+    },
+    "phylop": {
+      "expected_gpu": "none",
+      "expected_runtime": "CPU bigWig lookup not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "public bigWig not downloaded"
+    },
+    "alphamissense_valid_subset": {
+      "expected_gpu": "none",
+      "expected_runtime": "precomputed subset lookup not measured",
+      "estimated_modal_cost_usd": 0.0,
+      "storage": "applicability subset not frozen"
+    },
+    "launch_authorized": false
+  },
+  "current_modal_metered_usage": {
+    "snapshot_date": "2026-09-21",
+    "command": "./.venv/bin/modal billing summary",
+    "metered_cost_usd_displayed": 12.19,
+    "deployed_apps_usd": 8.78,
+    "volumes_usd": 3.21,
+    "ephemeral_apps_usd": 0.20,
+    "billed_cost_usd": 0.0,
+    "new_compute_launched_for_this_checkpoint": false,
+    "interpretation": "workspace-level metered usage, not a per-request invoice; credits/free-storage display is not treated as a spend balance"
+  },
+  "gate_decision": {
+    "phase3": "PASS",
+    "phase5": "PASS_FOR_FINAL_ROSTER_ONLY",
+    "phase6": "BLOCKED_NOT_STARTED",
+    "phase7": "BLOCKED_NOT_STARTED",
+    "full_benchmark_launched": false,
+    "training_hpo_finetuning_launched": false,
+    "reason": "The requested pre-Phase-6 checkpoint is complete; any full benchmark or downstream representation run requires a fresh scope-specific approval after the separated contracts and public comparator asset manifests are finalized."
+  }
+}

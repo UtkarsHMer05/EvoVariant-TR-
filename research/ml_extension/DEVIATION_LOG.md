@@ -6,11 +6,12 @@ retroactively alter the original frozen zero-shot protocol in `research/protocol
 ## ML-DEV-001 — Freeze the reproducible 946-record extension test cohort
 
 - Date: 2026-09-21
+- Evidence timestamp (UTC): 2026-09-21T06:35:32.341621+00:00
 - Protocol version affected: 1.1.0
 - Status: ACCEPTED for the ML-extension study only
 - Search evidence: `artifacts/phase3_recovery_search_20260921.json`
 - Reference evidence: `data/manifests/grch38.json` and `artifacts/reference/grch38_validation_20260921.json`
-- Implementation commit: recorded in the final project-control update after this deviation is committed
+- Implementation commit: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final frozen-control baseline; initial recovery implementation: `dd29318`)
 
 ### What changed
 
@@ -72,6 +73,7 @@ current-protocol compute approval.
   source URL, accession/version, byte size, or checksum
 - Acquisition script: `research/scripts/acquire_grch38_reference.py`
 - Metadata manifest: `data/manifests/grch38.json`
+- Implementation commit: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final frozen-control baseline; initial reference implementation: `dd29318`)
 
 ### What changed
 
@@ -94,7 +96,8 @@ gap without modifying the original zero-shot protocol.
 - Expected FAI size: `160928` bytes
 - Expected FASTA SHA-256: `93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564`
 - Expected FAI SHA-256: `edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b`
-- Contig naming: `chr`-prefixed names as provided by the FAI
+- Contig naming: `chr`-prefixed primary chromosomes (`chr1`-`chr22`, `chrX`, `chrY`), with
+  auxiliary HLA/decoy contigs retained under provider-supplied names
 - Download date: recorded as `retrieved_at_utc` in `data/manifests/grch38.json`
 
 The large FASTA and FAI remain outside Git under `data/reference/`. Git records only the

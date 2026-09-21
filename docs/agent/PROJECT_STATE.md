@@ -4,28 +4,28 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 3/5 UPSTREAM RECONCILIATION` (Phases 2 and 4 remote gates pass;
-Phase 3 has a complete integrity audit but remains blocked on external target/reference
-evidence; Phase 5 has two real `SUBSET_ONLY` checkpoint tracks in addition to included Evo2,
-but no second raw-score-compatible model)
+Current phase: `PHASE 3 PASS / PHASE 5 FINAL ROSTER / PRE-PHASE6 CHECKPOINT` (Phases 0-5
+required gates are documented; full Phase 6 and later scientific execution remain explicitly
+not started)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
 frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 2 raw-score
 contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
-approved Modal `hf_cache` volume and no weights are tracked in Git. The new Phase 3 audit proves
-all local source, ID, temporal, duplicate, review, leakage, split-hash, and deterministic
-regeneration gates, but the overall Phase 3 gate remains `BLOCKED` because the validation-only
-target ID/source set and frozen local GRCh38 FASTA/index are absent. Phase 5 is now
-`PARTIAL_WITH_SUBSET_ONLY_TRACKS`: Nucleotide Transformer and Caduceus passed real bounded H100
-checkpoint/logit/embedding smokes on synthetic inputs, while Evo2 remains the only included
-raw-score model. Phases 6–9 and 11 onward remain blocked. Phase 10 adaptation is formally
-`DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
-HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
+approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 audit and
+independent reference report now both pass after the ML-only deviations; the historical target
+identity set remains unavailable and is retained only as validation-only comparison evidence.
+The authoritative extension cohort is 946 records (536 B/LB, 410 P/LP), with 0 reference
+mismatches and deterministic regeneration PASS. Phase 5 has a final separated roster: Evo2 raw
+score, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
+deferred GPN, and subset-only AlphaMissense. Phases 6–9 and 11 onward remain blocked/not
+started. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE` with no training run or scientific
+metrics. No full benchmark, embedding extraction, training, HPO, fine-tuning, locked-test
+evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `1bf1029` (Phase 3 integrity audit and Phase 5 real
-subset-track smokes; current local validation gate passes).
+Latest validated source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
+freeze-summary/control baseline; current `make validate` and control-plane gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -51,7 +51,42 @@ checkout HEAD with Git because this control-file update may advance it without c
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
 
-## Priority continuation update — 2026-09-21
+## Authoritative recovery and pre-Phase-6 checkpoint — 2026-09-21
+
+- The complete recovery search is recorded in
+  `artifacts/phase3_recovery_search_20260921.json`. It searched the repository's 133 reachable
+  commits, 95 reflog entries, 91 reflog commits, 6 refs, deleted paths, unreachable objects,
+  fetched remote history, artifacts, generated files, presentations, scripts, logs, local
+  worktrees, and supplied attachments. No frozen normalized-ID/source-row manifest for the
+  historical target was recovered.
+- `ML-DEV-001` formally accepts the current manifest-verified deterministic cohort for the
+  ML extension only: 1,402,895 t0 VUS, 946 final temporal records, 536 B/LB, 410 P/LP, and 946
+  gene labels. The historical 1,024-record target remains validation-only; the original frozen
+  zero-shot protocol was not rewritten.
+- `ML-DEV-002` freezes the Broad GATK hg38/v0 reference. The FASTA SHA-256 is
+  `93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564`, the FAI SHA-256 is
+  `edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b`, and the source metadata
+  is in `data/manifests/grch38.json`. The large FASTA/FAI remain outside Git.
+- Phase 3 is `PASS`: `artifacts/phase3_integrity_audit_20260921.json` and
+  `artifacts/reference/grch38_validation_20260921.json` both pass; the independent audit
+  checked all 946 authoritative records with zero mismatches and zero missing coordinates. The
+  authoritative locked-test manifest SHA-256 is
+  `9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb`; its record-set hash is
+  `ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0`. The authoritative cohort
+  manifest SHA-256 is `0d4386b34196a523ca43b50cc4242d4ecb01df2b40923fc0aa52f15d61c593b1`, and the
+  restored Phase 3 summary SHA-256 is
+  `654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420`.
+- Phase 5 is complete for its final roster only, recorded in
+  `artifacts/model_audit/phase5_final_roster_20260921.json`: Evo2 is `INCLUDED_RAW_SCORE`,
+  Nucleotide Transformer/Caduceus are `INCLUDED_EMBEDDING_TRACK`, GPN is `DEFERRED`, CADD and
+  PhyloP are public CPU-comparator `INCLUDED_RAW_SCORE` tracks, and AlphaMissense is
+  `SUBSET_ONLY`. No masked-LM logits were promoted to raw allele scores.
+- The final checkpoint is `artifacts/phase5_final_checkpoint_20260921.json`. It records the
+  946-record Phase 6 cost scenarios, model-by-model Phase 7 cost status, and the current
+  read-only Modal snapshot: `$12.19` metered, `$0.00` billed. No full Phase 6/7 run, training,
+  HPO, fine-tuning, or locked-test evaluation was launched.
+
+## Historical priority continuation before recovery — 2026-09-21
 
 - The user-prioritized Phase 3 diagnostic and machine-readable integrity report are
   `artifacts/phase3_integrity_diagnostic_20260921.json` and

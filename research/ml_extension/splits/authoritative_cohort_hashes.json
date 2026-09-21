@@ -1,0 +1,46 @@
+{
+  "code_commit": "36063e8e1b65ddf1653347a5705e89115e52f1d5",
+  "deviation_id": "ML-DEV-001",
+  "files": {
+    "authoritative_cohort_manifest": {
+      "path": "research/ml_extension/splits/authoritative_cohort_manifest.json",
+      "sha256": "0d4386b34196a523ca43b50cc4242d4ecb01df2b40923fc0aa52f15d61c593b1"
+    },
+    "authoritative_exclusion_report": {
+      "path": "research/ml_extension/splits/authoritative_exclusion_report.json",
+      "sha256": "13c8f768dcc878500acc7349f7807dc419b7b2cbbad09926bd0beb06248b6394"
+    },
+    "authoritative_locked_test_manifest": {
+      "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+      "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
+    },
+    "authoritative_split_manifest": {
+      "path": "research/ml_extension/splits/authoritative_split_manifest.json",
+      "sha256": "deac6afb55f8a0c0b23aa8110921746b606be1f00df1e160b4c63cf095c852eb"
+    },
+    "generated_split_manifest": {
+      "path": "data/derived/ml_extension/phase3/split_manifest.json",
+      "sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72"
+    },
+    "generated_temporal_audit": {
+      "path": "data/derived/ml_extension/phase3/temporal_audit.json",
+      "sha256": "6e67929e18421d1c7558d047bf06f3f9d5e6fe8390d968626f6cc1737f03cb41"
+    },
+    "phase3_manifest_summary": {
+      "path": "research/ml_extension/splits/phase3_manifest_summary.json",
+      "sha256": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420"
+    },
+    "reference_source_manifest": {
+      "path": "data/manifests/grch38.json",
+      "sha256": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e"
+    },
+    "reference_validation": {
+      "path": "artifacts/reference/grch38_validation_20260921.json",
+      "sha256": "74d5face2929e1ad6795ce950f3ec6e586bde40b464a96b2461b21265c40784f"
+    }
+  },
+  "generated_at_utc": "2026-09-21T07:52:03.421196+00:00",
+  "locked_test_record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+  "manifest_id": "evovariant-tr-ml-extension-authoritative-hashes-v1",
+  "protocol_version": "1.1.0"
+}

@@ -40303,12 +40303,12 @@
       "status": "PASS"
     },
     "handoff_target_identity_reconciliation": {
-      "detail": "the validation-only target counts are recorded for comparison, but no target IDs/source records were supplied",
-      "status": "BLOCKED_MISSING_TARGET_ID_SET"
+      "detail": "the historical target identity set was not recovered; ML-DEV-001 formally freezes the reproducibly regenerated cohort for the ML extension only",
+      "status": "PASS"
     },
     "independent_grch38_reference_base": {
-      "detail": "local frozen GRCh38 FASTA and .fai index are unavailable",
-      "status": "NOT_RUN"
+      "detail": "all final temporal reference bases matched",
+      "status": "PASS"
     },
     "normalized_id_chromosome_ref_alt_snv": {
       "detail": "eligible records use GRCh38 canonical chromosome/position and single-base ACGT REF/ALT identities",
@@ -40332,11 +40332,10 @@
     }
   },
   "limitations": [
-    "The handoff target ID/source set is unavailable, so identity-level reconciliation cannot be completed.",
-    "The local frozen GRCh38 FASTA and .fai index are unavailable; assembly and t0/t1 identity reference checks are not a substitute for independent base validation.",
+    "The historical handoff target ID/source set was unavailable; ML-DEV-001 accepts the current archive-derived cohort for the ML extension only.",
     "Locked labels are audited for temporal construction only and are not used to select development records or model settings."
   ],
-  "phase3_gate": "BLOCKED",
+  "phase3_gate": "PASS",
   "protocol": {
     "assembly": "GRCh38",
     "min_review_stars": 2,
@@ -40346,13 +40345,14 @@
     "t1_release_date": "2026-08-06"
   },
   "reference_base_audit": {
-    "checked_variant_count": 0,
+    "checked_variant_count": 946,
     "fai": "data/reference/Homo_sapiens_assembly38.fasta.fai",
     "fasta": "data/reference/Homo_sapiens_assembly38.fasta",
-    "gate_pass": false,
-    "mismatch_count": null,
-    "reason": "local frozen GRCh38 FASTA and .fai index are unavailable",
-    "status": "NOT_RUN"
+    "gate_pass": true,
+    "mismatch_count": 0,
+    "missing_coordinate_count": 0,
+    "reason": "all final temporal reference bases matched",
+    "status": "PASS"
   },
   "source_archives": {
     "t0": {
@@ -40458,7 +40458,7 @@
     "status": "PASS",
     "t0_vus_development_id_overlap": 0
   },
-  "status": "BLOCKED",
+  "status": "PASS",
   "target_reconciliation": {
     "actual_minus_target": {
       "absent_at_t1": -156,
@@ -40482,7 +40482,9 @@
       "reference_mismatch_count": 0,
       "t0_unique_vus": 1402895
     },
-    "decision": "DO_NOT_FORCE_TARGET_COUNTS",
+    "decision": "ACCEPT_CURRENT_COHORT_FOR_ML_EXTENSION_ONLY",
+    "ml_extension_authoritative_cohort": "CURRENT_ARCHIVE_DERIVED_COHORT",
+    "ml_extension_deviation_id": "ML-DEV-001",
     "target_id_set": "UNAVAILABLE",
     "target_is_validation_only": true,
     "target_values": {

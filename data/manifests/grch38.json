@@ -75,6 +75,6 @@
   "manifest_id": "evovariant-tr-grch38-reference-v1",
   "manifest_version": "1",
   "provider": "Broad Institute GATK Resource Bundle",
-  "retrieved_at_utc": "2026-09-21T07:27:55.399899+00:00",
+  "retrieved_at_utc": "2026-09-21T07:40:38.534156+00:00",
   "source_url": "https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta"
 }

@@ -68,7 +68,7 @@ def _valid_approval_kwargs():
         "run_scope": "full_primary_analysis",
         "modal_environment": "evovariant-tr",
         "gpu_type": "H100",
-        "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+        "protocol_hash": cost_policy.load_current_ml_protocol_hash(),
     }
 
 

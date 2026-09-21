@@ -1,0 +1,24 @@
+{
+  "artifact_id": "phase3-reference-validation-20260921",
+  "assembly": "GRCh38",
+  "checked_at": "2026-09-21T07:40:40.630682+00:00",
+  "checked_variant_count": 946,
+  "decision": "all authoritative temporal records match the independent GRCh38 base audit",
+  "fai": {
+    "byte_size": 160928,
+    "path": "data/reference/Homo_sapiens_assembly38.fasta.fai",
+    "sha256": "edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b"
+  },
+  "fasta": {
+    "byte_size": 3249912778,
+    "path": "data/reference/Homo_sapiens_assembly38.fasta",
+    "sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564"
+  },
+  "input_temporal_artifact": "data/derived/ml_extension/phase3/temporal_audit.json",
+  "mismatches": [],
+  "missing_coordinate_count": 0,
+  "missing_coordinates": [],
+  "reference_manifest": "data/manifests/grch38.json",
+  "status": "PASS",
+  "unresolved_reference_mismatch_count": 0
+}

@@ -1,6 +1,6 @@
 # EvoVariant-TR ML Extension Protocol v1.1.0
 
-Status: FROZEN FOR DEVELOPMENT WITH DATED DEVIATION `ML-DEV-001`.
+Status: FROZEN FOR DEVELOPMENT WITH DATED DEVIATIONS `ML-DEV-001` and `ML-DEV-002`.
 
 This is a separate ML-extension protocol. It does not replace or rewrite the original frozen
 zero-shot protocol in `research/protocol/`. The historical 1,024-record QA target remains

@@ -264,7 +264,7 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
-		--blocker "Phase 3 discrepancy and Phase 5 model-inclusion gates remain unresolved" \
+		--blocker "Phase 3 discrepancy remains unresolved and the Phase 5 multi-model track is deferred" \
 		--blocker "figure-regeneration, registered-result, and paid-compute gates are unresolved"
 
 .PHONY: clean-room

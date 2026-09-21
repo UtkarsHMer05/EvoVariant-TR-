@@ -162,6 +162,54 @@ def test_verify_manifest_command_clean_and_corrupt(
     assert "FAIL" in capsys.readouterr().out
 
 
+@pytest.mark.parametrize(
+    ("manifest_name", "file_name", "release_date"),
+    [
+        (
+            "clinvar_variant_summary_2025-01",
+            "variant_summary_2025-01.txt.gz",
+            "2025-01-02",
+        ),
+        (
+            "clinvar_variant_summary_2026-08",
+            "variant_summary_2026-08.txt.gz",
+            "2026-08-06",
+        ),
+    ],
+)
+def test_verify_manifest_command_supports_legacy_single_file_metadata(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    manifest_name: str,
+    file_name: str,
+    release_date: str,
+) -> None:
+    import hashlib
+
+    base = tmp_path / "assets"
+    base.mkdir()
+    asset = base / file_name
+    asset.write_bytes(b"legacy asset\n")
+    manifest_path = tmp_path / f"{manifest_name}.json"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "file_name": file_name,
+                "name": manifest_name,
+                "release_date": release_date,
+                "retrieved_at": "2026-09-20T20:57:17.646492+00:00",
+                "sha256": hashlib.sha256(asset.read_bytes()).hexdigest(),
+                "size_bytes": asset.stat().st_size,
+                "source_url": "https://example.test/archive/" + file_name,
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert main(["verify-manifest", "--manifest", str(manifest_path), "--base-dir", str(base)]) == 0
+    assert "OK: all 1 entries verified" in capsys.readouterr().out
+
+
 def test_no_command_exits_with_error() -> None:
     with pytest.raises(SystemExit):
         main([])

@@ -177,6 +177,25 @@ class Manifest(BaseModel):
         return value
 
 
+class LegacyFileManifest(BaseModel):
+    """The original single-file ClinVar manifest format.
+
+    ClinVar acquisition predates the generic multi-entry manifest contract.
+    Keep that frozen metadata readable by normalizing it to ``Manifest`` at
+    load time instead of requiring a rewrite of the recorded source evidence.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    file_name: str
+    name: str
+    release_date: date
+    retrieved_at: str | None
+    sha256: str
+    size_bytes: int
+    source_url: str
+
+
 def build_entry(
     path: str | Path,
     base_dir: str | Path,
@@ -252,7 +271,28 @@ def write_manifest(manifest: Manifest, path: str | Path) -> Path:
 
 def load_manifest(path: str | Path) -> Manifest:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    return Manifest.model_validate(raw)
+    if "entries" in raw:
+        return Manifest.model_validate(raw)
+
+    legacy = LegacyFileManifest.model_validate(raw)
+    entry = ManifestEntry(
+        path=legacy.file_name,
+        sha256=legacy.sha256,
+        size_bytes=legacy.size_bytes,
+        compression=detect_compression(legacy.file_name),
+        uncompressed_sha256=None,
+        uncompressed_size_bytes=None,
+        source_url=sanitize_source_url(legacy.source_url),
+        release_date=legacy.release_date,
+        retrieved_at=legacy.retrieved_at,
+        description="Legacy single-file ClinVar acquisition manifest",
+    )
+    return Manifest(
+        manifest_version="legacy-single-file",
+        name=legacy.name,
+        created_at=legacy.retrieved_at or legacy.release_date.isoformat(),
+        entries=(entry,),
+    )
 
 
 class VerificationFailure(BaseModel):

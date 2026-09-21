@@ -4,9 +4,9 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 6A BOUNDED QUALIFICATION COMPLETE / FULL PHASE 6 NOT STARTED` (Phases 0-5
-required gates are documented; only the separately approved Phase6A cache/comparator/throughput
-qualification was run)
+Current phase: `PHASE 6 CONTINUATION PREPARED / FULL PHASE 6 BLOCKED PENDING CURRENT APPROVAL`
+(Phases 0-5 required gates and the separately approved Phase6A cache/comparator/throughput
+qualification are complete; no full Phase 6 inference has started.)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
@@ -47,8 +47,8 @@ Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
-The frontend dependency/lint hardening was validated and committed in `739310d`; verify the current
-checkout HEAD with Git because this control-file update may advance it without changing source code.
+The frontend dependency/lint hardening was validated and committed in `739310d`; the current
+checkout HEAD is `f2a6f53f505d9b4b8466d903404c199a073bfead` before this continuation audit commit.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -661,3 +661,33 @@ figures from the single pilot record.
   create model weights, scientific results, a registry run, paid Modal inference, or release
   evidence. Phase 18 remains `BLOCKED / PARTIAL` until the gated compute and scientific-result
   inputs exist; spend remains `$0`.
+
+## Current full-goal continuation audit — 2026-09-21
+
+- The latest task instruction requests continuation beyond the previously completed Phase6A
+  boundary. That instruction changes the active work objective, but it does not retroactively
+  widen the dated Phase6A approval or make a stale approval artifact valid.
+- The only approval that names a full primary run,
+  `artifacts/approvals/full_run_approval.json`, is dated 2026-08-19, uses the legacy protocol
+  identifier `frozen_v1.0.0_2026-08-18`, and is rejected by the current cost policy because the
+  frozen ML-extension protocol hash is
+  `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`.
+- The current user approval,
+  `artifacts/approvals/phase6a_throughput_20260921.json`, is valid only for Phase6A and explicitly
+  excludes the full 946-record Evo2 benchmark, t0-pool inference, training, HPO, fine-tuning, and
+  locked-test evaluation. No approval file was edited or widened.
+- Current no-spend validation evidence: `make validate` passed with 656 tests, 33 deselected,
+  strict mypy over 52 source files, Ruff, secret scan, and 95.12% coverage; ML protocol/schema/
+  model-registry/registry verification passed; `make web-check` completed the ESLint, TypeScript,
+  and production build gates. `make figures` and `make release-check` truthfully remain
+  `BLOCKED` because there are zero registered scientific result records.
+- Current read-only Modal evidence: `modal billing summary` reports workspace metered cost
+  `$13.00`, billed cost `$0.00`; the canonical `evovariant-tr` and legacy app entries have zero
+  active tasks, and no new remote workload was launched in this audit. This is workspace-level
+  evidence, not a per-request invoice.
+- The tracked project remains scientifically unchanged: the Phase6A result registry is empty,
+  the locked cohort remains 946 records with the recorded hashes, and Phases 6-19 remain
+  blocked/deferred until a current exact-scope approval and the dependent evidence are available.
+- Next action requiring user authority: provide a current approval artifact or explicit budget/scope
+  for the full Phase 6 and any subsequent GPU workloads. Once supplied, validate its protocol hash
+  and launch only the smallest approved parity/cohort step; do not use the stale August approval.

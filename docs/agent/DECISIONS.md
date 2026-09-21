@@ -1854,6 +1854,51 @@ representation, and registry evidence are respectively recorded in
 Ruff passed for the updated scripts/manifests. The two throughput artifacts record a combined
 client wall-rate estimate of `$0.560167`; Modal workspace snapshots remained `$0.00` billed.
 
+## D-067 — Continue the remaining phases only under a current exact-scope approval
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-066 only for the active task objective; it does not widen the Phase6A approval or change any scientific contract
+
+Context:
+The active task now requests completion of every remaining phase after the previously completed
+Phase6A qualification. D-066 and `artifacts/approvals/phase6a_throughput_20260921.json` were
+deliberately limited to the bounded qualification and explicitly prohibited full Phase 6 and
+downstream work. The repository also contains `artifacts/approvals/full_run_approval.json`, but
+that record is dated 2026-08-19 and carries the legacy identifier
+`frozen_v1.0.0_2026-08-18`, not the current frozen ML-extension protocol hash. The current cost
+policy rejects it before any remote execution.
+
+Decision:
+Treat the active user request as authorization to continue preparing and, once properly gated,
+executing the remaining phases. Do not interpret the request as a fabricated or implicit numeric
+Modal budget, do not edit either existing approval to widen its scope, and do not launch paid work
+until a current approval artifact covers the exact cohort, model revision, workload, and budget.
+Keep Phase6A as `PASS` within its original scope, keep the scientific result registry empty, and
+continue only free/local validation or independent engineering work while the full-run approval
+is absent. The first paid continuation must be a bounded full-Phase-6 parity/cohort step, followed
+by the dependency-ordered Phase 7 through Phase 19 gates.
+
+Alternatives:
+Reuse the stale `$500` August approval, treat the Phase6A `$1.50` approval as covering the full
+946-record run, or infer an unlimited budget from the phrase “finish everything.” These were
+rejected because they would bypass the repository's cost policy, exceed the explicitly recorded
+scope, and make the resulting scientific evidence unauditable.
+
+Consequences:
+The current phase is continuation preparation, not a scientific Phase 6 PASS. Full Phase 6,
+full Phase 7 extraction, and all dependent scientific phases remain `BLOCKED`/`NOT_STARTED`.
+Local gates may be rerun and implementation gaps may be closed without changing the locked
+protocol. A new approval must be hash-checked against
+`39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3` before remote work.
+
+Validation:
+At the current HEAD before this documentation update, `make validate` passed 656 tests with
+33 deselected and 95.12% coverage; ML protocol, schema, model-registry, registry, and frontend
+build gates passed; `make figures` and `make release-check` remained truthfully blocked with no
+registered scientific outputs. `require_full_run_approval()` rejected the August artifact with
+the exact current-protocol-hash mismatch. A read-only Modal billing summary reported `$13.00`
+metered and `$0.00` billed, with no new remote workload launched.
+
 ## Template for new decisions
 
 ### D-XXX — Title

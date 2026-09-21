@@ -526,6 +526,26 @@ gate state.
   be resolved from source evidence or approved through the dated deviation process before any
   model output or locked-test claim is registered.
 
+## Current full-goal continuation audit — 2026-09-21
+
+- The active task requests continuation beyond the completed Phase6A qualification. This is now
+  recorded as the current objective, while the Phase6A approval boundary remains unchanged.
+- `artifacts/approvals/full_run_approval.json` is rejected as stale: its 2026-08-19 legacy
+  protocol identifier does not match the current ML-extension protocol hash
+  `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`.
+- `artifacts/approvals/phase6a_throughput_20260921.json` remains valid only for Phase6A and
+  explicitly excludes full Phase 6, t0-pool inference, training, HPO, fine-tuning, and locked
+  evaluation. It is not reused for the next phase.
+- No paid continuation was launched. Read-only Modal billing reports `$13.00` metered and
+  `$0.00` billed; canonical and legacy deployed app entries have zero active tasks.
+- Free gates at the current checkout pass: `make validate` (656 passed, 33 deselected, 95.12%
+  coverage), ML protocol/schema/model-registry/registry checks, and `make web-check`. `make
+  figures` and `make release-check` remain `BLOCKED` with zero registered scientific results.
+- Gate decision: Phase6A remains `PASS` within scope; Phase 6 and all dependent phases remain
+  `BLOCKED` pending a current exact-scope approval and subsequent scientific artifacts. The next
+  action is to obtain that approval, hash-check it, and run the smallest approved Phase 6 parity
+  and cohort step.
+
 ## Phase 19 README/status reconciliation — 2026-09-21
 
 - Documentation commit: `0db7e8b` (`docs: align README with current research gates`).

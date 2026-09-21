@@ -1000,6 +1000,36 @@ Validation:
 The cross-check is recorded in `artifacts/phase3_partition_audit_20260921.json`; the official
 archive hashes remain unchanged, `make data-qc` and `make validate` pass, and no model scoring ran.
 
+## D-043 — Keep phase-status command surfaces aligned with current gates
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: none
+
+Context:
+The ignored Phase 6, 15, 18, and 19 status artifacts had been reconciled after the bounded Evo2
+pilot, but their Makefile targets still contained pre-pilot blocker text. Rerunning those targets
+would have overwritten truthful status with stale claims.
+
+Decision:
+Update the Makefile blocker arguments to state the current gates: Evo2 is verified only for
+single-variant engineering evidence, the Phase 3 discrepancy and Phase 5 multi-model gate remain
+open, full-cohort authorization/batch parity are absent, and clean-room scientific reproduction
+and registered result artifacts remain unresolved.
+
+Alternatives:
+Leave the generated JSON as a one-off manual correction, remove the status targets, or mark later
+phases as passed because local contract tests pass. These were rejected because persistent command
+surfaces must be reproducible and a local gate cannot replace scientific output evidence.
+
+Consequences:
+Rerunning the free status commands preserves the same truthful `BLOCKED` records and does not
+invoke Modal, download weights, or create scientific result artifacts.
+
+Validation:
+The four status targets were rerun after the Makefile update; their JSON blockers match the
+current Phase 3/5/6/15/18/19 control-file state. `make validate` and the targeted contract gates
+remain passing.
+
 ## Template for new decisions
 
 ### D-XXX — Title

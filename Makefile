@@ -158,8 +158,9 @@ benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 6 --family ZS \
 		--command-name benchmark-zero-shot --output research/runs/phase6_zs_status.json \
-		--blocker "no included model has verified parity and tiny smoke evidence" \
-		--blocker "Phase 3 QA discrepancy unresolved" --blocker "Phase 4 Modal pilot not run"
+		--blocker "Phase 3 QA discrepancy remains materially unresolved" \
+		--blocker "Phase 5 multi-model inclusion gate has only Evo2 included" \
+		--blocker "full-cohort execution authorization and batch parity evidence are absent"
 
 .PHONY: extract-features
 extract-features: ## Record/run the Phase 7 representation extraction gate
@@ -230,8 +231,8 @@ batch-run: ## Record/run the Phase 15 batch pipeline gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 15 --family BATCH \
 		--command-name batch-run --output research/runs/phase15_batch_status.json \
-		--blocker "no authorized executable model adapter is included" \
-		--blocker "remote batch smoke is not run"
+		--blocker "Evo2 is verified for single-variant scoring but full-cohort batch parity is unverified" \
+		--blocker "full-cohort batch authorization and remote batch smoke are absent"
 
 .PHONY: web-check
 web-check: ## Run the frontend lint/typecheck/build gate
@@ -262,7 +263,7 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
-		--blocker "dependent scientific phases remain blocked" \
+		--blocker "Phase 3 discrepancy and Phase 5 model-inclusion gates remain unresolved" \
 		--blocker "figure-regeneration, registered-result, and paid-compute gates are unresolved"
 
 .PHONY: clean-room
@@ -270,7 +271,7 @@ clean-room: ## Run the free reproducibility status surface
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
 		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
-		--blocker "gated Modal smoke remains unrun" \
+		--blocker "clean-room full scientific Modal reproduction remains unrun" \
 		--blocker "registry-driven figure manifest is BLOCKED because no eligible completed scientific outputs exist"
 
 .PHONY: registry-verify

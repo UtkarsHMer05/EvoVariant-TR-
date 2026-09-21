@@ -241,8 +241,16 @@ def _prepare_batch(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     payload: list[dict[str, Any]] = []
     for row in records:
         chromosome = str(row["chromosome"])
+        if chromosome in {"MT", "M"}:
+            # The development manifest follows ClinVar's MT naming, while the
+            # pinned GATK GRCh38 FASTA uses the provider's chrM contig name.
+            candidates = (chromosome, f"chr{chromosome}", "chrM")
+        elif chromosome == "chrM":
+            candidates = (chromosome,)
+        else:
+            candidates = (chromosome, f"chr{chromosome}")
         window = None
-        for candidate in (chromosome, f"chr{chromosome}"):
+        for candidate in candidates:
             try:
                 window = generate_reference_window(
                     FASTA_PATH,
@@ -540,7 +548,12 @@ def main() -> None:
                 stop_reason = "next shard would exceed the approval safety reserve"
                 break
 
-        payload = _prepare_batch(shard_records)
+        try:
+            payload = _prepare_batch(shard_records)
+        except Exception as exc:  # noqa: BLE001 - preserve local input evidence
+            failure = f"{type(exc).__name__}: {exc}"
+            stop_reason = "local input preparation failed; no automatic retry was attempted"
+            break
         call_started = time.monotonic()
         try:
             response = cast(dict[str, Any], worker.score_batch.remote(payload))

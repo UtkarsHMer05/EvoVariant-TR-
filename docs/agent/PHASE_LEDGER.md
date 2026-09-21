@@ -56,6 +56,7 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 
 ## Phase6A bounded qualification — 2026-09-21
 
+- Implementation commit: `4e072ef` (`feat: complete bounded phase6a qualification`).
 - The current user approval is `artifacts/approvals/phase6a_throughput_20260921.json`, tied to
   extension protocol hash `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`,
   an approximate `$1.50` Modal cap, sample sizes 8/16/32 for Evo2, model batch sizes 1/2/4/8,

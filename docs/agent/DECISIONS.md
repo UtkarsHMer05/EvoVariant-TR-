@@ -1843,6 +1843,7 @@ authorize the full run or constitute a scientific result. The A100 failure is a 
 compatibility constraint for this pinned Evo2 checkpoint, not an A100 throughput measurement.
 
 Validation:
+Implementation commit: `4e072ef` (`feat: complete bounded phase6a qualification`).
 The approval is `artifacts/approvals/phase6a_throughput_20260921.json`. Cache, comparator, Evo2,
 representation, and registry evidence are respectively recorded in
 `artifacts/phase6a/phase6a_cache_preflight_20260921.json`,

@@ -610,6 +610,7 @@ figures from the single pilot record.
 
 ## Current Phase6A qualification state — 2026-09-21
 
+- Implementation commit: `4e072ef` (`feat: complete bounded phase6a qualification`).
 - The current authorized boundary is `artifacts/approvals/phase6a_throughput_20260921.json`:
   Phase6A cache/comparator/throughput qualification only, approximate `$1.50` cap, no full
   946-record Evo2 run, no t0-pool inference, no training/HPO/fine-tuning, and no automatic

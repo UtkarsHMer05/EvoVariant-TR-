@@ -7,6 +7,10 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
+
+pytest.importorskip("modal")
+
 _APP_PATH = Path(__file__).resolve().parents[2] / "evo2_scorer_app.py"
 _SPEC = importlib.util.spec_from_file_location("evovariant_modal_source", _APP_PATH)
 assert _SPEC is not None and _SPEC.loader is not None

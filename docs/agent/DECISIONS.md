@@ -1456,6 +1456,38 @@ Validation:
 checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
 resulting decision.
 
+## D-058 — Normalize legacy ClinVar manifests at verification time
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The free `make data-verify` command used the generic multi-entry manifest loader, while the
+frozen ClinVar acquisition manifests intentionally use the earlier single-file metadata shape.
+The command therefore failed before checking the already present archive bytes, even though the
+archive hashes and sizes were independently recorded and verified.
+
+Decision:
+Keep the frozen single-file ClinVar manifest JSON unchanged and normalize it to the generic
+manifest model only when loading it for verification. Preserve strict validation, source-URL
+sanitization, compression detection, and the existing multi-entry manifest behavior.
+
+Alternatives:
+Rewrite the historical ClinVar manifests into the newer schema, weaken the generic manifest
+model, or add a separate one-off verifier. These were rejected because rewriting source evidence
+would change its recorded format, weakening the model would reduce guarantees, and a second
+verification path would duplicate logic.
+
+Consequences:
+Both manifest-verified raw archives can be checked through the documented `make data-verify`
+surface, while newer manifests remain supported. This fixes an engineering/data-integrity gate;
+it does not change the frozen protocol, cohort definition, or Phase 3 discrepancy status.
+
+Validation:
+Commit `c401140` adds the normalization and regression coverage. `make data-verify` passes for
+both `research/data_manifests/clinvar_t0.json` and `research/data_manifests/clinvar_t1.json`;
+`make validate` passes with 649 tests, 33 deselected, and 95.08% coverage.
+
 ## D-057 — Do not tune the Phase 3 VUS definition to aggregate counts
 Status: ACCEPTED
 Date: 2026-09-21

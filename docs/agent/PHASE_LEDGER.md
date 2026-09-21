@@ -80,8 +80,8 @@ gate state.
   as an unqualified block: the decision record cites measured H100 inference memory/runtime,
   the low-confidence cohort cost preflight, the absent local/checked-in training path, and the
   current approval's training exclusion. This is not a training or PEFT result.
-- The latest readiness-boundary validation passed `make validate` with 647 tests, 33 deselected,
-  strict mypy over 51 source files, Ruff, secret scan, and 95.07% coverage.
+- The latest validation after the manifest compatibility fix passed `make validate` with 649
+  tests, 33 deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.08% coverage.
 - Phase 5's multi-model inclusion requirement is formally `DEFERRED` after the source-backed
   seven-candidate audit. The deferral preserves the exact exclusion reasons and requires a new
   candidate-specific approval and parity smoke before Phase 6 can be reopened; it does not count
@@ -98,6 +98,10 @@ gate state.
   remain 139 IDs below the target, while relaxing assembly/origin/type filters overshoots. Legacy
   allele fields are unusable (`NA`) and `ClinSigSimple` is numeric only. The audit is preserved in
   `artifacts/phase3_filter_sensitivity_20260921.json`; Phase 3 remains `BLOCKED`.
+- Commit `c401140` repairs the generic manifest verification command's compatibility with the
+  legacy single-file ClinVar manifests. `make data-verify` now passes for both manifest-verified
+  raw archives, while the multi-entry manifest tests remain passing; this is an engineering/data
+  integrity gate and does not alter the frozen cohort or resolve the Phase 3 target discrepancy.
 
 ## Phase 0 completion record — 2026-09-21
 

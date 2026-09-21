@@ -1940,8 +1940,7 @@ Validation:
 `make validate` passed with 672 tests, 33 deselected, strict mypy, Ruff, secret scanning, and
 95.02% total coverage. The targeted Phase 6/7 contract suite passed 19 tests; `evo2_scorer_app.py`
 compiled and its source lint passed. `make phase-execute` defaults to `--help` and makes no
-network request. The implementation remains uncommitted at the time this entry is authored;
-the next documentation update must record its commit hash.
+network request. Implementation commit: `82ff2d6` (`feat: add gated resumable phase execution`).
 
 ## Template for new decisions
 

@@ -695,7 +695,8 @@ figures from the single pilot record.
 ## Phase 6/7 execution-surface subgate — 2026-09-21
 
 - Local implementation is now present in `src/evovariant_tr/phase_execution.py` and
-  `scripts/phase_execute.py`, with a Make control surface at `make phase-execute`.
+  `scripts/phase_execute.py`, with a Make control surface at `make phase-execute`. It is committed
+  as `82ff2d6` (`feat: add gated resumable phase execution`).
 - The runner validates source-manifest IDs and canonical `GRCh38:chr...` transport IDs,
   preserves the manifest file hash, freezes model/checkpoint/revision/protocol/split/shard/layer
   metadata, omits labels from every remote request, validates finite completed score or embedding

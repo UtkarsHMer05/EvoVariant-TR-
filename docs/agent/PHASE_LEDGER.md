@@ -553,7 +553,8 @@ gate state.
 - Added `src/evovariant_tr/phase_execution.py`, `scripts/phase_execute.py`, and the
   `make phase-execute` wrapper. The implementation is approval-gated, protocol-hash-checked,
   label-free at transport, explicit about source-vs-`chr` identity, and resumable at the
-  content-hashed shard level.
+  content-hashed shard level. Implementation commit: `82ff2d6` (`feat: add gated resumable
+  phase execution`).
 - Score responses require completed finite raw deltas and exact cohort identity. Embedding
   responses require the frozen layer, validated ref/alt feature hashes, finite vectors, and exact
   cohort identity. The output artifacts retain provenance and do not manufacture metrics.

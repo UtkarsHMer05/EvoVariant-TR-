@@ -1269,6 +1269,44 @@ The targeted cost-policy suite passes 26 tests; Ruff and strict mypy pass for th
 An explicit check reports `approval protocol_hash does not match the current frozen ML-extension
 protocol` for `artifacts/approvals/full_run_approval.json`.
 
+## D-051 — Freeze the source-level Evo2 representation contract
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+Phase 7 needs a deterministic representation contract before any downstream classifier or
+hyperparameter work can be considered. The official Evo2 API supports returning named hidden
+layer embeddings from a forward pass. The current compute approval does not authorize a remote
+embedding smoke, so the repository must record the contract without presenting it as executed
+feature evidence.
+
+Decision:
+Use Evo2 7B revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, layer
+`blocks.28.mlp.l3`, and mean pooling across the token axis. Extract four vectors per SNV:
+forward reference, forward alternate, reverse-complement reference, and reverse-complement
+alternate. Persist reference, alternate, and alternate-minus-reference vectors for each
+orientation with shape, dtype, SHA-256 hashes, provenance, and a separate content-addressed
+feature-cache identity. Reject caller-selected layers so locked-cohort selection cannot be
+tuned through the endpoint.
+
+Alternatives:
+Expose arbitrary layers or pooling modes, store only a single orientation, or run the remote
+embedding endpoint under the existing single-variant raw-score pilot approval. These were
+rejected because they would leave the feature estimand under-specified or exceed the approved
+compute scope.
+
+Consequences:
+Phase 7 has an implementable, auditable source contract and a no-spend payload regression test.
+The feature API remains source-level only; no remote embedding shape, memory, latency, cost, or
+completed feature-cache evidence is claimed. Phases 8 and 9 remain blocked until a future
+approval authorizes the embedding smoke and the Phase 3/6 gates are resolved.
+
+Validation:
+`tests/unit/test_modal_scorer_source.py` passes 3 tests; Ruff and Python compilation pass for
+the source-level endpoint. The implementation follows the official Evo2 embedding interface
+documented at https://github.com/ArcInstitute/evo2#extract-embeddings.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -167,7 +167,7 @@ extract-features: ## Record/run the Phase 7 representation extraction gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 7 --family REP \
 		--command-name extract-features --output research/runs/phase7_rep_status.json \
-		--blocker "no verified model feature API is included" \
+		--blocker "Evo2 embedding extraction is source-level only; no remote feature smoke or completed cache exists" \
 		--blocker "Phase 6 zero-shot benchmark is blocked"
 
 .PHONY: train

@@ -58,3 +58,38 @@ def test_modal_source_batch_helper_chunks_sequences_without_gpu() -> None:
 
     assert scores == [8192.0] * 9
     assert [len(call) for call in fake_model.calls] == [8, 1]
+
+
+def test_modal_source_embedding_payload_records_ref_alt_features() -> None:
+    service = SimpleNamespace(_embedding_hash=Evo2ScorerService._embedding_hash)
+    prepared = SimpleNamespace(
+        variant=SimpleNamespace(
+            chromosome="chr1",
+            position_1based=100,
+            reference="A",
+            alternate="T",
+            assembly="GRCh38",
+            normalized_variant_id="GRCh38:chr1:100:A>T",
+        )
+    )
+    vectors = [
+        [1.0, 2.0],
+        [2.0, 4.0],
+        [3.0, 5.0],
+        [4.0, 8.0],
+    ]
+
+    result = Evo2ScorerService._embedding_result_from_vectors(
+        service,
+        prepared,
+        "blocks.28.mlp.l3",
+        vectors,
+        "torch.bfloat16",
+        None,
+    )
+
+    forward = result["embedding_features"]["forward"]
+    assert forward["shape"] == [2]
+    assert forward["dtype"] == "float32"
+    assert forward["difference"] == [1.0, 2.0]
+    assert result["provenance"]["pooling"] == "mean_tokens"

@@ -148,6 +148,11 @@ Active branch/worktree: `research/evovariant-tr` at
   persisted completed/failed shard state, restart progress, retry classification, and shard-result
   round trips without importing a GPU model or invoking Modal. This strengthens the local recovery
   contract only; the real remote batch kill/restart gate remains blocked.
+- `evo2_scorer_app.py` now contains a bounded source-level embedding endpoint using the fixed
+  Evo2 `blocks.28.mlp.l3` layer and mean-token pooling for forward and reverse-complement
+  reference/alternate sequences. It records vector shapes, dtypes, hashes, provenance, and a
+  separate content-addressed feature-cache identity. The source payload contract has a no-spend
+  unit test, but no remote embedding smoke or completed feature cache has been authorized or run.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override
@@ -317,12 +322,13 @@ called.
 
 Known blockers are the material discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of a second included model with a compatible raw-score
-contract, and the lack of registered full-cohort scientific outputs. Independent local gates,
-committed browser E2E, and a fresh clean-room CPU/frontend rerun now pass. The registry-driven
-figure manifest and bundle now run with hash and field verification, but report `BLOCKED` because
-no eligible completed scientific result artifacts exist; no result artifacts are registered. A
-fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
-2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
+contract, the lack of authorized remote batch/embedding recovery evidence, and the lack of
+registered full-cohort scientific outputs. Independent local gates, committed browser E2E, and
+a fresh clean-room CPU/frontend rerun now pass. The registry-driven figure manifest and bundle
+run with hash and field verification, but report `BLOCKED` because no eligible completed
+scientific result artifacts exist; no result artifacts are registered. The earlier 13-
+vulnerability report is retained only as historical pre-hardening evidence, not as a current
+blocker.
 
 Exact next action: resolve the Phase 3 discrepancy from source-level evidence or obtain a dated
 protocol deviation that explicitly accepts the changed cohort and denominators. Independently,

@@ -9,6 +9,8 @@ deployment identity (variant-analysis-evo2), per M19 cost-control policy.
 
 from __future__ import annotations
 
+import hashlib
+import json
 from dataclasses import dataclass
 from typing import Any
 
@@ -39,6 +41,8 @@ _modal_config = get_modal_config()
 # are needed per variant (forward/RC reference and alternate).
 MAX_BATCH_VARIANTS = 8
 MODEL_SEQUENCE_BATCH_SIZE = 8
+DEFAULT_EMBEDDING_LAYER = "blocks.28.mlp.l3"
+EMBEDDING_POOLING = "mean_tokens"
 
 
 @dataclass(frozen=True)
@@ -142,6 +146,9 @@ class Evo2ScorerService:
         self.model = Evo2("evo2_7b")
         self.prediction_cache = ContentAddressedCache(
             f"{HF_CACHE_MOUNT_PATH}/evovariant-tr/predictions"
+        )
+        self.feature_cache = ContentAddressedCache(
+            f"{HF_CACHE_MOUNT_PATH}/evovariant-tr/features"
         )
         print("Evo 2 model loaded successfully.")
 
@@ -298,6 +305,52 @@ class Evo2ScorerService:
             },
         }
 
+    @modal.fastapi_endpoint(method="POST")
+    def extract_embeddings(self, embedding_data: dict[str, object]) -> dict[str, object]:
+        """Extract a bounded ref/alt feature pair from the frozen Evo2 layer contract.
+
+        This endpoint is source-level infrastructure only until a separately approved
+        remote embedding smoke establishes the memory, shape, and cost envelope.  The
+        layer and pooling rule are intentionally fixed so a caller cannot tune them
+        against the locked cohort through the transport API.
+        """
+        layer = embedding_data.get("layer", DEFAULT_EMBEDDING_LAYER)
+        if layer != DEFAULT_EMBEDDING_LAYER:
+            raise ValueError(
+                f"only the frozen embedding layer {DEFAULT_EMBEDDING_LAYER!r} is supported"
+            )
+        variant = self._parse_variant_input(embedding_data)
+        cache_identity = self._embedding_cache_identity(variant, DEFAULT_EMBEDDING_LAYER)
+        cached = self.feature_cache.get(cache_identity)
+        if cached is not None:
+            result = dict(cached.payload)
+            provenance = dict(result.get("provenance", {}))
+            provenance["cache_hit"] = True
+            result["provenance"] = provenance
+            return result
+
+        prepared = self._prepare_variant(variant, cache_identity)
+        sequences = [
+            prepared.reference_sequence,
+            prepared.alternate_sequence,
+            reverse_complement(prepared.reference_sequence),
+            reverse_complement(prepared.alternate_sequence),
+        ]
+        with TelemetryTimer(gpu_type=str(_modal_config["gpu_type"])) as timer:
+            vectors, dtype = self._extract_embedding_vectors(
+                sequences,
+                DEFAULT_EMBEDDING_LAYER,
+            )
+        result = self._embedding_result_from_vectors(
+            prepared,
+            DEFAULT_EMBEDDING_LAYER,
+            vectors,
+            dtype,
+            timer.result,
+        )
+        self.feature_cache.put(cache_identity, result)
+        return result
+
     def _parse_variant_input(self, variant_data: dict[str, object]) -> _VariantInput:
         """Normalize the accepted transport aliases into one variant schema."""
         raw_chrom = str(
@@ -354,6 +407,20 @@ class Evo2ScorerService:
             context_length_bp=CONTEXT_LENGTH_BP,
             orientation="forward_and_reverse",
             layer="raw_scores",
+            normalized_variant_id=variant.normalized_variant_id,
+        )
+
+    def _embedding_cache_identity(self, variant: _VariantInput, layer: str) -> CacheIdentity:
+        """Build a feature-cache identity that includes layer and pooling semantics."""
+        return CacheIdentity(
+            model_id="evo2",
+            checkpoint="evo2_7b",
+            model_revision=EVO2_REPOSITORY_REVISION,
+            preprocessing_revision="grch38-8192-embedding-mean-v1",
+            assembly=variant.assembly,
+            context_length_bp=CONTEXT_LENGTH_BP,
+            orientation="forward_and_reverse",
+            layer=f"{layer}:{EMBEDDING_POOLING}",
             normalized_variant_id=variant.normalized_variant_id,
         )
 
@@ -485,6 +552,112 @@ class Evo2ScorerService:
             for value in values:
                 scores.append(float(value.item() if hasattr(value, "item") else value))
         return scores
+
+    def _extract_embedding_vectors(
+        self,
+        sequences: list[str],
+        layer: str,
+    ) -> tuple[list[list[float]], str]:
+        """Run one official Evo2 forward pass and mean-pool token embeddings."""
+        if not sequences:
+            raise ValueError("at least one sequence is required for embedding extraction")
+        if any(len(sequence) != CONTEXT_LENGTH_BP for sequence in sequences):
+            raise ValueError(
+                f"every embedding input must contain exactly {CONTEXT_LENGTH_BP} bases"
+            )
+
+        import torch
+
+        tokenized = [self.model.tokenizer.tokenize(sequence) for sequence in sequences]
+        lengths = {len(tokens) for tokens in tokenized}
+        if len(lengths) != 1:
+            raise ValueError("all embedding inputs must tokenize to the same length")
+        input_ids = torch.tensor(tokenized, dtype=torch.int, device="cuda:0")
+        _, embeddings = self.model(
+            input_ids,
+            return_embeddings=True,
+            layer_names=[layer],
+        )
+        if not isinstance(embeddings, dict) or layer not in embeddings:
+            raise ValueError(f"Evo2 did not return the requested embedding layer {layer!r}")
+        tensor = embeddings[layer]
+        if getattr(tensor, "ndim", None) != 3 or tensor.shape[0] != len(sequences):
+            raise ValueError(
+                "Evo2 embedding tensor must have shape [batch, tokens, dimensions]"
+            )
+        pooled = tensor.detach().float().mean(dim=1).cpu()
+        dtype = str(tensor.dtype)
+        return [list(map(float, row)) for row in pooled.tolist()], dtype
+
+    @staticmethod
+    def _embedding_hash(values: list[float]) -> str:
+        encoded = json.dumps(values, separators=(",", ":"), allow_nan=False).encode()
+        return hashlib.sha256(encoded).hexdigest()
+
+    def _embedding_result_from_vectors(
+        self,
+        prepared: _PreparedVariant,
+        layer: str,
+        vectors: list[list[float]],
+        dtype: str,
+        telemetry: Any | None,
+    ) -> dict[str, object]:
+        """Build a provenance-bearing ref/alt feature payload."""
+        if len(vectors) != 4:
+            raise ValueError(f"expected four embedding vectors, got {len(vectors)}")
+        dimensions = {len(vector) for vector in vectors}
+        if len(dimensions) != 1 or not dimensions or next(iter(dimensions)) == 0:
+            raise ValueError("embedding vectors must have one non-empty dimension")
+
+        def orientation_payload(
+            reference: list[float], alternate: list[float]
+        ) -> dict[str, object]:
+            difference = [alt - ref for ref, alt in zip(reference, alternate, strict=True)]
+            return {
+                "reference": reference,
+                "alternate": alternate,
+                "difference": difference,
+                "shape": [len(reference)],
+                "dtype": "float32",
+                "reference_sha256": self._embedding_hash(reference),
+                "alternate_sha256": self._embedding_hash(alternate),
+                "difference_sha256": self._embedding_hash(difference),
+            }
+
+        variant = prepared.variant
+        result: dict[str, object] = {
+            "variant": (
+                f"{variant.chromosome}:g.{variant.position_1based}"
+                f"{variant.reference}>{variant.alternate}"
+            ),
+            "normalized_variant_id": variant.normalized_variant_id,
+            "assembly": variant.assembly,
+            "chromosome": variant.chromosome,
+            "position_1based": variant.position_1based,
+            "reference": variant.reference,
+            "alternate": variant.alternate,
+            "status": "completed",
+            "embedding_features": {
+                "forward": orientation_payload(vectors[0], vectors[1]),
+                "reverse": orientation_payload(vectors[2], vectors[3]),
+            },
+            "provenance": {
+                "scorer": "evo2_7b",
+                "model_revision": EVO2_REPOSITORY_REVISION,
+                "context_length_bp": CONTEXT_LENGTH_BP,
+                "layer": layer,
+                "pooling": EMBEDDING_POOLING,
+                "embedding_dtype": dtype,
+                "orientation": "forward_and_reverse",
+                "feature_semantics": "mean_token_embedding_ref_alt_difference",
+                "cache_hit": False,
+                "research_only": True,
+                "classification": "not_provided",
+            },
+        }
+        if telemetry is not None:
+            result["telemetry"] = telemetry.to_dict()
+        return result
 
     def _fetch_chromosome_length(self, genome: str, chromosome: str) -> int:
         """Fetch chromosome size so edge windows can be shifted exactly."""

@@ -7,12 +7,6 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: false,
-  eslint: {
-    // ESLint runs as an explicit pre-build step in the repository Makefile.
-    // Next skips duplicate build-time linting so production builds stay focused
-    // on compilation and type validity.
-    ignoreDuringBuilds: true,
-  },
 };
 
 export default config;

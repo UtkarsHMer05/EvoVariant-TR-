@@ -75,7 +75,7 @@ export function VariantComparisonModal({
                           {(() => {
                             const match =
                               /(\w)>(\w)/.exec(comparisonVariant.title);
-                            if (match && match.length === 3) {
+                            if (match?.length === 3) {
                               const [, ref, alt] = match;
                               return (
                                 <>

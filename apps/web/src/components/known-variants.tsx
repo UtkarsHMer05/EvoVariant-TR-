@@ -51,7 +51,7 @@ export default function KnownVariants({
 
     const refAltMatch = /(\w)>(\w)/.exec(variant.title);
 
-    if (refAltMatch && refAltMatch.length === 3) {
+    if (refAltMatch?.length === 3) {
       variantDetails = {
         position,
         reference: refAltMatch[1],

@@ -211,7 +211,7 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
 
                 let ref = null;
                 let alt = null;
-                if (refAltMatch && refAltMatch.length === 3) {
+                if (refAltMatch?.length === 3) {
                   ref = refAltMatch[1];
                   alt = refAltMatch[2];
                 }

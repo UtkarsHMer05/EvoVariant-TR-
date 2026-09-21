@@ -157,7 +157,9 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
         "source_artifact_sha256": source_hashes,
         "phase3_audit_status": audit["status"],
         "reference_status": reference["status"],
-        "phase3_gate_basis": "ML-DEV-001 plus independent reference PASS",
+        "phase3_gate_basis": (
+            "ML-DEV-001 plus ML-DEV-002 plus independent reference PASS"
+        ),
     }
     cohort_hash = _write(output_dir / "authoritative_cohort_manifest.json", cohort_summary)
 

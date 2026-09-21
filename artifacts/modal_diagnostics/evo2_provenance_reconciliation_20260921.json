@@ -1,0 +1,50 @@
+{
+  "artifact_id": "evo2-provenance-reconciliation-20260921",
+  "recorded_at": "2026-09-21",
+  "verified_head": "e0e43bf0cbc702db38fbd5a274e574c89e2ad24a",
+  "tracked_worktree_clean": true,
+  "preexisting_untracked_paths": [".agents/"],
+  "source_code": {
+    "repository": "https://github.com/ArcInstitute/evo2.git",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "verification": "The Modal image definition clones this repository, checks out this exact revision, initializes submodules, and installs the package; the pinned revision README is reachable at the official source URL."
+  },
+  "model_checkpoint": {
+    "repository": "https://huggingface.co/arcinstitute/evo2_7b",
+    "model_name": "evo2_7b",
+    "snapshot_revision": "bda0089f92582d5baabf0f22d9fc85f3588f6b58",
+    "cache_path": "hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58/evo2_7b.pt",
+    "size_bytes": 13766621200,
+    "cache_blob_identifier": "c66645929dc1b9c631f5be656da8726f38946315dc9167000a615dd626fcecf4",
+    "content_sha256_recomputed": false,
+    "hash_note": "The read-only cache probe exposed the content-addressed Hugging Face blob identifier and file size, but did not stream-hash the 13.77 GB checkpoint. The blob identifier is not promoted here as an independently recomputed content hash."
+  },
+  "configuration_identity": {
+    "cache_config_keys": ["_name_or_path", "architecture", "name"],
+    "model_name": "evo2_7b",
+    "architecture_contract": "official Evo2 package model loader",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood",
+    "gpu": "H100",
+    "dtype": "torch.bfloat16"
+  },
+  "revision_reconciliation": {
+    "status": "PASS",
+    "why_revisions_differ": "The source revision identifies the executable Evo2 Python/CUDA implementation, while the Hugging Face snapshot revision identifies the separately versioned model repository contents and checkpoint snapshot. They are expected to be different identifiers and are reconciled by the loader contract, not by comparing their hash strings.",
+    "same_intended_canonical_execution_contract": true,
+    "evidence": [
+      "scripts/phase6_development_evo2.py clones the official source repository at the source-code revision and constructs Evo2('evo2_7b').",
+      "artifacts/modal_diagnostics/hf_cache_read_20260921.json records the exact arcinstitute/evo2_7b snapshot, checkpoint path, size, readable config, and structural validity.",
+      "artifacts/modal_diagnostics/evo2_load_20260921.json records a cache-hit load of evo2_7b on H100 with the canonical model revision, cuda:0, and bfloat16.",
+      "artifacts/modal_diagnostics/evo2_development_8_20260921.json records finite canonical forward/reverse scores, the exact model revision, a cache hit, and the frozen GRCh38/8192-bp contract."
+    ]
+  },
+  "scientific_boundary": {
+    "formal_manifests_modified": false,
+    "locked_test_accessed": false,
+    "formal_64_preflight_started": false,
+    "labels_sent_to_modal": false
+  }
+}

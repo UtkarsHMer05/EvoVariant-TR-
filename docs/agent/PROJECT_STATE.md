@@ -1261,3 +1261,28 @@ families were not invented.
   11/12/13/14/15/18/19 remain `BLOCKED`, Phase 10 remains `DEFERRED_BY_COMPUTE`, and Phase 16
   remains `PARTIAL`. The single next recommendation is `RETRY_FORMAL_64_PREFLIGHT`, but only
   after a separate explicit approval because the current `$0.50` approval excludes it.
+
+## Formal preflight provenance reconciliation — 2026-09-21
+
+- The successful JSON-safe H100/Evo2 diagnostic ladder and its control artifacts were committed
+  in `e0e43bf0cbc702db38fbd5a274e574c89e2ad24a`. The tracked worktree is clean; the only
+  untracked path is the pre-existing local `.agents/` skills tree.
+- The two pinned revisions are intentionally different namespaces and are reconciled. The
+  executable source is `https://github.com/ArcInstitute/evo2.git` at
+  `4b509ec2a22d6de472659f908bcb0714265ad3a7`; the model repository is
+  `https://huggingface.co/arcinstitute/evo2_7b` at snapshot
+  `bda0089f92582d5baabf0f22d9fc85f3588f6b58`. The Modal image clones/checks out the former,
+  then `Evo2("evo2_7b")` resolves the latter through the mounted Hugging Face cache.
+- The cache probe found `evo2_7b.pt` at 13,766,621,200 bytes, with blob identifier
+  `c66645929dc1b9c631f5be656da8726f38946315dc9167000a615dd626fcecf4`; the identifier is
+  recorded as a cache object identifier, not as an independently recomputed 13.77-GB content
+  hash. The cache config is structurally readable and exposes `_name_or_path`, `architecture`,
+  and `name` keys.
+- The source and model therefore represent the same intended canonical execution contract:
+  `evo2_7b`, H100, bfloat16, GRCh38, 8,192 bp, forward plus reverse complement, and
+  alternate-minus-reference log likelihood. The cache-hit load and the one/eight-row score
+  artifacts independently confirm that contract. Full evidence is in
+  `artifacts/modal_diagnostics/evo2_provenance_reconciliation_20260921.json`.
+- This reconciliation is `PASS` and does not authorize a full run. A new approval is still
+  required for the formal 64-row preflight; the frozen manifests and locked-test boundary remain
+  unchanged.

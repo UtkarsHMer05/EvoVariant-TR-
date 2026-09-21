@@ -2798,6 +2798,36 @@ diagnostic scripts pass Ruff. All five remote apps are stopped; the estimated ad
   ladder artifact, and `19.94` at the final read-only inventory check. Workspace billed cost
   remained `$0.00`; workspace billing is not a per-run invoice.
 
+## D-093 — Treat Evo2 source and Hugging Face snapshot revisions as separate reconciled namespaces
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The successful JSON-safe H100/Evo2 ladder exposed source/code revision
+`4b509ec2a22d6de472659f908bcb0714265ad3a7` and cache snapshot revision
+`bda0089f92582d5baabf0f22d9fc85f3588f6b58`. A formal preflight must not silently treat those
+different identifiers as either a mismatch or the same hash namespace.
+
+Decision:
+Record the source repository and pinned executable revision separately from the model repository
+and Hugging Face snapshot. Accept the relationship as reconciled because the Modal image clones
+the official source at the pinned source revision, constructs `Evo2("evo2_7b")`, mounts the
+`arcinstitute/evo2_7b` cache snapshot, and the cache-hit load plus canonical one/eight-row
+results confirm the same frozen scoring contract.
+
+Evidence:
+`artifacts/modal_diagnostics/evo2_provenance_reconciliation_20260921.json` records the source
+repository, model repository, revisions, checkpoint path and size, cache blob identifier,
+configuration identity, reconciliation rationale, and scientific boundary. The 13,766,621,200
+byte checkpoint's cache blob identifier is retained without being misreported as an independently
+recomputed content hash.
+
+Consequence:
+The provenance gate is `PASS`; it permits creation of the separately scoped formal 64-row
+preflight approval but does not authorize the full 4,000-row run, NT/Caduceus extraction, locked
+test, Phase 14, fine-tuning, context sweeps, deployment, or release.
+
 ## Template for new decisions
 
 ### D-XXX — Title

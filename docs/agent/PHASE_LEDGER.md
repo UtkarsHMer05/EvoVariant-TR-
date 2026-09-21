@@ -1086,3 +1086,21 @@ genuine unavailable evidence, not values to infer.
   does not itself promote a formal gate or unblock dependent phases. Phases 7/8/9/11/12/13/14/
   15/18/19 remain `BLOCKED`, Phase 10 remains `DEFERRED_BY_COMPUTE`, and Phase 16 remains
   `PARTIAL`.
+
+## Formal preflight provenance reconciliation — 2026-09-21
+
+- Commit `e0e43bf0cbc702db38fbd5a274e574c89e2ad24a` preserves the successful JSON-safe
+  diagnostic ladder and its historical failure artifacts. `make validate` and `git diff --check`
+  pass; the only untracked path is the pre-existing `.agents/` tree.
+- Provenance is `PASS`: source/code revision `4b509ec2a22d6de472659f908bcb0714265ad3a7` belongs
+  to the official Arc Institute Evo2 repository, while model snapshot revision
+  `bda0089f92582d5baabf0f22d9fc85f3588f6b58` belongs to the separate Hugging Face
+  `arcinstitute/evo2_7b` repository. The differing identifiers are expected because one names
+  executable source and the other names model-repository contents.
+- The mounted cache contains `evo2_7b.pt` (13,766,621,200 bytes; blob identifier
+  `c66645929dc1b9c631f5be656da8726f38946315dc9167000a615dd626fcecf4`) and a readable config.
+  The blob identifier is not represented as a recomputed content hash. The cache-hit load and
+  successful development score artifacts confirm the same canonical `evo2_7b` / H100 / bfloat16 /
+  GRCh38 / 8192-bp / forward+reverse / alternate-minus-reference contract.
+- Evidence artifact: `artifacts/modal_diagnostics/evo2_provenance_reconciliation_20260921.json`.
+  The formal 64-row preflight has not started and needs its separate `$0.75` / `$0.65` approval.

@@ -21,8 +21,8 @@ reasons. Phase 10 adaptation is formally
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `b0c8ce4` (gated adaptation deferral control surface; current
-Python and web gates pass).
+Latest validated source baseline: `2c9b3ca` (hash-verified embedding feature-store adapter;
+current Python and web gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -51,9 +51,9 @@ Active branch/worktree: `research/evovariant-tr` at
 ## Current authoritative execution update — 2026-09-21
 
 - Current checkout verification: branch `research/evovariant-tr` has no tracked modifications after
-  the validated frontend change and this control-file update. The only untracked path is the
-  injected `.agents/` skill bundle; it is intentionally not part of project commits or scientific
-  evidence. Verify the exact HEAD with Git before any phase transition.
+  the validated embedding feature-store adapter commit and this control-file update. The only
+  untracked path is the injected `.agents/` skill bundle; it is intentionally not part of project
+  commits or scientific evidence. Verify the exact HEAD with Git before any phase transition.
 - The remote pilot was deployed from source HEAD `2f4d117d0d1804bd8479d7da473978d1f796249b`.
   The chromosome-normalization fix, model-manifest updates, pilot artifacts, and the reconciled
   control-file updates are now committed in `f69ee8605e3dcbcf068ffd0f5fed3cef6e3cdcb0`
@@ -164,8 +164,12 @@ Active branch/worktree: `research/evovariant-tr` at
 - `evo2_scorer_app.py` now contains a bounded source-level embedding endpoint using the fixed
   Evo2 `blocks.28.mlp.l3` layer and mean-token pooling for forward and reverse-complement
   reference/alternate sequences. It records vector shapes, dtypes, hashes, provenance, and a
-  separate content-addressed feature-cache identity. The source payload contract has a no-spend
-  unit test, but no remote embedding smoke or completed feature cache has been authorized or run.
+  separate content-addressed feature-cache identity. Commit `2c9b3ca` adds
+  `feature_record_from_embedding_payload`, which verifies the completed payload, frozen pooling,
+  vector hashes/shapes, finite values, orientation dimensions, and alternate-minus-reference
+  arithmetic before creating a compact content-addressed feature record. These are source-level
+  and no-spend tests only; no remote embedding smoke or completed feature cache has been
+  authorized or run.
 - Phase 10 is formally deferred by compute in
   `artifacts/modal/phase10_adaptation_deferral_20260921.json`. The record preserves the measured
   H100 inference envelope, the low-confidence cohort cost preflight, the absence of a checked-in
@@ -177,9 +181,10 @@ Active branch/worktree: `research/evovariant-tr` at
   while the six other candidates remain excluded for incompatible score contracts, missing
   assets, applicability, licensing, or unmeasured bounded compute. No deferred model was
   downloaded or promoted as a comparator.
-- After the deferral control-surface change, `make validate` passed 639 tests with 33 deselected,
-  strict mypy over 51 source files, Ruff, secret scan, and 95.30% coverage. The new CLI status
-  option is covered by `tests/unit/test_cli.py`.
+- After the feature-store adapter change, `make validate` passed 642 tests with 33 deselected,
+  strict mypy over 51 source files, Ruff, secret scan, and 95.01% coverage. The adapter is covered
+  by `tests/unit/test_feature_store.py`; the CLI status option remains covered by
+  `tests/unit/test_cli.py`.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

@@ -1384,6 +1384,46 @@ Validation:
 evidence and resume conditions. `make model-registry-verify` continues to pass with 7 manifests
 and 1 included model.
 
+## D-054 — Validate embedding payloads before feature-record storage
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+Phase 7 has a frozen source-level Evo2 representation contract, but a raw embedding payload is
+not yet a safe downstream feature artifact by itself. A storage boundary must reject incomplete,
+tampered, dimensionally inconsistent, or differently pooled payloads without introducing model
+selection or locked-label feedback.
+
+Decision:
+Add `feature_record_from_embedding_payload()` to `src/evovariant_tr/feature_store.py`. It accepts
+only completed payloads using the frozen `mean_tokens` pooling rule, verifies the normalized ID,
+layer, finite reference/alternate/difference vectors, shape metadata, SHA-256 hashes, exact
+alternate-minus-reference arithmetic, and forward/reverse dimension agreement, then emits a
+content-addressed `FeatureRecord`. The default representation is the fixed concatenation of
+forward and reverse-complement alternate-minus-reference vectors; explicitly named forward-only,
+reverse-only, and orientation-mean representations remain deterministic storage choices rather
+than tuned choices. The adapter does not call Modal, inspect labels, choose a layer, or unlock
+the locked test.
+
+Alternatives:
+Store raw payloads without verification, accept caller-selected pooling/layers, or run a remote
+embedding smoke to populate a cache under the existing approval. These were rejected because
+unverified payloads would weaken provenance, arbitrary representation choices would reopen
+selection leakage, and the current approval does not authorize remote embedding work.
+
+Consequences:
+Phase 7 now has a tested local conversion boundary that can be used after a separately approved
+remote embedding smoke. It does not create a feature cache, establish remote shape/latency/cost,
+or unblock Phases 8 and 9; the Phase 7 gate remains `BLOCKED` until remote evidence and the
+upstream Phase 3/6 prerequisites are resolved.
+
+Validation:
+Commit `2c9b3ca` adds the adapter and `tests/unit/test_feature_store.py`. The no-spend tests
+cover compact record construction, orientation-mean conversion, tamper/hash rejection, and
+pooling rejection. The latest `make validate` run passed 642 tests, 33 deselected, strict mypy
+over 51 source files, Ruff, secret scan, and 95.01% coverage.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -968,6 +968,38 @@ Validation:
 `./.venv/bin/pytest -q tests/unit/test_splits.py` (7 passed). The original protocol hash and all
 immutable protocol fields remain unchanged.
 
+## D-042 — Retain the Phase 3 discrepancy after independent parser cross-check
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: none
+
+Context:
+After correcting the QA-funnel counter semantics, the archive-derived streaming path still
+produced 1,402,895 unique t0 VUS versus the validation-only target of 1,403,225. The target ID
+set was not present in the handoff or repository.
+
+Decision:
+Run a non-authoritative cross-check through the existing version-aware parser and normalized
+identity implementation. It produced 1,402,906 unique t0 VUS, only 11 above the ML-extension
+path and still 319 below the target. Treat this as corroboration that the remaining discrepancy
+cannot be resolved by selecting between the two in-repository parser paths. Retain the current
+archive-derived cohort, do not tune filters, and keep scoring blocked pending target source/ID
+provenance or a dated protocol deviation.
+
+Alternatives:
+Choose the parser path closer to the target, import unverified IDs from an external source, or
+declare the discrepancy benign from aggregate counts. These were rejected because none supplies
+the missing identity-level evidence required for cohort, label, and leakage reconciliation.
+
+Consequences:
+The Phase 3 blocker is now supported by two independent local implementations and the recorded
+official archive provenance. The missing target ID/source artifact remains an external evidence
+requirement; no downstream scientific phase is authorized.
+
+Validation:
+The cross-check is recorded in `artifacts/phase3_partition_audit_20260921.json`; the official
+archive hashes remain unchanged, `make data-qc` and `make validate` pass, and no model scoring ran.
+
 ## Template for new decisions
 
 ### D-XXX — Title

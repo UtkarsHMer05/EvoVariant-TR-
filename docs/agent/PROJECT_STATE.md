@@ -81,6 +81,10 @@ Active branch/worktree: `research/evovariant-tr` at
   either star level. The corrected current counts are 9,049 and 1,389,441; no benchmark output
   is authorized until the remaining 330-ID discrepancy is reconciled or a dated protocol
   deviation accepts the changed cohort.
+- An independent cross-check through the existing `iter_variant_summary`/`VariantIdentity` path
+  yields 1,402,906 unique t0 VUS, only 11 above the ML-extension path and still 319 below the
+  handoff target. The official archive directory exposes the same recorded t0 file; no alternate
+  target archive or target ID list was found in the repository or supplied handoff attachment.
 
 ## Handoff extraction
 

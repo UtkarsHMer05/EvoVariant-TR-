@@ -19,6 +19,14 @@
       "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
     }
   },
+  "independent_parser_cross_check": {
+    "implementation": "src/evovariant_tr/clinvar_parser.py::iter_variant_summary plus src/evovariant_tr/cohort.py::VariantIdentity",
+    "deduplication": "existing parser path, highest review-stars per normalized identity",
+    "t0_unique_vus": 1402906,
+    "difference_from_ml_extension_path": 11,
+    "difference_from_validation_only_target": -319,
+    "interpretation": "An independent in-repository parser path does not reproduce the handoff target; the small 11-record difference from the ML-extension path does not explain the remaining discrepancy."
+  },
   "current_archive_partition": {
     "t0_unique_vus": 1402895,
     "absent_at_t1": 3459,
@@ -54,6 +62,7 @@
     "The previous implementation counted all low-star matched rows as below_two_stars and excluded low-star non-definitive rows from not_definitive_at_t1; the counters were not mutually exclusive under the handoff QA vocabulary.",
     "The corrected partition is mutually exclusive and sums exactly to the current t0 denominator; its current counts are 9049 below-star definitive, 1389441 non-definitive, and 946 final.",
     "The target arithmetic is consistent with the same mutually exclusive category definitions, but the target ID list and target-side source records are not present in the repository, so the 330 missing IDs cannot be identified or set-compared.",
+    "The existing non-authoritative parser/deduplication path independently produces 1,402,906 t0 VUS, confirming that the remaining target difference is not explained by the new streaming audit implementation alone.",
     "The 78-record final difference is entirely B/LB in the supplied aggregate counts; this remains material to class balance and all downstream denominators.",
     "The code change corrects audit semantics only. It does not alter the frozen t0/t1 archives, primary gate, normalized-ID policy, duplicate policy, or any model-scoring authorization."
   ],

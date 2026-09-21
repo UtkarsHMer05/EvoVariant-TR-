@@ -450,5 +450,7 @@ For each PASS append:
   1,402,895 t0 VUS.
 - Artifact: `artifacts/phase3_partition_audit_20260921.json`; the tracked review summary now
   records the corrected counters. The target arithmetic is consistent with these semantics, but
-  the target ID/source set is still unavailable. The remaining 330-ID discrepancy and 78-record
-  B/LB difference remain material; Phase 3 stays `BLOCKED` and no scoring was started.
+  the target ID/source set is still unavailable. An independent existing parser path produces
+  1,402,906 unique t0 VUS, confirming that the remaining discrepancy is not specific to the new
+  streaming implementation. The remaining 330-ID discrepancy and 78-record B/LB difference remain
+  material; Phase 3 stays `BLOCKED` and no scoring was started.

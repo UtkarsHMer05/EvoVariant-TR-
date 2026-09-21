@@ -69,6 +69,101 @@ def make_feature_record(
     )
 
 
+def feature_record_from_embedding_payload(
+    payload: dict[str, Any],
+    *,
+    split: str,
+    model_id: str = "evo2",
+    representation: str = "orientation_concat_difference",
+    gene_symbol: str | None = None,
+) -> FeatureRecord:
+    """Convert one validated Modal embedding payload into a compact feature record.
+
+    The default representation concatenates the forward and reverse-complement
+    alternate-minus-reference vectors in that fixed order.  The payload hashes,
+    vector shapes, finite values, and orientation dimensions are verified before
+    the downstream record is created.  This is a storage adapter only; it does
+    not select a layer or tune a representation against locked labels.
+    """
+    if payload.get("status") != "completed":
+        raise ValueError("embedding payload must have completed status")
+    normalized_variant_id = payload.get("normalized_variant_id")
+    if not isinstance(normalized_variant_id, str) or not normalized_variant_id:
+        raise ValueError("embedding payload is missing normalized_variant_id")
+    if not model_id.strip():
+        raise ValueError("model_id must be non-empty")
+
+    provenance = payload.get("provenance")
+    if not isinstance(provenance, dict):
+        raise ValueError("embedding payload is missing provenance")
+    layer = provenance.get("layer")
+    pooling = provenance.get("pooling")
+    if not isinstance(layer, str) or not layer:
+        raise ValueError("embedding payload is missing a layer")
+    if pooling != "mean_tokens":
+        raise ValueError("embedding payload must use the frozen mean_tokens pooling rule")
+
+    embedding_features = payload.get("embedding_features")
+    if not isinstance(embedding_features, dict):
+        raise ValueError("embedding payload is missing embedding_features")
+
+    def read_orientation(name: str) -> tuple[list[float], list[float], list[float]]:
+        raw = embedding_features.get(name)
+        if not isinstance(raw, dict):
+            raise ValueError(f"embedding payload is missing {name} orientation")
+        vectors: list[list[float]] = []
+        for key in ("reference", "alternate", "difference"):
+            values = raw.get(key)
+            if not isinstance(values, list) or not values:
+                raise ValueError(f"{name} {key} vector is empty or malformed")
+            try:
+                vector = [float(value) for value in values]
+            except (TypeError, ValueError) as exc:
+                raise ValueError(f"{name} {key} vector is non-numeric") from exc
+            if not all(math.isfinite(value) for value in vector):
+                raise ValueError(f"{name} {key} vector contains non-finite values")
+            if raw.get("shape") != [len(vector)]:
+                raise ValueError(f"{name} vector shape metadata is inconsistent")
+            expected_hash = _content_hash(tuple(vector))
+            if raw.get(f"{key}_sha256") != expected_hash:
+                raise ValueError(f"{name} {key} vector hash does not match payload")
+            vectors.append(vector)
+        reference, alternate, difference = vectors
+        expected_difference = [alt - ref for ref, alt in zip(reference, alternate, strict=True)]
+        if difference != expected_difference:
+            raise ValueError(f"{name} difference vector is not alternate minus reference")
+        return reference, alternate, difference
+
+    forward = read_orientation("forward")
+    reverse = read_orientation("reverse")
+    if len(forward[2]) != len(reverse[2]):
+        raise ValueError("forward and reverse difference dimensions do not match")
+
+    if representation == "orientation_concat_difference":
+        values = forward[2] + reverse[2]
+    elif representation == "orientation_mean_difference":
+        values = [
+            (forward_value + reverse_value) / 2.0
+            for forward_value, reverse_value in zip(forward[2], reverse[2], strict=True)
+        ]
+    elif representation == "forward_difference":
+        values = forward[2]
+    elif representation == "reverse_difference":
+        values = reverse[2]
+    else:
+        raise ValueError(f"unknown embedding representation: {representation}")
+
+    return make_feature_record(
+        normalized_variant_id=normalized_variant_id,
+        model_id=model_id,
+        layer=f"{layer}:{representation}",
+        split=split,
+        values=values,
+        dtype="float32",
+        gene_symbol=gene_symbol,
+    )
+
+
 def assemble_feature_matrix(
     records: list[FeatureRecord],
     *,

@@ -1,0 +1,65 @@
+{
+  "GPU": "CPU",
+  "artifact_paths": [
+    "artifacts/registry/development_subset_20260921/phase13_development_subset_20260921.json"
+  ],
+  "checkpoint": "evo2_7b",
+  "command": "python scripts/register_development_subset_results.py",
+  "comparator_versions": {
+    "registry_script": "2026-09-21"
+  },
+  "completed_at": "2026-09-21T13:49:51.314971+00:00",
+  "config": {
+    "selection_split": "VALIDATION",
+    "status": "PARTIAL_DEVELOPMENT_SUBSET"
+  },
+  "created_at": "2026-09-21T13:49:51.314524+00:00",
+  "data_manifests": {
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72"
+  },
+  "dataset_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "estimated_cost_usd": 0.0,
+  "evidence_stage": "PRELIMINARY",
+  "experiment_family": "ABL_ROB",
+  "failure_reason": null,
+  "feature_version": "development_subset_summary_v1",
+  "git_commit": "167cc6a57d0e4f05204bb33d46676a0dedd7c8a1",
+  "git_dirty": true,
+  "hardware": {
+    "execution": "local CPU/control-plane"
+  },
+  "license_record": {
+    "license": "Apache-2.0"
+  },
+  "measured_cost_usd": null,
+  "metrics": {
+    "completed_learning_curve_points": 6
+  },
+  "model_identity": "evo2_7b",
+  "model_name": "Evo2-derived CPU baselines",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "model_source": "https://github.com/ArcInstitute/evo2",
+  "notes": "PRELIMINARY only: feasible orientation/feature cells and learning curves; deferred cells remain explicit.",
+  "output_hashes": {
+    "artifacts/registry/development_subset_20260921/phase13_development_subset_20260921.json": "e1a6a17d81a5909d84ee540ba7a36745914cb8845a8f0bddba67a9fb35b24737"
+  },
+  "output_paths": [
+    "artifacts/registry/development_subset_20260921/phase13_development_subset_20260921.json"
+  ],
+  "parent_run_id": null,
+  "preprocessing_version": "raw_score_orientation_v1",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "reference_checksum": null,
+  "run_id": "run_20260921T134951Z_707e558e",
+  "runtime_seconds": null,
+  "scorer_config": {
+    "locked_test_evaluated": false,
+    "selection_closed": false
+  },
+  "seed": 42,
+  "split_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "started_at": "2026-09-21T13:49:51.314529+00:00",
+  "status": "COMPLETED",
+  "title": "Phase 13 feasible development-subset ablation and robustness matrix \u2014 2026-09-21",
+  "updated_at": "2026-09-21T13:49:51.314971+00:00"
+}

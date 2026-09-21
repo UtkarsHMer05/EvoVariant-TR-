@@ -16,14 +16,14 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 | 9 | Hyperparameter optimization | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase9_development_subset_20260921/hpo/hpo_metadata.json`; bounded logistic HPO selected on VALIDATION only. |
 | 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
 | 11 | Ensemble/meta-classifier | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase11_12_development_subset_20260921/equal_weight_logistic_mlp_analysis.json`; fixed 50/50 validation-only analysis from real subset predictions, not a full or registered result. |
-| 12 | Calibration + abstention | PARTIAL / DEVELOPMENT SUBSET | Same Phase 11/12 analysis artifact; calibration diagnostics and risk-coverage/abstention curves are validation-only and not locked-test selection. |
-| 13 | Ablation + robustness | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase13_development_subset_20260921/ablation_robustness.json`; orientation/feature and learning-curve CPU cells ran, while context shifts, embeddings, external comparators, and fitted-calibrator effect remain explicitly deferred. |
+| 12 | Calibration + abstention | PARTIAL / DEVELOPMENT CALIBRATION SUBSET | `artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json`; Platt and isotonic maps fit TRAIN-only and evaluated on VALIDATION, alongside the fixed risk-coverage diagnostics. No locked-test selection. |
+| 13 | Ablation + robustness | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase13_development_subset_20260921/ablation_robustness.json` plus `artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json`; orientation/feature, learning-curve, and calibration-effect CPU cells ran, while context shifts, embeddings, and external comparators remain deferred. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; local Evo2 adapter, bounded Modal source endpoint, resumable `total_shards` manifest accounting, and the no-GPU recovery simulation (`9 passed, 1 documented skip`) are regression-checked, but deployment/parity, full-cohort authorization, and remote recovery smoke are absent. |
-| 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`, `739310d`; Next 16.3.5 dependency/lint migration, `make web-check`, and four-test `make web-e2e` PASS; registered scientific outputs are absent. |
-| 17 | Figures/tables/report artifacts | BLOCKED | `14d9593`; all 19 figure families and 12 tables have registry contracts plus deterministic bundle rendering, but `research/runs/phase17_fig_status.json` is `BLOCKED` with zero eligible completed result artifacts and `research/figures/bundle_manifest.json` has zero outputs. |
-| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone of `739310d` + `make bootstrap`, `npm ci` (zero vulnerabilities), `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and four-test `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
-| 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and registered result artifacts remain unresolved. |
+| 16 | Research workbench UI | PARTIAL / PRELIMINARY REGISTRY CONNECTED | `scripts/verify_ui_registry.py`, `research/runs/phase16_ui_status.json`; seven completed PRELIMINARY runs are hash-verified and visible through the read-only registry route, while scientific panels remain evidence-gated. `make web-check` and four-test `make web-e2e` PASS. |
+| 17 | Figures/tables/report artifacts | BLOCKED / PARTIAL SOURCES | `14d9593`, `research/runs/phase17_fig_status.json`; 9/19 figure families and 9/12 tables have real subset sources, but the deterministic bundle remains blocked by 10 missing source families and produces zero scientific outputs. |
+| 18 | Security + clean-room reproducibility | BLOCKED / CONTROL SURFACE ONLY | Fresh clone/free-gate evidence remains valid; `research/runs/phase18_clean_room_status.json` now records that full scientific Modal reproduction is unrun and complete figure-source regeneration is missing. |
+| 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; the PRELIMINARY registry is connected, but full-cohort science, locked evaluation, complete figures, and final-release evidence remain unresolved. |
 
 ## Latest recovery, reference, and pre-Phase-6 checkpoint — 2026-09-21
 
@@ -830,3 +830,38 @@ gate state.
   Phase 14 and the locked test remain untouched. The full development cohort, NT/Caduceus
   extraction, comparator joins, fine-tuning, registry promotion, figures, release, deployment,
   and publication remain unresolved and require a new explicit scope/budget if pursued.
+
+## Current preliminary registry and UI reconciliation — 2026-09-21
+
+- `scripts/register_development_subset_results.py` generated five tracked subset summaries and
+  fourteen tracked figure-source artifacts, then registered seven completed runs as
+  `PRELIMINARY`. `make registry-verify` passed; no `FINAL` record was created and no locked-test
+  row was consumed.
+- Phase 16 is now `PARTIAL / PRELIMINARY REGISTRY CONNECTED`: the read-only workbench registry
+  route sees seven completed scientific-stage records and the UI status artifact reports
+  `registry_connected=true`. `make web-check` passed and all four committed Playwright journeys
+  passed, including the preliminary-registry journey.
+- Phase 17 remains `BLOCKED / PARTIAL SOURCES`: its manifest reports 9/19 available figure
+  families and 9/12 available tables, with real subset provenance. The missing source list is
+  `benchmark.json`, `context_length.json`, `cost_ledger.jsonl`, `embedding_layer.json`,
+  `error_correlation.json`, `finetuning.json`, `hpo_importance.json`, `loss.json`,
+  `subgroup.json`, and `temporal_cohort.json`; the bundle output count is zero by design while
+  any required source is absent.
+- Phases 14, 15, 18, and 19 remain blocked for their independent dependencies. In particular,
+  the current `$5.00` approval does not authorize locked evaluation, full scientific clean-room
+  reproduction, deployment, release, or publication.
+
+## Current train-only calibration continuation — 2026-09-21
+
+- Phase 12 now has a real preliminary train-only calibration comparison. Platt and isotonic
+  maps were fit on TRAIN and evaluated on VALIDATION for the fixed 50/50 logistic+MLP ensemble;
+  the locked-test boundary remained false throughout. The tracked summary is
+  `artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json`.
+- Phase 13 now has a separate calibration-effect summary at
+  `artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json`.
+  It completes the feasible subset calibration-effect cell but does not make the original
+  predeclared full matrix complete; context shifts, embeddings, external comparators, and
+  full-cohort robustness remain deferred.
+- The current registry has nine eligible completed `PRELIMINARY` runs. The figure manifest stays
+  `BLOCKED` with 9/19 figures and 9/12 tables available because the missing source families are
+  genuine unavailable evidence, not values to infer.

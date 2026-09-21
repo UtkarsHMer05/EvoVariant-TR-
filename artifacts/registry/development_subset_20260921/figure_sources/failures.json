@@ -1,0 +1,27 @@
+[
+  {
+    "component": "calibration_effect",
+    "reason": "no fitted calibrator; Phase 11/12 reports fixed ensemble calibration diagnostics",
+    "scope": "current approved subset"
+  },
+  {
+    "component": "context_shift",
+    "reason": "requires new paid context-shift sequence scoring",
+    "scope": "current approved subset"
+  },
+  {
+    "component": "embedding_feature_removal",
+    "reason": "Phase 7 NT/Caduceus feature cache unavailable under current cap",
+    "scope": "current approved subset"
+  },
+  {
+    "component": "external_comparator_removal",
+    "reason": "development CADD/PhyloP join not materialized",
+    "scope": "current approved subset"
+  },
+  {
+    "component": "locked_test",
+    "reason": "excluded by protocol and current approval",
+    "scope": "current approved subset"
+  }
+]

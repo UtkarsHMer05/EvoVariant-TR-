@@ -1,0 +1,26 @@
+{
+  "artifact_id": "phase13-development-subset-20260921",
+  "completed_learning_curve_points": 6,
+  "completed_orientation_cells": [
+    "aggregate_primary",
+    "aggregate_with_orientation_auxiliary",
+    "forward_only",
+    "reverse_only"
+  ],
+  "deferred_cells": {
+    "calibration_effect": "no fitted calibrator; Phase 11/12 reports fixed ensemble calibration diagnostics",
+    "context_shift": "requires new paid context-shift sequence scoring",
+    "embedding_feature_removal": "Phase 7 NT/Caduceus feature cache unavailable under current cap",
+    "external_comparator_removal": "development CADD/PhyloP join not materialized",
+    "locked_test": "excluded by protocol and current approval"
+  },
+  "evidence_stage": "PRELIMINARY",
+  "locked_test_evaluated": false,
+  "phase": 13,
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "scope": "feasible development-subset matrix only; deferred cells remain explicit",
+  "selection_split": "VALIDATION",
+  "source_artifact": "research/runs/phase13_development_subset_20260921/ablation_robustness.json",
+  "source_artifact_sha256": "df5d82ffb6878bc5c875a10fabf846c1ad93935ee689766d04d68af24d073c57",
+  "status": "PARTIAL_DEVELOPMENT_SUBSET"
+}

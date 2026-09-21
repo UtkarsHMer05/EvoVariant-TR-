@@ -1,0 +1,37 @@
+[
+  {
+    "model_id": "alphamissense_valid_subset",
+    "scope": "project model registry; not a benchmark result",
+    "status": "SUBSET_ONLY"
+  },
+  {
+    "model_id": "cadd",
+    "scope": "project model registry; not a benchmark result",
+    "status": "SUBSET_ONLY"
+  },
+  {
+    "model_id": "caduceus",
+    "scope": "project model registry; not a benchmark result",
+    "status": "SUBSET_ONLY"
+  },
+  {
+    "model_id": "evo2",
+    "scope": "project model registry; not a benchmark result",
+    "status": "INCLUDED"
+  },
+  {
+    "model_id": "gpn",
+    "scope": "project model registry; not a benchmark result",
+    "status": "DEFERRED_BY_COMPUTE"
+  },
+  {
+    "model_id": "nucleotide_transformer",
+    "scope": "project model registry; not a benchmark result",
+    "status": "SUBSET_ONLY"
+  },
+  {
+    "model_id": "phylop",
+    "scope": "project model registry; not a benchmark result",
+    "status": "SUBSET_ONLY"
+  }
+]

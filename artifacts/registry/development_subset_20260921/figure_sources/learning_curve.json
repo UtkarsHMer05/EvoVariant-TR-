@@ -1,0 +1,38 @@
+[
+  {
+    "metric": 0.9937803398058253,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 228
+  },
+  {
+    "metric": 0.9935072815533981,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 455
+  },
+  {
+    "metric": 0.9933404126213592,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 910
+  },
+  {
+    "metric": 0.993310072815534,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 1366
+  },
+  {
+    "metric": 0.9932038834951457,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 1821
+  },
+  {
+    "metric": 0.9931128640776699,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 development subset learning curve",
+    "train_size": 2276
+  }
+]

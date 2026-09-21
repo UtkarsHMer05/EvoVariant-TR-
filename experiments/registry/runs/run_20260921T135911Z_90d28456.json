@@ -1,0 +1,101 @@
+{
+  "GPU": "CPU",
+  "artifact_paths": [
+    "artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json"
+  ],
+  "checkpoint": "evo2_7b",
+  "command": "python scripts/register_development_subset_results.py",
+  "comparator_versions": {
+    "registry_script": "2026-09-21"
+  },
+  "completed_at": "2026-09-21T13:59:11.016084+00:00",
+  "config": {
+    "evaluation_split": "VALIDATION",
+    "fit_split": "TRAIN_CALIBRATION",
+    "methods": [
+      "uncalibrated",
+      "platt",
+      "isotonic"
+    ]
+  },
+  "created_at": "2026-09-21T13:59:11.015468+00:00",
+  "data_manifests": {
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72"
+  },
+  "dataset_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "estimated_cost_usd": 0.0,
+  "evidence_stage": "PRELIMINARY",
+  "experiment_family": "CAL",
+  "failure_reason": null,
+  "feature_version": "development_subset_summary_v1",
+  "git_commit": "167cc6a57d0e4f05204bb33d46676a0dedd7c8a1",
+  "git_dirty": true,
+  "hardware": {
+    "execution": "local CPU/control-plane"
+  },
+  "license_record": {
+    "license": "Apache-2.0"
+  },
+  "measured_cost_usd": null,
+  "metrics": {
+    "validation": {
+      "isotonic": {
+        "accuracy": 0.9667832167832168,
+        "auprc": 0.9785739018627477,
+        "auroc": 0.992847390776699,
+        "brier": 0.031235558404414603,
+        "ece": 0.03893481443924897,
+        "max_calibration_gap": 0.2887700534759359,
+        "n": 572,
+        "nll": 0.10836244084195339
+      },
+      "platt": {
+        "accuracy": 0.9300699300699301,
+        "auprc": 0.9789975419413948,
+        "auroc": 0.9930976941747572,
+        "brier": 0.045625405709319694,
+        "ece": 0.07276819645556776,
+        "max_calibration_gap": 0.6799745231814026,
+        "n": 572,
+        "nll": 0.1578045993733302
+      },
+      "uncalibrated": {
+        "accuracy": 0.7202797202797203,
+        "auprc": 0.9789975419413948,
+        "auroc": 0.9930976941747572,
+        "brier": 0.20853913405842892,
+        "ece": 0.08435774647223584,
+        "max_calibration_gap": 0.08435774647223584,
+        "n": 572,
+        "nll": 0.6131457470627413
+      }
+    }
+  },
+  "model_identity": "evo2_7b",
+  "model_name": "Fixed 50/50 logistic + MLP calibration",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "model_source": "https://github.com/ArcInstitute/evo2",
+  "notes": "PRELIMINARY only: Platt and isotonic maps fit on TRAIN and evaluated on VALIDATION; no locked-test selection.",
+  "output_hashes": {
+    "artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json": "8f50ef0740a5d191f12ec20c536d3ed4315570ed3027a0d5ddeef07110838853"
+  },
+  "output_paths": [
+    "artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json"
+  ],
+  "parent_run_id": null,
+  "preprocessing_version": "raw_score_orientation_v1",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "reference_checksum": null,
+  "run_id": "run_20260921T135911Z_90d28456",
+  "runtime_seconds": null,
+  "scorer_config": {
+    "locked_test_evaluated": false,
+    "selection_closed": false
+  },
+  "seed": 42,
+  "split_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "started_at": "2026-09-21T13:59:11.015476+00:00",
+  "status": "COMPLETED",
+  "title": "Phase 12 train-only Platt and isotonic calibration \u2014 2026-09-21",
+  "updated_at": "2026-09-21T13:59:11.016084+00:00"
+}

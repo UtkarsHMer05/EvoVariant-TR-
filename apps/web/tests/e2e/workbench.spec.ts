@@ -30,7 +30,7 @@ test.describe("research workbench", () => {
     await expect(page.getByText("Research-only")).toBeVisible();
   });
 
-  test("shows the registry as blocked when no scientific run is registered", async ({
+  test("shows preliminary registry metadata without promoting final outputs", async ({
     page,
     request,
   }) => {
@@ -42,16 +42,15 @@ test.describe("research workbench", () => {
       completed_scientific_run_count: number;
       runs: unknown[];
     };
-    expect(payload.status).toBe("BLOCKED");
-    expect(payload.registered_run_count).toBe(0);
-    expect(payload.completed_scientific_run_count).toBe(0);
-    expect(payload.runs).toEqual([]);
+    expect(payload.status).toBe("READY");
+    expect(payload.registered_run_count).toBeGreaterThan(0);
+    expect(payload.completed_scientific_run_count).toBeGreaterThan(0);
+    expect(payload.runs.length).toBeGreaterThan(0);
 
-    await expect(page.getByText("No promoted outputs", { exact: true })).toBeVisible();
     await page.getByRole("tab", { name: "Experiment Registry" }).click();
-    await expect(
-      page.getByText("No completed scientific run records are registered."),
-    ).toBeVisible();
+    await expect(page.getByText("Registered run metadata")).toBeVisible();
+    await expect(page.getByText("PRELIMINARY").first()).toBeVisible();
+    await expect(page.getByText("COMPLETED").first()).toBeVisible();
   });
 
   test("rejects invalid client-side variant input without a scorer call", async ({

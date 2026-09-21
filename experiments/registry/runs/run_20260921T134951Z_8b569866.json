@@ -1,0 +1,102 @@
+{
+  "GPU": "CPU",
+  "artifact_paths": [
+    "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/abstention.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/failures.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/pr.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/roc.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json"
+  ],
+  "checkpoint": "evo2_7b",
+  "command": "python scripts/register_development_subset_results.py",
+  "comparator_versions": {
+    "registry_script": "2026-09-21"
+  },
+  "completed_at": "2026-09-21T13:49:51.330876+00:00",
+  "config": {
+    "locked_test_evaluated": false,
+    "source_scope": "PRELIMINARY development subset"
+  },
+  "created_at": "2026-09-21T13:49:51.329708+00:00",
+  "data_manifests": {
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72"
+  },
+  "dataset_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "estimated_cost_usd": 0.0,
+  "evidence_stage": "PRELIMINARY",
+  "experiment_family": "FIG",
+  "failure_reason": null,
+  "feature_version": "development_subset_summary_v1",
+  "git_commit": "167cc6a57d0e4f05204bb33d46676a0dedd7c8a1",
+  "git_dirty": true,
+  "hardware": {
+    "execution": "local CPU/control-plane"
+  },
+  "license_record": {
+    "license": "Apache-2.0"
+  },
+  "measured_cost_usd": null,
+  "metrics": {},
+  "model_identity": "evo2_7b",
+  "model_name": "Development-subset source bundle",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "model_source": "https://github.com/ArcInstitute/evo2",
+  "notes": "PRELIMINARY source inputs only: registry figure gate must remain blocked until every required source artifact exists.",
+  "output_hashes": {
+    "artifacts/registry/development_subset_20260921/figure_sources/ablation.json": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+    "artifacts/registry/development_subset_20260921/figure_sources/abstention.json": "dbcb18a46afb9b03c00a291f997e4dabfb2a1b898a0128e9fafc9ad84d411601",
+    "artifacts/registry/development_subset_20260921/figure_sources/calibration.json": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+    "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json": "8bfbc0c97d861b46d51dd0c600f6418bc11e1a55779002da76dee04a97173ddb",
+    "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json": "190540e1ab4d9a1c9cdee400fc285f53f38584a46a911b487f9abb78fa9a3c29",
+    "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+    "artifacts/registry/development_subset_20260921/figure_sources/failures.json": "ed45cc05f5c10cefc3b118d2f00bc66f7a7779b20a507b0246175baf741566ec",
+    "artifacts/registry/development_subset_20260921/figure_sources/hpo.json": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+    "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json": "acfc51a4c3a555eeea14ad42294afa914913fdf7c7bd5f9081e83fc780c1c82a",
+    "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json": "1724164f340c99ff911302348fd2ef61a6fa182431c9c14d813e69c327d255e1",
+    "artifacts/registry/development_subset_20260921/figure_sources/pr.json": "63ac22d403d5afc8f40633dc1d772a0db3e784a7620e29f0558b2d42436cee32",
+    "artifacts/registry/development_subset_20260921/figure_sources/roc.json": "ec93ed232a52de7d3de91424b34637ec838e3d79237979fdc518e724f9d55ec4",
+    "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json": "bf7d1d023955fd717bc97642dd783ca499f5a7a9334f05a9c70a82ecb5e79b2a",
+    "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json": "1218af8f445b397a68a7b7859cd1a89d1bad0d354ee16798b83868ea89f5501e"
+  },
+  "output_paths": [
+    "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/abstention.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/failures.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/pr.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/roc.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json",
+    "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json"
+  ],
+  "parent_run_id": null,
+  "preprocessing_version": "raw_score_orientation_v1",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "reference_checksum": null,
+  "run_id": "run_20260921T134951Z_8b569866",
+  "runtime_seconds": null,
+  "scorer_config": {
+    "locked_test_evaluated": false,
+    "selection_closed": false
+  },
+  "seed": 42,
+  "split_manifest_hash": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "started_at": "2026-09-21T13:49:51.329714+00:00",
+  "status": "COMPLETED",
+  "title": "Phase 17 preliminary registry source bundle \u2014 2026-09-21",
+  "updated_at": "2026-09-21T13:49:51.330876+00:00"
+}

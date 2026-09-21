@@ -24,10 +24,10 @@ closed:
 | Phase 3 data and splits | PASS for the ML extension under dated `ML-DEV-001`/`ML-DEV-002`; authoritative locked cohort is 946 (536 B/LB, 410 P/LP), with independent GRCh38 validation and zero unresolved mismatches. |
 | Model registry and final Phase 5 roster | Seven schema-valid candidate manifests; the final roster separates Evo2 raw scoring, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only AlphaMissense. |
 | Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
-| Experiment registry | Empty; no scientific result artifact is registered. |
-| Research workbench | Frontend build and four browser tests PASS; scientific panels remain evidence-gated. |
-| Figures and tables | Registry-driven manifest and export bundle are deterministic but `BLOCKED` because no eligible completed scientific outputs exist; the bundle contains no scientific outputs. |
-| Spend | Local work was `$0`; the bounded pilot-family workspace delta was approximately `$0.33`, billed cost `$0.00`, and per-request measured USD is unavailable. |
+| Experiment registry | Seven completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
+| Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
+| Figures and tables | Registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/12 tables sourced from the development subset; the bundle contains no scientific outputs until all required source families exist. |
+| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap; workspace billed cost is `$0.00` and per-request measured USD is unavailable. |
 
 The authoritative execution state is maintained in
 [`CODEX_MASTER_PROMPT.md`](CODEX_MASTER_PROMPT.md),
@@ -136,7 +136,7 @@ cohort benchmark or scientific result.
 ├── research/protocol/           # frozen original protocol and deviation log
 ├── research/ml_extension/       # additive ML protocol, model registry, split policy
 ├── research/schemas/             # strict JSON Schemas
-├── experiments/registry/        # append-only run records (currently empty)
+├── experiments/registry/        # append-only preliminary/final run records
 ├── src/evovariant_tr/           # typed research and control-plane package
 ├── apps/web/                    # Next.js research workbench
 ├── evo2_scorer_app.py           # canonical Modal entrypoint; pilot evidence is in artifacts/
@@ -176,8 +176,9 @@ The current UI can load frozen protocol metadata and can render raw research
 signals only when an explicitly configured real scorer serves them. It does not
 fall back to `FakeScorer`, derive clinical labels, invent metrics, or mark
 downstream areas ready because a planned run exists. The Experiment Registry
-tab reads safe metadata from `/api/registry`; the current empty registry is
-shown as `BLOCKED`.
+tab reads safe metadata from `/api/registry`; it shows `READY` for the presence
+of completed `PRELIMINARY` metadata while downstream scientific panels remain
+explicitly blocked until their own evidence gates pass.
 
 ## Data and reproducibility
 
@@ -218,8 +219,10 @@ make registry-verify
 
 The Section 21 metadata contract is implemented in
 `src/evovariant_tr/registry.py` and
-`research/schemas/experiment_run.schema.json`. The current registry contains no
-run records.
+`research/schemas/experiment_run.schema.json`. The current registry contains
+seven completed `PRELIMINARY` run records and no `FINAL` record. The bounded
+development summaries and figure-source inputs are generated and registered by
+`scripts/register_development_subset_results.py`.
 
 Figure and table input discovery and export are deliberately registry-driven:
 
@@ -233,8 +236,10 @@ This writes a deterministic metadata manifest under the ignored
 required figure families and 12 required tables. With no eligible completed
 PRELIMINARY or FINAL outputs it reports `BLOCKED`, removes only outputs listed
 by the prior bundle manifest, and produces no scientific figures, tables,
-placeholder metrics, or inferred values. When registered inputs eventually
-make the manifest `READY`, the bundle renderer emits hash-addressed SVG figures,
+placeholder metrics, or inferred values. The current manifest has partial
+hash-verified subset inputs but remains `BLOCKED` because ten required source
+families are missing. When registered inputs eventually make the manifest
+`READY`, the bundle renderer emits hash-addressed SVG figures,
 JSON tables, methods, limitations, cost, and model-provenance artifacts under
 `research/figures/bundle/`.
 
@@ -259,11 +264,13 @@ chromosome-prefix failures are preserved alongside it.
 
 Paid execution requires the explicit acknowledgement
 `EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS` and the project-specific approval
-gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current bounded
-approval covers the completed Phase 2/4 pilot family and the two Phase 5 smoke
-tests only; it does not authorize a full benchmark, training, HPO, fine-tuning,
-or locked-test run. Phase 3 is now resolved for the ML extension, but a fresh
-scope-specific approval is still required for any Phase 6/7 execution.
+gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current
+`phase6_phase7_development_20260921.json` approval allowed only the bounded
+TRAIN/VALIDATION Evo2 prefix and local CPU Phases 8, 9, 11, 12, and 13; it did
+not authorize full-cohort inference, locked-test evaluation, fine-tuning,
+deployment, release, or publication. That approval is exhausted at the
+recorded safety stop, so any further paid work requires a new exact-scope
+approval.
 
 ## Phase status
 
@@ -278,12 +285,14 @@ The dependency-ordered phase decisions are maintained in
 - Phase 5 has a final separated roster: Evo2 raw score, Nucleotide
   Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
   deferred GPN, and subset-only AlphaMissense;
-- Phase 6–15 have explicit blocked/not-started status artifacts and no
-  scientific metrics;
-- Phase 16's frontend/build/browser engineering gate passes, but its scientific
-  result dependency is absent;
-- Phase 17's registry-driven manifest and export bundle are deterministic but
-  have no eligible inputs and therefore contain no scientific outputs;
+- Phase 6/7 and Phases 8/9/11/12/13 are partial development-subset evidence
+  only; no full-cohort or locked-test claim is made;
+- Phase 10 is formally deferred by compute, and Phase 14/15 remain blocked;
+- Phase 16's frontend/build/browser engineering gate passes and its read-only
+  registry tab is connected to seven preliminary runs, while its scientific
+  result panels remain evidence-gated;
+- Phase 17's registry-driven manifest is deterministic with partial sources but
+  remains blocked and contains no scientific outputs;
 - Phase 18's free clean-room gate passes, while full scientific and figure
   evidence remain unavailable;
 - Phase 19 remains blocked and no release, tag, deployment, or publication is

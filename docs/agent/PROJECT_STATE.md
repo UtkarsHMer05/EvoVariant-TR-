@@ -4,15 +4,18 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 6/7 DEVELOPMENT CHECKPOINT / PARTIAL`
+Current phase: `PHASE 16/17 PRELIMINARY REGISTRY CHECKPOINT / PARTIAL`
 (Phases 0-5 required gates and the separately approved Phase6A qualification are complete. A
 fresh exact-scope `$5.00` development approval was used for a bounded Evo2 TRAIN/VALIDATION
-prefix and the dependent CPU-only development stages.)
+prefix and the dependent CPU-only development stages; their verified PRELIMINARY summaries are
+now connected to the experiment registry and read-only workbench.)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
-frontend build gates. The approved Modal run produced 2,848 verified Evo2 development rows
+frontend build gates. Seven completed `PRELIMINARY` registry runs now expose only hash-verified
+development-subset summaries and partial figure sources; no result is promoted to `FINAL`. The
+approved Modal run produced 2,848 verified Evo2 development rows
 (2,276 TRAIN, 572 VALIDATION) from the 239,992-row development cohort and stopped at a
 `$4.698582` wall-time estimate before the `$5.00` hard cap. The full development cohort,
 multi-model benchmark, NT/Caduceus feature extraction, comparator joins, and locked test were
@@ -25,13 +28,17 @@ is retained only as validation-only comparison evidence. The authoritative exten
 PASS. Phase 5 has a final separated roster: Evo2 raw score, Nucleotide Transformer/Caduceus
 embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only
 AlphaMissense. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE`; Phase 14 and all release,
-deployment, publication, and clinical-classification surfaces remain excluded or blocked.
+deployment, publication, and clinical-classification surfaces remain excluded or blocked. The
+registry/UI connection is `PARTIAL`, and Phase 17 remains blocked until every required source
+family is present.
 
 Historical latest source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
-freeze-summary/control baseline). The latest code-bearing continuation checkout is `99480fb`
-(`feat: record bounded development continuation`); the current `make validate` and control-plane
-gates pass. The exact current Git HEAD is intentionally determined from `git rev-parse HEAD`
-because documentation-only commits update this file without changing source behavior.
+freeze-summary/control baseline). The latest code-bearing continuation before the current
+registry/calibration continuation is `99480fb` (`feat: record bounded development continuation`).
+This checkpoint adds the preliminary registry, UI status, and train-only calibration surfaces;
+the current `make validate` and control-plane gates pass. The exact current Git HEAD is
+intentionally determined from `git rev-parse HEAD` because documentation-only commits update
+this file without changing source behavior.
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -879,3 +886,63 @@ figures from the single pilot record.
   new paid inference. Phase 10 remains `DEFERRED_BY_COMPUTE`; Phase 14 and the locked cohort
   remain untouched; the result registry, figures, release, deployment, and publication remain
   blocked.
+
+## Current preliminary registry and workbench continuation — 2026-09-21
+
+- The local script `scripts/register_development_subset_results.py` now consumes the verified
+  Phase 6 artifact and the real local Phase 7/8/9/11/12/13 outputs, refuses any `LOCKED_TEST`
+  rows, writes five small tracked development summaries under
+  `artifacts/registry/development_subset_20260921/`, and registers seven completed runs at
+  evidence stage `PRELIMINARY`. The script is idempotent for its immutable run titles and
+  fails closed if a source hash or output path changes.
+- Registered run IDs are `run_20260921T134951Z_286931e8` (Phase 6),
+  `run_20260921T134951Z_95b4d32a` (Phase 7), `run_20260921T134951Z_c26c0788` (Phase 8),
+  `run_20260921T134951Z_4587f802` (Phase 9), `run_20260921T134951Z_4cf11571` (Phases 11/12),
+  `run_20260921T134951Z_707e558e` (Phase 13), and
+  `run_20260921T134951Z_8b569866` (Phase 17 source bundle). `make registry-verify` passed,
+  including recomputation of every recorded output hash.
+- The tracked Phase 17 source bundle contains real development-subset ROC/PR curves, confusion
+  matrices, reliability bins, risk-coverage points, bounded HPO best-trial data, learning curves,
+  fixed ensemble data, feasible ablation cells, dataset/split flow, model-registry data, trained
+  baseline summaries, and explicit deferred-cell failures. It intentionally omits unsupported
+  benchmark, context-shift, embedding-layer, fine-tuning, subgroup, loss, temporal, cost-invoice,
+  and HPO-importance sources.
+- `research/runs/phase16_ui_status.json` is `PARTIAL` with seven completed scientific-stage
+  registry records. The Next.js registry route and workbench now display the immutable run
+  metadata while keeping all metric panels evidence-gated; `make web-check` passed and
+  `make web-e2e` passed all four browser journeys.
+- `research/runs/phase17_fig_status.json` is `BLOCKED` but no longer empty: 9 of 19 figure
+  families and 9 of 12 tables have hash-verified PRELIMINARY source inputs. The renderer correctly
+  emits zero scientific outputs until the ten missing source families are supplied, so this is
+  not a figure or final-result promotion.
+- `make clean-room` remains a blocked status surface because a fresh full scientific Modal
+  reproduction was not authorized or run. `make evaluate` remains blocked because no locked
+  predictions/configuration exist, and `make release-check` remains blocked because the current
+  registry is PRELIMINARY and the full scientific and figure gates are unresolved.
+
+## Current train-only calibration continuation — 2026-09-21
+
+- The local-only calibration extension is `src/evovariant_tr/prediction_calibration.py` with
+  `scripts/calibrate_development_predictions.py` and the explicit Make surface
+  `make calibration-abstention PREDICTIONS=... CALIBRATION_OUTPUT=...`. It fits Platt and
+  isotonic maps on the 2,276 aligned TRAIN rows from the fixed 50/50 logistic+MLP ensemble and
+  evaluates them once on the 572 aligned VALIDATION rows. The loader rejects locked-test rows;
+  no new remote work was started.
+- The ignored full artifact is
+  `research/runs/phase12_calibration_development_subset_20260921/calibration_comparison.json`;
+  its tracked registry summary is
+  `artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json`.
+  The train-only fit has 2,276 rows, validation evaluation has 572 rows, and
+  `locked_test_evaluated=false`. A separate tracked Phase 13 calibration-effect summary records
+  the uncalibrated, Platt, and isotonic validation metrics.
+- Preliminary validation diagnostics were: uncalibrated ECE `0.0843577465`, Platt ECE
+  `0.0727681965`, and isotonic ECE `0.0389348144`; isotonic Brier was `0.0312355584` versus
+  uncalibrated `0.2085391341`. These are train-fit/validation-only sensitivity results on the
+  processed subset; they do not select a locked-test calibrator, establish clinical validity,
+  or support a final claim. The isotonic fit has 311 blocks and the calibration comparison is
+  therefore retained as sensitivity evidence rather than a final calibration decision.
+- Two additional completed `PRELIMINARY` registry runs now record Phase 12 calibration and the
+  Phase 13 calibration-effect summary. `make registry-verify` still passes; the current registry
+  count is nine eligible completed preliminary runs. The Phase 17 source bundle remains blocked
+  because the missing full-benchmark/context/embedding/fine-tuning/subgroup/loss/temporal/cost
+  families were not invented.

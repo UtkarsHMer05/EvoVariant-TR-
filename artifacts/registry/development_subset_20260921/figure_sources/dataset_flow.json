@@ -1,0 +1,22 @@
+[
+  {
+    "count": 239992,
+    "scope": "approved development manifest",
+    "stage": "full_development_cohort"
+  },
+  {
+    "count": 2848,
+    "scope": "bounded budget stop",
+    "stage": "processed_prefix"
+  },
+  {
+    "count": 237144,
+    "scope": "not scored",
+    "stage": "remaining_development_records"
+  },
+  {
+    "count": 0,
+    "scope": "no locked rows in the registered subset",
+    "stage": "locked_test_excluded"
+  }
+]

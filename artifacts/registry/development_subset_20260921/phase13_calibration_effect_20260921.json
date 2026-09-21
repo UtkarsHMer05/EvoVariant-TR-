@@ -1,0 +1,50 @@
+{
+  "artifact_id": "phase13-calibration-effect-development-subset-20260921",
+  "component": "calibration",
+  "evidence_stage": "PRELIMINARY",
+  "locked_test_evaluated": false,
+  "methods_compared": [
+    "uncalibrated",
+    "platt",
+    "isotonic"
+  ],
+  "phase": 13,
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "scope": "calibration effect on the fixed development-subset ensemble",
+  "selection_split": "TRAIN_CALIBRATION",
+  "source_artifact": "research/runs/phase12_calibration_development_subset_20260921/calibration_comparison.json",
+  "source_artifact_sha256": "d54d29f92dec2ba26aada7b62c61a1cd210823df48a78ed1a05b6089fe26dc5f",
+  "status": "COMPLETED_DEVELOPMENT_SUBSET",
+  "validation_metrics": {
+    "isotonic": {
+      "accuracy": 0.9667832167832168,
+      "auprc": 0.9785739018627477,
+      "auroc": 0.992847390776699,
+      "brier": 0.031235558404414603,
+      "ece": 0.03893481443924897,
+      "max_calibration_gap": 0.2887700534759359,
+      "n": 572,
+      "nll": 0.10836244084195339
+    },
+    "platt": {
+      "accuracy": 0.9300699300699301,
+      "auprc": 0.9789975419413948,
+      "auroc": 0.9930976941747572,
+      "brier": 0.045625405709319694,
+      "ece": 0.07276819645556776,
+      "max_calibration_gap": 0.6799745231814026,
+      "n": 572,
+      "nll": 0.1578045993733302
+    },
+    "uncalibrated": {
+      "accuracy": 0.7202797202797203,
+      "auprc": 0.9789975419413948,
+      "auroc": 0.9930976941747572,
+      "brier": 0.20853913405842892,
+      "ece": 0.08435774647223584,
+      "max_calibration_gap": 0.08435774647223584,
+      "n": 572,
+      "nll": 0.6131457470627413
+    }
+  }
+}

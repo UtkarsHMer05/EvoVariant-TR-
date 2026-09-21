@@ -1,0 +1,122 @@
+[
+  {
+    "coverage": 1.0,
+    "risk": 0.27972027972027974,
+    "sample_count": 572,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.9493006993006993,
+    "risk": 0.2946593001841621,
+    "sample_count": 543,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.8986013986013986,
+    "risk": 0.311284046692607,
+    "sample_count": 514,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.8496503496503497,
+    "risk": 0.3292181069958848,
+    "sample_count": 486,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.798951048951049,
+    "risk": 0.350109409190372,
+    "sample_count": 457,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.75,
+    "risk": 0.372960372960373,
+    "sample_count": 429,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.6993006993006993,
+    "risk": 0.4,
+    "sample_count": 400,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.6486013986013986,
+    "risk": 0.431266846361186,
+    "sample_count": 371,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.5996503496503497,
+    "risk": 0.46647230320699706,
+    "sample_count": 343,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.548951048951049,
+    "risk": 0.5095541401273885,
+    "sample_count": 314,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.5,
+    "risk": 0.5594405594405595,
+    "sample_count": 286,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.4493006993006993,
+    "risk": 0.622568093385214,
+    "sample_count": 257,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.3986013986013986,
+    "risk": 0.7017543859649122,
+    "sample_count": 228,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.34965034965034963,
+    "risk": 0.8,
+    "sample_count": 200,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.29895104895104896,
+    "risk": 0.9064327485380117,
+    "sample_count": 171,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.25,
+    "risk": 0.965034965034965,
+    "sample_count": 143,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.1993006993006993,
+    "risk": 0.9736842105263158,
+    "sample_count": 114,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.1486013986013986,
+    "risk": 0.9764705882352941,
+    "sample_count": 85,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.09965034965034965,
+    "risk": 1.0,
+    "sample_count": 57,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  },
+  {
+    "coverage": 0.04895104895104895,
+    "risk": 1.0,
+    "sample_count": 28,
+    "scope": "VALIDATION development subset; fixed ensemble diagnostic"
+  }
+]

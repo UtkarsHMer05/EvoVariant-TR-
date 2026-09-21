@@ -1,0 +1,26 @@
+[
+  {
+    "metric": 0.9376820388349515,
+    "metric_name": "validation_auroc",
+    "model_id": "decision_stump",
+    "scope": "VALIDATION development subset"
+  },
+  {
+    "metric": 0.9931128640776699,
+    "metric_name": "validation_auroc",
+    "model_id": "logistic_regression",
+    "scope": "VALIDATION development subset"
+  },
+  {
+    "metric": 0.9930825242718446,
+    "metric_name": "validation_auroc",
+    "model_id": "mlp",
+    "scope": "VALIDATION development subset"
+  },
+  {
+    "metric": 0.9930976941747572,
+    "metric_name": "validation_auroc",
+    "model_id": "fixed_50_50_logistic_mlp",
+    "scope": "VALIDATION development subset; weights fixed before analysis"
+  }
+]

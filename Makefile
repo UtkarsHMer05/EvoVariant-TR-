@@ -37,6 +37,7 @@ PREDICTIONS ?=
 ENSEMBLE_OUTPUT ?= research/runs/phase11_ensemble.json
 ENSEMBLE_LEFT_MODEL ?=
 ENSEMBLE_RIGHT_MODEL ?=
+CALIBRATION_OUTPUT ?= research/runs/phase12_calibration.json
 LOCKED_PREDICTIONS ?=
 LOCKED_CONFIG ?=
 LOCKED_CONFIG_HASH ?=
@@ -206,9 +207,9 @@ benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 6 --family ZS \
 		--command-name benchmark-zero-shot --output research/runs/phase6_zs_status.json \
-		--blocker "current approval does not cover the exact full Phase 6 workload" \
-		--blocker "full-cohort batch parity and endpoint execution evidence are absent" \
-		--blocker "no completed Phase 6 scientific result is registered"
+		--blocker "the current approval covers only a bounded development prefix" \
+		--blocker "full-cohort multi-model batch parity and endpoint execution evidence are absent" \
+		--blocker "the registered Phase 6 artifact is PRELIMINARY and partial, not a complete benchmark"
 
 .PHONY: phase-execute
 phase-execute: ## Run an explicitly approved, resumable Phase 6/7 execution (PHASE_EXEC_ARGS=...)
@@ -221,8 +222,8 @@ extract-features: ## Record/run the Phase 7 representation extraction gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 7 --family REP \
 		--command-name extract-features --output research/runs/phase7_rep_status.json \
-		--blocker "no approved full Phase 7 extraction or completed feature cache exists" \
-		--blocker "Phase 6 zero-shot outputs are not registered"
+		--blocker "no approved full Phase 7 extraction or complete feature cache exists" \
+		--blocker "the registered Phase 7 artifact is a raw-score adapter summary, not the full representation cache"
 
 .PHONY: train
 train: ## Record/run the Phase 8 downstream training gate
@@ -293,10 +294,15 @@ evaluate: ## Record/run the Phase 14 locked statistical evaluation gate
 .PHONY: calibration-abstention
 calibration-abstention: ## Record/run the Phase 12 calibration and abstention gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 12 --family CAL_ABS \
+	@if [ -n "$(PREDICTIONS)" ]; then \
+		$(PYTHON) scripts/calibrate_development_predictions.py \
+			--predictions "$(PREDICTIONS)" --output "$(CALIBRATION_OUTPUT)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 12 --family CAL_ABS \
 		--command-name calibration-abstention --output research/runs/phase12_cal_abs_status.json \
-		--blocker "no registered development predictions exist" \
-		--blocker "locked-test labels are unavailable for selection"
+		--blocker "no explicit development prediction JSONL was supplied for a reproducible calibration run" \
+		--blocker "locked-test labels remain unavailable and prohibited for selection"; \
+	fi
 
 .PHONY: robustness-ablation
 robustness-ablation: ## Record/run the Phase 13 ablation and robustness gate
@@ -325,10 +331,8 @@ web-e2e: ## Run committed Playwright workbench journeys (local browser only)
 .PHONY: ui-check
 ui-check: ## Record/run the Phase 16 research workbench gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 16 --family UI \
-		--command-name ui-check --output research/runs/phase16_ui_status.json \
-		--blocker "registered experiment outputs are unavailable" \
-		--blocker "scientific result panels remain evidence-gated until immutable outputs exist"
+	$(PYTHON) scripts/verify_ui_registry.py --registry $(REGISTRY) \
+		--repo-root . --output research/runs/phase16_ui_status.json
 
 .PHONY: figures
 figures: ## Record/run the Phase 17 registry-driven figures gate
@@ -343,8 +347,9 @@ release-check: ## Record/run the Phase 19 final release gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
 		--command-name release-check --output research/runs/phase19_release_status.json \
-		--blocker "Phase 6/7 and downstream scientific result artifacts are unresolved" \
-		--blocker "locked evaluation, figure-regeneration, registry, and current approval gates are unresolved"
+		--blocker "full-cohort Phase 6/7 and downstream scientific result artifacts are unresolved" \
+		--blocker "locked evaluation and complete figure-regeneration gates are unresolved" \
+		--blocker "the current PRELIMINARY registry cannot support a final release"
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface
@@ -352,7 +357,7 @@ clean-room: ## Run the free reproducibility status surface
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
 		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
 		--blocker "clean-room full scientific Modal reproduction remains unrun" \
-		--blocker "registry-driven figure manifest is BLOCKED because no eligible completed scientific outputs exist"
+		--blocker "registry-driven figure export remains BLOCKED because required source families are missing"
 
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)

@@ -1,0 +1,10 @@
+[
+  {
+    "bin": 1,
+    "confidence": 0.1953625332480439,
+    "method": "fixed_50_50_logistic_mlp",
+    "observed_frequency": 0.27972027972027974,
+    "sample_count": 572,
+    "scope": "VALIDATION development subset"
+  }
+]

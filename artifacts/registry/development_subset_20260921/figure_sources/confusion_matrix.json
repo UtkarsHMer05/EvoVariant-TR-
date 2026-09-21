@@ -1,0 +1,29 @@
+[
+  {
+    "fn": 18,
+    "fp": 5,
+    "model_id": "decision_stump",
+    "sample_count": 572,
+    "scope": "VALIDATION development subset",
+    "tn": 407,
+    "tp": 142
+  },
+  {
+    "fn": 160,
+    "fp": 0,
+    "model_id": "logistic_regression",
+    "sample_count": 572,
+    "scope": "VALIDATION development subset",
+    "tn": 412,
+    "tp": 0
+  },
+  {
+    "fn": 160,
+    "fp": 0,
+    "model_id": "mlp",
+    "sample_count": 572,
+    "scope": "VALIDATION development subset",
+    "tn": 412,
+    "tp": 0
+  }
+]

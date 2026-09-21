@@ -1,0 +1,8597 @@
+[
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.0
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.00625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.0125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.01875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.025
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.03125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.0375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.04375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.05
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.05625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.0625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.06875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.075
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.08125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.0875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.09375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.1
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.10625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.1125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.11875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.13125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.1375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.14375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.15
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.15625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.1625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.16875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "decision_stump",
+    "tpr": 0.175
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.175
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.18125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.1875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.19375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.2
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.20625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.2125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.21875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.225
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.23125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.2375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.24375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.25
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.25625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.2625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.26875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.275
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.28125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.2875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.29375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.3
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.30625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.3125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.31875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.325
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.33125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.3375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.34375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.35
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.35625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.3625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.36875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.38125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.3875
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.39375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.4
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.40625
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.4125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "decision_stump",
+    "tpr": 0.41875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.41875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.425
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.43125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.4375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.44375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.45
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.45625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.4625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.46875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.475
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.48125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.4875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.49375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.5
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.50625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.5125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.51875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.525
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.53125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.5375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.54375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.55
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.55625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.5625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.56875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.575
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.58125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.5875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.59375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.6
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.60625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.6125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.61875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.63125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.6375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.64375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.65
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.65625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.6625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.66875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.675
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.68125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.6875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.69375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.7
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.70625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.7125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.71875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.725
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.73125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.7375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.74375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.75
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.75625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.7625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.76875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.775
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.78125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.7875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.79375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.8
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.80625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.8125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.81875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.825
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.83125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "decision_stump",
+    "tpr": 0.8375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "decision_stump",
+    "tpr": 0.8375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "decision_stump",
+    "tpr": 0.84375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "decision_stump",
+    "tpr": 0.85
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "decision_stump",
+    "tpr": 0.85
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "decision_stump",
+    "tpr": 0.85625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.85625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.8625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.86875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.88125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.024271844660194174,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.02669902912621359,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.02912621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.02912621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.03155339805825243,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.03398058252427184,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.038834951456310676,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.0412621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.043689320388349516,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.04611650485436893,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.04854368932038835,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.05339805825242718,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "decision_stump",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.05825242718446602,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.06067961165048544,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.06310679611650485,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.06553398058252427,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.06796116504854369,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.0703883495145631,
+    "model_id": "decision_stump",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.0703883495145631,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.07281553398058252,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.07524271844660194,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.07766990291262135,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.08009708737864078,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.0825242718446602,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.08495145631067962,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.08737864077669903,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.08980582524271845,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.09223300970873786,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.09466019417475728,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.0970873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.0970873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.09951456310679611,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.10194174757281553,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.10436893203883495,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.10679611650485436,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.10922330097087378,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.11165048543689321,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.11407766990291263,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.11650485436893204,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.11893203883495146,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.12135922330097088,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.12378640776699029,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.1262135922330097,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.12864077669902912,
+    "model_id": "decision_stump",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.12864077669902912,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.13106796116504854,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.13349514563106796,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.13592233009708737,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.1383495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.1407766990291262,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.14320388349514562,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.14563106796116504,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.14805825242718446,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.15048543689320387,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.1529126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.1553398058252427,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.15776699029126215,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.16019417475728157,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.16262135922330098,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.1650485436893204,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.16747572815533981,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.16990291262135923,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.17233009708737865,
+    "model_id": "decision_stump",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.17233009708737865,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.17475728155339806,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.17718446601941748,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.1796116504854369,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.1820388349514563,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.18446601941747573,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.18689320388349515,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.18932038834951456,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.19174757281553398,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.1941747572815534,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.1966019417475728,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.19902912621359223,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.20145631067961164,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.20388349514563106,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.20631067961165048,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.2087378640776699,
+    "model_id": "decision_stump",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.2087378640776699,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2111650485436893,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.21359223300970873,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.21601941747572814,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.21844660194174756,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.220873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.22330097087378642,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.22572815533980584,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.22815533980582525,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.23058252427184467,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.23300970873786409,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2354368932038835,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.23786407766990292,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.24029126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.24271844660194175,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.24514563106796117,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.24757281553398058,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.25,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2524271844660194,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.25485436893203883,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.25728155339805825,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.25970873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2621359223300971,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2645631067961165,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2669902912621359,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.26941747572815533,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.27184466019417475,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.27427184466019416,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2766990291262136,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.279126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2815533980582524,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.28398058252427183,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.28640776699029125,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.28883495145631066,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2912621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2936893203883495,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.2961165048543689,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.29854368932038833,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.30097087378640774,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.30339805825242716,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3058252427184466,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.308252427184466,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3106796116504854,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3131067961165049,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3155339805825243,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3179611650485437,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.32038834951456313,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.32281553398058255,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.32524271844660196,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3276699029126214,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3300970873786408,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3325242718446602,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.33495145631067963,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.33737864077669905,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.33980582524271846,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3422330097087379,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3446601941747573,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3470873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.34951456310679613,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.35194174757281554,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.35436893203883496,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3567961165048544,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3592233009708738,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3616504854368932,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3640776699029126,
+    "model_id": "decision_stump",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.3640776699029126,
+    "model_id": "decision_stump",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.36650485436893204,
+    "model_id": "decision_stump",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.36893203883495146,
+    "model_id": "decision_stump",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.36893203883495146,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3713592233009709,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3737864077669903,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3762135922330097,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3786407766990291,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.38106796116504854,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.38349514563106796,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3859223300970874,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3883495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3907766990291262,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.3932038834951456,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.39563106796116504,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.39805825242718446,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.40048543689320387,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.4029126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.4053398058252427,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.4077669902912621,
+    "model_id": "decision_stump",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.4077669902912621,
+    "model_id": "decision_stump",
+    "tpr": 0.95
+  },
+  {
+    "fpr": 0.4077669902912621,
+    "model_id": "decision_stump",
+    "tpr": 0.95625
+  },
+  {
+    "fpr": 0.41019417475728154,
+    "model_id": "decision_stump",
+    "tpr": 0.95625
+  },
+  {
+    "fpr": 0.41262135922330095,
+    "model_id": "decision_stump",
+    "tpr": 0.95625
+  },
+  {
+    "fpr": 0.41262135922330095,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.41504854368932037,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4174757281553398,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4199029126213592,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4223300970873786,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.42475728155339804,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.42718446601941745,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.42961165048543687,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4320388349514563,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4344660194174757,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4368932038834951,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4393203883495146,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.441747572815534,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4441747572815534,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.44660194174757284,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.44902912621359226,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.45145631067961167,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4538834951456311,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4563106796116505,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4587378640776699,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.46116504854368934,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.46359223300970875,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.46601941747572817,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4684466019417476,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.470873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.4733009708737864,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.47572815533980584,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.47815533980582525,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.48058252427184467,
+    "model_id": "decision_stump",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.48058252427184467,
+    "model_id": "decision_stump",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.4830097087378641,
+    "model_id": "decision_stump",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.4854368932038835,
+    "model_id": "decision_stump",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.4854368932038835,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.4878640776699029,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.49029126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.49271844660194175,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.49514563106796117,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.4975728155339806,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5024271844660194,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5048543689320388,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5072815533980582,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5097087378640777,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5121359223300971,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5145631067961165,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5169902912621359,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5194174757281553,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5218446601941747,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5242718446601942,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5266990291262136,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.529126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5315533980582524,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5339805825242718,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5364077669902912,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5388349514563107,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5412621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5436893203883495,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5461165048543689,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5485436893203883,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5509708737864077,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5533980582524272,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5558252427184466,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.558252427184466,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5606796116504854,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5631067961165048,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5655339805825242,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5679611650485437,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5703883495145631,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5728155339805825,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5752427184466019,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5776699029126213,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5800970873786407,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5825242718446602,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5849514563106796,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.587378640776699,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5898058252427184,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5922330097087378,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5946601941747572,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5970873786407767,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5995145631067961,
+    "model_id": "decision_stump",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.5995145631067961,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6019417475728155,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6043689320388349,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6067961165048543,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6092233009708737,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6116504854368932,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6140776699029126,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.616504854368932,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6189320388349514,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6213592233009708,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6237864077669902,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6262135922330098,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6286407766990292,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.6310679611650486,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.633495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.633495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.9875
+  },
+  {
+    "fpr": 0.633495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6359223300970874,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6383495145631068,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6407766990291263,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6432038834951457,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6456310679611651,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6480582524271845,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6504854368932039,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6529126213592233,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6553398058252428,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6577669902912622,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6601941747572816,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.662621359223301,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6650485436893204,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6674757281553398,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6699029126213593,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6723300970873787,
+    "model_id": "decision_stump",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.6723300970873787,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6747572815533981,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6771844660194175,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6796116504854369,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6820388349514563,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6844660194174758,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6868932038834952,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6893203883495146,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.691747572815534,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6941747572815534,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6966019417475728,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6990291262135923,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7014563106796117,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7038834951456311,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7063106796116505,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7087378640776699,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7111650485436893,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7135922330097088,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7160194174757282,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7184466019417476,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.720873786407767,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7233009708737864,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7257281553398058,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7281553398058253,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7305825242718447,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7330097087378641,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7354368932038835,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7378640776699029,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7402912621359223,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7427184466019418,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7451456310679612,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7475728155339806,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.75,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7524271844660194,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7548543689320388,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7572815533980582,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7597087378640777,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7621359223300971,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7645631067961165,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7669902912621359,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7694174757281553,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7718446601941747,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7742718446601942,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7766990291262136,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.779126213592233,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7815533980582524,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7839805825242718,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7864077669902912,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7888349514563107,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7912621359223301,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7936893203883495,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7961165048543689,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7985436893203883,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8009708737864077,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8033980582524272,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8058252427184466,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.808252427184466,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8106796116504854,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8131067961165048,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8155339805825242,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8179611650485437,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8203883495145631,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8228155339805825,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8252427184466019,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8276699029126213,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8300970873786407,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8325242718446602,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8349514563106796,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.837378640776699,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8398058252427184,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8422330097087378,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8446601941747572,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8470873786407767,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8495145631067961,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8519417475728155,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8543689320388349,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8567961165048543,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8592233009708737,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8616504854368932,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8640776699029126,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.866504854368932,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8689320388349514,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8713592233009708,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8737864077669902,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8762135922330098,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8786407766990292,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8810679611650486,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.883495145631068,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8859223300970874,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8883495145631068,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8907766990291263,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8932038834951457,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8956310679611651,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8980582524271845,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9004854368932039,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9029126213592233,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9053398058252428,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9077669902912622,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9101941747572816,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.912621359223301,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9150485436893204,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9174757281553398,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9199029126213593,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9223300970873787,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9247572815533981,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9271844660194175,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9296116504854369,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9320388349514563,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9344660194174758,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9368932038834952,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9393203883495146,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.941747572815534,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9441747572815534,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9466019417475728,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9490291262135923,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9514563106796117,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9538834951456311,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9563106796116505,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9587378640776699,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9611650485436893,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9635922330097088,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9660194174757282,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9684466019417476,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.970873786407767,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9733009708737864,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9757281553398058,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9781553398058253,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9805825242718447,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9830097087378641,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9854368932038835,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9878640776699029,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9902912621359223,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9927184466019418,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9951456310679612,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9975728155339806,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 1.0,
+    "model_id": "decision_stump",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.0
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.00625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.0125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.01875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.025
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.03125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.0375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.04375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.05
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.05625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.0625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.06875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.075
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.08125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.0875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.09375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.1
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.10625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.1125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.11875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.13125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.1375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.14375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.15
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.15625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.1625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.16875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.175
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.18125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.1875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.19375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.2
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.20625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.2125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.21875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.225
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.23125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.2375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.24375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.25
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.25625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.2625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.26875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.275
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.28125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.2875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.29375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.3
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.30625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.3125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.31875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.325
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.33125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.3375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.34375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.35
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.35625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.3625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.36875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.38125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.3875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.39375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.4
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.40625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.4125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.41875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "logistic_regression",
+    "tpr": 0.425
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "logistic_regression",
+    "tpr": 0.425
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "logistic_regression",
+    "tpr": 0.43125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "logistic_regression",
+    "tpr": 0.4375
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "logistic_regression",
+    "tpr": 0.44375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.44375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.45
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.45625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.4625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.46875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.475
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.48125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.4875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.49375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.5
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.50625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.5125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.51875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.525
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.53125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.5375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.54375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.55
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.55625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.5625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.56875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.575
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.58125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.5875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.59375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.6
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.60625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.6125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.61875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.63125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.6375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.64375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.65
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.65625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "logistic_regression",
+    "tpr": 0.6625
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.6625
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.66875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.675
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.68125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.6875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.69375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.7
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.70625
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.7125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.71875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.725
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.73125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.7375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.74375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 0.75
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "logistic_regression",
+    "tpr": 0.75
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "logistic_regression",
+    "tpr": 0.75625
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "logistic_regression",
+    "tpr": 0.7625
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "logistic_regression",
+    "tpr": 0.76875
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "logistic_regression",
+    "tpr": 0.775
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.775
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.78125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.7875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.79375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.8
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.80625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.8125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.81875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.825
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.83125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.8375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.84375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.85
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.85625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.8625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.86875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "logistic_regression",
+    "tpr": 0.875
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 0.875
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 0.88125
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "logistic_regression",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "logistic_regression",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "logistic_regression",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "logistic_regression",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "logistic_regression",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "logistic_regression",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "logistic_regression",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "logistic_regression",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "logistic_regression",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "logistic_regression",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "logistic_regression",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.024271844660194174,
+    "model_id": "logistic_regression",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.02669902912621359,
+    "model_id": "logistic_regression",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.02669902912621359,
+    "model_id": "logistic_regression",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.02912621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03155339805825243,
+    "model_id": "logistic_regression",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03398058252427184,
+    "model_id": "logistic_regression",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 0.95
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 0.95625
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.038834951456310676,
+    "model_id": "logistic_regression",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.038834951456310676,
+    "model_id": "logistic_regression",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.0412621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.0412621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.043689320388349516,
+    "model_id": "logistic_regression",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.04611650485436893,
+    "model_id": "logistic_regression",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.04854368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.04854368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 0.9875
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "logistic_regression",
+    "tpr": 0.9875
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "logistic_regression",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.05339805825242718,
+    "model_id": "logistic_regression",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "logistic_regression",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.05825242718446602,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06067961165048544,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06310679611650485,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06553398058252427,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06796116504854369,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0703883495145631,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07281553398058252,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07524271844660194,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07766990291262135,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08009708737864078,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0825242718446602,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08495145631067962,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08737864077669903,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08980582524271845,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09223300970873786,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09466019417475728,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0970873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09951456310679611,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10194174757281553,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10436893203883495,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10679611650485436,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10922330097087378,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11165048543689321,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11407766990291263,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11650485436893204,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11893203883495146,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12135922330097088,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12378640776699029,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1262135922330097,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12864077669902912,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13106796116504854,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13349514563106796,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13592233009708737,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1383495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1407766990291262,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14320388349514562,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14563106796116504,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14805825242718446,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.15048543689320387,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1529126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1553398058252427,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.15776699029126215,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16019417475728157,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16262135922330098,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1650485436893204,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16747572815533981,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16990291262135923,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17233009708737865,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17475728155339806,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17718446601941748,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1796116504854369,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1820388349514563,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18446601941747573,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18689320388349515,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18932038834951456,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.19174757281553398,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1941747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1966019417475728,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.19902912621359223,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20145631067961164,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20388349514563106,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20631067961165048,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2087378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2111650485436893,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21359223300970873,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21601941747572814,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21844660194174756,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.220873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22330097087378642,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22572815533980584,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22815533980582525,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23058252427184467,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23300970873786409,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2354368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23786407766990292,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24029126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24271844660194175,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24514563106796117,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24757281553398058,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2524271844660194,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25485436893203883,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25728155339805825,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25970873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2621359223300971,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2645631067961165,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2669902912621359,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.26941747572815533,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.27184466019417475,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.27427184466019416,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2766990291262136,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.279126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2815533980582524,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28398058252427183,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28640776699029125,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28883495145631066,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2912621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2936893203883495,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2961165048543689,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.29854368932038833,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.30097087378640774,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.30339805825242716,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3058252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.308252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3106796116504854,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3131067961165049,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3155339805825243,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3179611650485437,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32038834951456313,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32281553398058255,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32524271844660196,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3276699029126214,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3300970873786408,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3325242718446602,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33495145631067963,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33737864077669905,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33980582524271846,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3422330097087379,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3446601941747573,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3470873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.34951456310679613,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.35194174757281554,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.35436893203883496,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3567961165048544,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3592233009708738,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3616504854368932,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.36650485436893204,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.36893203883495146,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3713592233009709,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3737864077669903,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3762135922330097,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3786407766990291,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.38106796116504854,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.38349514563106796,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3859223300970874,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3883495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3907766990291262,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3932038834951456,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.39563106796116504,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.39805825242718446,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.40048543689320387,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4029126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4053398058252427,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4077669902912621,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41019417475728154,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41262135922330095,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41504854368932037,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4174757281553398,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4199029126213592,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4223300970873786,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42475728155339804,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42718446601941745,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42961165048543687,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4320388349514563,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4344660194174757,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4368932038834951,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4393203883495146,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.441747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4441747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.44660194174757284,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.44902912621359226,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.45145631067961167,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4538834951456311,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4563106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4587378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46116504854368934,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46359223300970875,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46601941747572817,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4684466019417476,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.470873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4733009708737864,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.47572815533980584,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.47815533980582525,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.48058252427184467,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4830097087378641,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4854368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4878640776699029,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49029126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49271844660194175,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49514563106796117,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4975728155339806,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5024271844660194,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5048543689320388,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5072815533980582,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5097087378640777,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5121359223300971,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5145631067961165,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5169902912621359,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5194174757281553,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5218446601941747,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5242718446601942,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5266990291262136,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.529126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5315533980582524,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5339805825242718,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5364077669902912,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5388349514563107,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5412621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5436893203883495,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5461165048543689,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5485436893203883,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5509708737864077,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5533980582524272,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5558252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.558252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5606796116504854,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5631067961165048,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5655339805825242,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5679611650485437,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5703883495145631,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5728155339805825,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5752427184466019,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5776699029126213,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5800970873786407,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5825242718446602,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5849514563106796,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.587378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5898058252427184,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5922330097087378,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5946601941747572,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5970873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5995145631067961,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6019417475728155,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6043689320388349,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6067961165048543,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6092233009708737,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6116504854368932,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6140776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.616504854368932,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6189320388349514,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6213592233009708,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6237864077669902,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6262135922330098,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6286407766990292,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6310679611650486,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.633495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6359223300970874,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6383495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6407766990291263,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6432038834951457,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6456310679611651,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6480582524271845,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6504854368932039,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6529126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6553398058252428,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6577669902912622,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6601941747572816,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.662621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6650485436893204,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6674757281553398,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6699029126213593,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6723300970873787,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6747572815533981,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6771844660194175,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6796116504854369,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6820388349514563,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6844660194174758,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6868932038834952,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6893203883495146,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.691747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6941747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6966019417475728,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6990291262135923,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7014563106796117,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7038834951456311,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7063106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7087378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7111650485436893,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7135922330097088,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7160194174757282,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7184466019417476,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.720873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7233009708737864,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7257281553398058,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7281553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7305825242718447,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7330097087378641,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7354368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7378640776699029,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7402912621359223,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7427184466019418,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7451456310679612,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7475728155339806,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.75,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7524271844660194,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7548543689320388,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7572815533980582,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7597087378640777,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7621359223300971,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7645631067961165,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7669902912621359,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7694174757281553,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7718446601941747,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7742718446601942,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7766990291262136,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.779126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7815533980582524,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7839805825242718,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7864077669902912,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7888349514563107,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7912621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7936893203883495,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7961165048543689,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7985436893203883,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8009708737864077,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8033980582524272,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8058252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.808252427184466,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8106796116504854,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8131067961165048,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8155339805825242,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8179611650485437,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8203883495145631,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8228155339805825,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8252427184466019,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8276699029126213,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8300970873786407,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8325242718446602,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8349514563106796,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.837378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8398058252427184,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8422330097087378,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8446601941747572,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8470873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8495145631067961,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8519417475728155,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8543689320388349,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8567961165048543,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8592233009708737,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8616504854368932,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8640776699029126,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.866504854368932,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8689320388349514,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8713592233009708,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8737864077669902,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8762135922330098,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8786407766990292,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8810679611650486,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.883495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8859223300970874,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8883495145631068,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8907766990291263,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8932038834951457,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8956310679611651,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8980582524271845,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9004854368932039,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9029126213592233,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9053398058252428,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9077669902912622,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9101941747572816,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.912621359223301,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9150485436893204,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9174757281553398,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9199029126213593,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9223300970873787,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9247572815533981,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9271844660194175,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9296116504854369,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9320388349514563,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9344660194174758,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9368932038834952,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9393203883495146,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.941747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9441747572815534,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9466019417475728,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9490291262135923,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9514563106796117,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9538834951456311,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9563106796116505,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9587378640776699,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9611650485436893,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9635922330097088,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9660194174757282,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9684466019417476,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.970873786407767,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9733009708737864,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9757281553398058,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9781553398058253,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9805825242718447,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9830097087378641,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9854368932038835,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9878640776699029,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9902912621359223,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9927184466019418,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9951456310679612,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9975728155339806,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 1.0,
+    "model_id": "logistic_regression",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.0
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.00625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.0125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.01875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.025
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.03125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.0375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.04375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.05
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.05625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.0625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.06875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.075
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.08125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.0875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.09375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.1
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.10625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.1125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.11875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.13125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.1375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.14375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.15
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.15625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.1625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.16875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.175
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.18125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.1875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.19375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.2
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.20625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.2125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.21875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.225
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.23125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.2375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.24375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.25
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.25625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.2625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.26875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.275
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.28125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.2875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.29375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.3
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.30625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.3125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.31875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.325
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.33125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.3375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.34375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.35
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.35625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.3625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.36875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.38125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.3875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.39375
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.4
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.40625
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.4125
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.41875
+  },
+  {
+    "fpr": 0.0,
+    "model_id": "mlp",
+    "tpr": 0.425
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "mlp",
+    "tpr": 0.425
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "mlp",
+    "tpr": 0.43125
+  },
+  {
+    "fpr": 0.0024271844660194173,
+    "model_id": "mlp",
+    "tpr": 0.4375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.4375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.44375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.45
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.45625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.4625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.46875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.475
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.48125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.4875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.49375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.5
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.50625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.5125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.51875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.525
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.53125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.5375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.54375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.55
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.55625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.5625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.56875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.575
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.58125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.5875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.59375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.6
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.60625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.6125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.61875
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.63125
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.6375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.64375
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.65
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.65625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.6625
+  },
+  {
+    "fpr": 0.0048543689320388345,
+    "model_id": "mlp",
+    "tpr": 0.66875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.66875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.675
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.68125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.6875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.69375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.7
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.70625
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.7125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.71875
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.725
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.73125
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.7375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.74375
+  },
+  {
+    "fpr": 0.007281553398058253,
+    "model_id": "mlp",
+    "tpr": 0.75
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "mlp",
+    "tpr": 0.75
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "mlp",
+    "tpr": 0.75625
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "mlp",
+    "tpr": 0.7625
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "mlp",
+    "tpr": 0.76875
+  },
+  {
+    "fpr": 0.009708737864077669,
+    "model_id": "mlp",
+    "tpr": 0.775
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.775
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.78125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.7875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.79375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.8
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.80625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.8125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.81875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.825
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.83125
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.8375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.84375
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.85
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.85625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.8625
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.86875
+  },
+  {
+    "fpr": 0.012135922330097087,
+    "model_id": "mlp",
+    "tpr": 0.875
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "mlp",
+    "tpr": 0.875
+  },
+  {
+    "fpr": 0.014563106796116505,
+    "model_id": "mlp",
+    "tpr": 0.88125
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "mlp",
+    "tpr": 0.88125
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "mlp",
+    "tpr": 0.8875
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "mlp",
+    "tpr": 0.89375
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "mlp",
+    "tpr": 0.9
+  },
+  {
+    "fpr": 0.01699029126213592,
+    "model_id": "mlp",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "mlp",
+    "tpr": 0.90625
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "mlp",
+    "tpr": 0.9125
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "mlp",
+    "tpr": 0.91875
+  },
+  {
+    "fpr": 0.019417475728155338,
+    "model_id": "mlp",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "mlp",
+    "tpr": 0.925
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "mlp",
+    "tpr": 0.93125
+  },
+  {
+    "fpr": 0.021844660194174758,
+    "model_id": "mlp",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.024271844660194174,
+    "model_id": "mlp",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.02669902912621359,
+    "model_id": "mlp",
+    "tpr": 0.9375
+  },
+  {
+    "fpr": 0.02669902912621359,
+    "model_id": "mlp",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.02912621359223301,
+    "model_id": "mlp",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03155339805825243,
+    "model_id": "mlp",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03398058252427184,
+    "model_id": "mlp",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "mlp",
+    "tpr": 0.94375
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "mlp",
+    "tpr": 0.95
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "mlp",
+    "tpr": 0.95625
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "mlp",
+    "tpr": 0.9625
+  },
+  {
+    "fpr": 0.03640776699029126,
+    "model_id": "mlp",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.038834951456310676,
+    "model_id": "mlp",
+    "tpr": 0.96875
+  },
+  {
+    "fpr": 0.038834951456310676,
+    "model_id": "mlp",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.0412621359223301,
+    "model_id": "mlp",
+    "tpr": 0.975
+  },
+  {
+    "fpr": 0.0412621359223301,
+    "model_id": "mlp",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.043689320388349516,
+    "model_id": "mlp",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.04611650485436893,
+    "model_id": "mlp",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.04854368932038835,
+    "model_id": "mlp",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "mlp",
+    "tpr": 0.98125
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "mlp",
+    "tpr": 0.9875
+  },
+  {
+    "fpr": 0.050970873786407765,
+    "model_id": "mlp",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.05339805825242718,
+    "model_id": "mlp",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "mlp",
+    "tpr": 0.99375
+  },
+  {
+    "fpr": 0.055825242718446605,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.05825242718446602,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06067961165048544,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06310679611650485,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06553398058252427,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.06796116504854369,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0703883495145631,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07281553398058252,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07524271844660194,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.07766990291262135,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08009708737864078,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0825242718446602,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08495145631067962,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08737864077669903,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.08980582524271845,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09223300970873786,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09466019417475728,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.0970873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.09951456310679611,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10194174757281553,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10436893203883495,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10679611650485436,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.10922330097087378,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11165048543689321,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11407766990291263,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11650485436893204,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.11893203883495146,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12135922330097088,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12378640776699029,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1262135922330097,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.12864077669902912,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13106796116504854,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13349514563106796,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.13592233009708737,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1383495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1407766990291262,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14320388349514562,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14563106796116504,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.14805825242718446,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.15048543689320387,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1529126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1553398058252427,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.15776699029126215,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16019417475728157,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16262135922330098,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1650485436893204,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16747572815533981,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.16990291262135923,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17233009708737865,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17475728155339806,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.17718446601941748,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1796116504854369,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1820388349514563,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18446601941747573,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18689320388349515,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.18932038834951456,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.19174757281553398,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1941747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.1966019417475728,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.19902912621359223,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20145631067961164,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20388349514563106,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.20631067961165048,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2087378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2111650485436893,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21359223300970873,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21601941747572814,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.21844660194174756,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.220873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22330097087378642,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22572815533980584,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.22815533980582525,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23058252427184467,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23300970873786409,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2354368932038835,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.23786407766990292,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24029126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24271844660194175,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24514563106796117,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.24757281553398058,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2524271844660194,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25485436893203883,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25728155339805825,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.25970873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2621359223300971,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2645631067961165,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2669902912621359,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.26941747572815533,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.27184466019417475,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.27427184466019416,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2766990291262136,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.279126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2815533980582524,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28398058252427183,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28640776699029125,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.28883495145631066,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2912621359223301,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2936893203883495,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.2961165048543689,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.29854368932038833,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.30097087378640774,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.30339805825242716,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3058252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.308252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3106796116504854,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3131067961165049,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3155339805825243,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3179611650485437,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32038834951456313,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32281553398058255,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.32524271844660196,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3276699029126214,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3300970873786408,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3325242718446602,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33495145631067963,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33737864077669905,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.33980582524271846,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3422330097087379,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3446601941747573,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3470873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.34951456310679613,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.35194174757281554,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.35436893203883496,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3567961165048544,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3592233009708738,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3616504854368932,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3640776699029126,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.36650485436893204,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.36893203883495146,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3713592233009709,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3737864077669903,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3762135922330097,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3786407766990291,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.38106796116504854,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.38349514563106796,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3859223300970874,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3883495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3907766990291262,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.3932038834951456,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.39563106796116504,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.39805825242718446,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.40048543689320387,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4029126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4053398058252427,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4077669902912621,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41019417475728154,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41262135922330095,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.41504854368932037,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4174757281553398,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4199029126213592,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4223300970873786,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42475728155339804,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42718446601941745,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.42961165048543687,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4320388349514563,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4344660194174757,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4368932038834951,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4393203883495146,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.441747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4441747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.44660194174757284,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.44902912621359226,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.45145631067961167,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4538834951456311,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4563106796116505,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4587378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46116504854368934,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46359223300970875,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.46601941747572817,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4684466019417476,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.470873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4733009708737864,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.47572815533980584,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.47815533980582525,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.48058252427184467,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4830097087378641,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4854368932038835,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4878640776699029,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49029126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49271844660194175,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.49514563106796117,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.4975728155339806,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5024271844660194,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5048543689320388,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5072815533980582,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5097087378640777,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5121359223300971,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5145631067961165,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5169902912621359,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5194174757281553,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5218446601941747,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5242718446601942,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5266990291262136,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.529126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5315533980582524,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5339805825242718,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5364077669902912,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5388349514563107,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5412621359223301,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5436893203883495,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5461165048543689,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5485436893203883,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5509708737864077,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5533980582524272,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5558252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.558252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5606796116504854,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5631067961165048,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5655339805825242,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5679611650485437,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5703883495145631,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5728155339805825,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5752427184466019,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5776699029126213,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5800970873786407,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5825242718446602,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5849514563106796,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.587378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5898058252427184,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5922330097087378,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5946601941747572,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5970873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.5995145631067961,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6019417475728155,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6043689320388349,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6067961165048543,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6092233009708737,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6116504854368932,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6140776699029126,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.616504854368932,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6189320388349514,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6213592233009708,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6237864077669902,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6262135922330098,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6286407766990292,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6310679611650486,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.633495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6359223300970874,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6383495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6407766990291263,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6432038834951457,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6456310679611651,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6480582524271845,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6504854368932039,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6529126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6553398058252428,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6577669902912622,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6601941747572816,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.662621359223301,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6650485436893204,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6674757281553398,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6699029126213593,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6723300970873787,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6747572815533981,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6771844660194175,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6796116504854369,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6820388349514563,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6844660194174758,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6868932038834952,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6893203883495146,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.691747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6941747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6966019417475728,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.6990291262135923,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7014563106796117,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7038834951456311,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7063106796116505,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7087378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7111650485436893,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7135922330097088,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7160194174757282,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7184466019417476,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.720873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7233009708737864,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7257281553398058,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7281553398058253,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7305825242718447,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7330097087378641,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7354368932038835,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7378640776699029,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7402912621359223,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7427184466019418,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7451456310679612,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7475728155339806,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.75,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7524271844660194,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7548543689320388,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7572815533980582,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7597087378640777,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7621359223300971,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7645631067961165,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7669902912621359,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7694174757281553,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7718446601941747,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7742718446601942,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7766990291262136,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.779126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7815533980582524,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7839805825242718,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7864077669902912,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7888349514563107,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7912621359223301,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7936893203883495,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7961165048543689,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.7985436893203883,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8009708737864077,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8033980582524272,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8058252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.808252427184466,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8106796116504854,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8131067961165048,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8155339805825242,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8179611650485437,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8203883495145631,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8228155339805825,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8252427184466019,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8276699029126213,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8300970873786407,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8325242718446602,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8349514563106796,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.837378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8398058252427184,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8422330097087378,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8446601941747572,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8470873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8495145631067961,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8519417475728155,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8543689320388349,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8567961165048543,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8592233009708737,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8616504854368932,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8640776699029126,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.866504854368932,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8689320388349514,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8713592233009708,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8737864077669902,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8762135922330098,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8786407766990292,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8810679611650486,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.883495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8859223300970874,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8883495145631068,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8907766990291263,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8932038834951457,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8956310679611651,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.8980582524271845,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9004854368932039,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9029126213592233,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9053398058252428,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9077669902912622,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9101941747572816,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.912621359223301,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9150485436893204,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9174757281553398,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9199029126213593,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9223300970873787,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9247572815533981,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9271844660194175,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9296116504854369,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9320388349514563,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9344660194174758,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9368932038834952,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9393203883495146,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.941747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9441747572815534,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9466019417475728,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9490291262135923,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9514563106796117,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9538834951456311,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9563106796116505,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9587378640776699,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9611650485436893,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9635922330097088,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9660194174757282,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9684466019417476,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.970873786407767,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9733009708737864,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9757281553398058,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9781553398058253,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9805825242718447,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9830097087378641,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9854368932038835,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9878640776699029,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9902912621359223,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9927184466019418,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9951456310679612,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 0.9975728155339806,
+    "model_id": "mlp",
+    "tpr": 1.0
+  },
+  {
+    "fpr": 1.0,
+    "model_id": "mlp",
+    "tpr": 1.0
+  }
+]

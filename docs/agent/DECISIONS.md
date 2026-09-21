@@ -2213,6 +2213,82 @@ validation boundaries passed. Implementation fixes are `69a2e4f` and `0f1c5a4`; 
 Modal workspace snapshot is metered `$19.34` and billed `$0.00`, with per-run invoice USD
 unavailable. No push or deployment was performed.
 
+## D-077 — Register bounded development results as preliminary and connect the UI
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The current approved continuation produced real, hash-verified development-subset outputs, but
+the experiment registry was still empty and the workbench therefore could not display even their
+provenance. The output files under `research/runs/` are intentionally regenerated and ignored by
+Git, so registry records also need small tracked summaries that preserve source hashes and scope.
+
+Decision:
+Use `scripts/register_development_subset_results.py` as the narrow registration surface. It
+materializes tracked summaries and partial figure inputs under
+`artifacts/registry/development_subset_20260921/`, validates the approved protocol/development
+manifest and locked-test boundary, and registers the bounded Phase 6/7/8/9/11/12/13 outputs plus
+the figure-source bundle as completed `PRELIMINARY` runs. The UI may treat those runs as real
+metadata, but no record may be promoted to `FINAL` from this dirty/development-subset state.
+Missing source families continue to block the Phase 17 renderer.
+
+Alternatives:
+Leave the registry empty, register ignored raw files without tracked summaries, or label the
+subset outputs `FINAL`. These were rejected because they would hide verified provenance, make a
+fresh checkout unable to verify the registry, or overstate incomplete validation-only evidence.
+
+Consequences:
+Phase 16 is `PARTIAL / PRELIMINARY REGISTRY CONNECTED`; the workbench registry route and browser
+journey now expose seven completed preliminary records. Phase 17 is still `BLOCKED / PARTIAL
+SOURCES`; 9/19 figure families and 9/12 tables have real source artifacts, but the bundle emits
+zero scientific outputs until every required source is available. Phase 14, full clean-room
+science, release, deployment, and publication remain blocked or excluded.
+
+Validation:
+`make registry-verify`, `make ui-check`, `make web-check`, and `make web-e2e` passed. The Phase 17
+manifest is `BLOCKED` with seven eligible completed runs, 9 available figure families, 9 available
+tables, and the ten explicitly missing source families. No locked-test row was consumed and no
+remote or paid compute was started by this registration step.
+
+## D-078 — Fit development calibration maps only on TRAIN
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The fixed development-subset ensemble already had uncalibrated ECE, risk-coverage, and
+abstention diagnostics, but the protocol requires a Platt/isotonic comparison and a calibration
+effect ablation. The current approval permits local CPU Phases 11-13, while prohibiting any
+locked-test selection.
+
+Decision:
+Fit deterministic Platt and weighted isotonic maps on aligned TRAIN rows only, then evaluate
+each map once on aligned VALIDATION rows. Keep the uncalibrated ensemble as the reference,
+record all fit/evaluation counts and parameters, and register both the calibration comparison
+and the Phase 13 calibration-effect summary as `PRELIMINARY`. Do not choose a calibrator from
+the locked test and do not promote any method to `FINAL`.
+
+Alternatives:
+Fit on VALIDATION, choose the method after reading locked labels, or omit the required
+calibration sensitivity because isotonic is high-capacity. These were rejected because they
+would leak evaluation information or leave a required development analysis unrecorded. The
+high-capacity isotonic result is retained as sensitivity evidence with its 311 fitted blocks,
+not as a final selected method.
+
+Consequences:
+Phase 12 is now `PARTIAL / DEVELOPMENT CALIBRATION SUBSET`, and the feasible Phase 13
+calibration-effect cell is complete. The overall ML extension remains partial: all metrics are
+from 572 VALIDATION rows in a 2,848-row processed prefix, and full cohort, multi-model,
+embedding, comparator, locked-test, release, and publication gates remain unresolved.
+
+Validation:
+The calibration runner completed with 2,276 TRAIN fit rows, 572 VALIDATION evaluation rows,
+and `locked_test_evaluated=false`. Preliminary validation ECE was `0.0843577465` uncalibrated,
+`0.0727681965` Platt, and `0.0389348144` isotonic. `make calibration-abstention` remains
+blocked without explicit input paths, `make registry-verify` passes with nine eligible
+preliminary runs, and no remote or paid compute was used.
+
 ## Template for new decisions
 
 ### D-XXX — Title

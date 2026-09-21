@@ -1,0 +1,23 @@
+{
+  "artifact_id": "phase9-development-subset-20260921",
+  "best_trial": {
+    "config": {
+      "l2": 0.0,
+      "learning_rate": 0.05,
+      "steps": 100
+    },
+    "status": "COMPLETED",
+    "trial_number": 0,
+    "validation_metric": 0.9932342233009709
+  },
+  "evidence_stage": "PRELIMINARY",
+  "locked_test_evaluated": false,
+  "phase": 9,
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "scope": "bounded validation-only HPO on processed development prefix",
+  "search_space_size": 4,
+  "selection_split": "VALIDATION",
+  "source_artifact": "research/runs/phase9_development_subset_20260921/hpo/hpo_metadata.json",
+  "source_artifact_sha256": "3d6095554c5744bfe989821f162ab735827d977627436bccf0f376040629393e",
+  "status": "COMPLETED"
+}

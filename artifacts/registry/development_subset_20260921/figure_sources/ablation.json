@@ -1,0 +1,32 @@
+[
+  {
+    "component": "aggregate_primary",
+    "metric": 0.9944781553398059,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 feasible development subset cell"
+  },
+  {
+    "component": "aggregate_with_orientation_auxiliary",
+    "metric": 0.9931128640776699,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 feasible development subset cell"
+  },
+  {
+    "component": "forward_only",
+    "metric": 0.982372572815534,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 feasible development subset cell"
+  },
+  {
+    "component": "reverse_only",
+    "metric": 0.986180218446602,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 feasible development subset cell"
+  },
+  {
+    "component": "remove_rc",
+    "metric": 0.982372572815534,
+    "metric_name": "validation_auroc",
+    "scope": "Phase 13 feasible development subset cell"
+  }
+]

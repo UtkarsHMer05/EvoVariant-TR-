@@ -1,0 +1,27 @@
+{
+  "artifact_id": "phase7-development-evo2-raw-score-features-20260921",
+  "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+  "evidence_stage": "PRELIMINARY",
+  "feature_names": [
+    "delta_primary",
+    "delta_forward",
+    "delta_reverse",
+    "orientation_disagreement"
+  ],
+  "labels_sent_to_modal": false,
+  "locked_test_evaluated": false,
+  "model_id": "evo2_7b",
+  "phase": 7,
+  "phase6_artifact": "artifacts/phase6/phase6_development_evo2_20260921.json",
+  "phase6_artifact_sha256": "be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "records": 2848,
+  "selection_boundary": "local development rows only; no locked-test labels or selection",
+  "source_artifact": "research/runs/phase7_development_subset_20260921/evo2_raw_score_features.json",
+  "source_artifact_sha256": "b3082e44292cc29bd12cc27cbe9eb6edb0adf9964be1b94ea823c47becbd6882",
+  "split_counts": {
+    "TRAIN": 2276,
+    "VALIDATION": 572
+  },
+  "status": "COMPLETED_DEVELOPMENT_SUBSET"
+}

@@ -1,0 +1,53 @@
+{
+  "artifact_id": "phase10-adaptation-deferral-20260921",
+  "status": "DEFERRED_BY_COMPUTE",
+  "recorded_at": "2026-09-21",
+  "git_commit_at_decision": "7a21607",
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "model": {
+    "model_id": "evo2",
+    "checkpoint": "evo2_7b",
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7"
+  },
+  "training_path": {
+    "official_source": "https://github.com/ArcInstitute/evo2#training",
+    "documented_options": ["Savanna", "NVIDIA BioNeMo"],
+    "checked_in_training_runner": false,
+    "local_torch_cuda_runtime": false,
+    "tiny_training_smoke": "NOT_RUN"
+  },
+  "compute_evidence": {
+    "inference_pilot": {
+      "gpu_type": "H100",
+      "gpu_runtime_seconds": 3.914133089,
+      "wall_seconds": 36.2727,
+      "peak_gpu_memory_bytes": 18075978752,
+      "source_artifact": "artifacts/modal/phase2_phase4_pilot_20260921_success.json"
+    },
+    "prelaunch_cohort_estimate": {
+      "current_t0_variants": 1402895,
+      "sequential_estimated_usd": 55835.221,
+      "hypothetical_perfect_eight_variant_estimated_usd": 6979.403,
+      "confidence": "LOW_OR_VERY_LOW",
+      "remote_batch_throughput": "UNMEASURED",
+      "source_artifact": "artifacts/modal/phase6_preflight_cost_estimate_20260921.json"
+    }
+  },
+  "authorization": {
+    "approval_artifact": "artifacts/approvals/phase2_4_pilot_20260921.json",
+    "max_budget_usd": 2.0,
+    "training_authorized": false,
+    "scope_note": "The current approval authorizes only the Phase 2 canonical Evo2 pilot, Phase 4 cache validation, and Phase 5 smoke-test evidence."
+  },
+  "decision": {
+    "outcome": "DEFERRED_BY_COMPUTE",
+    "reason": "Do not start adaptation without an official training runner, a separately bounded GPU smoke, and an approval tied to the current protocol and measured cost envelope.",
+    "scientific_metrics_created": false,
+    "resume_conditions": [
+      "Resolve or formally approve the Phase 3 cohort discrepancy.",
+      "Complete the prerequisite frozen-feature and development-training gates.",
+      "Verify an official Evo2 training path or an approved PEFT path.",
+      "Obtain a new approval artifact covering the exact adaptation scope and budget."
+    ]
+  }
+}

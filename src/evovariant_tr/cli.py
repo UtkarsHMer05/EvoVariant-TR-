@@ -200,13 +200,18 @@ def cmd_render_figure_bundle(args: argparse.Namespace) -> int:
 
 def cmd_deferred_phase(args: argparse.Namespace) -> int:
     """Record a truthful no-result status for a gated later phase."""
-    from evovariant_tr.experiment_control import deferred_artifact, write_artifact
+    from evovariant_tr.experiment_control import (
+        ExecutionStatus,
+        deferred_artifact,
+        write_artifact,
+    )
 
     artifact = deferred_artifact(
         phase=args.phase,
         family=args.family,
         blockers=tuple(args.blocker),
         inputs={"command": args.command_name},
+        status=ExecutionStatus(args.status),
     )
     output = write_artifact(args.output, artifact)
     print(json.dumps({"status": artifact.status.value, "artifact": str(output)}, indent=2))
@@ -352,6 +357,12 @@ def build_parser() -> argparse.ArgumentParser:
     deferred.add_argument("--command-name", default="phase-status")
     deferred.add_argument("--output", type=Path, required=True)
     deferred.add_argument("--blocker", action="append", required=True)
+    deferred.add_argument(
+        "--status",
+        choices=("BLOCKED", "DEFERRED", "NOT_RUN", "FAILED"),
+        default="BLOCKED",
+        help="Status to record; defaults to BLOCKED and never permits metrics.",
+    )
     deferred.set_defaults(func=cmd_deferred_phase)
 
     return parser

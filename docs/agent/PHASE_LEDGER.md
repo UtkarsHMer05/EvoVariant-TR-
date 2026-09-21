@@ -14,7 +14,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 7 | Embedding/representation extraction | BLOCKED | `df7a340`; `research/runs/phase7_rep_status.json`; fixed Evo2 embedding contract is source-level only, with no remote feature smoke/cache and no Phase 6 benchmark artifact. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
-| 10 | Fine-tuning / PEFT | BLOCKED | `research/runs/phase10_ft_status.json`; official training path, GPU smoke, and paid acknowledgement are absent. |
+| 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
 | 11 | Ensemble/meta-classifier | BLOCKED | `research/runs/phase11_ens_status.json`; no registered base predictions or OOF inputs. |
 | 12 | Calibration + abstention | BLOCKED | `research/runs/phase12_cal_abs_status.json`; no development predictions and no authorized locked-label selection. |
 | 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
@@ -70,6 +70,10 @@ gate state.
   `BLOCKED` with empty metrics/output surfaces.
 - The same current-checkout rerun passed `make web-check` and all 4 `make web-e2e` journeys;
   only the documented non-failing Next tracing warnings were emitted.
+- Phase 10's optional adaptation requirement is now formally `DEFERRED` rather than represented
+  as an unqualified block: the decision record cites measured H100 inference memory/runtime,
+  the low-confidence cohort cost preflight, the absent local/checked-in training path, and the
+  current approval's training exclusion. This is not a training or PEFT result.
 
 ## Phase 0 completion record — 2026-09-21
 

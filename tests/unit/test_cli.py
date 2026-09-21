@@ -50,6 +50,29 @@ def test_phase_status_command_writes_no_result_artifact(
     assert "phase.json" in capsys.readouterr().out
 
 
+def test_phase_status_command_can_record_formal_deferral(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    output = tmp_path / "deferred-phase.json"
+    assert main(
+        [
+            "phase-status",
+            "--phase",
+            "10",
+            "--family",
+            "FT",
+            "--output",
+            str(output),
+            "--status",
+            "DEFERRED",
+            "--blocker",
+            "training path requires separate approval",
+        ]
+    ) == 0
+    assert json.loads(output.read_text(encoding="utf-8"))["status"] == "DEFERRED"
+    assert "deferred-phase.json" in capsys.readouterr().out
+
+
 def test_generate_figure_manifest_command_is_truthful_without_runs(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:

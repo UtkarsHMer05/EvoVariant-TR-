@@ -191,8 +191,9 @@ finetune-smoke: ## Record/run the Phase 10 PEFT/fine-tuning gate
 	$(MAKE) check-venv
 	$(PYTHON) -m evovariant_tr.cli phase-status --phase 10 --family FT \
 		--command-name finetune-smoke --output research/runs/phase10_ft_status.json \
+		--status DEFERRED \
 		--blocker "official training path and tiny GPU smoke are unverified" \
-		--blocker "paid Modal acknowledgement is absent"
+		--blocker "adaptation is formally deferred by compute and current approval scope"
 
 .PHONY: ensemble
 ensemble: ## Record/run the Phase 11 ensemble gate

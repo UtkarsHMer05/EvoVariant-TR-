@@ -14,10 +14,11 @@ frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 
 contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
 approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 discrepancy is
 scientifically material to IDs, temporal eligibility, class counts, and denominators, so the
-Phase 3 acceptance review is reopened and Phases 6 onward remain blocked. Phase 5 has audited all
-seven candidates, but Evo2 is the only included model; the other six are explicitly deferred or
-infeasible with source-backed reasons. No full benchmark, training, HPO, fine-tuning, locked-test
-evaluation, clinical classification, or release has started.
+Phase 3 acceptance review is reopened and Phases 6–9 and 11 onward remain blocked. Phase 5 has
+audited all seven candidates, but Evo2 is the only included model; the other six are explicitly
+deferred or infeasible with source-backed reasons. Phase 10 adaptation is formally
+`DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
+HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
 Latest validated source baseline: `df7a340` (gated Evo2 embedding contract; current Python and web
 gates pass).
@@ -162,6 +163,12 @@ Active branch/worktree: `research/evovariant-tr` at
   reference/alternate sequences. It records vector shapes, dtypes, hashes, provenance, and a
   separate content-addressed feature-cache identity. The source payload contract has a no-spend
   unit test, but no remote embedding smoke or completed feature cache has been authorized or run.
+- Phase 10 is formally deferred by compute in
+  `artifacts/modal/phase10_adaptation_deferral_20260921.json`. The record preserves the measured
+  H100 inference envelope, the low-confidence cohort cost preflight, the absence of a checked-in
+  official training runner/local CUDA runtime, and the current approval's explicit exclusion of
+  training. `make finetune-smoke` now writes a no-metrics `DEFERRED` status artifact; no training
+  or PEFT experiment was run.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

@@ -1307,6 +1307,46 @@ Validation:
 the source-level endpoint. The implementation follows the official Evo2 embedding interface
 documented at https://github.com/ArcInstitute/evo2#extract-embeddings.
 
+## D-052 — Formally defer adaptation by compute and authorization
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The master prompt permits Phase 10 to be completed by a formal compute deferral when a valid
+adaptation experiment cannot be justified. The current approval is capped at `$2.00` and
+explicitly excludes training, HPO, fine-tuning, and locked-test work. The real Evo2 pilot
+measured `3.914133089` H100 runtime seconds and `18,075,978,752` peak GPU bytes for one raw-score
+request; the current-cohort preflight projects `$55,835.221` under a sequential single-variant
+bound or `$6,979.403` under an unmeasured perfect eight-variant throughput assumption. These are
+inference-planning observations, not a training-cost quote, so no training feasibility claim is
+made from them.
+
+Decision:
+Record Phase 10 as `DEFERRED_BY_COMPUTE` with no training metrics. Preserve the measured
+inference envelope and prelaunch cost evidence, record that no official training runner is
+checked into this repository and no local CUDA/Torch training runtime is available, and require a
+new approval tied to the current protocol before any official Savanna/BioNeMo or PEFT smoke is
+attempted. The status surface remains no-metrics and reopenable.
+
+Alternatives:
+Run a tiny training smoke under the current raw-score pilot approval, treat inference memory as
+proof of training feasibility, or mark Phase 10 `PASS` because the source interfaces exist.
+These were rejected because they would exceed the approval scope or confuse infrastructure
+evidence with an adaptation experiment.
+
+Consequences:
+The master prompt's optional adaptation requirement has a formal, auditable deferral outcome.
+No checkpoint, loss curve, validation metric, or scientific result is created. Phases 8, 9, and
+11 onward remain governed by their independent prerequisites; this deferral does not unblock
+them.
+
+Validation:
+`artifacts/modal/phase10_adaptation_deferral_20260921.json` is valid JSON and records the
+current protocol hash, approval scope, measured pilot evidence, and resume conditions.
+`tests/unit/test_cli.py` covers `--status DEFERRED`, and `make finetune-smoke` writes
+`research/runs/phase10_ft_status.json` with `status: DEFERRED` and empty metrics.
+
 ## Template for new decisions
 
 ### D-XXX — Title

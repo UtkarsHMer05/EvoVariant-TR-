@@ -24,8 +24,8 @@ raw-score model. Phases 6–9 and 11 onward remain blocked. Phase 10 adaptation 
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `601e366` (Phase 3 source-archive verification gate;
-current Python and web gates pass).
+Latest validated source baseline: `1bf1029` (Phase 3 integrity audit and Phase 5 real
+subset-track smokes; current local validation gate passes).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -103,18 +103,18 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
-- The current source baseline `601e366` passes `make validate`: secret scan, Ruff, strict mypy
-  over 51 source files, 650 default-tier tests with 33 deselected, and a 95.08% coverage floor.
+- The current source baseline `1bf1029` passes `make validate`: secret scan, Ruff, strict mypy
+  over 52 source files, 656 default-tier tests with 33 deselected, and a 95.14% coverage floor.
   The current checkout also re-passes `make web-check` and all four `make web-e2e` workbench
   journeys. These are local validation results; they do not create remote scientific outputs.
 - Commit `696fcd6` closes a fail-closed readiness defect in `Evo2Adapter`: local package/parity
   checks now remain `DEFERRED` until an explicit named remote-smoke evidence checker passes.
   Missing, malformed, incomplete, or failed remote evidence cannot be promoted to `READY`; this
   strengthens the Phase 5 control plane without claiming another remote execution.
-- Current checkout verification: branch `research/evovariant-tr` has no tracked modifications after
-  the validated embedding feature-store adapter commit and this control-file update. The only
-  untracked path is the injected `.agents/` skill bundle; it is intentionally not part of project
-  commits or scientific evidence. Verify the exact HEAD with Git before any phase transition.
+- Current checkout verification at this checkpoint: branch `research/evovariant-tr` is at
+  `1bf1029`; the only untracked path is the injected `.agents/` skill bundle, intentionally not
+  part of project commits or scientific evidence. Verify the exact HEAD with Git before any phase
+  transition.
 - The remote pilot was deployed from source HEAD `2f4d117d0d1804bd8479d7da473978d1f796249b`.
   The chromosome-normalization fix, model-manifest updates, pilot artifacts, and the reconciled
   control-file updates are now committed in `f69ee8605e3dcbcf068ffd0f5fed3cef6e3cdcb0`

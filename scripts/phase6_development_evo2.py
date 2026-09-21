@@ -533,10 +533,18 @@ def main() -> None:
             stored_rows = stored.get("rows")
             if not isinstance(stored_rows, list) or len(stored_rows) != len(shard_records):
                 raise RuntimeError(f"verified shard row count mismatch: {shard_path}")
+            expected_ids = [str(row["normalized_variant_id"]) for row in shard_records]
+            if stored.get("source_ids") != expected_ids:
+                raise RuntimeError(
+                    f"verified shard source IDs differ from the approved plan: {shard_path}"
+                )
             all_rows.extend(cast(list[dict[str, Any]], stored_rows))
             completed_shards += 1
             cache_hits += len(stored_rows)
-            estimated_usd += float(stored.get("client_wall_rate_estimate_usd", 0.0))
+            stored_rate = float(stored.get("client_wall_rate_estimate_usd", 0.0))
+            estimated_usd += stored_rate
+            if math.isfinite(stored_rate) and stored_rate > 0.0:
+                rate_samples.append(stored_rate)
             continue
 
         if estimated_usd >= MAX_RATE_ESTIMATE_USD:
@@ -608,7 +616,7 @@ def main() -> None:
 
     if completed_shards == 0 and failure is not None:
         status = "FAILED"
-    elif completed_shards == len((len(records) + SHARD_SIZE - 1) // SHARD_SIZE):
+    elif completed_shards == (len(records) + SHARD_SIZE - 1) // SHARD_SIZE:
         status = "PASS_FULL_DEVELOPMENT_COHORT"
     else:
         status = "PARTIAL_BUDGET_STOP" if failure is None else "PARTIAL_REMOTE_FAILURE"

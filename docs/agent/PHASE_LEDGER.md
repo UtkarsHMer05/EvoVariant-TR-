@@ -19,7 +19,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 12 | Calibration + abstention | BLOCKED | `research/runs/phase12_cal_abs_status.json`; no development predictions and no authorized locked-label selection. |
 | 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
-| 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
+| 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; Evo2 single-variant engineering smoke is verified, but full-cohort batch authorization/parity and remote batch smoke are absent. |
 | 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`; `make web-check` and `make web-e2e` PASS, local browser smoke PASS; registered scientific outputs are absent. |
 | 17 | Figures/tables/report artifacts | BLOCKED | `14d9593`; all 19 figure families and 12 tables have registry contracts plus deterministic bundle rendering, but `research/runs/phase17_fig_status.json` is `BLOCKED` with zero eligible completed result artifacts and `research/figures/bundle_manifest.json` has zero outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |

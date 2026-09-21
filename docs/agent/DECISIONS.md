@@ -2049,6 +2049,46 @@ Validation:
 truthful blocked status artifacts. `make validate` passed with 679 tests, 33 deselected, strict
 mypy, Ruff, secret scan, and 95.00% coverage. The change is local-only and has no compute cost.
 
+## D-072 — Add a frozen, one-shot locked-test evaluation guard
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The downstream analysis surfaces are now locally implemented, but no real Phase 7 feature cache,
+development prediction artifact, or current approval exists. The Phase 14 surface therefore needs
+to remain blocked by default while providing a correct path for a future, already-frozen final
+evaluation. A generic evaluator would be unsafe if it could select a model, tune a threshold, or
+overwrite a prior locked result from test labels.
+
+Decision:
+Use `src/evovariant_tr/final_evaluation.py` and `scripts/evaluate_locked.py` as the only local
+Phase 14 evaluation entry point. The evaluator requires a content-hashed configuration with
+`selection_closed=true`, an explicit score direction and threshold, a positive bootstrap count,
+one model's `LOCKED_TEST` prediction rows, both labels, and a matching caller-supplied config hash.
+It harmonizes raw scores before computing the fixed-threshold metrics and bootstrap AUROC interval,
+writes an immutable provenance-bearing artifact, and refuses to replace an existing output. The
+Make target remains a truthful blocked status surface unless all explicit locked-prediction,
+configuration, hash, and model variables are supplied.
+
+Alternatives:
+Reuse the validation-only ensemble path, allow threshold selection from locked labels, accept a
+stale approval as authorization, or overwrite a prior evaluation artifact. These were rejected
+because they would mix development and test roles, leak selection information, bypass the current
+approval boundary, or destroy result provenance.
+
+Consequences:
+The Phase 14 engineering guard is implemented and locally validated, but the scientific Phase 14
+gate remains `BLOCKED / NOT STARTED`. No locked prediction was evaluated, no model or threshold
+was selected, and no scientific result registry entry or figure input was created. Phases 15-19
+remain blocked on the same absent real scientific outputs and approval dependencies.
+
+Validation:
+`make validate` passed with 684 tests, 33 deselected, strict mypy over 56 source files, Ruff,
+secret scanning, and 95.04% coverage. `make evaluate` with default variables wrote a blocked
+status artifact and made no network or paid-compute request. Implementation commit: `1423577`
+(`feat: add frozen locked evaluation guard`).
+
 ## Template for new decisions
 
 ### D-XXX — Title

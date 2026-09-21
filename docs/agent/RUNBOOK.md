@@ -116,6 +116,33 @@ artifact is preliminary engineering/scientific evidence only until its run metad
 selection rule, and registry stage are reviewed. Do not tune weights or abstention thresholds
 after reading locked-test metrics.
 
+## Frozen locked evaluation
+
+The Phase 14 evaluator is a one-shot reporting surface. It must receive a real, already-frozen
+prediction artifact and configuration; it does not select a model, threshold, ensemble, or
+calibration rule. The default command remains blocked and is safe to run:
+
+```bash
+make evaluate
+```
+
+After the protocol, model, HPO, ensemble, calibration, split, and output directory are frozen and
+approved, provide every explicit input:
+
+```bash
+make evaluate \
+  LOCKED_PREDICTIONS=research/runs/<locked-run>/predictions.jsonl \
+  LOCKED_MODEL=<frozen-model-id> \
+  LOCKED_CONFIG=research/runs/<locked-run>/frozen_config.json \
+  LOCKED_CONFIG_HASH=<sha256-of-frozen-config> \
+  LOCKED_OUTPUT=research/runs/<locked-run>/phase14_locked_evaluation.json
+```
+
+The evaluator requires only `LOCKED_TEST` rows for the selected model, both classes, a matching
+configuration hash, `selection_closed=true`, and a new output path. It writes fixed-threshold
+metrics and bootstrap AUROC provenance. Never use locked labels for post-test tuning, and never
+reuse or overwrite an existing result artifact.
+
 ## Before commit
 
 - tests,

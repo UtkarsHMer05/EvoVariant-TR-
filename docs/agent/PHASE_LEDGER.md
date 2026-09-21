@@ -719,3 +719,19 @@ gate state.
   1,402,906 unique t0 VUS, confirming that the remaining discrepancy is not specific to the new
   streaming implementation. The remaining 330-ID discrepancy and 78-record B/LB difference remain
   material; Phase 3 stays `BLOCKED` and no scoring was started.
+
+## Phase 14 frozen locked-evaluation subgate — 2026-09-21
+
+- Engineering gate: `PASS`; scientific Phase 14 gate: `BLOCKED / NOT STARTED`.
+- The new evaluator in `src/evovariant_tr/final_evaluation.py` and
+  `scripts/evaluate_locked.py` is committed as `1423577`. It accepts only one explicitly named
+  model, `LOCKED_TEST` rows, both classes, a selection-closed content-hashed configuration, and
+  an immutable output path. It computes fixed-threshold metrics and bootstrap AUROC without any
+  model/threshold selection from test labels.
+- Default control-surface evidence: `make evaluate` wrote
+  `research/runs/phase14_stat_status.json` as `BLOCKED`; no real locked evaluation or paid/remote
+  work was attempted. The output remains a status artifact, not a scientific result.
+- Validation evidence: `make validate` passed with 684 tests, 33 deselected, strict mypy over 56
+  source files, Ruff, secret scan, and 95.04% coverage.
+- Dependency: a real approved Phase 7/downstream artifact chain and current exact-scope approval
+  are required before any locked evaluation can be considered. Phases 15-19 remain blocked.

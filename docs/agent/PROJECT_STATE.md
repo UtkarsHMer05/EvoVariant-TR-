@@ -763,3 +763,24 @@ figures from the single pilot record.
 - `make benchmark-zero-shot`, `make extract-features`, and `make release-check` were rerun and
   each remained `BLOCKED` without network or paid compute. `make validate` passed with 679 tests,
   33 deselected, strict mypy, Ruff, secret scan, and 95.00% coverage.
+
+## Phase 14 frozen locked-evaluation subgate — 2026-09-21
+
+- Engineering outcome: `PASS` for the fail-closed evaluator contract; scientific Phase 14 remains
+  `BLOCKED / NOT STARTED` because no real locked prediction artifact or current authorized frozen
+  configuration exists.
+- Added `src/evovariant_tr/final_evaluation.py` and `scripts/evaluate_locked.py`, and extended
+  `make evaluate` to invoke them only when explicit prediction, model, config, config-hash, and
+  output inputs are provided. The implementation commit is `1423577` (`feat: add frozen locked
+  evaluation guard`).
+- The evaluator requires `selection_closed=true`, a matching content hash, finite numeric
+  threshold/bootstrap settings, one model's `LOCKED_TEST` rows, both classes, and an immutable
+  output path. It reports fixed-threshold metrics and bootstrap AUROC provenance only; it has no
+  selection or post-test tuning path.
+- `make evaluate` with default variables wrote `research/runs/phase14_stat_status.json` with
+  `BLOCKED` status and made no network or paid-compute request. No locked labels were consumed,
+  no model/configuration was selected, and no result-registry record was created.
+- Validation: `make validate` passed with 684 tests, 33 deselected, strict mypy over 56 source
+  files, Ruff, secret scanning, and 95.04% coverage. The remaining Phase 15-19 gates are still
+  blocked by absent real Phase 6/7/downstream artifacts, locked results, registry inputs, and
+  current exact-scope approval.

@@ -1347,6 +1347,43 @@ current protocol hash, approval scope, measured pilot evidence, and resume condi
 `tests/unit/test_cli.py` covers `--status DEFERRED`, and `make finetune-smoke` writes
 `research/runs/phase10_ft_status.json` with `status: DEFERRED` and empty metrics.
 
+## D-053 — Formally defer the multi-model benchmark track after the candidate audit
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-040
+
+Context:
+The Phase 5 audit evaluated all seven declared candidates against the frozen GRCh38 raw-SNV
+score contract, provenance/license requirements, required assets, applicability, and bounded
+compute. Evo2 passed a real H100 smoke. Nucleotide Transformer and Caduceus expose masked-LM or
+embedding paths without a frozen raw-SNV parity contract; GPN requires an absent approximately
+42 GB alignment asset; CADD requires an approximately 300 GB annotation bundle and different
+score semantics; PhyloP is site-wise conservation; and AlphaMissense is a missense-only
+precomputed subset without a frozen applicability manifest.
+
+Decision:
+Record the multi-model Phase 5 track as `DEFERRED` with Evo2 as the only included model. Keep
+all six exclusions explicit and source-backed, do not download their assets or promote fixture
+comparators, and require a new candidate-specific approval plus tiny parity smoke before Phase 6
+can reopen.
+
+Alternatives:
+Treat masked-LM logits as raw allele scores, download the GPN/CADD assets before resolving Phase
+3, or count deterministic comparator fixtures as included models. These were rejected because
+they would change the score estimand, exceed current authority, or fabricate multi-model
+evidence.
+
+Consequences:
+The master prompt's requirement to benchmark multiple models or rigorously document
+infeasibility is now represented as a formal deferral outcome. Phase 6 remains `BLOCKED` because
+no second score-compatible model is verified and the Phase 3 discrepancy is unresolved.
+
+Validation:
+`artifacts/model_audit/phase5_candidate_audit_20260921.json` and
+`artifacts/model_audit/phase5_multi_model_deferral_20260921.json` preserve the candidate-level
+evidence and resume conditions. `make model-registry-verify` continues to pass with 7 manifests
+and 1 included model.
+
 ## Template for new decisions
 
 ### D-XXX — Title

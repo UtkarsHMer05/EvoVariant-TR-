@@ -9,8 +9,8 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 2 | Canonical scoring repair | PASS | Local repair plus real Evo2 7B H100 raw-SNV pilot; corrected `10` to `chr10`, exact 8192-bp context, forward/reverse raw scores, provenance, and HTTP 200 evidence in `artifacts/modal/phase2_phase4_pilot_20260921_success.json`. |
 | 3 | ML dataset + locked splits | BLOCKED | Structural current-cohort invariants pass, but the 330-ID / 78-final-record discrepancy is material to denominators and class counts; impact review is reopened in `artifacts/phase3_discrepancy_impact_20260921.json`. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
-| 5 | Model registry + adapters | BLOCKED | Seven source-audited manifests pass schema verification; Evo2 is the only included model after real smoke. Six candidates are explicit `INFEASIBLE`/deferred records, so the multi-model inclusion gate remains open. |
-| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; Phase 3 QA discrepancy remains material, only Evo2 is verified, full-cohort authorization/batch-parity evidence is absent, and prelaunch cost scenarios are recorded in `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`. |
+| 5 | Model registry + adapters | DEFERRED | `artifacts/model_audit/phase5_multi_model_deferral_20260921.json`; Evo2 passed the real smoke, while six candidates are rigorously deferred/infeasible for contract, asset, license, applicability, or bounded-compute reasons. |
+| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; Phase 3 QA discrepancy remains material, the Phase 5 multi-model track is deferred with only Evo2 verified, full-cohort authorization/batch-parity evidence is absent, and prelaunch cost scenarios are recorded in `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`. |
 | 7 | Embedding/representation extraction | BLOCKED | `df7a340`; `research/runs/phase7_rep_status.json`; fixed Evo2 embedding contract is source-level only, with no remote feature smoke/cache and no Phase 6 benchmark artifact. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
@@ -76,6 +76,10 @@ gate state.
   current approval's training exclusion. This is not a training or PEFT result.
 - The post-deferral control-surface validation passed `make validate` with 639 tests, 33
   deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.30% coverage.
+- Phase 5's multi-model inclusion requirement is formally `DEFERRED` after the source-backed
+  seven-candidate audit. The deferral preserves the exact exclusion reasons and requires a new
+  candidate-specific approval and parity smoke before Phase 6 can be reopened; it does not count
+  synthetic comparators as scientific models.
 
 ## Phase 0 completion record — 2026-09-21
 

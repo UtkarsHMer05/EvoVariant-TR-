@@ -1,0 +1,50 @@
+{
+  "artifact_id": "phase5-multi-model-deferral-20260921",
+  "status": "DEFERRED_BY_FEASIBILITY_AND_PROVENANCE",
+  "recorded_at": "2026-09-21",
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "audit_source": "artifacts/model_audit/phase5_candidate_audit_20260921.json",
+  "included_model": {
+    "model_id": "evo2",
+    "status": "INCLUDED",
+    "smoke": "PASS",
+    "evidence": "artifacts/modal/phase2_phase4_pilot_20260921_success.json"
+  },
+  "deferred_candidates": [
+    {
+      "model_id": "nucleotide_transformer",
+      "reason": "masked-LM/logit contract is not the frozen raw-SNV allele-likelihood contract; license/use review remains open"
+    },
+    {
+      "model_id": "caduceus",
+      "reason": "masked-LM/embedding contract is not frozen for raw-SNV parity and the 131072-bp path has no measured bounded smoke"
+    },
+    {
+      "model_id": "gpn",
+      "reason": "requires an absent matching 100-way GRCh38 alignment asset documented at approximately 42 GB compressed"
+    },
+    {
+      "model_id": "cadd",
+      "reason": "annotation-track score semantics and provenance differ from the raw allele-likelihood contract; the official GRCh38 bundle is approximately 300 GB"
+    },
+    {
+      "model_id": "phylop",
+      "reason": "site-wise conservation is not a reference/alternate allele-effect score"
+    },
+    {
+      "model_id": "alphamissense_valid_subset",
+      "reason": "precomputed missense-only applicability subset is not frozen for the current temporal cohort"
+    }
+  ],
+  "decision": {
+    "outcome": "DEFERRED_BY_FEASIBILITY_AND_PROVENANCE",
+    "benchmark_inclusion": false,
+    "synthetic_comparator_promotion": false,
+    "reason": "The audit rigorously documents that no second candidate currently satisfies the frozen GRCh38 raw-SNV parity, provenance, asset, license, and bounded-compute requirements.",
+    "resume_conditions": [
+      "Resolve or formally approve the Phase 3 cohort discrepancy.",
+      "Obtain a separate approval for the exact candidate, required assets, and budget.",
+      "Freeze a score-contract-compatible candidate and run its tiny parity smoke before Phase 6."
+    ]
+  }
+}

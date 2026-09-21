@@ -14,9 +14,10 @@ frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 
 contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
 approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 discrepancy is
 scientifically material to IDs, temporal eligibility, class counts, and denominators, so the
-Phase 3 acceptance review is reopened and Phases 6–9 and 11 onward remain blocked. Phase 5 has
-audited all seven candidates, but Evo2 is the only included model; the other six are explicitly
-deferred or infeasible with source-backed reasons. Phase 10 adaptation is formally
+Phase 3 acceptance review is reopened and Phases 6–9 and 11 onward remain blocked. Phase 5's
+multi-model track is formally `DEFERRED` after auditing all seven candidates: Evo2 is the only
+included model and the other six are explicitly deferred or infeasible with source-backed
+reasons. Phase 10 adaptation is formally
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
@@ -77,8 +78,9 @@ Active branch/worktree: `research/evovariant-tr` at
   `artifacts/modal/phase2_phase4_pilot_20260921_success.json` and the append-only cost ledger.
 - Phase 2 gate: `PASS` for the local audit plus real remote raw-score pilot. Phase 4 gate: `PASS`
   for cache identity, persistence, equivalent hit, retry/scaledown configuration, telemetry, and
-  available cost evidence. Phase 5 audit: `BLOCKED` for multi-model inclusion with one verified
-  candidate; see `artifacts/model_audit/phase5_candidate_audit_20260921.json`.
+  available cost evidence. Phase 5's multi-model track is formally `DEFERRED` with one verified
+  candidate; see `artifacts/model_audit/phase5_candidate_audit_20260921.json` and
+  `artifacts/model_audit/phase5_multi_model_deferral_20260921.json`.
 - Phase 3 impact decision: `MATERIAL_UNCERTAINTY`; see
   `artifacts/phase3_discrepancy_impact_20260921.json`. Current archive-derived outputs remain
   unchanged apart from the audit-counter semantics correction recorded in
@@ -169,6 +171,11 @@ Active branch/worktree: `research/evovariant-tr` at
   official training runner/local CUDA runtime, and the current approval's explicit exclusion of
   training. `make finetune-smoke` now writes a no-metrics `DEFERRED` status artifact; no training
   or PEFT experiment was run.
+- The Phase 5 multi-model track is formally deferred in
+  `artifacts/model_audit/phase5_multi_model_deferral_20260921.json`: Evo2 passed the real smoke,
+  while the six other candidates remain excluded for incompatible score contracts, missing
+  assets, applicability, licensing, or unmeasured bounded compute. No deferred model was
+  downloaded or promoted as a comparator.
 - After the deferral control-surface change, `make validate` passed 639 tests with 33 deselected,
   strict mypy over 51 source files, Ruff, secret scan, and 95.30% coverage. The new CLI status
   option is covered by `tests/unit/test_cli.py`.
@@ -340,8 +347,8 @@ called.
 ## Known blockers and exact next action
 
 Known blockers are the material discrepancy between the recomputed temporal cohort and the
-validation-only QA target, the absence of a second included model with a compatible raw-score
-contract, the lack of authorized remote batch/embedding recovery evidence, and the lack of
+validation-only QA target, the formally deferred multi-model track, the lack of authorized
+remote batch/embedding recovery evidence, and the lack of
 registered full-cohort scientific outputs. Independent local gates, committed browser E2E, and
 a fresh clean-room CPU/frontend rerun now pass. The registry-driven figure manifest and bundle
 run with hash and field verification, but report `BLOCKED` because no eligible completed
@@ -350,11 +357,11 @@ vulnerability report is retained only as historical pre-hardening evidence, not 
 blocker.
 
 Exact next action: resolve the Phase 3 discrepancy from source-level evidence or obtain a dated
-protocol deviation that explicitly accepts the changed cohort and denominators. Independently,
-only after that gate and a separately bounded approval, complete the GPN-Star/second-model
-feasibility path or record the multi-model plan as deferred. Do not run a full benchmark, inspect
-locked labels for selection, train, tune, fine-tune, or generate release figures from the single
-pilot record.
+protocol deviation that explicitly accepts the changed cohort and denominators. Only after that
+gate and a separately bounded approval may the deferred GPN-Star/second-model path be reopened;
+otherwise the multi-model deferral remains the honest terminal outcome for Phase 5. Do not run a
+full benchmark, inspect locked labels for selection, train, tune, fine-tune, or generate release
+figures from the single pilot record.
 
 ## Figure-input integrity follow-up — 2026-09-21
 

@@ -44,15 +44,15 @@ def cuda_probe() -> dict[str, Any]:
     result = tensor * 2.0
     torch.cuda.synchronize()
     return {
-        "function_call_id": current_function_call_id(),
+        "function_call_id": str(current_function_call_id()),
         "container_id": os.environ.get("MODAL_CONTAINER_ID"),
         "hostname": socket.gethostname(),
-        "torch_version": torch.__version__,
-        "cuda_runtime_version": torch.version.cuda,
-        "cuda_available": torch.cuda.is_available(),
-        "device_name": torch.cuda.get_device_name(0),
-        "compute_capability": list(torch.cuda.get_device_capability(0)),
-        "device_count": torch.cuda.device_count(),
+        "torch_version": str(torch.__version__),
+        "cuda_runtime_version": str(torch.version.cuda),
+        "cuda_available": bool(torch.cuda.is_available()),
+        "device_name": str(torch.cuda.get_device_name(0)),
+        "compute_capability": [int(value) for value in torch.cuda.get_device_capability(0)],
+        "device_count": int(torch.cuda.device_count()),
         "tensor_result": float(result.item()),
         "execution_latency_ms": (time.perf_counter() - started) * 1000,
     }

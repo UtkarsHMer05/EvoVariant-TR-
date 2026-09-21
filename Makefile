@@ -37,6 +37,11 @@ PREDICTIONS ?=
 ENSEMBLE_OUTPUT ?= research/runs/phase11_ensemble.json
 ENSEMBLE_LEFT_MODEL ?=
 ENSEMBLE_RIGHT_MODEL ?=
+LOCKED_PREDICTIONS ?=
+LOCKED_CONFIG ?=
+LOCKED_CONFIG_HASH ?=
+LOCKED_MODEL ?=
+LOCKED_OUTPUT ?= research/runs/phase14_locked_evaluation.json
 
 # ---------------------------------------------------------------------------
 # Help
@@ -271,10 +276,19 @@ ensemble: ## Record/run the Phase 11 ensemble gate
 .PHONY: evaluate
 evaluate: ## Record/run the Phase 14 locked statistical evaluation gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 14 --family STAT \
-		--command-name evaluate --output research/runs/phase14_stat_status.json \
-		--blocker "frozen model/configuration does not exist" \
-		--blocker "locked test evaluation is not authorized"
+	@if [ -n "$(LOCKED_PREDICTIONS)" ] && [ -n "$(LOCKED_CONFIG)" ] && [ -n "$(LOCKED_CONFIG_HASH)" ] && [ -n "$(LOCKED_MODEL)" ]; then \
+		$(PYTHON) scripts/evaluate_locked.py \
+			--predictions "$(LOCKED_PREDICTIONS)" \
+			--model-id "$(LOCKED_MODEL)" \
+			--config "$(LOCKED_CONFIG)" \
+			--config-sha256 "$(LOCKED_CONFIG_HASH)" \
+			--output "$(LOCKED_OUTPUT)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 14 --family STAT \
+			--command-name evaluate --output research/runs/phase14_stat_status.json \
+			--blocker "frozen model/configuration does not exist" \
+			--blocker "locked test evaluation is not authorized"; \
+	fi
 
 .PHONY: calibration-abstention
 calibration-abstention: ## Record/run the Phase 12 calibration and abstention gate

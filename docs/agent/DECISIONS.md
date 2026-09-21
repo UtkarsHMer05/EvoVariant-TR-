@@ -763,6 +763,47 @@ Commit `0db7e8b`; `git diff --check` passed before commit. The README-only commi
 executable code; the exact implementation baseline `800e016` and clean-room evidence at `e798c20`
 remain documented separately.
 
+## D-036 — Render the complete Phase 17 bundle only from verified registry artifacts
+Status: ACCEPTED
+Date: 2026-09-21
+
+Context:
+The earlier Phase 17 control surface correctly removed legacy synthetic curves and produced a
+metadata-only manifest, but it declared only a subset of the master prompt's figure families and
+did not yet provide the required tables, methods summary, limitations, cost summary, provenance,
+or export bundle. The checked-in result registry remains empty, so any renderer must continue to
+fail closed rather than making the phase look complete.
+
+Decision:
+Declare all 19 required figure families and 12 required tables as explicit source-artifact
+contracts. Before an entry becomes available, validate its recorded relative path, output hash,
+JSON/JSONL row shape, required fields, and finite numeric values. Render a deterministic bundle
+with dependency-free SVG figures, source-derived JSON tables, methods and limitations Markdown,
+compute/cost JSON, and model-provenance JSON only from hash-verified completed PRELIMINARY or
+FINAL registry runs. A blocked or tampered manifest emits only a blocked bundle manifest with no
+scientific outputs; reruns remove only paths recorded by the prior bundle manifest.
+
+Alternatives:
+Keep a manifest-only surface, add a plotting dependency that could render placeholders, accept
+unregistered fixtures, copy ignored historical snapshots, or fill missing rows with inferred
+values. These were rejected because they would leave Phase 17 incomplete or blur software
+demonstration data with current scientific evidence.
+
+Consequences:
+The current repository has a complete local export control surface but remains scientifically
+blocked: its registry has zero runs, the manifest has zero available figures/tables, and the
+bundle has zero outputs. Once an authorized run supplies the declared artifacts, the same command
+surface can regenerate a hash-addressed bundle without manual editing. No model weights, locked
+labels, remote inference, or paid compute are needed to validate the renderer itself.
+
+Validation:
+Commit `14d9593`; `make validate` passes 625 tests with the 95% coverage floor enforced at
+95.34%; strict mypy, Ruff, schema verification, data-QC, scientific/API tiers, frontend build,
+browser E2E, registry verification, and `make figures` pass. The blocked manifest hash is
+`b1a69cc4674b279967984e9e2d5b77addcc9015da8f1bf396d69d3305fb554a8` and the blocked bundle hash
+is `a780d87816fa75ed0fe1f4a69d597e5310d5f70eae1946d49e2bd036e8e0c006`. Scientific Phase 17 and
+all dependent release gates remain blocked; spend is `$0`.
+
 ## Template for new decisions
 
 ### D-XXX — Title

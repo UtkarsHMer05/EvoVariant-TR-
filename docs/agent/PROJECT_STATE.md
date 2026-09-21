@@ -10,15 +10,17 @@ scientific phases remain blocked)
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository now has the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, a complete evidence-gated research-workbench UI, and
-passing local Python/frontend build gates. The fresh clean-room clone now reproduces the default
-CPU suite and frontend build after dependency installation. No candidate model has verified
-parity/smoke evidence, no paid Modal pilot or model-weight download has run, no scientific result
-artifact is registered, and registry-driven figure output has no inputs. The repository now has
-committed browser E2E coverage for the no-fabrication workbench journeys. No model
+passing local Python/frontend build gates. The Phase 17 export control surface now covers every
+required figure/table family and can render only hash-verified registry artifacts; the current
+bundle remains explicitly blocked with zero scientific outputs. The fresh clean-room clone now
+reproduces the default CPU suite and frontend build after dependency installation. No candidate
+model has verified parity/smoke evidence, no paid Modal pilot or model-weight download has run,
+no scientific result artifact is registered, and registry-driven figure output has no inputs. The
+repository now has committed browser E2E coverage for the no-fabrication workbench journeys. No model
 download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
 started.
 
-Last passing source baseline: `800e016` (verified result-registry metadata and UI surface).
+Last passing source baseline: `14d9593` (registry-driven Phase 17 export bundle and enforced coverage floor).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -37,6 +39,7 @@ Browser gate clone-safety fix: `bd7647c`.
 Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
+Registry-driven Phase 17 export-bundle commit: `14d9593`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -172,7 +175,9 @@ Last generated artifacts: ignored record-level Phase 3 outputs under
 `data/derived/ml_extension/phase3/`, with the reviewable summary and hashes at
 `research/ml_extension/splits/phase3_manifest_summary.json`; schema-validated candidate model
 manifests under `research/ml_extension/models/`; and ignored no-result status artifacts under
-`research/runs/`. No model result artifact was generated.
+`research/runs/`. The current ignored Phase 17 bundle manifest is
+`research/figures/bundle_manifest.json` with `status: BLOCKED`, 19 required figure families,
+12 required tables, and zero outputs. No model result artifact or scientific figure was generated.
 
 Current Modal assets: source scaffolding plus a validated no-spend preflight. The root app and
 `modal_config.py` use `evovariant-tr`, H100, `hf_cache`, the pinned image, and the pinned Evo2
@@ -195,9 +200,9 @@ Known blockers are the required real Modal pilot (paid-compute acknowledgement a
 inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
 validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
 inclusion gate. Independent local gates, committed browser E2E, and a fresh clean-room
-CPU/frontend rerun now pass. The registry-driven figure manifest now runs with hash verification,
-but reports `BLOCKED` because no eligible completed scientific result artifacts exist; no result
-artifacts are registered. A fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
+CPU/frontend rerun now pass. The registry-driven figure manifest and bundle now run with hash and
+field verification, but report `BLOCKED` because no eligible completed scientific result artifacts
+exist; no result artifacts are registered. A fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
 2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
 
 Exact next action: preserve this state, then obtain explicit authorization and verified model/
@@ -224,6 +229,37 @@ paid Modal work without the corresponding gate.
   hash verification, tamper blocking, CLI output, and the legacy entry-point guard. Targeted
   Ruff, strict mypy, unit/integration tests, and `make figures` passed; the Phase 17 scientific
   gate remains BLOCKED because there are no real registered outputs.
+
+## Phase 17 export-bundle follow-up — 2026-09-21
+
+- Implementation commit: `14d9593` (`feat: render registry-driven phase17 bundle`).
+- `src/evovariant_tr/figure_artifacts.py` now declares all 19 master-prompt figure families and
+  12 required tables. The input manifest validates relative repository paths, recorded SHA-256
+  hashes, JSON/JSONL row shape, required fields, finite numeric values, and eligible evidence
+  stages before an entry is available to a renderer. The manifest carries provenance and cost
+  metadata but never copies scientific row values or metrics into a blocked status artifact.
+- `evovariant-tr render-figure-bundle` and `make figures` now provide the Phase 17 export surface.
+  A `READY` manifest produces deterministic standard-library SVG figures, source-derived JSON
+  tables, `methods.md`, `limitations.md`, `compute_cost.json`, and `model_provenance.json` under
+  the ignored bundle directory. A blocked or tampered manifest produces only
+  `bundle_manifest.json`; narrow cleanup removes only outputs recorded by the prior bundle
+  manifest, so stale generated figures cannot survive a blocked rerun.
+- Current repository evidence is intentionally blocked: manifest SHA-256
+  `b1a69cc4674b279967984e9e2d5b77addcc9015da8f1bf396d69d3305fb554a8`, bundle manifest SHA-256
+  `a780d87816fa75ed0fe1f4a69d597e5310d5f70eae1946d49e2bd036e8e0c006`, zero registered runs,
+  zero available figures/tables, and zero bundle outputs. No synthetic fixture is in the project
+  registry.
+- Validation at this checkpoint: `make validate` passed 625 tests, 33 deselected, one existing
+  Starlette deprecation warning, and 95.34% coverage; the coverage floor is now enforced with
+  `--cov-fail-under=95`. `make test-scientific` passed 7 with 1 explicit skip; `make test-e2e`
+  passed 14 with 1 explicit skip; `make data-qc`, `make web-check`, `make web-e2e` (4 tests),
+  protocol, ML-control-plane, schema, model-registry, registry, all Phase 6–19 status surfaces,
+  and `make figures` passed. The data-QC split SHA-256 remains
+  `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, with the existing Phase 3
+  QA discrepancy preserved.
+- Gate decision: the Phase 17 engineering/export control surface passes, but the scientific Phase
+  17 gate and dependent release gate remain `BLOCKED` until an authorized model run creates
+  complete registered result artifacts. Spend remains `$0`.
 
 ## Current clean-room follow-up — 2026-09-21
 

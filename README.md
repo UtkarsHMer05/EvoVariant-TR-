@@ -26,7 +26,7 @@ closed:
 | Modal | No-spend CLI/account preflight only; no deployment, model-weight download, remote inference, or measured cost. |
 | Experiment registry | Empty; no scientific result artifact is registered. |
 | Research workbench | Frontend build and four browser tests PASS; scientific panels remain evidence-gated. |
-| Figures and tables | Registry-driven manifest is deterministic but `BLOCKED` because no eligible completed scientific outputs exist. |
+| Figures and tables | Registry-driven manifest and export bundle are deterministic but `BLOCKED` because no eligible completed scientific outputs exist; the bundle contains no scientific outputs. |
 | Spend | `$0` measured and estimated for the work completed here. |
 
 The authoritative execution state is maintained in
@@ -63,8 +63,8 @@ make test-e2e
 make figures
 ```
 
-At the verified current baseline, `make validate` passes 619 tests with 33
-deselected and 95.31% coverage. The scientific tier passes 7 tests with 1
+At the verified current baseline, `make validate` passes 625 tests with 33
+deselected and 95.34% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
 are recorded in the project-control files.
@@ -213,16 +213,22 @@ The Section 21 metadata contract is implemented in
 `research/schemas/experiment_run.schema.json`. The current registry contains no
 run records.
 
-Figure and table input discovery is deliberately registry-driven:
+Figure and table input discovery and export are deliberately registry-driven:
 
 ```bash
 make figures
 ```
 
 This writes a deterministic metadata manifest under the ignored
-`research/runs/` directory. With no eligible completed PRELIMINARY or FINAL
-outputs it reports `BLOCKED` and produces no scientific curves, tables, or
-placeholder metrics.
+`research/runs/` directory and a bundle manifest under
+`research/figures/bundle_manifest.json`. The Phase 17 contract covers all 19
+required figure families and 12 required tables. With no eligible completed
+PRELIMINARY or FINAL outputs it reports `BLOCKED`, removes only outputs listed
+by the prior bundle manifest, and produces no scientific figures, tables,
+placeholder metrics, or inferred values. When registered inputs eventually
+make the manifest `READY`, the bundle renderer emits hash-addressed SVG figures,
+JSON tables, methods, limitations, cost, and model-provenance artifacts under
+`research/figures/bundle/`.
 
 ## Modal and paid compute
 
@@ -255,8 +261,8 @@ The dependency-ordered phase decisions are maintained in
 - Phases 6–15 have explicit blocked status artifacts and no scientific metrics;
 - Phase 16's frontend/build/browser engineering gate passes, but its scientific
   result dependency is absent;
-- Phase 17's registry-driven manifest is deterministic but has no eligible
-  inputs;
+- Phase 17's registry-driven manifest and export bundle are deterministic but
+  have no eligible inputs and therefore contain no scientific outputs;
 - Phase 18's free clean-room gate passes, while gated Modal and scientific
   figure evidence remain unavailable;
 - Phase 19 remains blocked and no release, tag, deployment, or publication is

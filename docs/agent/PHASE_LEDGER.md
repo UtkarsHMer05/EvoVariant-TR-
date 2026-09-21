@@ -21,7 +21,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; no authorized executable model adapter or remote batch smoke. |
 | 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`; `make web-check` and `make web-e2e` PASS, local browser smoke PASS; registered scientific outputs are absent. |
-| 17 | Figures/tables/report artifacts | BLOCKED | `research/runs/phase17_fig_status.json`; deterministic registry manifest generation and hash verification now run, but no eligible completed result artifact exists to render. |
+| 17 | Figures/tables/report artifacts | BLOCKED | `14d9593`; all 19 figure families and 12 tables have registry contracts plus deterministic bundle rendering, but `research/runs/phase17_fig_status.json` is `BLOCKED` with zero eligible completed result artifacts and `research/figures/bundle_manifest.json` has zero outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and registered result artifacts remain unresolved. |
 
@@ -267,6 +267,34 @@ For each PASS append:
 - Phase 19 `make release-check` records `BLOCKED` because dependent scientific phases, paid
   compute, figure, and registered-result gates remain unresolved. No tag, release, deployment,
   or publication was created. Spend remains `$0`.
+
+## Phase 17 export-bundle follow-up — 2026-09-21
+
+- Implementation commit: `14d9593` (`feat: render registry-driven phase17 bundle`). The renderer
+  declares the 19 figure families and 12 tables required by master-prompt Section 14 and Phase
+  17, with explicit source artifact names and required fields.
+- The figure manifest now checks relative paths, output hashes, JSON/JSONL row structure, required
+  fields, finite numeric values, and PRELIMINARY/FINAL evidence eligibility. It records source
+  metadata and field errors without copying scientific row values into the gate artifact.
+- `make figures` runs manifest generation and `render-figure-bundle`. The current run is
+  deterministically `BLOCKED`: manifest SHA-256 is
+  `b1a69cc4674b279967984e9e2d5b77addcc9015da8f1bf396d69d3305fb554a8`, the bundle-manifest
+  SHA-256 is `a780d87816fa75ed0fe1f4a69d597e5310d5f70eae1946d49e2bd036e8e0c006`, and the bundle
+  contains zero outputs because the checked-in result registry is empty. A blocked rerun removes
+  only files listed by the previous bundle manifest and does not leave stale scientific figures.
+- A future `READY` manifest will produce only source-derived SVG/JSON/report outputs: methods,
+  limitations, compute/cost, and model-provenance files are generated from registered metadata;
+  no synthetic curve, typed metric, ignored historical snapshot, or unregistered fixture is
+  promoted. The standard-library renderer does not add a plotting dependency or invoke paid
+  compute.
+- Validation: `make validate` passed 625 tests, 33 deselected, one existing warning, and 95.34%
+  coverage; `make test-scientific` passed 7 with 1 skip; `make test-e2e` passed 14 with 1 skip;
+  `make data-qc`, `make web-check`, `make web-e2e` (4), protocol/control-plane/schema/model-
+  registry/registry checks, all Phase 6–19 status surfaces, and `make figures` passed. The
+  Phase 3 split hash remains `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`;
+  the QA discrepancy remains documented and downstream scoring is still gated.
+- Gate decision: Phase 17 export engineering `PASS`; Phase 17 scientific acceptance remains
+  `BLOCKED`, as do Phases 6–16, 18, and 19. Spend remains `$0`.
 
 ## Registry and workbench control-plane follow-up — 2026-09-21
 

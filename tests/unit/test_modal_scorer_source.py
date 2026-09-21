@@ -9,7 +9,10 @@ from types import SimpleNamespace
 
 import pytest
 
-pytest.importorskip("modal")
+_MODAL = pytest.importorskip("modal")
+_REQUIRED_MODAL_SYMBOLS = ("App", "Image", "Volume", "cls", "enter", "fastapi_endpoint")
+if any(not hasattr(_MODAL, symbol) for symbol in _REQUIRED_MODAL_SYMBOLS):
+    pytest.skip("full Modal SDK is not installed", allow_module_level=True)
 
 _APP_PATH = Path(__file__).resolve().parents[2] / "evo2_scorer_app.py"
 _SPEC = importlib.util.spec_from_file_location("evovariant_modal_source", _APP_PATH)

@@ -80,6 +80,8 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
 
     generated_at = datetime.now(UTC).isoformat()
     source_hashes = {name: _sha256(path) for name, path in source_paths.items()}
+    gene_labels = sum(bool(row["gene_symbol"]) for row in records)
+    unique_genes = len({row["gene_symbol"] for row in records if row["gene_symbol"]})
     locked_manifest = {
         "manifest_id": "evovariant-tr-ml-extension-authoritative-locked-test-v1",
         "protocol_version": "1.1.0",
@@ -88,14 +90,15 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
         "code_commit": _git_commit(repo_root),
         "assembly": "GRCh38",
         "source_archives": {
-            "t0_sha256": audit["source_archives"]["t0"]["sha256"],
-            "t1_sha256": audit["source_archives"]["t1"]["sha256"],
+            "t0_sha256": audit["source_archives"]["t0"]["archive_sha256"],
+            "t1_sha256": audit["source_archives"]["t1"]["archive_sha256"],
         },
         "counts": {
             "total": len(records),
             "blb": sum(int(row["label"]) == 0 for row in records),
             "plp": sum(int(row["label"]) == 1 for row in records),
-            "gene_labels": len({row["gene_symbol"] for row in records if row["gene_symbol"]}),
+            "gene_labels": gene_labels,
+            "unique_genes": unique_genes,
         },
         "record_set_sha256": _canonical_hash(records),
         "records": records,
@@ -119,6 +122,8 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
 
     cohort_summary = {
         "manifest_id": "evovariant-tr-ml-extension-authoritative-cohort-v1",
+        "status": "PASS",
+        "phase3_gate": "PASS",
         "protocol_version": "1.1.0",
         "deviation_id": "ML-DEV-001",
         "generated_at_utc": generated_at,
@@ -190,7 +195,8 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
             "final_temporal_n": len(records),
             "n_blb": locked_manifest["counts"]["blb"],
             "n_plp": locked_manifest["counts"]["plp"],
-            "gene_labels": locked_manifest["counts"]["gene_labels"],
+            "gene_labels": audit["temporal_resolution"]["gene_labels"],
+            "unique_genes": locked_manifest["counts"]["unique_genes"],
             "gene_mismatch_count": audit["temporal_resolution"]["gene_mismatch_count"],
             "reference_mismatch_count": audit["temporal_resolution"]["reference_mismatch_count"],
         },

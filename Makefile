@@ -163,6 +163,7 @@ phase3-reference-audit: ## Independently validate every authoritative cohort REF
 
 .PHONY: phase3-freeze
 phase3-freeze: ## Run Phase 3 audit/reference gates and freeze the ML-extension manifests
+	$(MAKE) data-qc
 	$(MAKE) phase3-audit
 	$(MAKE) phase3-reference-manifest
 	$(MAKE) phase3-reference-audit

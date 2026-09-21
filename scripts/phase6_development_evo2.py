@@ -56,7 +56,6 @@ from evovariant_tr.sequence_window import generate_reference_window  # noqa: E40
 SCRIPTS_ROOT = REPO_ROOT / "scripts"
 if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
-from development_approval import validate_development_approval  # noqa: E402
 
 APPROVAL_PATH = REPO_ROOT / "artifacts/approvals/phase6_phase7_development_20260921.json"
 DEVELOPMENT_MANIFEST_PATH = REPO_ROOT / "data/derived/ml_extension/phase3/split_manifest.json"
@@ -481,6 +480,8 @@ def _append_ledger(entry: dict[str, Any]) -> None:
 
 @app.local_entrypoint()
 def main() -> None:
+    from development_approval import validate_development_approval
+
     assert_paid_compute_allowed()
     approval = validate_development_approval(APPROVAL_PATH, REPO_ROOT)
     required_files = (

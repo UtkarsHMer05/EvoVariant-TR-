@@ -63,7 +63,7 @@ make test-e2e
 make figures
 ```
 
-At the verified current baseline, `make validate` passes 649 tests with 33
+At the verified current baseline, `make validate` passes 650 tests with 33
 deselected and 95.08% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings

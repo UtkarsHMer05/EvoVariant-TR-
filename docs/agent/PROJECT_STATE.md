@@ -22,7 +22,7 @@ reasons. Phase 10 adaptation is formally
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `c401140` (legacy ClinVar manifest verification compatibility;
+Latest validated source baseline: `601e366` (Phase 3 source-archive verification gate;
 current Python and web gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
@@ -51,8 +51,8 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
-- The current source baseline `c401140` passes `make validate`: secret scan, Ruff, strict mypy
-  over 51 source files, 649 default-tier tests with 33 deselected, and a 95.08% coverage floor.
+- The current source baseline `601e366` passes `make validate`: secret scan, Ruff, strict mypy
+  over 51 source files, 650 default-tier tests with 33 deselected, and a 95.08% coverage floor.
   The current checkout also re-passes `make web-check` and all four `make web-e2e` workbench
   journeys. These are local validation results; they do not create remote scientific outputs.
 - Commit `696fcd6` closes a fail-closed readiness defect in `Evo2Adapter`: local package/parity
@@ -122,6 +122,11 @@ Active branch/worktree: `research/evovariant-tr` at
   single-file ClinVar manifests to the generic manifest model. Both manifest-verified raw
   archives pass size/hash verification, and regression coverage preserves the newer multi-entry
   manifest path.
+- Commit `601e366` makes `build_phase3_artifacts` verify both raw archives against their manifests
+  before reading rows or writing derived artifacts. The archive-backed `make data-qc` rerun passed,
+  reproduced the existing split and temporal hashes exactly, and still reports the current cohort
+  as 1,402,895 t0 IDs and 946 final records. A tampered-source regression proves the builder fails
+  closed before producing Phase 3 outputs.
 
 ## Current validation update — 2026-09-21
 
@@ -216,8 +221,8 @@ Active branch/worktree: `research/evovariant-tr` at
   while the six other candidates remain excluded for incompatible score contracts, missing
   assets, applicability, licensing, or unmeasured bounded compute. No deferred model was
   downloaded or promoted as a comparator.
-- After the legacy-manifest compatibility fix, `make validate` passed 649 tests with 33 deselected,
-  strict mypy over 51 source files, Ruff, secret scan, and 95.08% coverage. The Evo2 readiness
+- After the Phase 3 source-archive verification fix, `make validate` passed 650 tests with 33
+  deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.08% coverage. The Evo2 readiness
   module reached 100% coverage for its explicit remote-evidence branches; the feature-store
   adapter remains covered by `tests/unit/test_feature_store.py` and the CLI status option by
   `tests/unit/test_cli.py`.

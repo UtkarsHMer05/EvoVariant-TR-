@@ -1456,6 +1456,40 @@ Validation:
 checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
 resulting decision.
 
+## D-059 — Verify Phase 3 source archives before generating splits
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The Phase 3 builder previously hashed the manifest JSON files into the derived summary but did
+not verify that the raw archive bytes still matched those manifests before reading and splitting
+the data. A later `make data-verify` repair made the legacy ClinVar metadata readable, exposing a
+safe opportunity to apply the same integrity gate to the actual data-building path.
+
+Decision:
+Before any Phase 3 row processing or output creation, require each source archive to be described
+by exactly one manifest entry with the expected filename and to pass size, stored SHA-256, and any
+recorded uncompressed-content checks. Abort with a manifest error on mismatch.
+
+Alternatives:
+Continue hashing only manifest metadata, verify after derived files are written, or silently
+rebuild from a changed archive. These were rejected because each could produce derived artifacts
+from unverified source bytes or leave partial outputs that appear reviewable.
+
+Consequences:
+`make data-qc` now fails closed before processing if either source archive is missing, tampered,
+or paired with the wrong manifest. Valid current archives reproduce the existing deterministic
+split and temporal hashes; the frozen protocol, cohort filters, and Phase 3 discrepancy decision
+are unchanged.
+
+Validation:
+Commit `601e366` adds the gate and a tampered-source regression. The real archive-backed
+`make data-qc` run passed with split-manifest SHA-256
+`96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72` and split hash
+`bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`; `make validate` passed
+650 tests with 33 deselected and 95.08% coverage.
+
 ## D-058 — Normalize legacy ClinVar manifests at verification time
 Status: ACCEPTED
 Date: 2026-09-21

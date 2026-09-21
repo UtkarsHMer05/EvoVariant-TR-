@@ -84,8 +84,9 @@ gate state.
   as an unqualified block: the decision record cites measured H100 inference memory/runtime,
   the low-confidence cohort cost preflight, the absent local/checked-in training path, and the
   current approval's training exclusion. This is not a training or PEFT result.
-- The latest validation after the manifest compatibility fix passed `make validate` with 649
-  tests, 33 deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.08% coverage.
+- The latest validation after the Phase 3 source-archive verification fix passed `make validate`
+  with 650 tests, 33 deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.08%
+  coverage.
 - Phase 5's multi-model inclusion requirement is formally `DEFERRED` after the source-backed
   seven-candidate audit. The deferral preserves the exact exclusion reasons and requires a new
   candidate-specific approval and parity smoke before Phase 6 can be reopened; it does not count
@@ -106,6 +107,11 @@ gate state.
   legacy single-file ClinVar manifests. `make data-verify` now passes for both manifest-verified
   raw archives, while the multi-entry manifest tests remain passing; this is an engineering/data
   integrity gate and does not alter the frozen cohort or resolve the Phase 3 target discrepancy.
+- Commit `601e366` makes the Phase 3 builder verify both source archives against their manifests
+  before processing. The archive-backed `make data-qc` rerun passed with the existing split-manifest
+  hash `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72` and split hash
+  `bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`; a tampered-source test
+  fails closed. This strengthens provenance without changing the frozen cohort definition.
 
 ## Phase 0 completion record — 2026-09-21
 

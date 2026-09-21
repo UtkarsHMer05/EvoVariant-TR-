@@ -2,7 +2,7 @@
   "artifact_id": "phase5-final-roster-20260921",
   "recorded_at": "2026-09-21",
   "status": "FINAL_ROSTER_BEFORE_PHASE6",
-  "protocol_hash": "f72446b2ab11bc2992dd183501bff67fe118ac46c2ab5574b2005284911091f1",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
   "phase5_decision_boundary": "No full-cohort model inference, embedding extraction, training, HPO, fine-tuning, or locked-test evaluation was launched from this artifact.",
   "model_roster": [
     {

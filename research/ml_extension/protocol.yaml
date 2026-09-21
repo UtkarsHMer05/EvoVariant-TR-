@@ -69,7 +69,7 @@ data_contract:
     source_manifest_path: data/manifests/grch38.json
     fasta_filename: Homo_sapiens_assembly38.fasta
     fai_filename: Homo_sapiens_assembly38.fasta.fai
-    contig_naming: chr_prefixed
+    contig_naming: chr_prefixed_primary_chromosomes_auxiliary_provider_names
 
 split_policy:
   path: research/ml_extension/split_policy.yaml

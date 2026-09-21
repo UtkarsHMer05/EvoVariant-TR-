@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import ssl
 import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
@@ -29,6 +30,20 @@ EXPECTED_FASTA_BYTES = 3_249_912_778
 EXPECTED_FAI_BYTES = 160_928
 EXPECTED_FASTA_SHA256 = "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564"
 EXPECTED_FAI_SHA256 = "edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b"
+PRIMARY_CONTIGS = tuple([f"chr{number}" for number in range(1, 23)] + ["chrX", "chrY"])
+
+
+def _verified_context() -> ssl.SSLContext:
+    """Use the bundled CA store when the macOS Python store is incomplete."""
+    try:
+        import certifi
+    except ImportError:
+        return ssl.create_default_context()
+    return ssl.create_default_context(cafile=certifi.where())
+
+
+def _open_url(request: Request, *, timeout: int):
+    return urlopen(request, timeout=timeout, context=_verified_context())
 
 
 def _download(url: str, destination: Path) -> None:
@@ -43,7 +58,7 @@ def _download(url: str, destination: Path) -> None:
     temporary = Path(temporary_name)
     try:
         request = Request(url, headers={"User-Agent": "EvoVariant-TR/1.1"})
-        with urlopen(request, timeout=120) as response, temporary.open("wb") as output:
+        with _open_url(request, timeout=120) as response, temporary.open("wb") as output:
             while chunk := response.read(1 << 20):
                 output.write(chunk)
         temporary.replace(destination)
@@ -53,7 +68,7 @@ def _download(url: str, destination: Path) -> None:
 
 def _head(url: str) -> dict[str, str | int | None]:
     request = Request(url, method="HEAD", headers={"User-Agent": "EvoVariant-TR/1.1"})
-    with urlopen(request, timeout=30) as response:
+    with _open_url(request, timeout=30) as response:
         return {
             "status": getattr(response, "status", None),
             "last_modified": response.headers.get("Last-Modified"),
@@ -82,8 +97,14 @@ def build_manifest(reference_dir: Path, output: Path, *, download: bool) -> dict
 
     genome = ReferenceGenome(fasta)
     contigs = genome.chromosomes
-    if not contigs or not all(name.startswith("chr") for name in contigs):
-        raise ValueError("reference index does not use the required chr-prefixed naming")
+    missing_primary = sorted(set(PRIMARY_CONTIGS) - set(contigs))
+    if missing_primary:
+        raise ValueError(
+            "reference index is missing required chr-prefixed primary contigs: "
+            + ", ".join(missing_primary)
+        )
+    primary_set = set(PRIMARY_CONTIGS)
+    auxiliary_contigs = [name for name in contigs if name not in primary_set]
 
     manifest: dict[str, object] = {
         "manifest_id": "evovariant-tr-grch38-reference-v1",
@@ -109,10 +130,15 @@ def build_manifest(reference_dir: Path, output: Path, *, download: bool) -> dict
             "http": _head(FAI_URL),
         },
         "contigs": {
-            "naming_convention": "chr-prefixed GRCh38 reference contig names",
+            "naming_convention": (
+                "chr-prefixed primary chromosomes; auxiliary HLA/decoy contigs retained "
+                "with provider-supplied names"
+            ),
             "count": len(contigs),
-            "first": contigs[:5],
-            "last": contigs[-5:],
+            "primary_contigs": list(PRIMARY_CONTIGS),
+            "auxiliary_count": len(auxiliary_contigs),
+            "auxiliary_first": auxiliary_contigs[:5],
+            "auxiliary_last": auxiliary_contigs[-5:],
         },
         "git_policy": "large FASTA and FAI remain outside Git; this manifest is tracked",
     }

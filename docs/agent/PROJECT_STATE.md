@@ -40,7 +40,7 @@ Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
-Final documented control-plane HEAD: `a0ea1ca`.
+Final documented control-plane HEAD: `e937f13`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`

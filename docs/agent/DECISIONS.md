@@ -1456,6 +1456,40 @@ Validation:
 checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
 resulting decision.
 
+## D-056 — Require explicit remote smoke evidence for Evo2 adapter readiness
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+`Evo2Adapter.check_readiness()` previously returned `READY` when local package/parity checks
+passed even though its reason stated that the required remote tiny-inference smoke was still
+missing. An injected scorer could therefore be treated as executable without a machine-readable
+remote-evidence boundary.
+
+Decision:
+Keep local parity and package checks separate from remote execution evidence. `Evo2Adapter` now
+requires an explicit `remote_smoke_checker` whose named checks all pass before returning `READY`.
+Missing, malformed, incomplete, or failed remote evidence returns `DEFERRED` or `FAILED` and is
+included in the readiness report. The default adapter map remains non-executing and does not
+download weights or invoke Modal.
+
+Alternatives:
+Treat local CUDA/package presence as sufficient, trust the injected scorer, or infer remote
+readiness from the model manifest's prose. These were rejected because infrastructure presence is
+not a remote scientific smoke and would weaken the Phase 5 gate.
+
+Consequences:
+The adapter control plane is fail-closed and future remote runners must inject auditable smoke
+evidence before scoring. This does not create new remote evidence, change the current Evo2 pilot
+artifact, or unblock the deferred multi-model Phase 5 track and dependent phases.
+
+Validation:
+Commit `696fcd6` updates `src/evovariant_tr/model_adapters.py` and
+`tests/unit/test_model_adapters.py`. Targeted Ruff, strict mypy, and five adapter tests pass;
+the tests cover missing remote evidence, malformed checks, failed smoke evidence, and successful
+explicit evidence.
+
 ## Template for new decisions
 
 ### D-XXX — Title

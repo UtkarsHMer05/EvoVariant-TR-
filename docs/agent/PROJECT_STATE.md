@@ -55,6 +55,10 @@ Active branch/worktree: `research/evovariant-tr` at
   over 51 source files, 642 default-tier tests with 33 deselected, and a 95.01% coverage floor.
   The current checkout also re-passes `make web-check` and all four `make web-e2e` workbench
   journeys. These are local validation results; they do not create remote scientific outputs.
+- Commit `696fcd6` closes a fail-closed readiness defect in `Evo2Adapter`: local package/parity
+  checks now remain `DEFERRED` until an explicit named remote-smoke evidence checker passes.
+  Missing, malformed, incomplete, or failed remote evidence cannot be promoted to `READY`; this
+  strengthens the Phase 5 control plane without claiming another remote execution.
 - Current checkout verification: branch `research/evovariant-tr` has no tracked modifications after
   the validated embedding feature-store adapter commit and this control-file update. The only
   untracked path is the injected `.agents/` skill bundle; it is intentionally not part of project

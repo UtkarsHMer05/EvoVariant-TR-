@@ -86,6 +86,10 @@ gate state.
   seven-candidate audit. The deferral preserves the exact exclusion reasons and requires a new
   candidate-specific approval and parity smoke before Phase 6 can be reopened; it does not count
   synthetic comparators as scientific models.
+- Commit `696fcd6` tightens the Evo2 adapter readiness boundary: local parity cannot produce
+  `READY`; an explicit named remote-smoke evidence checker must pass before an injected scorer
+  can execute. This is a fail-closed control fix, not new remote smoke evidence, so Phase 5's
+  multi-model deferral and Phase 6 blocker remain unchanged.
 - The Phase 3 source-provenance follow-up found no alternate official archive path: both archived
   NCBI URLs return the manifest-matching release sizes, while the corresponding non-archive URLs
   return HTTP 404. This strengthens the unresolved target-ID/source-provenance blocker; it does

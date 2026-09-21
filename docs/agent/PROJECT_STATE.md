@@ -125,6 +125,12 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current validation update — 2026-09-21
 
+- A fresh no-spend control-surface rerun passed `make modal-smoke` with Modal installed and
+  authenticated, `make test-scientific` (`7 passed, 1 skipped`), `make test-e2e` (`14 passed,
+  1 skipped`), and `make web-check`. The web build emitted only the known non-failing dynamic
+  registry filesystem and parent-package-lock tracing warnings. `make figures` and
+  `make release-check` again returned explicit `BLOCKED` status with zero scientific outputs;
+  no GPU invocation or paid work occurred.
 - Frontend dependency/lint hardening is committed in `739310d`. The web app now uses Next.js
   `16.3.5`, `eslint-config-next` `16.3.5` with its native flat-config export, direct ESLint
   scripts (the removed Next 16 `next lint` command is no longer used), and PostCSS `8.5.28`.

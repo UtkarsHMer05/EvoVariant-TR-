@@ -39,6 +39,10 @@ gate state.
 
 ## Current validation follow-up — 2026-09-21
 
+- Fresh no-spend verification passed `make modal-smoke`, the scientific tier (`7 passed, 1
+  skipped`), API/E2E (`14 passed, 1 skipped`), and `make web-check`. Figure generation and the
+  release surface remain explicitly `BLOCKED` with zero registered scientific outputs; no GPU
+  invocation occurred.
 - Frontend security/build/browser subgates: PASS in `739310d`. Next.js `16.3.5`, native flat
   ESLint configuration, direct ESLint package scripts, and PostCSS `8.5.28` are installed from
   the checked-in lockfile. Both full and production-only `npm audit` report zero vulnerabilities.

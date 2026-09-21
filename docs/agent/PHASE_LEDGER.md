@@ -91,9 +91,9 @@ gate state.
   can execute. This is a fail-closed control fix, not new remote smoke evidence, so Phase 5's
   multi-model deferral and Phase 6 blocker remain unchanged.
 - The Phase 3 source-provenance follow-up found no alternate official archive path: both archived
-  NCBI URLs return the manifest-matching release sizes, while the corresponding non-archive URLs
-  return HTTP 404. This strengthens the unresolved target-ID/source-provenance blocker; it does
-  not justify replacing the frozen archives or changing filters.
+  NCBI URLs return the manifest-matching release sizes, while the corresponding non-archive and
+  year-subdirectory fallback URLs return HTTP 404. This strengthens the unresolved target-ID/
+  source-provenance blocker; it does not justify replacing the frozen archives or changing filters.
 
 ## Phase 0 completion record — 2026-09-21
 

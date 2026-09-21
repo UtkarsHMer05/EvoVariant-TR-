@@ -18,6 +18,11 @@
       "http_status": 404
     },
     {
+      "release": "2025-01",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/2025/variant_summary_2025-01.txt.gz",
+      "http_status": 404
+    },
+    {
       "release": "2026-08",
       "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/variant_summary_2026-08.txt.gz",
       "http_status": 200,
@@ -29,8 +34,13 @@
       "release": "2026-08",
       "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary_2026-08.txt.gz",
       "http_status": 404
+    },
+    {
+      "release": "2026-08",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/2026/variant_summary_2026-08.txt.gz",
+      "http_status": 404
     }
   ],
-  "interpretation": "The manifest-verified archive URLs are the available official release paths and their remote content lengths match the local files. The non-archive paths are unavailable; no alternate official source was found that can explain the 330-ID discrepancy.",
+  "interpretation": "The manifest-verified archive URLs are the available official release paths and their remote content lengths match the local files. The non-archive paths and year-subdirectory fallback paths are unavailable; no alternate official source was found that can explain the 330-ID discrepancy.",
   "decision": "Keep the frozen manifest-verified archives and Phase 3 BLOCKED pending target-ID/source provenance or a dated protocol deviation."
 }

@@ -1452,7 +1452,7 @@ target-side IDs/source records are supplied or a dated protocol deviation accept
 archive-derived cohort. All dependent scientific phases remain blocked.
 
 Validation:
-`artifacts/phase3_source_provenance_check_20260921.json` records the four read-only endpoint
+`artifacts/phase3_source_provenance_check_20260921.json` records the six read-only endpoint
 checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
 resulting decision.
 

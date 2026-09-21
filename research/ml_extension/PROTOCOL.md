@@ -1,7 +1,11 @@
-# EvoVariant-TR ML Extension Protocol
+# EvoVariant-TR ML Extension Protocol v1.1.0
 
-Status at handoff: DRAFT — MUST be reviewed, finalized, versioned, machine-transcribed, and
-hashed before confirmatory training/evaluation.
+Status: FROZEN FOR DEVELOPMENT WITH DATED DEVIATION `ML-DEV-001`.
+
+This is a separate ML-extension protocol. It does not replace or rewrite the original frozen
+zero-shot protocol in `research/protocol/`. The historical 1,024-record QA target remains
+validation-only historical evidence; the extension's authoritative locked cohort is the
+reproducibly regenerated 946-record cohort documented in `DEVIATION_LOG.md`.
 
 ## 1. Purpose
 
@@ -30,8 +34,19 @@ using locked temporal-test labels.
 ## 4. Cohorts
 
 ### Locked temporal test
-Prefer the already-frozen t0-VUS → t1-resolved cohort unless the extension protocol creates
-another future holdout.
+The ML-extension locked temporal test is the deterministic t0-VUS → t1-resolved cohort generated
+from the manifest-verified 2025-01 and 2026-08 ClinVar archives under `ML-DEV-001`:
+
+- total: 946
+- B/LB: 536
+- P/LP: 410
+- gene labels: 946
+- authoritative manifest: `research/ml_extension/splits/authoritative_locked_test_manifest.json`
+- source/hash manifest: `research/ml_extension/splits/authoritative_cohort_hashes.json`
+- independent reference report: `artifacts/reference/grch38_validation_20260921.json`
+
+The historical validation-only target of 1,024 records (614 B/LB, 410 P/LP) is retained in the
+machine-readable control plane for comparison and is not injected into this cohort.
 
 ### Training/development
 Construct from records that do not overlap normalized IDs with temporal test and whose labels
@@ -140,4 +155,3 @@ Do not impute "benign" for unavailable evidence.
 Do not describe the system as clinically validated.
 Do not claim superiority without uncertainty-aware evidence.
 Do not claim causality from association with later ClinVar resolution.
-

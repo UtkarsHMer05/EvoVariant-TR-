@@ -10,7 +10,6 @@ Design (Milestone 31-32):
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import shutil
 import subprocess
@@ -25,8 +24,8 @@ GRCh38_GZ_FILENAME = f"{GRCh38_FASTA_FILENAME}.gz"
 
 # Official GATK Resource Bundle download location
 GATK_RESOURCE_BUNDLE_BASE = (
-    "https://storage.googleapis.com/genomics-public-data/"
-    "resources/GRCh38/"
+    "https://storage.googleapis.com/"
+    "gcp-public-data--broad-references/hg38/v0/"
 )
 
 
@@ -88,13 +87,12 @@ def download_reference(
         print(f"Reference already exists: {fasta_path} (sha256={sha})")
         return fasta_path
 
-    gz_path = dest / f"{source.fasta_filename}.gz"
-    print(f"Downloading {source.source_url} -> {gz_path}")
+    print(f"Downloading {source.source_url} -> {fasta_path}")
 
     curl_bin = shutil.which("curl")
     if curl_bin:
         subprocess.run(
-            [curl_bin, "-fsSL", "-o", str(gz_path), source.source_url],
+            [curl_bin, "-fsSL", "-o", str(fasta_path), source.source_url],
             check=True,
         )
     else:
@@ -104,25 +102,18 @@ def download_reference(
             source.source_url, headers={"User-Agent": "EvoVariant-TR/0.1"}
         )
         with urllib.request.urlopen(req, timeout=120) as resp:
-            with gz_path.open("wb") as out:
+            with fasta_path.open("wb") as out:
                 while True:
                     chunk = resp.read(CHUNK_SIZE)
                     if not chunk:
                         break
                     out.write(chunk)
 
-    print(f"Decompressing {gz_path} -> {fasta_path}")
-    with gzip.open(gz_path, "rb") as gz_in:
-        with fasta_path.open("wb") as f_out:
-            while True:
-                chunk = gz_in.read(CHUNK_SIZE)
-                if not chunk:
-                    break
-                f_out.write(chunk)
-    gz_path.unlink()
+    with fasta_path.open("rb") as f_in:
+        if f_in.read(1) != b">":
+            raise ValueError(f"downloaded reference is not a FASTA: {fasta_path}")
 
-    sha = sha256_file(fasta_path)
-    print(f"Downloaded {fasta_path} (sha256={sha})")
+    print(f"Downloaded {fasta_path} (sha256={sha256_file(fasta_path)})")
     return fasta_path
 
 

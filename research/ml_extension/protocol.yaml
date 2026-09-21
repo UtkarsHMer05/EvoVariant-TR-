@@ -3,11 +3,13 @@
 # original protocol hash are recorded in protocol_hashes.json.
 
 protocol_id: evovariant-tr-ml-extension
-protocol_version: "1.0.0"
-status: frozen_for_development
+protocol_version: "1.1.0"
+status: frozen_for_development_with_dated_deviation
 frozen_at: "2026-09-21"
 project: EvoVariant-TR
 relationship_to_original: separate_ml_extension
+protocol_deviation_id: ML-DEV-001
+reference_deviation_id: ML-DEV-002
 
 original_protocol:
   path: research/protocol/protocol.yaml
@@ -47,6 +49,14 @@ data_contract:
     label_quality_gate: "minimum_2_review_stars"
     expected_validation_target_only_n: 1024
     labels_must_not_be_read_before_freeze: true
+  authoritative_locked_test:
+    deviation_id: ML-DEV-001
+    total_n: 946
+    n_blb: 536
+    n_plp: 410
+    gene_labels: 946
+    manifest_path: research/ml_extension/splits/authoritative_locked_test_manifest.json
+    hash_manifest_path: research/ml_extension/splits/authoritative_cohort_hashes.json
   development:
     source_policy: public_records_with_labels_available_at_or_before_development_cutoff
     development_cutoff: "2025-01-02"
@@ -54,6 +64,12 @@ data_contract:
     group_key: gene_symbol
     require_gene_grouped_validation: true
     raw_archives_required: true
+  reference:
+    assembly: GRCh38
+    source_manifest_path: data/manifests/grch38.json
+    fasta_filename: Homo_sapiens_assembly38.fasta
+    fai_filename: Homo_sapiens_assembly38.fasta.fai
+    contig_naming: chr_prefixed
 
 split_policy:
   path: research/ml_extension/split_policy.yaml

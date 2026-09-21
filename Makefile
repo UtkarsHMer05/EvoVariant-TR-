@@ -151,6 +151,23 @@ phase3-audit: ## Run the detailed Phase 3 source, temporal, reference, and leaka
 		--repo-root . \
 		--output artifacts/phase3_integrity_audit_20260921.json
 
+.PHONY: phase3-reference-manifest
+phase3-reference-manifest: ## Verify the frozen Broad GRCh38 assets and write their metadata manifest
+	$(MAKE) check-venv
+	$(PYTHON) research/scripts/acquire_grch38_reference.py
+
+.PHONY: phase3-reference-audit
+phase3-reference-audit: ## Independently validate every authoritative cohort REF base against GRCh38
+	$(MAKE) check-venv
+	$(PYTHON) scripts/phase3_reference_validation.py
+
+.PHONY: phase3-freeze
+phase3-freeze: ## Run Phase 3 audit/reference gates and freeze the ML-extension manifests
+	$(MAKE) phase3-audit
+	$(MAKE) phase3-reference-manifest
+	$(MAKE) phase3-reference-audit
+	$(PYTHON) scripts/freeze_phase3_cohort.py
+
 .PHONY: phase5-smoke
 phase5-smoke: ## Run the bounded real Nucleotide Transformer and Caduceus H100 smokes
 	$(MAKE) check-venv

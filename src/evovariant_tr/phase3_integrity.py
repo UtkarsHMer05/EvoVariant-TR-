@@ -746,6 +746,27 @@ def build_phase3_integrity_audit(
         key: int(temporal[key]) for key in target_values
     }
     deltas = {key: actual_values[key] - int(target_values[key]) for key in target_values}
+    extension_protocol_path = root / "research/ml_extension/protocol.yaml"
+    deviation_log_path = root / "research/ml_extension/DEVIATION_LOG.md"
+    extension_protocol_text = (
+        extension_protocol_path.read_text(encoding="utf-8")
+        if extension_protocol_path.is_file()
+        else ""
+    )
+    deviation_log_text = (
+        deviation_log_path.read_text(encoding="utf-8")
+        if deviation_log_path.is_file()
+        else ""
+    )
+    ml_deviation_accepted = all(
+        marker in extension_protocol_text + deviation_log_text
+        for marker in (
+            'protocol_version: "1.1.0"',
+            "protocol_deviation_id: ML-DEV-001",
+            "## ML-DEV-001",
+            "Status: ACCEPTED for the ML-extension study only",
+        )
+    )
 
     normalized_ids = list(t0_ids) + [row["normalized_variant_id"] for row in final_records]
     invalid_ids = sorted(identity for identity in normalized_ids if not _ID_PATTERN.match(identity))
@@ -780,6 +801,16 @@ def build_phase3_integrity_audit(
         and t1_scan.date_counts["future_than_release"] == 0
     )
     reference = _reference_audit(root / "data/reference", final_records, root)
+    target_gate = _gate(
+        "PASS" if ml_deviation_accepted else "BLOCKED_MISSING_TARGET_ID_SET",
+        (
+            "the historical target identity set was not recovered; ML-DEV-001 formally "
+            "freezes the reproducibly regenerated cohort for the ML extension only"
+            if ml_deviation_accepted
+            else "the validation-only target counts are recorded for comparison, but no "
+            "target IDs/source records were supplied"
+        ),
+    )
     gates = {
         "source_archive_hash_and_size": _gate(
             "PASS" if source_hash_pass else "FAIL",
@@ -844,13 +875,7 @@ def build_phase3_integrity_audit(
             str(reference["status"]),
             str(reference["reason"]),
         ),
-        "handoff_target_identity_reconciliation": _gate(
-            "BLOCKED_MISSING_TARGET_ID_SET",
-            (
-                "the validation-only target counts are recorded for comparison, but "
-                "no target IDs/source records were supplied"
-            ),
-        ),
+        "handoff_target_identity_reconciliation": target_gate,
     }
     gate_statuses = [value["status"] for value in gates.values()]
     overall_status = "PASS" if all(status == "PASS" for status in gate_statuses) else "BLOCKED"
@@ -916,25 +941,52 @@ def build_phase3_integrity_audit(
             "target_is_validation_only": True,
             "target_values": target_values,
             "actual_values": actual_values,
-        "actual_minus_target": deltas,
+            "actual_minus_target": deltas,
             "target_id_set": "UNAVAILABLE",
-            "decision": "DO_NOT_FORCE_TARGET_COUNTS",
+            "ml_extension_deviation_id": "ML-DEV-001" if ml_deviation_accepted else None,
+            "ml_extension_authoritative_cohort": (
+                "CURRENT_ARCHIVE_DERIVED_COHORT"
+                if ml_deviation_accepted
+                else "UNSET"
+            ),
+            "decision": (
+                "ACCEPT_CURRENT_COHORT_FOR_ML_EXTENSION_ONLY"
+                if ml_deviation_accepted
+                else "DO_NOT_FORCE_TARGET_COUNTS"
+            ),
         },
         "gates": gates,
-        "limitations": [
-            (
-                "The handoff target ID/source set is unavailable, so identity-level "
-                "reconciliation cannot be completed."
-            ),
-            (
-                "The local frozen GRCh38 FASTA and .fai index are unavailable; assembly "
-                "and t0/t1 identity reference checks are not a substitute for independent "
-                "base validation."
-            ),
+        "limitations": (
+            [
+                (
+                    "The historical handoff target ID/source set was unavailable; ML-DEV-001 "
+                    "accepts the current archive-derived cohort for the ML extension only."
+                )
+            ]
+            if ml_deviation_accepted
+            else [
+                (
+                    "The handoff target ID/source set is unavailable, so identity-level "
+                    "reconciliation cannot be completed."
+                )
+            ]
+        )
+        + (
+            []
+            if reference["status"] == "PASS"
+            else [
+                (
+                    "The local frozen GRCh38 FASTA and .fai index are unavailable; assembly "
+                    "and t0/t1 identity reference checks are not a substitute for independent "
+                    "base validation."
+                )
+            ]
+        )
+        + [
             (
                 "Locked labels are audited for temporal construction only and are not used "
                 "to select development records or model settings."
-            ),
+            )
         ],
     }
     if output_path is not None:

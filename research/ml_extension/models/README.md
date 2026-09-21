@@ -11,10 +11,13 @@ to `VERIFIED`, an official source/checkpoint/revision, a declared input and scor
 contract, and a recorded tiny parity/smoke result. No manifest causes a model
 package or checkpoint to download as a side effect.
 
-The current registry records Evo2 as the only raw-score `INCLUDED` model.
-Nucleotide Transformer and Caduceus are `SUBSET_ONLY`: their official checkpoints
-passed real bounded embedding/logit smokes, but neither has the frozen GRCh38
-alternate-minus-reference score contract. GPN and CADD are deferred by
-compute/assets; PhyloP and AlphaMissense are deferred by compatibility or subset
-definition. The full Phase 6 benchmark remains blocked by Phase 3 and the absent
-raw-score-compatible multi-model protocol.
+The operational registry records Evo2 as the only raw-score `INCLUDED` model because it
+has a verified end-to-end raw-score pilot. The final Phase 5 roster is recorded separately
+in `artifacts/model_audit/phase5_final_roster_20260921.json`: Nucleotide Transformer and
+Caduceus are promoted to separately labeled `INCLUDED_EMBEDDING_TRACK` decisions for a
+future supervised representation phase, while their masked-LM logits remain `SUBSET_ONLY`
+for the exact Phase 6 raw-score comparison. CADD and PhyloP have public, CPU-lookup
+comparator contracts identified, but their assets, hashes, and cohort missingness must be
+manifested before use. GPN remains deferred by its required alignment asset, and AlphaMissense
+remains subset-only for applicable missense records. The full Phase 6 benchmark remains
+blocked until the Phase 3 gate and a fresh scope-specific approval pass.

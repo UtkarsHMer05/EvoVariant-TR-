@@ -1,0 +1,113 @@
+{
+  "artifact_id": "phase5-final-roster-20260921",
+  "recorded_at": "2026-09-21",
+  "status": "FINAL_ROSTER_BEFORE_PHASE6",
+  "protocol_hash": "f72446b2ab11bc2992dd183501bff67fe118ac46c2ab5574b2005284911091f1",
+  "phase5_decision_boundary": "No full-cohort model inference, embedding extraction, training, HPO, fine-tuning, or locked-test evaluation was launched from this artifact.",
+  "model_roster": [
+    {
+      "model_id": "evo2",
+      "phase5_status": "INCLUDED_RAW_SCORE",
+      "benchmark_role": "primary foundation-model raw-score track",
+      "score_contract": "forward_and_reverse alternate_minus_reference log-likelihood on exact GRCh38 8192-bp windows",
+      "evidence": "artifacts/modal/phase2_phase4_pilot_20260921_success.json",
+      "launch_status": "PHASE6_NOT_AUTHORIZED"
+    },
+    {
+      "model_id": "nucleotide_transformer",
+      "phase5_status": "INCLUDED_EMBEDDING_TRACK",
+      "benchmark_role": "separate supervised representation track; excluded from exact raw-score comparison",
+      "score_contract": "paired reference/alternate hidden representations with mean-token pooling; forward and reverse-complement views remain explicit features; masked-LM logits are not relabeled as allele likelihoods",
+      "input_constraints": "official 6-mer tokenizer, model token limit audited before extraction, variant-centered context selected in a separate validation-only configuration",
+      "evidence": "artifacts/model_audit/phase5_real_smokes_20260921.json",
+      "raw_score_decision": "SUBSET_ONLY because no official REF-vs-ALT likelihood/VEP contract was verified",
+      "launch_status": "PHASE7_NOT_AUTHORIZED"
+    },
+    {
+      "model_id": "caduceus",
+      "phase5_status": "INCLUDED_EMBEDDING_TRACK",
+      "benchmark_role": "separate supervised representation track; excluded from exact raw-score comparison",
+      "score_contract": "paired reference/alternate hidden representations with mean-token pooling; reverse-complement-aware views are retained as an explicit model/input property; masked-LM logits are not relabeled as allele likelihoods",
+      "input_constraints": "official Caduceus character tokenizer, model-native long-context support, bounded variant-centered context to be frozen before extraction",
+      "evidence": "artifacts/model_audit/phase5_real_smokes_20260921.json",
+      "raw_score_decision": "SUBSET_ONLY because no official REF-vs-ALT likelihood/VEP contract was verified",
+      "launch_status": "PHASE7_NOT_AUTHORIZED"
+    },
+    {
+      "model_id": "gpn",
+      "phase5_status": "DEFERRED",
+      "benchmark_role": "potential raw-score foundation-model comparator",
+      "reason": "The official raw-score contract is compatible in principle, but the matching 100-way GRCh38 alignment asset is approximately 42 GB compressed and was not available or approved for this checkpoint.",
+      "evidence": "artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json",
+      "launch_status": "DEFERRED"
+    },
+    {
+      "model_id": "cadd",
+      "phase5_status": "INCLUDED_RAW_SCORE",
+      "benchmark_role": "non-foundation public-score comparator; not an allele-log-likelihood model",
+      "version": "CADD score v1.7; CADD-scripts v1.7.3",
+      "genome_build": "GRCh38/hg38",
+      "source": "https://github.com/kircherlab/CADD-scripts",
+      "public_assets": [
+        "https://kircherlab.bihealth.org/download/CADD/v1.7/GRCh38/GRCh38_v1.7.tar.gz",
+        "https://kircherlab.bihealth.org/download/CADD/v1.7/GRCh38/whole_genome_SNVs.tsv.gz"
+      ],
+      "score_direction": "higher_is_more_deleterious",
+      "coverage": "CADD documents GRCh38 support and prescored SNV resources; the release supports major chromosomes 1-22, X, and Y.",
+      "missingness": "must be measured from the selected prescored shard/lookup asset; missing variants remain NA and are never imputed",
+      "gpu_requirement": "none for public-score lookup; offline annotation recomputation is explicitly out of scope",
+      "asset_status": "PUBLIC_SOURCE_IDENTIFIED_ASSET_NOT_DOWNLOADED_OR_HASHED",
+      "launch_status": "PHASE6_NOT_AUTHORIZED"
+    },
+    {
+      "model_id": "phylop",
+      "phase5_status": "INCLUDED_RAW_SCORE",
+      "benchmark_role": "non-foundation site-wise conservation comparator; not an allele-effect model",
+      "version": "phyloP100way; UCSC data last updated 2015-05-08",
+      "genome_build": "GRCh38/hg38",
+      "source": "https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=cons100way",
+      "public_assets": [
+        "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/phyloP100way/hg38.phyloP100way.bw",
+        "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/phyloP100way/md5sum.txt"
+      ],
+      "score_direction": "positive_is_more_conserved; negative_is_more_accelerated",
+      "coverage": "basewise values in the public hg38 phyloP100way bigWig over alignable regions; exact cohort coverage must be measured at lookup time",
+      "missingness": "unaligned or absent bigWig positions remain NA and are never imputed",
+      "gpu_requirement": "none for local bigWig lookup",
+      "asset_status": "PUBLIC_SOURCE_IDENTIFIED_ASSET_NOT_DOWNLOADED_OR_HASHED",
+      "comparability_boundary": "site conservation is reported as a comparator feature and is not transformed into an Evo2-style REF-vs-ALT score",
+      "launch_status": "PHASE6_NOT_AUTHORIZED"
+    },
+    {
+      "model_id": "alphamissense_valid_subset",
+      "phase5_status": "SUBSET_ONLY",
+      "benchmark_role": "precomputed missense comparator only",
+      "reason": "Only valid mapped human missense variants may receive a score; the approved transcript/isoform applicability subset and coverage report are not frozen.",
+      "evidence": "artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json",
+      "launch_status": "DEFERRED"
+    }
+  ],
+  "comparator_investigation": {
+    "cadd": {
+      "material_gpu_spend_required": false,
+      "material_storage_or_download_cost": true,
+      "decision": "public prescored lookup is scientifically preferable to GPU recomputation; freeze an asset manifest and measure cohort missingness before Phase6"
+    },
+    "phylop": {
+      "material_gpu_spend_required": false,
+      "material_storage_or_download_cost": true,
+      "decision": "public UCSC bigWig lookup is feasible; retain the site-score semantics and missingness as a separate comparator contract"
+    }
+  },
+  "phase6_raw_score_set": ["evo2"],
+  "phase7_representation_set": ["nucleotide_transformer", "caduceus"],
+  "zero_gpu_comparator_set": ["cadd", "phylop"],
+  "subset_only_set": ["alphamissense_valid_subset"],
+  "deferred_set": ["gpn"],
+  "all_launches_blocked_until": [
+    "Phase 3 PASS and authoritative manifests are committed",
+    "fresh scope-specific compute approval covers the selected phase",
+    "asset manifests and cohort missingness reports exist for public comparators",
+    "no raw masked-LM logits are used as an unapproved raw allele-effect score"
+  ]
+}

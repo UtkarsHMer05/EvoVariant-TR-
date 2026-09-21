@@ -29,7 +29,7 @@ def test_reference_source_values():
     assert GRCh38_SOURCE.fai_filename == "Homo_sapiens_assembly38.fasta.fai"
     assert "ftp.ncbi.nlm.nih.gov" not in GRCh38_SOURCE.source_url
     assert "storage.googleapis.com" in GRCh38_SOURCE.source_url
-    assert "GRCh38" in GRCh38_SOURCE.source_url
+    assert "hg38/v0" in GRCh38_SOURCE.source_url
 
 
 def test_sha256_file(tmp_path: Path):
@@ -169,45 +169,40 @@ def test_download_reference_already_exists(tmp_path: Path):
 
 def test_download_reference_uses_curl(tmp_path: Path):
     """Test the download path via curl with mock."""
-    import gzip
-
     dest = tmp_path / "ref"
     dest.mkdir()
-
-    fake_gz_content = gzip.compress(b">chr1\nACGTACGTAC\n>chr2\nGGGGCCCCAA\n")
-    fake_gz_path = dest / f"{GRCh38_FASTA_FILENAME}.gz"
-    fake_gz_path.write_bytes(fake_gz_content)
 
     fake_fasta_path = dest / GRCh38_FASTA_FILENAME
 
     with mock.patch("evovariant_tr.reference.shutil.which", return_value="/usr/bin/curl"):
-        with mock.patch("subprocess.run") as mock_run:
-            with mock.patch("evovariant_tr.reference.sha256_file", return_value="abc123"):
-                result = download_reference(dest)
-                assert mock_run.call_count == 1
-                assert result == fake_fasta_path
+        def fake_run(command: list[str], check: bool) -> None:
+            assert check is True
+            Path(command[command.index("-o") + 1]).write_bytes(b">chr1\nA\n")
+
+        with mock.patch("subprocess.run", side_effect=fake_run) as mock_run:
+            result = download_reference(dest)
+            assert mock_run.call_count == 1
+            assert result == fake_fasta_path
+            assert mock_run.call_args.args[0][-1] == GRCh38_SOURCE.source_url
 
 
 def test_download_reference_no_curl_uses_urllib(tmp_path: Path):
     """Test the download path via urllib when curl is not available."""
-    import gzip
-
     dest = tmp_path / "ref"
     dest.mkdir()
 
-    fake_gz_content = gzip.compress(b">chr1\nACGTACGTAC\n>chr2\nGGGGCCCCAA\n")
+    fake_fasta_content = b">chr1\nACGTACGTAC\n>chr2\nGGGGCCCCAA\n"
     fake_fasta_path = dest / GRCh38_FASTA_FILENAME
 
     fake_response = mock.MagicMock()
-    fake_response.read.side_effect = [fake_gz_content, b""]
+    fake_response.read.side_effect = [fake_fasta_content, b""]
     fake_response.__enter__ = mock.MagicMock(return_value=fake_response)
     fake_response.__exit__ = mock.MagicMock(return_value=False)
 
     with mock.patch("evovariant_tr.reference.shutil.which", return_value=None):
         with mock.patch("urllib.request.urlopen", return_value=fake_response):
-            with mock.patch("evovariant_tr.reference.sha256_file", return_value="abc123"):
-                result = download_reference(dest)
-                assert result == fake_fasta_path
+            result = download_reference(dest)
+            assert result == fake_fasta_path
 
 
 def test_index_reference_calls_samtools(tmp_path: Path):

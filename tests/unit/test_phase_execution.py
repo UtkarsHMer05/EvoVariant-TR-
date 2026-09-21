@@ -250,6 +250,7 @@ def test_embedding_execution_writes_hashed_features_without_labels(tmp_path: Pat
     )
     assert row["normalized_variant_id"] == "GRCh38:2:200:C>G"
     assert row["model_normalized_variant_id"] == "GRCh38:chr2:200:C>G"
+    assert row["gene_symbol"] == "GENE2"
     assert "label" not in row
 
     labeled_plan = _plan(

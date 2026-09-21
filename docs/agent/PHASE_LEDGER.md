@@ -567,6 +567,22 @@ gate state.
 - Dependency: a fresh approval must cover the exact cohort/model/endpoint/scope and match the
   current ML protocol hash before `scripts/phase_execute.py` is used for paid work.
 
+## Phase 8/9 downstream CPU subgate — 2026-09-21
+
+- Engineering outcome: `PASS` for the local artifact-driven implementation; scientific Phase 8
+  and Phase 9 remain `BLOCKED / NOT STARTED` because no real Phase 7 feature cache exists.
+- Added `src/evovariant_tr/downstream_pipeline.py`, `scripts/train_from_features.py`, and
+  `scripts/hpo_from_features.py`. `make train` and `make hpo` retain blocked status behavior by
+  default and run only when explicit feature/config paths are supplied.
+- The loader verifies feature hashes and model/layer identity, requires TRAIN/VALIDATION labels
+  and gene metadata, rejects LOCKED_TEST and duplicate IDs, and enforces train/validation
+  identity and gene separation before fitting. Baselines fit only on TRAIN; metrics and HPO
+  selection read only VALIDATION.
+- Synthetic tests pass for baseline outputs, metric validation, tamper/leakage rejection, and
+  bounded HPO. No real feature artifact, locked label, scientific registry record, or figure was
+  produced. The next dependency is verified Phase 7 development extraction, not additional CPU
+  tuning.
+
 ## Phase 19 README/status reconciliation — 2026-09-21
 
 - Documentation commit: `0db7e8b` (`docs: align README with current research gates`).

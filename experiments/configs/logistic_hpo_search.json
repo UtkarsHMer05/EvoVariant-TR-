@@ -1,0 +1,22 @@
+[
+  {
+    "learning_rate": 0.05,
+    "steps": 100,
+    "l2": 0.0
+  },
+  {
+    "learning_rate": 0.1,
+    "steps": 200,
+    "l2": 0.0
+  },
+  {
+    "learning_rate": 0.05,
+    "steps": 200,
+    "l2": 0.01
+  },
+  {
+    "learning_rate": 0.1,
+    "steps": 400,
+    "l2": 0.01
+  }
+]

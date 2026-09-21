@@ -1942,6 +1942,46 @@ Validation:
 compiled and its source lint passed. `make phase-execute` defaults to `--help` and makes no
 network request. Implementation commit: `82ff2d6` (`feat: add gated resumable phase execution`).
 
+## D-069 — Execute downstream training and HPO only from verified development feature artifacts
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The repository already had deterministic CPU classifier and validation-only HPO primitives, but
+no artifact-driven entry point connected them to the Phase 7 feature contract. A downstream
+implementation must not silently train on a locked row, a mixed model/layer cache, a tampered
+vector, or a shared gene group.
+
+Decision:
+Use `src/evovariant_tr/downstream_pipeline.py`, `scripts/train_from_features.py`, and
+`scripts/hpo_from_features.py` for Phase 8/9 local work. The loader accepts only content-hashed
+TRAIN and VALIDATION JSONL feature rows, requires binary labels and gene symbols, verifies the
+feature content hash, rejects locked-test rows and cross-split identity/gene leakage, and records
+the feature-artifact hash. Phase 8 fits logistic regression, a transparent decision stump, and a
+small MLP on TRAIN and reports an explicit metric panel on VALIDATION only. Phase 9 runs a bounded
+logistic search whose objective is AUROC on VALIDATION only; search configurations and the chosen
+trial are written separately. Neither command opens a remote endpoint or creates a final result
+registry record automatically.
+
+Alternatives:
+Train directly from arbitrary NumPy/CSV files, infer missing gene metadata, select by locked-test
+performance, or add a heavyweight ML dependency before the feature contract is proven. These
+were rejected because they would weaken reproducibility, leakage controls, or the local-first
+compute policy.
+
+Consequences:
+The Phase 8/9 engineering surfaces are implemented and tested, but their scientific gates remain
+`BLOCKED / NOT STARTED` until an approved Phase 7 extraction produces a real development feature
+artifact. Synthetic fixtures in the test suite are software tests only and cannot enter the
+experiment registry or figure bundle.
+
+Validation:
+`make train` and `make hpo` remain truthful `BLOCKED` status surfaces when `FEATURES` and, for
+HPO, `HPO_CONFIGS` are unset. With explicit paths they invoke only the local CPU scripts.
+`make validate` passed with 676 tests, 33 deselected, strict mypy, Ruff, secret scan, and 95.01%
+coverage. The new downstream contract suite passed 4 tests.
+
 ## Template for new decisions
 
 ### D-XXX — Title

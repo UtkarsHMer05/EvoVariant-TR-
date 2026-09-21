@@ -29,6 +29,10 @@ COST_ACK_ENV := EVOVARIANT_TR_PAID_COMPUTE_ACK
 COST_ACK_VALUE := I_ACCEPT_COSTS
 APPROVAL ?= artifacts/approvals/full_run_approval.json
 PHASE_EXEC_ARGS ?= --help
+FEATURES ?=
+TRAIN_OUTPUT ?= research/runs/phase8_training
+HPO_CONFIGS ?=
+HPO_OUTPUT ?= research/runs/phase9_hpo
 
 # ---------------------------------------------------------------------------
 # Help
@@ -214,18 +218,28 @@ extract-features: ## Record/run the Phase 7 representation extraction gate
 .PHONY: train
 train: ## Record/run the Phase 8 downstream training gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 8 --family CLF \
+	@if [ -n "$(FEATURES)" ]; then \
+		$(PYTHON) scripts/train_from_features.py --features "$(FEATURES)" \
+			--output-dir "$(TRAIN_OUTPUT)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 8 --family CLF \
 		--command-name train --output research/runs/phase8_clf_status.json \
 		--blocker "verified frozen feature cache is unavailable" \
-		--blocker "Phase 7 representation extraction is blocked"
+		--blocker "Phase 7 representation extraction is blocked"; \
+	fi
 
 .PHONY: hpo
 hpo: ## Record/run the Phase 9 validation-only HPO gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 9 --family HPO \
+	@if [ -n "$(FEATURES)" ] && [ -n "$(HPO_CONFIGS)" ]; then \
+		$(PYTHON) scripts/hpo_from_features.py --features "$(FEATURES)" \
+			--configs "$(HPO_CONFIGS)" --output-dir "$(HPO_OUTPUT)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 9 --family HPO \
 		--command-name hpo --output research/runs/phase9_hpo_status.json \
 		--blocker "no registered development feature artifact exists" \
-		--blocker "Phase 8 training is blocked"
+		--blocker "Phase 8 training is blocked"; \
+	fi
 
 .PHONY: finetune-smoke
 finetune-smoke: ## Record/run the Phase 10 PEFT/fine-tuning gate

@@ -451,6 +451,7 @@ def _score_row(
         "failure_reason": None,
         "provenance": result.get("provenance", {}),
         "raw_result": result,
+        "gene_symbol": record.gene_symbol,
     }
     if include_label:
         row["label"] = record.label
@@ -478,6 +479,7 @@ def _embedding_row(
         result,
         split=record.split,
         model_id=model_id,
+        gene_symbol=record.gene_symbol,
     ).to_dict()
     feature["model_normalized_variant_id"] = feature["normalized_variant_id"]
     feature["normalized_variant_id"] = record.source_normalized_variant_id

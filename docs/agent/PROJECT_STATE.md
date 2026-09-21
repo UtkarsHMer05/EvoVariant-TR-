@@ -713,3 +713,23 @@ figures from the single pilot record.
 - The next paid action remains a bounded parity/cohort execution using a fresh approval whose
   protocol hash is `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`; the
   stale August approval and Phase6A approval must not be widened or reused.
+
+## Phase 8/9 downstream CPU subgate — 2026-09-21
+
+- Implemented `src/evovariant_tr/downstream_pipeline.py` plus
+  `scripts/train_from_features.py` and `scripts/hpo_from_features.py`. The existing `make train`
+  and `make hpo` targets now execute these local scripts only when explicit feature/config paths
+  are provided; with no paths they continue to emit truthful blocked status artifacts.
+- The feature loader verifies JSONL content hashes, model/layer identity, binary labels, gene
+  metadata, split membership, normalized-ID uniqueness, and train/validation identity and gene
+  disjointness. `LOCKED_TEST` rows are rejected rather than filtered.
+- Phase 8 baselines are logistic regression, decision stump, and deterministic CPU MLP. They fit
+  on TRAIN and produce a validation-only AUROC/AUPRC/MCC-equivalent metric panel including
+  accuracy, balanced accuracy, precision, sensitivity, specificity, F1, Brier, NLL, ECE, and
+  calibration gap. Phase 9 writes a bounded validation-only logistic study and search space.
+- No real feature cache exists, so no Phase 8/9 scientific run was executed, no locked labels
+  were read, and no result registry entry or figure input was created. Synthetic fixture tests
+  are software evidence only.
+- Validation evidence: `make validate` passed with 676 tests, 33 deselected, strict mypy, Ruff,
+  secret scan, and 95.01% coverage; `make train` and `make hpo` defaulted to `BLOCKED` status
+  artifacts without requiring network or paid compute.

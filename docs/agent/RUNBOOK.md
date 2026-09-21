@@ -80,6 +80,25 @@ boundary. Do not pass a locked split until the model/configuration is frozen und
 The runner writes an execution plan, content-hashed shard files, raw JSONL output, and a summary;
 inspect and register those artifacts only after their hashes and scientific gates pass.
 
+## Local downstream training and HPO
+
+Once a verified Phase 7 development feature artifact exists, run CPU-only downstream work with
+explicit paths:
+
+```bash
+make train FEATURES=research/runs/<features>/features.jsonl \
+  TRAIN_OUTPUT=research/runs/<phase8-run>
+make hpo FEATURES=research/runs/<features>/features.jsonl \
+  HPO_CONFIGS=experiments/configs/<bounded-logistic-search>.json \
+  HPO_OUTPUT=research/runs/<phase9-run>
+```
+
+The feature loader rejects locked-test rows, duplicate IDs, mixed model/layer artifacts, invalid
+content hashes, and train/validation gene overlap. Generated metrics are validation-only and must
+be registered as preliminary evidence only after immutable run metadata and output hashes are
+checked. If `FEATURES` or `HPO_CONFIGS` is absent, the Make targets write blocked status artifacts
+and do not infer a result.
+
 ## Before commit
 
 - tests,

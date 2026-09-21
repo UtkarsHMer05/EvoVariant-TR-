@@ -1,0 +1,71 @@
+{
+  "artifact_id": "modal-h100-dependency-retry-20260921",
+  "approval_version": "modal-h100-dependency-retry-v1",
+  "approved_by": "user",
+  "approved_at": "2026-09-21T22:45:29+05:30",
+  "authorization_source": "explicit user continuation checkpoint pasted on 2026-09-21; corrected H100 diagnostic and conditional dependency checks are authorized up to an additional $0.50",
+  "scope": "verify the corrected minimal H100 PyTorch/CUDA image, then conditionally verify read-only hf_cache access, canonical Evo2 load, one development score, and eight development scores",
+  "budget_control": {
+    "hard_cap_usd": 0.5,
+    "runner_safety_stop_usd": 0.45,
+    "no_silent_budget_widening": true,
+    "billing_interpretation": "Modal billing summary is workspace-level evidence and not a per-run invoice"
+  },
+  "git": {
+    "commit": "14d8a9812d6bc776a21d3b8e6006cd46d2b89d9e",
+    "branch": "research/evovariant-tr",
+    "dirty_expected": true,
+    "code_fix": "scripts/modal_h100_diagnostic.py plus tests/unit/test_modal_h100_diagnostic_source.py",
+    "historical_approval_preserved": "artifacts/approvals/modal_transport_diagnostic_20260921.json remains bound to its original execution HEAD"
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "study": {
+    "study_id": "ML-DEV-BUDGETED-001",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "formal_development_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "locked_test_access": "prohibited",
+    "labels_remote_transport": "prohibited"
+  },
+  "modal": {
+    "profile": "utkarshmer05",
+    "workspace": "utkarshmer05",
+    "environment": "main",
+    "diagnostic_app": "evovariant-tr-modal-h100-diagnostic",
+    "canonical_app": "evovariant-tr",
+    "volume": "hf_cache"
+  },
+  "allowed_diagnostics": [
+    "corrected minimal H100 function importing pinned torch and running one CUDA tensor multiply",
+    "read-only hf_cache mount/read check only after the H100 diagnostic passes",
+    "canonical Evo2 7B revision 4b509ec2a22d6de472659f908bcb0714265ad3a7 load-only check only after the cache check passes",
+    "one deterministic TRAIN or VALIDATION development record only after model load passes",
+    "eight deterministic TRAIN or VALIDATION development records only after the one-record check passes",
+    "durable or detached FunctionCall submission and later retrieval where appropriate"
+  ],
+  "exclusions": [
+    "formal 64-row preflight retry",
+    "full 4000-row Evo2 run",
+    "full Nucleotide Transformer or Caduceus run",
+    "training requiring new remote foundation-model work",
+    "hyperparameter optimization",
+    "fine-tuning",
+    "locked-test inference or labels",
+    "Phase 14",
+    "deployment or release",
+    "protocol, cohort, checkpoint, manifest, or score-semantics rewrites",
+    "deletion of any prior failed Modal app, run, log, or evidence artifact"
+  ],
+  "stop_conditions": [
+    "stop before diagnostic compute exceeds $0.45 safety stop and absolutely $0.50 hard cap",
+    "stop immediately on a new H100 scheduling, container, torch import, CUDA, or runtime failure",
+    "do not start hf_cache or Evo2 layers after a failed H100 diagnostic",
+    "stop before Evo2 scoring if hf_cache access or model loading fails",
+    "do not send labels or access LOCKED_TEST",
+    "do not retry the formal 64-row preflight from this approval"
+  ],
+  "formal_retry_authorized": false
+}

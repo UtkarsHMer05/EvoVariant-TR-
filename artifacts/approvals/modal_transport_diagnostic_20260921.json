@@ -1,0 +1,65 @@
+{
+  "artifact_id": "modal-transport-diagnostic-20260921",
+  "approval_version": "modal-transport-diagnostic-v1",
+  "approved_by": "user",
+  "approved_at": "2026-09-21T22:03:35+05:30",
+  "authorization_source": "explicit user continuation checkpoint pasted on 2026-09-21; diagnostic-only Modal execution is authorized up to an additional $0.50",
+  "scope": "isolate local client, Modal transport/session, generic CPU execution, minimal H100 CUDA execution, hf_cache read access, and only conditional canonical Evo2 development diagnostics",
+  "budget_control": {
+    "hard_cap_usd": 0.5,
+    "runner_safety_stop_usd": 0.45,
+    "no_silent_budget_widening": true,
+    "billing_interpretation": "Modal billing summary is workspace-level evidence and not a per-run invoice"
+  },
+  "git": {
+    "commit": "e589efb5443713c864004472b1c3457a437d803a",
+    "branch": "research/evovariant-tr",
+    "dirty_expected": true,
+    "note": "The pre-existing untracked .agents skill tree and this approval artifact remain outside the evidence commit."
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "study": {
+    "study_id": "ML-DEV-BUDGETED-001",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "locked_test_access": "prohibited",
+    "labels_remote_transport": "prohibited"
+  },
+  "modal": {
+    "profile": "utkarshmer05",
+    "workspace": "utkarshmer05",
+    "environment": "main",
+    "diagnostic_app_prefix": "evovariant-tr-modal-transport-diagnostic"
+  },
+  "allowed_diagnostics": [
+    "smallest CPU-only Modal function accepting one integer and returning a deterministic integer or string",
+    "multiple CPU invocations with submission, allocation, return, latency, and stream-stability evidence",
+    "official modal run --detach submission and later result/log retrieval where appropriate",
+    "only if CPU succeeds: minimal H100 function executing torch CUDA tensor x2 with no model or volume",
+    "only if minimal H100 succeeds: read-only hf_cache volume mount/read check without model loading",
+    "only if all previous checks succeed: canonical Evo2 7B revision metadata/load and at most one then eight deterministic development records"
+  ],
+  "exclusions": [
+    "formal 64-row preflight retry",
+    "full 4000-row Evo2 run",
+    "full Nucleotide Transformer or Caduceus run",
+    "training",
+    "hyperparameter optimization",
+    "fine-tuning",
+    "locked test access or labels",
+    "Phase 14",
+    "manifest or protocol rewrites",
+    "deletion of any prior failed Modal app"
+  ],
+  "stop_conditions": [
+    "stop before diagnostic compute exceeds $0.45 safety stop and absolutely at $0.50 hard cap",
+    "stop immediately if CPU trivial execution has the same StreamTerminatedError",
+    "do not start H100, volume, or Evo2 layers after a failed earlier layer",
+    "do not classify an H100 scheduling outage without supporting Modal log evidence",
+    "do not retry the formal 64-row preflight from this approval"
+  ],
+  "formal_retry_authorized": false
+}

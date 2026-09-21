@@ -1,0 +1,66 @@
+{
+  "app_name": "evovariant-tr-modal-hf-cache-diagnostic",
+  "artifact_id": "modal-hf-cache-read-20260921",
+  "elapsed_ms": 3144.3751251790673,
+  "function": "cache_probe",
+  "function_call_id": "fc-01M32GMEMTMNFKJ60M6PW1918T",
+  "result": {
+    "cache_root": "/root/.cache/huggingface",
+    "checkpoint_readable": true,
+    "config_readable": true,
+    "metadata": {
+      "architectures": null,
+      "keys": [
+        "_name_or_path",
+        "architecture",
+        "name"
+      ],
+      "model_type": null
+    },
+    "model": "evo2_7b",
+    "model_cache_exists": true,
+    "model_cache_path": "hub/models--arcinstitute--evo2_7b",
+    "refs_main": "bda0089f92582d5baabf0f22d9fc85f3588f6b58",
+    "snapshot_count": 1,
+    "snapshots": [
+      {
+        "entries": [
+          {
+            "is_file": true,
+            "is_symlink": true,
+            "link_target": "../../blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "relative_path": "hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58/.gitattributes",
+            "size_bytes": 1519
+          },
+          {
+            "is_file": true,
+            "is_symlink": true,
+            "link_target": "../../blobs/48154a8d07d4053761c202c7d549eeab18b1d7b6",
+            "relative_path": "hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58/README.md",
+            "size_bytes": 1253
+          },
+          {
+            "is_file": true,
+            "is_symlink": true,
+            "link_target": "../../blobs/9fcc468be76feea193bc080d6255d9f646046731",
+            "relative_path": "hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58/config.json",
+            "size_bytes": 87
+          },
+          {
+            "is_file": true,
+            "is_symlink": true,
+            "link_target": "../../blobs/c66645929dc1b9c631f5be656da8726f38946315dc9167000a615dd626fcecf4",
+            "relative_path": "hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58/evo2_7b.pt",
+            "size_bytes": 13766621200
+          }
+        ],
+        "snapshot_revision": "bda0089f92582d5baabf0f22d9fc85f3588f6b58"
+      }
+    ],
+    "status": "PASS",
+    "structurally_valid": true
+  },
+  "status": "PASS",
+  "submitted_at_ns": 1790012176883043000,
+  "volume": "hf_cache"
+}

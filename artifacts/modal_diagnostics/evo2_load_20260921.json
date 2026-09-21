@@ -1,0 +1,27 @@
+{
+  "app_name": "evovariant-tr-modal-evo2-load-diagnostic",
+  "artifact_id": "modal-evo2-load-20260921",
+  "elapsed_ms": 59690.20524993539,
+  "function": "load_probe",
+  "function_call_id": "fc-01M32GRHKA7ZASBDXEF9NB7B53",
+  "gpu": "H100",
+  "model_name": "evo2_7b",
+  "result": {
+    "cache_hit": true,
+    "cuda_runtime_version": "12.4",
+    "device": "cuda:0",
+    "dtype": "torch.bfloat16",
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "load_seconds": 29.368544167000003,
+    "loaded": true,
+    "model_name": "evo2_7b",
+    "peak_allocated_bytes": 13669210112,
+    "peak_reserved_bytes": 15466496000,
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "torch_version": "2.4.0+cu124"
+  },
+  "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "status": "PASS",
+  "submitted_at_ns": 1790012310981347000,
+  "volume": "hf_cache"
+}

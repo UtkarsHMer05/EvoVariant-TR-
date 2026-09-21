@@ -1,0 +1,148 @@
+{
+  "artifact_id": "modal-evo2-development-shard-8-20260921",
+  "payload_sha256": "dd676e5e0fc977f1f552f60649d14910b0894ec4f5cadcebb0aa1aff6d9c2097",
+  "remote_function_call_id": "fc-01M32H843J01JNSS35BF850741",
+  "remote_provenance": {
+    "all_scores_finite": true,
+    "cache_hit": true,
+    "container_id": null,
+    "context_length_bp": 8192,
+    "function_call_id": "fc-01M32H843J01JNSS35BF850741",
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "gpu_type": "H100",
+    "model_id": "evo2_7b",
+    "model_load_seconds": 15.572371543,
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "orientation": "forward_and_reverse",
+    "peak_gpu_memory_allocated_bytes": 18075978752,
+    "peak_gpu_memory_reserved_bytes": 22267559936,
+    "score_seconds": 13.662419124000003,
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "row_count": 8,
+  "rows": [
+    {
+      "aggregate_score": -0.000554502010345459,
+      "delta_forward": -0.0007086992263793945,
+      "delta_reverse": -0.00040030479431152344,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:101532297:A>G",
+      "raw_scores": {
+        "alternate_forward": -1.1370244026184082,
+        "alternate_reverse": -1.134323000907898,
+        "reference_forward": -1.1363157033920288,
+        "reference_reverse": -1.1339226961135864
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.00012481212615966797,
+      "delta_forward": 9.059906005859375e-06,
+      "delta_reverse": -0.0002586841583251953,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102597229:C>A",
+      "raw_scores": {
+        "alternate_forward": -1.1703531742095947,
+        "alternate_reverse": -1.1667228937149048,
+        "reference_forward": -1.1703622341156006,
+        "reference_reverse": -1.1664642095565796
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": 0.00018066167831420898,
+      "delta_forward": 0.00019991397857666016,
+      "delta_reverse": 0.0001614093780517578,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102597229:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.170162320137024,
+        "alternate_reverse": -1.1663028001785278,
+        "reference_forward": -1.1703622341156006,
+        "reference_reverse": -1.1664642095565796
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0008774399757385254,
+      "delta_forward": -0.0013161897659301758,
+      "delta_reverse": -0.000438690185546875,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102627178:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.1450752019882202,
+        "alternate_reverse": -1.1639755964279175,
+        "reference_forward": -1.14375901222229,
+        "reference_reverse": -1.1635369062423706
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0001709461212158203,
+      "delta_forward": -0.0003116130828857422,
+      "delta_reverse": -3.0279159545898438e-05,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102630137:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.1475151777267456,
+        "alternate_reverse": -1.1723260879516602,
+        "reference_forward": -1.1472035646438599,
+        "reference_reverse": -1.1722958087921143
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0009252429008483887,
+      "delta_forward": -0.0006101131439208984,
+      "delta_reverse": -0.001240372657775879,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102832610:C>T",
+      "raw_scores": {
+        "alternate_forward": -0.8903685808181763,
+        "alternate_reverse": -0.8963292837142944,
+        "reference_forward": -0.8897584676742554,
+        "reference_reverse": -0.8950889110565186
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": 0.0004017651081085205,
+      "delta_forward": 0.0007790327072143555,
+      "delta_reverse": 2.4497509002685547e-05,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102834750:A>G",
+      "raw_scores": {
+        "alternate_forward": -0.9042819142341614,
+        "alternate_reverse": -0.9223636388778687,
+        "reference_forward": -0.9050609469413757,
+        "reference_reverse": -0.9223881363868713
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -3.725290298461914e-05,
+      "delta_forward": 0.00018835067749023438,
+      "delta_reverse": -0.00026285648345947266,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:103076162:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.0368623733520508,
+        "alternate_reverse": -1.0700438022613525,
+        "reference_forward": -1.037050724029541,
+        "reference_reverse": -1.069780945777893
+      },
+      "split": "TRAIN"
+    }
+  ],
+  "source_ids": [
+    "GRCh38:10:101532297:A>G",
+    "GRCh38:10:102597229:C>A",
+    "GRCh38:10:102597229:C>T",
+    "GRCh38:10:102627178:C>T",
+    "GRCh38:10:102630137:C>T",
+    "GRCh38:10:102832610:C>T",
+    "GRCh38:10:102834750:A>G",
+    "GRCh38:10:103076162:C>T"
+  ],
+  "status": "COMPLETED"
+}

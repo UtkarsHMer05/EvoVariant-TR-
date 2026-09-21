@@ -1,0 +1,33 @@
+{
+  "app_name": "evovariant-tr-modal-h100-diagnostic",
+  "artifact_id": "modal-h100-cuda-probe-jsonsafe-retry-20260921",
+  "elapsed_ms": 16995.350500103086,
+  "function": "cuda_probe",
+  "function_call_id": "fc-01M32GDY0FPCXSECVK2PJQY5B9",
+  "gpu": "H100",
+  "hf_access": false,
+  "model_access": false,
+  "result": {
+    "compute_capability": [
+      9,
+      0
+    ],
+    "container_id": null,
+    "cuda_available": true,
+    "cuda_runtime_version": "12.4",
+    "device_count": 1,
+    "device_name": "NVIDIA H100 80GB HBM3",
+    "execution_latency_ms": 374.89215300000023,
+    "function_call_id": "fc-01M32GDY0FPCXSECVK2PJQY5B9",
+    "hostname": "modal",
+    "tensor_result": 2.0,
+    "torch_version": "2.4.0+cu124"
+  },
+  "status": "PASS",
+  "submitted_at_ns": 1790011963231205000,
+  "volume": null,
+  "detached_retrieval": "PASS",
+  "container_id_from_logs": "ta-01M32GDYA6FBAKDZ2AZ0XGHXNR",
+  "app_id": "ap-6saybhZYlnXAf2CmB98tXP",
+  "function_id": "fu-5lcgqs4HgSSP6xGP1I2rRX"
+}

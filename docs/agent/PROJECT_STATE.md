@@ -1207,3 +1207,57 @@ families were not invented.
   `BLOCKED`, Phase 10 is `DEFERRED_BY_COMPUTE`, and Phase 16 is `PARTIAL`. `make modal-smoke`
   authenticated successfully with `gpu_count: 0`, `status: PLANNED`, and no remote invocation.
   No phase was promoted from local control-surface evidence.
+
+## Fresh JSON-safe H100 diagnostic ladder — 2026-09-21
+
+- A fresh approval was created at
+  `artifacts/approvals/modal_h100_jsonsafe_retry_20260921.json`, bound to HEAD
+  `cc035d1d2f49d42c3770fd4e9c9dc94587f5465e`, with a `$0.50` hard cap and `$0.45` safety stop.
+  The prior three approval artifacts remain byte-for-byte unchanged. The frozen protocol,
+  formal TRAIN/VALIDATION manifests, formal record-set hash, and locked-test manifest were not
+  modified. The formal 64-row retry remains explicitly excluded from this approval.
+- The corrected JSON-safe H100 probe passed in app `ap-6saybhZYlnXAf2CmB98tXP`, function
+  `fu-5lcgqs4HgSSP6xGP1I2rRX`, call `fc-01M32GDY0FPCXSECVK2PJQY5B9`, container
+  `ta-01M32GDYA6FBAKDZ2AZ0XGHXNR`. Local `FunctionCall.get()` and independent detached
+  `FunctionCall.from_id(...).get()` both returned plain builtins. The probe reported PyTorch
+  `2.4.0+cu124`, CUDA `12.4`, `cuda_available: true`, H100 `NVIDIA H100 80GB HBM3`, compute
+  capability `[9, 0]`, and tensor result `2.0`. The previous local result-deserialization failure
+  did not recur; the exact failure layer is therefore resolved by `e8ae239` for this probe.
+- The read-only cache check passed in app `ap-5orUJFT7c3T0Zb6HE1U4gN`, call
+  `fc-01M32GMEMTMNFKJ60M6PW1918T`, with a valid mounted `hf_cache`, readable
+  `hub/models--arcinstitute--evo2_7b/snapshots/bda0089f92582d5baabf0f22d9fc85f3588f6b58`,
+  readable `evo2_7b.pt` (13,766,621,200 bytes), readable `config.json`, and a structurally valid
+  cache. No cache write, clear, or redownload was performed.
+- Canonical Evo2 load-only passed in app `ap-Th4trAg5I1lyS9edw0SzqG`, function
+  `fu-neSkt1w16XgFvZQFEm2y3K`, call `fc-01M32GRHKA7ZASBDXEF9NB7B53`, container
+  `ta-01M32GRJ09E2YHWRF2FJ5XMGWR`. `evo2_7b` revision
+  `4b509ec2a22d6de472659f908bcb0714265ad3a7` loaded on `cuda:0` with `torch.bfloat16` in
+  `29.368544` seconds, with a cache hit and peak allocated/reserved memory of
+  `13,669,210,112` / `15,466,496,000` bytes. The independent durable retrieval passed.
+- The one-row non-locked development diagnostic passed in app `ap-5pbxOL6rhdzLf87jqec6T4`,
+  function `fu-oTEePJyTZ7t6xPK78B0buq`, call `fc-01M32H51FXH9JAPH3HR1G68PB2`, container
+  `ta-01M32H51SKQF90YB22H7X4H8KR`. It selected `GRCh38:10:101532297:A>G` from `TRAIN` by
+  ascending normalized ID, verified the GRCh38 reference and four 8192-bp orientations, sent no
+  label, returned finite forward/RC/aggregate scores, and preserved the exact model revision.
+- The eight-row mini-shard passed in app `ap-vQWe7aKZhMWkzrSWKoguGx`, function
+  `fu-ZAxNwmp8kElCIkmRhSTfhJ`, call `fc-01M32H843J01JNSS35BF850741`, container
+  `ta-01M32H84C5F1D61PR30QD7HR5R`. It processed exactly eight deterministic TRAIN IDs in one
+  batch, returned eight finite rows in deterministic order, used the cache, and passed durable
+  retrieval. The persisted shard and a separate local resume check passed with zero additional
+  remote invocations and no duplicate recomputation.
+- The consolidated evidence is
+  `artifacts/modal_diagnostics/h100_jsonsafe_retry_20260921.json`; the historical failed probe
+  remains unchanged at `h100_cuda_probe_20260921.json`, while the new PASS probe is preserved at
+  `h100_cuda_probe_jsonsafe_retry_20260921.json`. Other per-layer artifacts are
+  `hf_cache_read_20260921.json`, `evo2_load_20260921.json`,
+  `evo2_development_1_20260921.json`, `evo2_development_8_20260921.json`, and the eight-row
+  resume artifact. The conservative H100 wall-rate estimate is `$0.208895` additional; the
+  workspace meter was `19.61` at the ladder baseline, `19.88` in the final in-ladder artifact,
+  and `19.94` at the final read-only inventory check; billed cost remained `$0.00`. Modal
+  billing is workspace-level, not a per-run invoice. All diagnostic apps are stopped.
+- Diagnostic gates are now `PASS` for JSON-safe H100, `hf_cache`, Evo2 load, one-row scoring,
+  and the eight-row shard/resume. This does not promote the formal study: the formal 64-row
+  preflight was not started, the locked cohort was not accessed, and downstream Phases 6/7/8/9/
+  11/12/13/14/15/18/19 remain `BLOCKED`, Phase 10 remains `DEFERRED_BY_COMPUTE`, and Phase 16
+  remains `PARTIAL`. The single next recommendation is `RETRY_FORMAL_64_PREFLIGHT`, but only
+  after a separate explicit approval because the current `$0.50` approval excludes it.

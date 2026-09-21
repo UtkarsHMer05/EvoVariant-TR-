@@ -1,0 +1,131 @@
+{
+  "artifact_id": "ml-dev-budgeted-001-compute-approval-20260921",
+  "study_id": "ML-DEV-BUDGETED-001",
+  "approval_version": "ml-dev-budgeted-001-v1",
+  "approved_by": "user",
+  "approved_at": "2026-09-21T21:33:30+05:30",
+  "authorization_source": "explicit user authorization in the latest ML-DEV-BUDGETED-001 checkpoint pasted by the user on 2026-09-21; maximum additional Modal compute is $8.00 with a $7.75 runner safety stop",
+  "max_budget_usd": 8.0,
+  "budget_control": {
+    "hard_cap_usd": 8.0,
+    "runner_safety_stop_usd": 7.75,
+    "no_silent_budget_widening": true,
+    "projection_basis": "measured 64-row Evo2 preflight plus the frozen NT/Caduceus planning estimate",
+    "billing_interpretation": "Modal billing summary is workspace-level evidence and not a per-run invoice"
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "dataset": {
+    "formal_train_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json",
+    "formal_train_manifest_sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+    "formal_validation_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json",
+    "formal_validation_manifest_sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "formal_development_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "locked_test_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "cache_reuse_verification_path": "artifacts/phase6/formal_budgeted_cache_reuse_verification_20260921.json",
+    "cache_reuse_verification_sha256": "1bf988be8777cc7299ea0d2154690e301dced9089402acfd9a83122b38424011",
+    "cost_estimate_path": "research/ml_extension/splits/formal_budgeted_20260921/cost_estimate.json",
+    "cost_estimate_sha256": "29c00a3cf67401580b94c8a118cc22207790046f4d9b14161c04de900395902c",
+    "comparators": {
+      "qualification_artifact_path": "artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json",
+      "qualification_artifact_sha256": "8064b6cb1037843e2b6c65dcafd80d83ae78c0aeb943b7f316ec8d396092887f",
+      "qualification_status": "PASS_WITH_ALPHA_MISSENSE_DEFERRED",
+      "cadd_artifact_path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+      "cadd_artifact_sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+      "cadd_coverage": {
+        "total": 4000,
+        "available": 2891,
+        "missing": 1109,
+        "coverage_fraction": 0.72275
+      },
+      "phylop_artifact_path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+      "phylop_artifact_sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+      "phylop_coverage": {
+        "total": 4000,
+        "available": 3997,
+        "missing": 3,
+        "coverage_fraction": 0.99925
+      },
+      "alphamissense_artifact_path": "artifacts/phase6a/comparators/formal_budgeted_20260921/alphamissense_eligibility_20260921.json",
+      "alphamissense_artifact_sha256": "e5e8d6f013a7bb1e9c025e395c1dcab355c7dc27581e4c45aa46db75d1b7a7a1",
+      "alphamissense_eligible_n": 0,
+      "alphamissense_prediction_coverage_n": 0
+    }
+  },
+  "git": {
+    "commit": "e589efb5443713c864004472b1c3457a437d803a",
+    "branch": "research/evovariant-tr",
+    "dirty_expected": true,
+    "note": "Approval is bound to the validated commit; the pre-existing untracked .agents skill tree is intentionally preserved outside the commit."
+  },
+  "model": {
+    "model_id": "evo2",
+    "checkpoint": "evo2_7b",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "gpu": {
+    "type": "H100",
+    "modal_environment": "evovariant-tr",
+    "volume": "hf_cache"
+  },
+  "allowed_workloads": [
+    "deterministic 64-row Evo2 preflight on the formal manifest",
+    "resumable formal 4000-row Evo2 score workload with 3944 new variants and 56 verified historical cache rows",
+    "formal CADD and PhyloP CPU comparator materialization already completed before GPU",
+    "formal Nucleotide Transformer representation extraction at layers 8, 16, and 24",
+    "formal Caduceus representation extraction at layers 4, 8, and 16",
+    "local CPU-only Phases 6-13 on TRAIN/VALIDATION"
+  ],
+  "excluded_workloads": [
+    "946 LOCKED_TEST scoring or label access",
+    "Phase 14",
+    "full 239992 development scoring",
+    "Evo2 fine-tuning",
+    "PEFT/LoRA training",
+    "context-length sweep",
+    "center-shift GPU sweep",
+    "GPN GPU",
+    "deployment",
+    "release",
+    "publication",
+    "clinical classification"
+  ],
+  "phase10_status": "DEFERRED_BY_COMPUTE",
+  "stop_conditions": [
+    "stop before projected cumulative additional compute exceeds $7.75 runner safety stop",
+    "stop absolutely at the $8.00 hard cap",
+    "stop on any active paid Modal worker after requested completion",
+    "stop on any sequence, reference, ref-alt, FWD-RC, provenance, cache, or schema failure",
+    "stop if the small-subset measured rate projects the full workload beyond the cap",
+    "stop if any locked-test access or remote-label transport is detected"
+  ],
+  "execution_contract": {
+    "formal_total": 4000,
+    "new_evo2_maximum": 3944,
+    "cohort_splits": [
+      "TRAIN",
+      "VALIDATION"
+    ],
+    "locked_test_access": "prohibited",
+    "labels_remote_transport": "prohibited",
+    "selection_prediction_independent": true,
+    "resume_atomic_shards": true,
+    "representations_same_exact_manifest": true,
+    "labels_joined_locally_only": true
+  },
+  "preflight": {
+    "sample_size": 64,
+    "selection": "ascending normalized_variant_id among formal manifest, no labels remote",
+    "required_before_full": true,
+    "projection_artifact": "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "artifact_id": "modal-evo2-development-shard-1-20260921",
+  "payload_sha256": "375bab1e1fa17a90b137222e5f37f5a4cbd446d4637ce1946a8d82a45351a16f",
+  "remote_function_call_id": "fc-01M32H51FXH9JAPH3HR1G68PB2",
+  "remote_provenance": {
+    "all_scores_finite": true,
+    "cache_hit": true,
+    "container_id": null,
+    "context_length_bp": 8192,
+    "function_call_id": "fc-01M32H51FXH9JAPH3HR1G68PB2",
+    "gpu_name": "NVIDIA H100 80GB HBM3",
+    "gpu_type": "H100",
+    "model_id": "evo2_7b",
+    "model_load_seconds": 29.287374751999998,
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "orientation": "forward_and_reverse",
+    "peak_gpu_memory_allocated_bytes": 18075978752,
+    "peak_gpu_memory_reserved_bytes": 22267559936,
+    "score_seconds": 5.013676404999998,
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "row_count": 1,
+  "rows": [
+    {
+      "aggregate_score": -0.000554502010345459,
+      "delta_forward": -0.0007086992263793945,
+      "delta_reverse": -0.00040030479431152344,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:101532297:A>G",
+      "raw_scores": {
+        "alternate_forward": -1.1370244026184082,
+        "alternate_reverse": -1.134323000907898,
+        "reference_forward": -1.1363157033920288,
+        "reference_reverse": -1.1339226961135864
+      },
+      "split": "TRAIN"
+    }
+  ],
+  "source_ids": [
+    "GRCh38:10:101532297:A>G"
+  ],
+  "status": "COMPLETED"
+}

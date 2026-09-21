@@ -1,0 +1,334 @@
+{
+  "approval_artifact": "artifacts/approvals/modal_h100_jsonsafe_retry_20260921.json",
+  "approval_head": "cc035d1d2f49d42c3770fd4e9c9dc94587f5465e",
+  "artifact_id": "modal-evo2-development-8-20260921",
+  "contract": {
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_name": "evo2_7b",
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "local_checks": [
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:101532297:A>G",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102597229:C>A",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102597229:C>T",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102627178:C>T",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102630137:C>T",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102832610:C>T",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:102834750:A>G",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    },
+    {
+      "context_length_bp": 8192,
+      "normalized_variant_id": "GRCh38:10:103076162:C>T",
+      "orientation": "forward_and_reverse",
+      "reference_match": true,
+      "sequence_lengths": [
+        8192,
+        8192,
+        8192,
+        8192
+      ],
+      "split": "TRAIN"
+    }
+  ],
+  "modal_billing": {
+    "after": {
+      "captured_at_utc": "2026-09-21T17:47:51.264114+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.85  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.69  \n    Volumes:            3.37  \n  Free Storage:        -3.37  \n  Credits:            -16.48  \n  Billed Cost:         $0.00  \n                              \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-21T17:46:59.812155+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.82  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.67  \n    Volumes:            3.37  \n  Free Storage:        -3.37  \n  Credits:            -16.45  \n  Billed Cost:         $0.00  \n                              \n"
+    }
+  },
+  "persistence": {
+    "cache_persistence_artifact_present": true,
+    "cache_probe_artifact": "artifacts/modal_diagnostics/hf_cache_read_20260921.json",
+    "duplicate_recomputation": null,
+    "resume_behavior": "READY_FOR_RESUME_CHECK",
+    "shard_exists": true,
+    "shard_path": "artifacts/modal_diagnostics/evo2_development_shard_8_20260921.json",
+    "shard_verified": true
+  },
+  "protocol_sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "recorded_at_utc": "2026-09-21T17:47:51.264161+00:00",
+  "remote": {
+    "durable_retrieval_verified": true,
+    "function_call_id": "fc-01M32H843J01JNSS35BF850741",
+    "invocations": 1,
+    "provenance": {
+      "all_scores_finite": true,
+      "cache_hit": true,
+      "container_id": null,
+      "context_length_bp": 8192,
+      "function_call_id": "fc-01M32H843J01JNSS35BF850741",
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_type": "H100",
+      "model_id": "evo2_7b",
+      "model_load_seconds": 15.572371543,
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "orientation": "forward_and_reverse",
+      "peak_gpu_memory_allocated_bytes": 18075978752,
+      "peak_gpu_memory_reserved_bytes": 22267559936,
+      "score_seconds": 13.662419124000003,
+      "score_semantics": "alternate_minus_reference_log_likelihood"
+    }
+  },
+  "remote_payload": {
+    "labels_sent": false,
+    "payload_keys": [
+      "normalized_variant_id",
+      "sequences"
+    ],
+    "row_count": 8
+  },
+  "row_count": 8,
+  "rows": [
+    {
+      "aggregate_score": -0.000554502010345459,
+      "delta_forward": -0.0007086992263793945,
+      "delta_reverse": -0.00040030479431152344,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:101532297:A>G",
+      "raw_scores": {
+        "alternate_forward": -1.1370244026184082,
+        "alternate_reverse": -1.134323000907898,
+        "reference_forward": -1.1363157033920288,
+        "reference_reverse": -1.1339226961135864
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.00012481212615966797,
+      "delta_forward": 9.059906005859375e-06,
+      "delta_reverse": -0.0002586841583251953,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102597229:C>A",
+      "raw_scores": {
+        "alternate_forward": -1.1703531742095947,
+        "alternate_reverse": -1.1667228937149048,
+        "reference_forward": -1.1703622341156006,
+        "reference_reverse": -1.1664642095565796
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": 0.00018066167831420898,
+      "delta_forward": 0.00019991397857666016,
+      "delta_reverse": 0.0001614093780517578,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102597229:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.170162320137024,
+        "alternate_reverse": -1.1663028001785278,
+        "reference_forward": -1.1703622341156006,
+        "reference_reverse": -1.1664642095565796
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0008774399757385254,
+      "delta_forward": -0.0013161897659301758,
+      "delta_reverse": -0.000438690185546875,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102627178:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.1450752019882202,
+        "alternate_reverse": -1.1639755964279175,
+        "reference_forward": -1.14375901222229,
+        "reference_reverse": -1.1635369062423706
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0001709461212158203,
+      "delta_forward": -0.0003116130828857422,
+      "delta_reverse": -3.0279159545898438e-05,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102630137:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.1475151777267456,
+        "alternate_reverse": -1.1723260879516602,
+        "reference_forward": -1.1472035646438599,
+        "reference_reverse": -1.1722958087921143
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -0.0009252429008483887,
+      "delta_forward": -0.0006101131439208984,
+      "delta_reverse": -0.001240372657775879,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102832610:C>T",
+      "raw_scores": {
+        "alternate_forward": -0.8903685808181763,
+        "alternate_reverse": -0.8963292837142944,
+        "reference_forward": -0.8897584676742554,
+        "reference_reverse": -0.8950889110565186
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": 0.0004017651081085205,
+      "delta_forward": 0.0007790327072143555,
+      "delta_reverse": 2.4497509002685547e-05,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:102834750:A>G",
+      "raw_scores": {
+        "alternate_forward": -0.9042819142341614,
+        "alternate_reverse": -0.9223636388778687,
+        "reference_forward": -0.9050609469413757,
+        "reference_reverse": -0.9223881363868713
+      },
+      "split": "TRAIN"
+    },
+    {
+      "aggregate_score": -3.725290298461914e-05,
+      "delta_forward": 0.00018835067749023438,
+      "delta_reverse": -0.00026285648345947266,
+      "finite": true,
+      "normalized_variant_id": "GRCh38:10:103076162:C>T",
+      "raw_scores": {
+        "alternate_forward": -1.0368623733520508,
+        "alternate_reverse": -1.0700438022613525,
+        "reference_forward": -1.037050724029541,
+        "reference_reverse": -1.069780945777893
+      },
+      "split": "TRAIN"
+    }
+  ],
+  "run_kind": "REMOTE_BATCH",
+  "runtime": {
+    "estimated_wall_rate_cost_usd": 0.05645386398778324,
+    "gpu_rate_usd_per_hour": 3.95,
+    "local_elapsed_seconds": 51.45162287494168
+  },
+  "scientific_boundary": {
+    "formal_64_row_preflight": false,
+    "full_4000_row_run": false,
+    "labels_sent_to_modal": false,
+    "locked_test_accessed": false,
+    "phase14": false,
+    "training_hpo_finetuning": false
+  },
+  "selection": {
+    "basis": "ascending normalized_variant_id among TRAIN and VALIDATION only",
+    "label_blind": true,
+    "locked_test_accessed": false,
+    "selected_ids": [
+      "GRCh38:10:101532297:A>G",
+      "GRCh38:10:102597229:C>A",
+      "GRCh38:10:102597229:C>T",
+      "GRCh38:10:102627178:C>T",
+      "GRCh38:10:102630137:C>T",
+      "GRCh38:10:102832610:C>T",
+      "GRCh38:10:102834750:A>G",
+      "GRCh38:10:103076162:C>T"
+    ],
+    "splits": [
+      "TRAIN",
+      "TRAIN",
+      "TRAIN",
+      "TRAIN",
+      "TRAIN",
+      "TRAIN",
+      "TRAIN",
+      "TRAIN"
+    ]
+  },
+  "status": "PASS"
+}

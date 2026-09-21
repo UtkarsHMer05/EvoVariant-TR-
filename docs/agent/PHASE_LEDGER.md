@@ -1049,3 +1049,40 @@ genuine unavailable evidence, not values to infer.
   `DEFERRED_BY_COMPUTE` for Phase 10, and `PARTIAL` for Phase 16. `make modal-smoke` passed
   authentication with `gpu_count: 0`, `PLANNED`, and no remote invocation. No scientific phase
   gate was promoted.
+
+## Fresh JSON-safe H100 diagnostic ladder — 2026-09-21
+
+- Fresh approval: `artifacts/approvals/modal_h100_jsonsafe_retry_20260921.json`, bound to
+  `cc035d1d2f49d42c3770fd4e9c9dc94587f5465e`, `$0.50` hard cap, `$0.45` safety stop. Formal
+  64-row work, full 4,000-row work, NT/Caduceus full extraction, HPO, fine-tuning, locked-test
+  access, Phase 14, deployment, and release remain excluded.
+- Diagnostic sequence completed without a new failure: JSON-safe H100 `PASS`; read-only
+  `hf_cache` `PASS`; canonical Evo2 load `PASS`; one-row non-locked development score `PASS`;
+  eight-row non-locked development shard `PASS`; eight-row persistence/resume `PASS`.
+- H100 evidence: app `ap-6saybhZYlnXAf2CmB98tXP`, function
+  `fu-5lcgqs4HgSSP6xGP1I2rRX`, call `fc-01M32GDY0FPCXSECVK2PJQY5B9`, container
+  `ta-01M32GDYA6FBAKDZ2AZ0XGHXNR`; PyTorch `2.4.0+cu124`, CUDA `12.4`, H100, capability
+  `[9, 0]`, numeric result `2.0`, local and detached retrieval `PASS`.
+- Cache and model evidence: cache app `ap-5orUJFT7c3T0Zb6HE1U4gN`, call
+  `fc-01M32GMEMTMNFKJ60M6PW1918T`; load app `ap-Th4trAg5I1lyS9edw0SzqG`, function
+  `fu-neSkt1w16XgFvZQFEm2y3K`, call `fc-01M32GRHKA7ZASBDXEF9NB7B53`, container
+  `ta-01M32GRJ09E2YHWRF2FJ5XMGWR`. The canonical `evo2_7b` revision loaded with a cache hit;
+  no weight download or cache mutation occurred.
+- Development evidence: one-row app `ap-5pbxOL6rhdzLf87jqec6T4`, call
+  `fc-01M32H51FXH9JAPH3HR1G68PB2`, container `ta-01M32H51SKQF90YB22H7X4H8KR`; eight-row
+  app `ap-vQWe7aKZhMWkzrSWKoguGx`, call `fc-01M32H843J01JNSS35BF850741`, container
+  `ta-01M32H84C5F1D61PR30QD7HR5R`. Both batches sent no labels, used only TRAIN/VALIDATION,
+  used GRCh38/8192-bp forward+reverse-complement inputs, returned finite scores, and matched the
+  exact model revision. The eight-row shard resume read the persisted hash and made zero remote
+  calls.
+- Consolidated evidence: `artifacts/modal_diagnostics/h100_jsonsafe_retry_20260921.json`.
+  Estimated additional H100 wall-rate cost is `$0.208895`, below both stops; workspace meter
+  was `19.61` at baseline, `19.88` in the ladder artifact, and `19.94` at the final read-only
+  inventory check, with `$0.00` billed. This is not a per-run invoice. All apps and containers
+  are stopped.
+- Phase 6 ledger disposition: `FAIL_FORMAL_PREFLIGHT` remains until a separately approved formal
+  64-row preflight actually runs and passes. This diagnostic ladder only resolves the H100/client
+  readiness boundary and establishes the single recommendation `RETRY_FORMAL_64_PREFLIGHT`; it
+  does not itself promote a formal gate or unblock dependent phases. Phases 7/8/9/11/12/13/14/
+  15/18/19 remain `BLOCKED`, Phase 10 remains `DEFERRED_BY_COMPUTE`, and Phase 16 remains
+  `PARTIAL`.

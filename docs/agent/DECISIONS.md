@@ -2756,6 +2756,48 @@ The commands completed on 2026-09-21 at the current checkout. `make validate` re
 704 tests passed, 33 deselected, and 95.02% coverage; `git diff --check` is clean; and no active
 Modal containers remain.
 
+## D-092 — Accept the corrected H100 readiness ladder without promoting the formal study
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-090 for the corrected retry outcome; D-091 remains applicable to downstream gates
+
+Context:
+The prior corrected H100 attempt reached an H100 and imported remote PyTorch but failed when the
+local client decoded a non-plain return value. Commit `e8ae239` coerced every diagnostic return
+field to JSON-safe Python builtins. A fresh user approval,
+`artifacts/approvals/modal_h100_jsonsafe_retry_20260921.json`, authorized only a bounded
+diagnostic ladder with a `$0.50` hard cap and `$0.45` safety stop.
+
+Decision:
+Run the corrected ladder conditionally and stop before any formal 64-row preflight. The JSON-safe
+H100 diagnostic, read-only `hf_cache` check, canonical Evo2 load-only check, one non-locked
+development row, eight non-locked development rows, durable retrieval, shard persistence, and
+resume/no-duplicate check all passed. The exact H100 result-deserialization failure did not recur.
+Keep the formal protocol, model revision, context, orientation, score semantics, formal manifests,
+locked-test boundary, and downstream phase gates unchanged. Record the single next recommendation
+as `RETRY_FORMAL_64_PREFLIGHT`, but do not execute that retry from the current approval because
+formal 64-row work is explicitly excluded and requires a separate approval.
+
+Evidence:
+`artifacts/modal_diagnostics/h100_jsonsafe_retry_20260921.json` records the app, function,
+FunctionCall, container, model, GPU, runtime, billing, and bounded-cost evidence. The selected
+development IDs were deterministic ascending normalized IDs from TRAIN only; labels were not sent
+to Modal and no LOCKED_TEST row was accessed.
+
+Consequences:
+The H100/client readiness blocker is resolved for the corrected diagnostic path, and the existing
+cache can load the pinned Evo2 checkpoint. The formal scientific gate remains
+`FAIL_FORMAL_PREFLIGHT` until a separately authorized 64-row preflight returns and passes. No
+full 4,000-row scoring, NT/Caduceus extraction, training, HPO, fine-tuning, locked evaluation,
+Phase 14, deployment, release, or publication work is authorized by this decision.
+
+Validation:
+`make validate` and `git diff --check` passed at the verified HEAD before the ladder. The new
+diagnostic scripts pass Ruff. All five remote apps are stopped; the estimated additional H100
+  wall-rate cost is `$0.208895`; the workspace meter was `19.61` at baseline, `19.88` in the
+  ladder artifact, and `19.94` at the final read-only inventory check. Workspace billed cost
+  remained `$0.00`; workspace billing is not a per-run invoice.
+
 ## Template for new decisions
 
 ### D-XXX — Title

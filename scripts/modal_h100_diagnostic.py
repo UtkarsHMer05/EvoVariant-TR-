@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import socket
 import time
 from pathlib import Path
@@ -36,20 +37,24 @@ def cuda_probe() -> dict[str, Any]:
 
     from modal import current_function_call_id
 
+    started = time.perf_counter()
     if not torch.cuda.is_available():
         raise RuntimeError("torch.cuda.is_available() returned false")
-    tensor = torch.tensor([2.0], device="cuda")
+    tensor = torch.tensor([1.0], device="cuda")
     result = tensor * 2.0
     torch.cuda.synchronize()
     return {
         "function_call_id": current_function_call_id(),
+        "container_id": os.environ.get("MODAL_CONTAINER_ID"),
         "hostname": socket.gethostname(),
         "torch_version": torch.__version__,
         "cuda_runtime_version": torch.version.cuda,
         "cuda_available": torch.cuda.is_available(),
         "device_name": torch.cuda.get_device_name(0),
+        "compute_capability": list(torch.cuda.get_device_capability(0)),
         "device_count": torch.cuda.device_count(),
         "tensor_result": float(result.item()),
+        "execution_latency_ms": (time.perf_counter() - started) * 1000,
     }
 
 
@@ -103,7 +108,7 @@ def main() -> None:
             "hf_access": False,
             "function_call_id": call_id,
             "submitted_at_ns": submitted_at,
-            "status": "PASS" if result["tensor_result"] == 4.0 else "FAIL",
+            "status": "PASS" if result["tensor_result"] == 2.0 else "FAIL",
             "elapsed_ms": (time.perf_counter() - started) * 1000,
             "result": result,
         }

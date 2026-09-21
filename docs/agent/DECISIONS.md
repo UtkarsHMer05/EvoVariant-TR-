@@ -2326,7 +2326,7 @@ download, label transfer, or paid workload occurs. Remote parity, kill/restart r
 full-cohort execution, and scientific registration still require a new exact-scope approval.
 
 Validation:
-Implementation commit `844cfb8`; targeted batch tests pass, `git diff --check` passes before
+Implementation commit `6196dc5`; targeted batch tests pass, `git diff --check` passes before
 documentation changes, and `make batch-run BATCH_INPUT=examples/batch/variants.csv
 BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7` reports `PLANNED` with three
 variants and one shard. The full `make validate` rerun is recorded in the current project state.
@@ -2364,7 +2364,7 @@ remains blocked, the API/UI remains truthful, and no scientific claim or locked-
 promoted.
 
 Validation:
-Implementation commit `844cfb8`; `make figures` produced the blocked final manifest and the
+Implementation commit `6196dc5`; `make figures` produced the blocked final manifest and the
 separate non-promotable preliminary manifest; `make registry-verify`, `make ui-check`,
 `make web-check`, and `make web-e2e` pass. No remote or paid compute was used.
 

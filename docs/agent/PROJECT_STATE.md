@@ -67,7 +67,7 @@ Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
 The frontend dependency/lint hardening was validated and committed in `739310d`. Continuation
 implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, `1423577`, `7fd912f`, `c53dfdb`,
-`69a2e4f`, `0f1c5a4`, `c0ad1ad`, and `844cfb8`; continuation documentation/status commits are
+`69a2e4f`, `0f1c5a4`, `c0ad1ad`, and `6196dc5`; continuation documentation/status commits are
 `e39d3a3`, `b49b96a`, `e115d23`, `8264c70`, and `9f4a07c`. The current development runner, local
 feature/ablation adapters, batch contract, preliminary renderer, and workbench status surface
 are covered by the latest validation pass recorded below.
@@ -957,7 +957,7 @@ families were not invented.
 
 ## Current Phase 15/16/17 local continuation — 2026-09-21
 
-- Implementation commit `844cfb8` (`feat: add local batch and preliminary artifact surfaces`)
+- Implementation commit `6196dc5` (`feat: add local batch and preliminary artifact surfaces`)
   adds a label-free Phase 15 batch contract, a deterministic planning CLI, a tracked three-row
   sample input, a fail-closed preliminary figure renderer, and truthful `PARTIAL` registry/UI
   status when completed runs exist without a `FINAL` run. The pre-existing untracked `.agents/`

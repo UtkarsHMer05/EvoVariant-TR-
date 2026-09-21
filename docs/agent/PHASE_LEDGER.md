@@ -868,7 +868,7 @@ genuine unavailable evidence, not values to infer.
 
 ## Current local Phase 15/16/17 continuation — 2026-09-21
 
-- Implementation commit `844cfb8` adds the free local Phase 15 boundary. `scripts/plan_batch.py`
+- Implementation commit `6196dc5` adds the free local Phase 15 boundary. `scripts/plan_batch.py`
   parses the tracked label-free sample `examples/batch/variants.csv`, enforces the GRCh38 SNV
   contract, records input SHA-256 `d0778b9ad572f7aa6d9b48f0d6675b1e8bd29180826ba0834aa64eff799f7378`,
   and writes a deterministic `PLANNED` one-shard plan for the pinned Evo2 revision

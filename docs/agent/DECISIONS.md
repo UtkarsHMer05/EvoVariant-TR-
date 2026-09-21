@@ -1424,6 +1424,38 @@ cover compact record construction, orientation-mean conversion, tamper/hash reje
 pooling rejection. The latest `make validate` run passed 642 tests, 33 deselected, strict mypy
 over 51 source files, Ruff, secret scan, and 95.01% coverage.
 
+## D-055 — Retain manifest-verified ClinVar archives after source-path audit
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+Phase 3 remains blocked because the manifest-verified archive-derived cohort is 330 unique t0
+VUS IDs and 78 final records below the validation-only handoff target. The target ID list is not
+present locally, so an alternate official source path was checked before treating the discrepancy
+as an external provenance blocker.
+
+Decision:
+Retain the frozen manifest-verified NCBI archive files and their existing SHA-256 manifests.
+The archived 2025-01 and 2026-08 URLs return HTTP 200 with the recorded byte lengths and release
+timestamps; the corresponding non-archive `tab_delimited` URLs return HTTP 404. Do not replace
+the archives, tune filters, or infer target IDs from aggregate counts.
+
+Alternatives:
+Swap to an unverified URL, alter the temporal filters until the aggregate target matches, or
+construct a synthetic target ID set from the counts. These were rejected because each would
+destroy provenance or change the frozen estimand.
+
+Consequences:
+The archive provenance is better constrained, but the Phase 3 gate remains `BLOCKED` until the
+target-side IDs/source records are supplied or a dated protocol deviation accepts the current
+archive-derived cohort. All dependent scientific phases remain blocked.
+
+Validation:
+`artifacts/phase3_source_provenance_check_20260921.json` records the four read-only endpoint
+checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
+resulting decision.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -102,6 +102,10 @@ Active branch/worktree: `research/evovariant-tr` at
   yields 1,402,906 unique t0 VUS, only 11 above the ML-extension path and still 319 below the
   handoff target. The official archive directory exposes the same recorded t0 file; no alternate
   target archive or target ID list was found in the repository or supplied handoff attachment.
+- A read-only NCBI endpoint check confirms both manifest-verified archive URLs return HTTP 200 with
+  the recorded byte lengths and release timestamps, while the corresponding non-archive URLs
+  return HTTP 404. No alternate official release path explains the target discrepancy; the
+  provenance evidence is preserved in `artifacts/phase3_source_provenance_check_20260921.json`.
 
 ## Current validation update — 2026-09-21
 

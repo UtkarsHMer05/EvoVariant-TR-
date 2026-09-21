@@ -1,0 +1,36 @@
+{
+  "artifact_id": "phase3-source-provenance-check-20260921",
+  "checked_at": "2026-09-21",
+  "status": "ALTERNATE_OFFICIAL_PATH_NOT_FOUND",
+  "purpose": "Verify whether a second official NCBI URL can explain the Phase 3 validation-only target discrepancy without changing the frozen protocol or local archives.",
+  "sources": [
+    {
+      "release": "2025-01",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/variant_summary_2025-01.txt.gz",
+      "http_status": 200,
+      "last_modified": "Thu, 02 Jan 2025 05:05:03 GMT",
+      "content_length_bytes": 288267418,
+      "local_sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa"
+    },
+    {
+      "release": "2025-01",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary_2025-01.txt.gz",
+      "http_status": 404
+    },
+    {
+      "release": "2026-08",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/archive/variant_summary_2026-08.txt.gz",
+      "http_status": 200,
+      "last_modified": "Thu, 06 Aug 2026 04:05:02 GMT",
+      "content_length_bytes": 441792560,
+      "local_sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
+    },
+    {
+      "release": "2026-08",
+      "archive_url": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary_2026-08.txt.gz",
+      "http_status": 404
+    }
+  ],
+  "interpretation": "The manifest-verified archive URLs are the available official release paths and their remote content lengths match the local files. The non-archive paths are unavailable; no alternate official source was found that can explain the 330-ID discrepancy.",
+  "decision": "Keep the frozen manifest-verified archives and Phase 3 BLOCKED pending target-ID/source provenance or a dated protocol deviation."
+}

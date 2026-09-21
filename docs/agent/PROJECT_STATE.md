@@ -47,9 +47,11 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
-- HEAD at the time of the remote pilot: `2f4d117d0d1804bd8479d7da473978d1f796249b`; the
-  chromosome-normalization fix, model-manifest updates, pilot artifacts, and this documentation
-  update are currently working-tree changes and must be committed together after validation.
+- The remote pilot was deployed from source HEAD `2f4d117d0d1804bd8479d7da473978d1f796249b`.
+  The chromosome-normalization fix, model-manifest updates, pilot artifacts, and the reconciled
+  control-file updates are now committed in `f69ee8605e3dcbcf068ffd0f5fed3cef6e3cdcb0`
+  (`feat: verify bounded Evo2 pilot and model gates`). The current checkout HEAD and dirty state
+  remain authoritative; verify them with Git before any further phase transition.
 - The user-authorized pilot approval is
   `artifacts/approvals/phase2_4_pilot_20260921.json` with a `$2.00` bounded pilot-family cap.
   Modal billing is recorded as workspace-level evidence only: metered cost moved from `$11.49`
@@ -73,7 +75,11 @@ Active branch/worktree: `research/evovariant-tr` at
   candidate; see `artifacts/model_audit/phase5_candidate_audit_20260921.json`.
 - Phase 3 impact decision: `MATERIAL_UNCERTAINTY`; see
   `artifacts/phase3_discrepancy_impact_20260921.json`. Current archive-derived outputs remain
-  unchanged and no benchmark output is authorized until reconciliation or a dated protocol
+  unchanged apart from the audit-counter semantics correction recorded in
+  `artifacts/phase3_partition_audit_20260921.json`: `below_two_stars` now means definitive
+  outcomes below the star gate, while `not_definitive_at_t1` includes non-definitive outcomes at
+  either star level. The corrected current counts are 9,049 and 1,389,441; no benchmark output
+  is authorized until the remaining 330-ID discrepancy is reconciled or a dated protocol
   deviation accepts the changed cohort.
 
 ## Handoff extraction
@@ -134,10 +140,13 @@ verified facts are:
   TRAIN, 48,035 VALIDATION, 946 locked temporal records, zero normalized-ID overlap, zero
   train/validation gene overlap, zero duplicate split IDs, and deterministic rebuild.
 - The recomputed temporal cohort is not identical to the handoff QA target: 1,402,895 t0 VUS,
-  946 final temporal records (536 B/LB and 410 P/LP), and two t0/t1 gene annotation changes.
-  The source archive hashes match the checked-in manifests. The full discrepancy audit is in
-  `research/ml_extension/splits/phase3_manifest_summary.json`; model scoring remains blocked
-  until it is resolved or explicitly approved through the deviation process.
+  946 final temporal records (536 B/LB and 410 P/LP), 3,459 absent records, 9,049 definitive
+  below-star records, 1,389,441 non-definitive records, and two t0/t1 gene annotation changes.
+  The source archive hashes match the checked-in manifests. The category-semantic correction is
+  recorded in `artifacts/phase3_partition_audit_20260921.json`; the full discrepancy audit is in
+  `research/ml_extension/splits/phase3_manifest_summary.json`. Model scoring remains blocked
+  until the remaining source/ID discrepancy is resolved or explicitly approved through the
+  deviation process.
 - Modal identity is now reconciled in the active execution path: app `evovariant-tr`, existing
   volume `hf_cache` mounted at `/root/.cache/huggingface`, H100, the pinned NGC PyTorch image,
   and Evo2 repository revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`. The app fails closed
@@ -195,7 +204,9 @@ inference or outcome optimization.
 
 Pending experiments: all `ZS-*`, `REP-*`, `CLF-*`, `HPO-*`, `FT-*`, `ENS-*`, `CAL-*`, `ABS-*`,
 `ABL-*`, `ROB-*`, and `STAT-*` work. Phase 3 data/split artifacts are complete; zero-shot
-scoring is held behind the QA discrepancy review, model-inclusion evidence, and real Modal gate.
+scoring is held behind the QA discrepancy review, multi-model inclusion evidence, and the
+full-cohort execution gate. The bounded Evo2 pilot is engineering/provenance evidence only and
+does not constitute a completed scientific experiment.
 The status artifacts for Phases 6–15, 17, and 19 are explicit `BLOCKED` records; Phase 16 is
 blocked on registered outputs even though its local browser E2E and build gates pass; Phase 18
 is blocked on gated Modal smoke and figure evidence, although the clean-room CPU/frontend/browser

@@ -114,6 +114,7 @@ def test_temporal_audit_separates_absent_low_star_and_final(tmp_path: Path) -> N
             _row("1", "Uncertain significance", "reviewed by expert panel", "1", "T", "GENE_A"),
             _row("2", "Uncertain significance", "reviewed by expert panel", "2", "C", "GENE_B"),
             _row("3", "Uncertain significance", "reviewed by expert panel", "3", "G", "GENE_C"),
+            _row("4", "Uncertain significance", "reviewed by expert panel", "4", "C", "GENE_D"),
         ],
     )
     t1 = _write_gz(
@@ -121,12 +122,16 @@ def test_temporal_audit_separates_absent_low_star_and_final(tmp_path: Path) -> N
         [
             _row("11", "Pathogenic", "reviewed by expert panel", "1", "T", "GENE_A"),
             _row("12", "Benign", "no assertion criteria provided", "2", "C", "GENE_B"),
+            _row(
+                "13", "Uncertain significance", "no assertion criteria provided", "4", "C", "GENE_D"
+            ),
         ],
     )
     audit = audit_temporal_cohort(t0, t1)
-    assert audit.t0_unique_vus == 3
+    assert audit.t0_unique_vus == 4
     assert audit.absent_at_t1 == 1
     assert audit.below_two_stars == 1
+    assert audit.not_definitive_at_t1 == 1
     assert audit.final_temporal_n == 1
     assert audit.n_plp == 1
     assert audit.n_blb == 0

@@ -31,8 +31,8 @@
   "temporal_audit": {
     "t0_unique_vus": 1402895,
     "absent_at_t1": 3459,
-    "below_two_stars": 1098941,
-    "not_definitive_at_t1": 299549,
+    "below_two_stars": 9049,
+    "not_definitive_at_t1": 1389441,
     "final_temporal_n": 946,
     "n_blb": 536,
     "n_plp": 410,

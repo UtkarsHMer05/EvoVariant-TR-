@@ -10,7 +10,7 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 3 | ML dataset + locked splits | BLOCKED | Structural current-cohort invariants pass, but the 330-ID / 78-final-record discrepancy is material to denominators and class counts; impact review is reopened in `artifacts/phase3_discrepancy_impact_20260921.json`. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
 | 5 | Model registry + adapters | BLOCKED | Seven source-audited manifests pass schema verification; Evo2 is the only included model after real smoke. Six candidates are explicit `INFEASIBLE`/deferred records, so the multi-model inclusion gate remains open. |
-| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; no included model, unresolved Phase 3 QA discrepancy, and no Phase 4 pilot. |
+| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; Phase 3 QA discrepancy remains material, only Evo2 is verified, and full-cohort authorization/batch-parity evidence is absent. |
 | 7 | Embedding/representation extraction | BLOCKED | `research/runs/phase7_rep_status.json`; no verified feature API or Phase 6 benchmark artifact. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
@@ -438,3 +438,17 @@ For each PASS append:
 - Dependency decision: no Phase 6 scoring is authorized until the Phase 3 discrepancy is resolved
   or accepted by a dated deviation and a second candidate either passes its own smoke gate or is
   formally excluded with an approved scope decision.
+
+## Phase 3 partition semantics audit — 2026-09-21
+
+- Implementation: `src/evovariant_tr/splits.py` now records mutually exclusive QA-funnel
+  categories. `below_two_stars` counts only definitive t1 outcomes below the primary star gate;
+  `not_definitive_at_t1` includes non-definitive outcomes at either star level.
+- Validation: `./.venv/bin/pytest -q tests/unit/test_splits.py` passed (7 tests); `make data-qc`
+  passed and regenerated the ignored archive-derived outputs. The corrected current partition is
+  3,459 absent, 9,049 below-star definitive, 1,389,441 non-definitive, and 946 final, summing to
+  1,402,895 t0 VUS.
+- Artifact: `artifacts/phase3_partition_audit_20260921.json`; the tracked review summary now
+  records the corrected counters. The target arithmetic is consistent with these semantics, but
+  the target ID/source set is still unavailable. The remaining 330-ID discrepancy and 78-record
+  B/LB difference remain material; Phase 3 stays `BLOCKED` and no scoring was started.

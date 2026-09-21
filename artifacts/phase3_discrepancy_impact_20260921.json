@@ -32,7 +32,7 @@
   "impact": {
     "ids": "MATERIAL: the current t0 valid-ID denominator is 330 lower than the validation-only target; the target ID list is not present, so set intersection cannot be verified.",
     "labels": "MATERIAL: the P/LP count agrees at 410, but the current B/LB count is 78 lower; class balance and any threshold-free metric denominator would change.",
-    "temporal_eligibility": "MATERIAL: the final temporal cohort is 78 records smaller; absent/not-definitive/two-star target fields also differ and their derivation is not reproducible from the supplied target alone.",
+    "temporal_eligibility": "MATERIAL: the final temporal cohort is 78 records smaller. A semantics audit reconciles the target fields as mutually exclusive absent, below-star definitive, non-definitive-at-any-star, and final categories; the target ID/source set is still unavailable, so the 330 additional t0 IDs and their provenance cannot be identified.",
     "overlap_and_leakage": "CURRENT_ONLY_PASS: current generated splits have zero normalized-ID overlap, zero train/validation gene overlap, zero duplicate split IDs, and zero locked-test overlap; equivalent target-side invariants are unavailable.",
     "gene_grouping": "UNRESOLVED: current temporal output contains 946 gene labels and two matched-record gene changes, while the target reports 389 labels without a target record set; whole-gene grouping cannot be compared.",
     "reference_validation": "LIMITED_PASS: matched archive t0/t1 reference mismatch is zero in both reports, but the current audit does not include an independent GRCh38 FASTA base audit.",

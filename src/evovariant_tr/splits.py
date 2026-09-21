@@ -84,7 +84,14 @@ class CompactRecord:
 
 @dataclass
 class TemporalAudit:
-    """Auditable counts and final locked records from t0 to t1."""
+    """Auditable, mutually exclusive counts and final locked records.
+
+    ``below_two_stars`` counts matched definitive t1 outcomes that fail the
+    primary review-star gate. ``not_definitive_at_t1`` counts matched outcomes
+    that are not B/LB or P/LP regardless of their review-star count. Keeping
+    these categories disjoint makes the audit directly comparable with the
+    frozen QA checkpoint without changing the primary label-quality gate.
+    """
 
     t0: SnapshotStats
     t1: SnapshotStats
@@ -326,7 +333,10 @@ def audit_temporal_cohort(
             absent += 1
             continue
         if t1_record.review_stars < MIN_REVIEW_STARS:
-            below_stars += 1
+            if t1_record.label in (0, 1):
+                below_stars += 1
+            else:
+                not_definitive += 1
             continue
         if t1_record.label not in (0, 1):
             not_definitive += 1

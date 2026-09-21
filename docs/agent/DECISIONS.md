@@ -934,6 +934,40 @@ Validation:
 `research/ml_extension/models/`, official source pages/revisions recorded in the audit, and
 `make model-registry-verify` with `included_count: 1`.
 
+## D-041 — Make Phase 3 QA funnel counters mutually exclusive
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: none
+
+Context:
+The frozen QA checkpoint reports `below_two_stars` and `not_definitive_at_t1` as separate funnel
+categories. The archive-derived implementation previously counted every low-star matched record
+as `below_two_stars` and counted only high-star non-definitive records as `not_definitive_at_t1`,
+so the fields were not comparable to the target partition even though the primary label gate was
+unchanged.
+
+Decision:
+Define the audit categories without changing eligibility or model policy: absent records remain
+absent; definitive B/LB or P/LP records below two stars count as `below_two_stars`; all
+non-definitive outcomes, including low-star non-definitive records, count as
+`not_definitive_at_t1`; only definitive outcomes meeting the >=2-star gate enter the final cohort.
+
+Alternatives:
+Leave the ambiguous counters in place, tune the archive filters to force the target counts, or
+alter the immutable primary star gate. These were rejected because the first obscures the QA
+comparison and the latter two would change or contaminate the frozen research design.
+
+Consequences:
+The current archive now reports 9,049 below-star definitive records and 1,389,441 non-definitive
+records, with a mutually exclusive sum of 1,402,895. The target remains 330 t0 IDs and 78 final
+B/LB records larger; without the target ID/source set, Phase 3 remains blocked and no scoring is
+authorized.
+
+Validation:
+`artifacts/phase3_partition_audit_20260921.json`, `make data-qc`, and
+`./.venv/bin/pytest -q tests/unit/test_splits.py` (7 passed). The original protocol hash and all
+immutable protocol fields remain unchanged.
+
 ## Template for new decisions
 
 ### D-XXX — Title

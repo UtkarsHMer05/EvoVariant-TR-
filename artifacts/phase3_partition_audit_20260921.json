@@ -1,0 +1,61 @@
+{
+  "artifact_id": "phase3-partition-audit-20260921",
+  "audit_date": "2026-09-21",
+  "status": "SEMANTICS_CORRECTED_DISCREPANCY_REMAINS",
+  "method": {
+    "implementation": "src/evovariant_tr/splits.py::audit_temporal_cohort",
+    "source_policy": "same frozen archive-derived filters and highest-review deterministic duplicate policy",
+    "protocol_change": false,
+    "filter_tuning": false,
+    "category_partition": "absent; definitive t1 outcomes below two stars; non-definitive t1 outcomes at any star level; final definitive outcomes meeting the primary gate"
+  },
+  "source_archives": {
+    "t0": {
+      "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+      "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa"
+    },
+    "t1": {
+      "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
+      "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
+    }
+  },
+  "current_archive_partition": {
+    "t0_unique_vus": 1402895,
+    "absent_at_t1": 3459,
+    "below_two_stars_definitive_only": 9049,
+    "not_definitive_at_t1_any_star_level": 1389441,
+    "final_temporal_n": 946,
+    "final_blb": 536,
+    "final_plp": 410,
+    "partition_sum": 1402895,
+    "partition_sum_matches_t0": true
+  },
+  "validation_only_target_partition": {
+    "t0_unique_vus": 1403225,
+    "absent_at_t1": 3615,
+    "below_two_stars_definitive_only": 9051,
+    "not_definitive_at_t1_any_star_level": 1389535,
+    "final_temporal_n": 1024,
+    "final_blb": 614,
+    "final_plp": 410,
+    "partition_sum": 1403225,
+    "partition_sum_matches_t0": true
+  },
+  "target_minus_current": {
+    "t0_unique_vus": 330,
+    "absent_at_t1": 156,
+    "below_two_stars_definitive_only": 2,
+    "not_definitive_at_t1_any_star_level": 94,
+    "final_temporal_n": 78,
+    "final_blb": 78,
+    "final_plp": 0
+  },
+  "findings": [
+    "The previous implementation counted all low-star matched rows as below_two_stars and excluded low-star non-definitive rows from not_definitive_at_t1; the counters were not mutually exclusive under the handoff QA vocabulary.",
+    "The corrected partition is mutually exclusive and sums exactly to the current t0 denominator; its current counts are 9049 below-star definitive, 1389441 non-definitive, and 946 final.",
+    "The target arithmetic is consistent with the same mutually exclusive category definitions, but the target ID list and target-side source records are not present in the repository, so the 330 missing IDs cannot be identified or set-compared.",
+    "The 78-record final difference is entirely B/LB in the supplied aggregate counts; this remains material to class balance and all downstream denominators.",
+    "The code change corrects audit semantics only. It does not alter the frozen t0/t1 archives, primary gate, normalized-ID policy, duplicate policy, or any model-scoring authorization."
+  ],
+  "decision": "Phase 3 remains BLOCKED; do not score the current cohort as the handoff cohort until the missing target IDs/source provenance are reconciled or a dated protocol deviation accepts the changed cohort."
+}

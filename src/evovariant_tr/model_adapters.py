@@ -105,10 +105,12 @@ class Evo2Adapter(ModelAdapter):
         *,
         scorer: Any | None = None,
         parity_checker: Callable[[], dict[str, Any]] | None = None,
+        remote_smoke_checker: Callable[[], dict[str, Any]] | None = None,
     ) -> None:
         super().__init__(manifest)
         self._scorer = scorer
         self._parity_checker = parity_checker
+        self._remote_smoke_checker = remote_smoke_checker
 
     def check_readiness(self) -> AdapterReadiness:
         if self._parity_checker is None:
@@ -136,11 +138,78 @@ class Evo2Adapter(ModelAdapter):
                 checks=checks,
                 reason="Evo2 parity is incomplete; a verified GPU/package smoke is required",
             )
+
+        if self._remote_smoke_checker is None:
+            checks["remote_smoke"] = "NOT_RUN"
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.DEFERRED,
+                checks=checks,
+                reason=(
+                    "local Evo2 parity passed; the required remote tiny-inference smoke "
+                    "is not verified"
+                ),
+            )
+
+        try:
+            remote_smoke = self._remote_smoke_checker()
+        except Exception as exc:
+            checks["remote_smoke"] = "ERROR"
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.FAILED,
+                checks=checks,
+                reason=f"remote Evo2 smoke evidence could not be read: {exc}",
+            )
+        remote_checks = remote_smoke.get("checks", [])
+        if not isinstance(remote_checks, list) or not remote_checks:
+            checks["remote_smoke"] = "NOT_VERIFIED"
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.DEFERRED,
+                checks=checks,
+                reason="remote Evo2 smoke evidence is missing named checks",
+            )
+        valid_remote_checks = [
+            check
+            for check in remote_checks
+            if isinstance(check, dict)
+            and isinstance(check.get("name"), str)
+            and isinstance(check.get("status"), str)
+        ]
+        if len(valid_remote_checks) != len(remote_checks):
+            checks["remote_smoke"] = "NOT_VERIFIED"
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.DEFERRED,
+                checks=checks,
+                reason="remote Evo2 smoke evidence contains malformed checks",
+            )
+        checks.update(
+            {
+                f"remote_{check['name']}": str(check["status"])
+                for check in valid_remote_checks
+            }
+        )
+        if remote_smoke.get("all_pass") is not True:
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.FAILED,
+                checks=checks,
+                reason="remote Evo2 smoke evidence reported a failure",
+            )
+        if any(status != "PASS" for status in checks.values()):
+            return AdapterReadiness(
+                model_id=self.model_id,
+                status=AdapterStatus.DEFERRED,
+                checks=checks,
+                reason="remote Evo2 smoke evidence is incomplete",
+            )
         return AdapterReadiness(
             model_id=self.model_id,
             status=AdapterStatus.READY,
             checks=checks,
-            reason="official Evo2 parity checks passed; remote tiny inference still required",
+            reason="local parity and explicit remote Evo2 smoke evidence passed",
         )
 
     def score_batch(self, variants: Any, **kwargs: Any) -> Any:

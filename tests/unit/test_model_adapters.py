@@ -84,9 +84,63 @@ def test_evo2_ready_adapter_requires_or_uses_injected_scorer() -> None:
         def score_batch(self, variants: Any, **kwargs: Any) -> dict[str, Any]:
             return {"variants": variants, "kwargs": kwargs}
 
-    adapter = Evo2Adapter(manifest, scorer=_Scorer(), parity_checker=parity)
+    adapter = Evo2Adapter(
+        manifest,
+        scorer=_Scorer(),
+        parity_checker=parity,
+        remote_smoke_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "real_inference", "status": "PASS"}],
+        },
+    )
     result = adapter.score_batch(["fixture"], orientation="forward")
     assert result == {"variants": ["fixture"], "kwargs": {"orientation": "forward"}}
     provenance = adapter.provenance()
     assert provenance["model_id"] == "evo2"
     assert provenance["provenance_status"] == "VERIFIED"
+
+
+def test_evo2_adapter_never_promotes_local_parity_to_remote_readiness() -> None:
+    manifest = _evo2_manifest()
+    adapter = Evo2Adapter(
+        manifest,
+        parity_checker=lambda: {
+            "all_pass": True,
+            "checks": [{"name": "torch", "status": "PASS"}],
+        },
+    )
+
+    report = adapter.check_readiness()
+
+    assert report.status is AdapterStatus.DEFERRED
+    assert report.checks["remote_smoke"] == "NOT_RUN"
+    assert report.ready is False
+
+
+def test_evo2_adapter_rejects_malformed_or_failed_remote_evidence() -> None:
+    manifest = _evo2_manifest()
+
+    def parity() -> dict[str, Any]:
+        return {
+            "all_pass": True,
+            "checks": [{"name": "torch", "status": "PASS"}],
+        }
+
+    malformed = Evo2Adapter(
+        manifest,
+        parity_checker=parity,
+        remote_smoke_checker=lambda: {"all_pass": True, "checks": [{"status": "PASS"}]},
+    ).check_readiness()
+    assert malformed.status is AdapterStatus.DEFERRED
+    assert malformed.checks["remote_smoke"] == "NOT_VERIFIED"
+
+    failed = Evo2Adapter(
+        manifest,
+        parity_checker=parity,
+        remote_smoke_checker=lambda: {
+            "all_pass": False,
+            "checks": [{"name": "real_inference", "status": "FAIL"}],
+        },
+    ).check_readiness()
+    assert failed.status is AdapterStatus.FAILED
+    assert failed.checks["remote_real_inference"] == "FAIL"

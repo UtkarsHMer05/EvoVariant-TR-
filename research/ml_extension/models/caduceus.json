@@ -1,37 +1,37 @@
 {
   "model_id": "caduceus",
-  "status": "PLANNED",
-  "model_name": "Caduceus",
-  "source": "https://github.com/kuleshov-group/caduceus",
-  "license": "NOT_VERIFIED",
-  "checkpoint": null,
-  "revision": null,
+  "status": "INFEASIBLE",
+  "model_name": "Caduceus-Ph",
+  "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+  "license": "Apache-2.0",
+  "checkpoint": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+  "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
   "input_contract": {
-    "assembly": null,
-    "alphabet": "ACGT",
-    "context_lengths_bp": [],
+    "assembly": "human reference genome; exact GRCh38 provenance not independently verified",
+    "alphabet": "ACGT with Caduceus tokenizer",
+    "context_lengths_bp": [131072],
     "variant_scoring": false
   },
   "score_contract": {
-    "score_semantics": "not_verified",
+    "score_semantics": "masked-language-model logits/embeddings; no official raw SNV VEP contract verified",
     "score_direction": "unknown",
     "orientation_support": "unknown"
   },
   "capabilities": {
     "raw_score": false,
-    "embeddings": false,
-    "fine_tuning": false,
-    "batch": false
+    "embeddings": true,
+    "fine_tuning": true,
+    "batch": true
   },
   "hardware": {
-    "backend": "not_verified",
+    "backend": "Transformers/PyTorch",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "NOT_VERIFIED",
-    "notes": "Candidate retained for feasibility review only. No checkpoint, revision, input parity, variant-scoring API, license, or smoke result has been verified in this repository.",
+    "verified_at": "2026-09-21",
+    "verification_status": "DEFERRED",
+    "notes": "Official repository and checkpoint were audited. Caduceus-Ph is a 131,072-bp masked-language model trained with reverse-complement augmentation; its documented downstream procedure runs sequence and reverse complement, but no raw allele-effect VEP API was verified. A pseudo-likelihood adapter would not be apples-to-apples with Evo2 without a predeclared protocol. Deferred by compatibility; no weights were downloaded.",
     "asset_checksum": null
   }
 }

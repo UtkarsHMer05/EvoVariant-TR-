@@ -4,21 +4,20 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 19 — Final release gate` (independent local work complete; gated
-scientific phases remain blocked)
+Current phase: `PHASE 5 — Model registry and adapter framework` (Phases 2 and 4 remote
+gates pass; Phase 3 has been reopened for a material discrepancy-impact review)
 
-Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository now has the
+Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
-contracts for later experiment families, a complete evidence-gated research-workbench UI, and
-passing local Python/frontend build gates. The Phase 17 export control surface now covers every
-required figure/table family and can render only hash-verified registry artifacts; the current
-bundle remains explicitly blocked with zero scientific outputs. The fresh clean-room clone now
-reproduces the default CPU suite and frontend build after dependency installation. No candidate
-model has verified parity/smoke evidence, no paid Modal pilot or model-weight download has run,
-no scientific result artifact is registered, and registry-driven figure output has no inputs. The
-repository now has committed browser E2E coverage for the no-fabrication workbench journeys. No model
-download, training, HPO, fine-tuning, locked-test evaluation, or clinical classification has been
-started.
+contracts for later experiment families, evidence-gated workbench, and passing local Python/
+frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 2 raw-score
+contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
+approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 discrepancy is
+scientifically material to IDs, temporal eligibility, class counts, and denominators, so the
+Phase 3 acceptance review is reopened and Phases 6 onward remain blocked. Phase 5 has audited all
+seven candidates, but Evo2 is the only included model; the other six are explicitly deferred or
+infeasible with source-backed reasons. No full benchmark, training, HPO, fine-tuning, locked-test
+evaluation, clinical classification, or release has started.
 
 Last passing source baseline: `14d9593` (registry-driven Phase 17 export bundle and enforced coverage floor).
 Phase 0 handoff checkpoint: `89e5751`.
@@ -45,6 +44,37 @@ checkout HEAD with Git because documentation commits may advance it without chan
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
+
+## Current authoritative execution update — 2026-09-21
+
+- HEAD at the time of the remote pilot: `2f4d117d0d1804bd8479d7da473978d1f796249b`; the
+  chromosome-normalization fix, model-manifest updates, pilot artifacts, and this documentation
+  update are currently working-tree changes and must be committed together after validation.
+- The user-authorized pilot approval is
+  `artifacts/approvals/phase2_4_pilot_20260921.json` with a `$2.00` bounded pilot-family cap.
+  Modal billing is recorded as workspace-level evidence only: metered cost moved from `$11.49`
+  before remote requests to `$11.82` after the corrected pilot family, billed cost remained
+  `$0.00`, and no exact per-request invoice amount is asserted.
+- Superseded failure evidence is preserved in
+  `artifacts/modal/phase2_pilot_20260921_failed_attempts.json`. The first deployment loaded
+  `evo2_7b` successfully but failed at UCSC chromosome lookup because raw `10` was passed instead
+  of `chr10`; a warm retry reproduced the same failure. The app now centralizes chromosome
+  normalization and validates `GRCh38`/`hg38` at the remote boundary, with a local regression test.
+- Corrected deployment `evovariant-tr` v3, tag `phase2-pilot-20260921-r1`, passed one real
+  cache-miss request and one identical cache-hit request for
+  `GRCh38:chr10:100065200:C>T`. The miss returned HTTP 200 in `36.2727` wall seconds with
+  `3.914133089` H100 runtime, exact `8192`-bp context, forward/reverse raw scores, and
+  `cache_hit: false`. The hit returned HTTP 200 in `0.956` seconds with `cache_hit: true` and
+  exact numeric equality. The persistent artifact is recorded in
+  `artifacts/modal/phase2_phase4_pilot_20260921_success.json` and the append-only cost ledger.
+- Phase 2 gate: `PASS` for the local audit plus real remote raw-score pilot. Phase 4 gate: `PASS`
+  for cache identity, persistence, equivalent hit, retry/scaledown configuration, telemetry, and
+  available cost evidence. Phase 5 audit: `BLOCKED` for multi-model inclusion with one verified
+  candidate; see `artifacts/model_audit/phase5_candidate_audit_20260921.json`.
+- Phase 3 impact decision: `MATERIAL_UNCERTAINTY`; see
+  `artifacts/phase3_discrepancy_impact_20260921.json`. Current archive-derived outputs remain
+  unchanged and no benchmark output is authorized until reconciliation or a dated protocol
+  deviation accepts the changed cohort.
 
 ## Handoff extraction
 
@@ -181,37 +211,43 @@ manifests under `research/ml_extension/models/`; and ignored no-result status ar
 `research/figures/bundle_manifest.json` with `status: BLOCKED`, 19 required figure families,
 12 required tables, and zero outputs. No model result artifact or scientific figure was generated.
 
-Current Modal assets: source scaffolding plus a validated no-spend preflight. The root app and
-`modal_config.py` use `evovariant-tr`, H100, `hf_cache`, the pinned image, and the pinned Evo2
-source revision. The authenticated CLI listing does not prove that the named app, volume,
-image, weights, or inference path exists remotely; those remain unverified until an explicitly
-authorized pilot runs.
+Current Modal assets: the canonical `evovariant-tr` app is deployed as v3 with tag
+`phase2-pilot-20260921-r1`, using H100, `hf_cache`, the pinned NGC image, and Evo2 revision
+`4b509ec2a22d6de472659f908bcb0714265ad3a7`. The real pilot loaded `evo2_7b`, verified the
+UCSC-backed GRCh38 path, wrote a content-addressed prediction artifact, and returned an exact
+equivalent cache hit. The prediction and model-weight caches remain remote in the named volume;
+no checkpoint or cache file is tracked in Git.
 
 Monthly budget assumption: approximately `$30/month` included compute as stated by the master
 prompt; pricing and credits were not queried in Phase 0. The historical `$500` approval file
 is not treated as current ML-extension authorization.
 
-Estimated spend to date: `$0` for local validation and Phase 3 data work.
+Estimated spend to date: local validation and Phase 3 data work were `$0`; the authorized pilot
+family has rate-based wall-time estimates of approximately `$0.084` across the cold failure,
+corrected miss, and cache-hit proxy records. This is an estimate, not an invoice.
 
-Measured spend to date: `$0`; no Modal/GPU, model-weight download, or old endpoint call was
-made.
+Measured spend to date: Modal reports workspace metered cost `$11.82`, billed cost `$0.00`, and
+the observed pilot-family workspace delta is approximately `$0.33` from the pre-remote baseline.
+Per-request measured USD is unavailable; the failed old `variant-analysis-evo2` app was not
+called.
 
 ## Known blockers and exact next action
 
-Known blockers are the required real Modal pilot (paid-compute acknowledgement and remote
-inference evidence), the unresolved discrepancy between the recomputed temporal cohort and the
-validation-only QA target, the absence of verified model weights/checkpoints, and the zero-model
-inclusion gate. Independent local gates, committed browser E2E, and a fresh clean-room
-CPU/frontend rerun now pass. The registry-driven figure manifest and bundle now run with hash and
-field verification, but report `BLOCKED` because no eligible completed scientific result artifacts
-exist; no result artifacts are registered. A fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
+Known blockers are the material discrepancy between the recomputed temporal cohort and the
+validation-only QA target, the absence of a second included model with a compatible raw-score
+contract, and the lack of registered full-cohort scientific outputs. Independent local gates,
+committed browser E2E, and a fresh clean-room CPU/frontend rerun now pass. The registry-driven
+figure manifest and bundle now run with hash and field verification, but report `BLOCKED` because
+no eligible completed scientific result artifacts exist; no result artifacts are registered. A
+fresh `npm ci` also reports 13 dependency vulnerabilities (2 low,
 2 moderate, 8 high, 1 critical); no automatic audit fix was applied.
 
-Exact next action: preserve this state, then obtain explicit authorization and verified model/
-compute evidence before running a tiny Modal pilot. Resolve or formally approve the Phase 3 QA
-deviation before scoring; add registered result artifacts and complete registry-driven figure
-rendering before releasing. Do not run model scoring, read locked labels for selection, or start
-paid Modal work without the corresponding gate.
+Exact next action: resolve the Phase 3 discrepancy from source-level evidence or obtain a dated
+protocol deviation that explicitly accepts the changed cohort and denominators. Independently,
+only after that gate and a separately bounded approval, complete the GPN-Star/second-model
+feasibility path or record the multi-model plan as deferred. Do not run a full benchmark, inspect
+locked labels for selection, train, tune, fine-tune, or generate release figures from the single
+pilot record.
 
 ## Figure-input integrity follow-up — 2026-09-21
 

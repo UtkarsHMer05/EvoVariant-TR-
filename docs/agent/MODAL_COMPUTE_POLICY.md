@@ -89,3 +89,22 @@ Retry only idempotent jobs.
 Do not blindly retry deterministic OOM or invalid-input failures.
 Record spend from failed runs.
 
+## Authorized pilot execution record — 2026-09-21
+
+The dated user approval at `artifacts/approvals/phase2_4_pilot_20260921.json` authorized only a
+tiny Phase 2/4 pilot and Phase 5 smoke/audit, capped at `$2.00`. The canonical app identity was
+`evovariant-tr`, volume `hf_cache`, H100, the pinned NGC PyTorch image, and Evo2 revision
+`4b509ec2a22d6de472659f908bcb0714265ad3a7`.
+
+- Two failed requests are preserved, including their approximate workspace-cost observation;
+  the first failure was a deterministic chromosome-prefix boundary bug, not a model-load failure.
+- Corrected miss: HTTP 200, 36.2727 wall seconds, 3.914133089 GPU seconds, `cache_hit=false`.
+- Equivalent hit: HTTP 200, 0.956 wall seconds, `cache_hit=true`, exact numeric equality, no new
+  model-inference telemetry.
+- Persistent prediction artifact was verified under the named volume. Model weights remain in
+  that remote volume and are not copied into the repository.
+- Modal summary was workspace-level: metered `$11.49` before remote requests and `$11.82` after
+  the pilot family, billed `$0.00`. The cost ledger therefore records rate-based estimates,
+  measured wall/runtime seconds, and `measured_usd: null` rather than inventing an invoice.
+- No full benchmark, broad batch, HPO, training, fine-tuning, or locked-test work is authorized
+  by this record. Any larger run needs a new explicit approval artifact.

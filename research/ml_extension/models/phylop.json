@@ -1,19 +1,19 @@
 {
   "model_id": "phylop",
-  "status": "PLANNED",
-  "model_name": "PhyloP",
+  "status": "INFEASIBLE",
+  "model_name": "UCSC phyloP 100-way hg38",
   "source": "https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=cons100way",
-  "license": "NOT_VERIFIED",
-  "checkpoint": null,
-  "revision": null,
+  "license": "UCSC data-use terms; verify for redistribution",
+  "checkpoint": "phyloP100way",
+  "revision": "UCSC track data last updated 2015-05-08",
   "input_contract": {
     "assembly": "GRCh38",
-    "alphabet": "A/C/G/T SNVs",
-    "context_lengths_bp": [],
-    "variant_scoring": true
+    "alphabet": "reference genome coordinate",
+    "context_lengths_bp": [1],
+    "variant_scoring": false
   },
   "score_contract": {
-    "score_semantics": "conservation_score",
+    "score_semantics": "basewise evolutionary conservation/acceleration score; positive values indicate conservation and negative values indicate faster evolution",
     "score_direction": "unknown",
     "orientation_support": "not_applicable"
   },
@@ -21,17 +21,17 @@
     "raw_score": true,
     "embeddings": false,
     "fine_tuning": false,
-    "batch": false
+    "batch": true
   },
   "hardware": {
-    "backend": "not_verified",
+    "backend": "UCSC annotation track",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "NOT_VERIFIED",
-    "notes": "Comparator candidate retained for a later frozen GRCh38 annotation-source review. The existing deterministic PhyloP comparator is synthetic fixture behavior and cannot enter scientific evidence.",
+    "verified_at": "2026-09-21",
+    "verification_status": "DEFERRED",
+    "notes": "Official UCSC GRCh38 100-vertebrate track and WIG download path were audited. PhyloP is a site-wise conservation/acceleration annotation, not an alternate-minus-reference sequence score, so it cannot be an apples-to-apples raw variant-effect model without a predeclared comparator transform. The existing deterministic comparator remains test-only.",
     "asset_checksum": null
   }
 }

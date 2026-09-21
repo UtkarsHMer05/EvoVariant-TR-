@@ -26,7 +26,7 @@ def test_verify_model_registry_command(capsys: pytest.CaptureFixture[str]) -> No
     payload = json.loads(capsys.readouterr().out)
     assert payload["status"] == "PASS"
     assert payload["manifest_count"] == 7
-    assert payload["included_count"] == 0
+    assert payload["included_count"] == 1
 
 
 def test_phase_status_command_writes_no_result_artifact(

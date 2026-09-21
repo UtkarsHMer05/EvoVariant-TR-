@@ -58,7 +58,7 @@ def _manifest(model_id: str = "fixture_model", **overrides: object) -> dict[str,
     return data
 
 
-def test_checked_in_registry_is_valid_and_keeps_inclusion_empty() -> None:
+def test_checked_in_registry_is_valid_and_includes_verified_evo2() -> None:
     models = load_model_registry(MODELS, schema_path=SCHEMA)
     assert len(models) == 7
     assert {model.model_id for model in models} == {
@@ -70,7 +70,7 @@ def test_checked_in_registry_is_valid_and_keeps_inclusion_empty() -> None:
         "nucleotide_transformer",
         "phylop",
     }
-    assert included_models(models) == ()
+    assert [model.model_id for model in included_models(models)] == ["evo2"]
     assert verify_model_registry(MODELS, schema_path=SCHEMA) == []
 
 

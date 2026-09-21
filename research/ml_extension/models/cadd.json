@@ -1,37 +1,37 @@
 {
   "model_id": "cadd",
-  "status": "PLANNED",
-  "model_name": "CADD",
-  "source": "https://cadd.gs.washington.edu/",
+  "status": "INFEASIBLE",
+  "model_name": "CADD v1.7",
+  "source": "https://github.com/kircherlab/CADD-scripts",
   "license": "NOT_VERIFIED",
-  "checkpoint": null,
-  "revision": null,
+  "checkpoint": "CADD v1.7.3 GRCh38 annotations",
+  "revision": "9e6ffea3597ec5b5d5eedde1144ff57fe19a0544",
   "input_contract": {
     "assembly": "GRCh38",
-    "alphabet": "A/C/G/T SNVs",
+    "alphabet": "VCF SNV/indel records with genome annotations",
     "context_lengths_bp": [],
     "variant_scoring": true
   },
   "score_contract": {
-    "score_semantics": "annotator_score",
-    "score_direction": "unknown",
+    "score_semantics": "CADD deleteriousness score, not a sequence-model log-likelihood ratio",
+    "score_direction": "higher_is_more_pathogenic",
     "orientation_support": "not_applicable"
   },
   "capabilities": {
     "raw_score": true,
     "embeddings": false,
     "fine_tuning": false,
-    "batch": false
+    "batch": true
   },
   "hardware": {
-    "backend": "not_verified",
+    "backend": "local annotation pipeline",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "NOT_VERIFIED",
-    "notes": "Comparator candidate retained for a later official annotation-source review. The existing deterministic CADD comparator is synthetic fixture behavior and cannot enter scientific evidence.",
+    "verified_at": "2026-09-21",
+    "verification_status": "DEFERRED",
+    "notes": "Official CADD-scripts v1.7 release path was audited. The GRCh38 annotation bundle is documented as approximately 300 GB, and the current repository has neither the annotation assets nor a verified license/asset checksum. Deferred by compute/storage and comparator-provenance review; the existing deterministic CADD comparator remains test-only.",
     "asset_checksum": null
   }
 }

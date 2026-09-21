@@ -1,37 +1,37 @@
 {
   "model_id": "gpn",
-  "status": "PLANNED",
-  "model_name": "GPN / GPN-MSA",
-  "source": "https://github.com/songlab-cal/gpn",
-  "license": "NOT_VERIFIED",
-  "checkpoint": null,
-  "revision": null,
+  "status": "INFEASIBLE",
+  "model_name": "GPN-Star hg38 V100 200M",
+  "source": "https://huggingface.co/songlab/gpn-star-hg38-v100-200m",
+  "license": "MIT",
+  "checkpoint": "songlab/gpn-star-hg38-v100-200m",
+  "revision": "0c949f132d35619a3eb188b402848c998a3313ae",
   "input_contract": {
-    "assembly": null,
-    "alphabet": "ACGT",
+    "assembly": "GRCh38/hg38",
+    "alphabet": "ACGT with matching 100-way whole-genome alignment",
     "context_lengths_bp": [],
-    "variant_scoring": false
+    "variant_scoring": true
   },
   "score_contract": {
-    "score_semantics": "not_verified",
+    "score_semantics": "raw uncalibrated alternate_minus_reference log_likelihood_ratio averaged over forward and reverse-complement orientations",
     "score_direction": "unknown",
     "orientation_support": "unknown"
   },
   "capabilities": {
-    "raw_score": false,
-    "embeddings": false,
-    "fine_tuning": false,
-    "batch": false
+    "raw_score": true,
+    "embeddings": true,
+    "fine_tuning": true,
+    "batch": true
   },
   "hardware": {
-    "backend": "not_verified",
+    "backend": "Transformers/PyTorch with local MSA store",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "NOT_VERIFIED",
-    "notes": "Candidate retained for feasibility review only. Existing deterministic comparator code is a fixture path and is not an official GPN result.",
+    "verified_at": "2026-09-21",
+    "verification_status": "DEFERRED",
+    "notes": "Official GPN package, GPN-Star VEP contract, MIT license, and hg38 V100 checkpoint were audited. The required exact alignment archive is approximately 42 GB compressed and must match species count/order/evolutionary scale; it is absent locally and outside the bounded pilot budget. Deferred by compute/data availability. No model or alignment was downloaded and no smoke was run.",
     "asset_checksum": null
   }
 }

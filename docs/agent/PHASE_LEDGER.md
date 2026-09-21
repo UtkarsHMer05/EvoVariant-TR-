@@ -6,10 +6,10 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 |---:|---|---|---|
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
-| 2 | Canonical scoring repair | BLOCKED | Local repair and validation pass; the no-spend Modal preflight is authenticated, but the required real remote pilot and paid-compute acknowledgement are absent. See completion record below. |
-| 3 | ML dataset + locked splits | PASS | `research/ml_extension/splits/phase3_manifest_summary.json`; generated split manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, structural leakage/QC invariants pass; QA-count discrepancy is documented and blocks downstream model scoring until reconciled. |
-| 4 | Modal compute foundation | BLOCKED | Local foundation and no-spend preflight pass in `cc7de42`; mandatory tiny remote inference, cache-hit evidence, and measured cost record remain unavailable without paid-compute acknowledgement. See completion record below. |
-| 5 | Model registry + adapters | BLOCKED | Seven schema-valid candidate manifests and a fail-closed adapter framework pass locally in `473d314`; zero candidates have verified parity plus tiny smoke evidence, so no model is included. See completion record below. |
+| 2 | Canonical scoring repair | PASS | Local repair plus real Evo2 7B H100 raw-SNV pilot; corrected `10` to `chr10`, exact 8192-bp context, forward/reverse raw scores, provenance, and HTTP 200 evidence in `artifacts/modal/phase2_phase4_pilot_20260921_success.json`. |
+| 3 | ML dataset + locked splits | BLOCKED | Structural current-cohort invariants pass, but the 330-ID / 78-final-record discrepancy is material to denominators and class counts; impact review is reopened in `artifacts/phase3_discrepancy_impact_20260921.json`. |
+| 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
+| 5 | Model registry + adapters | BLOCKED | Seven source-audited manifests pass schema verification; Evo2 is the only included model after real smoke. Six candidates are explicit `INFEASIBLE`/deferred records, so the multi-model inclusion gate remains open. |
 | 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; no included model, unresolved Phase 3 QA discrepancy, and no Phase 4 pilot. |
 | 7 | Embedding/representation extraction | BLOCKED | `research/runs/phase7_rep_status.json`; no verified feature API or Phase 6 benchmark artifact. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
@@ -388,3 +388,53 @@ For each PASS append:
 - Gate decision: free/control-plane clean-room reproducibility `PASS`; full Phase 18 remains
   `BLOCKED / PARTIAL` because the real Modal smoke, verified model artifacts, and registered
   scientific outputs are absent. No release, deployment, publication, or spend was created.
+
+## Phase 2 and Phase 4 authorized Modal pilot — 2026-09-21
+
+- Approval: `artifacts/approvals/phase2_4_pilot_20260921.json`; scope was limited to a tiny
+  canonical Evo2 pilot, cache miss/hit validation, and Phase 5 smoke/audit, with a `$2.00` cap.
+- Superseded failures are preserved in
+  `artifacts/modal/phase2_pilot_20260921_failed_attempts.json`. Deployment v2 loaded the Evo2
+  weights but returned HTTP 500 because raw chromosome `10` was passed to UCSC. The fix was to
+  centralize `normalize_chromosome`, use `chr10` for UCSC/cache/result identity, validate the
+  `GRCh38`/`hg38` boundary, and add regression coverage. `make validate` then passed with 629
+  tests, 33 deselected, and 95.35% coverage.
+- Corrected deployment: canonical app `evovariant-tr`, v3, tag `phase2-pilot-20260921-r1`,
+  H100, NGC PyTorch image, Evo2 revision
+  `4b509ec2a22d6de472659f908bcb0714265ad3a7`. The model loaded successfully from the remote
+  cache. No weights or prediction files were committed.
+- Miss record `phase2-pilot-20260921-modal-miss`: HTTP 200, 36.2727 wall seconds,
+  3.914133089 H100 runtime, 18,075,978,752-byte peak GPU memory, `cache_hit=false`, exact
+  8192-bp context, forward/reverse raw scores, primary delta `-0.00025135278701782227`, and
+  normalized ID `GRCh38:chr10:100065200:C>T`.
+- Hit record `phase4-pilot-20260921-modal-hit`: identical request, HTTP 200, 0.956 wall
+  seconds, `cache_hit=true`, exact numeric equality with the miss, and no fresh inference
+  telemetry. The persistent file was listed at
+  `evovariant-tr/predictions/0a/0a5e97eff1df2eab88c4a59a5434b1a5d9b0fa317820d6eaea7bc1d03e7871b3.json`.
+- Billing: current H100 rate was `$3.95/hour`; rate-based wall-time estimates are not invoice
+  measurements. Modal workspace summary changed from metered `$11.49` before remote requests to
+  `$11.82` after the pilot family, with billed cost `$0.00`. The append-only ledger records null
+  per-request measured USD and the workspace-level interpretation.
+- Gate decisions: Phase 2 `PASS`; Phase 4 `PASS`; no full benchmark, training, HPO, fine-tuning,
+  locked-test selection, or clinical classification was run.
+
+## Phase 3 discrepancy impact reopening and Phase 5 candidate audit — 2026-09-21
+
+- `artifacts/phase3_discrepancy_impact_20260921.json` records that the discrepancy is material:
+  current valid t0 IDs are 1,402,895 versus the validation-only target 1,403,225, final temporal
+  records are 946 versus 1,024, and B/LB is 536 versus 614 while P/LP remains 410. Current-only
+  no-overlap, duplicate, reference, and gene-group invariants remain intact, but target-side
+  IDs and invariants are unavailable. No filter was changed to force agreement.
+- `artifacts/model_audit/phase5_candidate_audit_20260921.json` records official-source checks for
+  all seven candidates. `evo2.json` is now `INCLUDED` with `VERIFIED` provenance. Nucleotide
+  Transformer and Caduceus are deferred because their documented masked-LM APIs do not supply a
+  verified apples-to-apples raw SNV VEP contract. GPN-Star is deferred because the matching
+  100-way alignment archive is approximately 42 GB compressed and absent. CADD is deferred
+  because the official GRCh38 annotation bundle is approximately 300 GB. PhyloP is a site-wise
+  conservation track, not an allele-effect model. AlphaMissense is restricted to precomputed
+  missense predictions and does not publish trained weights.
+- `make model-registry-verify` passes with seven manifests and one included model. Phase 5
+  remains `BLOCKED` for the multi-model gate; no deferred candidate is silently benchmarked.
+- Dependency decision: no Phase 6 scoring is authorized until the Phase 3 discrepancy is resolved
+  or accepted by a dated deviation and a second candidate either passes its own smoke gate or is
+  formally excluded with an approved scope decision.

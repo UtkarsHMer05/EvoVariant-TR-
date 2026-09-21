@@ -95,7 +95,8 @@ def test_status_artifact_rejects_metrics_until_completion(tmp_path: Path) -> Non
 def test_benchmark_plan_is_direction_safe_and_blocked_without_models() -> None:
     models = load_model_registry(MODELS, schema_path=SCHEMA)
     plan = build_zero_shot_plan(models, split_manifest_hash="a" * 64)
-    assert plan.model_ids == ()
+    assert plan.model_ids == ("evo2",)
+    assert "authorization" in plan.reason
     assert plan.locked_test_allowed is False
     assert benchmark_status(models, split_manifest_hash="a" * 64).status is ExecutionStatus.BLOCKED
     assert harmonize_score(2.0, "higher_is_more_pathogenic") == 2.0

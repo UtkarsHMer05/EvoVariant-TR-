@@ -1,37 +1,37 @@
 {
   "model_id": "alphamissense_valid_subset",
-  "status": "PLANNED",
-  "model_name": "AlphaMissense valid missense subset",
+  "status": "INFEASIBLE",
+  "model_name": "AlphaMissense applicable missense subset",
   "source": "https://github.com/google-deepmind/alphamissense",
-  "license": "NOT_VERIFIED",
-  "checkpoint": null,
-  "revision": null,
+  "license": "Apache-2.0 code; CC-BY-4.0 predictions",
+  "checkpoint": "precomputed human missense predictions",
+  "revision": "fe2dc845f93310abd6c1b0e8955d7a96c2144d66",
   "input_contract": {
     "assembly": "GRCh38",
-    "alphabet": "A/C/G/T SNVs",
+    "alphabet": "protein amino-acid substitutions with MSA features",
     "context_lengths_bp": [],
     "variant_scoring": true
   },
   "score_contract": {
-    "score_semantics": "missense_pathogenicity_score",
-    "score_direction": "unknown",
+    "score_semantics": "precomputed AlphaMissense variant_pathogenicity for applicable missense variants",
+    "score_direction": "higher_is_more_pathogenic",
     "orientation_support": "not_applicable"
   },
   "capabilities": {
     "raw_score": true,
     "embeddings": false,
     "fine_tuning": false,
-    "batch": false
+    "batch": true
   },
   "hardware": {
-    "backend": "not_verified",
+    "backend": "precomputed database / JAX reference implementation",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "NOT_VERIFIED",
-    "notes": "Comparator candidate is restricted to an applicable missense subset. No annotation release, checksum, license, or local source has been verified; non-missense records must be explicitly missing rather than assigned a score.",
+    "verified_at": "2026-09-21",
+    "verification_status": "DEFERRED",
+    "notes": "Official repository was audited. The project publishes precomputed predictions for human missense variants and explicitly does not publish trained model weights; non-missense records must remain missing. The current temporal cohort is not yet mapped to an approved transcript/missense subset, so this comparator is deferred by compatibility and subset definition. No predictions were downloaded.",
     "asset_checksum": null
   }
 }

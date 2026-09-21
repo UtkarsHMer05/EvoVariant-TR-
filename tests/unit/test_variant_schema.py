@@ -5,7 +5,24 @@ from __future__ import annotations
 import pytest
 from pydantic import ValidationError
 
-from evovariant_tr.variant_schema import CanonicalVariant, VariantPayload
+from evovariant_tr.variant_schema import (
+    CanonicalVariant,
+    VariantPayload,
+    normalize_chromosome,
+)
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [("1", "chr1"), (" chr10 ", "chr10"), ("chr17", "chr17")],
+)
+def test_normalize_chromosome_matches_ucsc_spelling(raw: str, expected: str) -> None:
+    assert normalize_chromosome(raw) == expected
+
+
+def test_normalize_chromosome_rejects_blank_values() -> None:
+    with pytest.raises(ValueError, match="chromosome must be non-empty"):
+        normalize_chromosome("  ")
 
 
 def test_canonical_variant_id_is_stable() -> None:

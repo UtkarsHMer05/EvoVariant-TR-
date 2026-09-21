@@ -26,6 +26,7 @@ from evovariant_tr.sequence_window import (
     compute_window_coordinates_with_shift,
 )
 from evovariant_tr.telemetry import TelemetryTimer
+from evovariant_tr.variant_schema import normalize_chromosome
 from modal import Image
 
 _modal_config = get_modal_config()
@@ -123,7 +124,9 @@ class Evo2ScorerService:
             reference/ref: str
             alternate/alternative/alt: str
         """
-        chrom = str(variant_data.get("chromosome", variant_data.get("chrom", "")))
+        raw_chrom = str(
+            variant_data.get("chromosome", variant_data.get("chrom", ""))
+        )
         pos = int(str(variant_data.get("position_1based", variant_data.get("variant_position"))))
         declared_ref = str(variant_data.get("reference", variant_data.get("ref", ""))).upper()
         alt = str(
@@ -132,15 +135,20 @@ class Evo2ScorerService:
                 variant_data.get("alternative", variant_data.get("alt", "")),
             )
         ).upper()
+        assembly = str(variant_data.get("assembly", "GRCh38"))
         genome = str(variant_data.get("genome", "hg38"))
 
-        if not chrom or not declared_ref or not alt:
+        if not raw_chrom.strip() or not declared_ref or not alt:
             raise ValueError("chromosome, reference, and alternate are required")
+        if assembly != "GRCh38":
+            raise ValueError("the canonical Modal scorer requires assembly GRCh38")
+        if genome != "hg38":
+            raise ValueError("the canonical Modal scorer requires UCSC genome hg38")
         if len(declared_ref) != 1 or len(alt) != 1 or declared_ref == alt:
             raise ValueError("the canonical Modal scorer accepts distinct SNVs only")
 
-        canonical_chrom = chrom if chrom.startswith("chr") else f"chr{chrom}"
-        normalized_id = f"GRCh38:{canonical_chrom}:{pos}:{declared_ref}>{alt}"
+        chrom = normalize_chromosome(raw_chrom)
+        normalized_id = f"GRCh38:{chrom}:{pos}:{declared_ref}>{alt}"
         cache_identity = CacheIdentity(
             model_id="evo2",
             checkpoint="evo2_7b",

@@ -1,9 +1,9 @@
 {
   "model_id": "evo2",
-  "status": "PLANNED",
+  "status": "INCLUDED",
   "model_name": "Evo2 7B",
   "source": "https://github.com/ArcInstitute/evo2",
-  "license": "NOT_VERIFIED",
+  "license": "Apache-2.0",
   "checkpoint": "evo2_7b",
   "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
   "input_contract": {
@@ -13,7 +13,7 @@
     "variant_scoring": true
   },
   "score_contract": {
-    "score_semantics": "reference_vs_alternate_log_likelihood_ratio",
+    "score_semantics": "alternate_minus_reference_log_likelihood",
     "score_direction": "unknown",
     "orientation_support": "forward_and_reverse"
   },
@@ -29,9 +29,9 @@
     "memory_gb": 80
   },
   "provenance": {
-    "verified_at": null,
-    "verification_status": "DEFERRED",
-    "notes": "Required candidate. Pinned source identity is recorded, but official package parity, weights, GPU load, tiny inference, and measured cost remain unverified.",
+    "verified_at": "2026-09-21",
+    "verification_status": "VERIFIED",
+    "notes": "Required candidate. Official source, Apache-2.0 license, pinned revision, 8192-bp raw-score contract, H100 model load, real forward/reverse SNV pilot, persistent prediction cache, and equivalent cache hit are verified. Evidence: artifacts/modal/phase2_phase4_pilot_20260921_success.json. Per-request billed USD is unavailable; workspace-level billing is recorded there.",
     "asset_checksum": null
   }
 }

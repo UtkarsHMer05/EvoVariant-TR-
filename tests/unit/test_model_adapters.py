@@ -89,4 +89,4 @@ def test_evo2_ready_adapter_requires_or_uses_injected_scorer() -> None:
     assert result == {"variants": ["fixture"], "kwargs": {"orientation": "forward"}}
     provenance = adapter.provenance()
     assert provenance["model_id"] == "evo2"
-    assert provenance["provenance_status"] == "DEFERRED"
+    assert provenance["provenance_status"] == "VERIFIED"

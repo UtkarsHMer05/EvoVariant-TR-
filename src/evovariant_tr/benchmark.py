@@ -75,7 +75,7 @@ def build_zero_shot_plan(
             model_ids=tuple(model.model_id for model in included),
             split_manifest_hash=split_manifest_hash,
             locked_test_allowed=False,
-            reason="execution authorization and remote parity evidence are absent",
+            reason="full-cohort execution authorization and batch parity evidence are absent",
         )
     return BenchmarkPlan(
         model_ids=tuple(model.model_id for model in included),
@@ -95,6 +95,10 @@ def benchmark_status(
     return deferred_artifact(
         phase=6,
         family="ZS",
-        blockers=[plan.reason, "Phase 3 QA discrepancy unresolved", "Phase 4 Modal pilot not run"],
+        blockers=[
+            plan.reason,
+            "Phase 3 QA discrepancy unresolved",
+            "full-cohort execution gate not passed",
+        ],
         inputs={"plan": plan.to_dict()},
     )

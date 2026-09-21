@@ -22,12 +22,12 @@ closed:
 |---|---|
 | Frozen protocol and ML-extension control plane | PASS; the original protocol hash is preserved. |
 | Phase 3 data and splits | Structural invariants PASS, with a documented QA-count discrepancy; downstream scoring is blocked until resolved or approved by deviation. |
-| Model registry | Seven schema-valid candidate manifests; zero included models with verified parity/smoke evidence. |
-| Modal | No-spend CLI/account preflight only; no deployment, model-weight download, remote inference, or measured cost. |
+| Model registry | Seven schema-valid candidate manifests; Evo2 is included with verified provenance and one real smoke, while six candidates are explicitly deferred/infeasible. |
+| Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
 | Experiment registry | Empty; no scientific result artifact is registered. |
 | Research workbench | Frontend build and four browser tests PASS; scientific panels remain evidence-gated. |
 | Figures and tables | Registry-driven manifest and export bundle are deterministic but `BLOCKED` because no eligible completed scientific outputs exist; the bundle contains no scientific outputs. |
-| Spend | `$0` measured and estimated for the work completed here. |
+| Spend | Local work was `$0`; the bounded pilot-family workspace delta was approximately `$0.33`, billed cost `$0.00`, and per-request measured USD is unavailable. |
 
 The authoritative execution state is maintained in
 [`CODEX_MASTER_PROMPT.md`](CODEX_MASTER_PROMPT.md),
@@ -63,7 +63,7 @@ make test-e2e
 make figures
 ```
 
-At the verified current baseline, `make validate` passes 625 tests with 33
+At the verified current baseline, `make validate` passes 629 tests with 33
 deselected and 95.34% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
@@ -116,8 +116,9 @@ flowchart LR
 ```
 
 The current repository contains the contracts and fail-closed execution
-scaffolding. The diagram does not claim that Modal deployment, model weights,
-inference, or scientific outputs currently exist.
+scaffolding. A tiny authorized Evo2 deployment and remote cache artifact now
+exist, but they are engineering-gate evidence only and do not constitute a
+cohort benchmark or scientific result.
 
 ## Repository map
 
@@ -133,7 +134,7 @@ inference, or scientific outputs currently exist.
 ├── experiments/registry/        # append-only run records (currently empty)
 ├── src/evovariant_tr/           # typed research and control-plane package
 ├── apps/web/                    # Next.js research workbench
-├── evo2_scorer_app.py           # gated Modal entrypoint; not deployment evidence
+├── evo2_scorer_app.py           # canonical Modal entrypoint; pilot evidence is in artifacts/
 ├── scripts/                     # validation, manifest, registry, and operational tools
 ├── tests/                       # unit, contract, integration, scientific, API/E2E, Modal
 └── data/                        # local/ignored archives and derived Phase 3 outputs
@@ -232,23 +233,29 @@ JSON tables, methods, limitations, cost, and model-provenance artifacts under
 
 ## Modal and paid compute
 
-The Modal configuration is intentionally gated. The canonical planned identity
-is app `evovariant-tr`, volume `hf_cache`, H100, the pinned NGC PyTorch image,
-and Evo2 revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`.
+The canonical identity is app `evovariant-tr`, volume `hf_cache`, H100, the
+pinned NGC PyTorch image, and Evo2 revision
+`4b509ec2a22d6de472659f908bcb0714265ad3a7`. Under the dated user approval,
+deployment v3 (`phase2-pilot-20260921-r1`) loaded `evo2_7b` and verified one
+real prediction-cache miss plus an identical cache hit for
+`GRCh38:chr10:100065200:C>T`. The raw output is research-only and carries no
+clinical classification.
 
 ```bash
 make modal-smoke
 ```
 
-This is a no-spend preflight. A successful preflight proves only local CLI
-installation/account authentication; it is not deployment, model availability,
-weight availability, inference, or cost evidence.
+This remains a no-spend preflight for fresh environments. The completed pilot
+evidence is recorded separately in
+`artifacts/modal/phase2_phase4_pilot_20260921_success.json`; its superseded
+chromosome-prefix failures are preserved alongside it.
 
 Paid execution requires the explicit acknowledgement
 `EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS` and the project-specific approval
-gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. Do not deploy, download
-weights, or invoke remote inference while the Phase 3 discrepancy, model
-inclusion, and user approval gates remain unresolved.
+gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current approval is
+exhausted for the tiny pilot family; do not start a full benchmark, training,
+HPO, fine-tuning, or locked-test run while the Phase 3 discrepancy and
+multi-model inclusion gates remain unresolved.
 
 ## Phase status
 
@@ -256,15 +263,19 @@ The dependency-ordered phase decisions are maintained in
 [`docs/agent/PHASE_LEDGER.md`](docs/agent/PHASE_LEDGER.md). In brief:
 
 - Phases 0 and 1 are complete;
-- the Phase 2–5 local/control-plane work is implemented, but the required remote
-  compute, model parity, or cohort gates are not complete;
+- Phase 2 and Phase 4 pass their engineering gates with the corrected remote
+  Evo2 miss/hit evidence;
+- Phase 3 is reopened because its 330-ID and 78-record/class-count discrepancy
+  is material to downstream denominators;
+- Phase 5 has audited all seven candidates but remains blocked for multi-model
+  inclusion because only Evo2 has verified raw-SNV parity and smoke evidence;
 - Phases 6–15 have explicit blocked status artifacts and no scientific metrics;
 - Phase 16's frontend/build/browser engineering gate passes, but its scientific
   result dependency is absent;
 - Phase 17's registry-driven manifest and export bundle are deterministic but
   have no eligible inputs and therefore contain no scientific outputs;
-- Phase 18's free clean-room gate passes, while gated Modal and scientific
-  figure evidence remain unavailable;
+- Phase 18's free clean-room gate passes, while full scientific and figure
+  evidence remain unavailable;
 - Phase 19 remains blocked and no release, tag, deployment, or publication is
   claimed.
 

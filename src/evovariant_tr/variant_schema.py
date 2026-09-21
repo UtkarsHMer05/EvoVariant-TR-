@@ -7,6 +7,14 @@ from dataclasses import dataclass
 from pydantic import BaseModel, ConfigDict, field_validator
 
 
+def normalize_chromosome(value: str) -> str:
+    """Return the UCSC-compatible chromosome spelling used by the API."""
+    normalized = value.strip()
+    if not normalized:
+        raise ValueError("chromosome must be non-empty")
+    return normalized if normalized.startswith("chr") else f"chr{normalized}"
+
+
 @dataclass(frozen=True)
 class CanonicalVariant:
     """A normalized GRCh38 variant identity used at scientific boundaries."""
@@ -64,9 +72,7 @@ class VariantPayload(BaseModel):
     @field_validator("chromosome")
     @classmethod
     def validate_chromosome(cls, value: str) -> str:
-        if not value.strip():
-            raise ValueError("chromosome must be non-empty")
-        return value if value.startswith("chr") else f"chr{value}"
+        return normalize_chromosome(value)
 
     @field_validator("reference", "alternate")
     @classmethod
@@ -84,4 +90,3 @@ class VariantPayload(BaseModel):
             reference=self.reference,
             alternate=self.alternate,
         )
-

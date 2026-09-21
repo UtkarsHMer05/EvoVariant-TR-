@@ -1,0 +1,43 @@
+{
+  "audit_date": "2026-09-21",
+  "status": "MATERIAL_REOPEN_REQUIRED",
+  "current_source": {
+    "t0_archive_sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
+    "t1_archive_sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
+    "t0_unique_valid_vus": 1402895,
+    "final_temporal_n": 946,
+    "final_blb": 536,
+    "final_plp": 410,
+    "gene_labels": 946,
+    "reference_mismatch_count": 0,
+    "gene_mismatch_count": 2,
+    "t0_duplicate_vus_ids": 0,
+    "t1_conflicting_duplicate_ids": 0,
+    "normalized_id_overlap": 0,
+    "train_validation_gene_overlap": 0,
+    "locked_test_overlap": 0,
+    "duplicate_normalized_ids": 0
+  },
+  "validation_only_handoff_target": {
+    "t0_unique_vus": 1403225,
+    "final_temporal_n": 1024,
+    "final_blb": 614,
+    "final_plp": 410,
+    "gene_labels": 389,
+    "reference_mismatch_count": 0,
+    "absent_at_t1": 3615,
+    "below_two_stars": 9051,
+    "not_definitive_at_t1": 1389535
+  },
+  "impact": {
+    "ids": "MATERIAL: the current t0 valid-ID denominator is 330 lower than the validation-only target; the target ID list is not present, so set intersection cannot be verified.",
+    "labels": "MATERIAL: the P/LP count agrees at 410, but the current B/LB count is 78 lower; class balance and any threshold-free metric denominator would change.",
+    "temporal_eligibility": "MATERIAL: the final temporal cohort is 78 records smaller; absent/not-definitive/two-star target fields also differ and their derivation is not reproducible from the supplied target alone.",
+    "overlap_and_leakage": "CURRENT_ONLY_PASS: current generated splits have zero normalized-ID overlap, zero train/validation gene overlap, zero duplicate split IDs, and zero locked-test overlap; equivalent target-side invariants are unavailable.",
+    "gene_grouping": "UNRESOLVED: current temporal output contains 946 gene labels and two matched-record gene changes, while the target reports 389 labels without a target record set; whole-gene grouping cannot be compared.",
+    "reference_validation": "LIMITED_PASS: matched archive t0/t1 reference mismatch is zero in both reports, but the current audit does not include an independent GRCh38 FASTA base audit.",
+    "duplicates": "CURRENT_ONLY_PASS: current t0/t1 and normalized split duplicate checks are zero; target-side duplicate evidence is absent.",
+    "scientific_validity": "MATERIAL_UNCERTAINTY: scoring the current cohort and calling it the handoff cohort would change IDs, class counts, denominators, and possibly gene groups. No benchmark result may be promoted until reconciled or accepted by a dated protocol deviation."
+  },
+  "decision": "Reopen the Phase 3 acceptance review; retain current archive-derived artifacts, do not tune filters to the target, and keep Phases 6-19 blocked."
+}

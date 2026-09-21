@@ -1,0 +1,51 @@
+{
+  "run_family": "phase2-canonical-evo2-pilot-20260921",
+  "status": "FAILED_TECHNICAL_SUPERSEDED",
+  "recorded_at": "2026-09-21",
+  "git_commit": "2f4d117d0d1804bd8479d7da473978d1f796249b",
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "modal": {
+    "workspace": "utkarshmer05",
+    "app": "evovariant-tr",
+    "deployment": "v2",
+    "deployment_tag": "phase2-pilot-20260921",
+    "gpu_type": "H100",
+    "image": "nvcr.io/nvidia/pytorch:24.07-py3",
+    "model": "evo2_7b",
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "prediction_cache_written": false,
+    "model_weight_cache_observed": true
+  },
+  "request": {
+    "assembly": "GRCh38",
+    "genome": "hg38",
+    "chromosome_input": "10",
+    "normalized_variant_id": "GRCh38:chr10:100065200:C>T",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse"
+  },
+  "attempts": [
+    {
+      "run_id": "phase2-pilot-20260921-modal-prefix-failure-cold",
+      "response_status": 500,
+      "wall_seconds": 38.4235,
+      "modal_duration_seconds": 37.7,
+      "failure": "ValueError: UCSC did not return chromosome size for 10",
+      "failure_location": "evo2_scorer_app.py::_fetch_chromosome_length",
+      "model_load": "successful",
+      "cache_state": "prediction cache miss; no prediction record persisted",
+      "workspace_metered_delta_usd_before_next_retry": 0.07
+    },
+    {
+      "run_id": "phase2-pilot-20260921-modal-prefix-failure-warm-retry",
+      "response_status": 500,
+      "wall_seconds": null,
+      "wall_time_note": "approximately 1.5 seconds from the warm-container retry",
+      "failure": "same UCSC chromosome lookup failure for 10",
+      "cache_state": "prediction cache miss; no prediction record persisted"
+    }
+  ],
+  "root_cause": "The endpoint normalized chromosome spelling only for the cache identity, but passed the raw input chromosome to UCSC.",
+  "corrective_action": "Centralize chromosome normalization and use the UCSC-compatible chr-prefixed value for fetches, cache identity, and result provenance; add a regression test.",
+  "cost_note": "Modal billing showed a workspace-level metered increase of approximately 0.07 USD after the cold failure. No per-request invoice amount was available and no billed amount is asserted here."
+}

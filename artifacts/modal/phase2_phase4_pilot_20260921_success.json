@@ -1,0 +1,80 @@
+{
+  "run_family": "phase2-phase4-canonical-evo2-pilot-20260921",
+  "status": "PASS_WITH_WORKSPACE_COST_OBSERVATION",
+  "recorded_at": "2026-09-21",
+  "git_commit": "2f4d117d0d1804bd8479d7da473978d1f796249b",
+  "working_tree_note": "The deployment included the uncommitted chromosome-normalization fix; commit identity is recorded separately from the working-tree source state.",
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "modal": {
+    "workspace": "utkarshmer05",
+    "app": "evovariant-tr",
+    "deployment": "v3",
+    "deployment_tag": "phase2-pilot-20260921-r1",
+    "gpu_type": "H100",
+    "h100_rate_usd_per_hour": 3.95,
+    "image": "nvcr.io/nvidia/pytorch:24.07-py3",
+    "image_revision": "im-f2C7TrxkmYYuQth322nUSw",
+    "model": "evo2_7b",
+    "model_source": "ArcInstitute/evo2",
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "checkpoint": "evo2_7b",
+    "prediction_cache_path": "evovariant-tr/predictions/0a/0a5e97eff1df2eab88c4a59a5434b1a5d9b0fa317820d6eaea7bc1d03e7871b3.json",
+    "prediction_cache_file_size": "2.1 KiB"
+  },
+  "request": {
+    "assembly": "GRCh38",
+    "genome": "hg38",
+    "chromosome_input": "10",
+    "chromosome_used_for_ucsc": "chr10",
+    "position_1based": 100065200,
+    "reference": "C",
+    "alternate": "T",
+    "normalized_variant_id": "GRCh38:chr10:100065200:C>T",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "layer": "raw_scores"
+  },
+  "cache_miss": {
+    "run_id": "phase2-pilot-20260921-modal-miss",
+    "http_status": 200,
+    "cache_hit": false,
+    "wall_seconds": 36.2727,
+    "gpu_runtime_seconds": 3.914133089,
+    "gpu_memory_peak_bytes": 18075978752,
+    "reference_score_forward": -0.9161754846572876,
+    "alternate_score_forward": -0.9160616397857666,
+    "delta_forward": 0.0001138448715209961,
+    "reference_score_reverse": -0.908482015132904,
+    "alternate_score_reverse": -0.9090985655784607,
+    "delta_reverse": -0.0006165504455566406,
+    "delta_primary": -0.00025135278701782227,
+    "orientation_disagreement": 0.0007303953170776367,
+    "classification": "not_provided",
+    "scoring_semantics": "alternate_minus_reference_log_likelihood",
+    "estimated_wall_rate_cost_usd": 0.0398,
+    "measured_per_request_cost_usd": null
+  },
+  "cache_hit": {
+    "run_id": "phase4-pilot-20260921-modal-hit",
+    "http_status": 200,
+    "cache_hit": true,
+    "wall_seconds": 0.956,
+    "numeric_output_exact_match_with_miss": true,
+    "fresh_gpu_inference_telemetry": false,
+    "estimated_wall_rate_cost_usd": 0.0011,
+    "measured_per_request_cost_usd": null
+  },
+  "billing_observation": {
+    "pre_remote_request_metered_cost_usd": 11.49,
+    "post_corrected_pilot_metered_cost_usd": 11.82,
+    "observed_workspace_delta_usd": 0.33,
+    "billed_cost_usd": 0.0,
+    "budget_cap_usd": 2.0,
+    "interpretation": "The Modal summary is workspace-level and includes deployment/container activity; it is not a per-request invoice. The observed pilot-family increase remains below the authorized cap, and no exact per-request billed amount is asserted."
+  },
+  "gate_evidence": {
+    "phase2": "PASS: exact 8192-bp input, canonical chromosome/ref handling, forward and reverse raw scores, primary delta, provenance, and real remote output were verified.",
+    "phase4": "PASS: real prediction-cache miss, persistent volume artifact, equivalent cache hit, exact numeric equality, runtime difference, and available billing summary were verified.",
+    "phase3": "REOPENED_FOR_IMPACT_REVIEW: the archive-derived cohort discrepancy is material to denominators and class counts; no full benchmark is authorized."
+  }
+}

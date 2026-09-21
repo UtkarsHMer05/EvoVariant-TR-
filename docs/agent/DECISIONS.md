@@ -804,6 +804,136 @@ browser E2E, registry verification, and `make figures` pass. The blocked manifes
 is `a780d87816fa75ed0fe1f4a69d597e5310d5f70eae1946d49e2bd036e8e0c006`. Scientific Phase 17 and
 all dependent release gates remain blocked; spend is `$0`.
 
+## D-037 — Canonicalize chromosomes at the Modal/UCSC boundary
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: none
+
+Context:
+The first authorized remote Evo2 pilot loaded the model successfully but failed before inference
+because the input chromosome `10` was used as the UCSC chromosome key. The same endpoint already
+used `chr10` for its cache identity, so a request could have inconsistent transport, fetch, and
+cache namespaces.
+
+Decision:
+Normalize chromosome values once through `normalize_chromosome`, require `GRCh38`/`hg38` at the
+Modal boundary, and use the canonical `chr`-prefixed value for UCSC requests, cache identity,
+result provenance, and logs. Add a unit regression test for bare, whitespace-padded, prefixed,
+and blank chromosome values.
+
+Alternatives:
+Patch only the UCSC request, accept raw chromosome aliases in multiple code paths, or retry the
+remote request without changing the app. These were rejected because they would preserve schema
+drift or erase the failed evidence.
+
+Consequences:
+The corrected endpoint accepts the project's split/API chromosome forms while maintaining one
+UCSC-compatible identity. Invalid assembly/genome combinations fail closed. The superseded 500
+responses remain recorded.
+
+Validation:
+Focused schema tests and `make validate` pass; the corrected Modal request for
+`GRCh38:chr10:100065200:C>T` returned HTTP 200. Evidence is in
+`artifacts/modal/phase2_pilot_20260921_failed_attempts.json` and the corrected pilot artifact.
+
+## D-038 — Accept real Evo2 pilot evidence without promoting scientific results
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-026
+
+Context:
+The user explicitly authorized a bounded Modal pilot after authentication was verified. The
+master prompt requires exact run metadata, a small real model call, persistent cache evidence,
+and available cost accounting before later scientific phases can proceed.
+
+Decision:
+Accept the corrected Evo2 7B H100 miss/hit pair as Phase 2 and Phase 4 engineering-gate
+evidence. Record the model revision, app deployment, protocol hash, exact normalized variant,
+raw forward/reverse scores, runtime, cache path, and cost distinction in tracked artifacts and
+the append-only ledger. Do not treat the single variant as a benchmark, cohort result, figure
+input, clinical classification, or locked-test evidence.
+
+Alternatives:
+Claim success from the deployment alone, claim an exact per-request invoice from the workspace
+summary, or run a larger batch while the cohort discrepancy remains unresolved. These were
+rejected because they would overstate evidence or expand spend beyond the bounded pilot.
+
+Consequences:
+Evo2 is eligible for later execution only after the Phase 3 and multi-model gates are resolved.
+The Modal model-weight cache remains remote and untracked. Per-request measured USD remains
+unknown; rate-based estimates and workspace-level billing are labeled separately.
+
+Validation:
+`artifacts/modal/phase2_phase4_pilot_20260921_success.json`, four new cost-ledger entries,
+deployment v3 `phase2-pilot-20260921-r1`, HTTP 200 miss/hit responses, exact score equality on
+the hit, and `make validate`.
+
+## D-039 — Reopen Phase 3 because the cohort discrepancy is scientifically material
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-021, D-034
+
+Context:
+The current manifest-verified archives produce 1,402,895 valid t0 VUS and 946 final temporal
+records (536 B/LB, 410 P/LP), while the validation-only handoff target reports 1,403,225 t0 VUS
+and 1,024 final records (614 B/LB, 410 P/LP). The target ID set and target-side leakage/duplicate
+evidence are not available for direct comparison.
+
+Decision:
+Reopen the Phase 3 acceptance review and classify the discrepancy as material to IDs, temporal
+eligibility, class balance, cohort denominators, and potentially gene grouping. Keep the current
+archive-derived data and structural invariants unchanged. Do not score the full cohort or call it
+the handoff cohort until source-level reconciliation or a dated protocol deviation explicitly
+accepts the changed estimand.
+
+Alternatives:
+Proceed because the P/LP count matches, tune filters to the handoff counts, or use the pilot
+variant as a substitute for cohort validation. These were rejected because B/LB and denominator
+changes can alter every downstream metric and the pilot is not a cohort result.
+
+Consequences:
+Phases 6–19 remain blocked. The current split's zero-overlap and duplicate checks remain useful
+engineering evidence but are not evidence that the unavailable target set has identical IDs or
+leakage properties.
+
+Validation:
+`artifacts/phase3_discrepancy_impact_20260921.json` and
+`research/ml_extension/splits/phase3_manifest_summary.json`; source archive hashes remain
+unchanged and no protocol filter was modified.
+
+## D-040 — Audit candidate models explicitly and include only verified Evo2
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-025
+
+Context:
+Phase 5 requires official-source, license, checkpoint/revision, input, score, hardware,
+embedding/fine-tuning, and tiny-smoke review for every candidate. The official candidates do not
+share one ready-to-run contract: GPN-Star needs a large exact MSA store; Nucleotide Transformer
+and Caduceus expose masked-LM/embedding paths; CADD needs a very large annotation bundle; PhyloP
+is site conservation; AlphaMissense is a missense-only precomputed database without weights.
+
+Decision:
+Set Evo2 to `INCLUDED` with verified provenance after its real pilot. Set the other six registry
+manifests to explicit `INFEASIBLE` statuses with source-backed deferred reasons; do not count
+their fixture comparators as scientific models. Select GPN-Star as the next relevance candidate
+if its exact alignment data and a separate bounded budget become available, but do not download it
+or run a smoke under the current approval.
+
+Alternatives:
+Include masked-LM pseudo-likelihoods as if they were Evo2 scores, use synthetic comparators, or
+download multi-gigabyte/terabyte assets before resolving Phase 3. These were rejected because
+they would violate score-contract parity, provenance, or cost gates.
+
+Consequences:
+The model registry is auditable and schema-valid with one included candidate; Phase 5 remains
+blocked for the required multi-model benchmark selection. No Phase 6 benchmark is started.
+
+Validation:
+`artifacts/model_audit/phase5_candidate_audit_20260921.json`, updated manifests under
+`research/ml_extension/models/`, official source pages/revisions recorded in the audit, and
+`make model-registry-verify` with `included_count: 1`.
+
 ## Template for new decisions
 
 ### D-XXX — Title

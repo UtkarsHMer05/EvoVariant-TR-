@@ -28,10 +28,10 @@ AlphaMissense. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE`; Phase 14 and a
 deployment, publication, and clinical-classification surfaces remain excluded or blocked.
 
 Historical latest source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
-freeze-summary/control baseline). The latest code-bearing continuation checkout is `1423577`
-(`feat: add frozen locked evaluation guard`); the current `make validate` and control-plane gates
-pass. The exact current Git HEAD is intentionally determined from `git rev-parse HEAD` because
-documentation-only commits update this file without changing source behavior.
+freeze-summary/control baseline). The latest code-bearing continuation checkout is `99480fb`
+(`feat: record bounded development continuation`); the current `make validate` and control-plane
+gates pass. The exact current Git HEAD is intentionally determined from `git rev-parse HEAD`
+because documentation-only commits update this file without changing source behavior.
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.

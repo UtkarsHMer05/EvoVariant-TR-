@@ -118,6 +118,12 @@ Active branch/worktree: `research/evovariant-tr` at
   subgate. They do not change the scientific state: Phase 3's 330-ID discrepancy, Phase 5's
   single included model, absent authorized full-cohort/batch recovery evidence, empty result
   registry, and blocked figure/release gates remain unresolved.
+- The current free control-surface rerun passed the explicit scientific tier (`7 passed, 1
+  skipped`), API E2E tier (`14 passed, 1 skipped`), ML protocol, JSON Schema, model-registry
+  (`7` manifests, `1` included), and result-registry checks. `make modal-smoke` confirmed the
+  approved `evovariant-tr` Modal environment and authentication while recording `PLANNED` with
+  zero GPU count and no remote invocation. Regenerated Phase 6 and 8–19 status surfaces,
+  figures, and release checks remain explicitly `BLOCKED` with no metrics or scientific outputs.
 
 ## Current engineering follow-up — 2026-09-21
 

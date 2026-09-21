@@ -63,6 +63,11 @@ gate state.
   reference/alternate sequences, with content-addressed feature-cache identity and
   provenance. No remote embedding smoke has been approved or run, so the Phase 7 gate
   remains `BLOCKED`.
+- The current free control-surface rerun passed the scientific/API E2E, ML protocol, schema,
+  model-registry, and result-registry checks. The Modal preflight recorded authenticated
+  `evovariant-tr` access as `PLANNED` with zero GPU count and no remote invocation. Regenerated
+  Phase 6 and 8–19 statuses, the Phase 17 figure bundle, and Phase 19 release check remain
+  `BLOCKED` with empty metrics/output surfaces.
 
 ## Phase 0 completion record — 2026-09-21
 

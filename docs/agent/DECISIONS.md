@@ -1983,6 +1983,43 @@ HPO, `HPO_CONFIGS` are unset. With explicit paths they invoke only the local CPU
 coverage. The new downstream contract suite passed 4 tests. Implementation commit: `af97560`
 (`feat: add local downstream training and hpo runners`).
 
+## D-070 — Analyze ensembles, calibration, and abstention on development predictions only
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The repository had isolated ensemble, calibration, and risk-coverage primitives, but no
+artifact-driven analysis boundary tying them to the validation-only selection rule. A shared
+prediction file can also accidentally contain locked-test rows or duplicate model/variant rows.
+
+Decision:
+Use `src/evovariant_tr/analysis_pipeline.py` and `scripts/analyze_ensemble.py` for the local
+Phase 11/12 analysis surface. The loader validates JSONL identity, split, labels, finite scores,
+and duplicates, and rejects locked-test rows by default. The analysis requires common validation
+IDs, computes pairwise disagreement/error overlap/correlation, applies a fixed weighted mean,
+reports discrimination/calibration metrics, and emits risk-coverage and abstention curves. A
+probability-to-logit transform is used only for the existing abstention primitive's zero-centered
+score contract. Output is an immutable local artifact; it is not automatically promoted to the
+result registry.
+
+Alternatives:
+Choose ensemble members from locked-test scores, silently intersect incomplete model coverage,
+use a raw probability as a zero-centered abstention score, or write over an existing analysis
+artifact. These were rejected because they would leak selection information, hide missingness,
+misstate score semantics, or destroy provenance.
+
+Consequences:
+The Phase 11/12 engineering surface is implemented and tested, but the scientific phases remain
+`BLOCKED / NOT STARTED` because no real development prediction artifact exists. Phase 13's
+predeclared ablation/robustness matrices remain available but cannot be evaluated without frozen
+base predictions.
+
+Validation:
+`make ensemble` remains a truthful `BLOCKED` status surface unless explicit prediction/model
+paths are supplied. `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff,
+secret scan, and 95.00% coverage. The new analysis contract suite passed 3 tests.
+
 ## Template for new decisions
 
 ### D-XXX — Title

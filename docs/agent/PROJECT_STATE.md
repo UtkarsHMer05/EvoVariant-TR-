@@ -734,3 +734,19 @@ figures from the single pilot record.
 - Validation evidence: `make validate` passed with 676 tests, 33 deselected, strict mypy, Ruff,
   secret scan, and 95.01% coverage; `make train` and `make hpo` defaulted to `BLOCKED` status
   artifacts without requiring network or paid compute.
+
+## Phase 11/12 ensemble and uncertainty subgate — 2026-09-21
+
+- Implemented `src/evovariant_tr/analysis_pipeline.py` and `scripts/analyze_ensemble.py`.
+  `make ensemble` now runs this local analysis only when explicit prediction/model paths are
+  supplied; otherwise it writes the existing blocked status artifact.
+- The loader rejects duplicate `(variant, split, model)` rows, malformed/non-finite scores,
+  missing labels, and locked-test rows by default. The analysis requires common VALIDATION IDs,
+  computes diversity/error overlap/correlation, fixed weighted aggregation, AUROC/AUPRC and
+  calibration metrics, plus risk-coverage and abstention curves.
+- No real prediction artifact exists, so no ensemble member, calibration method, abstention
+  threshold, locked label, registry result, or figure input was selected. Phase 11 and Phase 12
+  remain `BLOCKED / NOT STARTED`; Phase 13 remains blocked on the same frozen prediction inputs.
+- Validation evidence: `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff,
+  secret scan, and 95.00% coverage. `make ensemble` defaulted to a blocked status artifact with
+  no network or paid compute.

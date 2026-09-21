@@ -33,6 +33,10 @@ FEATURES ?=
 TRAIN_OUTPUT ?= research/runs/phase8_training
 HPO_CONFIGS ?=
 HPO_OUTPUT ?= research/runs/phase9_hpo
+PREDICTIONS ?=
+ENSEMBLE_OUTPUT ?= research/runs/phase11_ensemble.json
+ENSEMBLE_LEFT_MODEL ?=
+ENSEMBLE_RIGHT_MODEL ?=
 
 # ---------------------------------------------------------------------------
 # Help
@@ -253,10 +257,16 @@ finetune-smoke: ## Record/run the Phase 10 PEFT/fine-tuning gate
 .PHONY: ensemble
 ensemble: ## Record/run the Phase 11 ensemble gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 11 --family ENS \
+	@if [ -n "$(PREDICTIONS)" ] && [ -n "$(ENSEMBLE_LEFT_MODEL)" ] && [ -n "$(ENSEMBLE_RIGHT_MODEL)" ]; then \
+		$(PYTHON) scripts/analyze_ensemble.py --predictions "$(PREDICTIONS)" \
+			--left-model "$(ENSEMBLE_LEFT_MODEL)" --right-model "$(ENSEMBLE_RIGHT_MODEL)" \
+			--output "$(ENSEMBLE_OUTPUT)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 11 --family ENS \
 		--command-name ensemble --output research/runs/phase11_ens_status.json \
 		--blocker "registered base-model predictions are unavailable" \
-		--blocker "OOF stack inputs do not exist"
+		--blocker "OOF stack inputs do not exist"; \
+	fi
 
 .PHONY: evaluate
 evaluate: ## Record/run the Phase 14 locked statistical evaluation gate

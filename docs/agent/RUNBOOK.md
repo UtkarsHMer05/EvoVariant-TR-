@@ -99,6 +99,23 @@ be registered as preliminary evidence only after immutable run metadata and outp
 checked. If `FEATURES` or `HPO_CONFIGS` is absent, the Make targets write blocked status artifacts
 and do not infer a result.
 
+## Ensemble, calibration, and abstention analysis
+
+After a real development prediction artifact exists and member selection is frozen on validation,
+run the local analysis with explicit model names:
+
+```bash
+make ensemble PREDICTIONS=research/runs/<phase8-run>/development_predictions.jsonl \
+  ENSEMBLE_LEFT_MODEL=logistic_regression \
+  ENSEMBLE_RIGHT_MODEL=mlp \
+  ENSEMBLE_OUTPUT=research/runs/<phase11-run>/ensemble_analysis.json
+```
+
+The loader rejects locked-test rows by default and the output path is immutable. The resulting
+artifact is preliminary engineering/scientific evidence only until its run metadata, hashes,
+selection rule, and registry stage are reviewed. Do not tune weights or abstention thresholds
+after reading locked-test metrics.
+
 ## Before commit
 
 - tests,

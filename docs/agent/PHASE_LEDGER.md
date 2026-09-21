@@ -584,6 +584,21 @@ gate state.
   produced. The next dependency is verified Phase 7 development extraction, not additional CPU
   tuning.
 
+## Phase 11/12 ensemble and uncertainty subgate — 2026-09-21
+
+- Engineering outcome: `PASS` for the validation-only analysis surface; scientific Phases 11 and
+  12 remain `BLOCKED / NOT STARTED`, and Phase 13 remains blocked on frozen base predictions.
+- Added `src/evovariant_tr/analysis_pipeline.py` and `scripts/analyze_ensemble.py`. The path is
+  local CPU-only, requires common validation identities, records disagreement/error overlap and
+  correlation, and uses fixed weighted aggregation before computing calibration and abstention
+  artifacts.
+- Locked-test rows are rejected by default; incomplete/duplicate model coverage and invalid
+  scores fail closed. The abstention adapter receives logit-transformed probabilities so its
+  zero-centered decision convention is explicit rather than assumed.
+- Evidence: `make validate` passed with 679 tests, 33 deselected, strict mypy, Ruff, secret scan,
+  and 95.00% coverage. No real predictions or registry outputs were produced; `make ensemble`
+  remains blocked unless explicit artifact/model paths are supplied.
+
 ## Phase 19 README/status reconciliation — 2026-09-21
 
 - Documentation commit: `0db7e8b` (`docs: align README with current research gates`).

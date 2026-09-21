@@ -170,6 +170,69 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
     }
     exclusion_hash = _write(output_dir / "authoritative_exclusion_report.json", exclusions)
 
+    phase3_summary = {
+        "dataset_id": "evovariant-tr-phase3-v1",
+        "status": "PASS",
+        "protocol_id": "evovariant-tr-ml-extension",
+        "protocol_version": "1.1.0",
+        "original_protocol_sha256": (
+            "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525"
+        ),
+        "deviation_ids": ["ML-DEV-001", "ML-DEV-002"],
+        "generated_at_utc": generated_at,
+        "code_commit": _git_commit(repo_root),
+        "source_archives": locked_manifest["source_archives"],
+        "temporal_audit": {
+            "t0_unique_vus": audit["temporal_resolution"]["t0_unique_vus"],
+            "absent_at_t1": audit["temporal_resolution"]["absent_at_t1"],
+            "below_two_stars": audit["temporal_resolution"]["below_two_stars"],
+            "not_definitive_at_t1": audit["temporal_resolution"]["not_definitive_at_t1"],
+            "final_temporal_n": len(records),
+            "n_blb": locked_manifest["counts"]["blb"],
+            "n_plp": locked_manifest["counts"]["plp"],
+            "gene_labels": locked_manifest["counts"]["gene_labels"],
+            "gene_mismatch_count": audit["temporal_resolution"]["gene_mismatch_count"],
+            "reference_mismatch_count": audit["temporal_resolution"]["reference_mismatch_count"],
+        },
+        "development_split": split["counts"],
+        "invariants": split["invariants"],
+        "reference_validation": {
+            "status": reference["status"],
+            "checked_variant_count": reference["checked_variant_count"],
+            "unresolved_reference_mismatch_count": reference[
+                "unresolved_reference_mismatch_count"
+            ],
+            "missing_coordinate_count": reference["missing_coordinate_count"],
+            "manifest_path": "artifacts/reference/grch38_validation_20260921.json",
+            "manifest_sha256": source_hashes["reference_validation"],
+            "source_manifest_path": "data/manifests/grch38.json",
+            "source_manifest_sha256": source_hashes["reference_manifest"],
+        },
+        "generated_artifacts": {
+            "locked_test_manifest": (
+                "research/ml_extension/splits/authoritative_locked_test_manifest.json"
+            ),
+            "split_manifest": "research/ml_extension/splits/authoritative_split_manifest.json",
+            "cohort_manifest": "research/ml_extension/splits/authoritative_cohort_manifest.json",
+            "exclusion_report": "research/ml_extension/splits/authoritative_exclusion_report.json",
+            "hash_manifest": "research/ml_extension/splits/authoritative_cohort_hashes.json",
+        },
+        "historical_target_comparison": {
+            "t0_unique_vus": 1403225,
+            "final_temporal_n": 1024,
+            "n_blb": 614,
+            "n_plp": 410,
+            "difference": {
+                "t0_unique_vus": -330,
+                "final_temporal_n": -78,
+                "n_blb": -78,
+                "n_plp": 0,
+            },
+        },
+        "phase3_gate_basis": "ML-DEV-001 plus ML-DEV-002 plus independent reference PASS",
+    }
+    phase3_summary_hash = _write(output_dir / "phase3_manifest_summary.json", phase3_summary)
+
     hashes = {
         "manifest_id": "evovariant-tr-ml-extension-authoritative-hashes-v1",
         "protocol_version": "1.1.0",
@@ -192,6 +255,10 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
             "authoritative_exclusion_report": {
                 "path": "research/ml_extension/splits/authoritative_exclusion_report.json",
                 "sha256": exclusion_hash,
+            },
+            "phase3_manifest_summary": {
+                "path": "research/ml_extension/splits/phase3_manifest_summary.json",
+                "sha256": phase3_summary_hash,
             },
             "generated_temporal_audit": {
                 "path": "data/derived/ml_extension/phase3/temporal_audit.json",

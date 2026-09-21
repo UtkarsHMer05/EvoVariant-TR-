@@ -4,8 +4,9 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 5 — Model registry and adapter framework` (Phases 2 and 4 remote
-gates pass; Phase 3 has been reopened for a material discrepancy-impact review)
+Current phase: `PHASE 7 — Embedding and representation extraction` (Phases 2 and 4 remote
+gates pass; Phase 3 remains reopened for a material discrepancy-impact review; Phase 5's
+multi-model track is formally deferred with Evo2 as the only included model)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
@@ -50,6 +51,10 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
+- The current source baseline `2c9b3ca` passes `make validate`: secret scan, Ruff, strict mypy
+  over 51 source files, 642 default-tier tests with 33 deselected, and a 95.01% coverage floor.
+  The current checkout also re-passes `make web-check` and all four `make web-e2e` workbench
+  journeys. These are local validation results; they do not create remote scientific outputs.
 - Current checkout verification: branch `research/evovariant-tr` has no tracked modifications after
   the validated embedding feature-store adapter commit and this control-file update. The only
   untracked path is the injected `.agents/` skill bundle; it is intentionally not part of project

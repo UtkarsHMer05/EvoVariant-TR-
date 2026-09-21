@@ -1,0 +1,613 @@
+{
+  "approval_artifact": "artifacts/approvals/phase6a_throughput_20260921.json",
+  "approval_scope": "After Evo2 only, run very small unlabeled Nucleotide Transformer/Caduceus embedding throughput samples using the already verified pinned checkpoints; do not perform full feature extraction.",
+  "artifact_id": "phase6a-representation-throughput-20260921",
+  "authorization": {
+    "combined_client_wall_rate_estimate_usd": 0.560167,
+    "max_budget_usd": 1.5,
+    "prior_evo2_client_wall_rate_estimate_usd": 0.48919,
+    "representation_cumulative_client_wall_rate_estimate_usd": 0.070977,
+    "representation_rate_safety_margin_usd": 0.6,
+    "stop_reason": "all approved tiny representation configurations completed"
+  },
+  "locked_cohort": {
+    "inference_target_records": 0,
+    "manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+    "sample_is_unlabeled": true,
+    "sample_metadata": {
+      "fai_sha256": "edefd93c489dc1baefad312f40388089f8db5cf6dcc3ba0955669ead274e8b6b",
+      "fasta_sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564",
+      "reference_manifest_path": "data/manifests/grch38.json",
+      "reference_manifest_sha256": "0e0a34097d0630bb15a9e11993941235fcb3335ed7138fbb713d4b4baa3bce9e",
+      "sample_size_max": 4,
+      "sampling_rule": "SHA-256 rank of normalized_variant_id, ascending; labels are not read or sent to Modal",
+      "selected_rows": [
+        {
+          "normalized_variant_id": "GRCh38:16:15708817:C>G",
+          "reference_chromosome_used": "chr16",
+          "sequence_sha256": "d94875dd329b9691aef4f7b4a2bcd3831db9e8dc2f5ff81124c95f4bc9467eba",
+          "variant_offset_0based": 4095,
+          "window_start_1based": 15704722,
+          "window_stop_1based": 15712913
+        },
+        {
+          "normalized_variant_id": "GRCh38:1:92480784:G>A",
+          "reference_chromosome_used": "chr1",
+          "sequence_sha256": "26f2038da851b9b0c120dc2d57db82178b5d324a88dcae4cc14a510fd8f1f520",
+          "variant_offset_0based": 4095,
+          "window_start_1based": 92476689,
+          "window_stop_1based": 92484880
+        },
+        {
+          "normalized_variant_id": "GRCh38:7:150951647:G>A",
+          "reference_chromosome_used": "chr7",
+          "sequence_sha256": "d42f8edb743a7d56dc8b771531946660f764f0eb889070f422017acc26a0a5c6",
+          "variant_offset_0based": 4095,
+          "window_start_1based": 150947552,
+          "window_stop_1based": 150955743
+        },
+        {
+          "normalized_variant_id": "GRCh38:7:44145186:C>A",
+          "reference_chromosome_used": "chr7",
+          "sequence_sha256": "f47ca676197d58792cff8311581558368ba77eb70e1e06ee9da3230344cfa57b",
+          "variant_offset_0based": 4095,
+          "window_start_1based": 44141091,
+          "window_stop_1based": 44149282
+        }
+      ],
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    "total_records": 946
+  },
+  "modal_billing": {
+    "after": {
+      "captured_at_utc": "2026-09-21T08:48:38.208598+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                             \n  Metered Cost:       12.97  \n    Deployed Apps:     8.78  \n    Volumes:           3.21  \n    Ephemeral Apps:    0.98  \n  Free Storage:       -3.21  \n  Credits:            -9.76  \n  Billed Cost:        $0.00  \n                             \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-21T08:47:31.753039+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                             \n  Metered Cost:       12.94  \n    Deployed Apps:     8.78  \n    Volumes:           3.21  \n    Ephemeral Apps:    0.95  \n  Credits:            -9.73  \n  Free Storage:       -3.21  \n  Billed Cost:        $0.00  \n                             \n"
+    },
+    "billed_cost_interpretation": "The CLI summary is workspace-level and may include deployed apps, volumes, image/container activity, and prior work; no per-request billed USD is asserted unless the provider exposes it."
+  },
+  "models": {
+    "caduceus": {
+      "model": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b"
+    },
+    "nucleotide_transformer": {
+      "model": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "revision": "06615c1660c892fc199840c18123f8385b3542a8"
+    }
+  },
+  "phase_boundary": {
+    "full_feature_extraction": false,
+    "full_locked_test_evaluation": false,
+    "phase6_started": false,
+    "phase7_started": false,
+    "training_hpo_finetuning": false
+  },
+  "prior_phase6a_attempts": [
+    {
+      "failure": "representation worker image omitted the local evovariant_tr sequence helper package",
+      "inference_started": false,
+      "run_url": "https://modal.com/apps/utkarshmer05/main/ap-Cqgu50y0KRq95f3vyyYwxB",
+      "status": "ABORTED_BEFORE_MODEL_LOAD"
+    }
+  ],
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "recorded_at_utc": "2026-09-21T08:48:38.208645+00:00",
+  "results": [
+    {
+      "candidate": "nucleotide_transformer",
+      "client_wall_rate_estimate_usd": 0.028125,
+      "client_wall_seconds": 25.632923,
+      "cold_container": true,
+      "container_invocation_index": 1,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000591,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 1993414656,
+      "gpu_memory_margin_bytes": 79822979072,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "CC-BY-NC-SA-4.0",
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "model_load_seconds": 4.401488,
+      "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "parameter_count": 498345436,
+      "peak_container_rss_bytes": 7245754368,
+      "peak_gpu_memory_allocated_bytes": 4581369344,
+      "peak_gpu_memory_reserved_bytes": 5194645504,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5916988c11b273f56837a40033b7f3d0ec67644dde131e69631c391ae3be1e0a",
+      "pooled_embedding_shape": [
+        8,
+        1024
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.53892,
+      "sample_variants": 2,
+      "seconds_per_variant": 0.26946,
+      "sequence_batches": 2,
+      "sequence_count": 8,
+      "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          4,
+          1368
+        ],
+        [
+          4,
+          1368
+        ]
+      ],
+      "variant_batch_size": 1,
+      "variants_per_second": 3.711126,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "nucleotide_transformer",
+      "client_wall_rate_estimate_usd": 0.00119,
+      "client_wall_seconds": 1.084827,
+      "cold_container": false,
+      "container_invocation_index": 2,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000207,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 1993414656,
+      "gpu_memory_margin_bytes": 77906182144,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "CC-BY-NC-SA-4.0",
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "model_load_seconds": 4.401488,
+      "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "parameter_count": 498345436,
+      "peak_container_rss_bytes": 7245754368,
+      "peak_gpu_memory_allocated_bytes": 5578055680,
+      "peak_gpu_memory_reserved_bytes": 7111442432,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5916988c11b273f56837a40033b7f3d0ec67644dde131e69631c391ae3be1e0a",
+      "pooled_embedding_shape": [
+        8,
+        1024
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.189071,
+      "sample_variants": 2,
+      "seconds_per_variant": 0.094536,
+      "sequence_batches": 1,
+      "sequence_count": 8,
+      "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          8,
+          1368
+        ]
+      ],
+      "variant_batch_size": 2,
+      "variants_per_second": 10.578023,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "nucleotide_transformer",
+      "client_wall_rate_estimate_usd": 0.001277,
+      "client_wall_seconds": 1.164059,
+      "cold_container": false,
+      "container_invocation_index": 3,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000374,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 1993414656,
+      "gpu_memory_margin_bytes": 77906182144,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "CC-BY-NC-SA-4.0",
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "model_load_seconds": 4.401488,
+      "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "parameter_count": 498345436,
+      "peak_container_rss_bytes": 7245754368,
+      "peak_gpu_memory_allocated_bytes": 4581884416,
+      "peak_gpu_memory_reserved_bytes": 7111442432,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "c16d109b519a681ff7b3f3d72eae3ff41e61263f08941f40232b6cb13caad189",
+      "pooled_embedding_shape": [
+        16,
+        1024
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.340597,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.085149,
+      "sequence_batches": 4,
+      "sequence_count": 16,
+      "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          4,
+          1368
+        ],
+        [
+          4,
+          1368
+        ],
+        [
+          4,
+          1368
+        ],
+        [
+          4,
+          1368
+        ]
+      ],
+      "variant_batch_size": 1,
+      "variants_per_second": 11.74408,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "nucleotide_transformer",
+      "client_wall_rate_estimate_usd": 0.001278,
+      "client_wall_seconds": 1.1646,
+      "cold_container": false,
+      "container_invocation_index": 4,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.00038,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 1993414656,
+      "gpu_memory_margin_bytes": 76947783680,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "CC-BY-NC-SA-4.0",
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "model_load_seconds": 4.401488,
+      "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "parameter_count": 498345436,
+      "peak_container_rss_bytes": 7245754368,
+      "peak_gpu_memory_allocated_bytes": 7102807040,
+      "peak_gpu_memory_reserved_bytes": 8069840896,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "c16d109b519a681ff7b3f3d72eae3ff41e61263f08941f40232b6cb13caad189",
+      "pooled_embedding_shape": [
+        16,
+        1024
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.346363,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.086591,
+      "sequence_batches": 2,
+      "sequence_count": 16,
+      "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          8,
+          1368
+        ],
+        [
+          8,
+          1368
+        ]
+      ],
+      "variant_batch_size": 2,
+      "variants_per_second": 11.548583,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "caduceus",
+      "client_wall_rate_estimate_usd": 0.035575,
+      "client_wall_seconds": 32.422491,
+      "cold_container": true,
+      "container_invocation_index": 1,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.00627,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 30901248,
+      "gpu_memory_margin_bytes": 83191005184,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "Apache-2.0",
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "model_load_seconds": 4.873484,
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "parameter_count": 7725312,
+      "peak_container_rss_bytes": 4558483456,
+      "peak_gpu_memory_allocated_bytes": 1756271616,
+      "peak_gpu_memory_reserved_bytes": 1826619392,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5552123cec14f030487f0b438f2d9583ffd4bc17b6e0382f338c1ef004236c8c",
+      "pooled_embedding_shape": [
+        8,
+        256
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 5.714293,
+      "sample_variants": 2,
+      "seconds_per_variant": 2.857147,
+      "sequence_batches": 2,
+      "sequence_count": 8,
+      "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          4,
+          8192
+        ],
+        [
+          4,
+          8192
+        ]
+      ],
+      "variant_batch_size": 1,
+      "variants_per_second": 0.35,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "caduceus",
+      "client_wall_rate_estimate_usd": 0.001238,
+      "client_wall_seconds": 1.128489,
+      "cold_container": false,
+      "container_invocation_index": 2,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000131,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 30901248,
+      "gpu_memory_margin_bytes": 82519916544,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "Apache-2.0",
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "model_load_seconds": 4.873484,
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "parameter_count": 7725312,
+      "peak_container_rss_bytes": 4611379200,
+      "peak_gpu_memory_allocated_bytes": 2302673920,
+      "peak_gpu_memory_reserved_bytes": 2497708032,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5552123cec14f030487f0b438f2d9583ffd4bc17b6e0382f338c1ef004236c8c",
+      "pooled_embedding_shape": [
+        8,
+        256
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.119846,
+      "sample_variants": 2,
+      "seconds_per_variant": 0.059923,
+      "sequence_batches": 1,
+      "sequence_count": 8,
+      "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          8,
+          8192
+        ]
+      ],
+      "variant_batch_size": 2,
+      "variants_per_second": 16.688109,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "caduceus",
+      "client_wall_rate_estimate_usd": 0.001168,
+      "client_wall_seconds": 1.064429,
+      "cold_container": false,
+      "container_invocation_index": 3,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000221,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 30901248,
+      "gpu_memory_margin_bytes": 82519916544,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "Apache-2.0",
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "model_load_seconds": 4.873484,
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "parameter_count": 7725312,
+      "peak_container_rss_bytes": 4611629056,
+      "peak_gpu_memory_allocated_bytes": 1756279808,
+      "peak_gpu_memory_reserved_bytes": 2497708032,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5112222e1c17fd1b659cb954fccbf4d34a481f68ca6af5a290b569a96d68476a",
+      "pooled_embedding_shape": [
+        16,
+        256
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.201466,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.050366,
+      "sequence_batches": 4,
+      "sequence_count": 16,
+      "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          4,
+          8192
+        ],
+        [
+          4,
+          8192
+        ],
+        [
+          4,
+          8192
+        ],
+        [
+          4,
+          8192
+        ]
+      ],
+      "variant_batch_size": 1,
+      "variants_per_second": 19.854486,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    },
+    {
+      "candidate": "caduceus",
+      "client_wall_rate_estimate_usd": 0.001126,
+      "client_wall_seconds": 1.025957,
+      "cold_container": false,
+      "container_invocation_index": 4,
+      "context_length_bp": 8192,
+      "estimated_gpu_rate_cost_usd": 0.000224,
+      "feature_cache_written": false,
+      "gpu_memory_at_model_load_bytes": 30901248,
+      "gpu_memory_margin_bytes": 81311956992,
+      "gpu_name": "NVIDIA H100 80GB HBM3",
+      "gpu_rate_usd_per_hour": 3.95,
+      "gpu_total_memory_bytes": 85017624576,
+      "gpu_type": "H100",
+      "hidden_finite": true,
+      "input_provenance": "locked_GRCh38_reference_alternate_sequence_views_unlabeled",
+      "license": "Apache-2.0",
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "model_load_seconds": 4.873484,
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "parameter_count": 7725312,
+      "peak_container_rss_bytes": 4612628480,
+      "peak_gpu_memory_allocated_bytes": 3448054784,
+      "peak_gpu_memory_reserved_bytes": 3705667584,
+      "pooled_embedding_dtype": "torch.float32",
+      "pooled_embedding_sha256": "5112222e1c17fd1b659cb954fccbf4d34a481f68ca6af5a290b569a96d68476a",
+      "pooled_embedding_shape": [
+        16,
+        256
+      ],
+      "pricing_source": "https://modal.com/pricing",
+      "raw_variant_score": false,
+      "remote_method_seconds": 0.20454,
+      "sample_variants": 4,
+      "seconds_per_variant": 0.051135,
+      "sequence_batches": 2,
+      "sequence_count": 16,
+      "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "status": "PASS",
+      "token_shapes": [
+        [
+          8,
+          8192
+        ],
+        [
+          8,
+          8192
+        ]
+      ],
+      "variant_batch_size": 2,
+      "variants_per_second": 19.556034,
+      "view_order": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ],
+      "views_per_variant": 4
+    }
+  ],
+  "status": "PASS_BOUNDED_REPRESENTATION_THROUGHPUT",
+  "summary": {
+    "completed_configurations": 8,
+    "failed_configurations": 0,
+    "feature_cache_written": false,
+    "full_feature_extraction_started": false,
+    "interpretation": "This is a tiny throughput and finite-pooled-hidden-state check on actual GRCh38 sequence views. It does not establish a raw REF-vs-ALT likelihood contract, a training feature set, or a full-cohort extraction plan.",
+    "raw_variant_scores_generated": false
+  }
+}

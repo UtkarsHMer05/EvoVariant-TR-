@@ -1,0 +1,47 @@
+{
+  "artifact_id": "phase6a-cache-preflight-20260921",
+  "recorded_at": "2026-09-21",
+  "status": "PASS_NO_REUSABLE_LOCKED_COHORT_EVO2_CACHE",
+  "scope": "Read-only cache and artifact inventory before Phase6A GPU throughput work",
+  "locked_cohort": {
+    "manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+    "total_records": 946
+  },
+  "evo2_cache_identity_required": {
+    "model_id": "evo2",
+    "checkpoint": "evo2_7b",
+    "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "preprocessing_revision": "grch38-8192-v1",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "layer": "raw_scores"
+  },
+  "modal_volume": {
+    "workspace": "utkarshmer05",
+    "volume": "hf_cache",
+    "observed_checkpoint_trees": [
+      "hub/models--arcinstitute--evo2_7b",
+      "models--InstaDeepAI--nucleotide-transformer-v2-500m-multi-species",
+      "models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16"
+    ],
+    "prediction_cache_root": "evovariant-tr/predictions",
+    "prediction_cache_files_observed": 1
+  },
+  "cache_reconciliation": {
+    "existing_valid_evo2_cache_hits": 0,
+    "new_inference_required": 946,
+    "candidate_cache_file": "evovariant-tr/predictions/0a/0a5e97eff1df2eab88c4a59a5434b1a5d9b0fa317820d6eaea7bc1d03e7871b3.json",
+    "candidate_cache_variant": "GRCh38:chr10:100065200:C>T",
+    "candidate_in_locked_manifest": false,
+    "rejection_reason": "The only existing prediction is the unrelated Phase2/4 pilot; its normalized ID also uses the Modal UCSC chr-prefixed transport spelling, while the locked manifest identity set uses the frozen non-prefixed form. It is not reused by Phase6A."
+  },
+  "historical_artifact_reconciliation": {
+    "historical_final_100_metrics": ".kilo/worktrees/mysterious-gilmoreosaurus/evaluation/results/final_100/metrics.json",
+    "decision": "not_reused",
+    "reason": "The historical worktree output has aggregate metrics only, no matching locked-manifest IDs, no current Evo2 checkpoint/preprocessing/orientation/cache identity, and is outside the authoritative worktree."
+  },
+  "decision": "Run only the newly authorized bounded Phase6A sample; do not infer a cache hit or skip locked-cohort work from the unrelated pilot or historical worktree output."
+}

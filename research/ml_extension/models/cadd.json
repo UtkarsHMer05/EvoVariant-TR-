@@ -1,6 +1,6 @@
 {
   "model_id": "cadd",
-  "status": "DEFERRED_BY_COMPUTE",
+  "status": "SUBSET_ONLY",
   "model_name": "CADD v1.7",
   "source": "https://github.com/kircherlab/CADD-scripts",
   "license": "NOT_VERIFIED",
@@ -24,14 +24,14 @@
     "batch": true
   },
   "hardware": {
-    "backend": "local annotation pipeline",
+    "backend": "public CADD GRCh38-v1.7 lookup API",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
     "verified_at": "2026-09-21",
-    "verification_status": "DEFERRED",
-    "notes": "Official CADD-scripts v1.7 release path was audited. The GRCh38 annotation bundle is documented as approximately 300 GB, and the current repository has neither the annotation assets nor a verified license/asset checksum. Deferred by compute/storage and comparator-provenance review; the existing deterministic CADD comparator remains test-only.",
+    "verification_status": "VERIFIED",
+    "notes": "The official CADD v1.7 GRCh38 public API was qualified against all 946 locked records without GPU work. HTTP requests were successful for 946/946 rows; usable CADD raw/PHRED values were returned for 918/946 (97.0402%), while 28 rows remain explicit requested-ref/alt missingness. Evidence: artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json and artifacts/phase6a/phase6a_comparator_qualification_20260921.json. The approximately 300 GB offline annotation bundle was not downloaded, and the source's non-commercial availability/legal terms remain a redistribution review item. This is a qualified public comparator role, deliberately SUBSET_ONLY in the model registry so it cannot enter the Evo2-only foundation-model benchmark.",
     "asset_checksum": null
   }
 }

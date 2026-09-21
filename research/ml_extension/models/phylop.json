@@ -1,6 +1,6 @@
 {
   "model_id": "phylop",
-  "status": "DEFERRED_BY_COMPATIBILITY",
+  "status": "SUBSET_ONLY",
   "model_name": "UCSC phyloP 100-way hg38",
   "source": "https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=cons100way",
   "license": "UCSC data-use terms; verify for redistribution",
@@ -24,14 +24,14 @@
     "batch": true
   },
   "hardware": {
-    "backend": "UCSC annotation track",
+    "backend": "UCSC phyloP100way public REST track",
     "gpu": null,
     "memory_gb": null
   },
   "provenance": {
     "verified_at": "2026-09-21",
-    "verification_status": "DEFERRED",
-    "notes": "Official UCSC GRCh38 100-vertebrate track and WIG download path were audited. PhyloP is a site-wise conservation/acceleration annotation, not an alternate-minus-reference sequence score, so it cannot be an apples-to-apples raw variant-effect model without a predeclared comparator transform. The existing deterministic comparator remains test-only.",
+    "verification_status": "VERIFIED",
+    "notes": "The official UCSC hg38 phyloP100way REST track was qualified for all 946 locked coordinates with 946/946 HTTP_OK observations and no missing values. The returned value is a site-wise conservation/acceleration score at the reference coordinate, not an alternate-minus-reference sequence score; it remains a separately labeled public comparator and is not an apples-to-apples foundation-model result. Evidence: artifacts/phase6a/comparators/phylop100way_hg38_20260921.json and artifacts/phase6a/phase6a_comparator_qualification_20260921.json.",
     "asset_checksum": null
   }
 }

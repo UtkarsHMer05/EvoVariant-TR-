@@ -1797,6 +1797,62 @@ independent reference report SHA-256 is
 946 total, 536 B/LB, 410 P/LP, 946 gene labels, and 367 unique genes, with zero unresolved
 reference mismatches and deterministic regeneration PASS.
 
+## D-066 — Complete only the approved Phase6A qualification and preserve the full-phase boundary
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: The Phase 6 launch-boundary language in D-064 and D-065 only for the bounded Phase6A qualification; it does not supersede their raw-score, cohort, or downstream-gate semantics.
+
+Context:
+The user-prioritized continuation supplied a dated pre-Phase-6 checkpoint that authorized a
+bounded cache/comparator/throughput study, but explicitly prohibited a full 946-record Evo2
+benchmark, inference over the 1,402,895-record t0 VUS pool, training, HPO, fine-tuning, and
+automatic progression to Phase 6. The locked manifest contains 946 records, while the only
+existing prediction cache entry is an unrelated Phase 2/4 pilot. The Phase6A approval also
+authorized a very small unlabeled Nucleotide Transformer/Caduceus embedding-throughput smoke
+after Evo2.
+
+Decision:
+Run and preserve Phase6A as a qualification phase only. Treat the cache preflight as 0 reusable
+locked-cohort Evo2 hits and 946 potential new inferences. Qualify CADD v1.7 and UCSC phyloP100way
+as public CPU comparator artifacts with row-level coverage/missingness, while retaining
+AlphaMissense as a subset-only track with a measured 507-row eligible denominator and 0/507
+prediction coverage. Measure canonical Evo2 `evo2_7b` on H100 using GRCh38 8192-bp
+forward/reverse alternate-minus-reference scoring over sample sizes 8/16/32 and batch sizes
+1/2/4/8. Record the lower-cost A100 comparison as failed closed when the pinned checkpoint
+requires compute capability 8.9+ for FP8. Then run only the approved four-variant, unlabeled,
+real-GRCh38 NT/Caduceus pooled-embedding smoke; do not create a feature cache. Keep CADD and
+PhyloP as qualified public comparator roles but `SUBSET_ONLY` in the model registry, so the
+exact Evo2-only raw benchmark inclusion set cannot silently widen; keep AlphaMissense
+`SUBSET_ONLY`, and keep NT/Caduceus `SUBSET_ONLY` embedding tracks. Keep the scientific result
+registry empty and stop at the Phase6A boundary.
+
+Alternatives:
+Launch the full 946-record Evo2 inference based on the measured rate estimate, treat the
+unrelated pilot cache or historical aggregate metrics as reusable outputs, promote masked-LM
+hidden states/logits to raw allele-effect scores, download AlphaMissense predictions, retry the
+A100 with changed precision or a changed checkpoint, or begin feature extraction/training after
+the smoke. These were rejected because they would exceed the approved scope, change score
+semantics, erase explicit missingness/compatibility evidence, or cross the required phase gate.
+
+Consequences:
+Phase6A is `PASS` within its bounded qualification scope. The full Phase 6 zero-shot benchmark
+remains `BLOCKED / NOT STARTED`; the full Phase 7 extraction remains `BLOCKED / NOT STARTED`;
+and no downstream phase, scientific metric, locked-label selection, feature cache, or result
+registry record is created. The H100 throughput estimate is planning evidence only: it does not
+authorize the full run or constitute a scientific result. The A100 failure is a hardware/runtime
+compatibility constraint for this pinned Evo2 checkpoint, not an A100 throughput measurement.
+
+Validation:
+The approval is `artifacts/approvals/phase6a_throughput_20260921.json`. Cache, comparator, Evo2,
+representation, and registry evidence are respectively recorded in
+`artifacts/phase6a/phase6a_cache_preflight_20260921.json`,
+`artifacts/phase6a/phase6a_comparator_qualification_20260921.json`,
+`artifacts/phase6a/phase6a_evo2_throughput_20260921.json`,
+`artifacts/phase6a/phase6a_representation_throughput_20260921.json`, and
+`artifacts/phase6a/phase6a_registry_update_20260921.json`. `make model-registry-verify` and
+Ruff passed for the updated scripts/manifests. The two throughput artifacts record a combined
+client wall-rate estimate of `$0.560167`; Modal workspace snapshots remained `$0.00` billed.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -1,6 +1,6 @@
 {
   "model_id": "alphamissense_valid_subset",
-  "status": "DEFERRED_BY_COMPATIBILITY",
+  "status": "SUBSET_ONLY",
   "model_name": "AlphaMissense applicable missense subset",
   "source": "https://github.com/google-deepmind/alphamissense",
   "license": "Apache-2.0 code; CC-BY-4.0 predictions",
@@ -31,7 +31,7 @@
   "provenance": {
     "verified_at": "2026-09-21",
     "verification_status": "DEFERRED",
-    "notes": "Official repository was audited. The project publishes precomputed predictions for human missense variants and explicitly does not publish trained model weights; non-missense records must remain missing. The current temporal cohort is not yet mapped to an approved transcript/missense subset, so this comparator is deferred by compatibility and subset definition. No predictions were downloaded.",
+    "notes": "The exact locked t1 source rows were recovered for all 946 records and 507 rows meet the auditable protein-HGVS missense eligibility rule. Prediction coverage is 0/507 because no prediction asset or approved transcript-level lookup was used; non-missense and unmapped rows remain missing. Evidence: artifacts/phase6a/comparators/alphamissense_eligibility_20260921.json and artifacts/phase6a/phase6a_comparator_qualification_20260921.json. AlphaMissense remains SUBSET_ONLY and does not contribute metrics.",
     "asset_checksum": null
   }
 }

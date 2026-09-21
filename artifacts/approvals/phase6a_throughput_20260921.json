@@ -1,0 +1,49 @@
+{
+  "artifact_id": "phase6a-throughput-cache-comparator-cost-20260921",
+  "approved_by": "user",
+  "approved_at": "2026-09-21",
+  "source": "latest user-prioritized Phase6A checkpoint supplied in the active task",
+  "max_budget_usd": 1.5,
+  "run_scope": "Phase6A throughput, cache, comparator, and cost qualification only; no full 946-record Evo2 benchmark, no inference over the 1,402,895-record t0 VUS pool, no training, HPO, fine-tuning, or locked-test evaluation",
+  "modal_environment": "evovariant-tr",
+  "gpu_type_candidates": [
+    "H100",
+    "one lower-cost scientifically valid alternative only if it can run the pinned Evo2 7B checkpoint without changing context, orientation, or scoring semantics"
+  ],
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "dataset_manifest": "research/ml_extension/splits/authoritative_cohort_manifest.json",
+  "locked_test_manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+  "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+  "locked_test_record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+  "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
+  "checkpoint": {
+    "model_id": "evo2",
+    "checkpoint": "evo2_7b",
+    "repository_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "sample_limit": 32,
+  "required_progression": {
+    "sample_sizes": [
+      8,
+      16,
+      32
+    ],
+    "sequence_batch_sizes": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "increase_only_if": "the prior sample completes without an unexplained failure or OOM and the cumulative rate-based estimate remains below the authorization cap"
+  },
+  "representation_scope": "After Evo2 only, run very small unlabeled Nucleotide Transformer/Caduceus embedding throughput samples using the already verified pinned checkpoints; do not perform full feature extraction.",
+  "stop_conditions": [
+    "stop before cumulative additional Modal compute exceeds approximately 1.50 USD",
+    "stop after Phase6A evidence is recorded",
+    "do not automatically start Phase6 or any downstream phase"
+  ]
+}

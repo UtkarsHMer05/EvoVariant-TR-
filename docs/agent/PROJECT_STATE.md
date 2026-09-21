@@ -4,9 +4,9 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 3 PASS / PHASE 5 FINAL ROSTER / PRE-PHASE6 CHECKPOINT` (Phases 0-5
-required gates are documented; full Phase 6 and later scientific execution remain explicitly
-not started)
+Current phase: `PHASE 6A BOUNDED QUALIFICATION COMPLETE / FULL PHASE 6 NOT STARTED` (Phases 0-5
+required gates are documented; only the separately approved Phase6A cache/comparator/throughput
+qualification was run)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
@@ -19,10 +19,12 @@ identity set remains unavailable and is retained only as validation-only compari
 The authoritative extension cohort is 946 records (536 B/LB, 410 P/LP), with 0 reference
 mismatches and deterministic regeneration PASS. Phase 5 has a final separated roster: Evo2 raw
 score, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
-deferred GPN, and subset-only AlphaMissense. Phases 6–9 and 11 onward remain blocked/not
-started. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE` with no training run or scientific
-metrics. No full benchmark, embedding extraction, training, HPO, fine-tuning, locked-test
-evaluation, clinical classification, or release has started.
+deferred GPN, and subset-only AlphaMissense. Phase6A qualified those CPU comparators, measured
+bounded Evo2 H100 throughput, recorded an A100 FP8-compatibility failure, and measured tiny
+unlabeled NT/Caduceus embedding throughput. Full Phase 6, full Phase 7 extraction, training,
+HPO, fine-tuning, locked-test evaluation, clinical classification, and release remain blocked or
+not started. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE` with no training run or scientific
+metrics. No full benchmark or feature cache has been created.
 
 Latest validated source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
 freeze-summary/control baseline; current `make validate` and control-plane gates pass).
@@ -605,6 +607,40 @@ figures from the single pilot record.
   endpoint as current scientific evidence. It now directs reviewers to the persistent phase state,
   documents the frozen estimand and current counts, and distinguishes free local validation from
   paid/remote gates.
+
+## Current Phase6A qualification state — 2026-09-21
+
+- The current authorized boundary is `artifacts/approvals/phase6a_throughput_20260921.json`:
+  Phase6A cache/comparator/throughput qualification only, approximate `$1.50` cap, no full
+  946-record Evo2 run, no t0-pool inference, no training/HPO/fine-tuning, and no automatic
+  Phase6 continuation. The locked manifest remains 946 records with hashes
+  `9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb` and
+  `ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0`.
+- Cache preflight found zero reusable locked-cohort Evo2 predictions and 946 potential new
+  records. The unrelated single-variant pilot cache and historical aggregate metrics were
+  explicitly rejected. CPU qualification returned CADD usable values for 918/946 with 28
+  explicit missing rows, phyloP100way values for 946/946, and AlphaMissense eligibility for
+  507/946 with 0/507 prediction coverage. Evidence is in the Phase6A comparator artifacts.
+- Canonical Evo2 H100 throughput passed all 12 sample/batch configurations at 8192 bp,
+  forward/reverse, alternate-minus-reference scoring. The best warm result was 0.724826
+  variants/s; the bounded model-only full-946 estimate was `$1.4732` and 1,342.653 seconds
+  including one model load. The A100 comparison failed closed for all 12 configurations because
+  this checkpoint requires compute capability 8.9+ for FP8; it is not a throughput result.
+- The post-Evo2 real-GRCh38 representation smoke passed all 8 tiny configurations. It used four
+  selected variants, four views per variant, mean-token pooling, and no feature-cache write.
+  Nucleotide Transformer produced finite `[16, 1024]` pooled outputs and Caduceus finite
+  `[16, 256]` outputs. These remain subset-only embedding evidence, not raw scores or a full
+  feature extraction.
+- The model registry retains only Evo2 in the benchmark inclusion set. CADD/PhyloP are
+  qualified public comparator roles but remain `SUBSET_ONLY` to prevent widening the Evo2-only
+  raw benchmark; AlphaMissense, NT, and Caduceus are also `SUBSET_ONLY`. The registry update
+  artifact is `artifacts/phase6a/phase6a_registry_update_20260921.json`, and the scientific
+  result registry is still empty.
+- Modal workspace snapshots were `$12.34` to `$12.90` metered around Evo2 and `$12.94` to
+  `$12.97` around representations, with `$0.00` billed. The combined client wall-rate estimate
+  was `$0.560167`; no per-request invoice amount is claimed. `make validate`, `make
+  ml-protocol-verify`, `make schema-verify`, `make model-registry-verify`, and `make
+  registry-verify` pass. Full Phase 6 and all downstream phases remain blocked/not started.
 
 ## Final Phase 18 clean-room follow-up — 2026-09-21
 

@@ -25,13 +25,13 @@
   },
   "hardware": {
     "backend": "Transformers/PyTorch",
-    "gpu": null,
-    "memory_gb": null
+    "gpu": "Modal H100",
+    "memory_gb": 3.71
   },
   "provenance": {
     "verified_at": "2026-09-21",
     "verification_status": "DEFERRED",
-    "notes": "Official repository and checkpoint were audited and the pinned checkpoint passed a bounded real H100 checkpoint/embedding/logit smoke on a synthetic one-base pair. Caduceus-Ph is a 131,072-bp masked-language model trained with reverse-complement augmentation; its documented downstream procedure runs sequence and reverse complement, but no raw allele-effect VEP API was verified. A pseudo-likelihood adapter would not be apples-to-apples with Evo2 without a predeclared protocol. This is SUBSET_ONLY for embeddings/logits, not included in the raw-score benchmark. Evidence: artifacts/model_audit/phase5_real_smokes_20260921.json.",
+    "notes": "Official repository and checkpoint were audited and the pinned checkpoint passed both the Phase 5 synthetic plumbing smoke and a Phase6A tiny real-GRCh38 embedding-throughput smoke. Caduceus-Ph is a 131,072-bp masked-language model trained with reverse-complement augmentation. Phase6A used four SHA-256-selected locked-cohort variants, 8192-bp reference/alternate forward and reverse views, mean-token pooling, finite [16, 256] pooled outputs, and no feature-cache write; the best warm throughput was 19.8545 variants/s at variant batch size 1 over four variants. No raw allele-effect VEP API was verified, so a pseudo-likelihood adapter would not be apples-to-apples with Evo2. This remains SUBSET_ONLY for embeddings/logits, not included in the raw-score benchmark. Evidence: artifacts/model_audit/phase5_real_smokes_20260921.json and artifacts/phase6a/phase6a_representation_throughput_20260921.json.",
     "asset_checksum": null
   }
 }

@@ -25,13 +25,13 @@
   },
   "hardware": {
     "backend": "Transformers/PyTorch",
-    "gpu": null,
-    "memory_gb": null
+    "gpu": "Modal H100",
+    "memory_gb": 8.07
   },
   "provenance": {
     "verified_at": "2026-09-21",
     "verification_status": "DEFERRED",
-    "notes": "Official checkpoint and model card were audited and the pinned checkpoint passed a bounded real H100 checkpoint/embedding/logit smoke on a synthetic one-base pair. The published model is a 500M-parameter masked language model with a 2048-token maximum and CC-BY-NC-SA-4.0 terms. No official allele-effect scoring routine or GRCh38 forward/reverse raw-score parity was verified; converting masked logits to a pseudo-likelihood would create a different score contract. This is SUBSET_ONLY for embeddings/logits, not included in the raw-score benchmark. Evidence: artifacts/model_audit/phase5_real_smokes_20260921.json.",
+    "notes": "Official checkpoint and model card were audited and the pinned checkpoint passed both the Phase 5 synthetic plumbing smoke and a Phase6A tiny real-GRCh38 embedding-throughput smoke. The published model is a 500M-parameter masked language model with a 2048-token maximum and CC-BY-NC-SA-4.0 terms. Phase6A used four SHA-256-selected locked-cohort variants, 8192-bp reference/alternate forward and reverse views, mean-token pooling, finite [16, 1024] pooled outputs, and no feature-cache write; the best warm throughput was 11.7441 variants/s at variant batch size 1 over four variants. No official allele-effect scoring routine or GRCh38 raw-score parity was verified; masked logits are not relabeled as a pseudo-likelihood. This remains SUBSET_ONLY for embeddings/logits, not included in the raw-score benchmark. Evidence: artifacts/model_audit/phase5_real_smokes_20260921.json and artifacts/phase6a/phase6a_representation_throughput_20260921.json.",
     "asset_checksum": null
   }
 }

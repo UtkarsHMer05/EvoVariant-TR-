@@ -10,8 +10,8 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 | 3 | ML dataset + locked splits | PASS | `ML-DEV-001`/`ML-DEV-002`, `artifacts/phase3_integrity_audit_20260921.json`, independent `artifacts/reference/grch38_validation_20260921.json`, and authoritative manifests under `research/ml_extension/splits/`; 946 locked records, 536 B/LB, 410 P/LP, reference mismatches 0, deterministic regeneration PASS. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
 | 5 | Model registry + adapters | PASS / ROSTER FINAL | `artifacts/model_audit/phase5_final_roster_20260921.json`; Evo2 is `INCLUDED_RAW_SCORE`, Nucleotide Transformer/Caduceus are separated `INCLUDED_EMBEDDING_TRACK` decisions, CADD/PhyloP are public CPU-comparator contracts, GPN is `DEFERRED`, and AlphaMissense is `SUBSET_ONLY`; no full extraction or benchmark ran. |
-| 6 | Zero-shot multi-model benchmark | BLOCKED / NOT STARTED | `artifacts/phase5_final_checkpoint_20260921.json`; Phase 3 now passes, but only Evo2 is in the exact raw foundation-model set, public comparator assets still need manifests/missingness, and no fresh full-benchmark approval or batch-throughput evidence exists. |
-| 7 | Embedding/representation extraction | BLOCKED / NOT STARTED | `artifacts/phase5_final_checkpoint_20260921.json` and `artifacts/model_audit/phase5_final_roster_20260921.json`; Nucleotide Transformer/Caduceus have smoke-only embedding evidence, but no cohort feature cache or Phase 7 approval exists. |
+| 6 | Zero-shot multi-model benchmark | BLOCKED / PHASE6A QUALIFIED | `artifacts/phase6a/phase6a_cache_preflight_20260921.json`, `artifacts/phase6a/phase6a_comparator_qualification_20260921.json`, and `artifacts/phase6a/phase6a_evo2_throughput_20260921.json`; full 946-record inference and scientific evaluation were not started. |
+| 7 | Embedding/representation extraction | BLOCKED / PHASE6A TINY SMOKE ONLY | `artifacts/phase6a/phase6a_representation_throughput_20260921.json`; four real GRCh38 variants and four views per variant were measured for NT/Caduceus, with no feature cache or full extraction. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
 | 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
@@ -53,6 +53,59 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
   estimates, source/asset caveats, and the current read-only Modal snapshot of `$12.19` metered
   and `$0.00` billed. No full Phase 6 benchmark, Phase 7 extraction, training, HPO, fine-tuning,
   or locked-test evaluation was launched.
+
+## Phase6A bounded qualification — 2026-09-21
+
+- The current user approval is `artifacts/approvals/phase6a_throughput_20260921.json`, tied to
+  extension protocol hash `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`,
+  an approximate `$1.50` Modal cap, sample sizes 8/16/32 for Evo2, model batch sizes 1/2/4/8,
+  and a post-Evo2 tiny unlabeled NT/Caduceus representation smoke. No older approval was edited.
+- The read-only cache preflight found 0 reusable locked-cohort Evo2 cache hits and 946 records
+  requiring new inference if a full run is ever separately approved. The unrelated Phase 2/4
+  pilot cache and the historical `.kilo` aggregate metrics were not reused. Evidence and hash:
+  `artifacts/phase6a/phase6a_cache_preflight_20260921.json` (`eda364b57d5c10021b961e95f60e3d4ffef7caab7143d1311711c668e70c4d5e`).
+- CPU comparator qualification completed before GPU work without reading labels for scoring or
+  invoking Modal. CADD v1.7 GRCh38 returned usable values for 918/946 records (28 explicit
+  requested-ref/alt missing values); UCSC phyloP100way returned 946/946 sitewise values; and
+  AlphaMissense had 507 eligible missense rows but 0/507 prediction coverage because no
+  prediction asset or transcript-level lookup was used. The aggregate evidence hash is
+  `202d683d81c82f5f860228f68ee53af7c7050c763b97d0285a9c9995dfe3bc58`.
+- Evo2 `evo2_7b`, revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, ran on canonical
+  GRCh38 8192-bp forward/reverse windows with alternate-minus-reference log likelihood. All
+  12 H100 configurations passed with finite outputs; the best warm observation was 0.724826
+  variants/s at sample 8 and model sequence batch size 2, with peak GPU allocated/reserved
+  `18,075,978,752` / `22,267,559,936` bytes and a measured full-946 rate estimate of `$1.4732`
+  and `1,342.653` seconds including one model load. This is a bounded model-only estimate and
+  excludes full sequence preparation, network, cache writes, and any full-cohort inference.
+  All 12 A100-40GB configurations failed closed at scoring with the checkpoint's
+  `Device compute capability 8.9 or higher required for FP8 execution` error; no A100 result is
+  treated as throughput. Evidence and hash:
+  `artifacts/phase6a/phase6a_evo2_throughput_20260921.json`
+  (`6015e40620d4d10adc355f0e8dd8edd9ae8751a3311b769be3f1b706b8251bb8`).
+- The post-Evo2 representation smoke used four SHA-256-selected locked-cohort variants, actual
+  8192-bp GRCh38 reference/alternate forward and reverse views, mean-token pooling, and no
+  feature-cache write. All eight H100 configurations passed: Nucleotide Transformer produced
+  finite pooled shapes `[16, 1024]` with best warm throughput 11.7441 variants/s, and Caduceus
+  produced finite pooled shapes `[16, 256]` with best warm throughput 19.8545 variants/s. The
+  first attempt failed before model load because the worker image omitted the local sequence
+  helper; the corrected retry is the only representation result. Evidence and hash:
+  `artifacts/phase6a/phase6a_representation_throughput_20260921.json`
+  (`48240f71602ae25570ebad2e52d5579a19f2f4bfa848e3f149b6083c71829372`).
+- The Phase6A registry reconciliation is in
+  `artifacts/phase6a/phase6a_registry_update_20260921.json`. CADD and PhyloP are now qualified
+  public CPU comparators with explicit semantics/missingness but remain `SUBSET_ONLY` in the
+  model registry so the exact Evo2-only raw benchmark inclusion boundary cannot silently widen;
+  AlphaMissense remains `SUBSET_ONLY`; and NT/Caduceus remain `SUBSET_ONLY` embedding tracks.
+  `make model-registry-verify` passed with seven manifests and only Evo2 in the benchmark
+  inclusion set.
+- Modal workspace summaries recorded `$12.34` to `$12.90` metered around Evo2 and `$12.94` to
+  `$12.97` around the representation smoke, with `$0.00` billed in both snapshots. The combined
+  client wall-rate estimate recorded by the two artifacts is `$0.560167`; this is not a provider
+  per-request invoice. The result registry remains empty, and no labels were used for scoring or
+  selection.
+- Gate decision: Phase6A qualification `PASS` within scope. Stop here. Full Phase 6 zero-shot
+  inference, full Phase 7 feature extraction, training, HPO, fine-tuning, locked evaluation,
+  and downstream phases remain blocked/not started pending their own gates and authorization.
 
 ## Historical priority continuation before recovery — 2026-09-21
 

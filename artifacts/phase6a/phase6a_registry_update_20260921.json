@@ -1,0 +1,85 @@
+{
+  "artifact_id": "phase6a-registry-update-20260921",
+  "recorded_at": "2026-09-21",
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "locked_manifest": {
+    "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0",
+    "records": 946
+  },
+  "registry_manifest_updates": [
+    {
+      "path": "research/ml_extension/models/cadd.json",
+      "sha256": "77e83bdb309e5ece2cb807412f9871475ece6e0cc41037e9c838d6c2bf400a45",
+      "status": "SUBSET_ONLY",
+      "role": "public_cpu_comparator",
+      "coverage": "918/946 usable CADD v1.7 GRCh38 values; 28 explicit row-level missing values",
+      "evidence": "artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json"
+    },
+    {
+      "path": "research/ml_extension/models/phylop.json",
+      "sha256": "be0cd6c45d15d89ec8e7b9befd8aabf56bd360b1881ba6f08815270a54e906ab",
+      "status": "SUBSET_ONLY",
+      "role": "public_cpu_comparator",
+      "coverage": "946/946 UCSC phyloP100way hg38 coordinate lookups",
+      "evidence": "artifacts/phase6a/comparators/phylop100way_hg38_20260921.json"
+    },
+    {
+      "path": "research/ml_extension/models/alphamissense_valid_subset.json",
+      "sha256": "45b7519e40124e53ce4353f8598f40b9acba3c8b7a159875ecde5b46643e5dde",
+      "status": "SUBSET_ONLY",
+      "role": "missense_comparator_subset",
+      "coverage": "507 eligible missense rows; 0/507 prediction coverage because no prediction asset was used",
+      "evidence": "artifacts/phase6a/comparators/alphamissense_eligibility_20260921.json"
+    },
+    {
+      "path": "research/ml_extension/models/nucleotide_transformer.json",
+      "sha256": "69162c4bb2b6f34dd1cc0173c12cf54ddfc192a29b24861ecba4296186fa3d28",
+      "status": "SUBSET_ONLY",
+      "role": "embedding_track",
+      "coverage": "tiny 4-variant real-GRCh38 smoke; finite pooled shape [16,1024]; no feature cache",
+      "evidence": "artifacts/phase6a/phase6a_representation_throughput_20260921.json"
+    },
+    {
+      "path": "research/ml_extension/models/caduceus.json",
+      "sha256": "a8488544a81f908df8ee3d94759a550b4d664d6a6d2498cb3340ca1131588995",
+      "status": "SUBSET_ONLY",
+      "role": "embedding_track",
+      "coverage": "tiny 4-variant real-GRCh38 smoke; finite pooled shape [16,256]; no feature cache",
+      "evidence": "artifacts/phase6a/phase6a_representation_throughput_20260921.json"
+    }
+  ],
+  "qualification_artifacts": [
+    {
+      "path": "artifacts/phase6a/phase6a_cache_preflight_20260921.json",
+      "sha256": "eda364b57d5c10021b961e95f60e3d4ffef7caab7143d1311711c668e70c4d5e",
+      "finding": "0 reusable locked-cohort Evo2 cache hits; 946 new inference records required if full inference is later authorized"
+    },
+    {
+      "path": "artifacts/phase6a/phase6a_comparator_qualification_20260921.json",
+      "sha256": "202d683d81c82f5f860228f68ee53af7c7050c763b97d0285a9c9995dfe3bc58",
+      "finding": "CADD and PhyloP CPU comparators qualified with explicit missingness and AlphaMissense deferred at 507 eligible/0 scored"
+    },
+    {
+      "path": "artifacts/phase6a/phase6a_evo2_throughput_20260921.json",
+      "sha256": "6015e40620d4d10adc355f0e8dd8edd9ae8751a3311b769be3f1b706b8251bb8",
+      "finding": "12 H100 configurations passed; 12 A100 configurations failed closed on the checkpoint FP8 capability requirement; no full inference"
+    },
+    {
+      "path": "artifacts/phase6a/phase6a_representation_throughput_20260921.json",
+      "sha256": "48240f71602ae25570ebad2e52d5579a19f2f4bfa848e3f149b6083c71829372",
+      "finding": "8 tiny H100 NT/Caduceus embedding configurations passed; no feature cache or full extraction"
+    }
+  ],
+  "result_registry": {
+    "scientific_result_records_created": 0,
+    "reason": "Phase6A qualification and throughput artifacts are not full benchmark or feature-extraction results; the result registry remains empty and downstream statuses remain blocked."
+  },
+  "phase_boundary": {
+    "phase6_full_benchmark_started": false,
+    "phase7_full_extraction_started": false,
+    "training_hpo_finetuning_started": false,
+    "locked_labels_used_for_scoring_or_selection": false
+  }
+}

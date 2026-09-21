@@ -1,0 +1,62 @@
+{
+  "artifact_id": "phase6a-comparator-qualification-20260921",
+  "artifact_paths": [
+    "artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json",
+    "artifacts/phase6a/comparators/phylop100way_hg38_20260921.json",
+    "artifacts/phase6a/comparators/alphamissense_eligibility_20260921.json"
+  ],
+  "cache": {
+    "path": "data/derived/ml_extension/phase6a/comparator_lookup_cache.json",
+    "purpose": "resumable raw API observations; not a scientific result registry entry",
+    "sha256": "dff7f8f71cf329b47888d2a0986d20599281936bdfc7770017a72d379f43eb14"
+  },
+  "comparators": {
+    "alphamissense": {
+      "artifact": "artifacts/phase6a/comparators/alphamissense_eligibility_20260921.json",
+      "artifact_sha256": "5f45ec6fe523ead99603daa67fc48f8962438a632ed5dfa6770791fea290a0ec",
+      "eligible_missense_n": 507,
+      "prediction_coverage_fraction_of_eligible": 0.0,
+      "prediction_coverage_n": 0
+    },
+    "cadd": {
+      "artifact": "artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json",
+      "artifact_sha256": "310111c525adc31097e88b4bed2df1f553b60c0c014463d8ec3000c2103f42f6",
+      "coverage": {
+        "available": 918,
+        "coverage_fraction": 0.9704016913319239,
+        "missing": 28,
+        "total": 946
+      },
+      "lookup_status_counts": {
+        "HTTP_OK": 946
+      }
+    },
+    "phylop": {
+      "artifact": "artifacts/phase6a/comparators/phylop100way_hg38_20260921.json",
+      "artifact_sha256": "606dde41dfae340b85fc35736cb7a212dbc040137df4c03047cab7b9390a0509",
+      "coverage": {
+        "available": 946,
+        "coverage_fraction": 1.0,
+        "missing": 0,
+        "total": 946
+      },
+      "lookup_status_counts": {
+        "HTTP_OK": 946
+      }
+    }
+  },
+  "decision": "CADD and PhyloP are now available as full-cohort CPU comparator artifacts with row-level missingness. AlphaMissense has an auditable missense eligibility denominator but remains subset-only with zero prediction coverage. These artifacts do not authorize or constitute the Evo2 benchmark.",
+  "execution": {
+    "gpu_invoked": false,
+    "labels_read_for_scoring": false,
+    "locked_record_count": 946,
+    "manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "modal_invoked": false,
+    "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+    "record_set_sha256": "ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0"
+  },
+  "recorded_at_utc": "2026-09-21T08:20:26.476959+00:00",
+  "status": "PASS_WITH_ALPHA_MISSENSE_DEFERRED",
+  "summary_artifact": "artifacts/phase6a/phase6a_comparator_qualification_20260921.json"
+}

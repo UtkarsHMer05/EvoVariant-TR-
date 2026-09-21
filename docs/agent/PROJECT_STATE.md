@@ -39,17 +39,18 @@ Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
-The final documentation-only follow-ups record the clean-room at `a0ea1ca`; verify the current
-checkout HEAD with Git because documentation commits may advance it without changing source code.
+The frontend dependency/lint hardening was validated and committed in `739310d`; verify the current
+checkout HEAD with Git because this control-file update may advance it without changing source code.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
 
 ## Current authoritative execution update — 2026-09-21
 
-- Current checkout verification: branch `research/evovariant-tr` has no tracked modifications. The
-  only untracked path is the injected `.agents/` skill bundle; it is intentionally not part of
-  project commits or scientific evidence. Verify the exact HEAD with Git before any phase transition.
+- Current checkout verification: branch `research/evovariant-tr` has no tracked modifications after
+  the validated frontend change and this control-file update. The only untracked path is the
+  injected `.agents/` skill bundle; it is intentionally not part of project commits or scientific
+  evidence. Verify the exact HEAD with Git before any phase transition.
 - The remote pilot was deployed from source HEAD `2f4d117d0d1804bd8479d7da473978d1f796249b`.
   The chromosome-normalization fix, model-manifest updates, pilot artifacts, and the reconciled
   control-file updates are now committed in `f69ee8605e3dcbcf068ffd0f5fed3cef6e3cdcb0`
@@ -88,6 +89,29 @@ Active branch/worktree: `research/evovariant-tr` at
   yields 1,402,906 unique t0 VUS, only 11 above the ML-extension path and still 319 below the
   handoff target. The official archive directory exposes the same recorded t0 file; no alternate
   target archive or target ID list was found in the repository or supplied handoff attachment.
+
+## Current validation update — 2026-09-21
+
+- Frontend dependency/lint hardening is committed in `739310d`. The web app now uses Next.js
+  `16.3.5`, `eslint-config-next` `16.3.5` with its native flat-config export, direct ESLint
+  scripts (the removed Next 16 `next lint` command is no longer used), and PostCSS `8.5.28`.
+  The Next 16-generated TypeScript settings are checked in and the explicit Makefile lint step
+  remains the build gate.
+- The current checkout passes `make web-check` and `make web-e2e`; the latter ran four Playwright
+  workbench tests. `npm audit --json` and `npm audit --omit=dev --json` both report zero
+  vulnerabilities across the installed dependency graph. Next's build still emits non-failing
+  tracing warnings for the intentionally dynamic registry filesystem and the parent-directory
+  package-lock discovery; these are recorded warnings, not a scientific or release PASS.
+- A fresh clone of `739310d` at `/private/tmp/EvoVariant_cleanroom_latest.thPyN5/repo` passed
+  `make bootstrap`, `make frontend-install` (`npm ci`, zero vulnerabilities), `make validate`,
+  `make test-scientific`, `make test-e2e`, protocol/control-plane/schema/model-registry/registry
+  verification, `make web-check`, and four-test `make web-e2e`. Its `make figures` and
+  `make release-check` surfaces correctly remained `BLOCKED` because no eligible scientific
+  result artifacts are registered.
+- These results close the frontend security/build/browser gates and the free CPU clean-room
+  subgate. They do not change the scientific state: Phase 3's 330-ID discrepancy, Phase 5's
+  single included model, absent authorized full-cohort/batch recovery evidence, empty result
+  registry, and blocked figure/release gates remain unresolved.
 
 ## Current engineering follow-up — 2026-09-21
 

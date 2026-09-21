@@ -20,9 +20,9 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; local Evo2 adapter, bounded Modal source endpoint, and resumable `total_shards` manifest accounting are regression-checked, but deployment/parity, full-cohort authorization, and remote recovery smoke are absent. |
-| 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`; `make web-check` and `make web-e2e` PASS, local browser smoke PASS; registered scientific outputs are absent. |
+| 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`, `739310d`; Next 16.3.5 dependency/lint migration, `make web-check`, and four-test `make web-e2e` PASS; registered scientific outputs are absent. |
 | 17 | Figures/tables/report artifacts | BLOCKED | `14d9593`; all 19 figure families and 12 tables have registry contracts plus deterministic bundle rendering, but `research/runs/phase17_fig_status.json` is `BLOCKED` with zero eligible completed result artifacts and `research/figures/bundle_manifest.json` has zero outputs. |
-| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone + `make bootstrap`, `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
+| 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone of `739310d` + `make bootstrap`, `npm ci` (zero vulnerabilities), `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and four-test `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and registered result artifacts remain unresolved. |
 
 For each PASS append:
@@ -36,6 +36,20 @@ For each PASS append:
 The dated records below are historical evidence. The top status table and the newest dated
 follow-up sections are authoritative when older entries describe an earlier implementation or
 gate state.
+
+## Current validation follow-up — 2026-09-21
+
+- Frontend security/build/browser subgates: PASS in `739310d`. Next.js `16.3.5`, native flat
+  ESLint configuration, direct ESLint package scripts, and PostCSS `8.5.28` are installed from
+  the checked-in lockfile. Both full and production-only `npm audit` report zero vulnerabilities.
+- Clean-room subgate: PASS from a fresh clone of `739310d`. `make bootstrap`, `make
+  frontend-install`, `make validate`, `make test-scientific`, `make test-e2e`, protocol,
+  ML-control-plane, schema, model-registry, and registry checks, `make web-check`, and the
+  four-test `make web-e2e` run completed successfully. `make figures` and `make release-check`
+  remained explicitly `BLOCKED` with zero scientific outputs, as required.
+- Overall Phase 18 remains `BLOCKED`, because a clean CPU/frontend reproduction cannot substitute
+  for the gated Modal/scientific result reproduction. Phase 19 remains `BLOCKED` for the same
+  unresolved scientific, registry, figure, and release dependencies.
 
 ## Phase 0 completion record — 2026-09-21
 

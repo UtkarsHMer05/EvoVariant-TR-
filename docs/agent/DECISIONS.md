@@ -1160,6 +1160,46 @@ Validation:
 `./.venv/bin/pytest -q tests/unit/test_batch.py` passed with 34 tests; Ruff and strict mypy passed
 for the changed module. No Modal invocation or scientific output was created.
 
+## D-048 — Upgrade frontend dependencies and align Next 16 lint/build tooling
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The previous Next 15 frontend passed its build/browser gate but a clean dependency install
+reported production and development advisories, including critical/high findings in the Next
+dependency tree. Next 16 also removes the legacy `next lint` command and the `eslint` field from
+`NextConfig`, so retaining the old configuration would leave the repository with a broken clean
+build path.
+
+Decision:
+Upgrade the frontend to Next.js `16.3.5` and the matching `eslint-config-next`/Windows SWC
+optional package, update PostCSS to `8.5.28`, use the native flat-config export from
+`eslint-config-next/core-web-vitals`, run ESLint directly from package scripts and the Makefile,
+remove the removed Next `eslint` config field, and preserve the deliberate client-side effect
+patterns through a narrowly scoped Next 16 rule override. Apply the normal non-force npm audit
+remediation to the lockfile.
+
+Alternatives:
+Keep the old dependency graph and document known advisories, use `npm audit fix --force`, or
+silence the entire lint gate. These were rejected because the first leaves known vulnerabilities,
+the second permits unreviewed major changes, and the third would weaken source validation.
+
+Consequences:
+The frontend dependency graph is audit-clean for both production and development installs, and
+the web build/lint/browser gates remain explicit. Next 16 reports only non-failing tracing warnings
+for the dynamic registry filesystem and parent-directory package-lock discovery. This decision
+does not create scientific outputs, alter the frozen protocol, or promote any blocked phase.
+
+Validation:
+Commit `739310d` passes `make web-check` and four-test `make web-e2e`. A fresh clone passed
+`make bootstrap`, `make frontend-install`, `make validate`, `make test-scientific`, `make test-e2e`,
+protocol/control-plane/schema/model-registry/registry checks, `make web-check`, and `make web-e2e`;
+`npm ci` and both full and production-only `npm audit` reported zero vulnerabilities. The fresh
+clone's `make figures` and `make release-check` correctly remained blocked on missing scientific
+artifacts.
+
 ## Template for new decisions
 
 ### D-XXX — Title

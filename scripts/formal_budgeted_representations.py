@@ -39,7 +39,12 @@ if str(SCRIPTS_ROOT) not in sys.path:
 
 from evovariant_tr.sequence_mutate import reverse_complement  # noqa: E402
 from evovariant_tr.sequence_window import generate_reference_window  # noqa: E402
-from validate_ml_dev_budgeted_approval import validate_approval  # noqa: E402
+
+OVERNIGHT_MODE = os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
+if OVERNIGHT_MODE:
+    from validate_overnight_completion_approval import validate_approval  # noqa: E402
+else:
+    from validate_ml_dev_budgeted_approval import validate_approval  # noqa: E402
 
 FORMAL_MANIFEST = REPO_ROOT / (
     "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json"
@@ -47,9 +52,26 @@ FORMAL_MANIFEST = REPO_ROOT / (
 FORMAL_COST = REPO_ROOT / (
     "research/ml_extension/splits/formal_budgeted_20260921/cost_estimate.json"
 )
-FORMAL_EVO2_ARTIFACT = REPO_ROOT / "artifacts/phase6/phase6_formal_evo2_20260921_full.json"
-OUTPUT_ARTIFACT = REPO_ROOT / "artifacts/phase7/formal_budgeted_representation_20260921.json"
-RUN_ROOT = REPO_ROOT / "research/runs/phase7_formal_budgeted_20260921"
+FORMAL_EVO2_ARTIFACT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_EVO2_ARTIFACT",
+    "artifacts/phase6/phase6_formal_evo2_20260921_full.json",
+)
+OUTPUT_ARTIFACT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_REPRESENTATION_OUTPUT_PATH",
+    "artifacts/phase7/formal_budgeted_representation_20260921.json",
+)
+RUN_ROOT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_REPRESENTATION_RUN_ROOT",
+    "research/runs/phase7_formal_budgeted_20260921",
+)
+APPROVAL_PATH = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_APPROVAL_PATH",
+    (
+        "artifacts/approvals/overnight_completion_20260922.json"
+        if OVERNIGHT_MODE
+        else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
+    ),
+)
 REFERENCE_MANIFEST = REPO_ROOT / "data/manifests/grch38.json"
 FASTA = REPO_ROOT / "data/reference/Homo_sapiens_assembly38.fasta"
 FAI = REPO_ROOT / "data/reference/Homo_sapiens_assembly38.fasta.fai"
@@ -60,8 +82,8 @@ FORMAL_MANIFEST_SHA256 = "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1
 FORMAL_RECORD_SET_SHA256 = "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44"
 GPU_TYPE = "H100"
 GPU_RATE_USD_PER_HOUR = 3.95
-HARD_CAP_USD = 8.0
-SAFETY_STOP_USD = 7.75
+HARD_CAP_USD = 14.0 if OVERNIGHT_MODE else 8.0
+SAFETY_STOP_USD = 13.5 if OVERNIGHT_MODE else 7.75
 CONTEXT_LENGTH_BP = 8192
 SHARD_SIZE = 8
 VARIANT_BATCH_SIZE = 1
@@ -717,7 +739,7 @@ def main() -> None:
         raise RuntimeError(
             "set EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS for formal representation work"
         )
-    approval = validate_approval()
+    approval = validate_approval(APPROVAL_PATH)
     for path in (
         FORMAL_MANIFEST,
         FORMAL_COST,
@@ -768,13 +790,15 @@ def main() -> None:
     if total_estimated > HARD_CAP_USD:
         raise RuntimeError("formal representation total exceeded the hard cap")
     artifact = {
-        "artifact_id": "formal-budgeted-representation-20260921",
+        "artifact_id": (
+            "formal-budgeted-representation-overnight-20260922"
+            if OVERNIGHT_MODE
+            else "formal-budgeted-representation-20260921"
+        ),
         "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
         "study_id": "ML-DEV-BUDGETED-001",
         "recorded_at_utc": datetime.now(UTC).isoformat(),
-        "approval_artifact": str(
-            Path("artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json")
-        ),
+        "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
         "protocol_hash": PROTOCOL_HASH,
         "formal_manifest_sha256": FORMAL_MANIFEST_SHA256,
         "formal_record_set_sha256": FORMAL_RECORD_SET_SHA256,
@@ -807,7 +831,11 @@ def main() -> None:
     atomic_json(OUTPUT_ARTIFACT, artifact)
     _append_ledger(
         {
-            "run_id": "phase7-formal-budgeted-representations-20260921",
+            "run_id": (
+                "phase7-formal-budgeted-representations-overnight-20260922"
+                if OVERNIGHT_MODE
+                else "phase7-formal-budgeted-representations-20260921"
+            ),
             "timestamp": datetime.now(UTC).isoformat(),
             "workload": "nt_caduceus_modal_formal_budgeted_representations",
             "backend": "modal",
@@ -819,9 +847,7 @@ def main() -> None:
                 6,
             ),
             "measured_usd": None,
-            "approval_artifact": str(
-                Path("artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json")
-            ),
+            "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
             "status": "COMPLETED",
             "notes": (
                 "Formal 4,000-row label-free NT/Caduceus hidden-state extraction; "

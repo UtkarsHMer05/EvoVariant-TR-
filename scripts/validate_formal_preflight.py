@@ -35,8 +35,9 @@ FORMAL_ROWS = 4_000
 FORMAL_NEW_ROWS = 3_944
 PREFLIGHT_SAFETY_STOP_USD = 0.65
 PREFLIGHT_HARD_CAP_USD = 0.75
-FORMAL_SAFETY_STOP_USD = 7.75
-FORMAL_HARD_CAP_USD = 8.0
+OVERNIGHT_MODE = os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
+FORMAL_SAFETY_STOP_USD = 13.5 if OVERNIGHT_MODE else 7.75
+FORMAL_HARD_CAP_USD = 14.0 if OVERNIGHT_MODE else 8.0
 EXPECTED_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 
 
@@ -242,7 +243,11 @@ def main() -> int:
 
     status = "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET" if not errors else "FAIL_FORMAL_PREFLIGHT"
     artifact = {
-        "artifact_id": "formal-budgeted-preflight-gate-20260921",
+        "artifact_id": (
+            "formal-budgeted-preflight-gate-overnight-20260922"
+            if OVERNIGHT_MODE
+            else "formal-budgeted-preflight-gate-20260921"
+        ),
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "status": status,
         "formal_full_launch_authorized": status == "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET",

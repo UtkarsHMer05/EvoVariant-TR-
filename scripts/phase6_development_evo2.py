@@ -62,6 +62,9 @@ FORMAL_MODE = os.environ.get("EVOVARIANT_TR_FORMAL_MODE") == "1"
 FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (
     os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1"
 )
+OVERNIGHT_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
+if OVERNIGHT_MODE and FORMAL_PREFLIGHT_MODE:
+    raise RuntimeError("overnight mode cannot be combined with formal preflight mode")
 FORMAL_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 FORMAL_RUN_SUFFIX = os.environ.get("EVOVARIANT_TR_FORMAL_RUN_SUFFIX", "full")
 if not FORMAL_RUN_SUFFIX.replace("-", "").replace("_", "").isalnum():
@@ -73,6 +76,8 @@ if FORMAL_MODE:
     default_approval = (
         "artifacts/approvals/formal_64_preflight_20260921.json"
         if FORMAL_PREFLIGHT_MODE
+        else "artifacts/approvals/overnight_completion_20260922.json"
+        if OVERNIGHT_MODE
         else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
     )
     APPROVAL_PATH = REPO_ROOT / (approval_override or default_approval)
@@ -134,6 +139,8 @@ SHARD_SIZE = 32
 MAX_APPROVAL_BUDGET_USD = (
     0.75
     if FORMAL_PREFLIGHT_MODE
+    else 14.0
+    if OVERNIGHT_MODE
     else 8.0
     if FORMAL_MODE
     else 5.0
@@ -141,6 +148,8 @@ MAX_APPROVAL_BUDGET_USD = (
 MAX_RATE_ESTIMATE_USD = (
     0.65
     if FORMAL_PREFLIGHT_MODE
+    else 13.5
+    if OVERNIGHT_MODE
     else 7.75
     if FORMAL_MODE
     else MAX_APPROVAL_BUDGET_USD - 0.25
@@ -571,6 +580,8 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
         "execution_mode": (
             "FORMAL_64_PREFLIGHT"
             if FORMAL_PREFLIGHT_MODE
+            else "FORMAL_OVERNIGHT_COMPLETION"
+            if OVERNIGHT_MODE
             else "FORMAL_BUDGETED"
             if FORMAL_MODE
             else "PRELIMINARY_PREFIX"
@@ -636,6 +647,8 @@ def _load_historical_cache() -> dict[str, dict[str, Any]]:
 def main() -> None:
     if FORMAL_PREFLIGHT_MODE:
         from validate_formal_64_preflight_approval import validate_approval
+    elif OVERNIGHT_MODE:
+        from validate_overnight_completion_approval import validate_approval
     elif FORMAL_MODE:
         from validate_ml_dev_budgeted_approval import validate_approval
     else:

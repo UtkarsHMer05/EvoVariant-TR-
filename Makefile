@@ -221,6 +221,11 @@ formal-64-preflight-approval-verify: ## Validate the separately scoped formal 64
 	$(MAKE) check-venv
 	$(PYTHON) scripts/validate_formal_64_preflight_approval.py
 
+.PHONY: overnight-completion-approval-verify
+overnight-completion-approval-verify: ## Validate the user-authorized $14.00 overnight completion boundary
+	$(MAKE) check-venv
+	$(PYTHON) scripts/validate_overnight_completion_approval.py
+
 .PHONY: formal-budgeted-evo2
 formal-budgeted-evo2: ## Run the approval-gated formal Evo2 score workload (FORMAL_LIMIT/FORMAL_SUFFIX optional)
 	$(MAKE) check-venv

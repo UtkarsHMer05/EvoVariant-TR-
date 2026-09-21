@@ -546,6 +546,26 @@ gate state.
   action is to obtain that approval, hash-check it, and run the smallest approved Phase 6 parity
   and cohort step.
 
+## Phase 6/7 execution-surface subgate — 2026-09-21
+
+- Engineering outcome: `PASS` for the local control surface only; scientific Phase 6 and Phase 7
+  remain `BLOCKED / NOT STARTED`.
+- Added `src/evovariant_tr/phase_execution.py`, `scripts/phase_execute.py`, and the
+  `make phase-execute` wrapper. The implementation is approval-gated, protocol-hash-checked,
+  label-free at transport, explicit about source-vs-`chr` identity, and resumable at the
+  content-hashed shard level.
+- Score responses require completed finite raw deltas and exact cohort identity. Embedding
+  responses require the frozen layer, validated ref/alt feature hashes, finite vectors, and exact
+  cohort identity. The output artifacts retain provenance and do not manufacture metrics.
+- Added the source-level Modal `extract_embeddings_batch` endpoint with an eight-variant bound,
+  one warm-worker forward path, cache reuse, and explicit partial-failure reporting. No Modal
+  deployment or request was performed for this change.
+- Evidence: `make validate` passed with 672 tests, 33 deselected, strict mypy, Ruff, secret scan,
+  and 95.02% coverage; the targeted Phase 6/7 suite passed 19 tests. No scientific output or
+  registry entry was generated, so no phase status was promoted.
+- Dependency: a fresh approval must cover the exact cohort/model/endpoint/scope and match the
+  current ML protocol hash before `scripts/phase_execute.py` is used for paid work.
+
 ## Phase 19 README/status reconciliation — 2026-09-21
 
 - Documentation commit: `0db7e8b` (`docs: align README with current research gates`).

@@ -28,6 +28,7 @@ REGISTRY ?= experiments/registry
 COST_ACK_ENV := EVOVARIANT_TR_PAID_COMPUTE_ACK
 COST_ACK_VALUE := I_ACCEPT_COSTS
 APPROVAL ?= artifacts/approvals/full_run_approval.json
+PHASE_EXEC_ARGS ?= --help
 
 # ---------------------------------------------------------------------------
 # Help
@@ -195,6 +196,12 @@ benchmark-zero-shot: ## Record/run the Phase 6 multi-model benchmark gate
 		--blocker "Phase 3 QA discrepancy remains materially unresolved" \
 		--blocker "Phase 5 multi-model track is formally deferred with only Evo2 included" \
 		--blocker "full-cohort execution authorization and batch parity evidence are absent"
+
+.PHONY: phase-execute
+phase-execute: ## Run an explicitly approved, resumable Phase 6/7 execution (PHASE_EXEC_ARGS=...)
+	$(MAKE) check-venv
+	@echo "Approval-gated Phase 6/7 runner; default invocation prints help and makes no network request."
+	$(PYTHON) scripts/phase_execute.py $(PHASE_EXEC_ARGS)
 
 .PHONY: extract-features
 extract-features: ## Record/run the Phase 7 representation extraction gate

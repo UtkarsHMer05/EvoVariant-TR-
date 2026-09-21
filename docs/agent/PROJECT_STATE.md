@@ -691,3 +691,24 @@ figures from the single pilot record.
 - Next action requiring user authority: provide a current approval artifact or explicit budget/scope
   for the full Phase 6 and any subsequent GPU workloads. Once supplied, validate its protocol hash
   and launch only the smallest approved parity/cohort step; do not use the stale August approval.
+
+## Phase 6/7 execution-surface subgate — 2026-09-21
+
+- Local implementation is now present in `src/evovariant_tr/phase_execution.py` and
+  `scripts/phase_execute.py`, with a Make control surface at `make phase-execute`.
+- The runner validates source-manifest IDs and canonical `GRCh38:chr...` transport IDs,
+  preserves the manifest file hash, freezes model/checkpoint/revision/protocol/split/shard/layer
+  metadata, omits labels from every remote request, validates finite completed score or embedding
+  rows, and writes atomic SHA-256-verified resumable shard artifacts plus raw JSONL outputs.
+- `evo2_scorer_app.py` now exposes a bounded `extract_embeddings_batch` endpoint alongside the
+  existing `score_batch` endpoint. Both report partial failures explicitly; the local runner
+  fails closed on any partial, duplicate, unknown, missing, or wrong-layer response.
+- No remote endpoint was called in this subgate. No model weights, full-cohort predictions,
+  feature cache, scientific metrics, or result-registry record were created. Phase6A remains
+  `PASS` only within its dated approval; full Phase 6 and Phase 7 remain `BLOCKED / NOT STARTED`.
+- Validation evidence: `make validate` passed with 672 tests, 33 deselected, strict mypy, Ruff,
+  secret scan, and 95.02% coverage. The targeted Phase 6/7 contract suite passed 19 tests;
+  `make phase-execute` is safe by default because its default arguments print help only.
+- The next paid action remains a bounded parity/cohort execution using a fresh approval whose
+  protocol hash is `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`; the
+  stale August approval and Phase6A approval must not be widened or reused.

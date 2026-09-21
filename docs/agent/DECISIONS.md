@@ -1899,6 +1899,50 @@ registered scientific outputs. `require_full_run_approval()` rejected the August
 the exact current-protocol-hash mismatch. A read-only Modal billing summary reported `$13.00`
 metered and `$0.00` billed, with no new remote workload launched.
 
+## D-068 — Use an approval-gated, resumable Phase 6/7 execution contract
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The Phase6A qualification measured a bounded Evo2 throughput envelope, but no current
+approval exists for the full locked-cohort benchmark or representation extraction. The
+repository therefore needed a real execution surface that is safe to validate locally and
+cannot silently turn a stale approval, a malformed manifest, or a partial remote response into
+scientific output.
+
+Decision:
+Use `src/evovariant_tr/phase_execution.py` and `scripts/phase_execute.py` as the canonical
+Phase 6/7 cohort runner. Before a caller constructs the remote transport, the runner requires
+the paid-compute acknowledgement, a current approval whose protocol hash matches the current
+ML-extension protocol, and every requested workload token in the approval scope. Manifest rows
+retain their source spelling and their canonical UCSC/Modal `chr` identity; request payloads
+contain only variant fields and never labels. Score and embedding responses must be completed,
+finite, identity-complete, and layer-compatible. Each shard is written atomically with a
+content hash and is skipped only after verification, so interrupted work can resume without
+recomputing completed shards. The Modal app exposes a bounded `extract_embeddings_batch`
+endpoint with the same partial-failure semantics as `score_batch`. The runner emits raw,
+provenance-bearing predictions/features and no fabricated metrics.
+
+Alternatives:
+Use the stale August full-run approval, widen the Phase6A approval, send labels to the remote
+endpoint, accept partial/unknown rows, or rely on the existing status-only Make targets. These
+were rejected because they would bypass the cost policy, weaken leakage controls, or make a
+future result unreproducible.
+
+Consequences:
+The Phase 6/7 execution engineering subgate is locally validated, but it is not a scientific
+Phase 6 or Phase 7 pass. No remote request, model download, feature cache, prediction cache, or
+registry result was created in this change. Full execution remains blocked until a current
+exact-scope approval and the dependent endpoint/model evidence are present.
+
+Validation:
+`make validate` passed with 672 tests, 33 deselected, strict mypy, Ruff, secret scanning, and
+95.02% total coverage. The targeted Phase 6/7 contract suite passed 19 tests; `evo2_scorer_app.py`
+compiled and its source lint passed. `make phase-execute` defaults to `--help` and makes no
+network request. The implementation remains uncommitted at the time this entry is authored;
+the next documentation update must record its commit hash.
+
 ## Template for new decisions
 
 ### D-XXX — Title

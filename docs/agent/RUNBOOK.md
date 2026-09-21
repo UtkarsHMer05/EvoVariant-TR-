@@ -43,6 +43,43 @@
 8. generate plots only from artifact;
 9. update project state.
 
+## Phase 6/7 approved cohort execution
+
+Use the dedicated runner rather than calling a Modal endpoint ad hoc. Its default invocation is
+safe and prints help only:
+
+```bash
+make phase-execute
+```
+
+For a real run, pass every argument explicitly through `PHASE_EXEC_ARGS`. The approval must be
+current, match the current ML-extension protocol hash, and name every requested workload token:
+
+```bash
+make phase-execute PHASE_EXEC_ARGS="\
+  --phase 6 \
+  --family ZS \
+  --endpoint-kind score \
+  --model-id evo2 \
+  --checkpoint evo2_7b \
+  --model-revision <pinned-revision> \
+  --manifest research/ml_extension/splits/authoritative_cohort_manifest.json \
+  --split LOCKED_TEST \
+  --split-manifest research/ml_extension/splits/authoritative_split_manifest.json \
+  --endpoint https://<approved-score-batch-endpoint> \
+  --output-dir research/runs/<immutable-run-id> \
+  --approval artifacts/approvals/<current-approval>.json \
+  --scope-token \"full Phase 6\" \
+  --scope-token Evo2"
+```
+
+For Phase 7 use `--endpoint-kind embedding`, add the frozen `--embedding-layer`, and point the
+endpoint at the bounded `extract_embeddings_batch` method. `--include-labels` only copies labels
+into local output rows after remote execution; it never sends labels across the endpoint
+boundary. Do not pass a locked split until the model/configuration is frozen under the protocol.
+The runner writes an execution plan, content-hashed shard files, raw JSONL output, and a summary;
+inspect and register those artifacts only after their hashes and scientific gates pass.
+
 ## Before commit
 
 - tests,
@@ -59,4 +96,3 @@ If a run fails:
 - preserve logs,
 - avoid automatic expensive retries,
 - resume idempotently from completed shards.
-

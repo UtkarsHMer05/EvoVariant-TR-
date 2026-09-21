@@ -351,6 +351,141 @@ class Evo2ScorerService:
         self.feature_cache.put(cache_identity, result)
         return result
 
+    @modal.fastapi_endpoint(method="POST")
+    def extract_embeddings_batch(
+        self, embedding_data: dict[str, object]
+    ) -> dict[str, object]:
+        """Extract a bounded batch of frozen ref/alt embedding features.
+
+        This endpoint mirrors ``score_batch``: one warm worker prepares a bounded
+        set of variants, performs a single model forward over the four views per
+        cache-missing variant, and writes each completed feature payload before
+        returning.  Partial failures are reported explicitly so a caller can
+        fail closed and resume from its own verified shard artifacts.
+        """
+        raw_variants = embedding_data.get("variants")
+        if not isinstance(raw_variants, list) or not raw_variants:
+            raise ValueError("embedding batch request must contain a non-empty variants list")
+        if len(raw_variants) > MAX_BATCH_VARIANTS:
+            raise ValueError(
+                f"embedding batch request exceeds the {MAX_BATCH_VARIANTS}-variant limit"
+            )
+        layer = embedding_data.get("layer", DEFAULT_EMBEDDING_LAYER)
+        if layer != DEFAULT_EMBEDDING_LAYER:
+            raise ValueError(
+                f"only the frozen embedding layer {DEFAULT_EMBEDDING_LAYER!r} is supported"
+            )
+
+        results_by_index: dict[int, dict[str, object]] = {}
+        failures: list[dict[str, object]] = []
+        pending: list[tuple[int, _PreparedVariant]] = []
+        for index, raw_variant in enumerate(raw_variants):
+            if not isinstance(raw_variant, dict):
+                failures.append(
+                    {
+                        "index": index,
+                        "variant": repr(raw_variant),
+                        "error": "each embedding batch variant must be an object",
+                    }
+                )
+                continue
+            try:
+                variant = self._parse_variant_input(raw_variant)
+                cache_identity = self._embedding_cache_identity(variant, layer)
+                cached = self.feature_cache.get(cache_identity)
+                if cached is not None:
+                    result = dict(cached.payload)
+                    cached_provenance = dict(result.get("provenance", {}))
+                    cached_provenance["cache_hit"] = True
+                    result["provenance"] = cached_provenance
+                    results_by_index[index] = result
+                    continue
+                pending.append((index, self._prepare_variant(variant, cache_identity)))
+            except Exception as exc:
+                failures.append(
+                    {
+                        "index": index,
+                        "variant": repr(raw_variant),
+                        "error": str(exc),
+                    }
+                )
+
+        batch_telemetry: Any | None = None
+        if pending:
+            try:
+                sequences: list[str] = []
+                for _, prepared in pending:
+                    sequences.extend(
+                        (
+                            prepared.reference_sequence,
+                            prepared.alternate_sequence,
+                            reverse_complement(prepared.reference_sequence),
+                            reverse_complement(prepared.alternate_sequence),
+                        )
+                    )
+                with TelemetryTimer(gpu_type=str(_modal_config["gpu_type"])) as timer:
+                    vectors, dtype = self._extract_embedding_vectors(
+                        sequences, layer
+                    )
+                batch_telemetry = timer.result
+                expected = 4 * len(pending)
+                if len(vectors) != expected:
+                    raise ValueError(
+                        f"Evo2 returned {len(vectors)} embedding rows for {expected} sequences"
+                    )
+                for pending_index, (index, prepared) in enumerate(pending):
+                    start = pending_index * 4
+                    result = self._embedding_result_from_vectors(
+                        prepared,
+                        layer,
+                        vectors[start : start + 4],
+                        dtype,
+                        None,
+                    )
+                    result_provenance = result.get("provenance")
+                    if not isinstance(result_provenance, dict):
+                        raise ValueError("embedding result is missing provenance metadata")
+                    result["provenance"] = {
+                        **result_provenance,
+                        "batch_request_size": len(raw_variants),
+                    }
+                    if batch_telemetry is not None:
+                        result["telemetry"] = batch_telemetry.to_dict()
+                    self.feature_cache.put(prepared.cache_identity, result)
+                    results_by_index[index] = result
+            except Exception as exc:
+                failures.extend(
+                    {
+                        "index": index,
+                        "variant": prepared.variant.normalized_variant_id,
+                        "error": str(exc),
+                    }
+                    for index, prepared in pending
+                )
+
+        ordered_results = [
+            results_by_index[index]
+            for index in range(len(raw_variants))
+            if index in results_by_index
+        ]
+        status = "completed" if not failures else (
+            "partial" if ordered_results else "failed"
+        )
+        return {
+            "status": status,
+            "total": len(raw_variants),
+            "scored": len(ordered_results),
+            "failed": len(failures),
+            "results": ordered_results,
+            "failures": failures,
+            "provenance": {
+                "scorer": "evo2_7b",
+                "research_only": True,
+                "embedding_layer": layer,
+                "max_batch_variants": MAX_BATCH_VARIANTS,
+            },
+        }
+
     def _parse_variant_input(self, variant_data: dict[str, object]) -> _VariantInput:
         """Normalize the accepted transport aliases into one variant schema."""
         raw_chrom = str(

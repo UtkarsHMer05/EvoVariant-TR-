@@ -24,7 +24,7 @@ closed:
 | Phase 3 data and splits | PASS for the ML extension under dated `ML-DEV-001`/`ML-DEV-002`; authoritative locked cohort is 946 (536 B/LB, 410 P/LP), with independent GRCh38 validation and zero unresolved mismatches. |
 | Model registry and final Phase 5 roster | Seven schema-valid candidate manifests; the final roster separates Evo2 raw scoring, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only AlphaMissense. |
 | Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
-| Experiment registry | Seven completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
+| Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
 | Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
 | Figures and tables | Registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/12 tables sourced from the development subset; the bundle contains no scientific outputs until all required source families exist. |
 | Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap; workspace billed cost is `$0.00` and per-request measured USD is unavailable. |
@@ -289,7 +289,7 @@ The dependency-ordered phase decisions are maintained in
   only; no full-cohort or locked-test claim is made;
 - Phase 10 is formally deferred by compute, and Phase 14/15 remain blocked;
 - Phase 16's frontend/build/browser engineering gate passes and its read-only
-  registry tab is connected to seven preliminary runs, while its scientific
+registry tab is connected to nine preliminary runs, while its scientific
   result panels remain evidence-gated;
 - Phase 17's registry-driven manifest is deterministic with partial sources but
   remains blocked and contains no scientific outputs;

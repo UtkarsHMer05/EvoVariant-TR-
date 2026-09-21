@@ -47,6 +47,9 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
+- Current checkout verification: `HEAD=d6036e2` (`docs: record full-cohort cost preflight`), branch
+  `research/evovariant-tr`, and no tracked modifications. The only untracked path is the injected
+  `.agents/` skill bundle; it is intentionally not part of project commits or scientific evidence.
 - The remote pilot was deployed from source HEAD `2f4d117d0d1804bd8479d7da473978d1f796249b`.
   The chromosome-normalization fix, model-manifest updates, pilot artifacts, and the reconciled
   control-file updates are now committed in `f69ee8605e3dcbcf068ffd0f5fed3cef6e3cdcb0`

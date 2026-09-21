@@ -40,6 +40,7 @@ Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
+Final documented control-plane HEAD: `a0ea1ca`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -320,3 +321,22 @@ paid Modal work without the corresponding gate.
   endpoint as current scientific evidence. It now directs reviewers to the persistent phase state,
   documents the frozen estimand and current counts, and distinguishes free local validation from
   paid/remote gates.
+
+## Final Phase 18 clean-room follow-up — 2026-09-21
+
+- Fresh clone: `/private/tmp/EvoVariant_cleanroom_phase17.2YeY5c`, final documented commit
+  `a0ea1caf989c928f10e65d5312fa17fde7c7aed8` (`docs: record phase17 export gate`). The clone's
+  tracked Git status remained clean after all commands and dependency installation.
+- Clean-room commands passed: `make bootstrap`, `make frontend-install`, `make validate` (625
+  passed, 33 deselected, 1 existing Starlette deprecation warning, 95.34% coverage),
+  `make test-scientific` (7 passed, 1 skipped), `make test-e2e` (14 passed, 1 skipped), frozen
+  protocol/ML-control-plane/schema/model-registry/registry verification, `make figures`,
+  `make web-check`, and `make web-e2e` (4 passed). The regenerated figure manifest and bundle
+  remained explicitly `BLOCKED` with zero scientific outputs.
+- `npm ci` reproduced 13 dependency vulnerabilities (2 low, 2 moderate, 8 high, 1 critical);
+  no automatic audit fix was applied. The clone has no ignored raw ClinVar archives, so `make
+  data-qc` was not run there; archive-backed data-QC evidence remains local to the main checkout.
+- This clean-room run proves the free/control-plane reproducibility surface only. It does not
+  create model weights, scientific results, a registry run, paid Modal inference, or release
+  evidence. Phase 18 remains `BLOCKED / PARTIAL` until the gated compute and scientific-result
+  inputs exist; spend remains `$0`.

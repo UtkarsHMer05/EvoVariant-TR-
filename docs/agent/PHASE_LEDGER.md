@@ -370,3 +370,21 @@ For each PASS append:
 - The follow-up is engineering-gate evidence only. It creates no model outputs, does not alter
   the frozen protocol, and does not resolve the paid Modal, model-inclusion, Phase 3 QA, browser
   E2E, figure, or result-registry blockers.
+
+## Final Phase 18 clean-room follow-up — 2026-09-21
+
+- Fresh clone: `/private/tmp/EvoVariant_cleanroom_phase17.2YeY5c` at
+  `a0ea1caf989c928f10e65d5312fa17fde7c7aed8`. Its tracked status remained clean after setup,
+  validation, figure regeneration, frontend build, and browser E2E.
+- `make bootstrap`, `make frontend-install`, `make validate` (625 passed, 33 deselected, one
+  existing warning, 95.34% coverage), `make test-scientific` (7 passed, 1 skipped), `make
+  test-e2e` (14 passed, 1 skipped), protocol/ML-control-plane/schema/model-registry/registry
+  verification, `make figures`, `make web-check`, and `make web-e2e` (4 passed) all passed.
+- Clean-room `make figures` reproduced the explicit `BLOCKED` empty-registry state with no
+  scientific outputs. `npm ci` reproduced 13 vulnerabilities (2 low, 2 moderate, 8 high, 1
+  critical); no audit fix was applied. Raw ClinVar archives are ignored and absent in the clone,
+  so archive-backed `make data-qc` remains evidence from the main checkout rather than being
+  claimed as clean-room evidence.
+- Gate decision: free/control-plane clean-room reproducibility `PASS`; full Phase 18 remains
+  `BLOCKED / PARTIAL` because the real Modal smoke, verified model artifacts, and registered
+  scientific outputs are absent. No release, deployment, publication, or spend was created.

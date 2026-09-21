@@ -177,6 +177,16 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
     }
     exclusion_hash = _write(output_dir / "authoritative_exclusion_report.json", exclusions)
 
+    source_archive_summary = {
+        label: {
+            "path": details["archive"],
+            "manifest": details["manifest"],
+            "sha256": details["archive_sha256"],
+            "size_bytes": details["archive_size_bytes"],
+            "release_date": details["release_date"],
+        }
+        for label, details in audit["source_archives"].items()
+    }
     phase3_summary = {
         "dataset_id": "evovariant-tr-phase3-v1",
         "status": "PASS",
@@ -188,7 +198,10 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
         "deviation_ids": ["ML-DEV-001", "ML-DEV-002"],
         "generated_at_utc": generated_at,
         "code_commit": _git_commit(repo_root),
-        "source_archives": locked_manifest["source_archives"],
+        "source_archives": source_archive_summary,
+        "source_manifest_hash": (
+            "854210537eebd87f8390eee8bfc4d77072dc8df86f0ccaffc246edb781783c00"
+        ),
         "temporal_audit": {
             "t0_unique_vus": audit["temporal_resolution"]["t0_unique_vus"],
             "absent_at_t1": audit["temporal_resolution"]["absent_at_t1"],
@@ -217,10 +230,21 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
             "source_manifest_sha256": source_hashes["reference_manifest"],
         },
         "generated_artifacts": {
+            "directory": "data/derived/ml_extension/phase3",
+            "split_manifest": "data/derived/ml_extension/phase3/split_manifest.json",
+            "split_manifest_sha256": source_hashes["split_manifest"],
+            "split_hash": split["split_hash"],
+            "temporal_audit": "data/derived/ml_extension/phase3/temporal_audit.json",
+            "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json",
+            "integrity_audit": "artifacts/phase3_integrity_audit_20260921.json",
+            "integrity_audit_sha256": source_hashes["integrity_audit"],
+            "integrity_diagnostic": "artifacts/phase3_integrity_diagnostic_20260921.json",
             "locked_test_manifest": (
                 "research/ml_extension/splits/authoritative_locked_test_manifest.json"
             ),
-            "split_manifest": "research/ml_extension/splits/authoritative_split_manifest.json",
+            "authoritative_split_manifest": (
+                "research/ml_extension/splits/authoritative_split_manifest.json"
+            ),
             "cohort_manifest": "research/ml_extension/splits/authoritative_cohort_manifest.json",
             "exclusion_report": "research/ml_extension/splits/authoritative_exclusion_report.json",
             "hash_manifest": "research/ml_extension/splits/authoritative_cohort_hashes.json",
@@ -237,6 +261,64 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
                 "n_plp": 0,
             },
         },
+        "qa_checkpoint_comparison": {
+            "target_is_validation_only": True,
+            "target_t0_unique_vus": 1403225,
+            "target_absent_at_t1": 3615,
+            "target_not_definitive_at_t1": 1389535,
+            "target_below_two_stars": 9051,
+            "target_final_temporal_n": 1024,
+            "target_n_blb": 614,
+            "target_n_plp": 410,
+            "target_gene_labels": 389,
+            "target_reference_mismatch_count": 0,
+            "discrepancy_investigation": [
+                "The archived byte sizes and SHA-256 values match the checked-in source manifests.",
+                (
+                    "The t1 archive is served from the official archive root; the old "
+                    "archive/2026 URL was a 404 and was corrected in the downloader "
+                    "and manifest."
+                ),
+                (
+                    "The current archive uses ReferenceAlleleVCF, AlternateAlleleVCF, "
+                    "and PositionVCF for normalized SNVs; legacy "
+                    "ReferenceAllele/AlternateAllele fields are na for these rows."
+                ),
+                (
+                    "The t0 protocol state is aggregate VUS without a t0 star gate; "
+                    "the >=2-star gate is applied to t1 outcomes and t0-definitive "
+                    "development labels."
+                ),
+                (
+                    "The remaining count differences are preserved as an unresolved "
+                    "archive/normalization discrepancy and must not be tuned away "
+                    "before model scoring."
+                ),
+            ],
+            "model_scoring_allowed": False,
+            "integrity_audit_status": "PASS",
+            "integrity_audit_blockers": [],
+            "historical_pre_deviation_status": (
+                "BLOCKED_EXTERNAL_EVIDENCE_AFTER_INTEGRITY_AUDIT"
+            ),
+        },
+        "limitations": [
+            (
+                "The historical handoff target ID/source set is unavailable, so its "
+                "aggregate counts cannot be reconciled at identity level; ML-DEV-001 "
+                "governs the authoritative current cohort."
+            ),
+            (
+                "The authoritative current cohort is not numerically identical to the "
+                "historical target; comparisons are descriptive only and no records "
+                "were added or excluded to force aggregate matching."
+            ),
+            (
+                "The locked-test labels are used only to construct the locked manifest "
+                "and audit; they are not used for development assignment or model "
+                "selection."
+            ),
+        ],
         "phase3_gate_basis": "ML-DEV-001 plus ML-DEV-002 plus independent reference PASS",
     }
     phase3_summary_hash = _write(output_dir / "phase3_manifest_summary.json", phase3_summary)

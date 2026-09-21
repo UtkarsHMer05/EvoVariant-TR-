@@ -993,10 +993,9 @@ families were not invented.
 
 ## Final no-spend gate refresh — 2026-09-21
 
-- The implementation checkpoint is `6196dc5`; the documentation reconciliation checkpoint is
-  `6b048af`. The branch is `research/evovariant-tr`, remains 122 commits ahead of its configured
-  remote, and the only untracked path is the pre-existing `.agents/` directory. No push was
-  performed.
+- The implementation checkpoint is `6196dc5`; the documentation reconciliation checkpoints are
+  `6b048af` and `f7dd472`. The branch is `research/evovariant-tr` and remains unpushed; the only
+  untracked path is the pre-existing `.agents/` directory. No push was performed.
 - `make validate` passed the secret scan, Ruff, strict mypy over 57 source files, 700 default-tier
   tests with 33 deselected, and 95.01% total coverage. `make ml-protocol-verify`,
   `make schema-verify`, `make model-registry-verify` (7 manifests, 1 included), and

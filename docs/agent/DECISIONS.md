@@ -1097,6 +1097,39 @@ Validation:
 Ruff, strict mypy, Python compilation, the eight Evo2 adapter unit tests, and a no-spend source
 helper smoke passed. No deployment, model download, batch result, or paid request was performed.
 
+## D-046 — Estimate full-cohort cost before any Phase 6 launch
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The master prompt requires measured pilot behavior and a cost estimate before a subsequent full
+benchmark. The corrected pilot provides one single-variant H100 miss, but no remote batch
+throughput measurement exists and the current approval explicitly excludes a full benchmark.
+
+Decision:
+Record a transparent prelaunch estimate using the observed `$0.0398` single-variant wall-rate
+estimate and the current archive-derived cohort counts. Preserve separate sequential and
+hypothetical perfect-eight-times scenarios, label both as low-confidence planning bounds, and do
+not launch Phase 6 from the estimate.
+
+Alternatives:
+Treat the workspace billing delta as a per-request invoice, assume unmeasured batch throughput is
+linear, or use the stale August full-run artifact as current authorization. These were rejected
+because the billing summary is workspace-level, throughput is unmeasured, and the current protocol
+and scope require a fresh approval for a materially larger run.
+
+Consequences:
+The project has an auditable prelaunch budget estimate: about `$55,835.221` sequential or `$6,979.403`
+under the unverified perfect-eight-times scenario for the current 1,402,895-variant t0 cohort.
+Those figures are not scientific results or permission to spend; Phase 6 remains `BLOCKED`.
+
+Validation:
+The artifact `artifacts/modal/phase6_preflight_cost_estimate_20260921.json` parses and records the
+current read-only workspace summary, source pilot inputs, cohort counts, assumptions, confidence,
+and required approvals. No additional remote invocation was made.
+
 ## Template for new decisions
 
 ### D-XXX — Title

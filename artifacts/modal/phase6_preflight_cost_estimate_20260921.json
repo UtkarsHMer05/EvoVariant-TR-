@@ -1,0 +1,74 @@
+{
+  "artifact_id": "phase6-preflight-cost-estimate-20260921",
+  "status": "BLOCKED_PRELAUNCH_ESTIMATE",
+  "recorded_at": "2026-09-21",
+  "source_artifacts": [
+    "artifacts/modal/phase2_phase4_pilot_20260921_success.json",
+    "research/ml_extension/splits/phase3_manifest_summary.json"
+  ],
+  "billing_observation": {
+    "command": ".venv/bin/modal billing summary",
+    "metered_cost_usd": 11.99,
+    "billed_cost_usd": 0.0,
+    "interpretation": "Workspace-level billing only; this is not a per-request invoice and is not used as measured per-request cost."
+  },
+  "pilot_inputs": {
+    "gpu_type": "H100",
+    "h100_rate_usd_per_hour_from_pilot_record": 3.95,
+    "cache_miss_wall_seconds": 36.2727,
+    "cache_miss_gpu_runtime_seconds": 3.914133089,
+    "cache_miss_wall_rate_estimate_usd": 0.0398,
+    "cache_hit_wall_rate_estimate_usd": 0.0011,
+    "remote_batch_throughput": "UNMEASURED"
+  },
+  "cohort_inputs": {
+    "current_archive_t0_unique_vus": 1402895,
+    "current_archive_final_temporal_n": 946,
+    "handoff_validation_target_t0_unique_vus": 1403225,
+    "handoff_validation_target_final_temporal_n": 1024
+  },
+  "scenarios": [
+    {
+      "name": "one_model_sequential_wall_rate_current_archive_t0",
+      "variants": 1402895,
+      "assumption": "Every uncached variant costs the observed single-variant miss wall-rate estimate; this is a conservative pre-batch planning bound, not a forecast.",
+      "estimated_seconds": 50890917.765,
+      "estimated_usd": 55835.221,
+      "confidence": "LOW"
+    },
+    {
+      "name": "one_model_perfect_eight_variant_wall_rate_current_archive_t0",
+      "variants": 1402895,
+      "assumption": "Unverified perfect 8x wall-time throughput from the new bounded batch source path; no remote batch measurement exists.",
+      "estimated_seconds": 6361364.720625,
+      "estimated_usd": 6979.403,
+      "confidence": "VERY_LOW"
+    },
+    {
+      "name": "one_model_sequential_wall_rate_current_temporal_cohort",
+      "variants": 946,
+      "assumption": "Every uncached temporal variant costs the observed single-variant miss wall-rate estimate.",
+      "estimated_seconds": 34353.9842,
+      "estimated_usd": 37.651,
+      "confidence": "LOW"
+    },
+    {
+      "name": "one_model_perfect_eight_variant_wall_rate_current_temporal_cohort",
+      "variants": 946,
+      "assumption": "Unverified perfect 8x wall-time throughput from the new bounded batch source path; no remote batch measurement exists.",
+      "estimated_seconds": 4294.248025,
+      "estimated_usd": 4.706,
+      "confidence": "VERY_LOW"
+    }
+  ],
+  "decision": {
+    "launch_allowed": false,
+    "reason": "The current Phase 2/4 approval is capped at $2 and excludes full benchmark execution. The Phase 3 cohort discrepancy and Phase 5 multi-model inclusion gate are also unresolved.",
+    "required_before_full_run": [
+      "resolve or formally approve the Phase 3 330-ID/78-final discrepancy",
+      "measure remote batch throughput and recovery behavior",
+      "obtain a current approval artifact covering the exact model/cohort/scope and projected budget",
+      "audit and include at least the feasible comparison tracks required by the master prompt"
+    ]
+  }
+}

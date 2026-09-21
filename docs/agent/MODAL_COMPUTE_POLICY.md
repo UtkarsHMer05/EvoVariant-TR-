@@ -108,3 +108,21 @@ tiny Phase 2/4 pilot and Phase 5 smoke/audit, capped at `$2.00`. The canonical a
   measured wall/runtime seconds, and `measured_usd: null` rather than inventing an invoice.
 - No full benchmark, broad batch, HPO, training, fine-tuning, or locked-test work is authorized
   by this record. Any larger run needs a new explicit approval artifact.
+
+## Prelaunch Phase 6 cost estimate — 2026-09-21
+
+After the pilot, a read-only `.venv/bin/modal billing summary` check reported workspace metered
+cost `$11.99` and billed cost `$0.00`. This is a workspace observation, not a per-request invoice.
+The reproducible prelaunch scenarios are recorded in
+`artifacts/modal/phase6_preflight_cost_estimate_20260921.json`.
+
+- Applying the observed single-variant miss wall-rate estimate to the current 1,402,895-variant
+  t0 cohort gives a conservative sequential planning bound of about `$55,835.221`.
+- A purely hypothetical perfect eight-variant throughput improvement still gives about `$6,979.403`
+  for that cohort; no remote batch throughput has been measured, so this is explicitly not a
+  forecast.
+- Applying the same assumptions only to the current 946-record temporal cohort gives about
+  `$37.651` sequential or `$4.706` under the unverified perfect-eight-times scenario.
+
+These estimates do not authorize a run. The current `$2.00` pilot approval excludes full
+benchmark work, and the Phase 3 and Phase 5 scientific gates remain unresolved.

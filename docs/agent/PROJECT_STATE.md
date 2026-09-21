@@ -100,6 +100,11 @@ Active branch/worktree: `research/evovariant-tr` at
   canonical Modal app still exposes the verified single-variant endpoint only; the Phase 15 gate
   therefore remains `BLOCKED` until a separately authorized remote batch smoke and recovery test
   are completed after the Phase 3 and model-inclusion gates are resolved.
+- The required post-pilot prelaunch estimate is tracked in
+  `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`: the observed single-variant
+  wall-rate bound is about `$55,835.221` for the current 1,402,895-variant t0 cohort, or about
+  `$6,979.403` under an explicitly unmeasured perfect 8x batch-throughput scenario. No Phase 6
+  launch is authorized by this estimate.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

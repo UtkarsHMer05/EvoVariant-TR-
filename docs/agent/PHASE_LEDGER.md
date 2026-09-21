@@ -761,3 +761,15 @@ gate state.
 - Gate decision: authentication/preflight `PASS`; paid scientific execution remains
   `BLOCKED` until a current exact-scope approval matches the frozen protocol hash and names the
   workload.
+
+## Current checkout metadata refresh — 2026-09-21
+
+- The current validated branch remains `research/evovariant-tr`; the latest code-bearing
+  continuation commit is `1423577` and the subsequent changes in this metadata block are
+  documentation-only. The worktree has no project-file changes; only the pre-existing untracked
+  `.agents/` directory remains and was not modified.
+- The stale pre-continuation HEAD reference at the top of `PROJECT_STATE.md` was corrected. This
+  is a documentation-integrity update only; Phase6A remains the latest authorized remote work and
+  full Phase 6/7 plus dependent scientific phases remain blocked.
+- Evidence: current Git status/HEAD inspection and the successful no-spend validation and
+  control-plane gates recorded above.

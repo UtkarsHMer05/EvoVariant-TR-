@@ -2149,6 +2149,30 @@ Validation:
 `status=PLANNED`, and the note `no remote invocation requested`. The read-only billing and app
 listing commands completed successfully.
 
+## D-075 — Keep current project-state metadata aligned with the checkout
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The top of the persistent project-state file still named a pre-continuation commit as the
+current HEAD, even though subsequent implementation and documentation commits had been validated.
+That drift could cause a future agent to inspect the wrong checkpoint.
+
+Decision:
+Record the current branch, full HEAD, continuation implementation commits, and continuation
+documentation commits explicitly at the top of `PROJECT_STATE.md`. Preserve the older Phase 3
+freeze commit as historical baseline evidence rather than relabeling it as the current checkout.
+
+Consequences:
+The persistent state now distinguishes the latest code-bearing validated checkout (`1423577`)
+from later documentation-only commits and retains the untracked `.agents/` ownership boundary.
+No scientific phase status or approval scope changed.
+
+Validation:
+`git status --short --branch`, `git rev-parse HEAD`, the recent commit log, and the current
+`make validate`/control-plane results agree with the corrected metadata.
+
 ## Template for new decisions
 
 ### D-XXX — Title

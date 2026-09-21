@@ -26,8 +26,11 @@ HPO, fine-tuning, locked-test evaluation, clinical classification, and release r
 not started. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE` with no training run or scientific
 metrics. No full benchmark or feature cache has been created.
 
-Latest validated source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
-freeze-summary/control baseline; current `make validate` and control-plane gates pass).
+Historical latest source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
+freeze-summary/control baseline). The latest code-bearing continuation checkout is `1423577`
+(`feat: add frozen locked evaluation guard`); the current `make validate` and control-plane gates
+pass. The exact current Git HEAD is intentionally determined from `git rev-parse HEAD` because
+documentation-only commits update this file without changing source behavior.
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -47,8 +50,9 @@ Phase-status blocker reconciliation commit: `4817ef2`.
 Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
-The frontend dependency/lint hardening was validated and committed in `739310d`; the current
-checkout HEAD is `f2a6f53f505d9b4b8466d903404c199a073bfead` before this continuation audit commit.
+The frontend dependency/lint hardening was validated and committed in `739310d`. Continuation
+implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, and `1423577`; continuation
+documentation/status commits are `e39d3a3`, `b49b96a`, `e115d23`, `8264c70`, and `9f4a07c`.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -816,3 +820,15 @@ figures from the single pilot record.
 - No remote endpoint was invoked, no model was downloaded, and no new paid workload was started.
   The full Phase 6/7 execution remains blocked pending a current approval matching protocol hash
   `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3` and exact workload scope.
+
+## Current checkout metadata refresh — 2026-09-21
+
+- The authoritative current checkout remains on branch `research/evovariant-tr`. The latest
+  code-bearing continuation commit is `1423577`; subsequent commits in this block are
+  documentation-only. The only untracked worktree path is the preserved pre-existing `.agents/`
+  directory; no project files are unstaged or staged.
+- This metadata refresh corrects the stale historical HEAD sentence near the top of this file. It
+  does not change scientific phase status: Phase6A remains the latest authorized remote scope and
+  full Phase 6/7 plus dependent scientific phases remain blocked pending current approval.
+- Evidence: `git status --short --branch`, `git rev-parse HEAD`, and the current successful
+  `make validate`/control-plane runs were inspected on 2026-09-21.

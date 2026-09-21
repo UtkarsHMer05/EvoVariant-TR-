@@ -1,6 +1,6 @@
 {
   "dataset_id": "evovariant-tr-phase3-v1",
-  "status": "PASS_WITH_QA_DISCREPANCY_DOCUMENTED",
+  "status": "BLOCKED_EXTERNAL_EVIDENCE_AFTER_INTEGRITY_AUDIT",
   "protocol_id": "evovariant-tr-ml-extension",
   "original_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
   "source_archives": {
@@ -26,7 +26,10 @@
     "split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
     "split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
     "temporal_audit": "data/derived/ml_extension/phase3/temporal_audit.json",
-    "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json"
+    "locked_test_ids": "data/derived/ml_extension/phase3/locked_test_ids.json",
+    "integrity_audit": "artifacts/phase3_integrity_audit_20260921.json",
+    "integrity_audit_sha256": "ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5",
+    "integrity_diagnostic": "artifacts/phase3_integrity_diagnostic_20260921.json"
   },
   "temporal_audit": {
     "t0_unique_vus": 1402895,
@@ -78,10 +81,16 @@
       "The t0 protocol state is aggregate VUS without a t0 star gate; the >=2-star gate is applied to t1 outcomes and t0-definitive development labels.",
       "The remaining count differences are preserved as an unresolved archive/normalization discrepancy and must not be tuned away before model scoring."
     ],
-    "model_scoring_allowed": false
+    "model_scoring_allowed": false,
+    "integrity_audit_status": "BLOCKED",
+    "integrity_audit_blockers": [
+      "handoff_target_identity_reconciliation: BLOCKED_MISSING_TARGET_ID_SET",
+      "independent_grch38_reference_base: NOT_RUN because the frozen FASTA and .fai are absent"
+    ]
   },
   "limitations": [
-    "Reference mismatch is audited between matched t0/t1 variant identities; a genome FASTA reference-base audit is not included in this CPU archive pass.",
+    "Reference mismatch is audited between matched t0/t1 variant identities; the independent genome FASTA reference-base audit is explicitly NOT_RUN because the frozen FASTA and .fai are absent.",
+    "The handoff validation target ID/source set is unavailable, so the aggregate target counts cannot be reconciled at identity level.",
     "The locked-test labels are used only to construct the locked manifest and audit; they are not used for development assignment or model selection."
   ]
 }

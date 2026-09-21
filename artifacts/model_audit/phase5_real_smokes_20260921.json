@@ -1,0 +1,112 @@
+{
+  "approval_artifact": "artifacts/approvals/phase2_4_pilot_20260921.json",
+  "approval_scope": "Phase 2 canonical Evo2 pilot, Phase 4 cache miss/hit validation, and Phase 5 smoke-test evidence only; no full benchmark, training, HPO, fine-tuning, or locked-test run",
+  "artifact_id": "phase5-real-smokes-20260921",
+  "gpu_type": "H100",
+  "interpretation": {
+    "included_in_phase6_raw_score_benchmark": [],
+    "next_gate": "Freeze a separate compatibility protocol before any Phase 6 use.",
+    "reason": "The real smokes verify checkpoint installation, preprocessing, finite logits, and ref/alt embedding plumbing on synthetic input. They do not establish the frozen GRCh38 raw allele-effect score contract or cohort applicability.",
+    "subset_only": [
+      "nucleotide_transformer",
+      "caduceus"
+    ]
+  },
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "recorded_at": "2026-09-21",
+  "results": [
+    {
+      "alternate_length_bp": 256,
+      "alternate_sha256": "bf8fe7cf5a855853d6b5b2fa511ece51a9dd439c13f41993cb92143b1ca3f3d4",
+      "candidate": "nucleotide_transformer",
+      "changed_base_count": 1,
+      "configured_max_positions": 2050,
+      "device": "cuda:0",
+      "elapsed_seconds": 3.543,
+      "estimated_wall_rate_cost_usd": 0.0039,
+      "hidden_finite": true,
+      "hidden_shape": [
+        2,
+        47,
+        1024
+      ],
+      "input_provenance": "synthetic_smoke_sequence_not_GRCh38_cohort_evidence",
+      "license": "CC-BY-NC-SA-4.0",
+      "logits_finite": true,
+      "logits_shape": [
+        2,
+        47,
+        4107
+      ],
+      "model_class": "EsmForMaskedLM",
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "parameter_count": 498345436,
+      "parameter_dtype": "torch.float32",
+      "raw_score_reason": "The checkpoint produced logits/embeddings, but no official raw REF-vs-ALT allele-likelihood contract was applied.",
+      "raw_variant_score": false,
+      "ref_alt_embedding_delta_l2": 1.3088667392730713,
+      "reference_length_bp": 256,
+      "reference_sha256": "a5502768913a84a6d3e310f72a98c8a1afce85e27a9da16cb5967cef8980d8a0",
+      "revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "status": "PASS",
+      "token_shape": [
+        2,
+        47
+      ]
+    },
+    {
+      "alternate_length_bp": 256,
+      "alternate_sha256": "bf8fe7cf5a855853d6b5b2fa511ece51a9dd439c13f41993cb92143b1ca3f3d4",
+      "candidate": "caduceus",
+      "changed_base_count": 1,
+      "configured_max_positions": null,
+      "device": "cuda:0",
+      "elapsed_seconds": 10.297,
+      "estimated_wall_rate_cost_usd": 0.0113,
+      "hidden_finite": true,
+      "hidden_shape": [
+        2,
+        257,
+        256
+      ],
+      "input_provenance": "synthetic_smoke_sequence_not_GRCh38_cohort_evidence",
+      "license": "Apache-2.0",
+      "logits_finite": true,
+      "logits_shape": [
+        2,
+        257,
+        16
+      ],
+      "model_class": "CaduceusForMaskedLM",
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "parameter_count": 7725312,
+      "parameter_dtype": "torch.float32",
+      "raw_score_reason": "The checkpoint produced logits/embeddings, but no official raw REF-vs-ALT allele-likelihood contract was applied.",
+      "raw_variant_score": false,
+      "ref_alt_embedding_delta_l2": 0.13169553875923157,
+      "reference_length_bp": 256,
+      "reference_sha256": "a5502768913a84a6d3e310f72a98c8a1afce85e27a9da16cb5967cef8980d8a0",
+      "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "source": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "status": "PASS",
+      "token_shape": [
+        2,
+        257
+      ]
+    }
+  ],
+  "source": {
+    "caduceus": {
+      "model": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "official_model_card": "https://huggingface.co/kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b"
+    },
+    "nucleotide_transformer": {
+      "model": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "official_model_card": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "revision": "06615c1660c892fc199840c18123f8385b3542a8"
+    }
+  },
+  "status": "PASS_WITH_SUBSET_ONLY_TRACKS"
+}

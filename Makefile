@@ -144,6 +144,22 @@ data-qc: ## Recompute the temporal audit and deterministic ML-extension split ma
 		--t1-manifest research/data_manifests/clinvar_t1.json \
 		--output-dir data/derived/ml_extension/phase3
 
+.PHONY: phase3-audit
+phase3-audit: ## Run the detailed Phase 3 source, temporal, reference, and leakage audit
+	$(MAKE) check-venv
+	$(PYTHON) -m evovariant_tr.cli phase3-integrity-audit \
+		--repo-root . \
+		--output artifacts/phase3_integrity_audit_20260921.json
+
+.PHONY: phase5-smoke
+phase5-smoke: ## Run the bounded real Nucleotide Transformer and Caduceus H100 smokes
+	$(MAKE) check-venv
+	@test "$${$(COST_ACK_ENV)}" = "$(COST_ACK_VALUE)" || { \
+		echo "REFUSED: set $(COST_ACK_ENV)=$(COST_ACK_VALUE) for approved Phase 5 smokes" >&2; \
+		exit 1; \
+	}
+	$(VENV)/bin/modal run scripts/phase5_model_smoke.py
+
 .PHONY: modal-smoke
 modal-smoke: ## Run a no-spend Modal preflight and append a deferred/planned cost record
 	$(MAKE) check-venv

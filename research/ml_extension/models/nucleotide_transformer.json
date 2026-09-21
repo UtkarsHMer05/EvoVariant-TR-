@@ -1,6 +1,6 @@
 {
   "model_id": "nucleotide_transformer",
-  "status": "INFEASIBLE",
+  "status": "SUBSET_ONLY",
   "model_name": "Nucleotide Transformer v2 500M multi-species",
   "source": "https://huggingface.co/InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
   "license": "CC-BY-NC-SA-4.0",
@@ -31,7 +31,7 @@
   "provenance": {
     "verified_at": "2026-09-21",
     "verification_status": "DEFERRED",
-    "notes": "Official checkpoint and model card were audited. The published model is a 500M-parameter masked language model with a 2048-token maximum and CC-BY-NC-SA-4.0 terms. No official allele-effect scoring routine or GRCh38 forward/reverse raw-score parity was verified; converting masked logits to a pseudo-likelihood would create a different score contract. Deferred by compatibility and license/compute review; no weights were downloaded.",
+    "notes": "Official checkpoint and model card were audited and the pinned checkpoint passed a bounded real H100 checkpoint/embedding/logit smoke on a synthetic one-base pair. The published model is a 500M-parameter masked language model with a 2048-token maximum and CC-BY-NC-SA-4.0 terms. No official allele-effect scoring routine or GRCh38 forward/reverse raw-score parity was verified; converting masked logits to a pseudo-likelihood would create a different score contract. This is SUBSET_ONLY for embeddings/logits, not included in the raw-score benchmark. Evidence: artifacts/model_audit/phase5_real_smokes_20260921.json.",
     "asset_checksum": null
   }
 }

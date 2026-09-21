@@ -1,0 +1,162 @@
+{
+  "artifact_id": "phase3-integrity-diagnostic-20260921",
+  "recorded_at": "2026-09-21",
+  "status": "BLOCKED",
+  "source_audit": "artifacts/phase3_integrity_audit_20260921.json",
+  "source_audit_sha256": "ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5",
+  "protocol": {
+    "path": "research/protocol/protocol.yaml",
+    "assembly": "GRCh38",
+    "t0_release_date": "2025-01-02",
+    "t1_release_date": "2026-08-06",
+    "minimum_review_stars": 2,
+    "primary_unit": "unique_normalized_biallelic_acgt_germline_snv"
+  },
+  "failing_gates": [
+    {
+      "gate": "handoff_target_identity_reconciliation",
+      "status": "BLOCKED_MISSING_TARGET_ID_SET",
+      "check": "Compare current manifest-verified archive-derived identities and temporal partitions with the validation-only handoff target identity/source set.",
+      "implementation": "src/evovariant_tr/phase3_integrity.py:build_phase3_integrity_audit",
+      "command": "make phase3-audit",
+      "expected": {
+        "t0_unique_vus": 1403225,
+        "absent_at_t1": 3615,
+        "below_two_stars": 9051,
+        "not_definitive_at_t1": 1389535,
+        "final_temporal_n": 1024,
+        "n_blb": 614,
+        "n_plp": 410,
+        "gene_labels": 389,
+        "reference_mismatch_count": 0
+      },
+      "actual": {
+        "t0_unique_vus": 1402895,
+        "absent_at_t1": 3459,
+        "below_two_stars": 9049,
+        "not_definitive_at_t1": 1389441,
+        "final_temporal_n": 946,
+        "n_blb": 536,
+        "n_plp": 410,
+        "gene_labels": 946,
+        "reference_mismatch_count": 0
+      },
+      "actual_minus_expected": {
+        "t0_unique_vus": -330,
+        "absent_at_t1": -156,
+        "below_two_stars": -2,
+        "not_definitive_at_t1": -94,
+        "final_temporal_n": -78,
+        "n_blb": -78,
+        "n_plp": 0,
+        "gene_labels": 557,
+        "reference_mismatch_count": 0
+      },
+      "resolution": "NOT_RESOLVABLE_FROM_CURRENT_REPOSITORY",
+      "required_external_evidence": "Target normalized-ID list or target source rows with the historical filtering/release definition."
+    },
+    {
+      "gate": "independent_grch38_reference_base",
+      "status": "NOT_RUN",
+      "check": "Validate each selected GRCh38 REF base against the frozen local FASTA and .fai index.",
+      "implementation": "src/evovariant_tr/phase3_integrity.py:_reference_audit",
+      "expected": {
+        "fasta": "data/reference/Homo_sapiens_assembly38.fasta",
+        "fai": "data/reference/Homo_sapiens_assembly38.fasta.fai",
+        "unresolved_reference_mismatches": 0
+      },
+      "actual": {
+        "fasta_present": false,
+        "fai_present": false,
+        "checked_variant_count": 0,
+        "mismatch_count": null
+      },
+      "resolution": "BLOCKED_MISSING_FROZEN_REFERENCE_ASSET",
+      "required_external_evidence": "Provide or re-authorize the exact frozen GRCh38 FASTA and matching .fai index."
+    }
+  ],
+  "impact": {
+    "affected_variant_count": {
+      "unique_t0_ids": 330,
+      "final_temporal_records": 78,
+      "final_blb_records": 78,
+      "final_plp_records": 0,
+      "absent_at_t1_count_delta": 156,
+      "below_two_stars_count_delta": 2,
+      "not_definitive_count_delta": 94
+    },
+    "labels_affected": {
+      "relative_to_validation_target": true,
+      "current_internal_conflicting_labels": 0,
+      "class_effect": "The final denominator and BLB count are 78 below the validation-only target; PLP count matches. No target-side labels can be assigned without target IDs/source rows."
+    },
+    "train_validation_test_overlap_affected": false,
+    "overlap_results": {
+      "train_intersection_validation": 0,
+      "train_intersection_locked_test": 0,
+      "validation_intersection_locked_test": 0,
+      "normalized_variant_overlap": 0,
+      "gene_group_overlap": 0,
+      "future_information_leakage": 0
+    },
+    "temporal_eligibility_affected": true,
+    "temporal_effect": "The current temporal partition is internally complete (1,402,895 = 3,459 + 9,049 + 1,389,441), but the missing target identities change the externally expected denominator and final eligibility counts.",
+    "grch38_reference_matching_affected": "Independent base validation is unresolved because the frozen FASTA/index is absent; archive assembly and t0/t1 identity REF/ALT checks pass with zero cross-release mismatches.",
+    "duplicate_normalization_affected": false,
+    "duplicate_results": {
+      "t0_duplicate_vus_ids": 0,
+      "t1_conflicting_duplicate_ids": 0,
+      "normalized_id_overlap": 0
+    },
+    "gene_grouping_affected": false,
+    "gene_results": {
+      "train_validation_gene_overlap": 0,
+      "unique_final_genes": 367,
+      "gene_annotation_changes_between_t0_t1": 2,
+      "current_gene_labeled_records": 946,
+      "validation_target_gene_labeled_records": 389
+    },
+    "final_denominators_affected": true
+  },
+  "current_cohort_accounting": {
+    "original_exact_vus_rows": 2984060,
+    "grch38_exact_vus_rows": 1475686,
+    "grch38_germline_exact_vus_rows": 1455168,
+    "grch38_germline_snv_exact_vus_rows": 1402906,
+    "excluded_structural_exact_vus_rows": 11,
+    "final_unique_t0_vus": 1402895,
+    "exclusions_by_reason": {
+      "exact_vus_not_grch38": 1508374,
+      "exact_vus_not_germline": 20518,
+      "exact_vus_not_snv": 52262,
+      "non_acgt_allele": 1,
+      "coordinate_parse_or_invalid": 3,
+      "reference_equals_alternate": 7,
+      "duplicate_valid_normalized_ids": 0
+    },
+    "development": {
+      "train": 191957,
+      "validation": 48035,
+      "locked_test": 946,
+      "class_positive": 46429,
+      "class_negative": 193563,
+      "train_genes": 9682,
+      "validation_genes": 57
+    },
+    "hashes": {
+      "locked_test_ids.json": "06d2641f08731c1802b10e58a76e734ba6e8f4a3ebb5687721cce9053cbe7112",
+      "split_manifest.json": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+      "temporal_audit.json": "6e67929e18421d1c7558d047bf06f3f9d5e6fe8390d968626f6cc1737f03cb41",
+      "integrity_audit.json": "ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5"
+    }
+  },
+  "resolution_attempts": [
+    "Verified both raw archives by byte size, SHA-256, and gzip integrity.",
+    "Verified frozen protocol release dates and parsed LastEvaluated dates with zero future-than-release rows.",
+    "Checked exact VUS, all uncertainty-containing labels, legacy allele fields, and broader assembly/origin/type sensitivities without reproducing the target.",
+    "Cross-checked current cohort identities through the existing parser/VariantIdentity path.",
+    "Regenerated the temporal and split artifacts twice; all three generated hashes matched exactly.",
+    "Refused to add synthetic IDs, alter frozen filters, or reinterpret aggregate target counts."
+  ],
+  "decision": "DO_NOT_FORCE_TARGET_COUNTS; keep Phase 3 BLOCKED until target identity/source evidence and independent frozen-reference assets are supplied or a dated protocol deviation is explicitly approved."
+}

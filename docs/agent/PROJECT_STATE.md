@@ -4,21 +4,23 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 7 — Embedding and representation extraction` (Phases 2 and 4 remote
-gates pass; Phase 3 remains reopened for a material discrepancy-impact review; Phase 5's
-multi-model track is formally deferred with Evo2 as the only included model)
+Current phase: `PHASE 3/5 UPSTREAM RECONCILIATION` (Phases 2 and 4 remote gates pass;
+Phase 3 has a complete integrity audit but remains blocked on external target/reference
+evidence; Phase 5 has two real `SUBSET_ONLY` checkpoint tracks in addition to included Evo2,
+but no second raw-score-compatible model)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
 frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 2 raw-score
 contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
-approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 discrepancy is
-scientifically material to IDs, temporal eligibility, class counts, and denominators, so the
-Phase 3 acceptance review is reopened and Phases 6–9 and 11 onward remain blocked. Phase 5's
-multi-model track is formally `DEFERRED` after auditing all seven candidates: Evo2 is the only
-included model and the other six are explicitly deferred or infeasible with source-backed
-reasons. Phase 10 adaptation is formally
+approved Modal `hf_cache` volume and no weights are tracked in Git. The new Phase 3 audit proves
+all local source, ID, temporal, duplicate, review, leakage, split-hash, and deterministic
+regeneration gates, but the overall Phase 3 gate remains `BLOCKED` because the validation-only
+target ID/source set and frozen local GRCh38 FASTA/index are absent. Phase 5 is now
+`PARTIAL_WITH_SUBSET_ONLY_TRACKS`: Nucleotide Transformer and Caduceus passed real bounded H100
+checkpoint/logit/embedding smokes on synthetic inputs, while Evo2 remains the only included
+raw-score model. Phases 6–9 and 11 onward remain blocked. Phase 10 adaptation is formally
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
@@ -48,6 +50,56 @@ checkout HEAD with Git because this control-file update may advance it without c
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
+
+## Priority continuation update — 2026-09-21
+
+- The user-prioritized Phase 3 diagnostic and machine-readable integrity report are
+  `artifacts/phase3_integrity_diagnostic_20260921.json` and
+  `artifacts/phase3_integrity_audit_20260921.json` (audit SHA-256
+  `ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5`). The exact failing
+  gates are `handoff_target_identity_reconciliation = BLOCKED_MISSING_TARGET_ID_SET` and
+  `independent_grch38_reference_base = NOT_RUN`; the first is missing target-side identity/source
+  evidence and the second is missing `data/reference/Homo_sapiens_assembly38.fasta(.fai)`.
+- Current archive-derived accounting is 1,402,895 unique t0 VUS, 946 final temporal records
+  (536 BLB, 410 PLP), 3,459 absent at t1, 9,049 definitive outcomes below the two-star gate,
+  and 1,389,441 not definitive at t1. The validation-only target differs by -330 t0 IDs and
+  -78 final records, all -78 in BLB; PLP matches. The current cohort's internal temporal
+  partition sums exactly, so no target count was forced and no synthetic IDs were added.
+- The integrity audit found zero duplicate normalized IDs, zero conflicting duplicate IDs, zero
+  cross-split normalized-ID overlap, zero train/validation gene overlap, zero locked-test overlap,
+  zero future-than-release dates, zero t0/t1 reference/alternate identity mismatches, and PASS
+  deterministic regeneration with the locked-ID, split-manifest, and temporal-audit hashes
+  reproduced twice. Independent FASTA base validation is explicitly `NOT_RUN`, not inferred from
+  these identity checks.
+- Full local validation after the Phase 3 audit passed: secret scan, Ruff, strict mypy over 52
+  source files, 656 default-tier tests with 33 deselected, and 95.14% total coverage. The new
+  `make phase3-audit` command reran both large source archives and two fresh deterministic builds;
+  it completed with all local gates PASS and the two external blockers above.
+- Phase 5 now has a real smoke artifact at
+  `artifacts/model_audit/phase5_real_smokes_20260921.json` and a roster-resolution artifact at
+  `artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json`. Nucleotide
+  Transformer v2 (pinned revision `06615c...`, 498,345,436 parameters) and Caduceus-Ph (pinned
+  revision `b047752...`, 7,725,312 parameters) both loaded on H100, produced finite logits and
+  hidden states, and produced finite synthetic ref/alt embedding deltas. They are recorded as
+  `SUBSET_ONLY`, not raw-score benchmark models, because the smoke input is synthetic and neither
+  official checkpoint has the frozen GRCh38 alternate-minus-reference contract.
+- GPN remains `DEFERRED_BY_COMPUTE` because its matching 100-way alignment asset is approximately
+  42 GB and absent; CADD remains `DEFERRED_BY_COMPUTE` because its GRCh38 annotation bundle is
+  approximately 300 GB and license/checksum evidence is incomplete; PhyloP and AlphaMissense
+  remain `DEFERRED_BY_COMPATIBILITY` for score/subset reasons. The model manifests and schema now
+  preserve these explicit status values; only Evo2 is `INCLUDED` for a raw Phase 6 score.
+- The checkpoint summary required before any large benchmark is
+  `artifacts/phase5_checkpoint_20260921.json`. It records the current dataset/hashes, model
+  roster, estimated Phase 6 cost ($55,835.221 sequential wall-rate or an unmeasured $6,979.403
+  perfect-eight-way scenario for one model), and `UNMEASURED` Phase 7/10 estimates. No large
+  benchmark, embedding extraction, training, HPO, or locked-test run is authorized.
+- The Phase 5 smoke runner's H100 wall-rate estimate was `$0.0152`; the read-only workspace
+  billing snapshot after the smoke was metered `$12.21122616`, billed `$0.00`. This is
+  workspace-level evidence, not a per-request invoice. The approved `hf_cache` volume contains
+  checkpoint caches; no model weights or scientific outputs were written to Git.
+- Phase 3 and Phase 5 therefore remain the only active upstream work. Phase 6 and all downstream
+  phases must not advance until the external Phase 3 gates are cleared and a compatible raw-score
+  comparison protocol is explicitly frozen.
 
 ## Current authoritative execution update — 2026-09-21
 
@@ -91,9 +143,8 @@ Active branch/worktree: `research/evovariant-tr` at
   `artifacts/modal/phase2_phase4_pilot_20260921_success.json` and the append-only cost ledger.
 - Phase 2 gate: `PASS` for the local audit plus real remote raw-score pilot. Phase 4 gate: `PASS`
   for cache identity, persistence, equivalent hit, retry/scaledown configuration, telemetry, and
-  available cost evidence. Phase 5's multi-model track is formally `DEFERRED` with one verified
-  candidate; see `artifacts/model_audit/phase5_candidate_audit_20260921.json` and
-  `artifacts/model_audit/phase5_multi_model_deferral_20260921.json`.
+  available cost evidence. Phase 5 now has two real `SUBSET_ONLY` smoke tracks in addition to
+  included Evo2; see `artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json`.
 - Phase 3 impact decision: `MATERIAL_UNCERTAINTY`; see
   `artifacts/phase3_discrepancy_impact_20260921.json`. Current archive-derived outputs remain
   unchanged apart from the audit-counter semantics correction recorded in

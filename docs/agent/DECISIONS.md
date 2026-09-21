@@ -1589,6 +1589,87 @@ readiness regression coverage in `tests/unit/test_model_adapters.py`. Targeted R
 mypy, and eight adapter tests pass; the full `make validate` gate passes with 647 tests, 33
 deselected, and 95.07% coverage.
 
+## D-060 — Keep Phase 3 blocked after complete local integrity audit
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-039, D-041, D-042, D-055, D-057, D-059 where the newer audit provides the consolidated current gate evidence
+
+Context:
+The user-prioritized continuation required an exact diagnosis of the Phase 3 blocker and a
+complete data-integrity audit rather than a count-only discrepancy note. The manifest-verified
+2025-01 and 2026-08 ClinVar archives, frozen protocol, derived temporal artifacts, and split
+artifacts were available locally. The validation-only handoff target identity/source set and the
+frozen GRCh38 FASTA/index were not.
+
+Decision:
+Run and retain the evidence-first `make phase3-audit` surface. Require source byte/hash/gzip
+verification, exact VUS/assembly/origin/SNV/REF/ALT/coordinate filters, normalized-ID uniqueness,
+duplicate/conflict accounting, review/date/temporal accounting, overlap and gene-leakage checks,
+serialized schema/hash checks, and two fresh deterministic rebuilds. Do not force the handoff
+aggregate counts. Keep the overall Phase 3 status `BLOCKED` because
+`handoff_target_identity_reconciliation` is `BLOCKED_MISSING_TARGET_ID_SET` and
+`independent_grch38_reference_base` is `NOT_RUN` when the frozen FASTA/index is absent.
+
+Alternatives:
+Add synthetic records to reach the target, tune the frozen filters to match aggregate counts,
+use the current assembly/identity cross-check as a substitute for FASTA base validation, or
+promote the internally clean cohort to an ordinary Phase 3 PASS. These were rejected because
+they would change the estimand or claim evidence that is not present.
+
+Consequences:
+The current cohort remains reproducible and safe for audit, but the final denominator and class
+counts cannot be treated as the validation-only target. All downstream scientific phases remain
+blocked until target-side identities/source rows and independent frozen-reference evidence are
+supplied or a dated protocol deviation is explicitly approved.
+
+Validation:
+`artifacts/phase3_integrity_diagnostic_20260921.json` records the exact expected/actual values,
+affected counts, and impact on labels, temporal eligibility, overlap, reference matching,
+duplicates, gene grouping, and denominators. `artifacts/phase3_integrity_audit_20260921.json`
+records the machine-readable scan. `make validate` passed with 656 tests, 33 deselected, strict
+mypy over 52 source files, Ruff, secret scan, and 95.14% coverage. The audit artifact SHA-256 is
+`ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5`.
+
+## D-061 — Advance Phase 5 to two subset-only real smoke tracks
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: D-040 and D-053 for current Phase 5 execution status
+
+Context:
+The user-prioritized continuation required meaningful work beyond the already verified Evo2
+candidate. The existing six-candidate deferral was not sufficient by itself. The current bounded
+approval authorizes Phase 5 smoke-test evidence only, not full benchmark inference, training,
+HPO, embedding extraction, or locked evaluation.
+
+Decision:
+Run bounded real H100 checkpoint smokes for the two best practical preferred candidates,
+Nucleotide Transformer v2 500M and Caduceus-Ph. Verify official source/checkpoint revision,
+license, preprocessing/tokenization, context limit, finite logits, hidden states, and a
+synthetic one-base ref/alt embedding plumbing path. Record both as `SUBSET_ONLY` because neither
+provides the frozen GRCh38 alternate-minus-reference raw-score contract; keep Evo2 as the only
+raw-score `INCLUDED` model. Classify GPN and CADD as `DEFERRED_BY_COMPUTE`, and PhyloP and
+AlphaMissense as `DEFERRED_BY_COMPATIBILITY` under the explicit status vocabulary.
+
+Alternatives:
+Promote masked-LM logits to a pseudo-likelihood without a predeclared protocol, call synthetic
+embedding deltas scientific variant scores, download the approximately 42 GB GPN alignment or
+approximately 300 GB CADD bundle under the smoke approval, or leave all non-Evo2 work globally
+deferred. These were rejected because the first two would change semantics, the asset downloads
+exceed scope, and the last would fail the required Phase 5 effort.
+
+Consequences:
+Phase 5 now has two additional evidence-backed model tracks and a frozen roster with explicit
+compatibility boundaries. Phase 6 remains blocked: only Evo2 can enter the raw-score benchmark,
+and the current Phase 3 external gates plus full-run authorization remain unresolved. The two
+smokes used synthetic inputs and create no ClinVar metrics, feature cache, or locked-label use.
+
+Validation:
+`artifacts/model_audit/phase5_real_smokes_20260921.json` records real H100 outputs for both
+checkpoints. `artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json` records
+the full seven-candidate roster, official sources, exact revisions, status, smoke and blocker
+evidence, and workspace billing interpretation. The smoke wall-rate estimate was `$0.0152`; the
+post-smoke workspace snapshot was metered `$12.21122616` and billed `$0.00`.
+
 ## Template for new decisions
 
 ### D-XXX — Title

@@ -77,6 +77,32 @@ def cmd_build_ml_splits(args: argparse.Namespace) -> int:
     return 0 if summary["status"] == "PASS" else 1
 
 
+def cmd_phase3_integrity_audit(args: argparse.Namespace) -> int:
+    """Run the evidence-first Phase 3 archive and split integrity audit."""
+    from evovariant_tr.phase3_integrity import build_phase3_integrity_audit
+
+    payload = build_phase3_integrity_audit(
+        repo_root=args.repo_root,
+        output_path=args.output,
+        run_determinism=not args.skip_determinism,
+    )
+    print(
+        json.dumps(
+            {
+                "status": payload["status"],
+                "phase3_gate": payload["phase3_gate"],
+                "gates": payload["gates"],
+                "output": str(args.output),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    # A BLOCKED result is an expected, truthful audit outcome when an external
+    # evidence requirement is missing; the command itself completed normally.
+    return 0
+
+
 def cmd_modal_smoke(args: argparse.Namespace) -> int:
     """Run a safe Modal preflight and record unavailable/deferred evidence."""
     from evovariant_tr.cost_ledger import append_entry, new_entry
@@ -296,6 +322,23 @@ def build_parser() -> argparse.ArgumentParser:
     splits.add_argument("--output-dir", type=Path, required=True)
     splits.add_argument("--seed", type=int, default=20260814)
     splits.set_defaults(func=cmd_build_ml_splits)
+
+    phase3_audit = subparsers.add_parser(
+        "phase3-integrity-audit",
+        help="Audit Phase 3 source, temporal, split, reference, and leakage gates",
+    )
+    phase3_audit.add_argument("--repo-root", type=Path, default=Path("."))
+    phase3_audit.add_argument(
+        "--output",
+        type=Path,
+        default=Path("artifacts/phase3_integrity_audit_20260921.json"),
+    )
+    phase3_audit.add_argument(
+        "--skip-determinism",
+        action="store_true",
+        help="Skip the two fresh archive-backed rebuilds (not recommended)",
+    )
+    phase3_audit.set_defaults(func=cmd_phase3_integrity_audit)
 
     modal_smoke = subparsers.add_parser(
         "modal-smoke",

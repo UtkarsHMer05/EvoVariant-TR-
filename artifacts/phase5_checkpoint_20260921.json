@@ -1,0 +1,98 @@
+{
+  "artifact_id": "phase5-checkpoint-before-phase6-20260921",
+  "recorded_at": "2026-09-21",
+  "status": "CHECKPOINT_PHASE6_NOT_AUTHORIZED",
+  "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
+  "final_dataset": {
+    "status": "CURRENT_ARCHIVE_DERIVED_PENDING_PHASE3_EXTERNAL_RECONCILIATION",
+    "train": 191957,
+    "validation": 48035,
+    "locked_test": 946,
+    "development_total": 239992,
+    "t0_unique_vus": 1402895,
+    "final_temporal_records": 946,
+    "genes": {
+      "train_groups": 9682,
+      "validation_groups": 57,
+      "train_validation_overlap": 0,
+      "locked_test_unique_genes": 367,
+      "gene_annotation_changes_t0_t1": 2
+    },
+    "class_balance": {
+      "development_positive": 46429,
+      "development_negative": 193563,
+      "locked_test_blb": 536,
+      "locked_test_plp": 410
+    },
+    "hashes": {
+      "locked_test_ids.json": "06d2641f08731c1802b10e58a76e734ba6e8f4a3ebb5687721cce9053cbe7112",
+      "split_manifest.json": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+      "temporal_audit.json": "6e67929e18421d1c7558d047bf06f3f9d5e6fe8390d968626f6cc1737f03cb41",
+      "phase3_integrity_audit.json": "ffce3a86eed002822d6501a2d0d95ecf59bf73d2a646ae22398c517a772f9fa5"
+    },
+    "blocking_note": "The current cohort is internally deterministic and leakage-free but remains a validation-only cohort until target identities/source rows and independent frozen GRCh38 base evidence are supplied or a dated deviation is approved."
+  },
+  "verified_models": {
+    "evo2": "INCLUDED",
+    "nucleotide_transformer": "SUBSET_ONLY",
+    "caduceus": "SUBSET_ONLY",
+    "gpn": "DEFERRED_BY_COMPUTE",
+    "cadd": "DEFERRED_BY_COMPUTE",
+    "phylop": "DEFERRED_BY_COMPATIBILITY",
+    "alphamissense_valid_subset": "DEFERRED_BY_COMPATIBILITY"
+  },
+  "model_evidence": {
+    "evo2": "artifacts/modal/phase2_phase4_pilot_20260921_success.json",
+    "additional_real_smokes": "artifacts/model_audit/phase5_real_smokes_20260921.json",
+    "phase5_resolution": "artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json",
+    "included_in_raw_phase6": ["evo2"],
+    "subset_only_not_raw_phase6": ["nucleotide_transformer", "caduceus"]
+  },
+  "modal": {
+    "approval": "artifacts/approvals/phase2_4_pilot_20260921.json",
+    "gpu_type": "H100",
+    "smoke_estimated_wall_rate_cost_usd": 0.0152,
+    "workspace_metered_cost_usd": 12.21122616,
+    "workspace_billed_cost_usd": 0.0,
+    "workspace_cost_snapshot_note": "The snapshot is workspace-level and includes ephemeral/image/volume activity; it is not a per-request invoice.",
+    "cache_storage": "Approved Modal hf_cache volume contains checkpoint caches; no weights or full prediction/feature cache are tracked in Git.",
+    "recommended_gpu": "H100 for Evo2 and bounded Transformer/Caduceus smoke/inference; no full run authorized.",
+    "observed_smoke_runtime_seconds": {
+      "nucleotide_transformer": 3.543,
+      "caduceus": 10.297
+    }
+  },
+  "cost_estimates": {
+    "phase6_zero_shot_benchmark": {
+      "status": "BLOCKED_PRELAUNCH_ESTIMATE",
+      "current_t0_variant_count": 1402895,
+      "one_model_sequential_wall_rate_usd": 55835.221,
+      "one_model_hypothetical_perfect_eight_variant_batch_usd": 6979.403,
+      "confidence": "LOW_OR_VERY_LOW",
+      "caveat": "No remote batch throughput is measured; the eight-way number is not a forecast and full execution is not authorized."
+    },
+    "phase7_embedding_extraction": {
+      "status": "UNMEASURED",
+      "estimate_usd": null,
+      "reason": "No Evo2 remote embedding smoke or batch throughput measurement exists; the additional model smokes were synthetic and not a cohort extraction estimate."
+    },
+    "phase10_fine_tuning": {
+      "status": "DEFERRED_BY_COMPUTE",
+      "estimate_usd": null,
+      "reason": "No checked-in official training runner, local CUDA training runtime, or authorized training smoke exists."
+    }
+  },
+  "gate_decision": {
+    "phase3": "BLOCKED",
+    "phase5": "PARTIAL_WITH_SUBSET_ONLY_TRACKS",
+    "phase6": "BLOCKED",
+    "large_benchmark_launch": false,
+    "training_or_hpo_launch": false,
+    "reason": "The required checkpoint is complete: the dataset and model roster are documented with exact evidence, but upstream Phase 3 external gates and a compatible raw-score multi-model protocol remain unresolved."
+  },
+  "required_next_authority": [
+    "Target normalized-ID/source-row set for the validation-only Phase 3 counts, or explicit approval of a dated protocol deviation.",
+    "Exact frozen GRCh38 FASTA and .fai index for independent base validation.",
+    "A separate approval covering any full Phase 6, Phase 7, or Phase 10 workload."
+  ]
+}

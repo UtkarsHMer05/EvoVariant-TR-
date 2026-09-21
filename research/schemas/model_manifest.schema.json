@@ -21,7 +21,17 @@
   "properties": {
     "model_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$" },
     "status": {
-      "enum": ["PLANNED", "INCLUDED", "AVAILABLE", "INFEASIBLE", "EXCLUDED", "UNAVAILABLE"]
+      "enum": [
+        "PLANNED",
+        "INCLUDED",
+        "AVAILABLE",
+        "SUBSET_ONLY",
+        "DEFERRED_BY_COMPUTE",
+        "DEFERRED_BY_COMPATIBILITY",
+        "INFEASIBLE",
+        "EXCLUDED",
+        "UNAVAILABLE"
+      ]
     },
     "model_name": { "type": "string", "minLength": 1 },
     "source": { "type": "string", "minLength": 1 },

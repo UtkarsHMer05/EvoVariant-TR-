@@ -1,6 +1,6 @@
 {
   "model_id": "phylop",
-  "status": "INFEASIBLE",
+  "status": "DEFERRED_BY_COMPATIBILITY",
   "model_name": "UCSC phyloP 100-way hg38",
   "source": "https://genome.ucsc.edu/cgi-bin/hgTrackUi?db=hg38&g=cons100way",
   "license": "UCSC data-use terms; verify for redistribution",

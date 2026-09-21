@@ -1,6 +1,6 @@
 {
   "model_id": "alphamissense_valid_subset",
-  "status": "INFEASIBLE",
+  "status": "DEFERRED_BY_COMPATIBILITY",
   "model_name": "AlphaMissense applicable missense subset",
   "source": "https://github.com/google-deepmind/alphamissense",
   "license": "Apache-2.0 code; CC-BY-4.0 predictions",

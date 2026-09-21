@@ -1,6 +1,6 @@
 {
   "model_id": "cadd",
-  "status": "INFEASIBLE",
+  "status": "DEFERRED_BY_COMPUTE",
   "model_name": "CADD v1.7",
   "source": "https://github.com/kircherlab/CADD-scripts",
   "license": "NOT_VERIFIED",

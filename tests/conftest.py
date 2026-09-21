@@ -19,9 +19,11 @@ from pathlib import Path
 
 import pytest
 
-SRC = Path(__file__).resolve().parent.parent / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SRC = REPO_ROOT / "src"
+for import_root in (REPO_ROOT, SRC):
+    if str(import_root) not in sys.path:
+        sys.path.insert(0, str(import_root))
 
 COST_ACK_ENV = "EVOVARIANT_TR_PAID_COMPUTE_ACK"
 COST_ACK_VALUE = "I_ACCEPT_COSTS"

@@ -1,6 +1,6 @@
 {
   "model_id": "gpn",
-  "status": "INFEASIBLE",
+  "status": "DEFERRED_BY_COMPUTE",
   "model_name": "GPN-Star hg38 V100 200M",
   "source": "https://huggingface.co/songlab/gpn-star-hg38-v100-200m",
   "license": "MIT",

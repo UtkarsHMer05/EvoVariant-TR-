@@ -252,10 +252,11 @@ chromosome-prefix failures are preserved alongside it.
 
 Paid execution requires the explicit acknowledgement
 `EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS` and the project-specific approval
-gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current approval is
-exhausted for the tiny pilot family; do not start a full benchmark, training,
-HPO, fine-tuning, or locked-test run while the Phase 3 discrepancy and
-multi-model inclusion gates remain unresolved.
+gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current bounded
+approval covers the completed Phase 2/4 pilot family and the two Phase 5 smoke
+tests only; it does not authorize a full benchmark, training, HPO, fine-tuning,
+or locked-test run while the Phase 3 external gates and raw-score multi-model
+protocol remain unresolved.
 
 ## Phase status
 
@@ -265,10 +266,11 @@ The dependency-ordered phase decisions are maintained in
 - Phases 0 and 1 are complete;
 - Phase 2 and Phase 4 pass their engineering gates with the corrected remote
   Evo2 miss/hit evidence;
-- Phase 3 is reopened because its 330-ID and 78-record/class-count discrepancy
-  is material to downstream denominators;
-- Phase 5 has audited all seven candidates but remains blocked for multi-model
-  inclusion because only Evo2 has verified raw-SNV parity and smoke evidence;
+- Phase 3 has a complete local integrity audit, but remains blocked because the
+  target ID/source set and frozen GRCh38 FASTA/index are unavailable;
+- Phase 5 has two additional real checkpoint smoke tracks (`SUBSET_ONLY` for
+  Nucleotide Transformer and Caduceus), while only Evo2 is included for the
+  frozen raw-SNV score contract;
 - Phases 6–15 have explicit blocked status artifacts and no scientific metrics;
 - Phase 16's frontend/build/browser engineering gate passes, but its scientific
   result dependency is absent;

@@ -1,17 +1,17 @@
 # Phase Ledger — EvoVariant-TR ML Extension
 
-Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
+Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | SUBSET_ONLY
 
 | Phase | Title | Status | Evidence |
 |---:|---|---|---|
 | 0 | Diagnostic snapshot | PASS | `docs/agent/BASELINE_AUDIT.md` (2026-09-21; no scientific/code repair) |
 | 1 | Control plane + ML protocol | PASS | `research/ml_extension/`, control-plane CLI, and contract tests |
 | 2 | Canonical scoring repair | PASS | Local repair plus real Evo2 7B H100 raw-SNV pilot; corrected `10` to `chr10`, exact 8192-bp context, forward/reverse raw scores, provenance, and HTTP 200 evidence in `artifacts/modal/phase2_phase4_pilot_20260921_success.json`. |
-| 3 | ML dataset + locked splits | BLOCKED | Structural current-cohort invariants pass, but the 330-ID / 78-final-record discrepancy is material to denominators and class counts; impact review is reopened in `artifacts/phase3_discrepancy_impact_20260921.json`. |
+| 3 | ML dataset + locked splits | BLOCKED | Complete source/ID/temporal/leakage/determinism audit in `artifacts/phase3_integrity_audit_20260921.json` and concise diagnostic in `artifacts/phase3_integrity_diagnostic_20260921.json`; all local gates PASS, but target IDs/source rows are unavailable and the frozen GRCh38 FASTA/index is absent. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
-| 5 | Model registry + adapters | DEFERRED | `artifacts/model_audit/phase5_multi_model_deferral_20260921.json`; Evo2 passed the real smoke, while six candidates are rigorously deferred/infeasible for contract, asset, license, applicability, or bounded-compute reasons. |
-| 6 | Zero-shot multi-model benchmark | BLOCKED | `research/runs/phase6_zs_status.json`; Phase 3 QA discrepancy remains material, the Phase 5 multi-model track is deferred with only Evo2 verified, full-cohort authorization/batch-parity evidence is absent, and prelaunch cost scenarios are recorded in `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`. |
-| 7 | Embedding/representation extraction | BLOCKED | `df7a340`, `2c9b3ca`, `696fcd6`, `89563b2`; `research/runs/phase7_rep_status.json`; fixed Evo2 embedding contract, hash-verified feature-store adapter, and fail-closed model readiness are source-level only, with no remote feature smoke/cache and no Phase 6 benchmark artifact. |
+| 5 | Model registry + adapters | PARTIAL / SUBSET_ONLY | `artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json`; Evo2 is the only raw-score `INCLUDED` model, while real H100 checkpoint/logit/embedding smokes make Nucleotide Transformer and Caduceus `SUBSET_ONLY`; GPN/CADD are compute-deferred and PhyloP/AlphaMissense compatibility-deferred. |
+| 6 | Zero-shot multi-model benchmark | BLOCKED | `artifacts/phase5_checkpoint_20260921.json`; Phase 3 external gates remain blocked, only Evo2 has a frozen raw-score contract, full-cohort authorization/batch-parity evidence is absent, and prelaunch cost scenarios are recorded in `artifacts/modal/phase6_preflight_cost_estimate_20260921.json`. |
+| 7 | Embedding/representation extraction | BLOCKED | `df7a340`, `2c9b3ca`, `696fcd6`, `89563b2`; `research/runs/phase7_rep_status.json`; the two Phase 5 subset models have smoke-only embeddings, while no cohort feature cache or Phase 6 benchmark artifact is authorized. |
 | 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
 | 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
 | 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
@@ -24,6 +24,26 @@ Status: PENDING | IN_PROGRESS | PASS | BLOCKED | FAILED | DEFERRED
 | 17 | Figures/tables/report artifacts | BLOCKED | `14d9593`; all 19 figure families and 12 tables have registry contracts plus deterministic bundle rendering, but `research/runs/phase17_fig_status.json` is `BLOCKED` with zero eligible completed result artifacts and `research/figures/bundle_manifest.json` has zero outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED | Fresh clone of `739310d` + `make bootstrap`, `npm ci` (zero vulnerabilities), `make validate`, `make web-check`, protocol/schema/registry checks, explicit tiers, and four-test `make web-e2e` PASS; gated Modal evidence is absent and the registry figure manifest is blocked on missing scientific outputs. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; dependent scientific phases, paid compute, figures, and registered result artifacts remain unresolved. |
+
+## Priority continuation follow-up — 2026-09-21
+
+- Phase 3 was audited using `make phase3-audit`, including both manifest-verified ClinVar archives,
+  all frozen filters, exact normalized IDs, date/review gates, t0/t1 reconciliation, split schema
+  and hashes, overlap/leakage invariants, and two fresh deterministic rebuilds. The audit returned
+  local PASS for every check and overall `BLOCKED` only for
+  `BLOCKED_MISSING_TARGET_ID_SET` and `NOT_RUN` independent FASTA validation.
+- The current cohort is recorded without target forcing: train `191,957`, validation `48,035`,
+  locked test `946`, development positive `46,429`, development negative `193,563`, train genes
+  `9,682`, validation genes `57`, and locked-test classes BLB `536` / PLP `410`. Hashes and exact
+  impact deltas are in the two Phase 3 artifacts above.
+- Phase 5 used the existing bounded approval and ran two additional official checkpoints on H100.
+  Nucleotide Transformer v2 and Caduceus-Ph both returned finite logits and hidden states and
+  finite synthetic ref/alt embedding deltas. These are `SUBSET_ONLY` plumbing/representation
+  tracks; no score was added to the raw-score benchmark and no cohort model was trained.
+- The required pre-large-run checkpoint is `artifacts/phase5_checkpoint_20260921.json`.
+  Phase 6, Phase 7 cohort extraction, Phase 10 training, HPO, and locked evaluation remain
+  explicitly not launched. The current workspace billing snapshot after the small smokes is
+  metered `$12.21122616` and billed `$0.00`; this is workspace-level only.
 
 For each PASS append:
 - commit,

@@ -1,5 +1,6 @@
 {
   "audit_date": "2026-09-21",
+  "superseded_by": "artifacts/model_audit/phase5_multi_model_smoke_resolution_20260921.json",
   "protocol_hash": "374bc2c59941d6001e41c478658ad65fa4e2ae0789829d2625e8801b00ad7c5c",
   "decision": "PHASE5_BLOCKED_AFTER_AUDIT",
   "reason": "Evo2 is included after a real raw-SNV smoke. No second candidate currently satisfies the frozen GRCh38 raw-variant parity and bounded-compute gates.",

@@ -52,6 +52,7 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
         "locked_test_ids": derived / "locked_test_ids.json",
         "phase3_summary": derived / "phase3_summary.json",
         "integrity_audit": audit_path,
+        "reference_manifest": repo_root / "data/manifests/grch38.json",
         "reference_validation": reference_path,
     }
     missing = [str(path) for path in source_paths.values() if not path.is_file()]
@@ -132,6 +133,10 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
             "path": "artifacts/reference/grch38_validation_20260921.json",
             "sha256": source_hashes["reference_validation"],
         },
+        "reference_source_manifest": {
+            "path": "data/manifests/grch38.json",
+            "sha256": source_hashes["reference_manifest"],
+        },
         "historical_target_for_comparison_only": {
             "t0_unique_vus": 1403225,
             "final_temporal_n": 1024,
@@ -199,6 +204,10 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
             "reference_validation": {
                 "path": "artifacts/reference/grch38_validation_20260921.json",
                 "sha256": source_hashes["reference_validation"],
+            },
+            "reference_source_manifest": {
+                "path": "data/manifests/grch38.json",
+                "sha256": source_hashes["reference_manifest"],
             },
         },
         "locked_test_record_set_sha256": locked_manifest["record_set_sha256"],

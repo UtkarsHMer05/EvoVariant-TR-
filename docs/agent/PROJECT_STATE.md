@@ -20,8 +20,8 @@ deferred or infeasible with source-backed reasons. Phase 10 adaptation is formal
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `df7a340` (gated Evo2 embedding contract; current Python and web
-gates pass).
+Latest validated source baseline: `b0c8ce4` (gated adaptation deferral control surface; current
+Python and web gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
 Phase 2 implementation commits: `45c2a47`, `3f385fe`.
@@ -169,6 +169,9 @@ Active branch/worktree: `research/evovariant-tr` at
   official training runner/local CUDA runtime, and the current approval's explicit exclusion of
   training. `make finetune-smoke` now writes a no-metrics `DEFERRED` status artifact; no training
   or PEFT experiment was run.
+- After the deferral control-surface change, `make validate` passed 639 tests with 33 deselected,
+  strict mypy over 51 source files, Ruff, secret scan, and 95.30% coverage. The new CLI status
+  option is covered by `tests/unit/test_cli.py`.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

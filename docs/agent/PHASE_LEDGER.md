@@ -74,6 +74,8 @@ gate state.
   as an unqualified block: the decision record cites measured H100 inference memory/runtime,
   the low-confidence cohort cost preflight, the absent local/checked-in training path, and the
   current approval's training exclusion. This is not a training or PEFT result.
+- The post-deferral control-surface validation passed `make validate` with 639 tests, 33
+  deselected, strict mypy over 51 source files, Ruff, secret scan, and 95.30% coverage.
 
 ## Phase 0 completion record — 2026-09-21
 

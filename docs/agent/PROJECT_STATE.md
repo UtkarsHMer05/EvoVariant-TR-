@@ -137,6 +137,12 @@ Active branch/worktree: `research/evovariant-tr` at
   non-positive variant/shard/batch/rank sizes before work is queued. This closes a resume-progress
   accounting bug in the free local contract; it does not establish remote batch parity or authorize
   a paid run.
+- The explicitly unlocked local recovery simulation
+  `EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS ./.venv/bin/pytest --run-modal -m modal tests/modal -rs`
+  passed 9 tests with one documented placeholder skip. It exercises deterministic sharding,
+  persisted completed/failed shard state, restart progress, retry classification, and shard-result
+  round trips without importing a GPU model or invoking Modal. This strengthens the local recovery
+  contract only; the real remote batch kill/restart gate remains blocked.
 
 The dated records below are retained as historical evidence. The latest `Current state`,
 `Current authoritative execution update`, and follow-up sections at the top of this file override

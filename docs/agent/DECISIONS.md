@@ -1200,6 +1200,41 @@ protocol/control-plane/schema/model-registry/registry checks, `make web-check`, 
 clone's `make figures` and `make release-check` correctly remained blocked on missing scientific
 artifacts.
 
+## D-049 — Record local batch recovery evidence without promoting it to remote evidence
+
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+Phase 15 requires kill/restart recovery, but the current Modal approval scope excludes remote
+batch parity and recovery. The repository already contains a gated test suite that simulates
+persisted shard completion and failure, then reconstructs resumable progress without loading a
+GPU model.
+
+Decision:
+Run the explicitly acknowledged modal-tier test command as a no-GPU local recovery simulation and
+record its result separately from remote evidence. Preserve the real remote batch endpoint as
+undeployed until a new approval authorizes batch parity, partial-failure behavior, and kill/restart
+recovery.
+
+Alternatives:
+Treat the local simulation as a remote recovery PASS, run the undeployed endpoint under the
+single-variant pilot approval, or omit the recovery evidence entirely. These were rejected because
+they would either misstate the execution environment, exceed the approval scope, or discard useful
+local contract evidence.
+
+Consequences:
+The local Phase 15 recovery contract is more strongly evidenced, while the overall phase remains
+`BLOCKED` on remote batch parity, full-cohort authorization, and remote recovery. No GPU model,
+Modal function, or scientific result artifact was created by this test.
+
+Validation:
+`EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS ./.venv/bin/pytest --run-modal -m modal
+tests/modal -rs` passed 9 tests with one documented placeholder skip in 1.44 seconds. The suite
+covered deterministic shards, persisted completed/failed states, progress reconstruction, retry
+classification, and shard serialization.
+
 ## Template for new decisions
 
 ### D-XXX — Title

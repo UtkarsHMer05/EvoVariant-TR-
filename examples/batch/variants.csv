@@ -1,0 +1,4 @@
+assembly,chromosome,position_1based,reference,alternate
+GRCh38,chr1,100065200,C,T
+GRCh38,chr2,20000001,A,G
+GRCh38,chr17,43044295,C,T

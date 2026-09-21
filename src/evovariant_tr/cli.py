@@ -224,6 +224,33 @@ def cmd_render_figure_bundle(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_render_preliminary_figure_bundle(args: argparse.Namespace) -> int:
+    """Render only the available, explicitly preliminary registry sources."""
+    from evovariant_tr.figure_artifacts import render_preliminary_figure_bundle
+
+    manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+    output = render_preliminary_figure_bundle(
+        manifest,
+        repo_root=args.repo_root,
+        output_dir=args.output_dir,
+    )
+    bundle = json.loads(output.read_text(encoding="utf-8"))
+    print(
+        json.dumps(
+            {
+                "status": bundle["status"],
+                "artifact": str(output),
+                "output_count": len(bundle["outputs"]),
+                "promotable": bundle["promotable"],
+                "blockers": bundle["blockers"],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
 def cmd_deferred_phase(args: argparse.Namespace) -> int:
     """Record a truthful no-result status for a gated later phase."""
     from evovariant_tr.experiment_control import (
@@ -390,6 +417,17 @@ def build_parser() -> argparse.ArgumentParser:
         "--output-dir", type=Path, default=Path("research/figures")
     )
     figure_bundle.set_defaults(func=cmd_render_figure_bundle)
+
+    preliminary_bundle = subparsers.add_parser(
+        "render-preliminary-figure-bundle",
+        help="Render only available registry sources as a non-promotable preliminary bundle",
+    )
+    preliminary_bundle.add_argument("--manifest", type=Path, required=True)
+    preliminary_bundle.add_argument("--repo-root", type=Path, default=Path("."))
+    preliminary_bundle.add_argument(
+        "--output-dir", type=Path, default=Path("research/figures/preliminary")
+    )
+    preliminary_bundle.set_defaults(func=cmd_render_preliminary_figure_bundle)
 
     deferred = subparsers.add_parser(
         "phase-status",

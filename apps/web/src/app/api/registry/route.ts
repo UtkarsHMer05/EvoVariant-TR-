@@ -94,11 +94,12 @@ export async function GET() {
   try {
     const runsDirectory = await findRunsDirectory();
     if (!runsDirectory) {
-      return Response.json({
-        status: "BLOCKED",
-        registered_run_count: 0,
-        completed_scientific_run_count: 0,
-        artifact_count: 0,
+    return Response.json({
+      status: "BLOCKED",
+      registered_run_count: 0,
+      completed_scientific_run_count: 0,
+      final_scientific_run_count: 0,
+      artifact_count: 0,
         blockers: ["registry run directory is unavailable"],
         runs: [],
       });
@@ -121,17 +122,28 @@ export async function GET() {
         run.status === "COMPLETED" &&
         SCIENTIFIC_STAGES.has(run.evidence_stage),
     ).length;
+    const finalScientificRunCount = runs.filter(
+      (run) => run.status === "COMPLETED" && run.evidence_stage === "FINAL",
+    ).length;
     const artifactCount = runs.reduce((total, run) => total + run.artifact_count, 0);
-    const ready = completedScientificRunCount > 0;
+    const status = finalScientificRunCount > 0
+      ? "READY"
+      : completedScientificRunCount > 0
+        ? "PARTIAL"
+        : "BLOCKED";
 
     return Response.json({
-      status: ready ? "READY" : "BLOCKED",
+      status,
       registered_run_count: runs.length,
       completed_scientific_run_count: completedScientificRunCount,
+      final_scientific_run_count: finalScientificRunCount,
       artifact_count: artifactCount,
-      blockers: ready
-        ? []
-        : ["no completed scientific run records are registered"],
+      blockers:
+        status === "READY"
+          ? []
+          : status === "PARTIAL"
+            ? ["registered scientific runs are PRELIMINARY; no FINAL result is promoted"]
+            : ["no completed scientific run records are registered"],
       runs,
     });
   } catch (error) {

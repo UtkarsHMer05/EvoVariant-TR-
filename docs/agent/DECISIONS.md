@@ -2289,6 +2289,85 @@ and `locked_test_evaluated=false`. Preliminary validation ECE was `0.0843577465`
 blocked without explicit input paths, `make registry-verify` passes with nine eligible
 preliminary runs, and no remote or paid compute was used.
 
+## D-079 — Add a label-free local Phase 15 batch contract without widening compute scope
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+Phase 15 had low-level shard primitives and a bounded single-variant Modal surface, but it did
+not provide a reviewable input-to-plan boundary or a deterministic local recovery/export path.
+The current `$5.00` approval is exhausted and explicitly excludes a full cohort, remote batch
+parity, and kill/restart smoke. The repository still needs useful engineering progress without
+silently converting a plan into a scientific run.
+
+Decision:
+Implement `src/evovariant_tr/batch_pipeline.py` as a free local contract. Accept only label-free
+GRCh38 biallelic SNVs from canonical CSV or VCF/VCF.GZ, normalize identities with the shared
+variant schema, hash the input, and persist an immutable model/checkpoint/revision/context/
+orientation plan before scoring. Use an injected scorer for local contract tests only. Persist
+atomic content-hashed shard envelopes with exact ordered IDs, failure taxonomy, explicit retry,
+and deterministic plan-order export. Reject outcome/label fields, tampered or stray shards,
+duplicate IDs, and malformed result shapes. Expose planning through `scripts/plan_batch.py` and
+`make batch-run`; planning must report `PLANNED` and must not invoke Modal or create scientific
+outputs.
+
+Alternatives:
+Wire the Make target directly to Modal, infer a scorer from the configured endpoint, accept
+annotated/outcome-bearing input, or keep the status-only surface. These were rejected because
+they would spend outside the approval, create an unreviewable label boundary, or leave the
+required Phase 15 recovery contract untestable.
+
+Consequences:
+Phase 15 is `BLOCKED / LOCAL CONTRACT READY`, not PASS. The tracked three-row sample plans to
+one shard with input SHA-256
+`d0778b9ad572f7aa6d9b48f0d6675b1e8bd29180826ba0834aa64eff799f7378`; no remote call, model
+download, label transfer, or paid workload occurs. Remote parity, kill/restart recovery,
+full-cohort execution, and scientific registration still require a new exact-scope approval.
+
+Validation:
+Implementation commit `844cfb8`; targeted batch tests pass, `git diff --check` passes before
+documentation changes, and `make batch-run BATCH_INPUT=examples/batch/variants.csv
+BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7` reports `PLANNED` with three
+variants and one shard. The full `make validate` rerun is recorded in the current project state.
+
+## D-080 — Separate preliminary figure output from the final Phase 17 bundle
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The registry now contains nine hash-verified development-subset runs and real source artifacts
+for 9/19 figure families and 9/12 tables. The final renderer correctly refuses to produce a
+scientific bundle while ten required source families are absent, but the workbench and
+engineering reviewers still need a deterministic way to inspect available artifact wiring.
+
+Decision:
+Add a separate `render_preliminary_figure_bundle` surface and `make figures` output under
+`research/figures/preliminary/`. It may render only available registered sources and must mark
+the manifest `status: PARTIAL`, `evidence_stage: PRELIMINARY`, and `promotable: false`. Keep the
+existing final renderer fail-closed with `status: BLOCKED` and zero scientific outputs until all
+required source families are present. Update the registry API and workbench to report `PARTIAL`
+when completed preliminary runs exist but no `FINAL` run is registered.
+
+Alternatives:
+Treat preliminary outputs as final, leave the UI in a misleading `READY` state, or fill missing
+families with placeholders/inferred values. These were rejected because the outputs are
+development-subset diagnostics and the master prompt requires source-complete, registry-backed
+final artifacts.
+
+Consequences:
+The preliminary bundle contains 9 figures, 9 tables, and 18 hash-addressed output files, with
+manifest SHA-256 `026a82c02e1151d9bade98744bbd07c11d4c1e2ca7630b4b8ec3fda744cc9d40`. It is useful
+for engineering review but cannot satisfy Phase 17, Phase 18, or Phase 19. The final bundle
+remains blocked, the API/UI remains truthful, and no scientific claim or locked-test result is
+promoted.
+
+Validation:
+Implementation commit `844cfb8`; `make figures` produced the blocked final manifest and the
+separate non-promotable preliminary manifest; `make registry-verify`, `make ui-check`,
+`make web-check`, and `make web-e2e` pass. No remote or paid compute was used.
+
 ## Template for new decisions
 
 ### D-XXX — Title

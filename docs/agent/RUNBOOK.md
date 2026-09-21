@@ -80,6 +80,29 @@ boundary. Do not pass a locked split until the model/configuration is frozen und
 The runner writes an execution plan, content-hashed shard files, raw JSONL output, and a summary;
 inspect and register those artifacts only after their hashes and scientific gates pass.
 
+## Phase 15 local batch planning and recovery
+
+The local batch contract accepts only label-free GRCh38 biallelic SNVs from CSV or VCF/VCF.GZ.
+Plan the input before attaching any scorer or requesting remote work:
+
+```bash
+make batch-run \
+  BATCH_INPUT=examples/batch/variants.csv \
+  BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7
+```
+
+This writes a deterministic `batch_plan.json` and `planning_summary.json` under
+`research/runs/phase15_batch_plan/` and reports `PLANNED`; it does not invoke Modal, download a
+model, send labels, or create scientific outputs. `src/evovariant_tr/batch_pipeline.py` exposes
+the next local boundary through an injected scorer: `execute_batch` writes atomic,
+hash-addressed shard envelopes, reuses only exact valid completed shards, persists failure
+taxonomy, and retries failed shards only when `retry_failed=True`. `export_batch_results` checks
+the plan order, payload hash, exact shard IDs, label-free row shape, and rejects stray or tampered
+shards before writing JSONL.
+
+Remote batch parity, kill/restart recovery, full-cohort execution, and any paid compute remain
+blocked until a new exact-scope approval and a fresh remote smoke satisfy the master prompt.
+
 ## Local downstream training and HPO
 
 Once a verified Phase 7 development feature artifact exists, run CPU-only downstream work with

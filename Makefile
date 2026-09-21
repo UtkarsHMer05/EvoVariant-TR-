@@ -43,6 +43,10 @@ LOCKED_CONFIG ?=
 LOCKED_CONFIG_HASH ?=
 LOCKED_MODEL ?=
 LOCKED_OUTPUT ?= research/runs/phase14_locked_evaluation.json
+BATCH_INPUT ?=
+BATCH_FORMAT ?=
+BATCH_PLAN_DIR ?= research/runs/phase15_batch_plan
+BATCH_MODEL_REVISION ?=
 
 # ---------------------------------------------------------------------------
 # Help
@@ -315,10 +319,18 @@ robustness-ablation: ## Record/run the Phase 13 ablation and robustness gate
 .PHONY: batch-run
 batch-run: ## Record/run the Phase 15 batch pipeline gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 15 --family BATCH \
-		--command-name batch-run --output research/runs/phase15_batch_status.json \
-		--blocker "Evo2 is verified for single-variant scoring but full-cohort batch parity is unverified" \
-		--blocker "full-cohort batch authorization and remote batch smoke are absent"
+	@if [ -n "$(BATCH_INPUT)" ]; then \
+		test -n "$(BATCH_MODEL_REVISION)" || { echo "ERROR: set BATCH_MODEL_REVISION to the pinned model revision" >&2; exit 2; }; \
+		format_args=""; \
+		if [ -n "$(BATCH_FORMAT)" ]; then format_args="--format $(BATCH_FORMAT)"; fi; \
+		$(PYTHON) scripts/plan_batch.py --input "$(BATCH_INPUT)" $$format_args \
+			--output-dir "$(BATCH_PLAN_DIR)" --model-revision "$(BATCH_MODEL_REVISION)"; \
+	else \
+		$(PYTHON) -m evovariant_tr.cli phase-status --phase 15 --family BATCH \
+			--command-name batch-run --output research/runs/phase15_batch_status.json \
+			--blocker "Evo2 is verified for single-variant scoring but full-cohort batch parity is unverified" \
+			--blocker "full-cohort batch authorization and remote batch smoke are absent"; \
+	fi
 
 .PHONY: web-check
 web-check: ## Run the frontend lint/typecheck/build gate
@@ -341,6 +353,9 @@ figures: ## Record/run the Phase 17 registry-driven figures gate
 		--registry $(REGISTRY) --repo-root . --output research/runs/phase17_fig_status.json
 	$(PYTHON) -m evovariant_tr.cli render-figure-bundle \
 		--manifest research/runs/phase17_fig_status.json --repo-root . --output-dir research/figures
+	$(PYTHON) -m evovariant_tr.cli render-preliminary-figure-bundle \
+		--manifest research/runs/phase17_fig_status.json --repo-root . \
+		--output-dir research/figures/preliminary
 
 .PHONY: release-check
 release-check: ## Record/run the Phase 19 final release gate

@@ -729,8 +729,8 @@ def _output_path(root: Path, relative: str) -> Path:
     return target
 
 
-def _prior_output_paths(root: Path) -> list[str]:
-    manifest_path = root / "bundle_manifest.json"
+def _prior_output_paths(root: Path, manifest_name: str = "bundle_manifest.json") -> list[str]:
+    manifest_path = root / manifest_name
     if not manifest_path.is_file():
         return []
     try:
@@ -939,6 +939,134 @@ def render_figure_bundle(
         "scientific_outputs_included": True,
     }
     target = root / "bundle_manifest.json"
+    temporary = target.with_suffix(target.suffix + ".tmp")
+    temporary.write_bytes(_stable_json_bytes(bundle))
+    temporary.replace(target)
+    return target
+
+
+def render_preliminary_figure_bundle(
+    manifest: dict[str, Any],
+    *,
+    repo_root: str | Path,
+    output_dir: str | Path,
+) -> Path:
+    """Render only available registry sources as an explicitly preliminary bundle.
+
+    The complete Phase 17 renderer remains fail-closed. This companion export
+    is useful for reviewing real development-subset artifacts while making it
+    impossible to confuse them with a complete or citable final bundle.
+    """
+    root = Path(output_dir)
+    root.mkdir(parents=True, exist_ok=True)
+    manifest_name = "preliminary_bundle_manifest.json"
+    previous_paths = _prior_output_paths(root, manifest_name)
+    manifest_hash = hashlib.sha256(_stable_json_bytes(manifest)).hexdigest()
+    available_figures = list(manifest.get("available_figures", []))
+    available_tables = list(manifest.get("available_tables", []))
+    blockers = [str(blocker) for blocker in manifest.get("blockers", [])]
+    if not available_figures and not available_tables:
+        _remove_previous_outputs(root, previous_paths)
+        bundle: dict[str, Any] = {
+            "schema_version": "1.0-preliminary",
+            "status": "BLOCKED",
+            "evidence_stage": "PRELIMINARY",
+            "promotable": False,
+            "source_manifest_sha256": manifest_hash,
+            "available_figure_count": 0,
+            "available_table_count": 0,
+            "outputs": [],
+            "blockers": sorted(set(blockers or ["no valid preliminary sources available"])),
+            "scientific_outputs_included": False,
+        }
+        target = root / manifest_name
+        temporary = target.with_suffix(target.suffix + ".tmp")
+        temporary.write_bytes(_stable_json_bytes(bundle))
+        temporary.replace(target)
+        return target
+
+    repo = Path(repo_root).resolve()
+    generated: list[tuple[str, bytes, str, str]] = []
+    try:
+        for entry in available_figures:
+            figure_spec = next(
+                figure for figure in REQUIRED_FIGURES if figure.figure_id == entry["figure_id"]
+            )
+            generated.append(
+                (
+                    f"bundle/figures/{figure_spec.figure_id}.svg",
+                    _render_svg(
+                        figure_spec,
+                        _verified_rows_for_entry(entry, repo, figure_spec.required_fields),
+                    ),
+                    "figure",
+                    figure_spec.figure_id,
+                )
+            )
+        for entry in available_tables:
+            table_spec = next(
+                table for table in REQUIRED_TABLES if table.table_id == entry["table_id"]
+            )
+            generated.append(
+                (
+                    f"bundle/tables/{table_spec.table_id}.json",
+                    _stable_json_bytes(
+                        {
+                            "table_id": table_spec.table_id,
+                            "title": table_spec.title,
+                            "rows": _verified_rows_for_entry(
+                                entry, repo, table_spec.required_fields
+                            ),
+                        }
+                    ),
+                    "table",
+                    table_spec.table_id,
+                )
+            )
+    except (KeyError, RegistryError, StopIteration, TypeError, ValueError) as exc:
+        _remove_previous_outputs(root, previous_paths)
+        blockers.append(f"preliminary renderer refused source manifest: {exc}")
+        generated = []
+
+    if not generated:
+        bundle = {
+            "schema_version": "1.0-preliminary",
+            "status": "BLOCKED",
+            "evidence_stage": "PRELIMINARY",
+            "promotable": False,
+            "source_manifest_sha256": manifest_hash,
+            "available_figure_count": len(available_figures),
+            "available_table_count": len(available_tables),
+            "outputs": [],
+            "blockers": sorted(set(blockers)),
+            "scientific_outputs_included": False,
+        }
+        target = root / manifest_name
+        temporary = target.with_suffix(target.suffix + ".tmp")
+        temporary.write_bytes(_stable_json_bytes(bundle))
+        temporary.replace(target)
+        return target
+
+    _remove_previous_outputs(root, previous_paths)
+    output_records: list[dict[str, str]] = []
+    for relative, content, kind, identifier in generated:
+        target = _output_path(root, relative)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(content)
+        output_records.append(_output_record(root, relative, kind, identifier))
+    bundle = {
+        "schema_version": "1.0-preliminary",
+        "status": "PARTIAL",
+        "evidence_stage": "PRELIMINARY",
+        "promotable": False,
+        "source_manifest_sha256": manifest_hash,
+        "available_figure_count": len(available_figures),
+        "available_table_count": len(available_tables),
+        "outputs": output_records,
+        "blockers": sorted(set(blockers)),
+        "scientific_outputs_included": True,
+    }
+    target = root / manifest_name
     temporary = target.with_suffix(target.suffix + ".tmp")
     temporary.write_bytes(_stable_json_bytes(bundle))
     temporary.replace(target)

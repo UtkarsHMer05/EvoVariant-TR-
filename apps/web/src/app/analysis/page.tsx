@@ -70,15 +70,16 @@ type RegistryRunSummary = {
 };
 
 type RegistrySummary = {
-  status: "READY" | "BLOCKED";
+  status: "READY" | "PARTIAL" | "BLOCKED";
   registered_run_count: number;
   completed_scientific_run_count: number;
+  final_scientific_run_count: number;
   artifact_count: number;
   blockers: string[];
   runs: RegistryRunSummary[];
 };
 
-type WorkbenchStatus = "READY" | "BLOCKED" | "PENDING";
+type WorkbenchStatus = "READY" | "PARTIAL" | "BLOCKED" | "PENDING";
 
 type ResearchArea = {
   id: string;
@@ -213,6 +214,7 @@ const RESEARCH_AREAS: ResearchArea[] = [
 
 function statusClasses(status: WorkbenchStatus): string {
   if (status === "READY") return "bg-[#e8f2e8] text-[#3c4f3d]";
+  if (status === "PARTIAL") return "bg-[#fff5d8] text-[#8a6416]";
   if (status === "BLOCKED") return "bg-[#fff0e7] text-[#a55424]";
   return "bg-[#eef0ef] text-[#536054]";
 }
@@ -337,10 +339,11 @@ function RegistryPanel({
 
         {!loading && !error && summary && (
           <>
-            <dl className="grid gap-4 sm:grid-cols-3">
+            <dl className="grid gap-4 sm:grid-cols-4">
               {[
                 ["Registered runs", summary.registered_run_count],
                 ["Completed scientific runs", summary.completed_scientific_run_count],
+                ["Final scientific runs", summary.final_scientific_run_count],
                 ["Registered artifacts", summary.artifact_count],
               ].map(([label, value]) => (
                 <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3">
@@ -533,8 +536,8 @@ export default function VariantAnalysisPage() {
     if (area.id !== "registry" || !registryReady) return area;
     return {
       ...area,
-      status: "READY" as const,
-      description: "Registered scientific runs and artifact-count metadata.",
+      status: registry?.status ?? ("BLOCKED" as const),
+      description: "Registered scientific runs and artifact-count metadata; final promotion remains explicit.",
       artifact: "Verified experiment run records",
     };
   });
@@ -611,10 +614,10 @@ export default function VariantAnalysisPage() {
                 ["Compute pilot", "BLOCKED", "No remote invocation"],
                 [
                   "Result registry",
-                  registryReady ? "READY" : "BLOCKED",
+                  registry?.status ?? "BLOCKED",
                   registryReady
-                    ? `${registry?.completed_scientific_run_count} completed scientific run`
-                    : "No promoted outputs",
+                    ? `${registry?.completed_scientific_run_count} completed; ${registry?.final_scientific_run_count} final`
+                    : "No completed outputs",
                 ],
               ].map(([label, status, detail]) => (
                 <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-white px-4 py-4 shadow-sm">

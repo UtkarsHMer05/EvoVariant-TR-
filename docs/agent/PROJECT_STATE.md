@@ -4,17 +4,24 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 16/17 PRELIMINARY REGISTRY CHECKPOINT / PARTIAL`
+Current phase: `PHASE 15/16/17 LOCAL CONTINUATION / PARTIAL`
 (Phases 0-5 required gates and the separately approved Phase6A qualification are complete. A
 fresh exact-scope `$5.00` development approval was used for a bounded Evo2 TRAIN/VALIDATION
 prefix and the dependent CPU-only development stages; their verified PRELIMINARY summaries are
-now connected to the experiment registry and read-only workbench.)
+now connected to the experiment registry and read-only workbench. The local Phase 15 batch
+planning/recovery contract and a separate non-promotable Phase 17 preliminary bundle are now
+implemented and validated without new paid compute.)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
 frontend build gates. Nine completed `PRELIMINARY` registry runs now expose only hash-verified
 development-subset summaries and partial figure sources; no result is promoted to `FINAL`. The
+local batch surface now validates label-free CSV/VCF input, persists a hashed immutable plan,
+supports injected-scoring shard recovery, and exports only hash-verified plan-order rows; it
+does not invoke Modal or create scientific outputs during planning. The final figure renderer
+still emits no outputs while ten source families are missing, while the separate preliminary
+renderer emits 18 explicitly non-promotable development-stage files. The
 approved Modal run produced 2,848 verified Evo2 development rows
 (2,276 TRAIN, 572 VALIDATION) from the 239,992-row development cohort and stopped at a
 `$4.698582` wall-time estimate before the `$5.00` hard cap. The full development cohort,
@@ -60,9 +67,10 @@ Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
 The frontend dependency/lint hardening was validated and committed in `739310d`. Continuation
 implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, `1423577`, `7fd912f`, `c53dfdb`,
-`69a2e4f`, `0f1c5a4`, and `c0ad1ad`; continuation documentation/status commits are `e39d3a3`, `b49b96a`,
-`e115d23`, `8264c70`, and `9f4a07c`. The current development runner and local feature/ablation
-adapters are covered by the latest validation pass recorded below.
+`69a2e4f`, `0f1c5a4`, `c0ad1ad`, and `844cfb8`; continuation documentation/status commits are
+`e39d3a3`, `b49b96a`, `e115d23`, `8264c70`, and `9f4a07c`. The current development runner, local
+feature/ablation adapters, batch contract, preliminary renderer, and workbench status surface
+are covered by the latest validation pass recorded below.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -945,4 +953,40 @@ figures from the single pilot record.
   Phase 13 calibration-effect summary. `make registry-verify` still passes; the current registry
   count is nine eligible completed preliminary runs. The Phase 17 source bundle remains blocked
   because the missing full-benchmark/context/embedding/fine-tuning/subgroup/loss/temporal/cost
-  families were not invented.
+families were not invented.
+
+## Current Phase 15/16/17 local continuation — 2026-09-21
+
+- Implementation commit `844cfb8` (`feat: add local batch and preliminary artifact surfaces`)
+  adds a label-free Phase 15 batch contract, a deterministic planning CLI, a tracked three-row
+  sample input, a fail-closed preliminary figure renderer, and truthful `PARTIAL` registry/UI
+  status when completed runs exist without a `FINAL` run. The pre-existing untracked `.agents/`
+  directory remains outside the project change set.
+- The Phase 15 planner was verified with
+  `make batch-run BATCH_INPUT=examples/batch/variants.csv
+  BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7`. It produced `PLANNED`, three
+  validated variants, one shard, and no scientific output. The input SHA-256 is
+  `d0778b9ad572f7aa6d9b48f0d6675b1e8bd29180826ba0834aa64eff799f7378`. The local executor uses
+  an injected scorer only, persists atomic content-hashed shard envelopes, reuses exact valid
+  completed shards, persists classified failures, and retries failed shards only explicitly.
+  Export now rejects corrupt, tampered, duplicate, label-bearing, out-of-order, or unexpected
+  shard files. No Modal endpoint, model download, labels, or paid workload was used.
+- `make figures` now keeps the final surface fail-closed: `research/figures/bundle_manifest.json`
+  remains `BLOCKED` with zero scientific outputs and the same ten missing source families. It
+  separately produces `research/figures/preliminary/preliminary_bundle_manifest.json` with
+  `status: PARTIAL`, `evidence_stage: PRELIMINARY`, `promotable: false`, 9 figures, 9 tables,
+  and 18 existing output files. Its SHA-256 is
+  `026a82c02e1151d9bade98744bbd07c11d4c1e2ca7630b4b8ec3fda744cc9d40`.
+- The read-only registry API and workbench report `PARTIAL`, with 9 completed scientific-stage
+  runs and 0 final runs. `make registry-verify`, `make ui-check`, `make web-check`, and
+  `make web-e2e` remain passing; the browser tier is 4 passed tests. The UI exposes metadata only
+  and does not promote preliminary metrics to final evidence.
+- The latest no-spend Python gate is `make validate`: 700 passed, 33 deselected, strict mypy and
+  Ruff/secret checks passed, with 95.01% coverage. The scientific tier remains 7 passed/1
+  skipped, and all existing protocol, schema, model-registry, registry, and figure checks remain
+  evidence-gated. `git diff --check` passed before the documentation update.
+- Phase 15 remains overall `BLOCKED` pending remote batch parity, kill/restart recovery evidence,
+  full-cohort authorization, and a new exact-scope approval. Phase 17 remains blocked for final
+  export, and Phases 14, 18, and 19 remain blocked by their documented locked-evaluation,
+  clean-room, and release dependencies. The exhausted `$5.00` approval is not widened by this
+  local continuation.

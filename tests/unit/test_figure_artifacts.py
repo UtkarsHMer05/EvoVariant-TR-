@@ -21,6 +21,7 @@ from evovariant_tr.figure_artifacts import (
     _validate_rows,
     build_registry_figure_manifest,
     render_figure_bundle,
+    render_preliminary_figure_bundle,
     write_figure_manifest,
 )
 from evovariant_tr.registry import Registry, RunStatus
@@ -205,6 +206,46 @@ def test_ready_bundle_regenerates_identically_and_cleans_listed_outputs(tmp_path
     assert "metrics" not in json.loads(
         (output_dir / "bundle" / "model_provenance.json").read_text(encoding="utf-8")
     )
+
+
+def test_preliminary_bundle_exports_available_sources_without_promotion(tmp_path: Path) -> None:
+    registry = _completed_fixture(tmp_path)
+    manifest = build_registry_figure_manifest(registry, repo_root=tmp_path)
+    partial = dict(manifest)
+    partial["available_figures"] = manifest["available_figures"][:1]
+    partial["available_tables"] = manifest["available_tables"][:1]
+    partial["blockers"] = ["remaining source families are unavailable"]
+    output_dir = tmp_path / "preliminary"
+
+    output = render_preliminary_figure_bundle(
+        partial,
+        repo_root=tmp_path,
+        output_dir=output_dir,
+    )
+    bundle = json.loads(output.read_text(encoding="utf-8"))
+    assert bundle["status"] == "PARTIAL"
+    assert bundle["evidence_stage"] == "PRELIMINARY"
+    assert bundle["promotable"] is False
+    assert bundle["scientific_outputs_included"] is True
+    assert len(bundle["outputs"]) == 2
+
+    empty = render_preliminary_figure_bundle(
+        {"available_figures": [], "available_tables": [], "blockers": ["none"]},
+        repo_root=tmp_path,
+        output_dir=tmp_path / "empty-preliminary",
+    )
+    empty_bundle = json.loads(empty.read_text(encoding="utf-8"))
+    assert empty_bundle["status"] == "BLOCKED"
+    assert empty_bundle["outputs"] == []
+
+    refused = render_preliminary_figure_bundle(
+        {"available_figures": [{"figure_id": "unknown"}], "available_tables": []},
+        repo_root=tmp_path,
+        output_dir=tmp_path / "refused-preliminary",
+    )
+    refused_bundle = json.loads(refused.read_text(encoding="utf-8"))
+    assert refused_bundle["status"] == "BLOCKED"
+    assert "refused source manifest" in " ".join(refused_bundle["blockers"])
 
 
 def test_tampered_registered_output_blocks_manifest(tmp_path: Path) -> None:

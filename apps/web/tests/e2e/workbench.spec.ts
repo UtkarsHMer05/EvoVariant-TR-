@@ -42,13 +42,14 @@ test.describe("research workbench", () => {
       completed_scientific_run_count: number;
       runs: unknown[];
     };
-    expect(payload.status).toBe("READY");
+    expect(payload.status).toBe("PARTIAL");
     expect(payload.registered_run_count).toBeGreaterThan(0);
     expect(payload.completed_scientific_run_count).toBeGreaterThan(0);
     expect(payload.runs.length).toBeGreaterThan(0);
 
     await page.getByRole("tab", { name: "Experiment Registry" }).click();
     await expect(page.getByText("Registered run metadata")).toBeVisible();
+    await expect(page.getByText("PARTIAL", { exact: true }).first()).toBeVisible();
     await expect(page.getByText("PRELIMINARY").first()).toBeVisible();
     await expect(page.getByText("COMPLETED").first()).toBeVisible();
   });

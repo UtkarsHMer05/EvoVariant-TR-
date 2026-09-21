@@ -26,7 +26,7 @@ closed:
 | Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
 | Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
 | Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
-| Figures and tables | Registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/12 tables sourced from the development subset; the bundle contains no scientific outputs until all required source families exist. |
+| Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/12 tables sourced from the development subset; a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
 | Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap; workspace billed cost is `$0.00` and per-request measured USD is unavailable. |
 
 The authoritative execution state is maintained in
@@ -65,8 +65,8 @@ make phase3-audit
 make phase3-freeze
 ```
 
-At the verified current baseline, `make validate` passes 656 tests with 33
-deselected and 95.12% coverage. The scientific tier passes 7 tests with 1
+At the verified current baseline, `make validate` passes 700 tests with 33
+deselected and 95.01% coverage. The scientific tier passes 7 tests with 1
 explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
 `make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
 are recorded in the project-control files.
@@ -176,9 +176,9 @@ The current UI can load frozen protocol metadata and can render raw research
 signals only when an explicitly configured real scorer serves them. It does not
 fall back to `FakeScorer`, derive clinical labels, invent metrics, or mark
 downstream areas ready because a planned run exists. The Experiment Registry
-tab reads safe metadata from `/api/registry`; it shows `READY` for the presence
-of completed `PRELIMINARY` metadata while downstream scientific panels remain
-explicitly blocked until their own evidence gates pass.
+tab reads safe metadata from `/api/registry`; it shows `PARTIAL` while completed
+`PRELIMINARY` metadata exists without a promoted `FINAL` run. Downstream
+scientific panels remain explicitly blocked until their own evidence gates pass.
 
 ## Data and reproducibility
 
@@ -220,7 +220,7 @@ make registry-verify
 The Section 21 metadata contract is implemented in
 `src/evovariant_tr/registry.py` and
 `research/schemas/experiment_run.schema.json`. The current registry contains
-seven completed `PRELIMINARY` run records and no `FINAL` record. The bounded
+nine completed `PRELIMINARY` run records and no `FINAL` record. The bounded
 development summaries and figure-source inputs are generated and registered by
 `scripts/register_development_subset_results.py`.
 
@@ -233,15 +233,37 @@ make figures
 This writes a deterministic metadata manifest under the ignored
 `research/runs/` directory and a bundle manifest under
 `research/figures/bundle_manifest.json`. The Phase 17 contract covers all 19
-required figure families and 12 required tables. With no eligible completed
-PRELIMINARY or FINAL outputs it reports `BLOCKED`, removes only outputs listed
-by the prior bundle manifest, and produces no scientific figures, tables,
-placeholder metrics, or inferred values. The current manifest has partial
-hash-verified subset inputs but remains `BLOCKED` because ten required source
-families are missing. When registered inputs eventually make the manifest
-`READY`, the bundle renderer emits hash-addressed SVG figures,
+required figure families and 12 required tables. The final renderer reports
+`BLOCKED`, removes only outputs listed by the prior final bundle manifest, and
+produces no final scientific figures, tables, placeholder metrics, or inferred
+values while ten required source families are missing. `make figures` also
+writes a separate `PARTIAL` manifest at
+`research/figures/preliminary/preliminary_bundle_manifest.json`; it contains 9
+development-stage figure outputs and 9 tables (18 files total), is marked
+`evidence_stage: PRELIMINARY` and `promotable: false`, and must not be treated
+as final evidence. When registered inputs eventually make the final manifest
+`READY`, the final bundle renderer emits hash-addressed SVG figures,
 JSON tables, methods, limitations, cost, and model-provenance artifacts under
 `research/figures/bundle/`.
+
+## Batch planning and local recovery contract
+
+Phase 15 now has a free local planning and injected-scorer contract for label-free
+CSV/VCF input. It validates GRCh38 biallelic SNVs, hashes the input, persists an
+immutable model/revision/context/orientation plan, and supports hash-verified,
+resumable shards plus deterministic export. Planning does not construct a model,
+call Modal, attach labels, or create scientific predictions:
+
+```bash
+make batch-run \
+  BATCH_INPUT=examples/batch/variants.csv \
+  BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7
+```
+
+The sample command writes a `PLANNED` status under ignored
+`research/runs/phase15_batch_plan/`. Remote batch parity, kill/restart evidence,
+full-cohort execution, and any paid batch workload remain separately blocked and
+require a new exact-scope approval.
 
 ## Modal and paid compute
 
@@ -287,7 +309,9 @@ The dependency-ordered phase decisions are maintained in
   deferred GPN, and subset-only AlphaMissense;
 - Phase 6/7 and Phases 8/9/11/12/13 are partial development-subset evidence
   only; no full-cohort or locked-test claim is made;
-- Phase 10 is formally deferred by compute, and Phase 14/15 remain blocked;
+- Phase 10 is formally deferred by compute, and Phase 14/15 remain scientifically
+  blocked; Phase 15 has a local label-free planning/recovery contract but no
+  authorized remote batch execution;
 - Phase 16's frontend/build/browser engineering gate passes and its read-only
 registry tab is connected to nine preliminary runs, while its scientific
   result panels remain evidence-gated;

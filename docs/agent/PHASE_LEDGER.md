@@ -19,9 +19,9 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 | 12 | Calibration + abstention | PARTIAL / DEVELOPMENT CALIBRATION SUBSET | `artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json`; Platt and isotonic maps fit TRAIN-only and evaluated on VALIDATION, alongside the fixed risk-coverage diagnostics. No locked-test selection. |
 | 13 | Ablation + robustness | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase13_development_subset_20260921/ablation_robustness.json` plus `artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json`; orientation/feature, learning-curve, and calibration-effect CPU cells ran, while context shifts, embeddings, and external comparators remain deferred. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
-| 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; local Evo2 adapter, bounded Modal source endpoint, resumable `total_shards` manifest accounting, and the no-GPU recovery simulation (`9 passed, 1 documented skip`) are regression-checked, but deployment/parity, full-cohort authorization, and remote recovery smoke are absent. |
-| 16 | Research workbench UI | PARTIAL / PRELIMINARY REGISTRY CONNECTED | `scripts/verify_ui_registry.py`, `research/runs/phase16_ui_status.json`; seven completed PRELIMINARY runs are hash-verified and visible through the read-only registry route, while scientific panels remain evidence-gated. `make web-check` and four-test `make web-e2e` PASS. |
-| 17 | Figures/tables/report artifacts | BLOCKED / PARTIAL SOURCES | `14d9593`, `research/runs/phase17_fig_status.json`; 9/19 figure families and 9/12 tables have real subset sources, but the deterministic bundle remains blocked by 10 missing source families and produces zero scientific outputs. |
+| 15 | Batch research pipeline | BLOCKED / LOCAL CONTRACT READY | `scripts/plan_batch.py`, `src/evovariant_tr/batch_pipeline.py`; label-free CSV/VCF parsing, immutable input/model plan, caller-supplied cost estimate, injected scorer, hash-verified resumable shards, failure taxonomy, and deterministic export are locally covered. Remote batch parity, kill/restart recovery, full-cohort authorization, and remote smoke remain absent. |
+| 16 | Research workbench UI | PARTIAL / PRELIMINARY REGISTRY CONNECTED | `scripts/verify_ui_registry.py`, `research/runs/phase16_ui_status.json`; nine completed PRELIMINARY runs are hash-verified and visible through the read-only registry route, which now reports `PARTIAL` until a `FINAL` run exists. Scientific panels remain evidence-gated. `make web-check` and four-test `make web-e2e` PASS. |
+| 17 | Figures/tables/report artifacts | BLOCKED / PARTIAL SOURCES | `14d9593`, `research/runs/phase17_fig_status.json`, and `research/figures/preliminary/preliminary_bundle_manifest.json`; 9/19 figure families and 9/12 tables have real subset sources. The final bundle remains blocked by 10 missing source families and produces zero final outputs; a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED / CONTROL SURFACE ONLY | Fresh clone/free-gate evidence remains valid; `research/runs/phase18_clean_room_status.json` now records that full scientific Modal reproduction is unrun and complete figure-source regeneration is missing. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; the PRELIMINARY registry is connected, but full-cohort science, locked evaluation, complete figures, and final-release evidence remain unresolved. |
 
@@ -864,4 +864,31 @@ gate state.
   full-cohort robustness remain deferred.
 - The current registry has nine eligible completed `PRELIMINARY` runs. The figure manifest stays
   `BLOCKED` with 9/19 figures and 9/12 tables available because the missing source families are
-  genuine unavailable evidence, not values to infer.
+genuine unavailable evidence, not values to infer.
+
+## Current local Phase 15/16/17 continuation — 2026-09-21
+
+- Implementation commit `844cfb8` adds the free local Phase 15 boundary. `scripts/plan_batch.py`
+  parses the tracked label-free sample `examples/batch/variants.csv`, enforces the GRCh38 SNV
+  contract, records input SHA-256 `d0778b9ad572f7aa6d9b48f0d6675b1e8bd29180826ba0834aa64eff799f7378`,
+  and writes a deterministic `PLANNED` one-shard plan for the pinned Evo2 revision
+  `4b509ec2a22d6de472659f908bcb0714265ad3a7`. No scorer, Modal call, model download, label, or
+  scientific result was produced by the planner.
+- The injected local executor/exporter is covered by 17 targeted tests. It reuses completed
+  shards only after payload-hash, exact ordered-ID, row-shape, and label-free validation;
+  persists failure taxonomy; requires explicit retry; and rejects tampered, duplicate,
+  out-of-order, malformed, or unexpected shard files. This is an engineering contract, not
+  remote batch-parity evidence. Phase 15 remains `BLOCKED` overall until a new exact-scope
+  approval authorizes remote parity and kill/restart smoke.
+- Phase 16's API/UI now reports `PARTIAL` for 9 completed scientific-stage `PRELIMINARY` runs
+  and 0 `FINAL` runs. `make ui-check`, `make web-check`, and `make web-e2e` pass; metadata is
+  exposed without promoting preliminary metrics.
+- Phase 17's final renderer remains `BLOCKED` with zero final outputs and the ten missing source
+  families. The separate preliminary manifest has SHA-256
+  `026a82c02e1151d9bade98744bbd07c11d4c1e2ca7630b4b8ec3fda744cc9d40`, `status: PARTIAL`,
+  `evidence_stage: PRELIMINARY`, `promotable: false`, 9 figures, 9 tables, and 18 outputs. This
+  bundle is useful for engineering review only and cannot satisfy the final Phase 17 gate.
+- No paid work was started in this continuation. The existing `$5.00` development approval is
+  exhausted at its recorded safety stop and does not authorize full-cohort inference,
+  comparators/embeddings, locked evaluation, fine-tuning, remote batch, deployment, release, or
+  publication.

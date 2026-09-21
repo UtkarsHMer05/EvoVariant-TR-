@@ -331,7 +331,7 @@ def test_analysis_plans_figures_and_batch_ingest(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     variants = parse_variant_csv(csv_path)
-    assert variants[0].normalized_variant_id == "GRCh38:1:10:A>T"
+    assert variants[0].normalized_variant_id == "GRCh38:chr1:10:A>T"
     assert batch_progress(total=10, completed=3, failed=1)["remaining"] == 6
     with pytest.raises(ValueError, match="missing required"):
         bad = tmp_path / "bad.csv"

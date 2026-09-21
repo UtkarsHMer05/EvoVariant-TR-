@@ -1,0 +1,92 @@
+{
+  "approval_artifact": "artifacts/approvals/phase6_phase7_development_20260921.json",
+  "artifact_id": "phase6-development-evo2-20260921",
+  "cache": {
+    "cache_hit_records": 2848,
+    "cache_root": "research/runs/phase6_development_evo2_20260921/shards",
+    "completed_shards": 89,
+    "new_shards": 0,
+    "resume_policy": "verified completed shards are skipped; tampering fails closed"
+  },
+  "cost": {
+    "approval_max_budget_usd": 5.0,
+    "cumulative_client_wall_rate_estimate_usd": 4.698582,
+    "gpu_rate_usd_per_hour": 3.95,
+    "interpretation": "rate-based wall-time estimate; Modal CLI billing is workspace-level, not a per-run invoice",
+    "measured_invoice_usd": null,
+    "pricing_source": "https://modal.com/pricing",
+    "rate_estimate_stop_usd": 4.75
+  },
+  "dataset": {
+    "counts": {
+      "TRAIN": 191957,
+      "VALIDATION": 48035,
+      "total": 239992
+    },
+    "development_manifest_path": "data/derived/ml_extension/phase3/split_manifest.json",
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "full_development_records": 239992,
+    "locked_ids_excluded": true,
+    "locked_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "ordering": "ascending SHA-256 of normalized_variant_id",
+    "processed_records": 2848,
+    "processed_split_counts": {
+      "TRAIN": 2276,
+      "VALIDATION": 572
+    },
+    "remaining_records": 237144
+  },
+  "git": {
+    "commit": "0f1c5a4d1073d299de759788c37b80f9e2d6ab8d",
+    "dirty": true
+  },
+  "modal_billing": {
+    "after": {
+      "captured_at_utc": "2026-09-21T13:24:31.432107+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.34  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.19  \n    Volumes:            3.37  \n  Credits:            -15.97  \n  Free Storage:        -3.37  \n  Billed Cost:         $0.00  \n                              \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-21T13:24:29.798191+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        19.34  \n    Deployed Apps:      8.78  \n    Ephemeral Apps:     7.19  \n    Volumes:            3.37  \n  Free Storage:        -3.37  \n  Credits:            -15.97  \n  Billed Cost:         $0.00  \n                              \n"
+    }
+  },
+  "model": {
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "model_sequence_batch_size": 8,
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "outputs": {
+    "execution_plan": "research/runs/phase6_development_evo2_20260921/execution_plan.json",
+    "execution_plan_sha256": "53964394987fb0df84fde9a0c90f7db3af33483c83f9d108ba05d46d8ccee61f",
+    "predictions_jsonl": "research/runs/phase6_development_evo2_20260921/predictions.jsonl",
+    "predictions_sha256": "04baecf2d547ffd8ccaafa5eeeb2f11d2cccb46696f7cb9445ab317d133ba16d"
+  },
+  "protocol_hash": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3",
+  "recorded_at_utc": "2026-09-21T13:24:31.432146+00:00",
+  "runtime": {
+    "elapsed_local_seconds": 1.660753,
+    "failure": null,
+    "stop_reason": "next shard would exceed the approval safety reserve"
+  },
+  "scientific_boundary": {
+    "full_development_cohort_complete": false,
+    "labels_sent_to_modal": false,
+    "locked_test_labels_accessed": false,
+    "metrics_claimed": false,
+    "phase14_started": false,
+    "training_hpo_finetuning_started": false
+  },
+  "status": "PARTIAL_BUDGET_STOP"
+}

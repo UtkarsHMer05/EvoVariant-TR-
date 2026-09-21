@@ -4,27 +4,28 @@
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
-Current phase: `PHASE 6 CONTINUATION PREPARED / FULL PHASE 6 BLOCKED PENDING CURRENT APPROVAL`
-(Phases 0-5 required gates and the separately approved Phase6A cache/comparator/throughput
-qualification are complete; no full Phase 6 inference has started.)
+Current phase: `PHASE 6/7 DEVELOPMENT CHECKPOINT / PARTIAL`
+(Phases 0-5 required gates and the separately approved Phase6A qualification are complete. A
+fresh exact-scope `$5.00` development approval was used for a bounded Evo2 TRAIN/VALIDATION
+prefix and the dependent CPU-only development stages.)
 
 Phase status: `BLOCKED / PARTIAL` at the final release gate. The repository retains the
 schema-validated control plane, fail-closed model registry/adapters, deterministic CPU-only
 contracts for later experiment families, evidence-gated workbench, and passing local Python/
-frontend build gates. A real authorized Evo2 7B H100 pilot now passes the Phase 2 raw-score
-contract and the Phase 4 persistent cache miss/hit gate; the model weights are cached only in the
-approved Modal `hf_cache` volume and no weights are tracked in Git. The Phase 3 audit and
-independent reference report now both pass after the ML-only deviations; the historical target
-identity set remains unavailable and is retained only as validation-only comparison evidence.
-The authoritative extension cohort is 946 records (536 B/LB, 410 P/LP), with 0 reference
-mismatches and deterministic regeneration PASS. Phase 5 has a final separated roster: Evo2 raw
-score, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
-deferred GPN, and subset-only AlphaMissense. Phase6A qualified those CPU comparators, measured
-bounded Evo2 H100 throughput, recorded an A100 FP8-compatibility failure, and measured tiny
-unlabeled NT/Caduceus embedding throughput. Full Phase 6, full Phase 7 extraction, training,
-HPO, fine-tuning, locked-test evaluation, clinical classification, and release remain blocked or
-not started. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE` with no training run or scientific
-metrics. No full benchmark or feature cache has been created.
+frontend build gates. The approved Modal run produced 2,848 verified Evo2 development rows
+(2,276 TRAIN, 572 VALIDATION) from the 239,992-row development cohort and stopped at a
+`$4.698582` wall-time estimate before the `$5.00` hard cap. The full development cohort,
+multi-model benchmark, NT/Caduceus feature extraction, comparator joins, and locked test were
+not run. Labels were attached only locally after remote scoring; no labels or locked identifiers
+were sent to Modal. The model weights remain cached only in the approved Modal `hf_cache` volume
+and no weights are tracked in Git. The Phase 3 audit and independent reference report still
+pass after the ML-only deviations; the historical target identity set remains unavailable and
+is retained only as validation-only comparison evidence. The authoritative extension cohort is
+946 records (536 B/LB, 410 P/LP), with 0 reference mismatches and deterministic regeneration
+PASS. Phase 5 has a final separated roster: Evo2 raw score, Nucleotide Transformer/Caduceus
+embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only
+AlphaMissense. Phase 10 adaptation remains `DEFERRED_BY_COMPUTE`; Phase 14 and all release,
+deployment, publication, and clinical-classification surfaces remain excluded or blocked.
 
 Historical latest source baseline: `36063e8e1b65ddf1653347a5705e89115e52f1d5` (final Phase 3
 freeze-summary/control baseline). The latest code-bearing continuation checkout is `1423577`
@@ -51,8 +52,10 @@ Verified result-registry metadata and UI surface commit: `800e016`.
 Current README/status reconciliation commit: `0db7e8b`.
 Registry-driven Phase 17 export-bundle commit: `14d9593`.
 The frontend dependency/lint hardening was validated and committed in `739310d`. Continuation
-implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, and `1423577`; continuation
-documentation/status commits are `e39d3a3`, `b49b96a`, `e115d23`, `8264c70`, and `9f4a07c`.
+implementation commits are `82ff2d6`, `af97560`, `a3df7ac`, `1423577`, `7fd912f`, `c53dfdb`,
+`69a2e4f`, and `0f1c5a4`; continuation documentation/status commits are `e39d3a3`, `b49b96a`,
+`e115d23`, `8264c70`, and `9f4a07c`. The current development runner and local feature/ablation
+adapters are covered by the latest validation pass recorded below.
 
 Active branch/worktree: `research/evovariant-tr` at
 `/Users/utkarshkhajuria/Desktop/EvoVariant`
@@ -832,3 +835,47 @@ figures from the single pilot record.
   full Phase 6/7 plus dependent scientific phases remain blocked pending current approval.
 - Evidence: `git status --short --branch`, `git rev-parse HEAD`, and the current successful
   `make validate`/control-plane runs were inspected on 2026-09-21.
+
+## Current bounded development execution — 2026-09-21
+
+- The current exact-scope approval is `artifacts/approvals/phase6_phase7_development_20260921.json`
+  (SHA-256 `f903a8ebed963e5c82e5a7578c54fc674685f1b5c1f445b23e38fd4b895fb50a`). It matches
+  protocol hash `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`, development
+  manifest hash `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, exact Evo2
+  revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, H100, 8192-bp forward/RC scoring, and a
+  hard `$5.00` cap. The user explicitly raised the cap from `$3.00` to `$5.00`; excluded scope
+  remains locked-test labels/metrics, t0 1.4M inference, fine-tuning, Phase 10, Phase 14,
+  deployment, release, and publication.
+- The final Phase 6 artifact is `artifacts/phase6/phase6_development_evo2_20260921.json` (SHA-256
+  `be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5`) with status
+  `PARTIAL_BUDGET_STOP`. It contains 2,848 completed records (2,276 TRAIN, 572 VALIDATION) out
+  of 239,992, 237,144 remaining, 89 verified shards, and zero LOCKED_TEST rows. The predictions
+  JSONL SHA-256 is `04baecf2d547ffd8ccaafa5eeeb2f11d2cccb46696f7cb9445ab317d133ba16d`.
+  The approved manifest prefix, labels, genes, raw scores, forward/RC arithmetic, and every
+  shard payload hash were independently rechecked after completion.
+- The runner fixes are `69a2e4f` (ClinVar `MT`/`M` to frozen FASTA `chrM` mapping and explicit
+  local preparation failure evidence) and `0f1c5a4` (cached source-ID/rate validation and finalizer
+  arithmetic). The first two attempts failed closed before accepting an invalid shard; the final
+  cache-only resume finalized cleanly. The cost ledger records a `$4.698582` H100 wall-time rate
+  estimate, a `$4.75` pre-cap safety stop, and no measured invoice USD. The post-run workspace
+  summary was metered `$19.34`, credits `-$15.97`, billed `$0.00`; that is workspace-level only.
+- The local four-feature adapter `scripts/phase6_evo2_to_features.py` produced
+  `research/runs/phase7_development_subset_20260921/evo2_raw_score_features.jsonl` (SHA-256
+  `41bb16f3aa65b589690999449992edf9ec607d1042a99ffb4e20b2091c53dd7f`) and its summary (SHA-256
+  `b3082e44292cc29bd12cc27cbe9eb6edb0adf9964be1b94ea823c47becbd6882`). It contains primary,
+  forward, reverse, and orientation-disagreement features; labels were attached locally only.
+- Real subset-only CPU stages completed from that adapter: Phase 8 summary SHA-256
+  `99d1bbd34df34643ffd68eaf8356b6b83763288798efb6b99200da0bd0706c1a`, Phase 9 metadata
+  `3d6095554c5744bfe989821f162ab735827d977627436bccf0f376040629393e`, Phase 11/12 analysis
+  SHA-256 `6e452d6f9730529e9b3196cd62f2327b5a554976a86e66c023ebdcf07d91e036`, and Phase 13
+  matrix SHA-256 `df5d82ffb6878bc5c875a10fabf846c1ad93935ee689766d04d68af24d073c57`. All are
+  `locked_test_evaluated=false` and validation-only. The measured subset AUROCs were logistic
+  `0.9931128641`, stump `0.9376820388`, MLP `0.9930825243`, HPO best trial `0.9932342233`,
+  and fixed 50/50 logistic+MLP `0.9930976942`; they are preliminary subset diagnostics, not
+  full-cohort or confirmatory claims.
+- Phase 13 completed feasible orientation/feature ablations and CPU learning curves. Center
+  shifts, NT/Caduceus embedding removal, external comparator removal, fitted-calibrator effect,
+  and all full-cohort robustness cells remain deferred because they require missing features or
+  new paid inference. Phase 10 remains `DEFERRED_BY_COMPUTE`; Phase 14 and the locked cohort
+  remain untouched; the result registry, figures, release, deployment, and publication remain
+  blocked.

@@ -10,14 +10,14 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | S
 | 3 | ML dataset + locked splits | PASS | `ML-DEV-001`/`ML-DEV-002`, `artifacts/phase3_integrity_audit_20260921.json`, independent `artifacts/reference/grch38_validation_20260921.json`, and authoritative manifests under `research/ml_extension/splits/`; 946 locked records, 536 B/LB, 410 P/LP, reference mismatches 0, deterministic regeneration PASS. |
 | 4 | Modal compute foundation | PASS | Real persistent prediction-cache miss/hit, exact numeric equality, 36.2727s versus 0.956s wall time, H100 telemetry, and workspace billing evidence are recorded in the Phase 2/4 pilot artifact and cost ledger. |
 | 5 | Model registry + adapters | PASS / ROSTER FINAL | `artifacts/model_audit/phase5_final_roster_20260921.json`; Evo2 is `INCLUDED_RAW_SCORE`, Nucleotide Transformer/Caduceus are separated `INCLUDED_EMBEDDING_TRACK` decisions, CADD/PhyloP are public CPU-comparator contracts, GPN is `DEFERRED`, and AlphaMissense is `SUBSET_ONLY`; no full extraction or benchmark ran. |
-| 6 | Zero-shot multi-model benchmark | BLOCKED / PHASE6A QUALIFIED | `artifacts/phase6a/phase6a_cache_preflight_20260921.json`, `artifacts/phase6a/phase6a_comparator_qualification_20260921.json`, and `artifacts/phase6a/phase6a_evo2_throughput_20260921.json`; full 946-record inference and scientific evaluation were not started. |
-| 7 | Embedding/representation extraction | BLOCKED / PHASE6A TINY SMOKE ONLY | `artifacts/phase6a/phase6a_representation_throughput_20260921.json`; four real GRCh38 variants and four views per variant were measured for NT/Caduceus, with no feature cache or full extraction. |
-| 8 | Downstream supervised models | BLOCKED | `research/runs/phase8_clf_status.json`; no frozen feature cache or Phase 7 artifact. |
-| 9 | Hyperparameter optimization | BLOCKED | `research/runs/phase9_hpo_status.json`; no development feature artifact or Phase 8 model. |
+| 6 | Zero-shot multi-model benchmark | PARTIAL / BOUNDED DEVELOPMENT EVO2 | `artifacts/phase6/phase6_development_evo2_20260921.json`; 2,848 TRAIN/VALIDATION Evo2 rows were scored under the fresh $5 development approval. The full 239,992-record development cohort, locked benchmark, and multi-model benchmark were not run. |
+| 7 | Embedding/representation extraction | PARTIAL / RAW-SCORE FEATURE ADAPTER ONLY | `research/runs/phase7_development_subset_20260921/evo2_raw_score_features.json` and `.jsonl`; the verified Evo2 raw-score subset was adapted into four local features. NT/Caduceus feature extraction and a full representation cache were not run under the remaining cap. |
+| 8 | Downstream supervised models | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase8_development_subset_20260921/baselines/training_summary.json`; logistic, stump, and MLP baselines fit TRAIN and report VALIDATION only on the 2,848-row subset. |
+| 9 | Hyperparameter optimization | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase9_development_subset_20260921/hpo/hpo_metadata.json`; bounded logistic HPO selected on VALIDATION only. |
 | 10 | Fine-tuning / PEFT | DEFERRED | `artifacts/modal/phase10_adaptation_deferral_20260921.json`; adaptation is formally `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. |
-| 11 | Ensemble/meta-classifier | BLOCKED | `research/runs/phase11_ens_status.json`; no registered base predictions or OOF inputs. |
-| 12 | Calibration + abstention | BLOCKED | `research/runs/phase12_cal_abs_status.json`; no development predictions and no authorized locked-label selection. |
-| 13 | Ablation + robustness | BLOCKED | `research/runs/phase13_abl_rob_status.json`; no frozen base outputs for the predeclared matrix. |
+| 11 | Ensemble/meta-classifier | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase11_12_development_subset_20260921/equal_weight_logistic_mlp_analysis.json`; fixed 50/50 validation-only analysis from real subset predictions, not a full or registered result. |
+| 12 | Calibration + abstention | PARTIAL / DEVELOPMENT SUBSET | Same Phase 11/12 analysis artifact; calibration diagnostics and risk-coverage/abstention curves are validation-only and not locked-test selection. |
+| 13 | Ablation + robustness | PARTIAL / DEVELOPMENT SUBSET | `research/runs/phase13_development_subset_20260921/ablation_robustness.json`; orientation/feature and learning-curve CPU cells ran, while context shifts, embeddings, external comparators, and fitted-calibrator effect remain explicitly deferred. |
 | 14 | Locked statistical evaluation | BLOCKED | `research/runs/phase14_stat_status.json`; no frozen model/config and locked evaluation is not authorized. |
 | 15 | Batch research pipeline | BLOCKED | `research/runs/phase15_batch_status.json`; local Evo2 adapter, bounded Modal source endpoint, resumable `total_shards` manifest accounting, and the no-GPU recovery simulation (`9 passed, 1 documented skip`) are regression-checked, but deployment/parity, full-cohort authorization, and remote recovery smoke are absent. |
 | 16 | Research workbench UI | BLOCKED | `459ad11`, `1d9cf43`, `7f6c1b1`, `739310d`; Next 16.3.5 dependency/lint migration, `make web-check`, and four-test `make web-e2e` PASS; registered scientific outputs are absent. |
@@ -773,3 +773,60 @@ gate state.
   full Phase 6/7 plus dependent scientific phases remain blocked.
 - Evidence: current Git status/HEAD inspection and the successful no-spend validation and
   control-plane gates recorded above.
+
+## Current bounded development continuation — 2026-09-21
+
+- A fresh, exact-scope user approval was created at
+  `artifacts/approvals/phase6_phase7_development_20260921.json` (SHA-256
+  `f903a8ebed963e5c82e5a7578c54fc674685f1b5c1f445b23e38fd4b895fb50a`). It is tied to protocol
+  hash `39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3`, the development
+  manifest SHA-256 `96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, exact Evo2
+  revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, H100, 8192-bp forward/RC scoring, and a
+  hard `$5.00` cap. Locked-test labels, t0 1.4M inference, fine-tuning, Phase 10, Phase 14,
+  deployment, release, and publication were excluded. The user explicitly increased the cap
+  from `$3.00` to `$5.00` for this scope.
+- The bounded runner is in `scripts/phase6_development_evo2.py`. Fix commits are `69a2e4f`
+  (map ClinVar `MT`/`M` to the frozen FASTA's `chrM` and record local preparation failures) and
+  `0f1c5a4` (verify cached source IDs, restore cached rate samples, and fix finalizer completion
+  arithmetic). The first attempt failed closed before the next shard because the manifest used
+  `MT` while the GATK FASTA uses `chrM`; a second attempt exposed and fixed a local `len(int)`
+  finalizer bug. No invalid or partially returned shard was accepted.
+- The final Phase 6 artifact is
+  `artifacts/phase6/phase6_development_evo2_20260921.json` (SHA-256
+  `be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5`) with status
+  `PARTIAL_BUDGET_STOP`. It contains 2,848 completed records (2,276 TRAIN, 572 VALIDATION) out
+  of 239,992 development records, 237,144 remaining, 89 verified shards, and no LOCKED_TEST
+  rows. The predictions JSONL hash is
+  `04baecf2d547ffd8ccaafa5eeeb2f11d2cccb46696f7cb9445ab317d133ba16d`; the processed prefix
+  contains both labels and matches the approved manifest exactly. All raw scores are finite,
+  forward/RC deltas recompute exactly, and every shard payload hash validates.
+- The final cost record is a H100 wall-time rate estimate of `$4.698582`, with a pre-call safety
+  stop at `$4.75` and a hard approval cap of `$5.00`. Modal's workspace summary after the run
+  reported metered `$19.34`, credits `-$15.97`, and billed `$0.00`; this is workspace-level
+  evidence, not a per-request invoice. The append-only ledger records no measured invoice USD.
+  No additional GPU work was started after the safety stop.
+- A local adapter, `scripts/phase6_evo2_to_features.py`, created the four-feature raw-score
+  development artifact `research/runs/phase7_development_subset_20260921/evo2_raw_score_features.jsonl`
+  (SHA-256 `41bb16f3aa65b589690999449992edf9ec607d1042a99ffb4e20b2091c53dd7f`) and summary
+  (SHA-256 `b3082e44292cc29bd12cc27cbe9eb6edb0adf9964be1b94ea823c47becbd6882`). Features are
+  primary delta, forward delta, reverse delta, and absolute orientation disagreement. Labels
+  were attached locally after verified raw-score output; none were sent to Modal.
+- The real-subset local CPU continuation completed Phase 8 baselines, Phase 9 bounded logistic
+  HPO, a fixed 50/50 Phase 11/12 logistic+MLP validation analysis, and the feasible Phase 13
+  subset matrix. Evidence hashes are: Phase 8 summary
+  `99d1bbd34df34643ffd68eaf8356b6b83763288798efb6b99200da0bd0706c1a`, Phase 9 metadata
+  `3d6095554c5744bfe989821f162ab735827d977627436bccf0f376040629393e`, Phase 11/12 analysis
+  `6e452d6f9730529e9b3196cd62f2327b5a554976a86e66c023ebdcf07d91e036`, and Phase 13 matrix
+  `df5d82ffb6878bc5c875a10fabf846c1ad93935ee689766d04d68af24d073c57`. All are
+  `locked_test_evaluated=false` and `selection_split=VALIDATION`.
+- The subset-only validation AUROCs were logistic `0.9931128641`, stump `0.9376820388`, MLP
+  `0.9930825243`; HPO's best validation-only trial was learning rate `0.05`, `100` steps,
+  `l2=0.0`, AUROC `0.9932342233`; and the fixed 50/50 logistic+MLP analysis reported AUROC
+  `0.9930976942` and ECE `0.0843577465`. These are preliminary subset diagnostics, not
+  confirmatory or full-cohort claims. Phase 13 completed forward/reverse/aggregate feature
+  cells and learning curves; center-shift, embedding, comparator, and fitted-calibrator cells
+  remain explicitly not run.
+- Gate decision: the current exact-scope continuation is `PARTIAL`, not a full Phase 6/7 pass.
+  Phase 14 and the locked test remain untouched. The full development cohort, NT/Caduceus
+  extraction, comparator joins, fine-tuning, registry promotion, figures, release, deployment,
+  and publication remain unresolved and require a new explicit scope/budget if pursued.

@@ -2173,6 +2173,46 @@ Validation:
 `git status --short --branch`, `git rev-parse HEAD`, the recent commit log, and the current
 `make validate`/control-plane results agree with the corrected metadata.
 
+## D-076 — Execute the explicitly approved bounded development continuation
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The user supplied a current continuation checkpoint and explicitly authorized the Phase 6/7
+development scope, then increased its maximum budget from `$3.00` to `$5.00`. The approval is
+separate from both the stale August full-run approval and the earlier `$1.50` Phase6A throughput
+approval. The current protocol, development manifest, model revision, orientation rule, and
+locked-test exclusion had to remain exact while making progress possible.
+
+Decision:
+Use `artifacts/approvals/phase6_phase7_development_20260921.json` as the sole authority for this
+continuation. Run a deterministic, resumable Evo2 `evo2_7b` H100 development prefix on TRAIN and
+VALIDATION only, with locally reconstructed 8192-bp GRCh38 reference/alternate forward and
+reverse-complement sequences. Never send labels or locked identifiers to Modal. Stop at the
+runner's `$4.75` rate-estimate reserve under the `$5.00` cap, then run only local CPU adapters,
+training, validation-only HPO, fixed validation-only ensemble/calibration/abstention analysis,
+and the feasible predeclared Phase 13 subset matrix. Do not widen the run into full-cohort
+inference, NT/Caduceus extraction, fine-tuning, locked evaluation, registry promotion, release,
+or deployment.
+
+Consequences:
+The run produced a truthful `PARTIAL_BUDGET_STOP` artifact with 2,848 of 239,992 development
+rows and a verified four-feature raw-score adapter. Local Phase 8/9/11/12/13 subset artifacts
+are usable for engineering and preliminary validation-only diagnostics, but they cannot support
+full-cohort or confirmatory claims. NT/Caduceus representations, context-shift robustness,
+external comparator joins, fine-tuning, Phase 14, result registry, figures, release, and
+deployment remain unresolved. A future continuation requires a new explicit scope/budget.
+
+Validation:
+The final artifact is `artifacts/phase6/phase6_development_evo2_20260921.json`; its SHA-256 is
+`be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5`. The approval SHA-256 is
+`f903a8ebed963e5c82e5a7578c54fc674685f1b5c1f445b23e38fd4b895fb50a`. The local manifest/prefix,
+split counts, labels, raw-score arithmetic, zero locked overlap, shard hashes, and all downstream
+validation boundaries passed. Implementation fixes are `69a2e4f` and `0f1c5a4`; the current
+Modal workspace snapshot is metered `$19.34` and billed `$0.00`, with per-run invoice USD
+unavailable. No push or deployment was performed.
+
 ## Template for new decisions
 
 ### D-XXX — Title

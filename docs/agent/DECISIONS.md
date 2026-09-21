@@ -1485,10 +1485,10 @@ evidence before scoring. This does not create new remote evidence, change the cu
 artifact, or unblock the deferred multi-model Phase 5 track and dependent phases.
 
 Validation:
-Commit `696fcd6` updates `src/evovariant_tr/model_adapters.py` and
-`tests/unit/test_model_adapters.py`. Targeted Ruff, strict mypy, and five adapter tests pass;
-the tests cover missing remote evidence, malformed checks, failed smoke evidence, and successful
-explicit evidence.
+Commit `696fcd6` updates `src/evovariant_tr/model_adapters.py`; commit `89563b2` adds the full
+readiness regression coverage in `tests/unit/test_model_adapters.py`. Targeted Ruff, strict
+mypy, and eight adapter tests pass; the full `make validate` gate passes with 647 tests, 33
+deselected, and 95.07% coverage.
 
 ## Template for new decisions
 

@@ -80,13 +80,13 @@ gate state.
   as an unqualified block: the decision record cites measured H100 inference memory/runtime,
   the low-confidence cohort cost preflight, the absent local/checked-in training path, and the
   current approval's training exclusion. This is not a training or PEFT result.
-- The latest post-adapter validation passed `make validate` with 642 tests, 33 deselected, strict
-  mypy over 51 source files, Ruff, secret scan, and 95.01% coverage.
+- The latest readiness-boundary validation passed `make validate` with 647 tests, 33 deselected,
+  strict mypy over 51 source files, Ruff, secret scan, and 95.07% coverage.
 - Phase 5's multi-model inclusion requirement is formally `DEFERRED` after the source-backed
   seven-candidate audit. The deferral preserves the exact exclusion reasons and requires a new
   candidate-specific approval and parity smoke before Phase 6 can be reopened; it does not count
   synthetic comparators as scientific models.
-- Commit `696fcd6` tightens the Evo2 adapter readiness boundary: local parity cannot produce
+- Commits `696fcd6` and `89563b2` tighten and test the Evo2 adapter readiness boundary: local parity cannot produce
   `READY`; an explicit named remote-smoke evidence checker must pass before an injected scorer
   can execute. This is a fail-closed control fix, not new remote smoke evidence, so Phase 5's
   multi-model deferral and Phase 6 blocker remain unchanged.

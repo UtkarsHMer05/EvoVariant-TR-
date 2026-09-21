@@ -22,7 +22,7 @@ reasons. Phase 10 adaptation is formally
 `DEFERRED_BY_COMPUTE` with no training run or scientific metrics. No full benchmark, training,
 HPO, fine-tuning, locked-test evaluation, clinical classification, or release has started.
 
-Latest validated source baseline: `2c9b3ca` (hash-verified embedding feature-store adapter;
+Latest validated source baseline: `89563b2` (fail-closed Evo2 readiness plus regression coverage;
 current Python and web gates pass).
 Phase 0 handoff checkpoint: `89e5751`.
 Phase 1 implementation commit: `1f777b5`.
@@ -51,8 +51,8 @@ Active branch/worktree: `research/evovariant-tr` at
 
 ## Current authoritative execution update — 2026-09-21
 
-- The current source baseline `2c9b3ca` passes `make validate`: secret scan, Ruff, strict mypy
-  over 51 source files, 642 default-tier tests with 33 deselected, and a 95.01% coverage floor.
+- The current source baseline `89563b2` passes `make validate`: secret scan, Ruff, strict mypy
+  over 51 source files, 647 default-tier tests with 33 deselected, and a 95.07% coverage floor.
   The current checkout also re-passes `make web-check` and all four `make web-e2e` workbench
   journeys. These are local validation results; they do not create remote scientific outputs.
 - Commit `696fcd6` closes a fail-closed readiness defect in `Evo2Adapter`: local package/parity
@@ -198,9 +198,10 @@ Active branch/worktree: `research/evovariant-tr` at
   while the six other candidates remain excluded for incompatible score contracts, missing
   assets, applicability, licensing, or unmeasured bounded compute. No deferred model was
   downloaded or promoted as a comparator.
-- After the feature-store adapter change, `make validate` passed 642 tests with 33 deselected,
-  strict mypy over 51 source files, Ruff, secret scan, and 95.01% coverage. The adapter is covered
-  by `tests/unit/test_feature_store.py`; the CLI status option remains covered by
+- After the readiness-boundary change, `make validate` passed 647 tests with 33 deselected,
+  strict mypy over 51 source files, Ruff, secret scan, and 95.07% coverage. The Evo2 readiness
+  module reached 100% coverage for its explicit remote-evidence branches; the feature-store
+  adapter remains covered by `tests/unit/test_feature_store.py` and the CLI status option by
   `tests/unit/test_cli.py`.
 
 The dated records below are retained as historical evidence. The latest `Current state`,

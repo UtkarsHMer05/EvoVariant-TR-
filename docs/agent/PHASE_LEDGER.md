@@ -94,6 +94,10 @@ gate state.
   NCBI URLs return the manifest-matching release sizes, while the corresponding non-archive and
   year-subdirectory fallback URLs return HTTP 404. This strengthens the unresolved target-ID/
   source-provenance blocker; it does not justify replacing the frozen archives or changing filters.
+- The t0 filter-sensitivity audit also found no simple reconciliation: broad uncertainty labels
+  remain 139 IDs below the target, while relaxing assembly/origin/type filters overshoots. Legacy
+  allele fields are unusable (`NA`) and `ClinSigSimple` is numeric only. The audit is preserved in
+  `artifacts/phase3_filter_sensitivity_20260921.json`; Phase 3 remains `BLOCKED`.
 
 ## Phase 0 completion record — 2026-09-21
 

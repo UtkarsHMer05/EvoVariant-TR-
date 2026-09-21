@@ -1,0 +1,40 @@
+{
+  "artifact_id": "phase3-filter-sensitivity-20260921",
+  "checked_at": "2026-09-21",
+  "status": "NO_SIMPLE_FILTER_REPRODUCES_TARGET",
+  "source_archive": {
+    "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+    "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa"
+  },
+  "field_findings": {
+    "exact_uncertain_significance_rows": 1402906,
+    "exact_uncertain_significance_unique_ids": 1402895,
+    "all_labels_containing_uncertain_unique_ids": 1403086,
+    "handoff_target_unique_ids": 1403225,
+    "target_minus_exact_unique_ids": 330,
+    "target_minus_all_uncertainty_unique_ids": 139,
+    "legacy_reference_alternate_valid_unique_ids": 0,
+    "vcf_legacy_field_difference_rows": 1402906,
+    "clinsig_simple_values": ["0", "1"]
+  },
+  "uncertainty_label_unique_ids": {
+    "Uncertain significance": 1402895,
+    "Uncertain significance/Uncertain risk allele": 140,
+    "Uncertain risk allele": 16,
+    "Uncertain risk allele; risk factor": 1,
+    "Uncertain significance; association": 8,
+    "Uncertain significance; drug response": 12,
+    "Uncertain significance; other": 4,
+    "Uncertain significance; risk factor": 10
+  },
+  "filter_matrix_unique_ids": {
+    "grch38_germline_snv": 1403086,
+    "grch38_any_origin_snv": 1418121,
+    "grch38_germline_any_type_single_base": 1403086,
+    "grch38_any_origin_any_type_single_base": 1418121,
+    "any_assembly_germline_snv": 2793885,
+    "any_assembly_any_origin_snv": 2823798
+  },
+  "interpretation": "The populated VCF fields are required for valid current IDs; the legacy allele fields cannot explain the target. Broadening the exact VUS label to every raw label containing uncertain adds 191 IDs but remains 139 below the handoff target. Relaxing assembly, origin, or type filters overshoots substantially. No tested source-field/filter combination reproduces 1403225.",
+  "decision": "Do not broaden the frozen VUS definition or tune filters to aggregate counts. Retain the current archive-derived cohort and keep Phase 3 BLOCKED pending target-side IDs/source provenance or a dated protocol deviation."
+}

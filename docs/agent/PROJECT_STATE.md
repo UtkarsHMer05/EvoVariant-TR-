@@ -111,6 +111,12 @@ Active branch/worktree: `research/evovariant-tr` at
   downloader year-subdirectory fallback URLs return HTTP 404. No alternate official release path
   explains the target discrepancy; the provenance evidence is preserved in
   `artifacts/phase3_source_provenance_check_20260921.json`.
+- A read-only t0 filter-sensitivity audit found that exact `Uncertain significance` produces
+  1,402,895 unique IDs, all raw labels containing `uncertain` produce 1,403,086, and the target is
+  1,403,225. Legacy allele fields are `NA` for these VUS rows, `ClinSigSimple` is numeric `0`/`1`,
+  and relaxing assembly/origin/type filters overshoots substantially. No tested field/filter
+  combination reproduces the target; evidence is in
+  `artifacts/phase3_filter_sensitivity_20260921.json`.
 
 ## Current validation update — 2026-09-21
 

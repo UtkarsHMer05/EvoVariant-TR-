@@ -1456,6 +1456,39 @@ Validation:
 checks, HTTP statuses, release timestamps, content lengths, local archive hashes, and the
 resulting decision.
 
+## D-057 — Do not tune the Phase 3 VUS definition to aggregate counts
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+The Phase 3 current archive-derived cohort has 330 fewer unique t0 IDs than the validation-only
+handoff target. A read-only sensitivity audit tested the populated VCF fields, legacy allele
+fields, every raw clinical-significance label containing `uncertain`, and broader assembly,
+origin, and variant-type filters.
+
+Decision:
+Keep the frozen exact `Uncertain significance` plus GRCh38 germline SNV definition. The exact
+definition produces 1,402,895 unique IDs; all uncertainty-containing labels produce 1,403,086,
+still 139 below the target; and broader filters overshoot substantially. The legacy allele fields
+are `NA` for the VUS rows and `ClinSigSimple` contains numeric `0`/`1`, so neither is a defensible
+replacement. Do not infer target IDs from aggregate counts or alter the protocol to force a match.
+
+Alternatives:
+Include every uncertainty-related label, use the legacy allele fields, relax assembly/origin/type
+filters, or add an arbitrary subset of records to reach 1,403,225. These were rejected because
+they change the estimand without target-side provenance and would make the cohort irreproducible.
+
+Consequences:
+The Phase 3 discrepancy is narrowed to missing target-side provenance or a historical computation
+not represented by any tested current-archive filter. The current cohort remains internally
+auditable, but Phase 3 and all dependent scientific phases remain blocked.
+
+Validation:
+`artifacts/phase3_filter_sensitivity_20260921.json` records the raw-label counts, unique-ID
+counts, filter matrix, legacy-field result, and decision. No source archive or frozen protocol
+was modified.
+
 ## D-056 — Require explicit remote smoke evidence for Evo2 adapter readiness
 Status: ACCEPTED
 Date: 2026-09-21

@@ -190,6 +190,7 @@ def freeze(repo_root: Path, output_dir: Path) -> dict[str, object]:
     phase3_summary = {
         "dataset_id": "evovariant-tr-phase3-v1",
         "status": "PASS",
+        "phase3_gate": "PASS",
         "protocol_id": "evovariant-tr-ml-extension",
         "protocol_version": "1.1.0",
         "original_protocol_sha256": (

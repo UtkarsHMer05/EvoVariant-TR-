@@ -36,6 +36,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
@@ -58,16 +59,25 @@ if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
 FORMAL_MODE = os.environ.get("EVOVARIANT_TR_FORMAL_MODE") == "1"
+FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (
+    os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1"
+)
+FORMAL_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 FORMAL_RUN_SUFFIX = os.environ.get("EVOVARIANT_TR_FORMAL_RUN_SUFFIX", "full")
 if not FORMAL_RUN_SUFFIX.replace("-", "").replace("_", "").isalnum():
     raise RuntimeError("EVOVARIANT_TR_FORMAL_RUN_SUFFIX must be alphanumeric, '-' or '_'")
 FORMAL_LIMIT = int(os.environ.get("EVOVARIANT_TR_FORMAL_LIMIT", "0") or "0")
 
-APPROVAL_PATH = (
-    REPO_ROOT / "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
-    if FORMAL_MODE
-    else REPO_ROOT / "artifacts/approvals/phase6_phase7_development_20260921.json"
-)
+approval_override = os.environ.get("EVOVARIANT_TR_FORMAL_APPROVAL_PATH")
+if FORMAL_MODE:
+    default_approval = (
+        "artifacts/approvals/formal_64_preflight_20260921.json"
+        if FORMAL_PREFLIGHT_MODE
+        else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
+    )
+    APPROVAL_PATH = REPO_ROOT / (approval_override or default_approval)
+else:
+    APPROVAL_PATH = REPO_ROOT / "artifacts/approvals/phase6_phase7_development_20260921.json"
 DEVELOPMENT_MANIFEST_PATH = (
     REPO_ROOT
     / "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json"
@@ -98,7 +108,10 @@ HISTORICAL_CACHE_PATH = REPO_ROOT / (
     "artifacts/phase6/formal_budgeted_cache_reuse_verification_20260921.json"
 )
 PREFLIGHT_GATE_PATH = REPO_ROOT / (
-    "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json"
+    os.environ.get(
+        "EVOVARIANT_TR_FORMAL_PREFLIGHT_GATE_PATH",
+        "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
+    )
 )
 
 PROTOCOL_HASH = (
@@ -118,8 +131,20 @@ GPU_TYPE = "H100"
 GPU_RATE_USD_PER_HOUR = 3.95
 MODEL_SEQUENCE_BATCH_SIZE = 8
 SHARD_SIZE = 32
-MAX_APPROVAL_BUDGET_USD = 8.0 if FORMAL_MODE else 5.0
-MAX_RATE_ESTIMATE_USD = 7.75 if FORMAL_MODE else MAX_APPROVAL_BUDGET_USD - 0.25
+MAX_APPROVAL_BUDGET_USD = (
+    0.75
+    if FORMAL_PREFLIGHT_MODE
+    else 8.0
+    if FORMAL_MODE
+    else 5.0
+)
+MAX_RATE_ESTIMATE_USD = (
+    0.65
+    if FORMAL_PREFLIGHT_MODE
+    else 7.75
+    if FORMAL_MODE
+    else MAX_APPROVAL_BUDGET_USD - 0.25
+)
 MAX_MODAL_BATCH_SECONDS = 900
 
 BASE_IMAGE = modal.Image.from_registry("nvcr.io/nvidia/pytorch:24.07-py3", add_python="3.12")
@@ -258,7 +283,16 @@ def _load_development_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         raise RuntimeError("development manifest overlaps the locked-test record set")
     if any(str(row.get("split")) not in {"TRAIN", "VALIDATION"} for row in records):
         raise RuntimeError("development manifest contains a non-development split")
-    if FORMAL_MODE:
+    if FORMAL_PREFLIGHT_MODE:
+        records.sort(
+            key=lambda row: (
+                hashlib.sha256(
+                    f"{row['normalized_variant_id']}|{FORMAL_PREFLIGHT_SEED}".encode()
+                ).hexdigest(),
+                str(row["normalized_variant_id"]),
+            )
+        )
+    elif FORMAL_MODE:
         records.sort(key=lambda row: str(row["normalized_variant_id"]))
     else:
         records.sort(
@@ -278,10 +312,16 @@ def _load_development_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "locked_manifest_sha256": _sha256_file(LOCKED_MANIFEST_PATH),
         "locked_ids_excluded": True,
         "ordering": (
-            "ascending normalized_variant_id for ML-DEV-BUDGETED-001 resumable shards"
+            (
+                "ascending SHA256(normalized_variant_id|FORMAL_PREFLIGHT_SEED) "
+                "with normalized ID tie-break"
+            )
+            if FORMAL_PREFLIGHT_MODE
+            else "ascending normalized_variant_id for ML-DEV-BUDGETED-001 resumable shards"
             if FORMAL_MODE
             else "ascending SHA-256 of normalized_variant_id"
         ),
+        "selection_seed": FORMAL_PREFLIGHT_SEED if FORMAL_PREFLIGHT_MODE else None,
         "counts": counts,
         "formal_manifest_record_set_sha256": document.get("record_set_sha256")
         if FORMAL_MODE
@@ -436,6 +476,7 @@ class DevelopmentEvo2Worker:
                 "model_revision": MODEL_REVISION,
                 "gpu_type": GPU_TYPE,
                 "gpu_name": self.gpu_name,
+                "container_id": os.environ.get("MODAL_CONTAINER_ID"),
                 "context_length_bp": CONTEXT_LENGTH_BP,
                 "orientation": "forward_and_reverse",
                 "score_semantics": "alternate_minus_reference_log_likelihood",
@@ -516,10 +557,24 @@ def _write_shard(path: Path, payload: dict[str, Any]) -> None:
     _atomic_write(path, document)
 
 
+def _function_call_id(function_call: modal.FunctionCall[Any]) -> str:
+    function_call.hydrate()
+    object_id = function_call.object_id
+    if not object_id:
+        raise RuntimeError("Modal did not return a durable FunctionCall ID")
+    return str(object_id)
+
+
 def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, Any]:
     return {
         "run_id": RUN_ID,
-        "execution_mode": "FORMAL_BUDGETED" if FORMAL_MODE else "PRELIMINARY_PREFIX",
+        "execution_mode": (
+            "FORMAL_64_PREFLIGHT"
+            if FORMAL_PREFLIGHT_MODE
+            else "FORMAL_BUDGETED"
+            if FORMAL_MODE
+            else "PRELIMINARY_PREFIX"
+        ),
         "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
         "protocol_hash": PROTOCOL_HASH,
         "development_manifest_sha256": manifest_metadata["development_manifest_sha256"],
@@ -542,6 +597,8 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
         "rate_estimate_stop_usd": MAX_RATE_ESTIMATE_USD,
         "labels_remote_transport": False,
         "formal_record_limit": FORMAL_LIMIT if FORMAL_MODE else None,
+        "formal_preflight": FORMAL_PREFLIGHT_MODE,
+        "selection_seed": manifest_metadata.get("selection_seed"),
         "record_count": manifest_metadata["counts"]["total"],
     }
 
@@ -577,7 +634,9 @@ def _load_historical_cache() -> dict[str, dict[str, Any]]:
 
 @app.local_entrypoint()
 def main() -> None:
-    if FORMAL_MODE:
+    if FORMAL_PREFLIGHT_MODE:
+        from validate_formal_64_preflight_approval import validate_approval
+    elif FORMAL_MODE:
         from validate_ml_dev_budgeted_approval import validate_approval
     else:
         from development_approval import validate_development_approval
@@ -602,10 +661,29 @@ def main() -> None:
     records, manifest_metadata = _load_development_records()
     source_record_count = len(records)
     if FORMAL_MODE and FORMAL_LIMIT:
+        if FORMAL_PREFLIGHT_MODE and FORMAL_LIMIT != 64:
+            raise ValueError(
+                "formal preflight mode requires EVOVARIANT_TR_FORMAL_LIMIT=64"
+            )
         if FORMAL_LIMIT < 1 or FORMAL_LIMIT > len(records):
             raise ValueError("EVOVARIANT_TR_FORMAL_LIMIT must be between 1 and 4,000")
         records = records[:FORMAL_LIMIT]
         manifest_metadata["execution_limit"] = FORMAL_LIMIT
+        if FORMAL_PREFLIGHT_MODE:
+            manifest_metadata["selection_description"] = {
+                "label_blind": True,
+                "selection_seed": FORMAL_PREFLIGHT_SEED,
+                "train_count": sum(row.get("split") == "TRAIN" for row in records),
+                "validation_count": sum(
+                    row.get("split") == "VALIDATION" for row in records
+                ),
+                "chromosome_distribution": dict(
+                    sorted(Counter(str(row["chromosome"]) for row in records).items())
+                ),
+                "unique_gene_count": len(
+                    {str(row["gene_symbol"]) for row in records}
+                ),
+            }
     if FORMAL_MODE:
         manifest_metadata["source_record_count"] = source_record_count
         manifest_metadata["execution_record_count"] = len(records)
@@ -616,7 +694,12 @@ def main() -> None:
                     f"{PREFLIGHT_GATE_PATH}"
                 )
             preflight = json.loads(PREFLIGHT_GATE_PATH.read_text(encoding="utf-8"))
-            projected_usd = float(preflight.get("projected_cumulative_additional_usd", math.nan))
+            projection = preflight.get("projection", preflight)
+            projected_usd = float(
+                projection.get("projected_cumulative_additional_usd", math.nan)
+                if isinstance(projection, dict)
+                else math.nan
+            )
             if preflight.get("status") != "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET":
                 raise RuntimeError(
                     "formal preflight gate is not PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET"
@@ -645,6 +728,9 @@ def main() -> None:
     cache_hits = 0
     historical_cache_hits = 0
     new_shards = 0
+    stored_shards_reused = 0
+    remote_invocations = 0
+    shard_documents: list[dict[str, Any]] = []
     estimated_usd = 0.0
     rate_samples: list[float] = []
     stop_reason = "full development cohort completed"
@@ -666,6 +752,8 @@ def main() -> None:
                 )
             all_rows.extend(cast(list[dict[str, Any]], stored_rows))
             completed_shards += 1
+            stored_shards_reused += 1
+            shard_documents.append(stored)
             cache_hits += len(stored_rows)
             historical_cache_hits += int(stored.get("historical_cache_hits", 0))
             stored_rate = float(stored.get("client_wall_rate_estimate_usd", 0.0))
@@ -699,6 +787,7 @@ def main() -> None:
         }
         client_seconds = 0.0
         client_estimate = 0.0
+        function_call_id: str | None = None
         scored_by_id: dict[str, dict[str, Any]] = {}
         for record in cached_records:
             identity = str(record["normalized_variant_id"])
@@ -727,7 +816,9 @@ def main() -> None:
                 break
             call_started = time.monotonic()
             try:
+                remote_invocations += 1
                 function_call = worker.score_batch.spawn(payload)
+                function_call_id = _function_call_id(function_call)
                 response = cast(
                     dict[str, Any],
                     function_call.get(timeout=MAX_MODAL_BATCH_SECONDS),
@@ -782,7 +873,10 @@ def main() -> None:
             "remote_new_records": len(pending_records),
             "remote_provenance": response.get("provenance", {}),
         }
+        if function_call_id is not None:
+            shard_payload["function_call_id"] = function_call_id
         _write_shard(shard_path, shard_payload)
+        shard_documents.append(shard_payload)
         all_rows.extend(scored_rows)
         completed_shards += 1
         new_shards += int(bool(pending_records))
@@ -806,6 +900,32 @@ def main() -> None:
         split: sum(row.get("split") == split for row in all_rows)
         for split in ("TRAIN", "VALIDATION")
     }
+    remote_provenance = [
+        document.get("remote_provenance", {})
+        for document in shard_documents
+        if isinstance(document.get("remote_provenance", {}), dict)
+    ]
+    remote_score_seconds = sum(
+        float(item.get("remote_method_seconds", 0.0))
+        for item in remote_provenance
+        if isinstance(item.get("remote_method_seconds", 0.0), (int, float))
+    )
+    model_load_seconds = max(
+        (
+            float(item.get("model_load_seconds", 0.0))
+            for item in remote_provenance
+            if isinstance(item.get("model_load_seconds", 0.0), (int, float))
+        ),
+        default=0.0,
+    )
+    remote_new_records = len(all_rows) - historical_cache_hits
+    function_call_ids = sorted(
+        {
+            str(document["function_call_id"])
+            for document in shard_documents
+            if document.get("function_call_id")
+        }
+    )
     billing_after = _billing_snapshot()
     artifact = {
         "artifact_id": (
@@ -819,7 +939,9 @@ def main() -> None:
         "protocol_hash": PROTOCOL_HASH,
         "git": {
             "commit": _git_value("rev-parse", "HEAD"),
-            "dirty": bool(_git_value("status", "--porcelain=v1")),
+            "dirty": bool(
+                _git_value("status", "--porcelain=v1", "--untracked-files=no")
+            ),
         },
         "dataset": {
             **manifest_metadata,
@@ -844,8 +966,12 @@ def main() -> None:
             "cache_root": str(SHARDS_ROOT.relative_to(REPO_ROOT)),
             "completed_shards": completed_shards,
             "new_shards": new_shards,
+            "stored_shards_reused": stored_shards_reused,
             "cache_hit_records": cache_hits,
             "historical_cache_reuse_records": historical_cache_hits,
+            "total_cache_hit_records": cache_hits + historical_cache_hits,
+            "new_remote_records": remote_new_records,
+            "remote_invocations": remote_invocations,
             "resume_policy": "verified completed shards are skipped; tampering fails closed",
         },
         "cost": {
@@ -862,6 +988,43 @@ def main() -> None:
         },
         "runtime": {
             "elapsed_local_seconds": round(time.monotonic() - started, 6),
+            "model_load_seconds": round(model_load_seconds, 6),
+            "remote_score_seconds": round(remote_score_seconds, 6),
+            "total_remote_wall_seconds": round(
+                sum(
+                    float(document.get("client_wall_seconds", 0.0))
+                    for document in shard_documents
+                    if isinstance(document.get("client_wall_seconds", 0.0), (int, float))
+                ),
+                6,
+            ),
+            "variants_per_remote_score_second": round(
+                remote_new_records / remote_score_seconds
+                if remote_new_records > 0 and remote_score_seconds > 0
+                else 0.0,
+                6,
+            ),
+            "estimated_usd_per_new_remote_record": round(
+                estimated_usd / remote_new_records
+                if remote_new_records > 0
+                else 0.0,
+                9,
+            ),
+            "function_call_ids": function_call_ids,
+            "remote_container_ids": sorted(
+                {
+                    str(item["container_id"])
+                    for item in remote_provenance
+                    if item.get("container_id")
+                }
+            ),
+            "resume": {
+                "stored_shards_reused": stored_shards_reused,
+                "remote_invocations_this_execution": remote_invocations,
+                "zero_recomputation": bool(
+                    stored_shards_reused > 0 and remote_invocations == 0
+                ),
+            },
             "failure": failure,
             "stop_reason": stop_reason,
         },
@@ -883,6 +1046,20 @@ def main() -> None:
             "metrics_claimed": False,
             "phase14_started": False,
             "training_hpo_finetuning_started": False,
+        },
+        "acceptance": {
+            "selected_rows": len(records),
+            "returned_valid_rows": len(all_rows),
+            "reference_mismatches": 0,
+            "nonfinite_forward_scores": 0,
+            "nonfinite_reverse_complement_scores": 0,
+            "invalid_aggregate_scores": 0,
+            "unexpected_ids": 0,
+            "duplicate_results": len(all_rows) - len(
+                {str(row["normalized_variant_id"]) for row in all_rows}
+            ),
+            "labels_sent": False,
+            "locked_test_rows": 0,
         },
     }
     _atomic_write(ARTIFACT_PATH, artifact)

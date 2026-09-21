@@ -19,16 +19,25 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SAMPLE_ARTIFACT = REPO_ROOT / "artifacts/phase6/phase6_formal_evo2_20260921_sample64.json"
+SAMPLE_ARTIFACT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_PREFLIGHT_SAMPLE_ARTIFACT",
+    "artifacts/phase6/phase6_formal_evo2_20260921_sample64.json",
+)
 COST_ESTIMATE = (
     REPO_ROOT / "research/ml_extension/splits/formal_budgeted_20260921/cost_estimate.json"
 )
-OUTPUT = REPO_ROOT / "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json"
+OUTPUT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_PREFLIGHT_GATE_ARTIFACT",
+    "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
+)
 SAMPLE_ROWS = 64
 FORMAL_ROWS = 4_000
 FORMAL_NEW_ROWS = 3_944
-SAFETY_STOP_USD = 7.75
-HARD_CAP_USD = 8.0
+PREFLIGHT_SAFETY_STOP_USD = 0.65
+PREFLIGHT_HARD_CAP_USD = 0.75
+FORMAL_SAFETY_STOP_USD = 7.75
+FORMAL_HARD_CAP_USD = 8.0
+EXPECTED_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 
 
 def sha256_file(path: Path) -> str:
@@ -79,7 +88,24 @@ def main() -> int:
     if dataset.get("processed_records") != SAMPLE_ROWS:
         errors.append("sample artifact processed count is not 64 rows")
     if dataset.get("remaining_records") != 0:
-        errors.append("sample artifact did not complete its selected 64-row prefix")
+        errors.append("sample artifact did not complete its selected 64-row sample")
+    if dataset.get("selection_seed") != EXPECTED_PREFLIGHT_SEED:
+        errors.append("sample artifact selection seed is not the frozen preflight seed")
+    if "sha256(normalized_variant_id|formal_preflight_seed)" not in str(
+        dataset.get("ordering", "")
+    ).casefold():
+        errors.append("sample artifact selection was not hash-ranked and label-blind")
+    description = dataset.get("selection_description")
+    if not isinstance(description, dict) or description.get("label_blind") is not True:
+        errors.append("sample artifact lacks label-blind selection description")
+    if not isinstance(description, dict) or not isinstance(
+        description.get("chromosome_distribution"), dict
+    ):
+        errors.append("sample artifact lacks chromosome coverage description")
+    if not isinstance(description, dict) or not isinstance(
+        description.get("unique_gene_count"), int
+    ):
+        errors.append("sample artifact lacks unique-gene coverage description")
 
     if sample.get("scientific_boundary", {}).get("labels_sent_to_modal") is not False:
         errors.append("sample artifact does not prove labels were excluded from Modal")
@@ -93,6 +119,31 @@ def main() -> int:
         errors.append("sample artifact context length is not 8192 bp")
     if not isinstance(model, dict) or model.get("orientation") != "forward_and_reverse":
         errors.append("sample artifact orientation is not forward_and_reverse")
+    acceptance = sample.get("acceptance")
+    for key, expected in {
+        "selected_rows": SAMPLE_ROWS,
+        "returned_valid_rows": SAMPLE_ROWS,
+        "reference_mismatches": 0,
+        "nonfinite_forward_scores": 0,
+        "nonfinite_reverse_complement_scores": 0,
+        "invalid_aggregate_scores": 0,
+        "unexpected_ids": 0,
+        "duplicate_results": 0,
+        "labels_sent": False,
+        "locked_test_rows": 0,
+    }.items():
+        if not isinstance(acceptance, dict) or acceptance.get(key) != expected:
+            errors.append(f"sample acceptance criterion failed: {key}")
+    runtime = sample.get("runtime")
+    if not isinstance(runtime, dict):
+        errors.append("sample runtime evidence is missing")
+        runtime = {}
+    if not isinstance(runtime.get("function_call_ids"), list) or not runtime.get(
+        "function_call_ids"
+    ):
+        errors.append("sample does not record durable FunctionCall IDs")
+    if runtime.get("resume", {}).get("zero_recomputation") is not True:
+        errors.append("sample resume check did not prove zero recomputation")
 
     outputs = sample.get("outputs")
     prediction_path = None
@@ -130,7 +181,15 @@ def main() -> int:
         else 0
     )
     processed = int(dataset.get("processed_records", 0))
-    remote_new_rows = processed - historical_hits
+    remote_new_rows = (
+        int(cache.get("new_remote_records", processed - historical_hits))
+        if isinstance(cache, dict)
+        else processed - historical_hits
+    )
+    if isinstance(cache, dict) and int(cache.get("total_cache_hit_records", 0)) != (
+        int(cache.get("cache_hit_records", 0)) + historical_hits
+    ):
+        errors.append("cache-hit accounting is inconsistent")
     cost = sample.get("cost")
     measured_sample_usd = (
         float(cost.get("cumulative_client_wall_rate_estimate_usd", math.nan))
@@ -139,6 +198,11 @@ def main() -> int:
     )
     if not math.isfinite(measured_sample_usd) or measured_sample_usd < 0:
         errors.append("sample cost estimate is missing or non-finite")
+    if measured_sample_usd > PREFLIGHT_SAFETY_STOP_USD:
+        errors.append(
+            "measured preflight estimate exceeds its safety stop: "
+            f"{measured_sample_usd:.6f} > {PREFLIGHT_SAFETY_STOP_USD:.2f}"
+        )
     if remote_new_rows <= 0:
         errors.append("sample contains no new remote rows for a rate projection")
 
@@ -167,15 +231,15 @@ def main() -> int:
     projected_total = (
         projected_evo2 + estimate_nt + estimate_cad if projected_evo2 is not None else None
     )
-    if projected_total is not None and projected_total > SAFETY_STOP_USD:
+    if projected_total is not None and projected_total > FORMAL_SAFETY_STOP_USD:
         errors.append(
             "projected cumulative additional cost exceeds safety stop: "
-            f"{projected_total:.6f} > {SAFETY_STOP_USD:.2f}"
+            f"{projected_total:.6f} > {FORMAL_SAFETY_STOP_USD:.2f}"
         )
-    if projected_total is not None and projected_total > HARD_CAP_USD:
+    if projected_total is not None and projected_total > FORMAL_HARD_CAP_USD:
         errors.append(
             "projected cumulative additional cost exceeds hard cap: "
-            f"{projected_total:.6f} > {HARD_CAP_USD:.2f}"
+            f"{projected_total:.6f} > {FORMAL_HARD_CAP_USD:.2f}"
         )
 
     status = "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET" if not errors else "FAIL_FORMAL_PREFLIGHT"
@@ -184,6 +248,7 @@ def main() -> int:
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "status": status,
         "formal_full_launch_authorized": status == "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET",
+        "next_full_run_requires_separate_approval": True,
         "sample": {
             "artifact_path": str(SAMPLE_ARTIFACT.relative_to(REPO_ROOT)),
             "artifact_sha256": sha256_file(SAMPLE_ARTIFACT),
@@ -203,8 +268,10 @@ def main() -> int:
             "planned_nucleotide_transformer_usd": estimate_nt,
             "planned_caduceus_usd": estimate_cad,
             "projected_cumulative_additional_usd": projected_total,
-            "runner_safety_stop_usd": SAFETY_STOP_USD,
-            "hard_cap_usd": HARD_CAP_USD,
+            "formal_runner_safety_stop_usd": FORMAL_SAFETY_STOP_USD,
+            "formal_hard_cap_usd": FORMAL_HARD_CAP_USD,
+            "current_preflight_safety_stop_usd": PREFLIGHT_SAFETY_STOP_USD,
+            "current_preflight_hard_cap_usd": PREFLIGHT_HARD_CAP_USD,
         },
         "planning_basis": {
             "cost_estimate_path": str(COST_ESTIMATE.relative_to(REPO_ROOT)),
@@ -217,6 +284,11 @@ def main() -> int:
         "errors": errors,
         "labels_sent_to_modal": False,
         "locked_test_access": "prohibited",
+        "recommendation": (
+            "AUTHORIZE_FORMAL_4000"
+            if status == "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET"
+            else "FORMAL_PREFLIGHT_FIX_REQUIRED"
+        ),
     }
     atomic_write(OUTPUT, artifact)
     print(json.dumps(artifact, indent=2, sort_keys=True))

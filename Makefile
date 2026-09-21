@@ -216,6 +216,11 @@ formal-budgeted-approval-verify: ## Validate the exact-scope ML-DEV-BUDGETED-001
 	$(MAKE) check-venv
 	$(PYTHON) scripts/validate_ml_dev_budgeted_approval.py
 
+.PHONY: formal-64-preflight-approval-verify
+formal-64-preflight-approval-verify: ## Validate the separately scoped formal 64-row preflight approval
+	$(MAKE) check-venv
+	$(PYTHON) scripts/validate_formal_64_preflight_approval.py
+
 .PHONY: formal-budgeted-evo2
 formal-budgeted-evo2: ## Run the approval-gated formal Evo2 score workload (FORMAL_LIMIT/FORMAL_SUFFIX optional)
 	$(MAKE) check-venv

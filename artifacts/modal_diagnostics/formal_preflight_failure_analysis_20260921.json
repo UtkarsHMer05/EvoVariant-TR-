@@ -1,0 +1,242 @@
+{
+  "artifact_id": "formal-preflight-failure-analysis-20260921",
+  "recorded_at_utc": "2026-09-21T16:41:52Z",
+  "status": "DIAGNOSTIC_STOPPED_AFTER_H100_CONTAINER_FAILURE",
+  "recommendation": "CLIENT_FIX_REQUIRED",
+  "recommendation_reason": "The isolated H100 diagnostic allocated an H100 container but the diagnostic image's Python environment did not contain torch. Fix and independently validate that diagnostic container before any further H100-layer test. This is not evidence of H100 scheduling unavailability and does not authorize a formal 64-row retry.",
+  "checkpoint_boundary": {
+    "formal_64_row_retry_started_after_this_checkpoint": false,
+    "note": "A third formal attempt had already been started before the latest continuation checkpoint arrived. It was stopped and preserved; no new formal attempt was started after the checkpoint.",
+    "prior_formal_app_ids_preserved": [
+      "ap-3nvzpB5VADtBwNaoF5aOmA",
+      "ap-2yoBkvnIItyhk0pULH36CA"
+    ],
+    "third_interrupted_formal_app_id": "ap-TjBjZwIceAIK4Q6U8Y9B4l"
+  },
+  "git": {
+    "branch": "research/evovariant-tr",
+    "head": "e589efb5443713c864004472b1c3457a437d803a",
+    "head_subject": "docs: record failed formal Modal preflight",
+    "head_semantics": "execution and diagnostic-approval binding HEAD; later evidence documentation may advance the working HEAD",
+    "ahead_of_origin": 128,
+    "dirty_expected": true,
+    "untracked_expected": [
+      ".agents/skills/modal",
+      "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json",
+      "artifacts/approvals/modal_transport_diagnostic_20260921.json"
+    ]
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "study": {
+    "study_id": "ML-DEV-BUDGETED-001",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "locked_test_access": "PROHIBITED",
+    "labels_remote_transport": "PROHIBITED"
+  },
+  "local_environment": {
+    "python": "3.12.8",
+    "modal_cli": "1.5.4",
+    "modal_sdk": "1.5.4",
+    "modal_profile": "utkarshmer05",
+    "modal_workspace": "utkarshmer05",
+    "modal_active_environment": "main",
+    "modal_default_environment": "main",
+    "modal_image_builder_version": "2024.10",
+    "modal_config_environment_override": null,
+    "modal_logs_timeout_seconds": 10,
+    "modal_heartbeat_interval_seconds": 15,
+    "macos": "26.5",
+    "kernel": "Darwin 25.5.0",
+    "architecture": "arm64",
+    "proxy_environment_names_present": [],
+    "modal_environment_names_present": [],
+    "timeout_settings": {
+      "formal_batch_seconds": 900,
+      "formal_function_timeout_seconds": 900,
+      "formal_function_startup_timeout_seconds": 900,
+      "formal_retries": 0,
+      "cpu_diagnostic_timeout_seconds": 120,
+      "h100_diagnostic_timeout_seconds": 120,
+      "h100_diagnostic_startup_timeout_seconds": 120,
+      "h100_diagnostic_retries": 0
+    }
+  },
+  "cli_checks": {
+    "modal_app_list": "PASS",
+    "modal_container_list": "PASS; no active containers after cleanup",
+    "modal_billing_summary": "PASS; billed cost $0.00",
+    "modal_volume_list": "PASS; hf_cache exists",
+    "modal_workspace_settings": "PASS; default-environment main, image-builder-version 2024.10",
+    "modal_changelog_since_1_5_4": "INCONCLUSIVE; local SSL certificate verify failed before changelog retrieval",
+    "modal_update_performed": false,
+    "update_reason": "The installed CLI/SDK and bundled Modal skill are both 1.5.4, required commands and FunctionCall APIs work, and no evidence established that an update was required."
+  },
+  "layer_assessment": {
+    "local_client": "PASS",
+    "transport_session": "FAIL_ON_FIRST_TWO_FORMAL_ATTEMPTS; CPU SPAWN_GET AND DETACHED RETRIEVAL PASS",
+    "generic_modal_function": "PASS_FOR_CPU_DIAGNOSTIC",
+    "h100_availability": "EVIDENCE_PRESENT; H100 CONTAINER ALLOCATED FOR THIRD FORMAL ATTEMPT AND H100 DIAGNOSTIC",
+    "cuda_pytorch": "NOT_ISOLATED; H100 DIAGNOSTIC STOPPED AT MISSING_TORCH_IMPORT",
+    "model_init": "EVIDENCE_PRESENT_ONLY_IN_INTERRUPTED_FORMAL_ATTEMPT",
+    "hf_cache_access": "NOT_SEPARATELY_TESTED",
+    "evo2_init": "EVIDENCE_PRESENT_ONLY_IN_INTERRUPTED_FORMAL_ATTEMPT",
+    "evo2_scoring": "NOT_COMPLETED; THIRD FORMAL ATTEMPT WAS LOCALLY INTERRUPTED"
+  },
+  "formal_attempts": [
+    {
+      "app_id": "ap-3nvzpB5VADtBwNaoF5aOmA",
+      "created_at": "2026-09-21T21:35:29+05:30",
+      "stopped_at": "2026-09-21T21:42:06+05:30",
+      "modal_state": "stopped",
+      "server_log_evidence": "Images constructed; no remote worker/container score log",
+      "client_recorded_exception": "StreamTerminatedError: Connection lost",
+      "scientific_rows_returned": 0,
+      "classification": "TRANSPORT_OR_SESSION_FAILURE_NOT_H100_SCHEDULING_PROVEN"
+    },
+    {
+      "app_id": "ap-2yoBkvnIItyhk0pULH36CA",
+      "created_at": "2026-09-21T21:42:56+05:30",
+      "stopped_at": "2026-09-21T21:47:48+05:30",
+      "modal_state": "stopped",
+      "server_log_evidence": "No remote worker/container score log; local entrypoint completed after image construction",
+      "client_recorded_exception": "StreamTerminatedError: Connection lost",
+      "scientific_rows_returned": 0,
+      "classification": "TRANSPORT_OR_SESSION_FAILURE_NOT_H100_SCHEDULING_PROVEN"
+    },
+    {
+      "app_id": "ap-TjBjZwIceAIK4Q6U8Y9B4l",
+      "created_at": "2026-09-21T21:57:47+05:30",
+      "stopped_at": "2026-09-21T22:00:33+05:30",
+      "modal_state": "stopped",
+      "function_id": "fu-FU1hZgKJGVJlqlwd3V1KuD",
+      "container_id": "ta-01M32CRVVNWWRHBRR8W3SM10XR",
+      "server_log_evidence": "H100/NVIDIA PyTorch container started, evo2_7b.pt was found, model state loaded, and repeated 8-record scoring calls began",
+      "observed_function_call_ids": [
+        "fc-01M32CRV498S2520C52RPJZEVC",
+        "fc-01M32CVK5QBKS04REERHT1P57H"
+      ],
+      "client_stop": "Ctrl-C at 2026-09-21T22:00:24+05:30; Modal log reports Runner terminated at 2026-09-21T22:00:33+05:30",
+      "formal_artifact_result": "No completed formal artifact; the persisted sample remains FAILED with zero completed rows",
+      "classification": "INTERRUPTED_FORMAL_ATTEMPT_NOT_A_PASS"
+    }
+  ],
+  "diagnostics": {
+    "cpu_trivial": {
+      "status": "PASS",
+      "app_id": "ap-23bynwYzoxKGO8TmPHVD9l",
+      "function": "cpu_echo",
+      "values": [0, 1, 7, 64],
+      "successful_records": 4,
+      "stream_exception": null,
+      "artifact": "artifacts/modal_diagnostics/cpu_trivial_round_trip_20260921.json",
+      "artifact_sha256": "2a30717a94f11cb3e2bc5248adb3806f388e3d95573f15c14b5b8992430be090"
+    },
+    "detached_cpu": {
+      "status": "PASS",
+      "app_id": "ap-wsZoBWHGk1jN57Td2HXlIM",
+      "function_call_id": "fc-01M32D9RXX7CGS8XHZZ0SZ2CQP",
+      "submission_artifact": "artifacts/modal_diagnostics/cpu_detached_submission_20260921.json",
+      "result_artifact": "artifacts/modal_diagnostics/cpu_detached_result_20260921.json",
+      "result_artifact_sha256": "62b3d0a622909a1cdc21078037a37c7345ee90bd4ed20b644cc3ea547b1ee26f",
+      "detach_mechanism": "modal run --detach",
+      "independent_retrieval": "FunctionCall.from_id(...).get() returned the expected deterministic result",
+      "post_cleanup_state": "stopped; no active container"
+    },
+    "minimal_h100": {
+      "status": "FAIL",
+      "app_id": "ap-YYNj6l8iIR9IGJORSrPCrF",
+      "function_id": "fu-dF4Pk6P3fftaHlg0zVGWKB",
+      "function_call_id": "fc-01M32DEA0TT4E2F5A3XNWEAW96",
+      "container_id": "ta-01M32DEAE8JMWAN7QDNZJHR4MR",
+      "exception": "ModuleNotFoundError: No module named 'torch'",
+      "failure_layer": "diagnostic container Python dependency before CUDA probe",
+      "model_access": false,
+      "hf_access": false,
+      "volume_access": false,
+      "artifact": "artifacts/modal_diagnostics/h100_cuda_probe_20260921.json",
+      "artifact_sha256": "ce08cfd1ded759ff45c69f76644bd4a6b25cf4dcaaeca522611cb97c38aa3304",
+      "post_cleanup_state": "stopped; no active container"
+    },
+    "hf_cache": {
+      "status": "NOT_RUN",
+      "reason": "Stop rule after minimal H100 diagnostic container failure"
+    },
+    "evo2_load": {
+      "status": "NOT_RUN_AS_NEW_DIAGNOSTIC",
+      "historical_evidence": "Interrupted formal app reached Evo2 model initialization, but this is not a clean diagnostic PASS"
+    },
+    "one_record_evo2": {
+      "status": "NOT_RUN",
+      "reason": "Stop rule after minimal H100 diagnostic container failure"
+    },
+    "eight_record_evo2": {
+      "status": "NOT_RUN_AS_NEW_DIAGNOSTIC",
+      "historical_evidence": "Interrupted formal app began repeated 8-record calls but returned no accepted formal result"
+    }
+  },
+  "identifiers_and_errors": {
+    "first_formal_exception": "StreamTerminatedError: Connection lost",
+    "second_formal_exception": "StreamTerminatedError: Connection lost",
+    "third_formal_stop": "KeyboardInterrupt / Runner terminated",
+    "h100_diagnostic_exception": "ModuleNotFoundError: No module named 'torch'",
+    "formal_app_ids": [
+      "ap-3nvzpB5VADtBwNaoF5aOmA",
+      "ap-2yoBkvnIItyhk0pULH36CA",
+      "ap-TjBjZwIceAIK4Q6U8Y9B4l"
+    ],
+    "diagnostic_app_ids": [
+      "ap-23bynwYzoxKGO8TmPHVD9l",
+      "ap-wsZoBWHGk1jN57Td2HXlIM",
+      "ap-YYNj6l8iIR9IGJORSrPCrF"
+    ]
+  },
+  "billing": {
+    "formal_preflight_snapshot_before_attempts": {
+      "metered_cost_usd": 19.33,
+      "billed_cost_usd": 0.0
+    },
+    "current_snapshot": {
+      "metered_cost_usd": 19.44,
+      "deployed_apps_usd": 8.78,
+      "ephemeral_apps_usd": 7.29,
+      "volumes_usd": 3.37,
+      "credits_usd": -16.07,
+      "billed_cost_usd": 0.0
+    },
+    "interpretation": "Workspace-level billing summary; it is not a per-run invoice. No billed cost was observed."
+  },
+  "scientific_boundary": {
+    "formal_64_row_preflight_pass": false,
+    "formal_64_row_retry_authorized_by_this_artifact": false,
+    "full_4000_row_run_started": false,
+    "formal_rows_accepted": 0,
+    "labels_sent_to_modal": false,
+    "locked_test_accessed": false,
+    "training_started": false,
+    "hpo_started": false,
+    "fine_tuning_started": false,
+    "phase14_started": false,
+    "metrics_claimed": false
+  },
+  "evidence_artifacts": [
+    {
+      "path": "artifacts/phase6/phase6_formal_evo2_20260921_sample64.json",
+      "sha256": "109a42a032af66af86ada15de854ca1b6d4525195fdbe477a42729fcd3c841fc",
+      "status": "FAILED; zero completed rows; StreamTerminatedError recorded"
+    },
+    {
+      "path": "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
+      "sha256": "81a3b1f8648fd5c5db429cafbec2cea55a3177a906ffe14135c4d599e58d3511",
+      "status": "FAIL_FORMAL_PREFLIGHT; full formal launch refused"
+    },
+    {
+      "path": "artifacts/approvals/modal_transport_diagnostic_20260921.json",
+      "sha256": "e4d38056833e11909e6fc0c013849860d88e5a749b6250e6867c08d9b2d1881e",
+      "status": "diagnostic-only approval; hard cap $0.50; formal retry excluded"
+    }
+  ]
+}

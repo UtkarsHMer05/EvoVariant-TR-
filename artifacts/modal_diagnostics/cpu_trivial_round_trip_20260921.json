@@ -1,0 +1,83 @@
+{
+  "app_name": "evovariant-tr-modal-transport-diagnostic",
+  "artifact_id": "modal-cpu-trivial-round-trip-20260921",
+  "function": "cpu_echo",
+  "gpu": null,
+  "hf_access": false,
+  "image": "modal.Image.debian_slim(python_version='3.12')",
+  "model_access": false,
+  "records": [
+    {
+      "function_call_id": "fc-01M32D8MQCVMDXBH136QVXKZ6M",
+      "result": {
+        "double": 0,
+        "function_call_id": "fc-01M32D8MQCVMDXBH136QVXKZ6M",
+        "hostname": "modal",
+        "python_version": "3.12.6",
+        "remote_finished_ns": 1790008646355548921,
+        "value": 0
+      },
+      "return_latency_ms": 2357.932916842401,
+      "status": "PASS",
+      "submission_latency_ms": 307.52399982884526,
+      "submitted_at_ns": 1790008644181264000,
+      "value": 0
+    },
+    {
+      "function_call_id": "fc-01M32D8Q13M3PH3N24PEW2BKX3",
+      "result": {
+        "double": 2,
+        "function_call_id": "fc-01M32D8Q13M3PH3N24PEW2BKX3",
+        "hostname": "modal",
+        "python_version": "3.12.6",
+        "remote_finished_ns": 1790008646760945044,
+        "value": 1
+      },
+      "return_latency_ms": 569.2464159801602,
+      "status": "PASS",
+      "submission_latency_ms": 306.11579096876085,
+      "submitted_at_ns": 1790008646539232000,
+      "value": 1
+    },
+    {
+      "function_call_id": "fc-01M32D8QJTQ12JAP0C4BM2RW8W",
+      "result": {
+        "double": 14,
+        "function_call_id": "fc-01M32D8QJTQ12JAP0C4BM2RW8W",
+        "hostname": "modal",
+        "python_version": "3.12.6",
+        "remote_finished_ns": 1790008647323322544,
+        "value": 7
+      },
+      "return_latency_ms": 655.7725418824703,
+      "status": "PASS",
+      "submission_latency_ms": 287.1523748617619,
+      "submitted_at_ns": 1790008647108504000,
+      "value": 7
+    },
+    {
+      "function_call_id": "fc-01M32D8R7EWT34AK85TBDCH43N",
+      "result": {
+        "double": 128,
+        "function_call_id": "fc-01M32D8R7EWT34AK85TBDCH43N",
+        "hostname": "modal",
+        "python_version": "3.12.6",
+        "remote_finished_ns": 1790008647987670242,
+        "value": 64
+      },
+      "return_latency_ms": 614.6892909891903,
+      "status": "PASS",
+      "submission_latency_ms": 354.13004108704627,
+      "submitted_at_ns": 1790008647764292000,
+      "value": 64
+    }
+  ],
+  "status": "PASS",
+  "values": [
+    0,
+    1,
+    7,
+    64
+  ],
+  "volume": null
+}

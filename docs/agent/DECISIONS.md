@@ -2609,6 +2609,46 @@ Validation:
 The recovery-path code passes `make validate`, including 703 tests, strict mypy, Ruff, secret
 scan, and 95.02% coverage. No new Modal request was made after the two failed attempts.
 
+## D-088 — Isolate Modal transport and stop at the first diagnostic container failure
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None; constrains the next execution permitted by D-087
+
+Context:
+The first two exact-scope formal 64-row Evo2 preflight attempts ended with
+`StreamTerminatedError: Connection lost` after image construction and before a remote score.
+Before this continuation checkpoint arrived, a third attempt had already reached an H100
+container, initialized the qualified Evo2 image, and started repeated eight-record calls, but it
+was stopped by the local operator and produced no accepted formal result. The latest checkpoint
+required isolating local client, transport, generic Modal execution, H100/CUDA, volume, model
+initialization, and scoring in order, without another formal retry.
+
+Decision:
+Authorize only the diagnostic artifact
+`artifacts/approvals/modal_transport_diagnostic_20260921.json`, capped at `$0.50` with a
+`$0.45` safety stop. Use the smallest no-model/no-GPU/no-volume CPU function first and verify
+both durable `spawn/get` and official `modal run --detach` retrieval. Because those CPU layers
+passed, run one minimal H100 CUDA/tensor probe. Stop when that probe fails at
+`ModuleNotFoundError: No module named 'torch'`; classify the result as a client/container
+diagnostic dependency failure, not an H100 scheduling outage. Do not run the volume or Evo2
+diagnostic layers and do not retry the formal 64-row preflight from this decision.
+
+Consequences:
+The CPU Modal transport path is now evidenced as healthy for deterministic calls and detached
+result retrieval. H100 allocation is evidenced by the diagnostic container and the interrupted
+formal app, but isolated CUDA/PyTorch readiness is not PASS because the diagnostic image omitted
+`torch`. The exact next recommendation is `CLIENT_FIX_REQUIRED`: correct and independently
+validate the diagnostic image before requesting a new H100-layer diagnostic or formal retry.
+The formal sample remains `FAILED`, the formal gate remains `FAIL_FORMAL_PREFLIGHT`, no formal
+rows or metrics are accepted, and labels/locked-test data remain outside Modal.
+
+Validation:
+`artifacts/modal_diagnostics/formal_preflight_failure_analysis_20260921.json` records the
+current HEAD, protocol/study binding, app/function/container/call IDs, exact exceptions,
+environment/timeouts, billing snapshot, CPU PASS, detached PASS, H100 diagnostic FAIL, and all
+not-run downstream layers. `make validate` passed 703 tests with 95.02% coverage before the
+evidence commit; all diagnostic apps were stopped and `modal container list` was empty.
+
 ## Template for new decisions
 
 ### D-XXX — Title

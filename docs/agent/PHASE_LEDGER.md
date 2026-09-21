@@ -959,3 +959,34 @@ genuine unavailable evidence, not values to infer.
   runner default printed help without a network request. Modal preflight was authenticated but
   recorded `gpu_count: 0`, `status: PLANNED`, and no remote invocation. These are no-spend
   control-plane results and do not change any scientific phase to PASS.
+
+## Modal preflight layer-isolation checkpoint — 2026-09-21
+
+- Evidence commit: `e589efb5443713c864004472b1c3457a437d803a`, with `make validate` PASS
+  (703 passed, 33 deselected, strict mypy/Ruff/secret scan, 95.02% coverage) and clean
+  `git diff --check` before commit. The failed sample and preflight gate are preserved as
+  tracked artifacts; the two prior failed app IDs are not deleted.
+- Formal app evidence is intentionally split. `ap-3nvzpB5VADtBwNaoF5aOmA` and
+  `ap-2yoBkvnIItyhk0pULH36CA` both recorded client-side `StreamTerminatedError: Connection
+  lost` after image construction with zero accepted rows and no server-side worker score log.
+  `ap-TjBjZwIceAIK4Q6U8Y9B4l` was already running when the latest checkpoint arrived; it
+  reached an H100/NVIDIA PyTorch container and Evo2 initialization, but was deliberately
+  interrupted and is not a formal PASS.
+- Diagnostic-only approval
+  `artifacts/approvals/modal_transport_diagnostic_20260921.json` authorizes at most `$0.50`
+  additional Modal compute, with a `$0.45` safety stop, and excludes formal 64-row retry,
+  full-cohort work, NT/Caduceus, training, HPO, fine-tuning, locked evaluation, and Phase 14.
+- CPU transport isolation PASSed: four deterministic `spawn/get` calls in
+  `ap-23bynwYzoxKGO8TmPHVD9l` returned exact doubles, and detached submission/retrieval in
+  `ap-wsZoBWHGk1jN57Td2HXlIM` returned the expected value after independent
+  `FunctionCall.from_id(...).get()` retrieval. Both apps were stopped and no active container
+  remained.
+- The minimal H100 layer then allocated `ap-YYNj6l8iIR9IGJORSrPCrF` / container
+  `ta-01M32DEAE8JMWAN7QDNZJHR4MR`, but failed before the CUDA probe at
+  `ModuleNotFoundError: No module named 'torch'`. This is a diagnostic image/client dependency
+  failure; it does not establish H100 unavailability. Per the checkpoint, no `hf_cache` read,
+  new Evo2 initialization, one-record check, or eight-record check followed.
+- Current Phase 6 gate remains `FAIL_FORMAL_PREFLIGHT`, not PASS. The full formal run and all
+  dependent GPU/downstream phases remain blocked. The durable report is
+  `artifacts/modal_diagnostics/formal_preflight_failure_analysis_20260921.json`; its sole
+  recommendation is `CLIENT_FIX_REQUIRED` before any new H100-layer diagnostic or formal retry.

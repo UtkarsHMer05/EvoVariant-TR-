@@ -1081,3 +1081,45 @@ families were not invented.
   `make modal-smoke` reported authenticated Modal, `gpu_count: 0`, `status: PLANNED`, and no
   remote invocation. No new paid work, model download, locked evaluation, deployment, release,
   or publication was performed.
+
+## Modal transport diagnostic continuation — 2026-09-21
+
+- The latest checkpoint is bound to commit `e589efb5443713c864004472b1c3457a437d803a`
+  (`docs: record failed formal Modal preflight`). The branch is `research/evovariant-tr`,
+  remains unpushed, and the pre-existing `.agents/skills/modal` tree is preserved. The two
+  original failed formal app IDs remain preserved: `ap-3nvzpB5VADtBwNaoF5aOmA` and
+  `ap-2yoBkvnIItyhk0pULH36CA`.
+- Before this checkpoint arrived, a third formal app `ap-TjBjZwIceAIK4Q6U8Y9B4l` had already
+  started. It was stopped and retained as an interrupted attempt, not a PASS: its logs show an
+  H100/NVIDIA PyTorch container, `evo2_7b.pt` discovery, model initialization, and repeated
+  eight-record calls, followed by the deliberate local Ctrl-C and Modal `Runner terminated`.
+  It returned no accepted formal result and did not rewrite or promote the failed sample gate.
+- The required local pre-commit gate passed after that attempt: `make validate` reported 703
+  tests passed, 33 deselected, strict mypy, Ruff, secret scan, and 95.02% coverage; `git diff
+  --check` passed. The failed sample and `FAIL_FORMAL_PREFLIGHT` gate were committed separately.
+- The diagnostic-only approval is
+  `artifacts/approvals/modal_transport_diagnostic_20260921.json`, bound to the current HEAD,
+  protocol hash `bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec`, study
+  `ML-DEV-BUDGETED-001`, Modal workspace/profile `utkarshmer05`, environment `main`, and a
+  hard cap of `$0.50` with a `$0.45` safety stop. Formal 64-row retry, full 4,000-row work,
+  NT/Caduceus, training, HPO, fine-tuning, locked test, and Phase 14 are excluded.
+- Layer isolation passed the CPU transport surface. Four deterministic `cpu_echo` calls for
+  values `0, 1, 7, 64` passed through `spawn/get` in
+  `ap-23bynwYzoxKGO8TmPHVD9l`; the detached `modal run --detach` check in
+  `ap-wsZoBWHGk1jN57Td2HXlIM` also passed, and a later `FunctionCall.from_id(...).get()`
+  returned the expected result. Both diagnostic apps were stopped after retrieval.
+- The minimal H100 diagnostic app `ap-YYNj6l8iIR9IGJORSrPCrF` did allocate container
+  `ta-01M32DEAE8JMWAN7QDNZJHR4MR`, but the probe failed at the diagnostic image dependency
+  boundary with `ModuleNotFoundError: No module named 'torch'`. This is a client/container
+  diagnostic failure, not evidence that H100 scheduling is unavailable. The probe had no model,
+  Hugging Face, or volume access. Per the checkpoint stop rule, the volume read and new Evo2
+  load/one-record/eight-record diagnostics were not run.
+- The complete evidence is
+  `artifacts/modal_diagnostics/formal_preflight_failure_analysis_20260921.json`, with CPU,
+  detached, H100, formal app, container/function/call ID, environment, timeout, and billing
+  metadata. The single recommendation is `CLIENT_FIX_REQUIRED`: fix and validate the isolated
+  H100 diagnostic image before any new H100-layer test, then obtain a fresh explicit continuation.
+- Current scientific status remains `PARTIAL / BLOCKED`: the formal 64-row preflight is not a
+  PASS, the full formal workload remains refused, no formal rows were accepted, labels were not
+  sent remotely, and the locked test, training, HPO, fine-tuning, Phase 14, release, deployment,
+  and publication boundaries remain untouched.

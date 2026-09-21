@@ -1,0 +1,23 @@
+{
+  "artifact_id": "modal-cpu-detached-result-20260921",
+  "result": {
+    "double": 40521842,
+    "function_call_id": "fc-01M32D9RXX7CGS8XHZZ0SZ2CQP",
+    "hostname": "modal",
+    "python_version": "3.12.6",
+    "remote_finished_ns": 1790008683995869685,
+    "value": 20260921
+  },
+  "return_latency_ms": 756.8837499711663,
+  "status": "PASS",
+  "submission": {
+    "app_name": "evovariant-tr-modal-transport-diagnostic",
+    "artifact_id": "modal-cpu-detached-submission-20260921",
+    "detach_mechanism": "modal run --detach",
+    "function": "cpu_echo",
+    "function_call_id": "fc-01M32D9RXX7CGS8XHZZ0SZ2CQP",
+    "status": "SUBMITTED",
+    "submitted_at_ns": 1790008681251892000,
+    "value": 20260921
+  }
+}

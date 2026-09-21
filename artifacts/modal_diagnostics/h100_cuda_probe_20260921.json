@@ -1,0 +1,14 @@
+{
+  "app_name": "evovariant-tr-modal-h100-diagnostic",
+  "artifact_id": "modal-h100-cuda-probe-20260921",
+  "elapsed_ms": 12829.536708071828,
+  "exception": "ModuleNotFoundError: No module named 'torch'",
+  "function": "cuda_probe",
+  "function_call_id": "fc-01M32DEA0TT4E2F5A3XNWEAW96",
+  "gpu": "H100",
+  "hf_access": false,
+  "model_access": false,
+  "status": "FAIL",
+  "submitted_at_ns": 1790008829820074000,
+  "volume": null
+}

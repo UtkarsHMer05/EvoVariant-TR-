@@ -1098,7 +1098,8 @@ families were not invented.
   tests passed, 33 deselected, strict mypy, Ruff, secret scan, and 95.02% coverage; `git diff
   --check` passed. The failed sample and `FAIL_FORMAL_PREFLIGHT` gate were committed separately.
 - The diagnostic-only approval is
-  `artifacts/approvals/modal_transport_diagnostic_20260921.json`, bound to the current HEAD,
+  `artifacts/approvals/modal_transport_diagnostic_20260921.json`, bound to the execution HEAD
+  `e589efb5443713c864004472b1c3457a437d803a`,
   protocol hash `bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec`, study
   `ML-DEV-BUDGETED-001`, Modal workspace/profile `utkarshmer05`, environment `main`, and a
   hard cap of `$0.50` with a `$0.45` safety stop. Formal 64-row retry, full 4,000-row work,

@@ -892,3 +892,17 @@ genuine unavailable evidence, not values to infer.
   exhausted at its recorded safety stop and does not authorize full-cohort inference,
   comparators/embeddings, locked evaluation, fine-tuning, remote batch, deployment, release, or
   publication.
+
+## Final no-spend gate refresh — 2026-09-21
+
+- `make validate` passed 700 tests with 33 deselected and 95.01% coverage; strict mypy, Ruff, and
+  secret scan passed. ML protocol, schema, model-registry, and experiment-registry verification
+  passed. Scientific tests passed 7 with 1 skip, and API/E2E tests passed 14 with 1 skip.
+- The frontend gate passed `make web-check`, and `make web-e2e` passed all four browser journeys.
+  The registry UI remains `PARTIAL` for nine preliminary runs with no final run. The final Phase
+  17 renderer remains `BLOCKED` with zero outputs; the separate preliminary renderer remains
+  `PARTIAL` and non-promotable with 18 outputs.
+- The safe status surfaces for Phases 14, 18, and 19 each recorded `BLOCKED`. The Phase 6/7
+  runner default printed help without a network request. Modal preflight was authenticated but
+  recorded `gpu_count: 0`, `status: PLANNED`, and no remote invocation. These are no-spend
+  control-plane results and do not change any scientific phase to PASS.

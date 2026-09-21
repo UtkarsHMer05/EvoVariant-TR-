@@ -990,3 +990,25 @@ families were not invented.
   export, and Phases 14, 18, and 19 remain blocked by their documented locked-evaluation,
   clean-room, and release dependencies. The exhausted `$5.00` approval is not widened by this
   local continuation.
+
+## Final no-spend gate refresh — 2026-09-21
+
+- The implementation checkpoint is `6196dc5`; the documentation reconciliation checkpoint is
+  `6b048af`. The branch is `research/evovariant-tr`, remains 122 commits ahead of its configured
+  remote, and the only untracked path is the pre-existing `.agents/` directory. No push was
+  performed.
+- `make validate` passed the secret scan, Ruff, strict mypy over 57 source files, 700 default-tier
+  tests with 33 deselected, and 95.01% total coverage. `make ml-protocol-verify`,
+  `make schema-verify`, `make model-registry-verify` (7 manifests, 1 included), and
+  `make registry-verify` passed. The scientific tier passed 7 with 1 skip, and the API/E2E tier
+  passed 14 with 1 skip.
+- `make ui-check` reports 9 completed scientific-stage runs and `PARTIAL`; `make figures` reports
+  final `BLOCKED`/0 outputs plus the preliminary `PARTIAL`/18-output non-promotable bundle;
+  `make web-check` passed lint, TypeScript, and production build; and `make web-e2e` passed all 4
+  browser journeys. The known non-failing Next/Turbopack filesystem-tracing and package-lock
+  warnings remain documented and were not promoted to failures.
+- `make evaluate`, `make clean-room`, and `make release-check` each recorded their expected
+  `BLOCKED` status. `make phase-execute` printed approval-gated help without a network request.
+  `make modal-smoke` reported authenticated Modal, `gpu_count: 0`, `status: PLANNED`, and no
+  remote invocation. No new paid work, model download, locked evaluation, deployment, release,
+  or publication was performed.

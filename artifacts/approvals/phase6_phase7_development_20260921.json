@@ -1,0 +1,110 @@
+{
+  "artifact_id": "phase6-phase7-development-20260921",
+  "approval_version": "phase6-phase7-development-v1",
+  "approved_by": "user",
+  "approved_at": "2026-09-21T11:47:36Z",
+  "authorization_source": "explicit user approval in the active task",
+  "max_budget_usd": 5.0,
+  "budget_control": {
+    "approval_cap_usd": 5.0,
+    "stop_if_projected_additional_usd_exceeds": 5.0,
+    "no_silent_budget_widening": true
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "version": "1.1.0",
+    "sha256": "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3"
+  },
+  "dataset": {
+    "development_manifest_path": "data/derived/ml_extension/phase3/split_manifest.json",
+    "development_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "development_source_manifest_hash": "854210537eebd87f8390eee8bfc4d77072dc8df86f0ccaffc246edb781783c00",
+    "authoritative_locked_test_cohort_manifest_path": "research/ml_extension/splits/authoritative_cohort_manifest.json",
+    "authoritative_locked_test_cohort_manifest_sha256": "0d4386b34196a523ca43b50cc4242d4ecb01df2b40923fc0aa52f15d61c593b1",
+    "generated_split_manifest_path": "data/derived/ml_extension/phase3/split_manifest.json",
+    "generated_split_manifest_sha256": "96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72",
+    "authoritative_split_summary_path": "research/ml_extension/splits/authoritative_split_manifest.json",
+    "authoritative_split_summary_sha256": "deac6afb55f8a0c0b23aa8110921746b606be1f00df1e160b4c63cf095c852eb",
+    "semantic_split_hash": "bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722",
+    "development_total": 239992,
+    "locked_test_count": 946,
+    "locked_test_excluded_from_development": true
+  },
+  "train_validation_hashes": {
+    "derivation": "SHA-256 of newline-delimited canonical JSON records from the generated split manifest, filtered by split and retained in manifest order; this is supplementary to semantic_split_hash.",
+    "TRAIN": {
+      "count": 191957,
+      "record_set_sha256": "81a5d45f1d0bd4fdce4cde1e7f2587c1bc9c8e3c1859076ab0700ed480a45581"
+    },
+    "VALIDATION": {
+      "count": 48035,
+      "record_set_sha256": "27e0c9b59d9e39023e0929cd7d775d2974f794c2a6dfe3e18b1b855c5b26439f"
+    }
+  },
+  "model": {
+    "model_id": "evo2",
+    "checkpoint": "evo2_7b",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "gpu": "H100",
+    "modal_environment": "evovariant-tr",
+    "modal_app": "evovariant-tr",
+    "model_cache": "hf_cache",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "allowed_workloads": [
+    "Phase 6 development canonical Evo2 scoring on TRAIN and VALIDATION only",
+    "Phase 6 resumable batching and persistent score caching",
+    "Phase 6 development-only zero-shot analysis",
+    "Phase 6 CADD and PhyloP development comparator integration without forced missing values",
+    "Phase 7 frozen Nucleotide Transformer embedding extraction on TRAIN and VALIDATION only",
+    "Phase 7 frozen Caduceus embedding extraction on TRAIN and VALIDATION only",
+    "Phase 7 Evo2 embedding pilot or extraction only if technically supported and within this cap",
+    "Small parity or sanity jobs required to validate the approved workloads",
+    "Local CPU-only Phases 8, 9, 11, 12, and 13 using development artifacts and validation-only selection"
+  ],
+  "excluded_workloads": [
+    "Final evaluation using the 946 LOCKED_TEST labels",
+    "Joining LOCKED_TEST predictions with outcome labels",
+    "LOCKED_TEST AUROC, AUPRC, MCC, threshold selection, or any other final metric",
+    "HPO or ensemble selection using LOCKED_TEST information",
+    "Calibration or abstention selection using LOCKED_TEST information",
+    "Full Evo2 fine-tuning, PEFT or fine-tuning sweeps, and foundation-model HPO",
+    "Inference over the approximately 1.4 million record t0 VUS population",
+    "Phase 14 final evaluation",
+    "Deployment, release, or publication"
+  ],
+  "phase10_status": "DEFERRED",
+  "stop_conditions": [
+    "Stop before cumulative additional Modal metered compute reaches 5.00 USD.",
+    "Stop immediately if projected additional spend exceeds 5.00 USD.",
+    "Stop on repeated out-of-memory failures.",
+    "Stop if the checkpoint or scientific contract changes unexpectedly.",
+    "Stop if reference validation fails.",
+    "Stop if cache provenance cannot be verified.",
+    "Stop if any split hash differs from this artifact.",
+    "Do not silently widen scope or budget."
+  ],
+  "execution_contract": {
+    "cohort_splits": [
+      "TRAIN",
+      "VALIDATION"
+    ],
+    "locked_test_access": "prohibited",
+    "labels_remote_transport": "prohibited",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "sequence_construction": "deterministic",
+    "resume_policy": "idempotent run IDs, persistent cache, skip verified completed variants",
+    "alpha_missense": "subset-only if a reproducibly obtained public prediction asset is available",
+    "random_seed_policy": "record every seed in each registered artifact"
+  },
+  "git": {
+    "commit": "240c5dce3f7aa30b978884ca18678dc5859082ce",
+    "dirty": true,
+    "preexisting_untracked": [
+      ".agents/"
+    ]
+  }
+}

@@ -68,6 +68,8 @@ gate state.
   `evovariant-tr` access as `PLANNED` with zero GPU count and no remote invocation. Regenerated
   Phase 6 and 8–19 statuses, the Phase 17 figure bundle, and Phase 19 release check remain
   `BLOCKED` with empty metrics/output surfaces.
+- The same current-checkout rerun passed `make web-check` and all 4 `make web-e2e` journeys;
+  only the documented non-failing Next tracing warnings were emitted.
 
 ## Phase 0 completion record — 2026-09-21
 

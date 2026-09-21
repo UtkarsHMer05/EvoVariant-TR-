@@ -124,6 +124,9 @@ Active branch/worktree: `research/evovariant-tr` at
   approved `evovariant-tr` Modal environment and authentication while recording `PLANNED` with
   zero GPU count and no remote invocation. Regenerated Phase 6 and 8–19 status surfaces,
   figures, and release checks remain explicitly `BLOCKED` with no metrics or scientific outputs.
+- The current frontend rerun also passed `make web-check` (ESLint, TypeScript, and Next production
+  build) and `make web-e2e` (4 Playwright journeys). The build emitted only the known non-failing
+  dynamic-registry filesystem and parent-package-lock tracing warnings.
 
 ## Current engineering follow-up — 2026-09-21
 

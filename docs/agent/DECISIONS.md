@@ -2726,6 +2726,36 @@ container inventories were checked after execution; the diagnostic app was stopp
 container remained. Workspace billing was `$0.00` billed before and after in the available
 workspace-level summaries.
 
+## D-091 — Keep downstream status surfaces fail-closed after the H100 stop
+Status: ACCEPTED
+Date: 2026-09-21
+Supersedes: None
+
+Context:
+After D-090 stopped the corrected H100 diagnostic at local result deserialization, the repository
+still had independent local/UI/reproducibility checks available. These checks must be refreshed
+without treating code presence or preliminary registry data as completed scientific evidence.
+
+Decision:
+Run the local frontend, browser, registry, figure, clean-room, release, protocol, schema, model
+registry, and phase-status surfaces. Preserve their exact outcomes: frontend and browser gates
+pass; registry verification passes; UI remains `PARTIAL`; final figures remain `BLOCKED` with zero
+outputs; the preliminary figure bundle remains non-promotable; clean-room and release remain
+`BLOCKED`; `modal-smoke` authenticates with zero GPU count and no remote invocation; and Phases
+6/7/8/9/11/12/13/14/15/18/19 remain `BLOCKED`, Phase 10 remains `DEFERRED_BY_COMPUTE`, and
+Phase 16 remains `PARTIAL`.
+
+Consequences:
+The repository has fresh evidence for every independently runnable control surface, but no local
+refresh can satisfy the missing formal Evo2/CUDA result, full feature cache, downstream training,
+locked evaluation, clean-room scientific reproduction, or final release gates. No status is
+promoted and no new paid execution is started.
+
+Validation:
+The commands completed on 2026-09-21 at the current checkout. `make validate` remains green with
+704 tests passed, 33 deselected, and 95.02% coverage; `git diff --check` is clean; and no active
+Modal containers remain.
+
 ## Template for new decisions
 
 ### D-XXX — Title

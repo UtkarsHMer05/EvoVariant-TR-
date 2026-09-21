@@ -1187,3 +1187,23 @@ families were not invented.
 - Phase 6 remains `FAIL_FORMAL_PREFLIGHT`; all dependent scientific/downstream phases retain
   their existing `BLOCKED`, `DEFERRED_BY_COMPUTE`, or `PARTIAL` status. No scientific result or
   formal gate was promoted.
+
+## Independent post-diagnostic gate refresh — 2026-09-21
+
+- The current no-spend checkout remains at HEAD `32359c2` on `research/evovariant-tr`; the only
+  untracked project-control inputs are the preserved Modal skill tree and the three approval
+  artifacts. No tracked source or scientific artifact is dirty.
+- `make web-check` passed frontend lint, TypeScript, and the production build. `make web-e2e`
+  passed all four committed Playwright journeys. The existing Next.js tracing and external
+  package-lock warnings remain non-failing and were not promoted to errors.
+- `make registry-verify` and `make model-registry-verify` passed. The model registry still has
+  seven manifests with only Evo2 `INCLUDED`; NT, Caduceus, CADD, PhyloP, and AlphaMissense remain
+  `SUBSET_ONLY`, while GPN remains `DEFERRED_BY_COMPUTE`.
+- `make ui-check` remains `PARTIAL` with 9 registered/completed preliminary scientific runs,
+  zero locked-test evaluation, and a connected registry. `make figures` remains fail-closed:
+  final `BLOCKED` with zero outputs and the known missing source families; the separate
+  preliminary bundle has 18 non-promotable outputs.
+- The refreshed status surfaces remain truthful: Phases 6/7/8/9/11/12/13/14/15/18/19 are
+  `BLOCKED`, Phase 10 is `DEFERRED_BY_COMPUTE`, and Phase 16 is `PARTIAL`. `make modal-smoke`
+  authenticated successfully with `gpu_count: 0`, `status: PLANNED`, and no remote invocation.
+  No phase was promoted from local control-surface evidence.

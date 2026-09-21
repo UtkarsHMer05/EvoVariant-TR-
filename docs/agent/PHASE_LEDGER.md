@@ -1034,3 +1034,18 @@ genuine unavailable evidence, not values to infer.
   bound to `14d8a98`; a fresh approval is required for any retry. The single continuation state is
   `PYTORCH_IMAGE_FIX_REQUIRED` (the concrete issue is client result serialization, not H100
   scheduling). Phase 6 remains `FAIL_FORMAL_PREFLIGHT` and no downstream status is promoted.
+
+## Independent post-diagnostic gate refresh — 2026-09-21
+
+- `make web-check` passed lint, TypeScript, and production build; `make web-e2e` passed all four
+  browser journeys. Known Next tracing and package-lock warnings remain non-failing.
+- Registry verification and model-registry verification passed. The registry remains connected
+  but preliminary: 9 completed scientific-stage runs, 0 locked-test runs, and 7 model manifests
+  with only Evo2 included.
+- The final figure manifest remains `BLOCKED` with zero outputs and missing registered source
+  families; the separate preliminary bundle remains `PARTIAL`, non-promotable, with 18 outputs.
+  Clean-room and release status surfaces remain `BLOCKED`.
+- Status-only refreshes preserve `BLOCKED` for Phases 6/7/8/9/11/12/13/14/15/18/19,
+  `DEFERRED_BY_COMPUTE` for Phase 10, and `PARTIAL` for Phase 16. `make modal-smoke` passed
+  authentication with `gpu_count: 0`, `PLANNED`, and no remote invocation. No scientific phase
+  gate was promoted.

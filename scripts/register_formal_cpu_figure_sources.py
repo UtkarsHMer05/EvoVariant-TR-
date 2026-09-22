@@ -113,6 +113,15 @@ def materialize() -> list[Path]:
             if row.get("locked_test_evaluated") is not False:
                 raise ValueError("figure source prediction is not explicitly development-only")
             predictions[row["model_id"]].append(row)
+    validation_ids = {
+        row["normalized_variant_id"]
+        for row in manifest["records"]
+        if row["split"] == "VALIDATION"
+    }
+    for model_id, rows in predictions.items():
+        prediction_ids = [row["normalized_variant_id"] for row in rows]
+        if len(prediction_ids) != len(validation_ids) or set(prediction_ids) != validation_ids:
+            raise ValueError(f"incomplete or duplicate VALIDATION source rows for {model_id}")
 
     benchmark = []
     confusion = []

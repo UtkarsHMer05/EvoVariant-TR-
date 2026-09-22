@@ -11,10 +11,10 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-APPROVAL_PATH = REPO_ROOT / "artifacts/approvals/formal_phase7_representation_20260922.json"
-EXPECTED_VERSION = "formal-phase7-representation-v1"
-EXPECTED_HARD_CAP_USD = 1.0
-EXPECTED_SAFETY_STOP_USD = 0.85
+APPROVAL_PATH = REPO_ROOT / "artifacts/approvals/formal_phase7_continuation_20260922.json"
+EXPECTED_VERSION = "formal-phase7-representation-v2"
+EXPECTED_HARD_CAP_USD = 1.75
+EXPECTED_SAFETY_STOP_USD = 1.50
 EXPECTED_MINIMUM_POST_RUN_RESERVE_USD = 3.0
 EXPECTED_PROTOCOL_SHA256 = "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
 EXPECTED_MANIFEST_SHA256 = "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"

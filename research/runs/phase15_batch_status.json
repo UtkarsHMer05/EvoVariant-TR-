@@ -1,0 +1,43 @@
+{
+  "acceptance": {
+    "canonical_score_parity_pass": true,
+    "duplicate_recomputation_zero": true,
+    "duplicates_zero": true,
+    "expected_ids_exact": true,
+    "expected_rows_64": true,
+    "labels_remote_false": true,
+    "locked_overlap_zero": true,
+    "nonfinite_values_zero": true,
+    "ordered_export_pass": true,
+    "persisted_shard_reuse_pass": true,
+    "phase14_untouched": true,
+    "prediction_hash_stable": true,
+    "reference_mismatches_zero": true,
+    "restart_resume_pass": true,
+    "returned_ids_64": true,
+    "unexpected_ids_zero": true
+  },
+  "approval": {
+    "git_commit": "a460ba23626e1c566f56d58cb2f7aa0341f71d7d",
+    "path": "artifacts/approvals/phase15_parity_smoke_20260922.json",
+    "sha256": "7b0585acc08689d8347053e8de866d0adac3064836921fd9bd78f31de741775e"
+  },
+  "formal_smoke": {
+    "expected_rows": 64,
+    "ids_sha256": "40031928ef34e0d103a507f6db151ecdb3c13d13e96126b1ffcedcb6ca7bdf36",
+    "remote_rows": 8,
+    "train_rows": 56,
+    "validation_rows": 8,
+    "verified_cache_rows": 56
+  },
+  "local_contract": {
+    "evidence": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+    "full_cohort_remote_parity": "PASS_FOR_64_ROW_DEVELOPMENT_SMOKE_ONLY",
+    "label_free_plan_and_atomic_shard_resume": "PASS"
+  },
+  "locked_test_rows": 0,
+  "no_remote_compute_after_smoke": true,
+  "phase": 15,
+  "recorded_at_utc": "2026-09-22T13:15:05.531300+00:00",
+  "status": "PASS"
+}

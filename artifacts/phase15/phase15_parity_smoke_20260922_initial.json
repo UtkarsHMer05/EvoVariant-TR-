@@ -1,0 +1,140 @@
+{
+  "acceptance": {
+    "duplicate_results": 0,
+    "invalid_aggregate_scores": 0,
+    "labels_sent": false,
+    "locked_test_rows": 0,
+    "nonfinite_forward_scores": 0,
+    "nonfinite_reverse_complement_scores": 0,
+    "reference_mismatches": 0,
+    "returned_valid_rows": 64,
+    "selected_rows": 64,
+    "unexpected_ids": 0
+  },
+  "approval_artifact": "artifacts/approvals/phase15_parity_smoke_20260922.json",
+  "artifact_id": "phase15-parity-smoke-20260922",
+  "cache": {
+    "cache_hit_records": 0,
+    "cache_root": "research/runs/phase15_parity_smoke_20260922/shards",
+    "completed_shards": 1,
+    "historical_cache_hits_this_execution": 56,
+    "historical_cache_reuse_records": 56,
+    "new_remote_records": 8,
+    "new_remote_records_this_execution": 8,
+    "new_shards": 1,
+    "remote_invocations": 1,
+    "resume_policy": "verified completed shards are skipped; tampering fails closed",
+    "stored_shards_reused": 0,
+    "total_cache_hit_records": 0
+  },
+  "cost": {
+    "approval_max_budget_usd": 0.25,
+    "cumulative_client_wall_rate_estimate_usd": 0.063118,
+    "gpu_rate_usd_per_hour": 3.95,
+    "interpretation": "rate-based wall-time estimate; Modal CLI billing is workspace-level, not a per-run invoice",
+    "locked_test_reserve_min_usd": 0.0,
+    "measured_invoice_usd": null,
+    "pricing_source": "https://modal.com/pricing",
+    "rate_estimate_stop_usd": 0.2
+  },
+  "dataset": {
+    "counts": {
+      "TRAIN": 56,
+      "VALIDATION": 8,
+      "total": 64
+    },
+    "development_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "execution_limit": 64,
+    "execution_record_count": 64,
+    "formal_manifest_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "full_development_records": 64,
+    "locked_ids_excluded": true,
+    "locked_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "ordering": "ascending normalized_variant_id for ML-DEV-BUDGETED-001 resumable shards",
+    "processed_records": 64,
+    "processed_split_counts": {
+      "TRAIN": 56,
+      "VALIDATION": 8
+    },
+    "remaining_records": 0,
+    "selection_description": {
+      "cache_first": true,
+      "cached_rows": 56,
+      "label_blind": true,
+      "selection": "all verified formal development cache IDs, then ascending ID fill",
+      "uncached_rows": 8
+    },
+    "selection_seed": null,
+    "source_record_count": 64
+  },
+  "git": {
+    "commit": "2e928816121f91c7335aea8fd7623af1e1ae4a0d",
+    "dirty": true
+  },
+  "modal_billing": {
+    "after": {
+      "captured_at_utc": "2026-09-22T13:06:59.710520+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        33.60  \n    Ephemeral Apps:    21.28  \n    Deployed Apps:      8.78  \n    Volumes:            3.54  \n  Credits:            -30.00  \n  Free Storage:        -3.54  \n  Billed Cost:         $0.06  \n                              \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-22T13:06:00.292377+00:00",
+      "command": "modal billing summary",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        33.60  \n    Ephemeral Apps:    21.28  \n    Deployed Apps:      8.78  \n    Volumes:            3.54  \n  Free Storage:        -3.54  \n  Credits:            -30.00  \n  Billed Cost:         $0.06  \n                              \n"
+    }
+  },
+  "model": {
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "model_sequence_batch_size": 8,
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "outputs": {
+    "execution_plan": "research/runs/phase15_parity_smoke_20260922/execution_plan.json",
+    "execution_plan_sha256": "8ca2cbfb49bb56b36eafc07d504e4f52f865edf70388e0e3372bfe2f9b90593f",
+    "predictions_jsonl": "research/runs/phase15_parity_smoke_20260922/predictions.jsonl",
+    "predictions_sha256": "204d6df4cf47731950b33ea4a9264d634bf8257cc9c40ad54e38c02d32c10ec3"
+  },
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "recorded_at_utc": "2026-09-22T13:06:59.710556+00:00",
+  "runtime": {
+    "elapsed_local_seconds": 59.447544,
+    "estimated_usd_per_new_remote_record": 0.007889799,
+    "failure": null,
+    "function_call_ids": [
+      "fc-01M34KJBR4JGZ2ATN5CMJS2WNK"
+    ],
+    "model_load_seconds": 17.193649,
+    "remote_container_ids": [],
+    "remote_score_seconds": 14.071151,
+    "resume": {
+      "remote_invocations_this_execution": 1,
+      "stored_shards_reused": 0,
+      "zero_recomputation": false
+    },
+    "stop_reason": "Phase 15 parity smoke completed",
+    "total_remote_wall_seconds": 57.525624,
+    "variants_per_remote_score_second": 0.568539
+  },
+  "scientific_boundary": {
+    "formal_sample_complete": false,
+    "full_development_cohort_complete": false,
+    "labels_sent_to_modal": false,
+    "locked_test_labels_accessed": false,
+    "metrics_claimed": false,
+    "phase14_started": false,
+    "phase15_smoke_complete": true,
+    "training_hpo_finetuning_started": false
+  },
+  "status": "PASS_PHASE15_PARITY_SMOKE"
+}

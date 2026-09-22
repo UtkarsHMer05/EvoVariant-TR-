@@ -1,0 +1,111 @@
+{
+  "artifact_id": "phase15-parity-smoke-20260922",
+  "approval_version": "phase15-parity-smoke-v1",
+  "phase": 15,
+  "approved_by": "user",
+  "approved_at": "2026-09-22T13:03:04Z",
+  "authorization_source": "explicit user authorization in the current post-publication continuation directive; Phase 15 development-only parity/recovery smoke only",
+  "hard_cap_usd": 0.25,
+  "safety_stop_usd": 0.2,
+  "max_budget_usd": 0.25,
+  "budget_control": {
+    "hard_cap_usd": 0.25,
+    "safety_stop_usd": 0.2,
+    "no_silent_budget_widening": true,
+    "billing_interpretation": "Modal billing summary is workspace-level evidence and not a per-run invoice"
+  },
+  "git": {
+    "branch": "research/evovariant-tr",
+    "commit": "a460ba23626e1c566f56d58cb2f7aa0341f71d7d",
+    "working_tree_policy": "approval binds the committed scientific/control-plane HEAD; unrelated pre-existing dirty paths and untracked skill/artifact paths remain preserved and are excluded from the workload",
+    "excluded_dirty_paths": [
+      "src/evovariant_tr/abstention.py",
+      "src/evovariant_tr/analysis_pipeline.py",
+      "src/evovariant_tr/ensemble.py",
+      "tests/unit/test_experiment_framework.py",
+      ".agents/",
+      "pre-existing approval and partial-artifact paths under artifacts/"
+    ]
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "dataset": {
+    "development_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "development_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "locked_test_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "locked_test_access": "prohibited",
+    "labels_remote_transport": false,
+    "cache_artifact_path": "artifacts/phase6/formal_budgeted_cache_reuse_verification_20260921.json",
+    "cache_artifact_status": "PASS_COMPATIBLE_CACHE_REUSE_56"
+  },
+  "selection": {
+    "expected_rows": 64,
+    "verified_cache_rows": 56,
+    "remote_rows": 8,
+    "selection": "all verified formal development cache IDs, then ascending normalized variant ID fill",
+    "label_blind": true,
+    "ids_sha256": "40031928ef34e0d103a507f6db151ecdb3c13d13e96126b1ffcedcb6ca7bdf36",
+    "cache_ids_sha256": "09b10b68684b626eafca8c11cb5a5d2241953bf8a5cbad5dfdde711383ec430c"
+  },
+  "model": {
+    "model_id": "evo2_7b",
+    "checkpoint": "evo2_7b",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood",
+    "gpu": "H100"
+  },
+  "allowed_workloads": [
+    "exactly 64 development-only Evo2 rows",
+    "remote-vs-local canonical score parity verification",
+    "persisted shard reuse",
+    "kill/restart/resume verification if required",
+    "artifact and hash verification",
+    "local ordered export"
+  ],
+  "excluded_workloads": [
+    "LOCKED_TEST inference or labels",
+    "model retraining",
+    "HPO",
+    "fine-tuning",
+    "context-length sweep",
+    "NT rerun",
+    "Caduceus rerun",
+    "full Phase 18 re-inference",
+    "deployment",
+    "release"
+  ],
+  "execution_contract": {
+    "planned_remote_calls": 1,
+    "shard_size": 64,
+    "cohort_splits": ["TRAIN", "VALIDATION"],
+    "locked_test_rows": 0,
+    "labels_remote": false,
+    "retry_policy": "clearly transient failures only; preserve resumability",
+    "canonical_parity_tolerance": 1e-5,
+    "ordered_export": true
+  },
+  "cost_baseline": {
+    "captured_at_utc": "2026-09-22T13:02:31Z",
+    "metered_cost_usd": 33.59808745,
+    "billed_cost_usd": 0.06,
+    "active_containers": [],
+    "metered_cost_breakdown": {
+      "deployed_apps": 8.78151469,
+      "ephemeral_apps": 21.27689538,
+      "volumes": 3.53808745,
+      "llm_tokens": 0.0
+    },
+    "provider_confirmed_remaining_free_credit_balance": false
+  },
+  "frozen_phase14_artifact": {
+    "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+    "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+  }
+}

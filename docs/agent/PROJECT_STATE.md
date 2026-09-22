@@ -57,7 +57,7 @@ fine-tuning, and any broader paid workload remain outside this checkpoint.
   39 source sidecars, 12 tables, and a report with explicit Motivation, protocol, temporal,
   Evo2, downstream/HPO/ensemble, calibration/uncertainty, robustness/error, limitations, and
   conclusion sections. Current publication manifest SHA-256 is
-  `9783ae0a97923110bfe870412cc9245223f8f90c7a94b31455d9da597840d0dc`.
+  `aa34cbd2f31dfe1d6826b505cd1ee27c7a872948fd20a47f52f1f6442e8bc86d`.
 - Phase18: `PASS`; `artifacts/phase18/clean_room_execution_20260922.json` records a clean detached
   checkout at code commit `4681ac1c122bf5bacdf65c5a89c69d9531b672eb` with bootstrap, secret scan,
   Ruff, strict mypy, 714 tests, 95.01% coverage, protocol/model/registry checks, figures, frontend

@@ -14,6 +14,7 @@ from evovariant_tr.registry import hash_file
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "research/runs/phase19_release_status.json"
 PHASE15_VALIDATION = ROOT / "artifacts/phase15/phase15_parity_smoke_validation_20260922.json"
+BILLING_FINAL = ROOT / "artifacts/phase19/modal_billing_final_20260922.json"
 
 
 def main() -> int:
@@ -66,6 +67,7 @@ def main() -> int:
             {"path": str(phase18.relative_to(ROOT)), "sha256": hash_file(phase18) if phase18.is_file() else None},
             {"path": str(PHASE15_VALIDATION.relative_to(ROOT)), "sha256": hash_file(PHASE15_VALIDATION) if PHASE15_VALIDATION.is_file() else None},
             {"path": str(phase16.relative_to(ROOT)), "sha256": hash_file(phase16) if phase16.is_file() else None},
+            {"path": str(BILLING_FINAL.relative_to(ROOT)), "sha256": hash_file(BILLING_FINAL) if BILLING_FINAL.is_file() else None},
         ],
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

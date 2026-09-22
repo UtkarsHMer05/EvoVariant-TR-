@@ -1,0 +1,28 @@
+{
+  "phase": 19,
+  "recorded_at_utc": "2026-09-22T13:41:07Z",
+  "command": "modal billing summary --json",
+  "snapshot": {
+    "metered_cost": "31.69808745",
+    "billed_cost": "0E-8",
+    "adjustments": {
+      "credits": "-28.16000000",
+      "plan_cost": "0E-8",
+      "free_storage": "-3.53808745",
+      "reservation_adjustment": "-0E-8"
+    },
+    "metered_cost_breakdown": {
+      "llm_tokens": "0E-8",
+      "deployed_apps": "8.78151469",
+      "volumes": "3.53808745",
+      "ephemeral_apps": "19.37448409"
+    }
+  },
+  "active_containers": [],
+  "provider_confirmed_remaining_free_credit_balance": false,
+  "interpretation": "Workspace-level billing with provider adjustments; the summary does not expose an exact remaining free-credit balance.",
+  "user_stated_pre_phase15_headroom_usd": 7.17,
+  "phase15_rate_estimate_usd": 0.063118,
+  "indicative_user_basis_after_phase15_estimate_usd": 7.106882,
+  "no_additional_remote_compute_after_phase15": true
+}

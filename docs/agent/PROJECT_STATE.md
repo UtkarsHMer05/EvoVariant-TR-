@@ -45,10 +45,12 @@ fine-tuning, and any broader paid workload remain outside this checkpoint.
   checks pass, the persisted shard resumes with zero new remote calls, and no labels or locked
   rows crossed the Modal boundary.
 - Phase15 compute: one planned remote invocation, 57.525624 seconds remote wall time, rate-based
-  estimate `$0.063118`, and post-run active containers `[]`. Modal billing moved from metered
-  `$33.59808745` to `$33.65808745` and billed `$0.06` to `$0.12`; the provider does not expose a
-  confirmed free-credit balance. The user's `$7.17` basis therefore remains an indicative, not
-  provider-confirmed, headroom figure.
+  estimate `$0.063118`, and post-run active containers `[]`. The immediate post-run snapshot was
+  metered `$33.65808745` and billed `$0.12`; the final no-spend recheck is recorded in
+  `artifacts/phase19/modal_billing_final_20260922.json` at metered `$31.69808745` and billed
+  `$0.00` after provider adjustments. The provider does not expose a confirmed free-credit
+  balance. The user's `$7.17` basis minus the Phase15 estimate is an indicative `$7.106882`, not
+  provider-confirmed headroom.
 - Phase16: `PASS`; `/api/research/workbench` verifies source hashes before exposing per-area
   evidence metadata. `make web-check` and the four committed browser journeys pass.
 - Phase17: `PASS_LOCAL_PUBLICATION_BUNDLE`; 41 inventory entries, 39 rendered figure families,

@@ -29,7 +29,7 @@ left explicitly outside scope:
 | Research workbench | All 14 areas are exposed; the read-only `/api/research/workbench` route verifies publication source hashes and displays registered evidence metadata. Frontend build and four browser tests PASS. |
 | Figures and tables | `PASS_LOCAL_PUBLICATION_BUNDLE`: 41 inventory entries, 39 rendered families, 39 source sidecars, and 12 tables. Context-length and training-loss omissions are explicit conditional decisions. |
 | Clean room and release | Phase 18 `PASS` for the documented detached-checkout/control-plane scope; Phase 19 `PASS` internally with `release_allowed=false`. Full remote re-inference is not required by the literal Phase 18 task list and is not claimed. |
-| Spend | Phase 15 used one planned remote invocation with a `$0.063118` rate-based estimate under the `$0.20` safety stop and `$0.25` cap. Latest provider snapshot is metered `$33.65808745`, billed `$0.12`, active containers `[]`; remaining free credit is not provider-confirmed. |
+| Spend | Phase 15 used one planned remote invocation with a `$0.063118` rate-based estimate under the `$0.20` safety stop and `$0.25` cap. The final no-spend provider snapshot is metered `$31.69808745`, billed `$0.00`, active containers `[]`; billing adjustments mean remaining free credit is not provider-confirmed. |
 
 The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
 the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a

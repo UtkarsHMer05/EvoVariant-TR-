@@ -3557,6 +3557,10 @@ Evidence:
 - Phase19: `research/runs/phase19_release_status.json` is `PASS` with
   `release_allowed=false`; no tag, deployment, publication submission, or additional paid work
   was created.
+- Final billing recheck: `artifacts/phase19/modal_billing_final_20260922.json` records metered
+  `$31.69808745`, billed `$0.00`, and active containers `[]`. The provider adjustment changed the
+  workspace meter and does not expose a confirmed free-credit balance; the arithmetic user-basis
+  after the Phase15 `$0.063118` estimate is indicative `$7.106882`.
 
 Consequences:
 The internal project gates are closed for the authorized scope. Phase 14 remains immutable and

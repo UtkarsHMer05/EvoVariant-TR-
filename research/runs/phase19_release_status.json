@@ -11,7 +11,7 @@
   },
   "no_new_remote_compute": true,
   "phase": 19,
-  "recorded_at_utc": "2026-09-22T13:37:02.936866+00:00",
+  "recorded_at_utc": "2026-09-22T13:41:29.065012+00:00",
   "release_allowed": false,
   "release_reason": "Internal gate only; no tag, deployment, or publication release was requested.",
   "source_artifacts": [
@@ -21,7 +21,7 @@
     },
     {
       "path": "research/runs/phase18_clean_room_status.json",
-      "sha256": "89f5ce0e832cff8c93f028e2e5a39906e27e10f420a95f36e981f913a2974fd1"
+      "sha256": "b488ffed79c9282e13fdccf01656f3488692974cac0156924c8f7a48be5ee183"
     },
     {
       "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
@@ -30,6 +30,10 @@
     {
       "path": "research/runs/phase16_ui_status.json",
       "sha256": "234d2351e3425fdf160d4626729873736911e2e2a81a80ac70ea04be006257e5"
+    },
+    {
+      "path": "artifacts/phase19/modal_billing_final_20260922.json",
+      "sha256": "45f78b4153641f474bd9d03c8c4ec07f2b70bd2351a9cb64fa898518cfbd9878"
     }
   ],
   "status": "PASS"

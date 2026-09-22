@@ -46,12 +46,6 @@ NARROW_REPRESENTATION_MODE = (
     os.environ.get("EVOVARIANT_TR_FORMAL_REPRESENTATION_MODE") == "1"
 )
 OVERNIGHT_MODE = os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
-if NARROW_REPRESENTATION_MODE:
-    from validate_formal_representation_approval import validate_approval  # noqa: E402
-elif OVERNIGHT_MODE:
-    from validate_overnight_completion_approval import validate_approval  # noqa: E402
-else:
-    from validate_ml_dev_budgeted_approval import validate_approval  # noqa: E402
 
 FORMAL_MANIFEST = REPO_ROOT / (
     "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json"
@@ -859,6 +853,13 @@ def main() -> None:
         raise RuntimeError(
             "set EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS for formal representation work"
         )
+    if NARROW_REPRESENTATION_MODE:
+        from validate_formal_representation_approval import validate_approval
+    elif OVERNIGHT_MODE:
+        from validate_overnight_completion_approval import validate_approval
+    else:
+        from validate_ml_dev_budgeted_approval import validate_approval
+
     approval = validate_approval(APPROVAL_PATH)
     if NARROW_REPRESENTATION_MODE or OVERNIGHT_MODE:
         budget = approval["budget_control"]

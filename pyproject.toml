@@ -29,6 +29,7 @@ dev = [
     "mypy>=1.11",
     "pyarrow>=17",
     "jsonschema>=4.23",
+    "numpy>=2.0",
 ]
 
 [project.scripts]

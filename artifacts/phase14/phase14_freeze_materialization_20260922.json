@@ -1,0 +1,61 @@
+{
+  "artifact_id": "phase14-freeze-materialization-20260922",
+  "phase": 14,
+  "status": "PASS_PRE_PHASE14_CONFIG_COMPLETE",
+  "source_git_head": "6577770",
+  "source_freeze": {
+    "original_config_sha256": "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424",
+    "original_config_status": "verified_but_incomplete_for_locked_execution",
+    "selection_closed": true,
+    "locked_test_evaluated": false
+  },
+  "materialized_freeze": {
+    "config_path": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+    "config_sha256": "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3",
+    "model_artifact_path": "research/runs/formal_cpu_20260922/phase13/fitted_model_evo2_logistic_regression_hpo.json",
+    "model_artifact_sha256": "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043",
+    "validation_replay_auroc": 0.9887889219214521,
+    "validation_replay_status": "PASS",
+    "calibration_artifact_path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+    "calibration_artifact_sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+  },
+  "protocol_hashes": {
+    "research_protocol_sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+    "ml_extension_protocol_sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+    "formal_train_manifest_sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+    "formal_validation_manifest_sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
+  },
+  "selected_contract": {
+    "model_id": "evo2__logistic_regression_hpo",
+    "classifier": "logistic_regression",
+    "feature_set": "evo2",
+    "feature_names": ["evo2[0]", "evo2[1]", "evo2[2]", "evo2[3]"],
+    "calibrator": "isotonic",
+    "abstention_coverage": 0.5,
+    "score_direction": "higher_is_more_pathogenic",
+    "score_threshold": 0.5,
+    "hpo_seed": 42,
+    "classifier_seed": 42,
+    "bootstrap_seed": 42,
+    "bootstrap_replicates": 1000,
+    "evo2_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood",
+    "gpu": "H100"
+  },
+  "locked_boundary": {
+    "expected_rows": 946,
+    "expected_label_counts": {"benign_or_likely_benign": 536, "pathogenic_or_likely_pathogenic": 410},
+    "labels_accessed_during_materialization": false,
+    "locked_manifest_rows_read_during_materialization": false,
+    "remote_inference_started": false,
+    "paid_approval_activated": false,
+    "remote_labels_transported": false
+  },
+  "decision": "Development-only freeze materialization is complete and internally replayed. Create a fresh exact-scope Phase 14 approval bound to the resulting committed HEAD before any locked manifest identity read or Modal inference. NT/Caduceus are not required by the frozen evo2 feature set."
+}

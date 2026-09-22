@@ -1,0 +1,62 @@
+{
+  "artifact_id": "phase14-development-fitted-model-evo2-logistic-regression-hpo-20260922",
+  "classifier": "logistic_regression",
+  "fit_scope": "TRAIN only; VALIDATION used only for the already-recorded HPO objective",
+  "hpo": {
+    "best_trial": {
+      "config": {
+        "l2": 0.0,
+        "learning_rate": 0.05,
+        "steps": 100
+      },
+      "status": "COMPLETED",
+      "trial_number": 0,
+      "validation_metric": 0.9887889219214521
+    },
+    "selection_seed": 42,
+    "study_artifact": "research/runs/formal_cpu_20260922/phase9/evo2/hpo.json",
+    "study_artifact_sha256": "bd15b55aac58f2268d5a5fc8bc64a4efd0e4b7d09d8660be714df976e004c038"
+  },
+  "input": {
+    "feature_artifact": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+    "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+    "feature_metadata": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.metadata.json",
+    "feature_metadata_sha256": "417c8a8508451b505eedebf1dfa59b2c3be7fe01a84d8f87ea5d73dfdd4df491",
+    "feature_names": [
+      "evo2[0]",
+      "evo2[1]",
+      "evo2[2]",
+      "evo2[3]"
+    ],
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "train_count": 3199,
+    "validation_count": 801
+  },
+  "locked_test_evaluated": false,
+  "model_id": "evo2__logistic_regression_hpo",
+  "parameters": {
+    "bias": -0.9577541837965341,
+    "kind": "logistic_regression",
+    "seed": 42,
+    "steps": 100,
+    "weights": [
+      -0.001984887868194408,
+      -0.001965472593341121,
+      -0.0020043031430476955,
+      3.8830549706573805e-05
+    ]
+  },
+  "phase": 14,
+  "source_protocol": {
+    "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44"
+  },
+  "status": "PASS_PHASE14_DEVELOPMENT_MODEL_MATERIALIZATION",
+  "validation_replay": {
+    "auroc": 0.9887889219214521,
+    "expected_auroc": 0.9887889219214521,
+    "status": "PASS",
+    "tolerance": 1e-12
+  }
+}

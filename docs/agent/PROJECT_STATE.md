@@ -31,13 +31,11 @@ multi-model Phase 6 benchmark.
   separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
   below; locked-test inference and fine-tuning remain unopened.
 
-Current control-plane checkpoint: branch `research/evovariant-tr`, latest committed checkpoint
-`1c0a81c` (`record clean-room figure gate evidence`). No Next/Playwright process or Modal
-container is active. The
-existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14; no
-fresh exact-scope approval is present for the current checkout, so the locked evaluation remains
-fail-closed. Continue only no-spend integrity or control-plane work until a new explicit
-allocation is provided.
+Current control-plane checkpoint: branch `research/evovariant-tr`; use the current `HEAD` for
+the exact committed identity. No Next/Playwright process or Modal container is active. The
+existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14;
+the fresh Phase 14 approval must bind the current committed HEAD and the materialized freeze
+below before locked evaluation can start.
 
 The current approval audit at implementation/documentation checkpoint
 `f82893a29a5209f93f3c37299b99f42cd9228aff` is independently fail-closed:
@@ -47,13 +45,15 @@ bound to `535d73e56d10ddea5d2ef0098bb7251a57d259d7`, and
 `408edcc83e4a288cc8afb90a5bb9993af302c3d4`. Documentation-only commits follow that audit; no
 paid workload is authorized from either artifact.
 
-The fresh Phase 14 request reached the preflight boundary but did not activate paid work.
-`artifacts/phase14/phase14_preflight_block_20260922.json` records that the expected frozen
-content hash and `selection_closed=true` are present, but the configuration is not executable as
-an immutable final model: it lacks protocol/split/provenance bindings, a serialized fitted
-classifier artifact, a hash-bound isotonic mapping, an abstention rule, and seed bindings, and
-its HPO model ID is not one of the Phase 8 registered model IDs. No locked manifest rows or
-labels were read, no approval was activated, and no Modal inference was started.
+The initial Phase 14 request reached the preflight boundary but did not activate paid work;
+`artifacts/phase14/phase14_preflight_block_20260922.json` preserves that fail-closed finding.
+Using development evidence only, the already-selected HPO model was then materialized and
+replayed exactly. `artifacts/phase14/phase14_freeze_materialization_20260922.json` and
+`research/runs/formal_cpu_20260922/phase13/pre_phase14_materialized_freeze.json` bind the
+serialized classifier, TRAIN/VALIDATION hashes, both protocol hashes, Evo2 contract, isotonic
+mapping, abstention coverage, and deterministic seeds. No locked manifest rows or labels were
+read, no approval was activated, and no Modal inference was started; a fresh exact-scope Phase
+14 approval remains required.
 
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 

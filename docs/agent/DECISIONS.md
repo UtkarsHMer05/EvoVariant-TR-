@@ -3385,3 +3385,44 @@ changing the selected model decision or consulting locked outcomes.
 Validation:
 Protocol, development-manifest, record-set, locked-manifest, freeze, HPO, calibration, and
 Phase 13 hashes were captured in the preflight artifact. No Modal call was made.
+
+## D-108 — Materialize the selected Phase 14 model from development evidence before approval
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The Phase 14 Step 0 check correctly rejected the original content-hashed configuration because
+it named an HPO model without a serialized fitted classifier and omitted executable provenance,
+calibration, abstention, and seed bindings. The selected decision itself was already closed, so
+the safe repair boundary was development-only materialization without consulting locked labels.
+
+Decision:
+Materialize the already-selected `evo2__logistic_regression_hpo` classifier from the verified
+TRAIN feature artifact and the recorded validation-only HPO trial. Bind the exact TRAIN and
+VALIDATION manifests, both protocol hashes, raw feature provenance, Evo2 7B contract, fitted
+isotonic mapping, validation-derived 50% confidence-rank abstention point, and deterministic
+seed policy in a new content-hashed freeze. Do not change model selection, open NT/Caduceus
+tracks, inspect locked rows, or activate paid compute as part of this repair.
+
+Evidence:
+- Materialization summary: `artifacts/phase14/phase14_freeze_materialization_20260922.json`.
+- Materialized config: `research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json`,
+  SHA-256 `01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3`.
+- Serialized classifier: `research/runs/formal_cpu_20260922/phase13/fitted_model_evo2_logistic_regression_hpo.json`,
+  SHA-256 `f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043`.
+- Development replay: validation AUROC `0.9887889219214521`, exactly equal to the recorded HPO
+  objective; the isotonic map replays from TRAIN.
+- The materializer explicitly reports `locked_test_manifest_rows_read=false`,
+  `locked_test_labels_accessed=false`, and `remote_inference_started=false`.
+
+Consequences:
+Phase 14 advances from `BLOCKED / PRE-PHASE-14 CONFIG INCOMPLETE` to
+`READY_FOR_APPROVAL / DEVELOPMENT FREEZE MATERIALIZED`. A new approval must bind the current
+committed HEAD, config hash, model artifact hash, frozen model contract, exact 946-row locked
+manifest hash, and the user-authorized `$2.75` / `$2.50` budget before any locked identity
+preflight or Modal call. NT/Caduceus, fine-tuning, and all post-test tuning remain out of scope.
+
+Validation:
+The materializer uses only TRAIN/VALIDATION inputs and rejects any locked feature row. No Modal
+call or paid worker was used.

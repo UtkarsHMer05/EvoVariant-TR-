@@ -1,0 +1,12 @@
+{
+  "config_path": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+  "config_sha256": "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3",
+  "locked_test_evaluated": false,
+  "locked_test_labels_accessed": false,
+  "locked_test_manifest_rows_read": false,
+  "model_artifact_path": "research/runs/formal_cpu_20260922/phase13/fitted_model_evo2_logistic_regression_hpo.json",
+  "model_artifact_sha256": "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043",
+  "selection_closed": true,
+  "source_freeze_config_sha256": "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424",
+  "status": "PASS_PRE_PHASE14_FREEZE_MATERIALIZED"
+}

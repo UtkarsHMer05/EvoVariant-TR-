@@ -1,0 +1,184 @@
+{
+  "abstention": {
+    "confidence_definition": "0.5 + 0.5 * abs(tanh(raw_score / 10.0))",
+    "coverage": 0.5,
+    "diagnostics_artifact": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+    "diagnostics_artifact_sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+    "method": "confidence_rank",
+    "selection_split": "VALIDATION"
+  },
+  "base_models": [
+    "evo2__logistic_regression_hpo"
+  ],
+  "bootstrap": {
+    "replicates": 1000,
+    "seed": 42
+  },
+  "calibration": {
+    "artifact_path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+    "artifact_sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+    "fit_scope": "TRAIN",
+    "mapping_key": "methods.isotonic",
+    "method": "isotonic"
+  },
+  "config_version": "phase14-materialized-v1",
+  "data": {
+    "formal_development_manifest": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+      "sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+    },
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "formal_train_manifest": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json",
+      "sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1"
+    },
+    "formal_validation_manifest": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json",
+      "sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b"
+    },
+    "locked_test_manifest": {
+      "expected_count": 946,
+      "expected_label_counts": {
+        "0": 536,
+        "1": 410
+      },
+      "labels_accessed_during_materialization": false,
+      "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+      "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
+    }
+  },
+  "feature_names": [
+    "evo2[0]",
+    "evo2[1]",
+    "evo2[2]",
+    "evo2[3]"
+  ],
+  "feature_provenance": {
+    "artifact_path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+    "artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+    "comparators": {
+      "reason": "feature_set=evo2",
+      "required": false,
+      "used": false
+    },
+    "metadata_path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.metadata.json",
+    "metadata_sha256": "417c8a8508451b505eedebf1dfa59b2c3be7fe01a84d8f87ea5d73dfdd4df491",
+    "source_feature_artifacts": {
+      "forward_reverse": {
+        "path": "research/runs/phase7_formal_evo2_20260922/features/evo2_delta_forward_reverse.jsonl",
+        "sha256": "a89a19390dc60dacd175cf88d25cc4442b8adfe55b647321e61e7d210d9400fb"
+      },
+      "orientation": {
+        "path": "research/runs/phase7_formal_evo2_20260922/features/evo2_delta_orientation_difference.jsonl",
+        "sha256": "8de9eca568fc0c3eeb15c5b4bab7dc299653ee082169c5d16bd2919f9a5b2225"
+      },
+      "primary": {
+        "path": "research/runs/phase7_formal_evo2_20260922/features/evo2_delta_primary.jsonl",
+        "sha256": "bbcddd10c178a801ba43bc27efbe0501ec458388558ef0b64656cad4b9cfa464"
+      }
+    }
+  },
+  "feature_set": "evo2",
+  "locked_test_evaluated": false,
+  "model": {
+    "artifact_path": "research/runs/formal_cpu_20260922/phase13/fitted_model_evo2_logistic_regression_hpo.json",
+    "artifact_sha256": "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043",
+    "classifier": "logistic_regression",
+    "fit_scope": "TRAIN",
+    "hpo": {
+      "config": {
+        "l2": 0.0,
+        "learning_rate": 0.05,
+        "steps": 100
+      },
+      "status": "COMPLETED",
+      "trial_number": 0,
+      "validation_metric": 0.9887889219214521
+    }
+  },
+  "model_contract": {
+    "assembly": "GRCh38",
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "model_id": "evo2__logistic_regression_hpo",
+  "not_required_remote_tracks": [
+    "nucleotide_transformer",
+    "caduceus"
+  ],
+  "phase": "PRE_PHASE14_FREEZE_MATERIALIZED",
+  "phase_artifacts": {
+    "phase11_ensemble": {
+      "path": "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+      "sha256": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+    },
+    "phase12_calibration_abstention": {
+      "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+      "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+    },
+    "phase13_robustness": {
+      "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+      "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+    },
+    "phase6_model_contract": {
+      "path": "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json",
+      "sha256": "b04940b3b5845fd57144f54a9862da8d9d89fb1b98d9c79fc45364e7a21ef54d"
+    },
+    "phase8_summary": {
+      "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+      "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+    },
+    "phase9_hpo": {
+      "path": "research/runs/formal_cpu_20260922/phase9/evo2/hpo.json",
+      "sha256": "bd15b55aac58f2268d5a5fc8bc64a4efd0e4b7d09d8660be714df976e004c038"
+    }
+  },
+  "post_test_tuning_allowed": false,
+  "preprocessing": {
+    "feature_order": [
+      "evo2[0]",
+      "evo2[1]",
+      "evo2[2]",
+      "evo2[3]"
+    ],
+    "missing_values": "reject",
+    "nonfinite_values": "reject",
+    "transform": "identity"
+  },
+  "protocol_hashes": {
+    "ml_extension_protocol": {
+      "path": "research/ml_extension/protocol.yaml",
+      "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+    },
+    "research_protocol": {
+      "path": "research/protocol/protocol.yaml",
+      "sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525"
+    }
+  },
+  "required_remote_tracks": [
+    "evo2"
+  ],
+  "score_direction": "higher_is_more_pathogenic",
+  "score_threshold": 0.5,
+  "seeds": {
+    "bootstrap": 42,
+    "calibration_application": null,
+    "calibration_fit": null,
+    "classifier_fit": 42,
+    "deterministic_without_seed": [
+      "isotonic_fit",
+      "isotonic_application",
+      "abstention_rank"
+    ],
+    "hpo_selection": 42,
+    "paired_comparisons": 42
+  },
+  "selection_closed": true,
+  "source_freeze_config_sha256": "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424",
+  "threshold_source": "predeclared_calibrated_probability_cutoff"
+}

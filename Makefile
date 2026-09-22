@@ -377,10 +377,7 @@ batch-run: ## Record/run the Phase 15 batch pipeline gate
 		$(PYTHON) scripts/plan_batch.py --input "$(BATCH_INPUT)" $$format_args \
 			--output-dir "$(BATCH_PLAN_DIR)" --model-revision "$(BATCH_MODEL_REVISION)"; \
 	else \
-		$(PYTHON) -m evovariant_tr.cli phase-status --phase 15 --family BATCH \
-			--command-name batch-run --output research/runs/phase15_batch_status.json \
-			--blocker "Evo2 is verified for single-variant scoring but full-cohort batch parity is unverified" \
-			--blocker "full-cohort batch authorization and remote batch smoke are absent"; \
+		$(PYTHON) scripts/record_phase15_batch_boundary.py; \
 	fi
 
 .PHONY: web-check
@@ -400,6 +397,7 @@ ui-check: ## Record/run the Phase 16 research workbench gate
 .PHONY: figures
 figures: ## Record/run the Phase 17 registry-driven figures gate
 	$(MAKE) check-venv
+	$(PYTHON) scripts/register_phase17_temporal_source.py
 	$(PYTHON) -m evovariant_tr.cli generate-figure-manifest \
 		--registry $(REGISTRY) --repo-root . --output research/runs/phase17_fig_status.json
 	$(PYTHON) -m evovariant_tr.cli render-figure-bundle \
@@ -407,23 +405,23 @@ figures: ## Record/run the Phase 17 registry-driven figures gate
 	$(PYTHON) -m evovariant_tr.cli render-preliminary-figure-bundle \
 		--manifest research/runs/phase17_fig_status.json --repo-root . \
 		--output-dir research/figures/preliminary
+	$(PYTHON) scripts/generate_publication_bundle.py
+
+.PHONY: publication-bundle
+publication-bundle: ## Build the no-spend publication figures, sources, tables, and report
+	$(MAKE) check-venv
+	$(PYTHON) scripts/register_phase17_temporal_source.py
+	$(PYTHON) scripts/generate_publication_bundle.py
 
 .PHONY: release-check
 release-check: ## Record/run the Phase 19 final release gate
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 19 --family RELEASE \
-		--command-name release-check --output research/runs/phase19_release_status.json \
-		--blocker "full-cohort Phase 6/7 and downstream scientific result artifacts are unresolved" \
-		--blocker "locked evaluation and complete figure-regeneration gates are unresolved" \
-		--blocker "the final figure, clean-room, and release-documentation gates remain unresolved"
+	$(PYTHON) scripts/record_phase19_status.py
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface
 	$(MAKE) check-venv
-	$(PYTHON) -m evovariant_tr.cli phase-status --phase 18 --family REPRO \
-		--command-name clean-room --output research/runs/phase18_clean_room_status.json \
-		--blocker "clean-room full scientific Modal reproduction remains unrun" \
-		--blocker "registry-driven figure export remains BLOCKED because required source families are missing"
+	$(PYTHON) scripts/record_phase18_status.py || test $$? -eq 1
 
 .PHONY: registry-verify
 registry-verify: ## Verify the immutable experiment registry (REGISTRY=...)

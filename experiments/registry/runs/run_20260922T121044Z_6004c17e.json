@@ -1,0 +1,62 @@
+{
+  "GPU": "CPU",
+  "artifact_paths": [
+    "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json"
+  ],
+  "checkpoint": "phase3_authoritative_cohort",
+  "command": ".venv/bin/python scripts/register_phase17_temporal_source.py",
+  "comparator_versions": {},
+  "completed_at": "2026-09-22T12:10:44.269596+00:00",
+  "config": {
+    "locked_test_evaluated": false,
+    "source_scope": "cohort aggregates only"
+  },
+  "created_at": "2026-09-22T12:10:44.268654+00:00",
+  "data_manifests": {
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+  },
+  "dataset_manifest_hash": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "estimated_cost_usd": 0.0,
+  "evidence_stage": "PRELIMINARY",
+  "experiment_family": "PHASE17_TEMPORAL_COHORT_SOURCE",
+  "failure_reason": null,
+  "feature_version": "none",
+  "git_commit": "e12c51ba98a16b6f3f2b063b8fdbbbbb1091ecca",
+  "git_dirty": true,
+  "hardware": {
+    "execution": "local CPU"
+  },
+  "license_record": {},
+  "measured_cost_usd": null,
+  "metrics": {
+    "locked_test_evaluated": false,
+    "source_count": 1
+  },
+  "model_identity": "authoritative_temporal_cohort_metadata",
+  "model_name": "Authoritative temporal cohort metadata",
+  "model_revision": "metadata-only",
+  "model_source": null,
+  "notes": "Metadata-only temporal source; no predictions, labels transported, model selection, or remote compute.",
+  "output_hashes": {
+    "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+  },
+  "output_paths": [
+    "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json"
+  ],
+  "parent_run_id": null,
+  "preprocessing_version": "phase3_temporal_audit_v1",
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "reference_checksum": null,
+  "run_id": "run_20260922T121044Z_6004c17e",
+  "runtime_seconds": null,
+  "scorer_config": {
+    "locked_test_evaluated": false,
+    "selection_closed": true
+  },
+  "seed": 42,
+  "split_manifest_hash": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "started_at": "2026-09-22T12:10:44.268661+00:00",
+  "status": "COMPLETED",
+  "title": "Authoritative temporal cohort source \u2014 2026-09-22",
+  "updated_at": "2026-09-22T12:10:44.269596+00:00"
+}

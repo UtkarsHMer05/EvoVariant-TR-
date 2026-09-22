@@ -1194,3 +1194,24 @@ genuine unavailable evidence, not values to infer.
   under this authorization. The initial finalization attempts failed closed on impossible boolean
   gate predicates; the predicates were corrected, and the already-completed raw shards were
   finalized without recomputation.
+
+## Phase 15–19 no-spend continuation — 2026-09-22
+
+- Phase 15: `BLOCKED_NEW_PAID_AUTHORIZATION_REQUIRED`. The local label-free planner and process
+  interruption/restart regression pass. The minimum future development-only smoke is 64 Evo2
+  rows, zero locked rows, one planned remote call, and an estimated direct H100 cost of
+  `$0.096818916`; no approval, cap, or Modal invocation was created.
+- Phase 16: `PARTIAL`; the workbench remains connected to the verified registry and exposes the
+  final Phase 14 evidence without changing scientific state.
+- Phase 17: `PASS_LOCAL_PUBLICATION_BUNDLE`. The bundle contains 39 applicable figure families in
+  SVG/PNG/PDF, 39 hash-described source sidecars, 12 CSV tables, a complete inventory, and a
+  report. Phase 10 loss and Phase 13 context length are explicit conditional omissions, not
+  fabricated curves. The temporal cohort source is hash-registered in run
+  `run_20260922T121044Z_6004c17`.
+- Phase 18: `PARTIAL`; all completed registry outputs and publication outputs passed local hash
+  verification, while full remote scientific re-inference remains `NOT_RUN_AUTHORIZATION_BOUNDARY`.
+- Phase 19: `BLOCKED`; release is not allowed while Phase 15/18 paid boundaries and a fresh
+  exact-candidate release decision remain unresolved.
+- Latest no-spend provider snapshot: metered `$33.59808745`, billed `$0.06`, active containers
+  `[]`; this is workspace-level billing evidence and does not expose a confirmed remaining
+  credit balance. The user-basis indicative headroom is `$5.39378698`.

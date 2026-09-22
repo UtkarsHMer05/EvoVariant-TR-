@@ -48,7 +48,27 @@ CONDITIONAL_SOURCE_POLICIES: dict[str, dict[str, str]] = {
             "the available evidence."
         ),
         "decision_artifact": "artifacts/phase9/hpo_parameter_importance_deferral_20260922.json",
-    }
+    },
+    "loss.json": {
+        "phase": "10",
+        "status": "DEFERRED_BY_COMPUTE",
+        "reason": (
+            "Phase 10 adaptation was deferred before training; no scientifically valid train/"
+            "validation loss series exists and no loss values may be inferred from downstream "
+            "metrics."
+        ),
+        "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+    },
+    "context_length.json": {
+        "phase": "13",
+        "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+        "reason": (
+            "The predeclared context-length cell was conditional on additional foundation-model "
+            "extraction. Phase 13 records it as not run under the paid authorization, and the "
+            "cached 8192-bp features do not contain alternate context windows."
+        ),
+        "decision_artifact": "artifacts/phase13/context_length_deferral_20260922.json",
+    },
 }
 
 

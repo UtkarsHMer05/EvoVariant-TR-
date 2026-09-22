@@ -3476,3 +3476,49 @@ Validation:
 tests, `make registry-verify`, and the no-spend Phase 15–19 control surfaces were run. Two early
 finalization attempts failed closed on impossible negative boolean predicates; correcting those
 predicates reused the persisted raw shards and caused no recomputation or additional inference.
+
+## D-110 — Complete the reachable publication layer without widening scientific authorization
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The post-Phase-14 continuation required publication-quality figures, source provenance, tables,
+reporting, and reproducibility status while preserving the immutable Evo2 locked evaluation. Three
+source families were unavailable: Phase 10 training loss, Phase 13 context-length robustness, and
+the temporal cohort source. A paid boundary was also reached for Phase 15 parity and Phase 18
+full remote re-inference.
+
+Decision:
+Complete all applicable reporting and verification locally from hash-verified registry artifacts.
+Materialize the temporal cohort from authoritative manifests and deviation evidence. Treat loss as
+`DEFERRED_BY_COMPUTE` and context length as
+`NOT_APPLICABLE_WITH_DOCUMENTED_REASON`; do not infer curves from downstream metrics. Keep Phase
+15 and Phase 18 at their authorization boundaries and keep Phase 19 fail-closed.
+
+Evidence:
+- Temporal source and registry run: `research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json`,
+  `run_20260922T121044Z_6004c17`.
+- Context-length decision: `artifacts/phase13/context_length_deferral_20260922.json`.
+- Publication inventory/report: `research/reports/phase17/FIGURE_INVENTORY.json` and
+  `research/reports/phase17/FINAL_REPORT.md`.
+- Publication status: 39 applicable rendered figure families, 39 source sidecars, 12 tables,
+  and `PASS_LOCAL_PUBLICATION_BUNDLE`.
+- Phase 15 boundary: `research/runs/phase15_batch_status.json`; minimum 64-row planning estimate
+  `$0.096818916`, zero locked rows, no authorization.
+- Phase 18 status: `research/runs/phase18_clean_room_status.json`; local hash reproducibility
+  passes, full remote re-inference remains unrun. Phase 19 status is
+  `research/runs/phase19_release_status.json` with `release_allowed=false`.
+- Latest no-spend Modal recheck:
+  `artifacts/phase17/modal_billing_recheck_20260922.json` records metered `$33.59808745`, billed
+  `$0.06`, and active containers `[]`; remaining user-basis headroom is indicative `$5.39378698`
+  because the provider does not expose a confirmed free-credit balance.
+
+Consequences:
+Phase 17 passes only as a local publication bundle. The Phase 14 result and all frozen selection
+boundaries remain unchanged. No Modal job, locked-test rerun, NT/Caduceus rerun, fine-tuning,
+deployment, tag, or publication release is authorized by this decision.
+
+Validation:
+Registry output hashes, figure source hashes, final artifact/joined-prediction hashes, SVG/PNG/PDF
+generation, table generation, local Phase 18 hash checks, and the no-spend control surfaces pass.

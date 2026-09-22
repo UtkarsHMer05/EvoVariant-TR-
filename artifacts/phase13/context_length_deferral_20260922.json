@@ -1,0 +1,32 @@
+{
+  "artifact_id": "phase13_context_length_deferral_20260922",
+  "phase": 13,
+  "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+  "decision": "do_not_materialize_context_length_figure",
+  "recorded_at_utc": "2026-09-22T12:00:00Z",
+  "selection_split": "TRAIN_VALIDATION_DEVELOPMENT_ONLY",
+  "locked_test_evaluated": false,
+  "source_artifact": {
+    "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+    "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+  },
+  "development_manifest": {
+    "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+  },
+  "predeclared_contexts_bp": [512, 1024, 2048, 4096, 8192],
+  "observed_status": "NOT_RUN_DEFERRED_BY_COMPUTE",
+  "reason": "The Phase 13 context-length cell required additional foundation-model extraction outside the paid authorization. Existing cached features are frozen at 8192 bp and do not contain alternate context windows.",
+  "applicability_basis": "conditional_development_robustness_cell",
+  "scientific_boundary": "This decision does not change the frozen 8192-bp Phase 14 model, calibration, abstention rule, locked-test result, or any final metric.",
+  "minimum_future_development_sweep": {
+    "status": "PLANNING_ONLY_NOT_AUTHORIZED",
+    "rows": 64,
+    "additional_contexts_bp": [512, 1024, 2048, 4096],
+    "remote_labels": false,
+    "locked_test_rows": 0,
+    "estimated_direct_h100_cost_usd": 0.387275664,
+    "estimate_basis": "64 rows x 4 additional contexts x Phase 14 direct estimate $1.431104601 / 946 rows; excludes startup, storage, retry, and provider-meter uncertainty",
+    "required_next_step": "Obtain a separate exact-scope development-only compute approval before any remote extraction."
+  }
+}

@@ -78,6 +78,7 @@ research/runs/*
 research/results/
 research/figures/
 research/tables/
+research/reports/
 
 # Python mypy cache
 .mypy_cache/

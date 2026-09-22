@@ -1,0 +1,36 @@
+{
+  "artifact_id": "phase17_modal_billing_recheck_20260922",
+  "phase": 17,
+  "status": "NO_ACTIVE_CONTAINERS",
+  "captured_at_utc": "2026-09-22T12:34:08Z",
+  "commands": {
+    "billing": "modal billing summary --json",
+    "containers": "modal container list --json"
+  },
+  "snapshot": {
+    "metered_cost_usd": 33.59808745,
+    "billed_cost_usd": 0.06,
+    "adjustments": {
+      "credits": "-30.00000000",
+      "plan_cost": "0E-8",
+      "reservation_adjustment": "-0E-8",
+      "free_storage": "-3.53808745"
+    },
+    "metered_cost_breakdown": {
+      "deployed_apps": "8.78151469",
+      "llm_tokens": "0E-8",
+      "volumes": "3.53808745",
+      "ephemeral_apps": "21.27689538"
+    },
+    "active_containers": []
+  },
+  "comparison": {
+    "paid_run_baseline_metered_cost_usd": 31.82187443,
+    "observed_metered_delta_usd": 1.77621302,
+    "user_stated_pre_run_free_headroom_usd": 7.17,
+    "indicative_user_basis_remaining_headroom_usd": 5.39378698,
+    "provider_confirmed_remaining_free_credit_balance": false,
+    "note": "The provider response exposes a billing adjustment and meter totals, not a confirmed remaining free-credit balance. The indicative headroom subtracts the observed meter delta from the user-stated pre-run headroom."
+  },
+  "no_remote_compute_in_continuation": true
+}

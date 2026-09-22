@@ -1518,3 +1518,39 @@ families were not invented.
 - The no-spend `make modal-smoke` preflight confirmed Modal was installed and authenticated and
   wrote only a `PLANNED` cost-ledger entry with `gpu_count=0`; it made no remote invocation and
   no paid worker was created. The actual gated Modal smoke remains unrun.
+
+## Post-Phase-14 no-spend publication continuation — 2026-09-22
+
+Phase 14 remains immutable `PASS` for the exact Evo2-only locked-evaluation subgate. The
+post-Phase-14 continuation completed the reachable no-spend reporting and reproducibility work;
+it did not reopen selection, modify any Phase 14 artifact, or start Modal compute.
+
+- The missing temporal source is now materialized and hash-registered in preliminary registry run
+  `run_20260922T121044Z_6004c17` at
+  `research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json`. It preserves the
+  historical 1,024-row target as comparison-only and the accepted current cohort as 946 rows
+  (536 B/LB, 410 P/LP, 367 genes).
+- Phase 10 loss is explicitly `DEFERRED_BY_COMPUTE`; Phase 13 context length is explicitly
+  `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` under
+  `artifacts/phase13/context_length_deferral_20260922.json`. Neither cell has invented points
+  or a downstream metric.
+- The publication bundle is `PASS_LOCAL_PUBLICATION_BUNDLE`: 39 applicable rendered figure
+  families, 39 source sidecars, SVG/PNG/PDF outputs, 12 CSV tables, and a figure inventory/report.
+  The inventory is `research/reports/phase17/FIGURE_INVENTORY.json`; the report is
+  `research/reports/phase17/FINAL_REPORT.md`; generated figures are under
+  `research/figures/final/` and tables under `research/tables/final/`. The final Phase 14 and
+  joined-prediction hashes remain
+  `4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499` and
+  `77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7`.
+- Phase 15 is `BLOCKED_NEW_PAID_AUTHORIZATION_REQUIRED`. Local label-free planning and atomic
+  shard interruption/restart pass; a minimum future 64-row development-only smoke is estimated
+  at `$0.096818916` direct H100 cost, with zero locked rows, but no cap or approval was created.
+- Phase 16 remains `PARTIAL`; Phase 17 local publication is complete; Phase 18 is `PARTIAL`
+  (local registry/artifact hash reproducibility `PASS`, full remote scientific re-inference not
+  run); Phase 19 is `BLOCKED` and release is not allowed. No tag, deployment, publication,
+  NT/Caduceus rerun, fine-tuning, or locked-test rerun is authorized here.
+- Fresh read-only Modal recheck is recorded at
+  `artifacts/phase17/modal_billing_recheck_20260922.json`: metered `$33.59808745`, billed
+  `$0.06`, active containers `[]`. Against the user-stated `$7.17` pre-run headroom, the latest
+  observed meter delta `$1.77621302` implies an indicative `$5.39378698`; the provider does not
+  expose a confirmed remaining free-credit balance.

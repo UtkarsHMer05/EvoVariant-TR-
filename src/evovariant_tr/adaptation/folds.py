@@ -25,4 +25,3 @@ def make_grouped_folds(
         (train.tolist(), validation.tolist())
         for train, validation in splitter.split(list(range(len(rows))), labels, groups)
     ]
-

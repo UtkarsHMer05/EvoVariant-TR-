@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from evovariant_tr.sequence_mutate import VariantIdentity, mutate_reference, reverse_complement
 
@@ -16,9 +17,15 @@ FORMAL_RECORD_COUNT = 4000
 TRAIN_RECORD_COUNT = 3199
 VALIDATION_RECORD_COUNT = 801
 EXPECTED_MANIFEST_SHA256 = {
-    "formal_development_manifest.json": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
-    "formal_train_manifest.json": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
-    "formal_validation_manifest.json": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "formal_development_manifest.json": (
+        "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+    ),
+    "formal_train_manifest.json": (
+        "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1"
+    ),
+    "formal_validation_manifest.json": (
+        "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b"
+    ),
 }
 EXPECTED_LOCKED_MANIFEST_SHA256 = "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
 EXPECTED_LABEL_COUNTS = {
@@ -43,7 +50,7 @@ class VariantRow:
     assembly: str = "GRCh38"
 
     @classmethod
-    def from_mapping(cls, value: dict[str, Any]) -> "VariantRow":
+    def from_mapping(cls, value: dict[str, Any]) -> VariantRow:
         required = {
             "chromosome",
             "position_1based",
@@ -129,7 +136,9 @@ def _load_manifest_rows(
 def load_formal_rows(root: str | Path = ".") -> tuple[list[VariantRow], list[VariantRow]]:
     """Load and verify only the formal TRAIN and VALIDATION rows."""
     root_path = Path(root)
-    train = _load_manifest_rows(root_path, "formal_train_manifest.json", TRAIN_RECORD_COUNT, "TRAIN")
+    train = _load_manifest_rows(
+        root_path, "formal_train_manifest.json", TRAIN_RECORD_COUNT, "TRAIN"
+    )
     validation = _load_manifest_rows(
         root_path, "formal_validation_manifest.json", VALIDATION_RECORD_COUNT, "VALIDATION"
     )
@@ -146,6 +155,17 @@ def load_formal_rows(root: str | Path = ".") -> tuple[list[VariantRow], list[Var
         if counts != EXPECTED_LABEL_COUNTS[name]:
             raise DataIntegrityError(f"{name} label counts mismatch: {counts}")
     return train, validation
+
+
+def load_train_rows(root: str | Path = ".") -> list[VariantRow]:
+    """Load only the frozen TRAIN split for model selection and fitting."""
+    rows = _load_manifest_rows(
+        Path(root), "formal_train_manifest.json", TRAIN_RECORD_COUNT, "TRAIN"
+    )
+    counts = {label: sum(row.label == label for row in rows) for label in (0, 1)}
+    if counts != EXPECTED_LABEL_COUNTS["train"]:
+        raise DataIntegrityError(f"train label counts mismatch: {counts}")
+    return rows
 
 
 def verify_formal_data(root: str | Path = ".") -> dict[str, Any]:
@@ -222,6 +242,21 @@ def paired_sequences(
     return SequencePair(reference, alternate, reference_rc, alternate_rc)
 
 
+def verify_reference_rows(fasta: Any, rows: Iterable[VariantRow]) -> int:
+    """Fail closed unless every formal REF allele matches the selected GRCh38 FASTA."""
+    checked = 0
+    for row in rows:
+        sequence, offset = reference_window(fasta, row, window_size=8192)
+        observed = sequence[offset : offset + len(row.reference)]
+        if observed != row.reference:
+            raise DataIntegrityError(
+                f"reference allele mismatch for {row.normalized_variant_id}: "
+                f"expected {row.reference}, observed {observed}"
+            )
+        checked += 1
+    return checked
+
+
 def iter_paired_sequences(
     fasta: Any,
     rows: Iterable[VariantRow],
@@ -229,4 +264,3 @@ def iter_paired_sequences(
 ) -> Iterable[SequencePair]:
     for row in rows:
         yield paired_sequences(fasta, row, window_size)
-

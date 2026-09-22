@@ -12,7 +12,7 @@ def _rank_auc(labels: Sequence[int], scores: Sequence[float]) -> float | None:
     negatives = len(labels) - positives
     if not positives or not negatives:
         return None
-    ordered = sorted(zip(scores, labels), key=lambda item: item[0])
+    ordered = sorted(zip(scores, labels, strict=True), key=lambda item: item[0])
     rank_sum = 0.0
     index = 0
     while index < len(ordered):
@@ -29,7 +29,7 @@ def _pr_auc(labels: Sequence[int], scores: Sequence[float]) -> float | None:
     positives = sum(int(label) for label in labels)
     if not positives or positives == len(labels):
         return None
-    pairs = sorted(zip(scores, labels), key=lambda item: item[0], reverse=True)
+    pairs = sorted(zip(scores, labels, strict=True), key=lambda item: item[0], reverse=True)
     tp = fp = 0
     previous_recall = 0.0
     area = 0.0
@@ -55,7 +55,7 @@ def _ece(labels: Sequence[int], scores: Sequence[float], bins: int = 10) -> floa
         upper = (bin_index + 1) / bins
         members = [
             (label, score)
-            for label, score in zip(labels, scores)
+            for label, score in zip(labels, scores, strict=True)
             if lower <= score < upper or (bin_index == bins - 1 and score == upper)
         ]
         if members:
@@ -74,21 +74,23 @@ def binary_metrics(
     if len(labels) != len(scores) or not labels:
         raise ValueError("labels and scores must be non-empty and equal length")
     predicted = [int(score >= threshold) for score in scores]
-    tp = sum(y == 1 and p == 1 for y, p in zip(labels, predicted))
-    tn = sum(y == 0 and p == 0 for y, p in zip(labels, predicted))
-    fp = sum(y == 0 and p == 1 for y, p in zip(labels, predicted))
-    fn = sum(y == 1 and p == 0 for y, p in zip(labels, predicted))
+    tp = sum(y == 1 and p == 1 for y, p in zip(labels, predicted, strict=True))
+    tn = sum(y == 0 and p == 0 for y, p in zip(labels, predicted, strict=True))
+    fp = sum(y == 0 and p == 1 for y, p in zip(labels, predicted, strict=True))
+    fn = sum(y == 1 and p == 0 for y, p in zip(labels, predicted, strict=True))
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0
     specificity = tn / (tn + fp) if tn + fp else 0.0
     f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
     accuracy = (tp + tn) / len(labels)
     balanced_accuracy = (recall + specificity) / 2
-    brier = sum((float(score) - int(label)) ** 2 for label, score in zip(labels, scores)) / len(labels)
+    brier = sum(
+        (float(score) - int(label)) ** 2 for label, score in zip(labels, scores, strict=True)
+    ) / len(labels)
     clipped = [min(1 - 1e-7, max(1e-7, float(score))) for score in scores]
     logloss = -sum(
         int(label) * log(score) + (1 - int(label)) * log(1 - score)
-        for label, score in zip(labels, clipped)
+        for label, score in zip(labels, clipped, strict=True)
     ) / len(labels)
     return {
         "auroc": _rank_auc(labels, scores),
@@ -100,8 +102,7 @@ def binary_metrics(
         "specificity": specificity,
         "f1": f1,
         "mcc": (
-            (tp * tn - fp * fn)
-            / ((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) ** 0.5
+            (tp * tn - fp * fn) / ((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) ** 0.5
             if (tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)
             else 0.0
         ),

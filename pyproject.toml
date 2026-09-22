@@ -55,6 +55,12 @@ markers = [
 
 [tool.coverage.run]
 source = ["evovariant_tr"]
+# The real encoder and training loop require the pinned CUDA/model stack; the
+# Colab smoke and training stages exercise those paths on the declared GPU.
+omit = [
+    "*/evovariant_tr/adaptation/models.py",
+    "*/evovariant_tr/adaptation/training.py",
+]
 
 [tool.coverage.report]
 # Minimum quality gate for core deterministic modules.

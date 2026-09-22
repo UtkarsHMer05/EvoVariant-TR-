@@ -82,7 +82,7 @@ The final commit and verification outputs are recorded below after cleanup.
 
 ## Final verification
 
-Cleanup commit: `63cad2d` (`chore: clean adaptation branch baseline`).
+Cleanup commit: `dd36ad7` (`chore: clean adaptation branch baseline`).
 
 ```text
 correct branch = true

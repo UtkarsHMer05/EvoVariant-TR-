@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from collections import defaultdict
-from typing import Sequence
+from collections.abc import Sequence
 
 from .metrics import _rank_auc
 
@@ -53,4 +53,3 @@ def holm_adjust(p_values: Sequence[float]) -> list[float]:
         running = max(running, min(1.0, (len(p_values) - rank) * p_value))
         adjusted[index] = running
     return adjusted
-

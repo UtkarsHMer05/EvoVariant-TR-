@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from math import exp, log
-from typing import Sequence
 
 
 def _nll(labels: Sequence[int], logits: Sequence[float], temperature: float) -> float:
     total = 0.0
-    for label, logit in zip(labels, logits):
+    for label, logit in zip(labels, logits, strict=True):
         scaled = logit / temperature
         probability = 1.0 / (1.0 + exp(-max(-60.0, min(60.0, scaled))))
         probability = min(1 - 1e-7, max(1e-7, probability))
@@ -42,10 +42,10 @@ def apply_temperature(logits: Sequence[float], temperature: float) -> list[float
 
 
 def _mcc(labels: Sequence[int], predictions: Sequence[int]) -> float:
-    tp = sum(y == 1 and p == 1 for y, p in zip(labels, predictions))
-    tn = sum(y == 0 and p == 0 for y, p in zip(labels, predictions))
-    fp = sum(y == 0 and p == 1 for y, p in zip(labels, predictions))
-    fn = sum(y == 1 and p == 0 for y, p in zip(labels, predictions))
+    tp = sum(y == 1 and p == 1 for y, p in zip(labels, predictions, strict=True))
+    tn = sum(y == 0 and p == 0 for y, p in zip(labels, predictions, strict=True))
+    fp = sum(y == 0 and p == 1 for y, p in zip(labels, predictions, strict=True))
+    fn = sum(y == 1 and p == 0 for y, p in zip(labels, predictions, strict=True))
     denominator = ((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)) ** 0.5
     return (tp * tn - fp * fn) / denominator if denominator else 0.0
 
@@ -55,6 +55,8 @@ def select_abstention_threshold(
     probabilities: Sequence[float],
 ) -> dict[str, float]:
     """Choose one MCC threshold from TRAIN OOF probabilities."""
+    if len(labels) != len(probabilities) or not labels:
+        raise ValueError("labels and probabilities must be non-empty and equal length")
     candidates = sorted({0.0, 0.5, 1.0, *map(float, probabilities)})
     best = max(
         candidates,
@@ -66,4 +68,3 @@ def select_abstention_threshold(
         "threshold": best,
         "mcc": _mcc(labels, [int(probability >= best) for probability in probabilities]),
     }
-

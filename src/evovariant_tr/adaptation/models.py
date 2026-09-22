@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 MODEL_IDS = {
@@ -24,7 +25,6 @@ def load_backbone(
     if model_key not in MODEL_IDS:
         raise ValueError(f"unknown adaptation model: {model_key}")
     try:
-        import torch
         from transformers import AutoModelForMaskedLM, AutoTokenizer
     except ImportError as exc:
         raise RuntimeError("adaptation dependencies are not installed") from exc
@@ -86,14 +86,14 @@ class PairedClassifier:
         import torch
         from torch import nn
 
-        class _Head(nn.Module):
+        class _Head(nn.Module):  # type: ignore[misc]
             def __init__(self) -> None:
                 super().__init__()
                 self.backbone = backbone
                 self.classifier = nn.Sequential(
-                    nn.LayerNorm(hidden_size * 3),
+                    nn.LayerNorm(hidden_size * 4),
                     nn.Dropout(dropout),
-                    nn.Linear(hidden_size * 3, 1),
+                    nn.Linear(hidden_size * 4, 1),
                 )
 
             def encode(self, encoded: dict[str, Any]) -> Any:
@@ -115,7 +115,9 @@ class PairedClassifier:
                 reference_embedding = self.encode(reference)
                 alternate_embedding = self.encode(alternate)
                 delta = alternate_embedding - reference_embedding
-                features = torch.cat([reference_embedding, delta, delta.abs()], dim=-1)
+                features = torch.cat(
+                    [reference_embedding, alternate_embedding, delta, delta.abs()], dim=-1
+                )
                 return self.classifier(features).squeeze(-1)
 
             def forward(
@@ -133,8 +135,36 @@ class PairedClassifier:
         return _Head()
 
 
+def configure_trainable(model: Any, regime: str) -> tuple[int, int]:
+    """Freeze or unfreeze the pinned backbone while keeping the task head trainable."""
+    backbone = model.backbone
+    backbone.requires_grad_(False)
+    if regime == "full":
+        backbone.requires_grad_(True)
+    elif regime in {"partial_small", "partial_large"}:
+        layer_ids = {
+            int(match.group(1))
+            for name, _ in backbone.named_parameters()
+            if (match := re.search(r"(?:^|\.)(?:layers|blocks)\.(\d+)(?:\.|$)", name))
+        }
+        if not layer_ids:
+            raise RuntimeError("could not locate backbone layer blocks for partial fine-tuning")
+        count = min(len(layer_ids), 4 if regime == "partial_small" else 8)
+        first = sorted(layer_ids)[-count]
+        for name, parameter in backbone.named_parameters():
+            match = re.search(r"(?:^|\.)(?:layers|blocks)\.(\d+)(?:\.|$)", name)
+            if match and int(match.group(1)) >= first:
+                parameter.requires_grad_(True)
+    elif regime != "frozen_head_only":
+        raise ValueError(f"unknown fine-tuning regime: {regime}")
+    total = sum(parameter.numel() for parameter in model.parameters())
+    trainable = sum(
+        parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+    )
+    return total, trainable
+
+
 def finite_tensor(value: Any) -> bool:
     import torch
 
     return bool(torch.isfinite(value).all().item())
-

@@ -8,3 +8,10 @@ from .data import (
     verify_formal_data,
 )
 
+__all__ = [
+    "EXPECTED_MANIFEST_SHA256",
+    "FORMAL_RECORD_COUNT",
+    "VariantRow",
+    "load_formal_rows",
+    "verify_formal_data",
+]

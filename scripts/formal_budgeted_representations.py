@@ -68,10 +68,14 @@ OUTPUT_ARTIFACT = REPO_ROOT / os.environ.get(
 RUN_ROOT = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_REPRESENTATION_RUN_ROOT",
     (
-        "research/runs/phase7_formal_budgeted_20260922"
+        "research/runs/phase7_formal_budgeted_optimized_20260922"
         if NARROW_REPRESENTATION_MODE
         else "research/runs/phase7_formal_budgeted_20260921"
     ),
+)
+LEGACY_RUN_ROOT = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_REPRESENTATION_LEGACY_RUN_ROOT",
+    "research/runs/phase7_formal_budgeted_20260922",
 )
 APPROVAL_PATH = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_APPROVAL_PATH",
@@ -103,8 +107,8 @@ if NARROW_REPRESENTATION_MODE:
     SAFETY_STOP_USD = 0.85
     LOCKED_RESERVE_USD = 0.0
 CONTEXT_LENGTH_BP = 8192
-SHARD_SIZE = 8
-VARIANT_BATCH_SIZE = 1
+SHARD_SIZE = 64
+VARIANT_BATCH_SIZE = 4
 VIEWS_PER_VARIANT = 4
 MAX_MODAL_BATCH_SECONDS = 900
 FORMAL_PAR_ALIAS_IDS = frozenset(
@@ -489,6 +493,83 @@ def _verify_shard(path: Path, plan_hash: str, expected_ids: list[str]) -> dict[s
     return document
 
 
+def _load_compatible_legacy_results(
+    candidate: str,
+    records: list[dict[str, Any]],
+    expected_plan: dict[str, Any],
+) -> tuple[dict[str, dict[str, Any]], int]:
+    """Load verified rows from the prior small-shard run without recomputation."""
+    if not NARROW_REPRESENTATION_MODE:
+        return {}, 0
+    legacy_root = LEGACY_RUN_ROOT / candidate
+    legacy_plan_path = legacy_root / "execution_plan.json"
+    legacy_shard_root = legacy_root / "shards"
+    if not legacy_plan_path.is_file() or not legacy_shard_root.is_dir():
+        return {}, 0
+
+    legacy_plan = json.loads(legacy_plan_path.read_text(encoding="utf-8"))
+    legacy_plan_hash = legacy_plan.get("execution_plan_sha256")
+    if not isinstance(legacy_plan_hash, str):
+        raise RuntimeError(f"legacy representation plan has no hash: {legacy_plan_path}")
+    immutable_keys = (
+        "study_id",
+        "candidate",
+        "model_id",
+        "model_revision",
+        "layers",
+        "protocol_hash",
+        "formal_manifest_sha256",
+        "formal_record_set_sha256",
+        "record_count",
+        "context_length_bp",
+        "views_per_variant",
+        "orientation",
+        "labels_remote_transport",
+        "pooling",
+        "dtype",
+        "preprocessing",
+    )
+    if any(legacy_plan.get(key) != expected_plan.get(key) for key in immutable_keys):
+        raise RuntimeError(
+            f"legacy representation plan is scientifically incompatible: {legacy_plan_path}"
+        )
+    legacy_unsigned = {
+        key: value for key, value in legacy_plan.items() if key != "execution_plan_sha256"
+    }
+    if stable_hash(legacy_unsigned) != legacy_plan_hash:
+        raise RuntimeError(f"legacy representation plan hash is invalid: {legacy_plan_path}")
+
+    expected_ids = {str(row["normalized_variant_id"]) for row in records}
+    cached: dict[str, dict[str, Any]] = {}
+    shard_count = 0
+    for path in sorted(legacy_shard_root.glob("shard_*.json")):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        source_ids = document.get("source_ids")
+        if not isinstance(source_ids, list) or not all(
+            isinstance(value, str) for value in source_ids
+        ):
+            raise RuntimeError(f"legacy representation shard IDs are invalid: {path}")
+        verified = _verify_shard(path, legacy_plan_hash, source_ids)
+        if verified is None:
+            continue
+        results = verified.get("results")
+        if not isinstance(results, list) or len(results) != len(source_ids):
+            raise RuntimeError(f"legacy representation shard is incomplete: {path}")
+        for result in results:
+            if not isinstance(result, dict):
+                raise RuntimeError(f"legacy representation result is invalid: {path}")
+            identity = result.get("normalized_variant_id")
+            if not isinstance(identity, str) or identity not in expected_ids:
+                raise RuntimeError(f"legacy representation shard has an unexpected ID: {path}")
+            if identity in cached:
+                raise RuntimeError(f"legacy representation cache has a duplicate ID: {identity}")
+            if "label" in result:
+                raise RuntimeError(f"legacy representation shard contains a remote label: {path}")
+            cached[identity] = result
+        shard_count += 1
+    return cached, shard_count
+
+
 def _write_shard(path: Path, payload: dict[str, Any]) -> None:
     document = dict(payload)
     document["payload_sha256"] = stable_hash(payload)
@@ -613,6 +694,7 @@ def _run_candidate(
     approval: dict[str, Any],
     base_spend_usd: float,
     planned_remaining_usd: float,
+    candidate_estimate_usd: float,
 ) -> dict[str, Any]:
     candidate_root = RUN_ROOT / candidate
     shard_root = candidate_root / "shards"
@@ -650,15 +732,26 @@ def _run_candidate(
     if not plan_path.is_file():
         atomic_json(plan_path, expected_plan)
 
+    legacy_results, legacy_shard_count = _load_compatible_legacy_results(
+        candidate, records, expected_plan
+    )
     worker = worker_class()
-    all_results: dict[str, dict[str, Any]] = {}
-    completed_shards = 0
+    all_results: dict[str, dict[str, Any]] = dict(legacy_results)
+    completed_shards = legacy_shard_count
     new_shards = 0
     estimated_usd = 0.0
     rate_samples: list[float] = []
     started = time.monotonic()
+    other_planned_usd = max(0.0, planned_remaining_usd - candidate_estimate_usd)
     for shard_index, start in enumerate(range(0, len(records), SHARD_SIZE)):
-        shard_records = records[start : start + SHARD_SIZE]
+        full_shard_records = records[start : start + SHARD_SIZE]
+        shard_records = [
+            row
+            for row in full_shard_records
+            if str(row["normalized_variant_id"]) not in all_results
+        ]
+        if not shard_records:
+            continue
         source_ids = [str(row["normalized_variant_id"]) for row in shard_records]
         shard_path = shard_root / f"shard_{shard_index:05d}.json"
         pending_path = shard_root / f"shard_{shard_index:05d}.pending.json"
@@ -676,6 +769,9 @@ def _run_candidate(
             continue
 
         payload = [_sequence_payload(row) for row in shard_records]
+        dynamic_planned_remaining_usd = other_planned_usd + candidate_estimate_usd * (
+            max(0, len(records) - len(all_results)) / len(records)
+        )
         pending: dict[str, Any] | None = None
         if pending_path.is_file():
             pending = json.loads(pending_path.read_text(encoding="utf-8"))
@@ -696,7 +792,7 @@ def _run_candidate(
             if (
                 base_spend_usd
                 + estimated_usd
-                + planned_remaining_usd
+                + dynamic_planned_remaining_usd
                 + LOCKED_RESERVE_USD
                 > SAFETY_STOP_USD
             ):
@@ -711,7 +807,7 @@ def _run_candidate(
                 and base_spend_usd
                 + estimated_usd
                 + max(rate_samples[-3:])
-                + planned_remaining_usd
+                + dynamic_planned_remaining_usd
                 + LOCKED_RESERVE_USD
                 > SAFETY_STOP_USD
             ):
@@ -742,10 +838,13 @@ def _run_candidate(
         client_estimate = client_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR
         estimated_usd += client_estimate
         rate_samples.append(client_estimate)
+        dynamic_planned_remaining_usd = other_planned_usd + candidate_estimate_usd * (
+            max(0, len(records) - len(all_results) - len(shard_records)) / len(records)
+        )
         if (
             base_spend_usd
             + estimated_usd
-            + planned_remaining_usd
+            + dynamic_planned_remaining_usd
             + LOCKED_RESERVE_USD
             > HARD_CAP_USD
         ):
@@ -831,6 +930,8 @@ def _run_candidate(
         "execution_plan_sha256": sha256_file(plan_path),
         "completed_shards": completed_shards,
         "new_shards": new_shards,
+        "cache_hit_rows": len(legacy_results),
+        "legacy_cache_shards": legacy_shard_count,
         "cost": {
             "gpu_type": GPU_TYPE,
             "gpu_rate_usd_per_hour": GPU_RATE_USD_PER_HOUR,
@@ -915,6 +1016,7 @@ def main() -> None:
             approval,
             base_spend_usd,
             candidate_plan[candidate] + remaining,
+            candidate_plan[candidate],
         )
         base_spend_usd += float(outputs[candidate]["cost"]["estimated_client_wall_rate_usd"])
 

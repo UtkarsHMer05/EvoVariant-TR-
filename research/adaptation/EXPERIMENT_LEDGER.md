@@ -15,7 +15,7 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Caduceus frozen head | PASS | Drive `checkpoints/caduceus_frozen_head/run.json`; 3 epochs, losses `1.1767539545572263`, `1.1581548454985837`, `1.1497443100928366`, runtime 1,968.52 s; checkpoint SHA `230fc7be…4e02213`, 7,728,385 total / 3,073 trainable parameters, peak 320,895,488 bytes | TRAIN only; report says holdout not evaluated | partial/full feasibility and HPO |
 | Caduceus partial fine-tune | NOT STARTED | no artifact | none | frozen baseline |
 | Caduceus full fine-tune | NOT STARTED | no artifact | none | feasibility/HPO |
-| Caduceus HPO | IN_PROGRESS | Existing T4 worker PID 58018 at 1:51:32; trial 0 RUNNING, trials 1–3 WAITING; fold 0 four epochs and fold 1 two persisted | TRAIN-only, 3-fold gene-grouped CV; selection open | complete at least 8 trials |
+| Caduceus HPO | IN_PROGRESS | Existing T4 worker PID 58018 at 2:01:25; trial 0 RUNNING, trials 1–3 WAITING; fold 0 four epochs and fold 1 three persisted | TRAIN-only, 3-fold gene-grouped CV; selection open | complete at least 8 trials |
 | Frozen Evo2 anchor audit | EXCLUDED_PENDING_PROVENANCE | Existing 4,000-row output matches development IDs/splits, prediction hash, model revision, and locked exclusion; producer checkout is marked dirty, and the full-run approval referenced in its plan is unavailable | ID/split/hash audit only; score and label values not inspected or used | recover exact producer source and approval provenance, otherwise retain exclusion |
 | Final TRAIN refit | BLOCKED | no closed selection lock | none | HPO |
 | 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |

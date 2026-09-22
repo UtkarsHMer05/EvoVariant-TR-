@@ -13,21 +13,23 @@ experiments.
 
 ## Current verified status
 
-The current branch is `research/evovariant-tr`. The project-control state is
-`BLOCKED / PARTIAL` at the final release gate. The free/local engineering
-surfaces are reproducible, but the scientific execution gates are intentionally
-closed:
+The current branch is `research/evovariant-tr`. The internal Phase 19 gate is
+`PASS`; external release remains disabled because no tag, deployment, or
+publication release was requested. The free/local engineering surfaces and the
+bounded scientific evidence are reproducible, with every stronger unrun claim
+left explicitly outside scope:
 
 | Area | Current evidence |
 |---|---|
 | Frozen protocol and ML-extension control plane | PASS; the original protocol hash is preserved. |
 | Phase 3 data and splits | PASS for the ML extension under dated `ML-DEV-001`/`ML-DEV-002`; authoritative locked cohort is 946 (536 B/LB, 410 P/LP), with independent GRCh38 validation and zero unresolved mismatches. |
 | Model registry and final Phase 5 roster | Seven schema-valid candidate manifests; the final roster separates Evo2 raw scoring, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only AlphaMissense. |
-| Modal | Authorized Evo2 7B H100 pilot passed a real cache miss and equivalent cache hit; workspace billing is recorded, with no exact per-request invoice asserted. |
-| Experiment registry | Nine completed `PRELIMINARY` runs are hash-verified and tracked through small summaries; no `FINAL` run is registered. |
-| Research workbench | Frontend build and four browser tests PASS; the read-only registry tab displays preliminary run metadata while scientific panels remain evidence-gated. |
-| Figures and tables | Final registry-driven manifest is `BLOCKED` with 9/19 figure families and 9/11 applicable tables sourced from the development subset; the fine-tuning table is explicitly `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` because Phase 10 is deferred, and a separate non-promotable preliminary bundle contains 18 development-stage outputs. |
-| Spend | The bounded Evo2 development prefix used a `$4.698582` H100 wall-time estimate and stopped at a `$4.75` safety reserve under the `$5.00` cap. The later `$8.00`-authorized formal 64-row preflight had two `StreamTerminatedError` failures; a third attempt already in flight reached Evo2 initialization but was interrupted before an accepted result. The subsequent diagnostic-only `$0.50` authorization passed CPU/detached transport but stopped on a missing `torch` dependency in the minimal H100 probe. Billing remains `$0.00` and no full formal workload was launched. |
+| Modal | Phase 14 remains the immutable 946-row Evo2 locked subgate. Phase 15 adds only a bounded 64-row development-only parity smoke: 56 cache rows, 8 remote rows, zero locked rows/labels, and successful resume. |
+| Experiment registry | Thirteen completed scientific runs are hash-verified, including the Phase 14 `FINAL` record; downstream evidence remains stage-qualified. |
+| Research workbench | All 14 areas are exposed; the read-only `/api/research/workbench` route verifies publication source hashes and displays registered evidence metadata. Frontend build and four browser tests PASS. |
+| Figures and tables | `PASS_LOCAL_PUBLICATION_BUNDLE`: 41 inventory entries, 39 rendered families, 39 source sidecars, and 12 tables. Context-length and training-loss omissions are explicit conditional decisions. |
+| Clean room and release | Phase 18 `PASS` for the documented detached-checkout/control-plane scope; Phase 19 `PASS` internally with `release_allowed=false`. Full remote re-inference is not required by the literal Phase 18 task list and is not claimed. |
+| Spend | Phase 15 used one planned remote invocation with a `$0.063118` rate-based estimate under the `$0.20` safety stop and `$0.25` cap. Latest provider snapshot is metered `$33.65808745`, billed `$0.12`, active containers `[]`; remaining free credit is not provider-confirmed. |
 
 The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
 the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a
@@ -181,8 +183,9 @@ required areas:
 - Methods & Provenance;
 - Experiment Registry.
 
-The current UI can load frozen protocol metadata and can render raw research
-signals only when an explicitly configured real scorer serves them. It does not
+The UI can load frozen protocol metadata, render raw research signals only when
+an explicitly configured real scorer serves them, and read the hash-verified
+publication inventory for each registered area. It does not
 fall back to `FakeScorer`, derive clinical labels, invent metrics, or mark
 downstream areas ready because a planned run exists. The Experiment Registry
 tab reads safe metadata from `/api/registry`; it shows `PARTIAL` while completed
@@ -260,11 +263,12 @@ JSON tables, methods, limitations, cost, and model-provenance artifacts under
 
 ## Batch planning and local recovery contract
 
-Phase 15 now has a free local planning and injected-scorer contract for label-free
-CSV/VCF input. It validates GRCh38 biallelic SNVs, hashes the input, persists an
+Phase 15 has a free local planning and injected-scorer contract for label-free
+CSV/VCF input plus a separately authorized 64-row development-only Evo2 parity
+smoke. It validates GRCh38 biallelic SNVs, hashes the input, persists an
 immutable model/revision/context/orientation plan, and supports hash-verified,
-resumable shards plus deterministic export. Planning does not construct a model,
-call Modal, attach labels, or create scientific predictions:
+resumable shards plus deterministic export. The remote smoke does not attach
+labels or touch locked rows:
 
 ```bash
 make batch-run \
@@ -273,9 +277,9 @@ make batch-run \
 ```
 
 The sample command writes a `PLANNED` status under ignored
-`research/runs/phase15_batch_plan/`. Remote batch parity, kill/restart evidence,
-full-cohort execution, and any paid batch workload remain separately blocked and
-require a new exact-scope approval.
+`research/runs/phase15_batch_plan/`. The completed smoke evidence is
+`artifacts/phase15/phase15_parity_smoke_validation_20260922.json`; full-cohort
+execution remains outside this authorization.
 
 ## Budgeted development design (no-spend checkpoint)
 
@@ -344,18 +348,15 @@ The dependency-ordered phase decisions are maintained in
   a PASS. The diagnostic-only transport follow-up passed CPU/detached checks but stopped on a
   missing `torch` dependency in its minimal H100 probe, so no new formal result is accepted and
   the full formal run remains blocked by `FAIL_FORMAL_PREFLIGHT`;
-- Phase 10 is formally deferred by compute, and Phase 14/15 remain scientifically
-  blocked; Phase 15 has a local label-free planning/recovery contract but no
-  authorized remote batch execution;
-- Phase 16's frontend/build/browser engineering gate passes and its read-only
-registry tab is connected to nine preliminary runs, while its scientific
-  result panels remain evidence-gated;
-- Phase 17's registry-driven manifest is deterministic with partial sources but
-  remains blocked and contains no scientific outputs;
-- Phase 18's free clean-room gate passes, while full scientific and figure
-  evidence remain unavailable;
-- Phase 19 remains blocked and no release, tag, deployment, or publication is
-  claimed.
+- Phase 10 remains formally deferred by compute; no checkpoint or training-loss
+  curve is claimed;
+- Phase 16's registered-output workbench, frontend build, and browser journeys
+  pass, while every panel remains evidence-stage qualified;
+- Phase 17's local publication bundle passes with explicit conditional omissions;
+- Phase 18's documented clean detached checkout and representative gated Modal
+  smoke pass; full remote re-inference is not claimed;
+- Phase 19 passes internally, while no release, tag, deployment, or publication
+  is claimed.
 
 ## Legacy evidence boundary
 

@@ -11,13 +11,13 @@
   },
   "no_new_remote_compute": true,
   "phase": 19,
-  "recorded_at_utc": "2026-09-22T13:31:22.663163+00:00",
+  "recorded_at_utc": "2026-09-22T13:37:02.936866+00:00",
   "release_allowed": false,
   "release_reason": "Internal gate only; no tag, deployment, or publication release was requested.",
   "source_artifacts": [
     {
       "path": "research/reports/phase17/publication_manifest.json",
-      "sha256": "9783ae0a97923110bfe870412cc9245223f8f90c7a94b31455d9da597840d0dc"
+      "sha256": "aa34cbd2f31dfe1d6826b505cd1ee27c7a872948fd20a47f52f1f6442e8bc86d"
     },
     {
       "path": "research/runs/phase18_clean_room_status.json",

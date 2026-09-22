@@ -26,11 +26,41 @@ The final artifact is `artifacts/phase14/phase14_locked_evo2_20260922.json`, SHA
   the latest observed `$1.61` metered delta implies only an indicative `$5.56`, not a
   provider-confirmed balance.
 
-Phase 15 remains blocked for remote batch parity; Phase 16 is partial; Phase 17 is blocked on
-three mandatory source families and an eligible `FINAL` registry run; Phase 18 is blocked on full
-scientific clean-room reproduction; and Phase 19 is blocked on those unresolved dependencies.
-NT, Caduceus, fine-tuning, deployment, release, and additional paid work were not started under
-the Phase 14 authorization.
+The post-publication continuation then completed the bounded Phase15 development-only parity
+smoke, connected the 14-area workbench to hash-verified publication inventory metadata, finalized
+the conditional Phase17 bundle, and reproduced the free/control-plane clean-room sequence from a
+detached checkout. Phase18 is `PASS` for that documented scope, with the Phase15 smoke as the
+minimum gated Modal check; full remote re-inference is explicitly not required by the literal
+Phase18 task list and is not claimed. Phase19 is `PASS` as an internal gate with
+`release_allowed=false`; no tag, deployment, or publication release was requested. NT, Caduceus,
+fine-tuning, and any broader paid workload remain outside this checkpoint.
+
+### Latest post-publication continuation — Phase 15–19
+
+- Phase15 approval: `artifacts/approvals/phase15_parity_smoke_20260922.json`, bound to execution
+  HEAD `a460ba23626e1c566f56d58cb2f7aa0341f71d7d`, hard cap `$0.25`, safety stop `$0.20`.
+- Phase15 validation: `artifacts/phase15/phase15_parity_smoke_validation_20260922.json` is
+  `PASS_PHASE15_PARITY_AND_RESUME`. The exact 64-row set contains 56 verified cache rows and 8
+  newly scored development rows; canonical raw/delta parity is zero-difference, all integrity
+  checks pass, the persisted shard resumes with zero new remote calls, and no labels or locked
+  rows crossed the Modal boundary.
+- Phase15 compute: one planned remote invocation, 57.525624 seconds remote wall time, rate-based
+  estimate `$0.063118`, and post-run active containers `[]`. Modal billing moved from metered
+  `$33.59808745` to `$33.65808745` and billed `$0.06` to `$0.12`; the provider does not expose a
+  confirmed free-credit balance. The user's `$7.17` basis therefore remains an indicative, not
+  provider-confirmed, headroom figure.
+- Phase16: `PASS`; `/api/research/workbench` verifies source hashes before exposing per-area
+  evidence metadata. `make web-check` and the four committed browser journeys pass.
+- Phase17: `PASS_LOCAL_PUBLICATION_BUNDLE`; 41 inventory entries, 39 rendered figure families,
+  39 source sidecars, 12 tables, and a report with explicit Motivation, protocol, temporal,
+  Evo2, downstream/HPO/ensemble, calibration/uncertainty, robustness/error, limitations, and
+  conclusion sections. Current publication manifest SHA-256 is
+  `9783ae0a97923110bfe870412cc9245223f8f90c7a94b31455d9da597840d0dc`.
+- Phase18: `PASS`; `artifacts/phase18/clean_room_execution_20260922.json` records a clean detached
+  checkout at code commit `4681ac1c122bf5bacdf65c5a89c69d9531b672eb` with bootstrap, secret scan,
+  Ruff, strict mypy, 714 tests, 95.01% coverage, protocol/model/registry checks, figures, frontend
+  install/build, and clean Git status all passing.
+- Phase19: `PASS` internal gate; `release_allowed=false` because external release was not requested.
 
 The exact approved formal Evo2 Phase 6 continuation is complete and passed within scope. The
 4,000-record formal development cohort is complete: 125 shards, 124 verified stored-shard cache

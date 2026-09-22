@@ -3522,3 +3522,48 @@ deployment, tag, or publication release is authorized by this decision.
 Validation:
 Registry output hashes, figure source hashes, final artifact/joined-prediction hashes, SVG/PNG/PDF
 generation, table generation, local Phase 18 hash checks, and the no-spend control surfaces pass.
+
+## D-111 — Close the bounded post-publication Phase 15–19 continuation
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The post-publication continuation authorized only a 64-row development-only Evo2 parity smoke
+under a `$0.25` hard cap and `$0.20` safety stop. The master prompt's Phase 18 task list requires
+a gated Modal smoke, not a full remote re-inference. Phase 16 still had placeholder panels even
+though the publication bundle was hash-verified.
+
+Decision:
+Accept the exact Phase15 smoke as the bounded remote parity and Phase18 gated-smoke evidence.
+Reuse the persisted shard on resume, expose the registry-driven publication inventory through a
+read-only workbench route, and keep all evidence stage-qualified. Treat full remote re-inference
+as an optional stronger claim, not a hidden Phase18 requirement. Close Phase18 and the internal
+Phase19 gate only after detached-checkout, local hash, frontend, registry, and browser checks pass.
+Keep external release disabled unless separately requested.
+
+Evidence:
+- Approval and validation: `artifacts/approvals/phase15_parity_smoke_20260922.json` and
+  `artifacts/phase15/phase15_parity_smoke_validation_20260922.json`.
+- Exact 64-row smoke: 56 verified cache rows, 8 newly scored development rows, one planned remote
+  invocation, zero locked rows/labels, zero canonical mismatches, and zero remote calls on resume.
+- Workbench route: `apps/web/src/app/api/research/workbench/route.ts`; the route verifies each
+  displayed source SHA-256 before returning metadata. `make web-check` and four Playwright
+  journeys pass.
+- Phase18: `research/runs/phase18_clean_room_status.json` and
+  `artifacts/phase18/clean_room_execution_20260922.json`; detached checkout `4681ac1` passed
+  bootstrap, secret scan, Ruff, strict mypy, 714 tests, 95.01% coverage, figures, registry, and
+  frontend build with clean Git status.
+- Phase19: `research/runs/phase19_release_status.json` is `PASS` with
+  `release_allowed=false`; no tag, deployment, publication submission, or additional paid work
+  was created.
+
+Consequences:
+The internal project gates are closed for the authorized scope. Phase 14 remains immutable and
+Phase 10 remains `DEFERRED_BY_COMPUTE`. No full-cohort Phase15 batch, new model, fine-tuning,
+locked-test rerun, or full remote re-inference is claimed.
+
+Validation:
+`make validate`, `make registry-verify`, `make ui-check`, `make web-check`, `make web-e2e`,
+publication-bundle generation, Phase15 parity/resume validation, fresh Modal container inventory,
+and the detached clean-room sequence pass.

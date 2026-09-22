@@ -11,7 +11,8 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "npm run start -- -p 3100",
+    command:
+      "NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL=http://127.0.0.1:8000 npm run start -- -p 3100",
     url: "http://127.0.0.1:3100/analysis",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

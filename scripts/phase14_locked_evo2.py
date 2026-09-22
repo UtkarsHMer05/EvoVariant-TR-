@@ -728,10 +728,12 @@ def run_phase14(
             "finite_calibrated_scores": all(
                 math.isfinite(float(row["calibrated_score"])) for row in joined
             ),
-            "labels_remote_transport": False,
+            "no_labels_remote_transport": all(
+                not bool(row.get("remote_labels_transported")) for row in joined
+            ),
             "no_locked_labels_before_raw_hash": True,
             "selection_closed": True,
-            "post_test_tuning": False,
+            "post_test_tuning_prohibited": config.get("post_test_tuning_allowed") is False,
             "comparators_not_required": True,
         },
         "scientific_boundary": {

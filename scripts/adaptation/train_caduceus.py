@@ -24,7 +24,7 @@ from evovariant_tr.adaptation.models import (
     load_backbone,
 )
 from evovariant_tr.adaptation.state import record_stage
-from evovariant_tr.adaptation.training import TrainConfig, evaluate, train_epoch
+from evovariant_tr.adaptation.training import TrainConfig, train_epoch
 
 PROTOCOL_HASH = "07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c"
 
@@ -154,15 +154,12 @@ def main() -> None:
         loss = train_epoch(
             model, tokenizer, fasta, train_rows, optimizer, config=config, device=args.device
         )
-        train_metrics, _ = evaluate(
-            model, tokenizer, fasta, train_rows, config=config, device=args.device
-        )
         save_checkpoint(
             output_dir / "latest.pt",
             model=model,
             optimizer=optimizer,
             epoch=epoch,
-            metrics={"loss": loss, **train_metrics},
+            metrics={"loss": loss},
             protocol_hash=PROTOCOL_HASH,
             metadata=checkpoint_metadata,
         )
@@ -176,7 +173,6 @@ def main() -> None:
                     "stage": args.stage,
                     "epoch": epoch,
                     "loss": loss,
-                    "train_metrics": train_metrics,
                 },
                 indent=2,
                 sort_keys=True,
@@ -190,9 +186,9 @@ def main() -> None:
             project_root=root,
             stage=f"CADUCEUS_{args.stage.upper()}_TRAIN_PROGRESS",
             artifacts=(output_dir / "latest.pt", latest),
-            details={"epoch": epoch, "loss": loss, "metrics": train_metrics},
+            details={"epoch": epoch, "loss": loss},
         )
-        print(json.dumps({"epoch": epoch, "loss": loss, **train_metrics}, sort_keys=True))
+        print(json.dumps({"epoch": epoch, "loss": loss}, sort_keys=True))
     report = {
         "status": "PASS",
         "stage": args.stage,

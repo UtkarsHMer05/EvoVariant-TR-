@@ -3063,3 +3063,39 @@ Alternatives rejected:
 - imputing missing CADD/PhyloP values;
 - treating development validation metrics as locked-test evidence;
 - widening the Phase 7 approval to cover Phase 14 or fine-tuning.
+
+## D-099 — Do not reuse the stale broad overnight approval for Phase 14
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The formal Phase 7 matrix and the CPU development continuation are complete, and the
+pre-Phase-14 configuration has `selection_closed=true`. The approval inventory contains an
+older broad overnight artifact that mentions one-shot Phase 14 work, but the active Phase 7
+authorization explicitly excludes Phase 14 and the older artifact is bound to an earlier Git
+state.
+
+Decision:
+Treat `artifacts/approvals/overnight_completion_20260922.json` as historical and stale for any
+new paid execution. Do not use it to launch locked-test inference. A future Phase 14 run requires
+a fresh user-authorized approval bound to the then-current committed HEAD, frozen protocol and
+manifest hashes, the immutable configuration hash, exact one-shot workload, and an explicit
+budget/safety stop. Continue only free local work until that allocation exists.
+
+Evidence:
+- Stale overnight approval SHA-256:
+  `004ff879e770feaa531b057c797f6b15f1bb49b004dcc7f6dbe9dced0f2ba310`.
+- Its recorded Git commit is `535d73e56d10ddea5d2ef0098bb7251a57d259d7`, while the current
+  committed HEAD is `daa71bc12a072e26bc90aeeb5674936e3bec09b2`.
+- Active Phase 7 approval SHA-256:
+  `f21cdc9cacac7407aba1c8117d031ac64b24ee726ccdd35a5b9cb55cef9dfbb3`; its exclusions include
+  locked-test inference and Phase 14.
+- Frozen configuration SHA-256:
+  `0e62fd65544b872d4abc1ad9042545a46438210ec85d04749bf1b3060e73d2cb`, with recorded content
+  hash `3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424` and
+  `selection_closed=true`.
+
+Validation:
+The approval inventory was re-read after the Phase 7/CPU completion; no current exact-scope
+Phase 14 approval exists. No locked labels or locked predictions were accessed.

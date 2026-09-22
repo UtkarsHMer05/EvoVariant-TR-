@@ -1,0 +1,367 @@
+{
+  "approval_artifact": "artifacts/approvals/formal_phase7_continuation_20260922.json",
+  "artifact_id": "formal-budgeted-representation-20260922",
+  "billing": {
+    "after": {
+      "captured_at_utc": "2026-09-22T07:33:07.086748+00:00",
+      "command": "modal billing summary",
+      "interpretation": "workspace-level provider summary, not a per-run invoice",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        31.82  \n    Ephemeral Apps:    19.67  \n    Deployed Apps:      8.78  \n    Volumes:            3.37  \n  Credits:            -28.45  \n  Free Storage:        -3.37  \n  Billed Cost:         $0.00  \n                              \n"
+    },
+    "before": {
+      "captured_at_utc": "2026-09-22T07:14:39.299440+00:00",
+      "command": "modal billing summary",
+      "interpretation": "workspace-level provider summary, not a per-run invoice",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        30.46  \n    Ephemeral Apps:    18.31  \n    Deployed Apps:      8.78  \n    Volumes:            3.37  \n  Free Storage:        -3.37  \n  Credits:            -27.09  \n  Billed Cost:         $0.00  \n                              \n"
+    }
+  },
+  "caduceus_pilot": {
+    "cache_reused": false,
+    "candidate": "caduceus",
+    "candidate_plan_estimate_usd": 0.226398,
+    "client_wall_rate_estimate_usd": 0.083743,
+    "client_wall_seconds": 76.3225,
+    "decision_reason": "pilot throughput projection fits the authorized safety envelope",
+    "feature_dimensions": [
+      64,
+      3,
+      256
+    ],
+    "finite_features": true,
+    "labels_sent_to_modal": false,
+    "layers": [
+      4,
+      8,
+      16
+    ],
+    "locked_test_overlap": 0,
+    "model_load_seconds": 5.082531,
+    "persisted_shard": "research/runs/phase7_formal_budgeted_optimized_20260922/caduceus/shards/shard_00000.json",
+    "pilot_rows": 64,
+    "projected_full_cost_usd": 0.67719,
+    "projected_full_remote_seconds": 617.186218,
+    "projected_total_with_base_usd": 1.459384,
+    "remote_method_seconds": 9.793659,
+    "runner_safety_stop_usd": 1.5,
+    "status": "PASS_CADUCEUS_PILOT",
+    "variants_per_second": 6.534841
+  },
+  "cost": {
+    "combined_estimated_usd": 1.495327,
+    "evo2_estimated_usd": 0.111328,
+    "evo2_prior_artifact": "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json",
+    "hard_cap_usd": 1.75,
+    "locked_test_reserve_min_usd": 0.0,
+    "measured_invoice_usd": null,
+    "representation_estimated_usd": 1.383999,
+    "runner_safety_stop_usd": 1.5
+  },
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "formal_total": 4000,
+  "model_tracks": {
+    "caduceus": {
+      "cache_hit_rows": 0,
+      "candidate": "caduceus",
+      "checkpoint": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "completed_shards": 63,
+      "context_length_bp": 8192,
+      "cost": {
+        "estimated_client_wall_rate_usd": 0.601805,
+        "gpu_rate_usd_per_hour": 3.95,
+        "gpu_type": "H100",
+        "interpretation": "client wall-time rate estimate, not a per-run invoice",
+        "measured_invoice_usd": null
+      },
+      "dtype": "float32",
+      "execution_plan": "research/runs/phase7_formal_budgeted_optimized_20260922/caduceus/execution_plan.json",
+      "execution_plan_sha256": "f7f8f2305160cba9aada17097c8fdf5d390c936c5c3bb798502192dc607eda1f",
+      "feature_artifact": "research/runs/phase7_formal_budgeted_optimized_20260922/caduceus/features.npz",
+      "feature_artifact_sha256": "280dcc531baee4f4d55fd4eeea46142b35fc98de5c57ee2ab83f001f596e9a20",
+      "feature_keys": [
+        "abs_alt_minus_ref_aggregate",
+        "alt_minus_ref_aggregate",
+        "alternate_aggregate",
+        "alternate_forward",
+        "alternate_reverse",
+        "cosine_similarity",
+        "distance_l2",
+        "forward_delta",
+        "gene_symbols",
+        "labels",
+        "layers",
+        "orientation_disagreement_l2",
+        "reference_aggregate",
+        "reference_forward",
+        "reference_reverse",
+        "reverse_delta",
+        "splits",
+        "variant_ids"
+      ],
+      "feature_shapes": {
+        "abs_alt_minus_ref_aggregate": [
+          4000,
+          3,
+          256
+        ],
+        "alt_minus_ref_aggregate": [
+          4000,
+          3,
+          256
+        ],
+        "alternate_aggregate": [
+          4000,
+          3,
+          256
+        ],
+        "alternate_forward": [
+          4000,
+          3,
+          256
+        ],
+        "alternate_reverse": [
+          4000,
+          3,
+          256
+        ],
+        "cosine_similarity": [
+          4000,
+          3
+        ],
+        "distance_l2": [
+          4000,
+          3
+        ],
+        "forward_delta": [
+          4000,
+          3,
+          256
+        ],
+        "gene_symbols": [
+          4000
+        ],
+        "labels": [
+          4000
+        ],
+        "layers": [
+          3
+        ],
+        "orientation_disagreement_l2": [
+          4000,
+          3
+        ],
+        "reference_aggregate": [
+          4000,
+          3,
+          256
+        ],
+        "reference_forward": [
+          4000,
+          3,
+          256
+        ],
+        "reference_reverse": [
+          4000,
+          3,
+          256
+        ],
+        "reverse_delta": [
+          4000,
+          3,
+          256
+        ],
+        "splits": [
+          4000
+        ],
+        "variant_ids": [
+          4000
+        ]
+      },
+      "formal_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+      "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+      "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+      "labels_attached_locally": true,
+      "labels_remote_transport": false,
+      "layers": [
+        4,
+        8,
+        16
+      ],
+      "legacy_cache_shards": 0,
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "new_shards": 62,
+      "orientation": "forward_and_reverse",
+      "pooling": "mean_tokens",
+      "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+      "record_count": 4000,
+      "runtime_seconds": 646.733672,
+      "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
+      "views": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ]
+    },
+    "nucleotide_transformer": {
+      "cache_hit_rows": 504,
+      "candidate": "nucleotide_transformer",
+      "checkpoint": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "completed_shards": 119,
+      "context_length_bp": 8192,
+      "cost": {
+        "estimated_client_wall_rate_usd": 0.782194,
+        "gpu_rate_usd_per_hour": 3.95,
+        "gpu_type": "H100",
+        "interpretation": "client wall-time rate estimate, not a per-run invoice",
+        "measured_invoice_usd": null
+      },
+      "dtype": "float32",
+      "execution_plan": "research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/execution_plan.json",
+      "execution_plan_sha256": "422a79f7bdfbf6e414362801359c9d400dfac4cc1e0dfe011e2ff59f7efa94b5",
+      "feature_artifact": "research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/features.npz",
+      "feature_artifact_sha256": "c41aca39e6c066d8acd2025ca7ab050d12a22a7b7f1c72424e48704c11d3a5de",
+      "feature_keys": [
+        "abs_alt_minus_ref_aggregate",
+        "alt_minus_ref_aggregate",
+        "alternate_aggregate",
+        "alternate_forward",
+        "alternate_reverse",
+        "cosine_similarity",
+        "distance_l2",
+        "forward_delta",
+        "gene_symbols",
+        "labels",
+        "layers",
+        "orientation_disagreement_l2",
+        "reference_aggregate",
+        "reference_forward",
+        "reference_reverse",
+        "reverse_delta",
+        "splits",
+        "variant_ids"
+      ],
+      "feature_shapes": {
+        "abs_alt_minus_ref_aggregate": [
+          4000,
+          3,
+          1024
+        ],
+        "alt_minus_ref_aggregate": [
+          4000,
+          3,
+          1024
+        ],
+        "alternate_aggregate": [
+          4000,
+          3,
+          1024
+        ],
+        "alternate_forward": [
+          4000,
+          3,
+          1024
+        ],
+        "alternate_reverse": [
+          4000,
+          3,
+          1024
+        ],
+        "cosine_similarity": [
+          4000,
+          3
+        ],
+        "distance_l2": [
+          4000,
+          3
+        ],
+        "forward_delta": [
+          4000,
+          3,
+          1024
+        ],
+        "gene_symbols": [
+          4000
+        ],
+        "labels": [
+          4000
+        ],
+        "layers": [
+          3
+        ],
+        "orientation_disagreement_l2": [
+          4000,
+          3
+        ],
+        "reference_aggregate": [
+          4000,
+          3,
+          1024
+        ],
+        "reference_forward": [
+          4000,
+          3,
+          1024
+        ],
+        "reference_reverse": [
+          4000,
+          3,
+          1024
+        ],
+        "reverse_delta": [
+          4000,
+          3,
+          1024
+        ],
+        "splits": [
+          4000
+        ],
+        "variant_ids": [
+          4000
+        ]
+      },
+      "formal_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+      "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+      "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+      "labels_attached_locally": true,
+      "labels_remote_transport": false,
+      "layers": [
+        8,
+        16,
+        24
+      ],
+      "legacy_cache_shards": 63,
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "model_revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "new_shards": 25,
+      "orientation": "forward_and_reverse",
+      "pooling": "mean_tokens",
+      "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+      "record_count": 4000,
+      "runtime_seconds": 379.794382,
+      "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
+      "views": [
+        "reference_forward",
+        "alternate_forward",
+        "reference_reverse",
+        "alternate_reverse"
+      ]
+    }
+  },
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "recorded_at_utc": "2026-09-22T07:33:07.086844+00:00",
+  "scientific_boundary": {
+    "fine_tuning_started": false,
+    "labels_attached_locally": true,
+    "labels_sent_to_modal": false,
+    "locked_test_scored": false,
+    "phase14_started": false
+  },
+  "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
+  "study_id": "ML-DEV-BUDGETED-001"
+}

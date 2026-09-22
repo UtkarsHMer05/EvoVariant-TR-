@@ -1,0 +1,87 @@
+{
+  "GPU": "CPU",
+  "artifact_paths": [
+    "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+    "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+    "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+    "research/runs/formal_cpu_20260922/phase13/pre_phase14_freeze.json",
+    "research/runs/formal_cpu_20260922/phase8/leakage_audit.json",
+    "research/runs/formal_cpu_20260922/phase8/summary.json",
+    "research/runs/formal_cpu_20260922/phase9/summary.json"
+  ],
+  "checkpoint": "evo2_7b",
+  "command": ".venv/bin/python scripts/run_formal_cpu_pipeline.py",
+  "comparator_versions": {
+    "cadd": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+    "phylop": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f"
+  },
+  "completed_at": "2026-09-22T08:09:13.659360+00:00",
+  "config": {
+    "frozen_config_sha256": "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424"
+  },
+  "created_at": "2026-09-22T08:09:13.657843+00:00",
+  "data_manifests": {
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+  },
+  "dataset_manifest_hash": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "estimated_cost_usd": 0.0,
+  "evidence_stage": "PRELIMINARY",
+  "experiment_family": "FORMAL_CPU",
+  "failure_reason": null,
+  "feature_version": "formal_cpu_20260922",
+  "git_commit": "408edcc83e4a288cc8afb90a5bb9993af302c3d4",
+  "git_dirty": true,
+  "hardware": {
+    "execution": "local CPU"
+  },
+  "license_record": {},
+  "measured_cost_usd": null,
+  "metrics": {
+    "phase11_status": "PASS_FORMAL_PHASE11",
+    "phase12_status": "PASS_FORMAL_PHASE12",
+    "phase13_status": "PASS_FORMAL_PHASE13",
+    "phase8_best_validation_auprc": 0.9947600640607389,
+    "phase8_best_validation_auroc": 0.9980193537434214,
+    "selection_closed": true
+  },
+  "model_identity": "formal_multi_model_development",
+  "model_name": "Evo2/NT/Caduceus formal representation comparison",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "model_source": null,
+  "notes": "Formal TRAIN/VALIDATION only; labels attached locally; no locked rows. Phase 10 is DEFERRED_BY_COMPUTE and Phase 14 remains unopened.",
+  "output_hashes": {
+    "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b",
+    "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+    "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f",
+    "research/runs/formal_cpu_20260922/phase13/pre_phase14_freeze.json": "1159e8fa3ecfb312c01dab7af1ab6aeb08e836cff99aeffcc02591e8178592c4",
+    "research/runs/formal_cpu_20260922/phase8/leakage_audit.json": "dbc69b54377c2315f3b9ec328a7320e8d19b45f4f1034e76e11691da8c72544a",
+    "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95",
+    "research/runs/formal_cpu_20260922/phase9/summary.json": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+  },
+  "output_paths": [
+    "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+    "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+    "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+    "research/runs/formal_cpu_20260922/phase13/pre_phase14_freeze.json",
+    "research/runs/formal_cpu_20260922/phase8/leakage_audit.json",
+    "research/runs/formal_cpu_20260922/phase8/summary.json",
+    "research/runs/formal_cpu_20260922/phase9/summary.json"
+  ],
+  "parent_run_id": null,
+  "preprocessing_version": "formal_8192bp_forward_rc_v1",
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "reference_checksum": null,
+  "run_id": "run_20260922T080913Z_8ff64696",
+  "runtime_seconds": null,
+  "scorer_config": {
+    "final_model_id": "evo2__logistic_regression_hpo",
+    "locked_test_evaluated": false,
+    "selection_closed": true
+  },
+  "seed": 42,
+  "split_manifest_hash": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "started_at": "2026-09-22T08:09:13.657849+00:00",
+  "status": "COMPLETED",
+  "title": "Formal 4,000-row CPU development continuation \u2014 2026-09-22",
+  "updated_at": "2026-09-22T08:09:13.659360+00:00"
+}

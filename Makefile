@@ -288,6 +288,11 @@ train: ## Record/run the Phase 8 downstream training gate
 		--blocker "Phase 7 representation extraction is blocked"; \
 	fi
 
+.PHONY: formal-cpu
+formal-cpu: ## Run the verified formal Phase 8-13 CPU continuation (no Modal)
+	$(MAKE) check-venv
+	$(PYTHON) scripts/run_formal_cpu_pipeline.py
+
 .PHONY: hpo
 hpo: ## Record/run the Phase 9 validation-only HPO gate
 	$(MAKE) check-venv

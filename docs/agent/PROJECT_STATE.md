@@ -27,9 +27,46 @@ multi-model Phase 6 benchmark.
   inventory `[]`. From the exact prior derived free headroom `$5.94229534`, the derived remaining
   headroom is `$5.84854964` (approximately `$5.85`).
 - Validation: final no-spend integrity audit PASS; pre-run `make validate` PASS with 715 tests,
-  33 deselected, and 95.01% coverage. D-096 accepts the bounded result. No NT, Caduceus,
-  fine-tuning, locked-test inference, or Phase 7 workload was launched; those remain separately
-  authorized work at the next allocation boundary.
+  33 deselected, and 95.01% coverage. D-096 accepts the bounded Phase 6 result. The subsequent
+  separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
+  below; locked-test inference and fine-tuning remain unopened.
+
+## Formal Phase 7 and development CPU continuation — 2026-09-22
+
+The separately authorized Phase 7 continuation is complete and PASS. NT resumed from the
+verified 2,432-row cache and scored exactly the remaining 1,568 IDs; Caduceus passed its
+label-blind 64-row pilot and then completed all 4,000 formal rows. The final representation
+artifact is `artifacts/phase7/formal_budgeted_representation_20260922.json` (SHA-256
+`cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783`), bound to approval
+`artifacts/approvals/formal_phase7_continuation_20260922.json` (SHA-256
+`f21cdc9cacac7407aba1c8117d031ac64b24ee726ccdd35a5b9cb55cef9dfbb3`). NT and Caduceus each
+contain 4,000 ordered formal development rows, layers 8/16/24 and 4/8/16 respectively, finite
+forward/RC/aggregate features, zero duplicate or unexpected IDs, zero locked overlap, and
+`labels_remote_transport=false`. The Caduceus pilot projected `$0.677190`; the combined Phase 7
+estimate was `$1.495327` against the `$1.75` hard cap and `$1.50` safety stop. NT runtime was
+379.794382 seconds and Caduceus runtime was 646.733672 seconds. Paid workers were shut down;
+the final container inventory was empty. The provider billing summary remains workspace-level
+evidence rather than a per-run invoice; the recorded representation estimate is `$1.383999`.
+
+The formal local CPU continuation then passed Phases 8, 9, 11, 12, and 13 on the frozen 4,000
+row development manifest. Phase 8 evaluated 36 classifier/feature combinations, including Evo2,
+NT, Caduceus, CADD, PhyloP, and justified fusion matrices. CADD missingness remains explicit
+(2,891/4,000); no value was imputed. The final full-coverage selection is Evo2 combined features
+with validation-only HPO logistic regression, not the higher-scoring incomplete comparator fusion.
+The high-validation-performance leakage audit PASSed at
+`research/runs/formal_cpu_20260922/phase8/leakage_audit.json`; train/validation gene overlap,
+locked rows, duplicate IDs, non-finite values, and remote-label transport were all zero/false.
+
+Formal CPU evidence is under `research/runs/formal_cpu_20260922/`: Phase 8 summary SHA-256
+`c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95`, Phase 9 summary SHA-256
+`544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500`, Phase 11 ensemble SHA-256
+`83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b`, Phase 12 calibration SHA-256
+`bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3`, and Phase 13 artifact
+SHA-256 `03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f`. The immutable
+pre-Phase-14 selection file is `phase13/frozen_config.json`; its content hash is
+`3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424` and
+`selection_closed=true`. Phase 10 remains `DEFERRED_BY_COMPUTE`. Phase 14 has not run and no
+locked label or locked prediction was read.
 
 ## Current state — 2026-09-21
 

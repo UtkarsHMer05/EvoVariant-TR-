@@ -21,7 +21,9 @@ PATTERNS=(
   # The 16-char minimum excludes code identifiers (e.g. `_SECRET_QUERY_KEYS =
   # frozenset(`) and short test fixtures while still catching real credentials.
   '(TOKEN|SECRET|PASSWORD|PASSWD|API_KEY|APIKEY|CREDENTIAL)[A-Z0-9_]*[[:space:]]*=[[:space:]]*["'"'"']?[A-Za-z0-9_-]{16,}'
-  'sk-[A-Za-z0-9_-]{16,}'
+  # Require a token boundary so slugs such as "mask-resolution-20260922"
+  # do not look like an OpenAI-style key.
+  '(^|[^[:alnum:]_])sk-[A-Za-z0-9_-]{16,}'
   'ghp_[A-Za-z0-9]{20,}'
   'AKIA[0-9A-Z]{16}'
   'xox[baprs]-[A-Za-z0-9-]{10,}'

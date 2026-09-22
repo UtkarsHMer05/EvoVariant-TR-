@@ -3028,3 +3028,38 @@ Decision:
 Alternatives:
 Consequences:
 Validation:
+## D-098 — Accept the formal Phase 7 matrix and freeze the full-coverage CPU development path
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The current user authorization permitted only the remaining NT work, the Caduceus pilot/full
+matrix, and local Phases 8–13. It explicitly excluded Phase 14, fine-tuning, context sweeps,
+deployment, and release. Phase 7 completed within its `$1.75` hard cap and `$1.50` safety stop.
+
+Decision:
+Accept `artifacts/phase7/formal_budgeted_representation_20260922.json` as the verified formal
+representation matrix. Reuse the 2,432 verified NT rows and accept exactly 1,568 newly scored
+rows; accept the Caduceus 64-row label-blind pilot and its projected-cost gate before the full
+4,000-row extraction. Continue the CPU pipeline only from hash-verified cached features, with
+labels attached locally and no locked rows. Treat CADD/PhyloP complete-case matrices as
+comparison evidence with explicit coverage, never as silently imputed full-cohort features.
+Select the pre-Phase-14 configuration only from TRAIN/VALIDATION evidence and write
+`selection_closed=true`; do not run Phase 14 under this authorization.
+
+Evidence:
+- Phase 7 artifact SHA-256: `cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783`.
+- Formal CPU Phase 8–13 artifacts are under `research/runs/formal_cpu_20260922/`.
+- The high-performance feature/leakage audit is `phase8/leakage_audit.json` with status
+  `PASS_FORMAL_LEAKAGE_AUDIT`, zero train/validation gene overlap, zero locked rows, finite
+  values, and false remote-label transport.
+- Frozen config hash is
+  `3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424`.
+
+Alternatives rejected:
+- selecting the higher-scoring all-feature comparator fusion as the final configuration despite
+  only 2,891 complete-case rows;
+- imputing missing CADD/PhyloP values;
+- treating development validation metrics as locked-test evidence;
+- widening the Phase 7 approval to cover Phase 14 or fine-tuning.

@@ -80,7 +80,7 @@ LEGACY_RUN_ROOT = REPO_ROOT / os.environ.get(
 APPROVAL_PATH = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_APPROVAL_PATH",
     (
-        "artifacts/approvals/formal_phase7_representation_20260922.json"
+        "artifacts/approvals/formal_phase7_continuation_20260922.json"
         if NARROW_REPRESENTATION_MODE
         else (
             "artifacts/approvals/overnight_completion_20260922.json"
@@ -111,6 +111,7 @@ SHARD_SIZE = 64
 VARIANT_BATCH_SIZE = 4
 VIEWS_PER_VARIANT = 4
 MAX_MODAL_BATCH_SECONDS = 900
+CADUCEUS_PILOT_ROWS = 64
 FORMAL_PAR_ALIAS_IDS = frozenset(
     {
         "GRCh38:Y:1286043:T>C",
@@ -686,6 +687,206 @@ def _append_ledger(entry: dict[str, Any]) -> None:
         handle.write(json.dumps(entry, sort_keys=True) + "\n")
 
 
+def _build_plan(candidate: str, record_count: int) -> dict[str, Any]:
+    return {
+        "study_id": "ML-DEV-BUDGETED-001",
+        "candidate": candidate,
+        "model_id": NT_MODEL if candidate == "nucleotide_transformer" else CADUCEUS_MODEL,
+        "model_revision": NT_REVISION
+        if candidate == "nucleotide_transformer"
+        else CADUCEUS_REVISION,
+        "layers": list(LAYERS[candidate]),
+        "protocol_hash": PROTOCOL_HASH,
+        "formal_manifest_sha256": FORMAL_MANIFEST_SHA256,
+        "formal_record_set_sha256": FORMAL_RECORD_SET_SHA256,
+        "record_count": record_count,
+        "shard_size": SHARD_SIZE,
+        "variant_batch_size": VARIANT_BATCH_SIZE,
+        "context_length_bp": CONTEXT_LENGTH_BP,
+        "views_per_variant": VIEWS_PER_VARIANT,
+        "orientation": "forward_and_reverse",
+        "labels_remote_transport": False,
+        "pooling": "mean_tokens",
+        "dtype": "float32",
+        "preprocessing": (
+            "8192-bp frozen GRCh38 views; Nucleotide Transformer tokenizer truncates/pads to "
+            "2048 tokens; Caduceus tokenizer truncates/pads to 8192 tokens"
+        ),
+    }
+
+
+def _run_caduceus_pilot(
+    records: list[dict[str, Any]],
+    base_spend_usd: float,
+    candidate_estimate_usd: float,
+) -> dict[str, Any]:
+    """Run or verify the first full-plan Caduceus shard as the required pilot."""
+    candidate = "caduceus"
+    pilot_records = records[:CADUCEUS_PILOT_ROWS]
+    candidate_root = RUN_ROOT / candidate
+    shard_root = candidate_root / "shards"
+    plan_path = candidate_root / "execution_plan.json"
+    shard_path = shard_root / "shard_00000.json"
+    pending_path = shard_root / "shard_00000.pending.json"
+    plan = _build_plan(candidate, len(records))
+    plan_hash = stable_hash(plan)
+    expected_plan = {**plan, "execution_plan_sha256": plan_hash}
+    if plan_path.is_file() and json.loads(plan_path.read_text(encoding="utf-8")) != expected_plan:
+        raise RuntimeError(f"existing Caduceus representation plan differs: {plan_path}")
+    if not plan_path.is_file():
+        atomic_json(plan_path, expected_plan)
+
+    source_ids = [str(row["normalized_variant_id"]) for row in pilot_records]
+    stored = _verify_shard(shard_path, plan_hash, source_ids)
+    if stored is not None:
+        shard_document = stored
+        client_seconds = float(stored.get("client_wall_seconds", 0.0))
+        reused = True
+    else:
+        payload = [_sequence_payload(row) for row in pilot_records]
+        if base_spend_usd + candidate_estimate_usd + LOCKED_RESERVE_USD > SAFETY_STOP_USD:
+            result = {
+                "status": "DEFERRED_BY_COMPUTE",
+                "candidate": candidate,
+                "pilot_rows": len(pilot_records),
+                "reason": "the formal Caduceus plan does not fit the remaining safety envelope",
+                "base_spend_usd": round(base_spend_usd, 6),
+                "candidate_plan_estimate_usd": round(candidate_estimate_usd, 6),
+                "runner_safety_stop_usd": SAFETY_STOP_USD,
+                "locked_test_reserve_usd": LOCKED_RESERVE_USD,
+                "labels_sent_to_modal": False,
+                "locked_test_overlap": 0,
+            }
+            atomic_json(candidate_root / "pilot.json", result)
+            return result
+
+        if pending_path.is_file():
+            pending = json.loads(pending_path.read_text(encoding="utf-8"))
+            if (
+                not isinstance(pending, dict)
+                or pending.get("execution_plan_sha256") != plan_hash
+                or pending.get("source_ids") != source_ids
+                or pending.get("payload_sha256") != stable_hash(payload)
+                or not isinstance(pending.get("function_call_id"), str)
+            ):
+                raise RuntimeError(f"pending Caduceus pilot does not match {pending_path}")
+            function_call_id = str(pending["function_call_id"])
+        else:
+            call = CaduceusFormalWorker().extract_batch.spawn(payload)
+            function_call_id = _function_call_id(call)
+            _write_shard(
+                pending_path,
+                {
+                    "execution_plan_sha256": plan_hash,
+                    "shard_index": 0,
+                    "source_ids": source_ids,
+                    "payload_sha256": stable_hash(payload),
+                    "function_call_id": function_call_id,
+                    "status": "SUBMITTED",
+                    "submitted_at_utc": datetime.now(UTC).isoformat(),
+                },
+            )
+
+        call_started = time.monotonic()
+        response = cast(
+            dict[str, Any],
+            modal.FunctionCall.from_id(function_call_id).get(timeout=MAX_MODAL_BATCH_SECONDS),
+        )
+        client_seconds = time.monotonic() - call_started
+        if response.get("status") != "completed":
+            raise RuntimeError("Caduceus pilot worker did not complete")
+        results = response.get("results")
+        if not isinstance(results, list) or len(results) != len(pilot_records):
+            raise RuntimeError("Caduceus pilot worker returned an incomplete shard")
+        if [result.get("normalized_variant_id") for result in results] != source_ids:
+            raise RuntimeError("Caduceus pilot worker returned unexpected IDs or order")
+        for row, result in zip(payload, results, strict=True):
+            if "label" in result:
+                raise RuntimeError("Caduceus pilot worker returned a label")
+            result["sequence_sha256"] = row["sequence_sha256"]
+            result["sequence_construction"] = {
+                key: row[key]
+                for key in (
+                    "reference_chromosome_used",
+                    "window_start_1based",
+                    "window_stop_1based",
+                    "variant_offset_0based",
+                )
+            }
+        shard_document = {
+            "execution_plan_sha256": plan_hash,
+            "shard_index": 0,
+            "source_ids": source_ids,
+            "results": results,
+            "status": "COMPLETED",
+            "client_wall_seconds": round(client_seconds, 6),
+            "client_wall_rate_estimate_usd": round(
+                client_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR, 6
+            ),
+            "remote_provenance": response.get("provenance", {}),
+            "function_call_id": function_call_id,
+        }
+        _write_shard(shard_path, shard_document)
+        pending_path.unlink(missing_ok=True)
+        reused = False
+
+    results_by_id = {
+        str(result["normalized_variant_id"]): result
+        for result in shard_document["results"]
+        if isinstance(result, dict) and "normalized_variant_id" in result
+    }
+    if set(results_by_id) != set(source_ids):
+        raise RuntimeError("persisted Caduceus pilot IDs differ from the formal pilot")
+    if any("label" in result for result in results_by_id.values()):
+        raise RuntimeError("persisted Caduceus pilot contains a remote label")
+    arrays = _features_from_results(pilot_records, results_by_id, LAYERS[candidate])
+    provenance = shard_document.get("remote_provenance", {})
+    remote_seconds = float(provenance.get("remote_method_seconds", 0.0))
+    model_load_seconds = float(provenance.get("model_load_seconds", 0.0))
+    projected_seconds = model_load_seconds + (
+        remote_seconds * len(records) / len(pilot_records)
+        if remote_seconds > 0
+        else candidate_estimate_usd / GPU_RATE_USD_PER_HOUR * 3600.0
+    )
+    projected_usd = max(
+        candidate_estimate_usd,
+        projected_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR,
+    )
+    projected_total_usd = base_spend_usd + projected_usd + LOCKED_RESERVE_USD
+    decision = "PASS" if projected_total_usd <= SAFETY_STOP_USD else "DEFERRED_BY_COMPUTE"
+    result = {
+        "status": "PASS_CADUCEUS_PILOT" if decision == "PASS" else decision,
+        "candidate": candidate,
+        "pilot_rows": len(pilot_records),
+        "layers": list(LAYERS[candidate]),
+        "feature_dimensions": list(arrays["reference_forward"].shape),
+        "variants_per_second": provenance.get("variants_per_second"),
+        "remote_method_seconds": remote_seconds,
+        "model_load_seconds": model_load_seconds,
+        "client_wall_seconds": round(client_seconds, 6),
+        "client_wall_rate_estimate_usd": round(
+            client_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR, 6
+        ),
+        "projected_full_remote_seconds": round(projected_seconds, 6),
+        "projected_full_cost_usd": round(projected_usd, 6),
+        "candidate_plan_estimate_usd": round(candidate_estimate_usd, 6),
+        "projected_total_with_base_usd": round(projected_total_usd, 6),
+        "runner_safety_stop_usd": SAFETY_STOP_USD,
+        "cache_reused": reused,
+        "persisted_shard": str(shard_path.relative_to(REPO_ROOT)),
+        "labels_sent_to_modal": False,
+        "locked_test_overlap": 0,
+        "finite_features": True,
+        "decision_reason": (
+            "pilot throughput projection fits the authorized safety envelope"
+            if decision == "PASS"
+            else "pilot throughput projection exceeds the authorized safety envelope"
+        ),
+    }
+    atomic_json(candidate_root / "pilot.json", result)
+    return result
+
+
 def _run_candidate(
     candidate: str,
     worker_class: Any,
@@ -700,31 +901,7 @@ def _run_candidate(
     shard_root = candidate_root / "shards"
     plan_path = candidate_root / "execution_plan.json"
     feature_path = candidate_root / "features.npz"
-    plan = {
-        "study_id": "ML-DEV-BUDGETED-001",
-        "candidate": candidate,
-        "model_id": NT_MODEL if candidate == "nucleotide_transformer" else CADUCEUS_MODEL,
-        "model_revision": NT_REVISION
-        if candidate == "nucleotide_transformer"
-        else CADUCEUS_REVISION,
-        "layers": list(LAYERS[candidate]),
-        "protocol_hash": PROTOCOL_HASH,
-        "formal_manifest_sha256": FORMAL_MANIFEST_SHA256,
-        "formal_record_set_sha256": FORMAL_RECORD_SET_SHA256,
-        "record_count": len(records),
-        "shard_size": SHARD_SIZE,
-        "variant_batch_size": VARIANT_BATCH_SIZE,
-        "context_length_bp": CONTEXT_LENGTH_BP,
-        "views_per_variant": VIEWS_PER_VARIANT,
-        "orientation": "forward_and_reverse",
-        "labels_remote_transport": False,
-        "pooling": "mean_tokens",
-        "dtype": "float32",
-        "preprocessing": (
-            "8192-bp frozen GRCh38 views; Nucleotide Transformer tokenizer truncates/pads to "
-            "2048 tokens; Caduceus tokenizer truncates/pads to 8192 tokens"
-        ),
-    }
+    plan = _build_plan(candidate, len(records))
     plan_hash = stable_hash(plan)
     expected_plan = {**plan, "execution_plan_sha256": plan_hash}
     if plan_path.is_file() and json.loads(plan_path.read_text(encoding="utf-8")) != expected_plan:
@@ -1001,6 +1178,7 @@ def main() -> None:
 
     billing_before = _billing_snapshot()
     outputs: dict[str, Any] = {}
+    pilot_evidence: dict[str, Any] | None = None
     remaining = sum(candidate_plan.values())
     base_spend_usd = budget_baseline_usd
     for candidate, worker_class in (
@@ -1008,6 +1186,18 @@ def main() -> None:
         ("caduceus", CaduceusFormalWorker),
     ):
         remaining -= candidate_plan[candidate]
+        if candidate == "caduceus":
+            pilot_evidence = _run_caduceus_pilot(
+                records,
+                base_spend_usd,
+                candidate_plan[candidate],
+            )
+            if pilot_evidence["status"] == "DEFERRED_BY_COMPUTE":
+                outputs[candidate] = pilot_evidence
+                base_spend_usd += float(
+                    pilot_evidence.get("client_wall_rate_estimate_usd", 0.0)
+                )
+                break
         outputs[candidate] = _run_candidate(
             candidate,
             worker_class,
@@ -1026,6 +1216,14 @@ def main() -> None:
     if budgeted_total + LOCKED_RESERVE_USD > HARD_CAP_USD:
         raise RuntimeError("formal representation total exceeded the hard cap")
     combined_estimated = evo2_prior_estimate_usd + representation_estimated
+    phase7_status = (
+        "PASS_FORMAL_REPRESENTATION_MATRIX"
+        if outputs.get("nucleotide_transformer", {}).get("status")
+        == "PASS_FORMAL_REPRESENTATION_MATRIX"
+        and outputs.get("caduceus", {}).get("status")
+        == "PASS_FORMAL_REPRESENTATION_MATRIX"
+        else "PARTIAL_DEFERRED_BY_COMPUTE"
+    )
     artifact = {
         "artifact_id": (
             "formal-budgeted-representation-20260922"
@@ -1036,7 +1234,7 @@ def main() -> None:
                 else "formal-budgeted-representation-20260921"
             )
         ),
-        "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
+        "status": phase7_status,
         "study_id": "ML-DEV-BUDGETED-001",
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
@@ -1045,6 +1243,7 @@ def main() -> None:
         "formal_record_set_sha256": FORMAL_RECORD_SET_SHA256,
         "formal_total": len(records),
         "model_tracks": outputs,
+        "caduceus_pilot": pilot_evidence,
         "cost": {
             "evo2_prior_artifact": str(FORMAL_EVO2_ARTIFACT.relative_to(REPO_ROOT)),
             "evo2_estimated_usd": evo2_prior_estimate_usd,
@@ -1084,7 +1283,7 @@ def main() -> None:
             "estimated_usd": round(representation_estimated, 6),
             "measured_usd": None,
             "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
-            "status": "COMPLETED",
+            "status": "COMPLETED" if phase7_status.startswith("PASS") else phase7_status,
             "notes": (
                 "Formal 4,000-row label-free NT/Caduceus hidden-state extraction; "
                 "labels joined locally only."

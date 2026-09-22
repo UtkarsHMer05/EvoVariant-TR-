@@ -732,7 +732,7 @@ def run_phase14(
             "no_locked_labels_before_raw_hash": True,
             "selection_closed": True,
             "post_test_tuning": False,
-            "comparators_required": False,
+            "comparators_not_required": True,
         },
         "scientific_boundary": {
             "locked_inference_only_after_materialized_freeze": True,

@@ -12,10 +12,10 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Manifest identities | PASS | Drive `state/manifests_verified.json`; pinned hashes and zero gene/ID overlap | identities only; zero locked-ID overlap | reference |
 | Reference/REF validation | PASS | Drive `state/data_ready.json`; all 4,000 development REF alleles match GRCh38 | no locked rows loaded | smoke |
 | Caduceus smoke | PASS | Drive `runs/caduceus_smoke.json`, checkpoint SHA `da541bb2…04c9042` | no cohort evaluation | frozen head |
-| Caduceus frozen head | IN_PROGRESS | Drive `checkpoints/caduceus_frozen_head/latest.pt`, `latest.json`; epoch 0 loss `1.1767539545572263`, 8,192 bp, seed 42 | TRAIN only | finish 3 epochs |
+| Caduceus frozen head | PASS | Drive `checkpoints/caduceus_frozen_head/run.json`; 3 epochs, losses `1.1767539545572263`, `1.1581548454985837`, `1.1497443100928366`, runtime 1,968.52 s; checkpoint SHA `230fc7be…4e02213`, 7,728,385 total / 3,073 trainable parameters, peak 320,895,488 bytes | TRAIN only; report says holdout not evaluated | partial/full feasibility and HPO |
 | Caduceus partial fine-tune | NOT STARTED | no artifact | none | frozen baseline |
 | Caduceus full fine-tune | NOT STARTED | no artifact | none | feasibility/HPO |
-| Caduceus HPO | NOT STARTED | no SQLite/trial summary yet | TRAIN grouped CV only | frozen baseline |
+| Caduceus HPO | IN_PROGRESS | Worker launched in existing T4 session; Drive log, SQLite database, per-fold history and checkpoints | TRAIN-only, 3-fold gene-grouped CV; selection open | complete at least 8 trials |
 | Final TRAIN refit | BLOCKED | no closed selection lock | none | HPO |
 | 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |
 | NT frozen / PEFT | NOT STARTED | no adaptation result artifacts | none | Caduceus results |
@@ -24,6 +24,6 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Statistics / figures / report | NOT STARTED | no model results to plot | none | predictions |
 | Judge notebook | IMPLEMENTED, RESULT CELLS PENDING | 36 ordered sections; canonical code source display | no locked data access | training outputs |
 | Local validation | PASS | `make validate`: 734 passed, 33 deselected, 95.07% core coverage | software-only | commit |
-| Adaptation branch push | PASS | commit `7d050e7` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
+| Adaptation branch push | PASS | commit `69ad3e6` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
 
 No holdout or locked-test result is inferred from training progress or the smoke test.

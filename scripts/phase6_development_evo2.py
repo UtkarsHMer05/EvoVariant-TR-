@@ -61,11 +61,14 @@ if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
 FORMAL_MODE = os.environ.get("EVOVARIANT_TR_FORMAL_MODE") == "1"
+PHASE14_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_PHASE14_MODE") == "1"
 FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1")
 FORMAL_RESUME_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_MODE") == "1")
 OVERNIGHT_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
-if sum((FORMAL_PREFLIGHT_MODE, FORMAL_RESUME_MODE, OVERNIGHT_MODE)) > 1:
-    raise RuntimeError("formal preflight, resume, and overnight modes are mutually exclusive")
+if sum((PHASE14_MODE, FORMAL_PREFLIGHT_MODE, FORMAL_RESUME_MODE, OVERNIGHT_MODE)) > 1:
+    raise RuntimeError(
+        "formal Phase 14, preflight, resume, and overnight modes are mutually exclusive"
+    )
 FORMAL_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 FORMAL_RUN_SUFFIX = os.environ.get("EVOVARIANT_TR_FORMAL_RUN_SUFFIX", "full")
 if not FORMAL_RUN_SUFFIX.replace("-", "").replace("_", "").isalnum():
@@ -75,7 +78,9 @@ FORMAL_LIMIT = int(os.environ.get("EVOVARIANT_TR_FORMAL_LIMIT", "0") or "0")
 approval_override = os.environ.get("EVOVARIANT_TR_FORMAL_APPROVAL_PATH")
 if FORMAL_MODE:
     default_approval = (
-        "artifacts/approvals/formal_64_preflight_20260921.json"
+        "artifacts/approvals/phase14_locked_evo2_20260922.json"
+        if PHASE14_MODE
+        else "artifacts/approvals/formal_64_preflight_20260921.json"
         if FORMAL_PREFLIGHT_MODE
         else "artifacts/approvals/formal_phase6_resume_20260922.json"
         if FORMAL_RESUME_MODE
@@ -688,6 +693,16 @@ def _load_historical_cache() -> dict[str, dict[str, Any]]:
 @app.local_entrypoint()
 def main() -> None:
     global LOCKED_TEST_RESERVE_USD
+
+    if PHASE14_MODE:
+        from phase14_locked_evo2 import run_phase14
+
+        run_phase14(
+            worker_cls=DevelopmentEvo2Worker,
+            prepare_batch=_prepare_batch,
+            repo_root=REPO_ROOT,
+        )
+        return
 
     if FORMAL_PREFLIGHT_MODE:
         from validate_formal_64_preflight_approval import validate_approval

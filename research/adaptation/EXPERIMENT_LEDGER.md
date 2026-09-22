@@ -1,7 +1,7 @@
 # Adaptation Experiment Ledger
 
 Study: POSTHOC-FOUNDATION-ADAPTATION-001
-Protocol SHA-256: dce981aaf11425732c5bdc0e081117feb8a9e4e079c28c0529807e5bfe477a7f
+Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c
 
 | Stage | Status | Evidence | Selection/holdout access | Next dependency |
 |---|---|---|---|---|

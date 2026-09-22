@@ -1,7 +1,7 @@
 study_id: POSTHOC-FOUNDATION-ADAPTATION-001
-protocol_version: 1.0.0
+protocol_version: 1.0.1
 status: FROZEN
-frozen_at_utc: 2026-09-22T17:50:46Z
+frozen_at_utc: 2026-09-22T18:01:48Z
 study_type: POST-HOC DEVELOPMENT ADAPTATION
 primary_question: >-
   Does task-specific adaptation of feasible genomic foundation models improve
@@ -65,12 +65,12 @@ models:
     name: Caduceus-Ph
     checkpoint: kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16
     role: adapted_primary
-    revision: REQUIRED_BEFORE_SMOKE
+    revision: b0477522ac5d044ad03578aa724ec8e4bdbd405b
   secondary:
     name: Nucleotide Transformer v2 500M
     checkpoint: InstaDeepAI/nucleotide-transformer-v2-500m-multi-species
     role: frozen_then_peft_if_feasible
-    revision: REQUIRED_BEFORE_SMOKE
+    revision: 06615c1660c892fc199840c18123f8385b3542a8
   frozen_anchor:
     name: Evo2 7B
     role: frozen_same_split_comparison_only

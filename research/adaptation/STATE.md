@@ -1,7 +1,7 @@
 # Adaptation State
 
 Study: POSTHOC-FOUNDATION-ADAPTATION-001
-Protocol SHA-256: dce981aaf11425732c5bdc0e081117feb8a9e4e079c28c0529807e5bfe477a7f
+Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c
 Current stage: PROTOCOL_FROZEN
 Evidence stage: PRELIMINARY_PLANNING
 
@@ -51,4 +51,4 @@ provenance:
   train_manifest_sha256: 32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1
   validation_manifest_sha256: b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b
   locked_manifest_sha256: 9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb
-  protocol_sha256: dce981aaf11425732c5bdc0e081117feb8a9e4e079c28c0529807e5bfe477a7f
+  protocol_sha256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c

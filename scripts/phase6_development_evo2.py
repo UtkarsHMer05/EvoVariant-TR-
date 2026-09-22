@@ -1109,7 +1109,11 @@ def main() -> None:
         ),
         default=0.0,
     )
-    remote_new_records = len(all_rows) - historical_cache_hits
+    remote_new_records = (
+        remote_new_records_this_execution
+        if PHASE15_SMOKE_MODE
+        else len(all_rows) - historical_cache_hits
+    )
     function_call_ids = sorted(
         {
             str(document["function_call_id"])

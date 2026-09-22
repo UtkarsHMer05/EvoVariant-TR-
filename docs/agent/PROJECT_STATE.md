@@ -2,6 +2,33 @@
 
 ## Current state — 2026-09-22
 
+### Latest verified checkpoint — Phase 14
+
+Phase 14 is `PASS` for the explicitly authorized Evo2-only locked evaluation subgate. The run
+completed exactly `946/946` locked rows under approval
+`artifacts/approvals/phase14_locked_evo2_20260922.json`, bound to execution HEAD
+`c6c431869724666c84252cbd43979f2c4f38875f` with a `$2.75` hard cap and `$2.50` safety stop.
+The final artifact is `artifacts/phase14/phase14_locked_evo2_20260922.json`, SHA-256
+`4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499`; approval SHA-256 is
+`4b619747a73942e56e15fef4040db1591760ee5a7813fb8f14fcc4740050dae7`.
+
+- Paid inference: 946 newly scored rows, 30 remote H100 shard calls, 1,304.297864 seconds remote
+  runtime, direct H100 estimate `$1.431104601`, zero transient retries.
+- Finalization: 946 cache-hit rows from 30 verified shards, zero new remote calls, zero
+  recomputation.
+- Integrity: exact IDs, finite forward/RC/aggregate/calibrated scores, zero duplicates, zero
+  unexpected IDs, zero reference mismatches, no labels sent remotely, raw artifact hashed before
+  local label join, and every Phase 14 integrity gate `true`.
+- Closeout: final fresh Modal snapshot metered `$33.50187443`, billed `$0.13`; active containers
+  `[]`. The provider summary does not expose a remaining free-credit balance. The user-stated
+  `$7.17` pre-run headroom minus the observed `$1.68` metered delta is only an indicative `$5.49`.
+
+Phase 15 remains blocked for remote batch parity; Phase 16 is partial; Phase 17 is blocked on
+three mandatory source families and an eligible `FINAL` registry run; Phase 18 is blocked on full
+scientific clean-room reproduction; and Phase 19 is blocked on those unresolved dependencies.
+NT, Caduceus, fine-tuning, deployment, release, and additional paid work were not started under
+the Phase 14 authorization.
+
 The exact approved formal Evo2 Phase 6 continuation is complete and passed within scope. The
 4,000-record formal development cohort is complete: 125 shards, 124 verified stored-shard cache
 hits, one new 32-row remote shard, zero pending rows, zero duplicates, zero unexpected IDs, zero
@@ -29,13 +56,12 @@ multi-model Phase 6 benchmark.
 - Validation: final no-spend integrity audit PASS; pre-run `make validate` PASS with 715 tests,
   33 deselected, and 95.01% coverage. D-096 accepts the bounded Phase 6 result. The subsequent
   separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
-  below; locked-test inference and fine-tuning remain unopened.
+  below; locked-test inference and fine-tuning remained unopened at that earlier checkpoint.
 
-Current control-plane checkpoint: branch `research/evovariant-tr`; use the current `HEAD` for
-the exact committed identity. No Next/Playwright process or Modal container is active. The
-existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14;
-the fresh Phase 14 approval must bind the current committed HEAD and the materialized freeze
-below before locked evaluation can start.
+Current control-plane checkpoint: branch `research/evovariant-tr`; the Phase 14 execution
+approval was bound to code HEAD `c6c431869724666c84252cbd43979f2c4f38875f`, and no Next/Playwright
+process or Modal container is active. Documentation and evidence updates after execution are
+descriptive only; they do not widen the completed approval or authorize new paid work.
 
 The current approval audit at implementation/documentation checkpoint
 `f82893a29a5209f93f3c37299b99f42cd9228aff` is independently fail-closed:
@@ -45,15 +71,14 @@ bound to `535d73e56d10ddea5d2ef0098bb7251a57d259d7`, and
 `408edcc83e4a288cc8afb90a5bb9993af302c3d4`. Documentation-only commits follow that audit; no
 paid workload is authorized from either artifact.
 
-The initial Phase 14 request reached the preflight boundary but did not activate paid work;
-`artifacts/phase14/phase14_preflight_block_20260922.json` preserves that fail-closed finding.
-Using development evidence only, the already-selected HPO model was then materialized and
-replayed exactly. `artifacts/phase14/phase14_freeze_materialization_20260922.json` and
-`research/runs/formal_cpu_20260922/phase13/pre_phase14_materialized_freeze.json` bind the
+The initial Phase 14 request reached the preflight boundary and was correctly stopped before
+approval activation; `artifacts/phase14/phase14_preflight_block_20260922.json` preserves that
+fail-closed finding. Using development evidence only, the already-selected HPO model was then
+materialized and replayed exactly. `artifacts/phase14/phase14_freeze_materialization_20260922.json`
+and `research/runs/formal_cpu_20260922/phase13/pre_phase14_materialized_freeze.json` bind the
 serialized classifier, TRAIN/VALIDATION hashes, both protocol hashes, Evo2 contract, isotonic
-mapping, abstention coverage, and deterministic seeds. No locked manifest rows or labels were
-read, no approval was activated, and no Modal inference was started; a fresh exact-scope Phase
-14 approval remains required.
+mapping, abstention coverage, and deterministic seeds. This pre-approval history is superseded
+by the latest Phase 14 closeout above; no additional approval or paid work is implied here.
 
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 
@@ -89,8 +114,9 @@ Formal CPU evidence is under `research/runs/formal_cpu_20260922/`: Phase 8 summa
 SHA-256 `03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f`. The immutable
 pre-Phase-14 selection file is `phase13/frozen_config.json`; its content hash is
 `3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424` and
-`selection_closed=true`. Phase 10 remains `DEFERRED_BY_COMPUTE`. Phase 14 has not run and no
-locked label or locked prediction was read.
+`selection_closed=true`. Phase 10 remains `DEFERRED_BY_COMPUTE`. At that development-only
+checkpoint Phase 14 had not run; the later locked Evo2 result is recorded in the latest
+checkpoint above.
 
 The no-spend figure-source continuation is also recorded. `scripts/register_formal_cpu_figure_sources.py`
 materialized 19 hash-registered PRELIMINARY source artifacts from the verified Phase 6–13

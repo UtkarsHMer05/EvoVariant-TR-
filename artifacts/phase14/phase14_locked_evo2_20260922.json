@@ -1,0 +1,285 @@
+{
+  "approval": {
+    "hard_cap_usd": 2.75,
+    "path": "artifacts/approvals/phase14_locked_evo2_20260922.json",
+    "safety_stop_usd": 2.5,
+    "sha256": "4b619747a73942e56e15fef4040db1591760ee5a7813fb8f14fcc4740050dae7"
+  },
+  "artifact_id": "phase14-locked-evo2-20260922",
+  "cache": {
+    "cache_hit_rows": 0,
+    "finalization_cache_hit_rows": 946,
+    "finalization_newly_scored_rows": 0,
+    "finalization_remote_invocations": 0,
+    "finalization_reused_shards": 30,
+    "new_shards": 30,
+    "newly_scored_rows": 946,
+    "remote_invocations": 30,
+    "shard_count": 30,
+    "transient_retries": 0,
+    "zero_recomputation_of_verified_shards": true
+  },
+  "cost": {
+    "billing_after": {
+      "captured_at_utc": "2026-09-22T11:30:41.805291+00:00",
+      "command": "modal billing summary --json",
+      "returncode": 0,
+      "stderr": "",
+      "summary": {
+        "adjustments": {
+          "credits": "-30.00000000",
+          "free_storage": "-3.37187443",
+          "plan_cost": "0E-8",
+          "reservation_adjustment": "-0E-8"
+        },
+        "billed_cost": "0.13000000",
+        "metered_cost": "33.50187443",
+        "metered_cost_breakdown": {
+          "deployed_apps": "8.78151469",
+          "ephemeral_apps": "21.34399309",
+          "llm_tokens": "0E-8",
+          "volumes": "3.37187443"
+        }
+      }
+    },
+    "billing_before": {
+      "captured_at_utc": "2026-09-22T09:03:08.705Z",
+      "command": "modal billing summary --json",
+      "returncode": 0,
+      "stderr": "",
+      "summary": {
+        "adjustments": {
+          "credits": "-28.45000000",
+          "free_storage": "-3.37187443",
+          "plan_cost": "0E-8",
+          "reservation_adjustment": "-0E-8"
+        },
+        "billed_cost": "0E-8",
+        "metered_cost": "31.82187443",
+        "metered_cost_breakdown": {
+          "deployed_apps": "8.78151469",
+          "ephemeral_apps": "19.67149536",
+          "llm_tokens": "0E-8",
+          "volumes": "3.37187443"
+        }
+      }
+    },
+    "estimated_run_cost_usd": 1.431104601,
+    "gpu_rate_usd_per_hour": 3.95,
+    "metered_delta_since_paid_run_baseline_usd": 1.6799999999999997,
+    "billed_delta_since_paid_run_baseline_usd": 0.13,
+    "approval_baseline": {
+      "captured_at_utc": "2026-09-22T11:19:20Z",
+      "metered_cost_usd": 33.54187443,
+      "billed_cost_usd": 0.17
+    }
+  },
+
+  "execution_history": {
+    "paid_inference": {
+      "completed_rows": 946,
+      "newly_scored_rows": 946,
+      "cache_hit_rows": 0,
+      "shards": 30,
+      "remote_invocations": 30,
+      "remote_runtime_seconds": 1304.297864,
+      "estimated_direct_h100_cost_usd": 1.431104601,
+      "transient_retries": 0,
+      "labels_remote": false,
+      "function_call_ids": [
+        "fc-01M34BX743604JW2KHEWB57YCD",
+        "fc-01M34BZZ43K234EEQJM3WMQ2F8",
+        "fc-01M34C1DH0996XW7KQPTABZK6A",
+        "fc-01M34C2X7CS96BFBS939VZ1YAJ",
+        "fc-01M34C4ARW541Y1ZB0CGNTK8D6",
+        "fc-01M34C5RXXHHHKCCE18W9TGCMN",
+        "fc-01M34C77ARBF6GRYN5F3JYHQAV",
+        "fc-01M34C8PGYDZ23RKD4SKX457VF",
+        "fc-01M34CA42JQ9ATE0Z83FC5ZQDV",
+        "fc-01M34CBJ5W0R7SY1WMQDF0YPH9",
+        "fc-01M34CD07CEG32TAYRP198XEX4",
+        "fc-01M34CEDRSKMN5HHXSBZ8TCKN8",
+        "fc-01M34CFVW5KEEAB06BSDDY8C4V",
+        "fc-01M34CHA31WG0RHJP2H3043G8D",
+        "fc-01M34CJR3345ZW8BNPWT0GWS5E",
+        "fc-01M34CM5ZXC03VG3M69Q82WX4B",
+        "fc-01M34CNK32XA19969ZS2HM5K7T",
+        "fc-01M34CQ0Y2B79N523RMCGBK46J",
+        "fc-01M34CREGRBCDKZMXM3YSD9KYR",
+        "fc-01M34CSWFXXM838BF8T8EEX82F",
+        "fc-01M34CVAK0HX88N2VRG8PEDYM2",
+        "fc-01M34CWRE2521R2P0VQ5ESNEFK",
+        "fc-01M34CY677MVVB8BTDNV1RSRT6",
+        "fc-01M34CZMG1F09DXG9RZZ6KW72Y",
+        "fc-01M34D12FZ2S4096FA87JCB7WE",
+        "fc-01M34D2GE77SFHKZP5Q9M2PD30",
+        "fc-01M34D3YAZ8SWH06G0AGBM404N",
+        "fc-01M34D5CB1F957FGDGB8XEGA63",
+        "fc-01M34D6T7CNHSGSD63127TBCKE",
+        "fc-01M34D880GM8MWS0QZKM9A48AB"
+      ],
+      "billing_before": {
+        "metered_cost_usd": 31.82187443,
+        "billed_cost_usd": 0.0
+      },
+      "billing_after": {
+        "metered_cost_usd": 33.50187443,
+        "billed_cost_usd": 0.13
+      }
+    },
+    "finalization_resume": {
+      "mode": "local_cache_only",
+      "completed_rows": 946,
+      "reused_shards": 30,
+      "cache_hit_rows": 946,
+      "newly_scored_rows": 0,
+      "remote_invocations": 0,
+      "remote_runtime_seconds": 0.0,
+      "client_wall_seconds": 2.1634058749768883
+    },
+    "note": "Remote inference completed in the first paid pass; the final artifact was finalized by a local cache-only resume. The provider metered total changed by later billing adjustments, so direct GPU runtime cost is reported separately."
+  },
+  "frozen_config": {
+    "calibration_artifact_sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+    "file_sha256": "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88",
+    "model_artifact_sha256": "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043",
+    "path": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+    "sha256": "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3"
+  },
+  "git": {
+    "commit": "c6c431869724666c84252cbd43979f2c4f38875f"
+  },
+  "integrity_gates": {
+    "comparators_not_required": true,
+    "exact_946_rows": true,
+    "exact_submission_id_set": true,
+    "finite_aggregate_scores": true,
+    "finite_calibrated_scores": true,
+    "finite_forward_scores": true,
+    "finite_reverse_scores": true,
+    "no_labels_remote_transport": true,
+    "no_locked_labels_before_raw_hash": true,
+    "post_test_tuning_prohibited": true,
+    "selection_closed": true,
+    "zero_duplicates": true,
+    "zero_reference_mismatches": true,
+    "zero_unexpected_ids": true
+  },
+  "locked_cohort": {
+    "benign_or_likely_benign": 536,
+    "completed_rows": 946,
+    "duplicate_ids": 0,
+    "expected_rows": 946,
+    "manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "pathogenic_or_likely_pathogenic": 410,
+    "unexpected_ids": 0
+  },
+  "metrics": {
+    "abstention": {
+      "abstained_count": 473,
+      "actual_coverage": 0.5,
+      "method": "confidence_rank",
+      "risk": 0.7906976744186046,
+      "selection_split": "VALIDATION",
+      "target_coverage": 0.5
+    },
+    "auprc": 0.8630391000187404,
+    "auroc": 0.9092259737895887,
+    "bootstrap_auc_ci95": [
+      0.8891549439505775,
+      0.9299196801735569
+    ],
+    "bootstrap_auc_mean": 0.9090959800384788,
+    "bootstrap_auc_std": 0.01020342994138919,
+    "n_negative": 536,
+    "n_positive": 410,
+    "probability_metrics": {
+      "accuracy": 0.8435517970401691,
+      "auprc": 0.8630391000187404,
+      "auroc": 0.9092259737895887,
+      "brier": 0.11407921672922404,
+      "ece": 0.05523106003405314,
+      "max_calibration_gap": 0.20684881688389395,
+      "n": 946,
+      "nll": 0.5517579434827143
+    },
+    "raw_delta_primary_auroc": 0.09022115034583182,
+    "threshold": 0.5
+  },
+  "model_contract": {
+    "assembly": "GRCh38",
+    "checkpoint": "evo2_7b",
+    "context_length_bp": 8192,
+    "gpu": "H100",
+    "model_id": "evo2_7b",
+    "orientation": "forward_and_reverse",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "outputs": {
+    "labels_joined_only_after_raw_hash": true,
+    "local_label_join_path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+    "local_label_join_sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7",
+    "raw_predictions_contain_labels": false,
+    "raw_predictions_path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/raw_predictions.jsonl",
+    "raw_predictions_sha256": "ae288252a3f1bfc8a1754b1626ea6ff91a041df9ff09daf07d1411a242ba2508"
+  },
+  "phase": 14,
+  "recorded_at_utc": "2026-09-22T11:30:41.805291+00:00",
+  "runtime": {
+    "client_wall_seconds": null,
+    "function_call_ids": [
+      "fc-01M34BX743604JW2KHEWB57YCD",
+      "fc-01M34BZZ43K234EEQJM3WMQ2F8",
+      "fc-01M34C1DH0996XW7KQPTABZK6A",
+      "fc-01M34C2X7CS96BFBS939VZ1YAJ",
+      "fc-01M34C4ARW541Y1ZB0CGNTK8D6",
+      "fc-01M34C5RXXHHHKCCE18W9TGCMN",
+      "fc-01M34C77ARBF6GRYN5F3JYHQAV",
+      "fc-01M34C8PGYDZ23RKD4SKX457VF",
+      "fc-01M34CA42JQ9ATE0Z83FC5ZQDV",
+      "fc-01M34CBJ5W0R7SY1WMQDF0YPH9",
+      "fc-01M34CD07CEG32TAYRP198XEX4",
+      "fc-01M34CEDRSKMN5HHXSBZ8TCKN8",
+      "fc-01M34CFVW5KEEAB06BSDDY8C4V",
+      "fc-01M34CHA31WG0RHJP2H3043G8D",
+      "fc-01M34CJR3345ZW8BNPWT0GWS5E",
+      "fc-01M34CM5ZXC03VG3M69Q82WX4B",
+      "fc-01M34CNK32XA19969ZS2HM5K7T",
+      "fc-01M34CQ0Y2B79N523RMCGBK46J",
+      "fc-01M34CREGRBCDKZMXM3YSD9KYR",
+      "fc-01M34CSWFXXM838BF8T8EEX82F",
+      "fc-01M34CVAK0HX88N2VRG8PEDYM2",
+      "fc-01M34CWRE2521R2P0VQ5ESNEFK",
+      "fc-01M34CY677MVVB8BTDNV1RSRT6",
+      "fc-01M34CZMG1F09DXG9RZZ6KW72Y",
+      "fc-01M34D12FZ2S4096FA87JCB7WE",
+      "fc-01M34D2GE77SFHKZP5Q9M2PD30",
+      "fc-01M34D3YAZ8SWH06G0AGBM404N",
+      "fc-01M34D5CB1F957FGDGB8XEGA63",
+      "fc-01M34D6T7CNHSGSD63127TBCKE",
+      "fc-01M34D880GM8MWS0QZKM9A48AB"
+    ],
+    "remote_runtime_seconds": 1304.297864,
+    "total_wall_seconds": null,
+    "finalization_client_wall_seconds": 2.1634058749768883,
+    "client_wall_seconds_note": "The paid client wall-clock duration was not persisted; remote method runtime is authoritative for the direct GPU estimate."
+  },
+  "scientific_boundary": {
+    "final_statistics_one_shot": true,
+    "fine_tuning_started": false,
+    "locked_inference_only_after_materialized_freeze": true,
+    "nt_caduceus_started": false,
+    "remote_tracks": [
+      "evo2"
+    ]
+  },
+  "status": "PASS_PHASE14_LOCKED_EVALUATION",
+  "submission": {
+    "exact_id_order": true,
+    "expected_ids_sha256": "3d25f2ada1c4c21a5b938deea4c60da581c787002f9993e4216bca8a4224a226",
+    "submitted_ids_sha256": "3d25f2ada1c4c21a5b938deea4c60da581c787002f9993e4216bca8a4224a226",
+    "submitted_rows": 946
+  }
+}

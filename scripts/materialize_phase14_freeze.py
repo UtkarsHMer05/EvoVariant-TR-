@@ -24,7 +24,9 @@ from evovariant_tr.supervised import fit_logistic_regression  # noqa: E402
 
 RUN_ROOT = REPO_ROOT / "research/runs/formal_cpu_20260922"
 PHASE13_ROOT = RUN_ROOT / "phase13"
-FEATURE_PATH = REPO_ROOT / "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl"
+FEATURE_PATH = (
+    REPO_ROOT / "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl"
+)
 FEATURE_METADATA_PATH = FEATURE_PATH.with_suffix(".metadata.json")
 OLD_CONFIG_PATH = PHASE13_ROOT / "frozen_config.json"
 OLD_FREEZE_PATH = PHASE13_ROOT / "pre_phase14_freeze.json"
@@ -33,16 +35,30 @@ PHASE9_HPO_PATH = RUN_ROOT / "phase9/evo2/hpo.json"
 PHASE11_PATH = RUN_ROOT / "phase11/ensemble_analysis.json"
 PHASE12_PATH = RUN_ROOT / "phase12/calibration_abstention.json"
 PHASE13_PATH = PHASE13_ROOT / "ablations_learning_curves_robustness.json"
-PHASE6_PATH = REPO_ROOT / "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json"
-TRAIN_MANIFEST = REPO_ROOT / "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json"
-VALIDATION_MANIFEST = REPO_ROOT / "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json"
-DEVELOPMENT_MANIFEST = REPO_ROOT / "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json"
+PHASE6_PATH = (
+    REPO_ROOT / "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json"
+)
+TRAIN_MANIFEST = (
+    REPO_ROOT / "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json"
+)
+VALIDATION_MANIFEST = (
+    REPO_ROOT
+    / "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json"
+)
+DEVELOPMENT_MANIFEST = (
+    REPO_ROOT
+    / "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json"
+)
 LOCKED_MANIFEST = "research/ml_extension/splits/authoritative_locked_test_manifest.json"
 
 EXPECTED_OLD_CONFIG_SHA256 = "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424"
 EXPECTED_TRAIN_MANIFEST_SHA256 = "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1"
-EXPECTED_VALIDATION_MANIFEST_SHA256 = "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b"
-EXPECTED_DEVELOPMENT_MANIFEST_SHA256 = "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+EXPECTED_VALIDATION_MANIFEST_SHA256 = (
+    "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b"
+)
+EXPECTED_DEVELOPMENT_MANIFEST_SHA256 = (
+    "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+)
 EXPECTED_RECORD_SET_SHA256 = "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44"
 EXPECTED_LOCKED_MANIFEST_SHA256 = "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
 EXPECTED_MODEL_REVISION = "4b509ec2a22d6de472659f908bcb0714265ad3a7"
@@ -113,7 +129,10 @@ def main() -> int:
     if feature_metadata.get("feature_artifact_sha256") != sha256_file(FEATURE_PATH):
         raise ValueError("feature metadata hash does not match the feature artifact")
     metadata = read_json(FEATURE_METADATA_PATH)
-    if metadata.get("locked_test_count") != 0 or metadata.get("status") != "PASS_FORMAL_CPU_FEATURE_COMBINATION":
+    if (
+        metadata.get("locked_test_count") != 0
+        or metadata.get("status") != "PASS_FORMAL_CPU_FEATURE_COMBINATION"
+    ):
         raise ValueError("feature metadata does not prove a development-only artifact")
 
     model = fit_logistic_regression(train, seed=42, **params)
@@ -121,7 +140,9 @@ def main() -> int:
     validation_auc = compute_auc_roc(validation_scores, [row.label for row in validation])
     expected_auc = float(best_trial["validation_metric"])
     if abs(validation_auc - expected_auc) > 1e-12:
-        raise ValueError(f"selected HPO validation replay changed: {validation_auc} != {expected_auc}")
+        raise ValueError(
+            f"selected HPO validation replay changed: {validation_auc} != {expected_auc}"
+        )
 
     phase12 = read_json(PHASE12_PATH)
     if phase12.get("model_id") != old_config.get("model_id"):
@@ -133,7 +154,10 @@ def main() -> int:
 
     phase6 = read_json(PHASE6_PATH)
     model_contract = phase6.get("model")
-    if not isinstance(model_contract, dict) or model_contract.get("revision") != EXPECTED_MODEL_REVISION:
+    if (
+        not isinstance(model_contract, dict)
+        or model_contract.get("revision") != EXPECTED_MODEL_REVISION
+    ):
         raise ValueError("Phase 6 does not bind the approved Evo2 revision")
     if model_contract.get("context_length_bp") != 8192 or model_contract.get("gpu") != "H100":
         raise ValueError("Phase 6 model contract is not the approved H100/8192 contract")
@@ -250,7 +274,11 @@ def main() -> int:
             "calibration_application": None,
             "bootstrap": 42,
             "paired_comparisons": 42,
-            "deterministic_without_seed": ["isotonic_fit", "isotonic_application", "abstention_rank"] ,
+            "deterministic_without_seed": [
+                "isotonic_fit",
+                "isotonic_application",
+                "abstention_rank",
+            ],
         },
         "model_contract": {
             "model_id": model_contract["model_id"],

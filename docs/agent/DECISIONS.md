@@ -3426,3 +3426,51 @@ preflight or Modal call. NT/Caduceus, fine-tuning, and all post-test tuning rema
 Validation:
 The materializer uses only TRAIN/VALIDATION inputs and rejects any locked feature row. No Modal
 call or paid worker was used.
+
+## D-109 — Accept the exact-scope Phase 14 Evo2 locked subgate and stop paid work
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The user supplied a fresh Phase 14 authorization for the frozen locked evaluation with a `$2.75`
+hard cap and `$2.50` safety stop. The approval had to bind the current execution HEAD, frozen
+protocol/configuration/manifest hashes, the exact Evo2 7B revision and H100 contract, and the
+946-row locked cohort. The direct user scope excluded NT, Caduceus, fine-tuning, deployment,
+release, and any unrelated paid work.
+
+Decision:
+Accept the Evo2-only Phase 14 result as `PASS` for its exact locked-evaluation subgate. Preserve
+the raw label-free output as the immutable boundary, join labels locally only after the raw hash,
+compute final statistics once, and stop all paid work after the 946 rows completed. Do not promote
+the result to a broader multi-model Phase 14 claim, and do not infer final figure or release
+readiness from it.
+
+Evidence:
+- Approval: `artifacts/approvals/phase14_locked_evo2_20260922.json`, SHA-256
+  `4b619747a73942e56e15fef4040db1591760ee5a7813fb8f14fcc4740050dae7`, bound to execution HEAD
+  `c6c431869724666c84252cbd43979f2c4f38875f`.
+- Final artifact: `artifacts/phase14/phase14_locked_evo2_20260922.json`, SHA-256
+  `4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499`.
+- Exactly 946 rows completed; 30 paid remote Evo2 calls; 1,304.297864 seconds remote runtime;
+  zero transient retries; direct H100 runtime estimate `$1.431104601`.
+- Raw predictions SHA-256 `ae288252a3f1bfc8a1754b1626ea6ff91a041df9ff09daf07d1411a242ba2508`;
+  local joined output SHA-256 `77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7`.
+- All integrity gates passed: exact ID set, finite scores, zero duplicates, zero unexpected IDs,
+  zero reference mismatches, no remote labels, no labels before raw hashing, selection closed,
+  and no post-test tuning.
+- The final local resume reused all 30 verified shards with zero new Modal calls. Closeout Modal
+  container inventory was `[]`; the fresh final snapshot was metered `$33.50187443`, billed `$0.13`.
+
+Consequences:
+Phase 14 is `PASS` only for the authorized Evo2 locked subgate. Phase 15 remains blocked for
+remote batch parity; Phase 16 remains partial; Phase 17 remains blocked on three mandatory source
+families and an eligible `FINAL` registry run; Phase 18 remains blocked on full scientific
+clean-room reproduction; and Phase 19 remains blocked. No NT, Caduceus, fine-tuning, deployment,
+release, or additional paid work is authorized by this decision.
+
+Validation:
+`scripts/validate_phase14_approval.py`, the artifact/hash assertions, five final-evaluation unit
+tests, `make registry-verify`, and the no-spend Phase 15–19 control surfaces were run. Two early
+finalization attempts failed closed on impossible negative boolean predicates; correcting those
+predicates reused the persisted raw shards and caused no recomputation or additional inference.

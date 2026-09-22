@@ -18,18 +18,19 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | D
 | 11 | Ensemble/meta-classifier | PASS / FORMAL DEVELOPMENT | `research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json` (SHA-256 `83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b`); diversity, error overlap, correlation, kappa, mean, weighted, vote, and gene-grouped 5-fold OOF stacking were evaluated without locked labels. |
 | 12 | Calibration + abstention | PASS / FORMAL DEVELOPMENT | `research/runs/formal_cpu_20260922/phase12/calibration_abstention.json` (SHA-256 `bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3`); raw, train-fit Platt, isotonic, reliability, Brier/NLL/ECE, risk-coverage, and abstention diagnostics were evaluated on VALIDATION only. |
 | 13 | Ablation + robustness | PASS / FORMAL DEVELOPMENT MATRIX | `research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json` (SHA-256 `03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f`); 30 ablation cells, exact 10/25/50/75/100% grouped learning curves, seed robustness, subgroups, errors, calibration/abstention effects, and justified no-new-GPU skips are recorded. |
-| 14 | Locked statistical evaluation | READY_FOR_APPROVAL / DEVELOPMENT FREEZE MATERIALIZED | The original incomplete freeze remains recorded in `artifacts/phase14/phase14_preflight_block_20260922.json`; development-only materialization now passes in `artifacts/phase14/phase14_freeze_materialization_20260922.json` and `research/runs/formal_cpu_20260922/phase13/pre_phase14_materialized_freeze.json` (config SHA-256 `01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3`, fitted-model SHA-256 `f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043`). The selected validation AUROC replays exactly; no locked rows/labels were read, no paid approval is active, and only Evo2 is required by the frozen feature set. |
+| 14 | Locked statistical evaluation | PASS / FORMAL EVO2 LOCKED SUBGATE | `artifacts/phase14/phase14_locked_evo2_20260922.json` (SHA-256 `4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499`) records exactly 946 completed rows, 30 paid Evo2 H100 shard calls, 1,304.297864 seconds remote runtime, zero retries, zero duplicates/unexpected IDs/reference mismatches, finite scores, no remote labels, and all integrity gates true. Raw predictions SHA-256 `ae288252a3f1bfc8a1754b1626ea6ff91a041df9ff09daf07d1411a242ba2508`; local joined output SHA-256 `77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7`. The exact approval is `artifacts/approvals/phase14_locked_evo2_20260922.json` (SHA-256 `4b619747a73942e56e15fef4040db1591760ee5a7813fb8f14fcc4740050dae7`) bound to execution HEAD `c6c431869724666c84252cbd43979f2c4f38875f`; finalization reused all 30 verified shards locally with zero additional calls. |
 | 15 | Batch research pipeline | BLOCKED / LOCAL CONTRACT + KILL/RESTART VERIFIED | `scripts/plan_batch.py`, `src/evovariant_tr/batch_pipeline.py`, and `tests/unit/test_batch_pipeline.py`; label-free CSV/VCF parsing, immutable input/model plan, caller-supplied cost estimate, injected scorer, hash-verified resumable shards, simulated process-interruption recovery, failure taxonomy, and deterministic export are locally covered. Remote batch parity, full-cohort authorization, and remote smoke remain absent. |
 | 16 | Research workbench UI | PARTIAL / DEVELOPMENT EVIDENCE CONNECTED | `apps/web/src/app/api/research/status/route.ts`, `research/runs/phase16_ui_status.json`; eleven completed PRELIMINARY runs and the hash-verified formal CPU outputs now feed a read-only development-evidence panel showing the five completed CPU phase gates, 36 classifier combinations, 12 HPO studies, frozen selection state, and figure/table coverage. Final and locked-test values remain gated. `make web-check`, all four `make web-e2e` journeys, the frontend contract tests, and fresh-clone fallback/API checks PASS at `27352e5`. |
 | 17 | Figures/tables/report artifacts | BLOCKED / CONDITIONAL GATE + PARTIAL SOURCES | `research/runs/phase17_fig_status.json` and `research/figures/preliminary/preliminary_bundle_manifest.json`; 15/18 applicable figure families and 11/11 applicable tables now have hash-registered development sources. `hpo_importance` is `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` under `artifacts/phase9/hpo_parameter_importance_deferral_20260922.json` because the validation-only HPO evidence has four trials per study and no predeclared importance estimator. The `fine_tuning_summary` table is also not applicable because Phase 10 is `DEFERRED_BY_COMPUTE`. Three mandatory source families (`context_length`, `loss`, `temporal_cohort`) and an eligible completed `FINAL` run are still missing, so the final bundle produces zero outputs; the separate non-promotable preliminary bundle contains 26 development-stage outputs. |
 | 18 | Security + clean-room reproducibility | BLOCKED / CONTROL SURFACE ONLY | Fresh clone from `8025a25` passes bootstrap, secret scan, Ruff, strict mypy, 714-test validation with one skip, and 95.01% coverage; registry verification and the updated fail-closed figure gate also reproduce. Prior frontend build/browser evidence remains verified at `27352e5`. The no-spend Modal preflight is `PLANNED` with zero remote calls. `make clean-room` remains `BLOCKED`: full scientific Modal reproduction and complete mandatory figure-source regeneration are unrun. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; the PRELIMINARY registry is connected, but full-cohort science, locked evaluation, complete figures, and final-release evidence remain unresolved. |
 
-Current control-plane checkpoint on `research/evovariant-tr`: use the current `HEAD` for the exact
-commit identity; no paid worker or local browser process is active. The latest exact approval
-remains the Phase 7 NT/Caduceus representation scope and does not authorize Phase 14. The
-materialized development freeze is ready for a fresh exact-scope Phase 14 approval; locked
-evaluation and downstream release promotion remain fail-closed until that approval passes.
+Current control-plane checkpoint on `research/evovariant-tr`: Phase 14 is complete for the
+explicitly authorized Evo2-only locked subgate, with no paid worker or active container remaining.
+The Phase 14 approval was exact-scope and bound to execution HEAD `c6c4318`; NT, Caduceus,
+fine-tuning, and release/deployment work were excluded. Phase 15 remains blocked for remote
+batch parity, Phase 16 remains partial, and Phases 17–19 remain fail-closed on their documented
+missing sources, FINAL registry run, full scientific clean-room reproduction, or release evidence.
 
 ## Current formal development design checkpoint — 2026-09-21
 
@@ -1153,3 +1154,42 @@ genuine unavailable evidence, not values to infer.
   completed client wall-rate estimate is `$0.704889`; the safety gate stopped before the remaining
   workload could be proven within the authorization. A fresh future allocation must reuse both
   caches and bind a new approval to the then-current HEAD.
+
+## Phase 14 locked Evo2 closeout and downstream no-spend continuation — 2026-09-22
+
+- The exact Phase 14 approval was validated against execution HEAD
+  `c6c431869724666c84252cbd43979f2c4f38875f`, with a `$2.75` hard cap and `$2.50` safety stop.
+  Frozen protocol, manifest, materialized-config, fitted-model, calibration, model-revision,
+  and locked-cohort bindings all passed. The approval SHA-256 is
+  `4b619747a73942e56e15fef4040db1591760ee5a7813fb8f14fcc4740050dae7`.
+- The authorized workload completed exactly `946/946` locked Evo2 rows using 30 shards and 30
+  H100 calls. It scored 946 new rows in the paid pass, reused zero rows before that pass, and
+  required zero transient retries. The remote runtime was `1,304.297864` seconds and the direct
+  H100 runtime estimate at `$3.95/hour` was `$1.431104601`. A later local cache-only resume reused
+  all 30 verified shards and made zero additional remote calls.
+- The final artifact is
+  `artifacts/phase14/phase14_locked_evo2_20260922.json` (SHA-256
+  `4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499`). Raw predictions were
+  hashed before the local label join: raw SHA-256
+  `ae288252a3f1bfc8a1754b1626ea6ff91a041df9ff09daf07d1411a242ba2508`; joined SHA-256
+  `77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7`. All positive integrity
+  gates passed: exact IDs, finite forward/RC/aggregate/calibrated scores, no labels transported,
+  no duplicate IDs, no unexpected IDs, no reference mismatches, no locked labels before raw hash,
+  one-shot selection closure, and no post-test tuning.
+- The initial paid-run billing snapshot was metered `$31.82187443` and billed `$0.00`; the final
+  fresh read-only snapshot at `2026-09-22T11:30:41.805291+00:00` was metered `$33.50187443` and
+  billed `$0.13`. Modal's `credits: -30.00000000` is a billing adjustment, not a provider-returned
+  free-credit balance. The user-stated pre-run free-compute headroom was `$7.17`; subtracting the
+  observed metered delta of `$1.68` gives an indicative `$5.49`, not a provider-confirmed balance.
+  The final container inventory was `[]`.
+- Phase 15 local batch/kill-restart evidence remains available, but its overall gate is `BLOCKED`
+  because remote batch parity and full-cohort batch authorization are absent. Phase 16 is `PARTIAL`
+  with 11 connected preliminary runs and no locked-test promotion. The no-spend Phase 17 rerun
+  remains `BLOCKED` with 15 available figures, three missing mandatory source families
+  (`context_length.json`, `loss.json`, `temporal_cohort.json`), and no registered completed
+  `FINAL` run. Phase 18 remains `BLOCKED` for full scientific Modal clean-room reproduction;
+  Phase 19 remains `BLOCKED` for the unresolved scientific, figure, and release gates.
+- No NT, Caduceus, fine-tuning, new HPO, deployment, release, or additional paid work was started
+  under this authorization. The initial finalization attempts failed closed on impossible boolean
+  gate predicates; the predicates were corrected, and the already-completed raw shards were
+  finalized without recomputation.

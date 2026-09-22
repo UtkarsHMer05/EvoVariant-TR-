@@ -1,0 +1,19 @@
+{
+  "checkpoint": "evo2_7b",
+  "execution_plan_sha256": "724b4042bd8b65896c0d4cb92427f2a08181cb3e6748ab335bc5d58a35f53aad",
+  "family": "LOCKED_STATISTICAL_EVALUATION",
+  "frozen_config_file_sha256": "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88",
+  "frozen_config_sha256": "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3",
+  "include_labels_in_remote_request": false,
+  "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+  "model_id": "evo2_7b",
+  "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+  "phase": 14,
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "raw_artifact_before_local_label_join": true,
+  "record_count": 946,
+  "research_protocol_hash": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525",
+  "retry_policy": "clearly_transient_shard_failures_only",
+  "shard_size": 32,
+  "submission_ids_sha256": "3d25f2ada1c4c21a5b938deea4c60da581c787002f9993e4216bca8a4224a226"
+}

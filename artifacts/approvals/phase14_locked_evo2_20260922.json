@@ -1,0 +1,130 @@
+{
+  "artifact_id": "phase14-locked-evo2-20260922",
+  "study_id": "ML-DEV-BUDGETED-001",
+  "approval_version": "phase14-locked-v1",
+  "approved_by": "user",
+  "approved_at": "2026-09-22",
+  "authorization_source": "explicit user authorization in the current Phase 14 request; exact locked Evo2 workload only",
+  "max_budget_usd": 2.75,
+  "budget_control": {
+    "hard_cap_usd": 2.75,
+    "safety_stop_usd": 2.5,
+    "no_silent_budget_widening": true,
+    "billing_basis": "fresh Modal billing summary captured immediately before approval"
+  },
+  "protocols": {
+    "research": {
+      "path": "research/protocol/protocol.yaml",
+      "sha256": "78799000023ca157b72836a0ec603abb20c93960b15fba09485bd0dffbbb1525"
+    },
+    "ml_extension": {
+      "path": "research/ml_extension/protocol.yaml",
+      "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+    }
+  },
+  "dataset": {
+    "formal_train": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json",
+      "sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1"
+    },
+    "formal_validation": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json",
+      "sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b"
+    },
+    "formal_development": {
+      "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+      "sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782"
+    },
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "locked_test": {
+      "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+      "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+      "expected_count": 946,
+      "expected_label_counts": {
+        "0": 536,
+        "1": 410
+      },
+      "labels_read_before_raw_inference": false
+    }
+  },
+  "git": {
+    "branch": "research/evovariant-tr",
+    "commit": "c6c431869724666c84252cbd43979f2c4f38875f",
+    "working_tree_policy": "approval is bound to tracked HEAD; pre-existing unrelated dirty paths are excluded"
+  },
+  "model": {
+    "model_id": "evo2_7b",
+    "checkpoint": "evo2_7b",
+    "revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "score_semantics": "alternate_minus_reference_log_likelihood"
+  },
+  "gpu": {
+    "type": "H100",
+    "count": 1
+  },
+  "frozen_config": {
+    "path": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+    "sha256": "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3",
+    "file_sha256": "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88"
+  },
+  "allowed_workloads": [
+    "Phase 14 one-shot frozen locked-test Evo2 inference and local final statistics only"
+  ],
+  "excluded_workloads": [
+    "NT",
+    "Caduceus",
+    "fine-tuning",
+    "HPO",
+    "threshold tuning",
+    "calibration refit",
+    "ensemble/model selection",
+    "deployment",
+    "release",
+    "any post-test tuning"
+  ],
+  "stop_conditions": [
+    "stop at the $2.50 safety stop or $2.75 hard cap",
+    "no labels sent to Modal",
+    "stop on non-finite scores, duplicates, unexpected IDs, reference mismatch, stale hash, or active container conflict",
+    "stop after exactly 946 complete raw and final rows"
+  ],
+  "execution_contract": {
+    "locked_test_rows": 946,
+    "remote_labels": "prohibited",
+    "label_join": "after raw prediction artifact hash",
+    "final_statistics": "one_shot",
+    "retry_policy": "clearly_transient_shard_failures_only",
+    "post_test_tuning": "prohibited",
+    "shard_size": 32,
+    "zero_recomputation_verified_shards": true
+  },
+  "cost_baseline": {
+    "captured_at_utc": "2026-09-22T11:19:20Z",
+    "metered_cost_usd": 33.54187443,
+    "billed_cost_usd": 0.17,
+    "active_containers": 0,
+    "billing_summary": {
+      "metered_cost": "33.54187443",
+      "billed_cost": "0.17000000",
+      "adjustments": {
+        "reservation_adjustment": "-0E-8",
+        "free_storage": "-3.37187443",
+        "plan_cost": "0E-8",
+        "credits": "-30.00000000"
+      },
+      "metered_cost_breakdown": {
+        "ephemeral_apps": "21.39090393",
+        "volumes": "3.37187443",
+        "llm_tokens": "0E-8",
+        "deployed_apps": "8.78151469"
+      }
+    },
+    "commands": [
+      ".venv/bin/modal container list --json",
+      ".venv/bin/modal billing summary --json"
+    ]
+  }
+}

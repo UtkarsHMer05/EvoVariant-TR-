@@ -129,7 +129,10 @@ LAYERS: dict[str, tuple[int, ...]] = {
 }
 
 BASE_IMAGE = modal.Image.from_registry("nvcr.io/nvidia/pytorch:24.07-py3", add_python="3.12")
-TRANSFORMERS_IMAGE = BASE_IMAGE.pip_install(
+TORCH_IMAGE = BASE_IMAGE.run_commands(
+    "pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cu124",
+)
+TRANSFORMERS_IMAGE = TORCH_IMAGE.pip_install(
     "transformers==4.38.1",
     "safetensors==0.4.3",
     "numpy",

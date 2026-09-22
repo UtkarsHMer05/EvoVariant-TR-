@@ -3189,3 +3189,46 @@ Validation:
 `make web-check`, `make web-e2e` (4 passed), the four frontend contract tests, and the Impeccable
 detector pass. The endpoint returned `PARTIAL`, `selection_closed=true`, all five completed CPU
 phase gates, and the expected 15/19 figure plus 11/11 applicable-table coverage.
+
+## D-103 — Make the control surface reproducible from a clean clone
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The first fresh-clone audit exposed four engineering reproducibility defects: the default test
+extra omitted an already-required NumPy dependency; two clean-room fallback assertions described
+an obsolete Phase 3 summary; registry records referenced ignored formal CPU outputs; and the
+committed browser server lacked the required analysis-endpoint environment variable. A subsequent
+clone also exposed a client crash when the research-status API returned a short blocked payload
+while its page expected the normal evidence shape.
+
+Decision:
+Keep the fixes at the smallest shared boundaries. Declare NumPy in the existing development
+extra, align fallback assertions with the authoritative current summary, force-track the 26
+hash-verified formal CPU outputs already referenced by the immutable registry, set the analysis
+endpoint in the committed Playwright server command, return one shape-safe blocked payload from
+the research-status route, and track the current Phase 16/17 status manifests needed for a clean
+clone to display the same evidence. Preserve explicit `PARTIAL`/`BLOCKED` semantics and do not
+invent missing scientific sources or final metrics.
+
+Evidence:
+- `3412071`, `2f538b7`, `9662c7d`, and `27352e5` are the focused implementation commits.
+- A fresh clone from `27352e5` passed `make bootstrap`, `make validate` (`714 passed, 1 skipped,
+  33 deselected`, 95.01% coverage), `make registry-verify`, `make frontend-install`,
+  `make web-check`, and all four `make web-e2e` journeys.
+- The same clone passed protocol, ML-control-plane, schema, model-registry, and UI checks;
+  `make figures` reproduced 15/19 figure families, 11/11 applicable tables, 26 preliminary
+  outputs, zero final outputs, and the four documented missing source families.
+- With both tracked status manifests temporarily absent, `/api/research/status` returned a full
+  blocked response and `/analysis` returned HTTP 200; the manifests were restored unchanged.
+
+Consequences:
+The free engineering/control surface now reproduces from a clean checkout without local ignored
+state. Phase 14, locked-test evaluation, fine-tuning, paid scientific reproduction, final figure
+generation, and release remain blocked or deferred exactly as authorized; no paid compute or locked
+data was accessed.
+
+Validation:
+No external compute was launched. No pre-existing dirty source, test, approval, or `.agents/`
+path was staged.

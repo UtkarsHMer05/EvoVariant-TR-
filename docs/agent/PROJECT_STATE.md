@@ -1441,3 +1441,28 @@ families were not invented.
   The cumulative completed client wall-rate estimate is `$0.704889` against the `$1.00` hard cap
   and `$0.85` safety stop. A new explicit allocation and approval are required before resuming.
   Locked-test inference, fine-tuning, Phase 14, deployment, and release remain unopened.
+
+## Clean-room reproducibility correction — 2026-09-22
+
+- The authoritative current implementation HEAD is `27352e52605585e6fd3ec467bdd8afb32396df70`
+  on `research/evovariant-tr`. The focused clean-room fixes are `3412071` (declare the existing
+  NumPy test dependency), `2f538b7` (track hash-verified registry-referenced CPU outputs and
+  align stale fallback assertions), `9662c7d` (make the committed Playwright server command
+  self-contained), and `27352e5` (make the blocked research-status API shape-safe and track the
+  current Phase 16/17 status manifests).
+- A fresh clone from `27352e5` passed `make bootstrap`; `make validate` (`714 passed, 1 skipped,
+  33 deselected`, 95.01% coverage); `make registry-verify`; `make frontend-install` (407 packages,
+  zero vulnerabilities); `make web-check`; and all four `make web-e2e` journeys. The frozen
+  protocol, additive ML control plane, JSON schemas, model registry, and `make ui-check` also
+  passed.
+- Fresh-clone `make figures` reproduced the expected fail-closed state: 15/19 figure families,
+  11/11 applicable tables, zero final-bundle outputs, and 26 non-promotable preliminary outputs.
+  Missing sources remain exactly `context_length.json`, `hpo_importance.json`, `loss.json`, and
+  `temporal_cohort.json`, with no eligible completed `FINAL` run. `make clean-room` and
+  `make release-check` correctly remain `BLOCKED` because paid scientific reproduction and final
+  release evidence are absent.
+- The API fallback was independently exercised in the fresh clone with both status manifests
+  temporarily absent: `/api/research/status` returned a complete shape with `BLOCKED` status and
+  `/analysis` returned HTTP 200. The manifests were restored unchanged. No paid compute, locked
+  labels, locked predictions, or Phase 14 work was performed. The pre-existing dirty source,
+  test, approval, and `.agents/` paths remain uncommitted and were not staged.

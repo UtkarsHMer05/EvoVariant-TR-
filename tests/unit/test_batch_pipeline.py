@@ -252,6 +252,36 @@ def test_execute_resume_and_export_preserve_order(tmp_path: Path) -> None:
     assert result_ids == list(plan.variant_ids)
 
 
+def test_execute_resumes_after_process_interruption(tmp_path: Path) -> None:
+    variants = _variants()
+    plan = _plan(variants)
+    output_dir = tmp_path / "killed"
+    calls = 0
+
+    def interrupted(rows: list[BatchVariant]):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise KeyboardInterrupt("simulated worker termination")
+        return _scorer(rows)
+
+    with pytest.raises(KeyboardInterrupt, match="worker termination"):
+        execute_batch(variants, plan=plan, output_dir=output_dir, scorer=interrupted)
+
+    assert len(list((output_dir / "shards").glob("*.json"))) == 1
+    assert not list(output_dir.rglob("*.tmp"))
+
+    restarted = execute_batch(
+        variants,
+        plan=plan,
+        output_dir=output_dir,
+        scorer=_scorer,
+    )
+    assert restarted["status"] == "COMPLETED"
+    assert restarted["reused_shards"] == 1
+    assert restarted["completed_variants"] == 3
+
+
 def test_execute_persists_failure_then_retries_and_rejects_labels(tmp_path: Path) -> None:
     variants = _variants()
     plan = _plan(variants)

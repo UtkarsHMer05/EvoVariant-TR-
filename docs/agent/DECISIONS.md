@@ -3132,3 +3132,31 @@ eligible completed `FINAL` run exist.
 Validation:
 `make registry-verify`, `make figures`, `make ui-check`, and `make validate` passed. No paid
 compute, locked labels, or locked predictions were used.
+
+## D-101 — Accept the local Phase 15 kill/restart contract without claiming remote parity
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The Phase 15 batch engine already persisted immutable plans and atomic, hash-verified shards,
+but its tests covered scorer failure/retry rather than an interrupted process. The master timeline
+requires kill/restart recovery while remote batch parity and paid full-cohort execution remain
+separately authorization-gated.
+
+Decision:
+Treat local kill/restart recovery as verified when a simulated worker termination leaves completed
+shards intact, leaves no temporary files, and a restarted execution reuses those shards and
+completes the remaining work. Do not promote this local contract to remote batch parity or a
+full-cohort execution claim.
+
+Evidence:
+- Regression: `tests/unit/test_batch_pipeline.py::test_execute_resumes_after_process_interruption`.
+- Focused result: `8 passed`.
+- The Phase 15 ledger remains `BLOCKED` for remote parity, remote smoke, and full-cohort
+  authorization.
+
+Consequences:
+Phase 15 now has direct evidence for local process-interruption recovery with no paid compute or
+scientific-data access. A future remote batch allocation must still prove endpoint parity, remote
+kill/restart recovery, and the exact authorized cohort boundary.

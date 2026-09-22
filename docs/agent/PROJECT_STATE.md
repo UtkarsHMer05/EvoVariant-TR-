@@ -79,6 +79,13 @@ unavailable source families (`context_length.json`, `hpo_importance.json`, `loss
 `temporal_cohort.json`) and the absence of an eligible completed `FINAL` run; no locked labels or
 locked predictions were accessed.
 
+The local Phase 15 batch contract now has an explicit process-interruption regression check:
+`tests/unit/test_batch_pipeline.py::test_execute_resumes_after_process_interruption` leaves a
+completed shard on simulated worker termination, confirms no temporary file remains, and resumes
+the remaining shard without recomputation. The focused batch suite passes 8 tests. This proves
+local atomic-shard kill/restart behavior only; remote batch parity, remote smoke, and any
+full-cohort batch authorization remain absent.
+
 ## Current state — 2026-09-21
 
 > Historical snapshot retained for provenance; the 2026-09-22 section above is authoritative for

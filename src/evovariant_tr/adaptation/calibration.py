@@ -248,3 +248,41 @@ def selective_metrics(
             }
         )
     return results
+
+
+def selective_metrics_at_thresholds(
+    labels: Sequence[int],
+    probabilities: Sequence[float],
+    thresholds: Sequence[dict[str, float]],
+) -> list[dict[str, float | int | None]]:
+    """Apply confidence cutoffs frozen from TRAIN OOF predictions."""
+    if len(labels) != len(probabilities) or not labels:
+        raise ValueError("labels and probabilities must be non-empty and equal length")
+    confidence = [max(float(p), 1.0 - float(p)) for p in probabilities]
+    results = []
+    for item in thresholds:
+        cutoff = float(item["confidence_threshold"])
+        if not 0.5 <= cutoff <= 1.0:
+            raise ValueError("confidence thresholds must be in [0.5, 1]")
+        selected = [
+            (int(label), int(probability >= 0.5))
+            for label, probability, score in zip(
+                labels, probabilities, confidence, strict=True
+            )
+            if score >= cutoff
+        ]
+        count = len(selected)
+        errors = sum(label != prediction for label, prediction in selected)
+        results.append(
+            {
+                "target_coverage": float(item["target_coverage"]),
+                "confidence_threshold": cutoff,
+                "n_selected": count,
+                "coverage": count / len(labels),
+                "accuracy": 1.0 - errors / count if count else None,
+                "risk": errors / count if count else None,
+                "error_rate": errors / count if count else None,
+                "abstention_rate": 1 - count / len(labels),
+            }
+        )
+    return results

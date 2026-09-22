@@ -7,9 +7,14 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import time
 from pathlib import Path
 
+from evovariant_tr.adaptation.calibration import (
+    apply_calibrator,
+    selective_metrics_at_thresholds,
+)
 from evovariant_tr.adaptation.checkpointing import load_checkpoint
 from evovariant_tr.adaptation.data import (
     EXPECTED_MANIFEST_SHA256,
@@ -17,6 +22,7 @@ from evovariant_tr.adaptation.data import (
     sha256_file,
     verify_formal_data,
 )
+from evovariant_tr.adaptation.metrics import binary_metrics
 from evovariant_tr.adaptation.models import (
     MODEL_IDS,
     MODEL_REVISIONS,
@@ -36,6 +42,7 @@ def main() -> None:
     parser.add_argument("--reference", required=True)
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--selection-lock")
+    parser.add_argument("--calibration-report")
     parser.add_argument("--state")
     parser.add_argument("--output", required=True)
     parser.add_argument("--split", choices=("train", "validation"), default="validation")
@@ -48,9 +55,13 @@ def main() -> None:
     output = Path(args.output)
     report_path = output.with_suffix(".json")
     selection_hash = None
+    calibration_report = None
+    calibration_report_hash = None
     if args.split == "validation":
-        if not args.selection_lock:
-            raise SystemExit("validation evaluation requires a closed TRAIN-only selection lock")
+        if not args.selection_lock or not args.calibration_report:
+            raise SystemExit(
+                "validation needs a closed selection lock and TRAIN-OOF calibration report"
+            )
         selection_path = Path(args.selection_lock)
         selection = json.loads(selection_path.read_text(encoding="utf-8"))
         if (
@@ -61,6 +72,20 @@ def main() -> None:
         ):
             raise SystemExit("selection lock does not match the frozen adaptation protocol")
         selection_hash = hashlib.sha256(selection_path.read_bytes()).hexdigest()
+        calibration_path = Path(args.calibration_report)
+        calibration_report = json.loads(calibration_path.read_text(encoding="utf-8"))
+        if (
+            calibration_report.get("status") != "PASS"
+            or calibration_report.get("fit_scope") != "TRAIN_OOF_ONLY"
+            or calibration_report.get("holdout_used_for_fit") is not False
+            or calibration_report.get("protocol_sha256") != PROTOCOL_HASH
+            or calibration_report.get("oof_train_manifest_sha256")
+            != EXPECTED_MANIFEST_SHA256["formal_train_manifest.json"]
+            or calibration_report.get("oof_predictions_sha256")
+            != selection.get("train_oof_sha256")
+        ):
+            raise SystemExit("calibration report does not match the closed TRAIN-OOF selection")
+        calibration_report_hash = sha256_file(calibration_path)
     if args.split == "validation" and (output.exists() or report_path.exists()):
         raise SystemExit("validation output already exists; the 801-row holdout is one-shot")
     import torch
@@ -108,6 +133,8 @@ def main() -> None:
     model = PairedClassifier.build(backbone, hidden_size, dropout=dropout)
     regime = "frozen_head_only"
     if args.split == "validation":
+        if selected is None:
+            raise SystemExit("validation selection parameters are missing")
         regime = selected["regime"]
         regime = "full" if regime == "full_if_feasible" else regime
     total_parameters, trainable_parameters = configure_trainable(model, regime)
@@ -127,23 +154,51 @@ def main() -> None:
         config=TrainConfig(batch_size=args.batch_size, max_length=args.max_length, amp=False),
         device=args.device,
     )
+    calibrated_probabilities = None
+    calibrated_metrics = None
+    abstention_metrics = None
+    oof_mcc_threshold = None
+    if calibration_report is not None:
+        clipped = [min(1 - 1e-7, max(1e-7, p)) for p in probabilities]
+        logits = [math.log(p / (1 - p)) for p in clipped]
+        calibrated_probabilities = apply_calibrator(
+            logits, calibration_report["calibrators"]
+        )
+        labels = [row.label for row in rows]
+        calibrated_metrics = binary_metrics(labels, calibrated_probabilities)
+        oof_mcc_threshold = float(
+            calibration_report["mcc_threshold_supplementary"]["threshold"]
+        )
+        calibrated_metrics_at_oof_mcc_threshold = binary_metrics(
+            labels, calibrated_probabilities, threshold=oof_mcc_threshold
+        )
+        abstention_metrics = selective_metrics_at_thresholds(
+            labels, calibrated_probabilities, calibration_report["selective_metrics"]
+        )
+    else:
+        calibrated_metrics_at_oof_mcc_threshold = None
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary_csv = output.with_name(output.name + ".tmp")
     with temporary_csv.open("w", newline="", encoding="utf-8") as handle:
+        fieldnames = ["normalized_variant_id", "gene_symbol", "label", "probability"]
+        if calibrated_probabilities is not None:
+            fieldnames.append("calibrated_probability")
         writer = csv.DictWriter(
             handle,
-            fieldnames=["normalized_variant_id", "gene_symbol", "label", "probability"],
+            fieldnames=fieldnames,
+            extrasaction="raise",
         )
         writer.writeheader()
-        for row, probability in zip(rows, probabilities, strict=True):
-            writer.writerow(
-                {
-                    "normalized_variant_id": row.normalized_variant_id,
-                    "gene_symbol": row.gene_symbol,
-                    "label": row.label,
-                    "probability": probability,
-                }
-            )
+        for index, (row, probability) in enumerate(zip(rows, probabilities, strict=True)):
+            result = {
+                "normalized_variant_id": row.normalized_variant_id,
+                "gene_symbol": row.gene_symbol,
+                "label": row.label,
+                "probability": probability,
+            }
+            if calibrated_probabilities is not None:
+                result["calibrated_probability"] = calibrated_probabilities[index]
+            writer.writerow(result)
     temporary_csv.replace(output)
     report = {
         "status": "PASS",
@@ -152,6 +207,19 @@ def main() -> None:
         "holdout_evaluated": args.split == "validation",
         "selection_scope": "NONE_AFTER_FINALIZATION",
         "metrics": metrics,
+        "metrics_calibrated": calibrated_metrics,
+        "metrics_calibrated_at_oof_mcc_threshold": calibrated_metrics_at_oof_mcc_threshold,
+        "selective_metrics_at_oof_thresholds": abstention_metrics,
+        "calibration_report_sha256": calibration_report_hash,
+        "calibrator_method": calibration_report["calibrators"]["selected_method"]
+        if calibration_report is not None
+        else None,
+        "calibration_fit_scope": calibration_report["fit_scope"]
+        if calibration_report is not None
+        else None,
+        "calibration_oof_predictions_sha256": calibration_report["oof_predictions_sha256"]
+        if calibration_report is not None
+        else None,
         "rows": len(rows),
         "model_id": MODEL_IDS["caduceus"],
         "revision": MODEL_REVISIONS["caduceus"],

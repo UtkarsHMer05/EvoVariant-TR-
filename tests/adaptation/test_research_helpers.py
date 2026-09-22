@@ -63,6 +63,20 @@ class CalibrationTest(unittest.TestCase):
         self.assertEqual([point["target_coverage"] for point in coverage], [0.5, 0.75, 0.9, 1.0])
         self.assertEqual(coverage[-1]["coverage"], 1.0)
         self.assertEqual(coverage[-1]["risk"], coverage[-1]["error_rate"])
+        fixed = calibration.selective_metrics_at_thresholds(
+            [0, 1, 1],
+            [0.95, 0.7, 0.3],
+            [
+                {"target_coverage": 0.5, "confidence_threshold": 0.8},
+                {"target_coverage": 0.9, "confidence_threshold": 0.7},
+            ],
+        )
+        self.assertEqual([point["coverage"] for point in fixed], [1 / 3, 1.0])
+        self.assertEqual([point["risk"] for point in fixed], [1.0, 2 / 3])
+        none_selected = calibration.selective_metrics_at_thresholds(
+            [0, 1], [0.6, 0.4], [{"target_coverage": 0.5, "confidence_threshold": 1.0}]
+        )
+        self.assertIsNone(none_selected[0]["risk"])
         with self.assertRaises(ValueError):
             calibration.fit_calibrators([1, 1], [0.0, 1.0])
         for method in ("uncalibrated", "temperature", "platt", "isotonic"):

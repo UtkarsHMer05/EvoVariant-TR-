@@ -432,6 +432,7 @@ def run_phase14(
         "protocol_hash": config["protocol_hashes"]["ml_extension_protocol"]["sha256"],
         "research_protocol_hash": config["protocol_hashes"]["research_protocol"]["sha256"],
         "frozen_config_sha256": approval["frozen_config"]["sha256"],
+        "frozen_config_file_sha256": _sha256_file(config_path),
         "locked_manifest_sha256": approval["dataset"]["locked_test"]["sha256"],
         "record_count": EXPECTED_LOCKED_ROWS,
         "submission_ids_sha256": _sha256_bytes(_stable_bytes(expected_ids)),
@@ -653,6 +654,7 @@ def run_phase14(
         "frozen_config": {
             "path": str(config_path.relative_to(repo_root)),
             "sha256": approval["frozen_config"]["sha256"],
+            "file_sha256": _sha256_file(config_path),
             "model_artifact_sha256": _sha256_file(model_artifact_path),
             "calibration_artifact_sha256": _sha256_file(calibration_path),
         },

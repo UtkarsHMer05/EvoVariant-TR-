@@ -23,6 +23,7 @@ EXPECTED_APPROVAL_VERSION = "phase14-locked-v1"
 EXPECTED_HARD_CAP_USD = 2.75
 EXPECTED_SAFETY_STOP_USD = 2.50
 EXPECTED_CONFIG_SHA256 = "01cd0569c4d7177a838506b70a050c5b4cbc401d5fa2ea2c6c37c46719f623a3"
+EXPECTED_CONFIG_FILE_SHA256 = "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88"
 EXPECTED_MODEL_ARTIFACT_SHA256 = "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043"
 EXPECTED_CALIBRATION_ARTIFACT_SHA256 = (
     "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
@@ -175,11 +176,13 @@ def validate_approval(path: str | Path = DEFAULT_APPROVAL_PATH) -> dict[str, Any
     frozen = raw["frozen_config"]
     if not isinstance(frozen, dict):
         raise Phase14ApprovalError("frozen_config must be an object")
-    config_path = require_hash(
-        frozen.get("path"), EXPECTED_CONFIG_SHA256, "frozen_config"
-    )
+    config_path = repo_path(frozen.get("path"), "frozen_config.path")
     if frozen.get("sha256") != EXPECTED_CONFIG_SHA256:
-        raise Phase14ApprovalError("frozen config hash is not canonical")
+        raise Phase14ApprovalError("frozen config semantic hash is not canonical")
+    if frozen.get("file_sha256") != EXPECTED_CONFIG_FILE_SHA256:
+        raise Phase14ApprovalError("frozen config file hash is not canonical")
+    if sha256_file(config_path) != EXPECTED_CONFIG_FILE_SHA256:
+        raise Phase14ApprovalError("frozen config file bytes changed")
     config = read_json(config_path)
     if freeze_analysis_config(config).sha256 != EXPECTED_CONFIG_SHA256:
         raise Phase14ApprovalError("frozen config content hash does not replay")

@@ -21,7 +21,7 @@ Current persisted stage: `CADUCEUS_FROZEN_HEAD_ONLY_DONE`
 
 - Branch: `research/posthoc-foundation-adaptation`
 - HEAD used to start the active Colab training: `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`
-- Latest validated implementation/notebook commit: `a4c6cd0` (`feat: apply train OOF calibration at final evaluation`). The HPO worker started from `69ad3e6`; its HPO source is unchanged in `a4c6cd0`. The frozen-head process started at `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`.
+- Latest validated implementation/notebook commit: `c0506a0` (`fix: fail closed on interrupted holdout attempts`). The HPO worker started from `69ad3e6`; its HPO source is unchanged in later revisions. The frozen-head process started at `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`.
 - Main: `30b515314d5f8c8be7c83c96b1f576fb7225c869`
 - Frozen baseline tag: `1003bc5a20973145e0e096ff7b0f3424045d07e6`
 - TRAIN manifest: `32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1`

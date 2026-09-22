@@ -1,5 +1,36 @@
 # Project State — EvoVariant-TR ML Extension
 
+## Current state — 2026-09-22
+
+The exact approved formal Evo2 Phase 6 continuation is complete and passed within scope. The
+4,000-record formal development cohort is complete: 125 shards, 124 verified stored-shard cache
+hits, one new 32-row remote shard, zero pending rows, zero duplicates, zero unexpected IDs, zero
+reference mismatches, finite forward/reverse-complement/aggregate scores, no labels sent to Modal,
+and zero locked-test rows. This is a bounded Evo2 subtrack result, not a PASS for the broader
+multi-model Phase 6 benchmark.
+
+- Final artifact: `artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json`,
+  SHA-256 `b04940b3b5845fd57144f54a9862da8d9d89fb1b98d9c79fc45364e7a21ef54d`.
+- Final predictions: `research/runs/phase6_formal_evo2_20260921_full_overnight_20260922/predictions.jsonl`,
+  SHA-256 `088e39fcfa45b2af9cd8f11cbb803213d9030c92036fc9f27f577c3912693751`.
+- Fresh approval: `artifacts/approvals/formal_phase6_par_resume_20260922.json`, SHA-256
+  `f345f969f996a48ba33db9830d89c718d76fa64d7416e89209da5cef42758ae7`; it is bound to HEAD
+  `535d73e56d10ddea5d2ef0098bb7251a57d259d7`, with a `$0.50` hard cap and `$0.40` safety stop.
+- Preflight: `artifacts/phase6/formal_phase6_par_resume_preflight_20260922.json`, SHA-256
+  `af8e052dde5f163d57951a0bdc7a41cef97da235c204f496597073d652beff17`.
+- Reference amendment: `DEV-2026-001`/D-095 and
+  `artifacts/reference/par_mask_resolution_20260922.json`, SHA-256
+  `2f71248d7a97329db24301a73bdd427a2673af7ebc62a29a2ee4467060815b42`; it authorizes only the
+  two verified chrY PAR1 hard-mask aliases and preserves original variant identity.
+- Compute closeout: final app-specific observed usage `$0.09374570`; runner wall-rate estimate
+  `$0.111328`; workspace billed cost `$0.00`; paid workers shut down and final Modal container
+  inventory `[]`. From the exact prior derived free headroom `$5.94229534`, the derived remaining
+  headroom is `$5.84854964` (approximately `$5.85`).
+- Validation: final no-spend integrity audit PASS; pre-run `make validate` PASS with 715 tests,
+  33 deselected, and 95.01% coverage. D-096 accepts the bounded result. No NT, Caduceus,
+  fine-tuning, locked-test inference, or Phase 7 workload was launched; those remain separately
+  authorized work at the next allocation boundary.
+
 ## Current state — 2026-09-21
 
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`

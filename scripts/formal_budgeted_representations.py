@@ -38,7 +38,9 @@ if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
 from evovariant_tr.sequence_mutate import reverse_complement  # noqa: E402
-from evovariant_tr.sequence_window import generate_reference_window  # noqa: E402
+from evovariant_tr.sequence_window import (  # noqa: E402
+    generate_reference_window_with_par_alias,
+)
 
 OVERNIGHT_MODE = os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
 if OVERNIGHT_MODE:
@@ -84,10 +86,18 @@ GPU_TYPE = "H100"
 GPU_RATE_USD_PER_HOUR = 3.95
 HARD_CAP_USD = 14.0 if OVERNIGHT_MODE else 8.0
 SAFETY_STOP_USD = 13.5 if OVERNIGHT_MODE else 7.75
+LOCKED_RESERVE_USD = 2.5 if OVERNIGHT_MODE else 0.0
 CONTEXT_LENGTH_BP = 8192
 SHARD_SIZE = 8
 VARIANT_BATCH_SIZE = 1
 VIEWS_PER_VARIANT = 4
+MAX_MODAL_BATCH_SECONDS = 900
+FORMAL_PAR_ALIAS_IDS = frozenset(
+    {
+        "GRCh38:Y:1286043:T>C",
+        "GRCh38:Y:1309674:G>T",
+    }
+)
 NT_MODEL = "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species"
 NT_REVISION = "06615c1660c892fc199840c18123f8385b3542a8"
 CADUCEUS_MODEL = "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16"
@@ -175,14 +185,26 @@ def _sequence_payload(row: dict[str, Any]) -> dict[str, Any]:
         candidates = (chromosome, f"chr{chromosome}")
     window = None
     used = None
+    reference_provenance: dict[str, Any] | None = None
+    last_error: ValueError | None = None
     for candidate in candidates:
         try:
-            window = generate_reference_window(FASTA, FAI, candidate, int(row["position_1based"]))
-            used = candidate
+            window, reference_provenance = generate_reference_window_with_par_alias(
+                FASTA,
+                FAI,
+                candidate,
+                int(row["position_1based"]),
+                str(row["reference"]),
+                allow_par_alias=str(row["normalized_variant_id"]) in FORMAL_PAR_ALIAS_IDS,
+            )
+            used = window.chrom
             break
-        except ValueError:
+        except ValueError as exc:
+            last_error = exc
             continue
     if window is None or used is None:
+        if last_error is not None:
+            raise last_error
         raise RuntimeError(
             f"could not load formal reference window: {row['normalized_variant_id']}"
         )
@@ -201,6 +223,11 @@ def _sequence_payload(row: dict[str, Any]) -> dict[str, Any]:
     sequences = [reference, alternate, reverse_complement(reference), reverse_complement(alternate)]
     if any(len(sequence) != CONTEXT_LENGTH_BP for sequence in sequences):
         raise RuntimeError("formal representation view length changed")
+    if reference_provenance is None:
+        raise RuntimeError("formal representation extraction did not return provenance")
+    reference_provenance["reference_asset"] = (
+        "data/reference/Homo_sapiens_assembly38.fasta"
+    )
     return {
         "normalized_variant_id": row["normalized_variant_id"],
         "sequences": sequences,
@@ -211,6 +238,7 @@ def _sequence_payload(row: dict[str, Any]) -> dict[str, Any]:
         "window_start_1based": window.start,
         "window_stop_1based": window.stop,
         "variant_offset_0based": window.variant_offset,
+        "reference_provenance": reference_provenance,
     }
 
 
@@ -447,6 +475,14 @@ def _write_shard(path: Path, payload: dict[str, Any]) -> None:
     atomic_json(path, document)
 
 
+def _function_call_id(function_call: modal.FunctionCall[Any]) -> str:
+    function_call.hydrate()
+    object_id = function_call.object_id
+    if not object_id:
+        raise RuntimeError("Modal did not return a durable FunctionCall ID")
+    return str(object_id)
+
+
 def _features_from_results(
     records: list[dict[str, Any]],
     results_by_id: dict[str, dict[str, Any]],
@@ -605,8 +641,11 @@ def _run_candidate(
         shard_records = records[start : start + SHARD_SIZE]
         source_ids = [str(row["normalized_variant_id"]) for row in shard_records]
         shard_path = shard_root / f"shard_{shard_index:05d}.json"
+        pending_path = shard_root / f"shard_{shard_index:05d}.pending.json"
         stored = _verify_shard(shard_path, plan_hash, source_ids)
         if stored is not None:
+            if pending_path.is_file():
+                pending_path.unlink()
             for result in stored["results"]:
                 all_results[str(result["normalized_variant_id"])] = result
             completed_shards += 1
@@ -616,29 +655,80 @@ def _run_candidate(
                 rate_samples.append(stored_rate)
             continue
 
-        if base_spend_usd + estimated_usd + planned_remaining_usd > SAFETY_STOP_USD:
-            raise RuntimeError(
-                "formal representation projected total exceeds the "
-                f"${SAFETY_STOP_USD:.2f} safety stop "
-                f"before {candidate} shard {shard_index}"
-            )
-        if (
-            rate_samples
-            and base_spend_usd + estimated_usd + max(rate_samples[-3:]) + planned_remaining_usd
-            > SAFETY_STOP_USD
-        ):
-            raise RuntimeError(
-                "formal representation next-shard projection exceeds the safety stop"
+        payload = [_sequence_payload(row) for row in shard_records]
+        pending: dict[str, Any] | None = None
+        if pending_path.is_file():
+            pending = json.loads(pending_path.read_text(encoding="utf-8"))
+            if not isinstance(pending, dict):
+                raise RuntimeError(f"pending representation call is not an object: {pending_path}")
+            if (
+                pending.get("execution_plan_sha256") != plan_hash
+                or pending.get("source_ids") != source_ids
+                or pending.get("payload_sha256") != stable_hash(payload)
+                or not isinstance(pending.get("function_call_id"), str)
+            ):
+                raise RuntimeError(
+                    "pending representation call does not match the frozen shard: "
+                    f"{pending_path}"
+                )
+            function_call_id = str(pending["function_call_id"])
+        else:
+            if (
+                base_spend_usd
+                + estimated_usd
+                + planned_remaining_usd
+                + LOCKED_RESERVE_USD
+                > SAFETY_STOP_USD
+            ):
+                raise RuntimeError(
+                    "formal representation projected total exceeds the "
+                    f"${SAFETY_STOP_USD:.2f} safety stop after preserving the "
+                    f"${LOCKED_RESERVE_USD:.2f} locked-test reserve "
+                    f"before {candidate} shard {shard_index}"
+                )
+            if (
+                rate_samples
+                and base_spend_usd
+                + estimated_usd
+                + max(rate_samples[-3:])
+                + planned_remaining_usd
+                + LOCKED_RESERVE_USD
+                > SAFETY_STOP_USD
+            ):
+                raise RuntimeError(
+                    "formal representation next-shard projection exceeds the safety stop"
+                )
+            call = worker.extract_batch.spawn(payload)
+            function_call_id = _function_call_id(call)
+            _write_shard(
+                pending_path,
+                {
+                    "execution_plan_sha256": plan_hash,
+                    "shard_index": shard_index,
+                    "source_ids": source_ids,
+                    "payload_sha256": stable_hash(payload),
+                    "function_call_id": function_call_id,
+                    "status": "SUBMITTED",
+                    "submitted_at_utc": datetime.now(UTC).isoformat(),
+                },
             )
 
-        payload = [_sequence_payload(row) for row in shard_records]
         call_started = time.monotonic()
-        response = cast(dict[str, Any], worker.extract_batch.remote(payload))
+        response = cast(
+            dict[str, Any],
+            modal.FunctionCall.from_id(function_call_id).get(timeout=MAX_MODAL_BATCH_SECONDS),
+        )
         client_seconds = time.monotonic() - call_started
         client_estimate = client_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR
         estimated_usd += client_estimate
         rate_samples.append(client_estimate)
-        if base_spend_usd + estimated_usd + planned_remaining_usd > HARD_CAP_USD:
+        if (
+            base_spend_usd
+            + estimated_usd
+            + planned_remaining_usd
+            + LOCKED_RESERVE_USD
+            > HARD_CAP_USD
+        ):
             raise RuntimeError("formal representation call exceeded the hard budget projection")
         if response.get("status") != "completed":
             raise RuntimeError("formal representation worker did not complete the shard")
@@ -674,8 +764,10 @@ def _run_candidate(
             "client_wall_seconds": round(client_seconds, 6),
             "client_wall_rate_estimate_usd": round(client_estimate, 6),
             "remote_provenance": response.get("provenance", {}),
+            "function_call_id": function_call_id,
         }
         _write_shard(shard_path, shard_payload)
+        pending_path.unlink(missing_ok=True)
         for result in results:
             all_results[str(result["normalized_variant_id"])] = result
         completed_shards += 1
@@ -735,11 +827,18 @@ def _run_candidate(
 
 @app.local_entrypoint()
 def main() -> None:
+    global HARD_CAP_USD, SAFETY_STOP_USD, LOCKED_RESERVE_USD
+
     if os.environ.get("EVOVARIANT_TR_PAID_COMPUTE_ACK") != "I_ACCEPT_COSTS":
         raise RuntimeError(
             "set EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS for formal representation work"
         )
     approval = validate_approval(APPROVAL_PATH)
+    if OVERNIGHT_MODE:
+        budget = approval["budget_control"]
+        HARD_CAP_USD = float(budget["hard_cap_usd"])
+        SAFETY_STOP_USD = float(budget["runner_safety_stop_usd"])
+        LOCKED_RESERVE_USD = float(budget["locked_test_reserve_min_usd"])
     for path in (
         FORMAL_MANIFEST,
         FORMAL_COST,
@@ -761,9 +860,10 @@ def main() -> None:
         "caduceus": float(cost_plan["caduceus"]["estimated_usd"]),
     }
     planned_total = base_spend_usd + sum(candidate_plan.values())
-    if planned_total > SAFETY_STOP_USD:
+    if planned_total + LOCKED_RESERVE_USD > SAFETY_STOP_USD:
         raise RuntimeError(
-            f"formal representation plan exceeds the ${SAFETY_STOP_USD:.2f} safety stop"
+            f"formal representation plan exceeds the ${SAFETY_STOP_USD:.2f} safety stop "
+            f"after preserving the ${LOCKED_RESERVE_USD:.2f} locked-test reserve"
         )
 
     billing_before = _billing_snapshot()
@@ -787,7 +887,7 @@ def main() -> None:
 
     billing_after = _billing_snapshot()
     total_estimated = base_spend_usd
-    if total_estimated > HARD_CAP_USD:
+    if total_estimated + LOCKED_RESERVE_USD > HARD_CAP_USD:
         raise RuntimeError("formal representation total exceeded the hard cap")
     artifact = {
         "artifact_id": (
@@ -817,6 +917,7 @@ def main() -> None:
             "combined_estimated_usd": round(total_estimated, 6),
             "hard_cap_usd": HARD_CAP_USD,
             "runner_safety_stop_usd": SAFETY_STOP_USD,
+            "locked_test_reserve_min_usd": LOCKED_RESERVE_USD,
             "measured_invoice_usd": None,
         },
         "billing": {"before": billing_before, "after": billing_after},

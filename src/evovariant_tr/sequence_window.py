@@ -18,11 +18,20 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 CONTEXT_LENGTH_BP = 8192
 HALF_WINDOW = CONTEXT_LENGTH_BP // 2  # 4096
 
 GENOMIC_NUCLS = frozenset({"A", "C", "G", "T"})
+
+# GRCh38 one-based inclusive PAR coordinates. The GATK analysis-set notation
+# is zero-based at the left edge; these ranges are the genomic coordinates used
+# by the formal manifests and the window extractor.
+GRCH38_PAR_RANGES = {
+    "PAR1": (10_001, 2_781_479),
+    "PAR2": (56_887_903, 57_217_415),
+}
 
 
 @dataclass(frozen=True)
@@ -228,6 +237,89 @@ def generate_reference_window(
         ref_sequence=seq,
         variant_offset=variant_offset,
     )
+
+
+def generate_reference_window_with_par_alias(
+    fasta_path: str | Path,
+    fai_path: str | Path,
+    chrom: str,
+    variant_pos: int,
+    expected_ref: str,
+    *,
+    allow_par_alias: bool = False,
+) -> tuple[ReferenceWindow, dict[str, Any]]:
+    """Extract a validated window, with an explicitly scoped chrY PAR alias.
+
+    The alias is opt-in and only applies when the complete chrY window is
+    hard-masked, the locus is in a GRCh38 PAR, the homologous chrX reference
+    matches ``expected_ref``, and the complete chrX window remains in that PAR.
+    All other reference mismatches fail closed.
+    """
+    window = generate_reference_window(fasta_path, fai_path, chrom, variant_pos)
+    extracted_ref = window.ref_sequence[window.variant_offset]
+    provenance: dict[str, Any] = {
+        "original_locus": {
+            "chromosome": chrom.removeprefix("chr"),
+            "position_1based": variant_pos,
+        },
+        "extraction_locus": {
+            "chromosome": chrom.removeprefix("chr"),
+            "position_1based": variant_pos,
+        },
+        "par_alias_applied": False,
+        "expected_ref": expected_ref,
+        "extracted_ref": extracted_ref,
+    }
+    if extracted_ref == expected_ref:
+        return window, provenance
+
+    if not allow_par_alias or chrom != "chrY":
+        raise ValueError(
+            f"reference allele mismatch for {chrom}:{variant_pos}: "
+            f"expected {expected_ref}, observed {extracted_ref}"
+        )
+    par_region = next(
+        (name for name, (start, stop) in GRCH38_PAR_RANGES.items()
+         if start <= variant_pos <= stop),
+        None,
+    )
+    if par_region is None or set(window.ref_sequence) != {"N"}:
+        raise ValueError(
+            f"chrY PAR alias eligibility failed for {chrom}:{variant_pos}"
+        )
+
+    par_start, par_stop = GRCH38_PAR_RANGES[par_region]
+    homologous = generate_reference_window(
+        fasta_path, fai_path, "chrX", variant_pos,
+    )
+    homologous_ref = homologous.ref_sequence[homologous.variant_offset]
+    if homologous_ref != expected_ref:
+        raise ValueError(
+            f"homologous chrX reference mismatch for {chrom}:{variant_pos}: "
+            f"expected {expected_ref}, observed {homologous_ref}"
+        )
+    if (
+        homologous.start < par_start
+        or homologous.stop > par_stop
+        or "N" in homologous.ref_sequence
+    ):
+        raise ValueError(
+            f"homologous chrX context is not a complete unmasked {par_region} window "
+            f"for {chrom}:{variant_pos}"
+        )
+
+    provenance.update(
+        {
+            "par_region": par_region,
+            "extraction_locus": {
+                "chromosome": "X",
+                "position_1based": variant_pos,
+            },
+            "par_alias_applied": True,
+            "extracted_ref": homologous_ref,
+        }
+    )
+    return homologous, provenance
 
 
 def _read_fasta_region(

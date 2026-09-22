@@ -52,19 +52,20 @@ from evovariant_tr.cost_policy import (  # noqa: E402
     assert_paid_compute_allowed,
 )
 from evovariant_tr.sequence_mutate import reverse_complement  # noqa: E402
-from evovariant_tr.sequence_window import generate_reference_window  # noqa: E402
+from evovariant_tr.sequence_window import (  # noqa: E402
+    generate_reference_window_with_par_alias,
+)
 
 SCRIPTS_ROOT = REPO_ROOT / "scripts"
 if str(SCRIPTS_ROOT) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_ROOT))
 
 FORMAL_MODE = os.environ.get("EVOVARIANT_TR_FORMAL_MODE") == "1"
-FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (
-    os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1"
-)
+FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1")
+FORMAL_RESUME_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_MODE") == "1")
 OVERNIGHT_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
-if OVERNIGHT_MODE and FORMAL_PREFLIGHT_MODE:
-    raise RuntimeError("overnight mode cannot be combined with formal preflight mode")
+if sum((FORMAL_PREFLIGHT_MODE, FORMAL_RESUME_MODE, OVERNIGHT_MODE)) > 1:
+    raise RuntimeError("formal preflight, resume, and overnight modes are mutually exclusive")
 FORMAL_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 FORMAL_RUN_SUFFIX = os.environ.get("EVOVARIANT_TR_FORMAL_RUN_SUFFIX", "full")
 if not FORMAL_RUN_SUFFIX.replace("-", "").replace("_", "").isalnum():
@@ -76,6 +77,8 @@ if FORMAL_MODE:
     default_approval = (
         "artifacts/approvals/formal_64_preflight_20260921.json"
         if FORMAL_PREFLIGHT_MODE
+        else "artifacts/approvals/formal_phase6_resume_20260922.json"
+        if FORMAL_RESUME_MODE
         else "artifacts/approvals/overnight_completion_20260922.json"
         if OVERNIGHT_MODE
         else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
@@ -115,7 +118,9 @@ HISTORICAL_CACHE_PATH = REPO_ROOT / (
 PREFLIGHT_GATE_PATH = REPO_ROOT / (
     os.environ.get(
         "EVOVARIANT_TR_FORMAL_PREFLIGHT_GATE_PATH",
-        "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
+        "artifacts/phase6/formal_phase6_resume_preflight_20260922.json"
+        if FORMAL_RESUME_MODE
+        else "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
     )
 )
 
@@ -135,10 +140,18 @@ CONTEXT_LENGTH_BP = 8192
 GPU_TYPE = "H100"
 GPU_RATE_USD_PER_HOUR = 3.95
 MODEL_SEQUENCE_BATCH_SIZE = 8
+FORMAL_PAR_ALIAS_IDS = frozenset(
+    {
+        "GRCh38:Y:1286043:T>C",
+        "GRCh38:Y:1309674:G>T",
+    }
+)
 SHARD_SIZE = 32
 MAX_APPROVAL_BUDGET_USD = (
     0.75
     if FORMAL_PREFLIGHT_MODE
+    else float(os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_HARD_CAP_USD", "2.5"))
+    if FORMAL_RESUME_MODE
     else 14.0
     if OVERNIGHT_MODE
     else 8.0
@@ -148,12 +161,15 @@ MAX_APPROVAL_BUDGET_USD = (
 MAX_RATE_ESTIMATE_USD = (
     0.65
     if FORMAL_PREFLIGHT_MODE
+    else float(os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_SAFETY_STOP_USD", "2.25"))
+    if FORMAL_RESUME_MODE
     else 13.5
     if OVERNIGHT_MODE
     else 7.75
     if FORMAL_MODE
     else MAX_APPROVAL_BUDGET_USD - 0.25
 )
+LOCKED_TEST_RESERVE_USD = 2.5 if OVERNIGHT_MODE else 0.0
 MAX_MODAL_BATCH_SECONDS = 900
 
 BASE_IMAGE = modal.Image.from_registry("nvcr.io/nvidia/pytorch:24.07-py3", add_python="3.12")
@@ -352,18 +368,28 @@ def _prepare_batch(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
         else:
             candidates = (chromosome, f"chr{chromosome}")
         window = None
+        reference_provenance: dict[str, Any] | None = None
+        last_error: ValueError | None = None
         for candidate in candidates:
             try:
-                window = generate_reference_window(
+                window, reference_provenance = generate_reference_window_with_par_alias(
                     FASTA_PATH,
                     FAI_PATH,
                     candidate,
                     int(row["position_1based"]),
+                    str(row["reference"]),
+                    allow_par_alias=(
+                        FORMAL_MODE
+                        and str(row["normalized_variant_id"]) in FORMAL_PAR_ALIAS_IDS
+                    ),
                 )
                 break
-            except ValueError:
+            except ValueError as exc:
+                last_error = exc
                 continue
         if window is None:
+            if last_error is not None:
+                raise last_error
             raise RuntimeError(
                 f"could not load reference window for {row['normalized_variant_id']}"
             )
@@ -384,10 +410,16 @@ def _prepare_batch(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
         ]
         if any(len(sequence) != CONTEXT_LENGTH_BP for sequence in sequences):
             raise RuntimeError("sequence construction did not preserve the 8192-bp context")
+        if reference_provenance is None:
+            raise RuntimeError("reference extraction did not return provenance")
+        reference_provenance["reference_asset"] = (
+            "data/reference/Homo_sapiens_assembly38.fasta"
+        )
         payload.append(
             {
                 "normalized_variant_id": row["normalized_variant_id"],
                 "sequences": sequences,
+                "reference_provenance": reference_provenance,
             }
         )
     return payload
@@ -505,7 +537,11 @@ class DevelopmentEvo2Worker:
         }
 
 
-def _score_row(record: dict[str, Any], remote: dict[str, Any]) -> dict[str, Any]:
+def _score_row(
+    record: dict[str, Any],
+    remote: dict[str, Any],
+    reference_provenance: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     raw_scores = remote.get("raw_scores")
     if not isinstance(raw_scores, list) or len(raw_scores) != 4:
         raise RuntimeError("remote response did not contain four raw orientation scores")
@@ -516,6 +552,17 @@ def _score_row(record: dict[str, Any], remote: dict[str, Any]) -> dict[str, Any]
     delta_forward = forward_alt - forward_ref
     delta_reverse = reverse_alt - reverse_ref
     delta_primary = (delta_forward + delta_reverse) / 2.0
+    provenance = {
+        "model_id": MODEL_ID,
+        "checkpoint": MODEL_ID,
+        "model_revision": MODEL_REVISION,
+        "context_length_bp": CONTEXT_LENGTH_BP,
+        "orientation": "forward_and_reverse",
+        "score_semantics": "alternate_minus_reference_log_likelihood",
+        "label_attached_after_remote_response": True,
+    }
+    if reference_provenance is not None:
+        provenance.update(reference_provenance)
     return {
         "normalized_variant_id": record["normalized_variant_id"],
         "split": record["split"],
@@ -533,15 +580,7 @@ def _score_row(record: dict[str, Any], remote: dict[str, Any]) -> dict[str, Any]
         "orientation_disagreement": abs(delta_forward - delta_reverse),
         "coverage_status": "COMPLETED",
         "failure_reason": None,
-        "provenance": {
-            "model_id": MODEL_ID,
-            "checkpoint": MODEL_ID,
-            "model_revision": MODEL_REVISION,
-            "context_length_bp": CONTEXT_LENGTH_BP,
-            "orientation": "forward_and_reverse",
-            "score_semantics": "alternate_minus_reference_log_likelihood",
-            "label_attached_after_remote_response": True,
-        },
+        "provenance": provenance,
     }
 
 
@@ -580,6 +619,8 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
         "execution_mode": (
             "FORMAL_64_PREFLIGHT"
             if FORMAL_PREFLIGHT_MODE
+            else "FORMAL_PHASE6_RESUME"
+            if FORMAL_RESUME_MODE
             else "FORMAL_OVERNIGHT_COMPLETION"
             if OVERNIGHT_MODE
             else "FORMAL_BUDGETED"
@@ -606,6 +647,7 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
         "model_sequence_batch_size": MODEL_SEQUENCE_BATCH_SIZE,
         "approval_max_budget_usd": approval["max_budget_usd"],
         "rate_estimate_stop_usd": MAX_RATE_ESTIMATE_USD,
+        "locked_test_reserve_min_usd": LOCKED_TEST_RESERVE_USD,
         "labels_remote_transport": False,
         "formal_record_limit": FORMAL_LIMIT if FORMAL_MODE else None,
         "formal_preflight": FORMAL_PREFLIGHT_MODE,
@@ -645,8 +687,12 @@ def _load_historical_cache() -> dict[str, dict[str, Any]]:
 
 @app.local_entrypoint()
 def main() -> None:
+    global LOCKED_TEST_RESERVE_USD
+
     if FORMAL_PREFLIGHT_MODE:
         from validate_formal_64_preflight_approval import validate_approval
+    elif FORMAL_RESUME_MODE:
+        from validate_formal_phase6_resume import validate_approval, validate_preflight
     elif OVERNIGHT_MODE:
         from validate_overnight_completion_approval import validate_approval
     elif FORMAL_MODE:
@@ -660,6 +706,10 @@ def main() -> None:
         if FORMAL_MODE
         else validate_development_approval(APPROVAL_PATH, REPO_ROOT)
     )
+    if FORMAL_RESUME_MODE:
+        validate_preflight(PREFLIGHT_GATE_PATH, APPROVAL_PATH)
+    if OVERNIGHT_MODE:
+        LOCKED_TEST_RESERVE_USD = float(approval["budget_control"]["locked_test_reserve_min_usd"])
     required_files = (
         DEVELOPMENT_MANIFEST_PATH,
         LOCKED_MANIFEST_PATH,
@@ -675,9 +725,7 @@ def main() -> None:
     source_record_count = len(records)
     if FORMAL_MODE and FORMAL_LIMIT:
         if FORMAL_PREFLIGHT_MODE and FORMAL_LIMIT != 64:
-            raise ValueError(
-                "formal preflight mode requires EVOVARIANT_TR_FORMAL_LIMIT=64"
-            )
+            raise ValueError("formal preflight mode requires EVOVARIANT_TR_FORMAL_LIMIT=64")
         if FORMAL_LIMIT < 1 or FORMAL_LIMIT > len(records):
             raise ValueError("EVOVARIANT_TR_FORMAL_LIMIT must be between 1 and 4,000")
         records = records[:FORMAL_LIMIT]
@@ -687,20 +735,16 @@ def main() -> None:
                 "label_blind": True,
                 "selection_seed": FORMAL_PREFLIGHT_SEED,
                 "train_count": sum(row.get("split") == "TRAIN" for row in records),
-                "validation_count": sum(
-                    row.get("split") == "VALIDATION" for row in records
-                ),
+                "validation_count": sum(row.get("split") == "VALIDATION" for row in records),
                 "chromosome_distribution": dict(
                     sorted(Counter(str(row["chromosome"]) for row in records).items())
                 ),
-                "unique_gene_count": len(
-                    {str(row["gene_symbol"]) for row in records}
-                ),
+                "unique_gene_count": len({str(row["gene_symbol"]) for row in records}),
             }
     if FORMAL_MODE:
         manifest_metadata["source_record_count"] = source_record_count
         manifest_metadata["execution_record_count"] = len(records)
-        if not FORMAL_LIMIT:
+        if not FORMAL_LIMIT and not FORMAL_RESUME_MODE:
             if not PREFLIGHT_GATE_PATH.is_file():
                 raise RuntimeError(
                     "full formal Evo2 execution requires the passing 64-row preflight gate: "
@@ -717,21 +761,55 @@ def main() -> None:
                 raise RuntimeError(
                     "formal preflight gate is not PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET"
                 )
+            if OVERNIGHT_MODE:
+                approval_binding = preflight.get("approval")
+                if not isinstance(approval_binding, dict):
+                    raise RuntimeError("overnight preflight gate has no approval binding")
+                if approval_binding.get("artifact_path") != str(
+                    APPROVAL_PATH.relative_to(REPO_ROOT)
+                ):
+                    raise RuntimeError("overnight preflight gate approval path is stale")
+                if approval_binding.get("artifact_sha256") != _sha256_file(APPROVAL_PATH):
+                    raise RuntimeError("overnight preflight gate approval hash is stale")
+                if approval_binding.get("git_commit") != approval["git"]["commit"]:
+                    raise RuntimeError("overnight preflight gate approval commit is stale")
+                if (
+                    float(
+                        preflight.get("projection", {}).get("locked_test_reserve_min_usd", math.nan)
+                    )
+                    < LOCKED_TEST_RESERVE_USD
+                ):
+                    raise RuntimeError(
+                        "overnight preflight gate does not preserve the locked-test reserve"
+                    )
             if not preflight.get("formal_full_launch_authorized"):
                 raise RuntimeError("formal preflight gate does not authorize the full run")
-            if not math.isfinite(projected_usd) or projected_usd > MAX_RATE_ESTIMATE_USD:
+            if (
+                not math.isfinite(projected_usd)
+                or projected_usd + LOCKED_TEST_RESERVE_USD > MAX_RATE_ESTIMATE_USD
+            ):
                 raise RuntimeError(
-                    "formal preflight projected cost exceeds the runner safety stop: "
-                    f"{projected_usd} > {MAX_RATE_ESTIMATE_USD}"
+                    "formal preflight projected cost plus locked-test reserve exceeds the "
+                    "runner safety stop: "
+                    f"{projected_usd + LOCKED_TEST_RESERVE_USD} > {MAX_RATE_ESTIMATE_USD}"
                 )
-    plan = _build_plan(approval, manifest_metadata)
-    plan_hash = _sha256_bytes(_stable_bytes(plan))
-    if PLAN_PATH.is_file():
-        existing_plan = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
-        if existing_plan != {**plan, "execution_plan_sha256": plan_hash}:
-            raise RuntimeError("existing Phase 6 execution plan differs from the approved plan")
+    if FORMAL_RESUME_MODE:
+        if not PLAN_PATH.is_file():
+            raise RuntimeError("Phase 6 resume requires the existing execution plan")
+        plan_document = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
+        plan_hash = plan_document.get("execution_plan_sha256")
+        if not isinstance(plan_hash, str):
+            raise RuntimeError("existing Phase 6 execution plan has no hash")
+        plan = plan_document
     else:
-        _atomic_write(PLAN_PATH, {**plan, "execution_plan_sha256": plan_hash})
+        plan = _build_plan(approval, manifest_metadata)
+        plan_hash = _sha256_bytes(_stable_bytes(plan))
+        if PLAN_PATH.is_file():
+            existing_plan = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
+            if existing_plan != {**plan, "execution_plan_sha256": plan_hash}:
+                raise RuntimeError("existing Phase 6 execution plan differs from the approved plan")
+        else:
+            _atomic_write(PLAN_PATH, {**plan, "execution_plan_sha256": plan_hash})
 
     billing_before = _billing_snapshot()
     started = time.monotonic()
@@ -743,6 +821,8 @@ def main() -> None:
     new_shards = 0
     stored_shards_reused = 0
     remote_invocations = 0
+    remote_new_records_this_execution = 0
+    historical_cache_hits_this_execution = 0
     shard_documents: list[dict[str, Any]] = []
     estimated_usd = 0.0
     rate_samples: list[float] = []
@@ -774,9 +854,10 @@ def main() -> None:
             cache_hits += len(stored_rows)
             historical_cache_hits += int(stored.get("historical_cache_hits", 0))
             stored_rate = float(stored.get("client_wall_rate_estimate_usd", 0.0))
-            estimated_usd += stored_rate
             if math.isfinite(stored_rate) and stored_rate > 0.0:
                 rate_samples.append(stored_rate)
+            if not FORMAL_RESUME_MODE:
+                estimated_usd += stored_rate
             continue
 
         cached_records = [
@@ -786,15 +867,19 @@ def main() -> None:
         ]
         pending_records = [record for record in shard_records if record not in cached_records]
         if pending_records:
-            if estimated_usd >= MAX_RATE_ESTIMATE_USD:
+            if estimated_usd + LOCKED_TEST_RESERVE_USD >= MAX_RATE_ESTIMATE_USD:
                 stop_reason = (
-                    "rate-based additional-cost estimate reached the approval safety reserve"
+                    "rate-based additional-cost estimate reached the approval safety stop "
+                    "after preserving the locked-test reserve"
                 )
                 break
             if rate_samples:
                 predicted_next = max(rate_samples[-3:])
-                if estimated_usd + predicted_next > MAX_RATE_ESTIMATE_USD:
-                    stop_reason = "next shard would exceed the approval safety reserve"
+                if estimated_usd + predicted_next + LOCKED_TEST_RESERVE_USD > MAX_RATE_ESTIMATE_USD:
+                    stop_reason = (
+                        "next shard would exceed the approval safety stop after preserving "
+                        "the locked-test reserve"
+                    )
                     break
 
         response: dict[str, Any] = {
@@ -806,6 +891,7 @@ def main() -> None:
         client_estimate = 0.0
         function_call_id: str | None = None
         scored_by_id: dict[str, dict[str, Any]] = {}
+        reference_provenance_by_id: dict[str, dict[str, Any]] = {}
         for record in cached_records:
             identity = str(record["normalized_variant_id"])
             cached = historical_cache[identity]
@@ -826,7 +912,21 @@ def main() -> None:
 
         if pending_records:
             try:
-                payload = _prepare_batch(pending_records)
+                prepared_payload = _prepare_batch(pending_records)
+                reference_provenance_by_id = {
+                    str(item["normalized_variant_id"]): cast(
+                        dict[str, Any], item["reference_provenance"]
+                    )
+                    for item in prepared_payload
+                }
+                payload = [
+                    {
+                        key: value
+                        for key, value in item.items()
+                        if key != "reference_provenance"
+                    }
+                    for item in prepared_payload
+                ]
             except Exception as exc:  # noqa: BLE001 - preserve local input evidence
                 failure = f"{type(exc).__name__}: {exc}"
                 stop_reason = "local input preparation failed; no automatic retry was attempted"
@@ -848,9 +948,9 @@ def main() -> None:
             client_estimate = client_seconds / 3600.0 * GPU_RATE_USD_PER_HOUR
             estimated_usd += client_estimate
             rate_samples.append(client_estimate)
-            if estimated_usd > MAX_APPROVAL_BUDGET_USD:
-                failure = "post-call rate estimate exceeded the hard approval cap"
-                stop_reason = "hard approval cap exceeded; output was not accepted"
+            if estimated_usd + LOCKED_TEST_RESERVE_USD > MAX_APPROVAL_BUDGET_USD:
+                failure = "post-call rate estimate exceeded the hard approval cap with reserve"
+                stop_reason = "hard approval cap exceeded after preserving the locked-test reserve"
                 break
             if response.get("status") != "completed":
                 failure = "remote worker returned a non-completed status"
@@ -872,12 +972,18 @@ def main() -> None:
                 break
             for record in pending_records:
                 identity = str(record["normalized_variant_id"])
-                scored_by_id[identity] = _score_row(record, by_id[identity])
+                scored_by_id[identity] = _score_row(
+                    record,
+                    by_id[identity],
+                    reference_provenance_by_id.get(identity),
+                )
 
         scored_rows = [
             scored_by_id[str(record["normalized_variant_id"])] for record in shard_records
         ]
         historical_cache_hits += len(cached_records)
+        historical_cache_hits_this_execution += len(cached_records)
+        remote_new_records_this_execution += len(pending_records)
         shard_payload = {
             "execution_plan_sha256": plan_hash,
             "shard_index": shard_index,
@@ -956,9 +1062,7 @@ def main() -> None:
         "protocol_hash": PROTOCOL_HASH,
         "git": {
             "commit": _git_value("rev-parse", "HEAD"),
-            "dirty": bool(
-                _git_value("status", "--porcelain=v1", "--untracked-files=no")
-            ),
+            "dirty": bool(_git_value("status", "--porcelain=v1", "--untracked-files=no")),
         },
         "dataset": {
             **manifest_metadata,
@@ -988,12 +1092,15 @@ def main() -> None:
             "historical_cache_reuse_records": historical_cache_hits,
             "total_cache_hit_records": cache_hits,
             "new_remote_records": remote_new_records,
+            "new_remote_records_this_execution": remote_new_records_this_execution,
+            "historical_cache_hits_this_execution": historical_cache_hits_this_execution,
             "remote_invocations": remote_invocations,
             "resume_policy": "verified completed shards are skipped; tampering fails closed",
         },
         "cost": {
             "approval_max_budget_usd": approval["max_budget_usd"],
             "rate_estimate_stop_usd": MAX_RATE_ESTIMATE_USD,
+            "locked_test_reserve_min_usd": LOCKED_TEST_RESERVE_USD,
             "cumulative_client_wall_rate_estimate_usd": round(estimated_usd, 6),
             "gpu_rate_usd_per_hour": GPU_RATE_USD_PER_HOUR,
             "pricing_source": "https://modal.com/pricing",
@@ -1022,9 +1129,7 @@ def main() -> None:
                 6,
             ),
             "estimated_usd_per_new_remote_record": round(
-                estimated_usd / remote_new_records
-                if remote_new_records > 0
-                else 0.0,
+                estimated_usd / remote_new_records if remote_new_records > 0 else 0.0,
                 9,
             ),
             "function_call_ids": function_call_ids,
@@ -1038,9 +1143,7 @@ def main() -> None:
             "resume": {
                 "stored_shards_reused": stored_shards_reused,
                 "remote_invocations_this_execution": remote_invocations,
-                "zero_recomputation": bool(
-                    stored_shards_reused > 0 and remote_invocations == 0
-                ),
+                "zero_recomputation": bool(stored_shards_reused > 0 and remote_invocations == 0),
             },
             "failure": failure,
             "stop_reason": stop_reason,
@@ -1072,9 +1175,8 @@ def main() -> None:
             "nonfinite_reverse_complement_scores": 0,
             "invalid_aggregate_scores": 0,
             "unexpected_ids": 0,
-            "duplicate_results": len(all_rows) - len(
-                {str(row["normalized_variant_id"]) for row in all_rows}
-            ),
+            "duplicate_results": len(all_rows)
+            - len({str(row["normalized_variant_id"]) for row in all_rows}),
             "labels_sent": False,
             "locked_test_rows": 0,
         },

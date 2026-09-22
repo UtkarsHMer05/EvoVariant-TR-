@@ -30,6 +30,10 @@ OUTPUT = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_PREFLIGHT_GATE_ARTIFACT",
     "artifacts/phase6/formal_budgeted_preflight_gate_20260921.json",
 )
+APPROVAL_PATH = REPO_ROOT / os.environ.get(
+    "EVOVARIANT_TR_FORMAL_APPROVAL_PATH",
+    "artifacts/approvals/overnight_completion_20260922.json",
+)
 SAMPLE_ROWS = 64
 FORMAL_ROWS = 4_000
 FORMAL_NEW_ROWS = 3_944
@@ -75,6 +79,14 @@ def main() -> int:
     sample = read_json(SAMPLE_ARTIFACT)
     estimate = read_json(COST_ESTIMATE)
     errors: list[str] = []
+    approval: dict[str, Any] | None = None
+    if OVERNIGHT_MODE:
+        try:
+            from validate_overnight_completion_approval import validate_approval
+
+            approval = validate_approval(APPROVAL_PATH)
+        except Exception as exc:  # noqa: BLE001 - record a fail-closed gate error
+            errors.append(f"overnight approval validation failed: {type(exc).__name__}: {exc}")
 
     if sample.get("status") != "PASS_FORMAL_SAMPLE":
         errors.append("sample artifact status is not PASS_FORMAL_SAMPLE")
@@ -230,15 +242,24 @@ def main() -> int:
     projected_total = (
         projected_evo2 + estimate_nt + estimate_cad if projected_evo2 is not None else None
     )
-    if projected_total is not None and projected_total > FORMAL_SAFETY_STOP_USD:
+    locked_reserve = (
+        float(approval["budget_control"]["locked_test_reserve_min_usd"])
+        if approval is not None
+        else 0.0
+    )
+    if (
+        projected_total is not None
+        and projected_total + locked_reserve > FORMAL_SAFETY_STOP_USD
+    ):
         errors.append(
-            "projected cumulative additional cost exceeds safety stop: "
-            f"{projected_total:.6f} > {FORMAL_SAFETY_STOP_USD:.2f}"
+            "projected cumulative additional cost plus locked-test reserve exceeds "
+            "safety stop: "
+            f"{projected_total + locked_reserve:.6f} > {FORMAL_SAFETY_STOP_USD:.2f}"
         )
-    if projected_total is not None and projected_total > FORMAL_HARD_CAP_USD:
+    if projected_total is not None and projected_total + locked_reserve > FORMAL_HARD_CAP_USD:
         errors.append(
-            "projected cumulative additional cost exceeds hard cap: "
-            f"{projected_total:.6f} > {FORMAL_HARD_CAP_USD:.2f}"
+            "projected cumulative additional cost plus locked-test reserve exceeds hard cap: "
+            f"{projected_total + locked_reserve:.6f} > {FORMAL_HARD_CAP_USD:.2f}"
         )
 
     status = "PASS_FORMAL_PREFLIGHT_WITHIN_BUDGET" if not errors else "FAIL_FORMAL_PREFLIGHT"
@@ -271,6 +292,10 @@ def main() -> int:
             "planned_nucleotide_transformer_usd": estimate_nt,
             "planned_caduceus_usd": estimate_cad,
             "projected_cumulative_additional_usd": projected_total,
+            "locked_test_reserve_min_usd": locked_reserve,
+            "projected_cumulative_with_reserve_usd": (
+                projected_total + locked_reserve if projected_total is not None else None
+            ),
             "formal_runner_safety_stop_usd": FORMAL_SAFETY_STOP_USD,
             "formal_hard_cap_usd": FORMAL_HARD_CAP_USD,
             "current_preflight_safety_stop_usd": PREFLIGHT_SAFETY_STOP_USD,
@@ -284,6 +309,22 @@ def main() -> int:
                 "plus frozen NT/Caduceus estimates"
             ),
         },
+        "approval": (
+            {
+                "artifact_path": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
+                "artifact_sha256": sha256_file(APPROVAL_PATH),
+                "git_commit": approval["git"]["commit"],
+                "hard_cap_usd": approval["budget_control"]["hard_cap_usd"],
+                "runner_safety_stop_usd": approval["budget_control"][
+                    "runner_safety_stop_usd"
+                ],
+                "locked_test_reserve_min_usd": approval["budget_control"][
+                    "locked_test_reserve_min_usd"
+                ],
+            }
+            if approval is not None
+            else None
+        ),
         "errors": errors,
         "labels_sent_to_modal": False,
         "locked_test_access": "prohibited",

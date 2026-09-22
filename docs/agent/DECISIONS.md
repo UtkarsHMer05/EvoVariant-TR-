@@ -2868,6 +2868,112 @@ Validation:
 provenance reconciliation, formal manifest hashes, and locked-test manifest were verified. Modal
 reported `$0.00` billed at the available workspace snapshots and no active containers remained.
 
+## D-095 — Permit only the verified chrY PAR hard-mask extraction alias for the remaining Phase 6 rows
+Status: ACCEPTED
+Date: 2026-09-22
+Supersedes: D-063 only for the two explicitly verified chrY PAR1 context extractions; D-063 remains
+unchanged for every other reference mismatch.
+
+Context:
+The resumed formal Evo2 run completed 3,968 of 4,000 development records and stopped before
+submitting the final 32-row shard because `GRCh38:Y:1286043:T>C` and
+`GRCh38:Y:1309674:G>T` resolved to `N` at their chrY central positions in the frozen Broad/GATK
+GRCh38 analysis-set FASTA. The GATK reference documentation states that the analysis set
+hard-masks the chrY PARs. The Genome Reference Consortium defines both loci as PAR1, and the
+unmasked hg38 assembly has identical complete 8,192-bp X/Y windows at the same coordinates with
+the expected manifest REF alleles.
+
+Decision:
+Adopt the dated additive reference-handling deviation `DEV-2026-001` for this continuation only.
+For sequence-model context extraction, an eligible chrY variant may use its same-coordinate
+homologous chrX PAR sequence only when all of the following hold:
+
+1. The original locus is inside an official GRCh38 PAR.
+2. The frozen chrY analysis-set reference is hard-masked.
+3. The homologous chrX reference matches the manifest REF.
+4. The complete 8,192-bp context is inside the homologous PAR and is unmasked.
+5. The mapping is deterministic and independently validated against the unmasked assembly.
+
+The original chrY normalized variant ID, chromosome, position, label, split, and provenance remain
+unchanged. The output provenance must record `original_locus`, `extraction_locus`,
+`par_alias_applied`, `reference_asset`, `expected_ref`, and `extracted_ref`. No generic
+reference-mismatch fallback is permitted. The current formal amendment authorizes exactly the two
+listed IDs; no additional chrY PAR records were found in the 4,000-row manifest.
+
+The audit also found two mitochondrial records with a single `N` at `chrM:3107` inside their
+8,192-bp context, but their central REF alleles match and they are not eligible for this PAR-only
+alias. No PAR-boundary context crossings or other central reference mismatches were found.
+
+Evidence:
+`artifacts/reference/par_mask_resolution_20260922.json` records the frozen asset hashes, official
+PAR definitions, both masked chrY windows, both matching chrX bases, complete X/Y unmasked-window
+hash equality, the four-record masked-context audit, and unchanged formal identities. The
+authoritative references are the GATK Reference Genome Components page, the Genome Reference
+Consortium GRCh38 overview, and the UCSC hg38 sequence REST API.
+
+Consequences:
+The formal 4,000 record identities and estimand remain unchanged. Only the two model sequence
+contexts may be extracted from chrX because the analysis-set chrY PAR representation is
+intentionally masked. The remaining Phase 6 retry remains separately approval-gated at the new
+HEAD with a `$0.50` hard cap and `$0.40` safety stop. NT, Caduceus, fine-tuning, locked-test
+inference, and Phase 7 remain outside that approval.
+
+Validation:
+The PAR resolution artifact parses and hashes successfully. The canonical extractor's focused
+tests cover both current variants, a normal chrY PAR locus, an ordinary non-PAR chrY locus, a
+chrX locus, homologous-REF mismatch rejection, PAR-boundary rejection, and deterministic output.
+Ruff and Python compilation pass for the touched files. Full local validation remains required
+before the fresh paid approval is created.
+
+## D-096 — Accept the formal Evo2 Phase 6 cohort and stop at the next allocation boundary
+Status: ACCEPTED
+Date: 2026-09-22
+Supersedes: D-095 only for the execution outcome; the scoped chrY PAR alias and its guards remain
+the governing reference-handling decision for the two affected records.
+
+Context:
+The D-095/DEV-2026-001 PAR resolution passed its focused tests and full local validation. A fresh
+approval bound to HEAD `535d73e56d10ddea5d2ef0098bb7251a57d259d7` authorized only the remaining
+32 formal Evo2 records with a `$0.50` hard cap and `$0.40` safety stop. The resumed run reused the
+124 verified completed shards and submitted one new 32-row shard.
+
+Decision:
+Accept the formal Evo2 Phase 6 development cohort as `PASS` within its exact approved scope:
+4,000/4,000 rows, 125 complete shards, 124 stored-shard cache hits, 32 newly scored remote rows,
+zero pending rows, zero duplicates, zero unexpected IDs, zero reference mismatches, finite forward,
+reverse-complement, and aggregate scores, no labels sent to Modal, and zero locked-test rows. The
+final artifact and prediction stream are the authoritative outputs for this bounded Evo2 track.
+Stop paid work at this allocation boundary. Do not launch NT, Caduceus, fine-tuning, Phase 7, or
+locked-test inference without a separate explicit allocation and approval. Do not treat this
+bounded Evo2 result as a PASS for the broader multi-model Phase 6 benchmark.
+
+Evidence:
+The final artifact is
+`artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json`, SHA-256
+`b04940b3b5845fd57144f54a9862da8d9d89fb1b98d9c79fc45364e7a21ef54d`. The prediction stream is
+`research/runs/phase6_formal_evo2_20260921_full_overnight_20260922/predictions.jsonl`, SHA-256
+`088e39fcfa45b2af9cd8f11cbb803213d9030c92036fc9f27f577c3912693751`. The approval is
+`artifacts/approvals/formal_phase6_par_resume_20260922.json`, SHA-256
+`f345f969f996a48ba33db9830d89c718d76fa64d7416e89209da5cef42758ae7`, and the preflight is
+`artifacts/phase6/formal_phase6_par_resume_preflight_20260922.json`, SHA-256
+`af8e052dde5f163d57951a0bdc7a41cef97da235c204f496597073d652beff17`. The PAR resolution artifact
+is SHA-256 `2f71248d7a97329db24301a73bdd427a2673af7ebc62a29a2ee4467060815b42`.
+
+Consequences:
+The formal Evo2 subtrack is complete and its paid workers are shut down. The observed final app
+usage was `$0.09374570`, with a runner wall-rate estimate of `$0.111328`; workspace billing stayed
+at `$0.00` billed. The final container inventory was empty. Using the exact prior derived free
+headroom of `$5.94229534`, the derived remaining headroom is approximately `$5.84854964` (about
+`$5.85`). The broader Phase 6 multi-model benchmark remains partial/allocation-gated, and later
+scientific phases remain at their documented statuses.
+
+Validation:
+The final no-spend integrity audit passed with exact manifest/order identity, 125 contiguous
+shards, payload and plan hashes, 4,000 unique IDs, zero pending markers, finite score arithmetic,
+the two exact PAR provenance records, and all scientific boundary checks. `make validate` passed
+before paid execution with 715 tests passed, 33 deselected, and 95.01% coverage. No active Modal
+containers remained after completion.
+
 ## Template for new decisions
 
 ### D-XXX — Title

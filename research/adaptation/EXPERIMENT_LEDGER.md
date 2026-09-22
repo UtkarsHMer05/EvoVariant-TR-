@@ -24,6 +24,6 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Statistics / figures / report | NOT STARTED | no model results to plot | none | predictions |
 | Judge notebook | IMPLEMENTED, RESULT CELLS PENDING | 36 ordered sections; canonical code source display | no locked data access | training outputs |
 | Local validation | PASS | `make validate`: 734 passed, 33 deselected, 95.07% core coverage | software-only | commit |
-| Adaptation branch push | PASS | commit `69ad3e6` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
+| Adaptation branch push | PASS | commit `a4c6cd0` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
 
 No holdout or locked-test result is inferred from training progress or the smoke test.

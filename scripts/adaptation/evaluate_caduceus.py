@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 import math
+import os
 import time
 from pathlib import Path
 
@@ -54,6 +55,9 @@ def main() -> None:
     args = parser.parse_args()
     output = Path(args.output)
     report_path = output.with_suffix(".json")
+    attempt_path = output.with_name(f"{output.stem}.attempt.json")
+    temporary_csv = output.with_name(output.name + ".tmp")
+    temporary_json = report_path.with_name(report_path.name + ".tmp")
     selection_hash = None
     calibration_report = None
     calibration_report_hash = None
@@ -86,8 +90,10 @@ def main() -> None:
         ):
             raise SystemExit("calibration report does not match the closed TRAIN-OOF selection")
         calibration_report_hash = sha256_file(calibration_path)
-    if args.split == "validation" and (output.exists() or report_path.exists()):
-        raise SystemExit("validation output already exists; the 801-row holdout is one-shot")
+    if args.split == "validation" and any(
+        path.exists() for path in (attempt_path, output, report_path, temporary_csv, temporary_json)
+    ):
+        raise SystemExit("validation was already attempted or has partial output; refusing a rerun")
     import torch
     from pyfaidx import Fasta
 
@@ -95,8 +101,6 @@ def main() -> None:
     reference_sha256 = sha256_file(args.reference)
     if args.split == "validation" and selection.get("reference_sha256") != reference_sha256:
         raise SystemExit("evaluation reference FASTA does not match the closed selection")
-    train_rows, validation_rows = load_formal_rows(root)
-    rows = train_rows if args.split == "train" else validation_rows
     expected_metadata = None
     selected = None
     if args.split == "validation":
@@ -145,7 +149,35 @@ def main() -> None:
         expected_metadata=expected_metadata,
         map_location=args.device,
     )
+    attempt_hash = None
+    if args.split == "validation":
+        output.parent.mkdir(parents=True, exist_ok=True)
+        attempt = {
+            "status": "ATTEMPT_STARTED",
+            "protocol_sha256": PROTOCOL_HASH,
+            "selection_lock_sha256": selection_hash,
+            "calibration_report_sha256": calibration_report_hash,
+            "reference_sha256": reference_sha256,
+            "checkpoint_sha256": sha256_file(args.checkpoint),
+        }
+        try:
+            descriptor = os.open(attempt_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        except FileExistsError as err:
+            raise SystemExit("validation attempt marker already exists; refusing a rerun") from err
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(json.dumps(attempt, indent=2, sort_keys=True) + "\n")
+        attempt_hash = sha256_file(attempt_path)
+        if args.state:
+            record_stage(
+                args.state,
+                project_root=root,
+                stage="CADUCEUS_HOLDOUT_ATTEMPTED",
+                artifacts=(attempt_path,),
+                details=attempt,
+            )
     fasta = Fasta(args.reference, as_raw=True, sequence_always_upper=True)
+    train_rows, validation_rows = load_formal_rows(root)
+    rows = train_rows if args.split == "train" else validation_rows
     metrics, probabilities = evaluate(
         model,
         tokenizer,
@@ -178,7 +210,6 @@ def main() -> None:
     else:
         calibrated_metrics_at_oof_mcc_threshold = None
     output.parent.mkdir(parents=True, exist_ok=True)
-    temporary_csv = output.with_name(output.name + ".tmp")
     with temporary_csv.open("w", newline="", encoding="utf-8") as handle:
         fieldnames = ["normalized_variant_id", "gene_symbol", "label", "probability"]
         if calibrated_probabilities is not None:
@@ -220,6 +251,7 @@ def main() -> None:
         "calibration_oof_predictions_sha256": calibration_report["oof_predictions_sha256"]
         if calibration_report is not None
         else None,
+        "evaluation_attempt_sha256": attempt_hash,
         "rows": len(rows),
         "model_id": MODEL_IDS["caduceus"],
         "revision": MODEL_REVISIONS["caduceus"],
@@ -238,7 +270,6 @@ def main() -> None:
         "checkpoint_sha256": sha256_file(args.checkpoint),
         "data": verify_formal_data(root),
     }
-    temporary_json = report_path.with_name(report_path.name + ".tmp")
     temporary_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     temporary_json.replace(report_path)
     if args.split == "validation" and args.state:
@@ -246,7 +277,7 @@ def main() -> None:
             args.state,
             project_root=root,
             stage="CADUCEUS_HOLDOUT_DONE",
-            artifacts=(output, report_path),
+            artifacts=(attempt_path, output, report_path),
             details=report,
         )
     print(json.dumps(report, indent=2, sort_keys=True))

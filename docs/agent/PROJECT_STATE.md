@@ -70,6 +70,9 @@ locked label or locked prediction was read.
 
 ## Current state — 2026-09-21
 
+> Historical snapshot retained for provenance; the 2026-09-22 section above is authoritative for
+> the current Phase 6–19 state.
+
 Repository: `https://github.com/UtkarsHMer05/EvoVariant-TR-`
 
 Current phase: `PHASE 6/7 FORMAL BUDGETED PRE-COMPUTE GATE / PHASE 15/16/17 LOCAL CONTINUATION`

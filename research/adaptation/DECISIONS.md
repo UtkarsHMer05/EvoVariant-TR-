@@ -17,6 +17,7 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 | D-A009 | Use gene-aware paired bootstrap and Holm correction for uncertainty/comparisons. | Accounts for grouped identities and multiple primary comparisons. | FROZEN |
 | D-A010 | Keep canonical ML logic in source files and make the Judge notebook render it with inspect.getsource/source inspection. | Makes fine-tuning auditable. | FROZEN |
 | D-A011 | Compare uncalibrated, temperature, Platt, and isotonic calibration from TRAIN OOF predictions; derive selective risk at predeclared coverage from confidence alone. | Implements the already-frozen calibration/abstention contract without opening VALIDATION. | FROZEN |
+| D-A012 | Exclude the pre-existing Phase-6 Evo2 score output from adaptation comparisons unless its exact producer source can be recovered and verified. | Its 4,000 IDs, split counts, model revision, manifest hashes, and locked exclusion match, but the producing checkout is recorded dirty and the execution plan's full-run approval file is unavailable. | EXCLUDED_PENDING_PROVENANCE |
 
 ## Open operational items
 
@@ -24,3 +25,4 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 2. Continue TRAIN-only grouped HPO from Drive checkpoints/SQLite; never start holdout evaluation before selection closes.
 3. Mark Caduceus full fine-tuning and NT workloads with measured feasibility or explicit T4 resource deferral.
 4. Generate analysis, figures, report, README updates, and push only from persisted, verified outputs.
+5. Keep the Phase-6 Evo2 output out of comparison tables unless D-A012 is resolved; its identity audit did not inspect or use score/label values.

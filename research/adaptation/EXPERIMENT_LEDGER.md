@@ -16,6 +16,7 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Caduceus partial fine-tune | NOT STARTED | no artifact | none | frozen baseline |
 | Caduceus full fine-tune | NOT STARTED | no artifact | none | feasibility/HPO |
 | Caduceus HPO | IN_PROGRESS | Worker launched in existing T4 session; Drive log, SQLite database, per-fold history and checkpoints | TRAIN-only, 3-fold gene-grouped CV; selection open | complete at least 8 trials |
+| Frozen Evo2 anchor audit | EXCLUDED_PENDING_PROVENANCE | Existing 4,000-row output matches development IDs/splits, prediction hash, model revision, and locked exclusion; producer checkout is marked dirty, and the full-run approval referenced in its plan is unavailable | ID/split/hash audit only; score and label values not inspected or used | recover exact producer source and approval provenance, otherwise retain exclusion |
 | Final TRAIN refit | BLOCKED | no closed selection lock | none | HPO |
 | 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |
 | NT frozen / PEFT | NOT STARTED | no adaptation result artifacts | none | Caduceus results |

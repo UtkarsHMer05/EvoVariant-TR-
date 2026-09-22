@@ -1352,3 +1352,17 @@ families were not invented.
   read-only inventory check, with `$0.00` billed; these are workspace-level observations, not a
   per-run invoice. `modal container list --json` is empty. Formal manifests and the locked-test
   cohort remain unchanged.
+
+## Current Phase 7 representation state — 2026-09-22
+
+- Phase 6 formal Evo2 remains complete and immutable. The narrow Phase 7 NT/Caduceus allocation is
+  `PARTIAL / ALLOCATION BLOCKED`: 2,432/4,000 NT rows are verified and resumable, while 1,568 NT
+  rows and all 4,000 Caduceus rows remain. No Phase 7 PASS is claimed.
+- The 504-row small-shard cache and 1,928-row optimized cache are both hash-verified. The union has
+  zero duplicates, zero unexpected IDs, zero locked overlap, no remote labels, finite packed layer
+  features, and exact local GRCh38/8,192-bp reference construction matches. No paid containers or
+  pending calls remain.
+- Partial evidence: `artifacts/phase7/formal_budgeted_representation_20260922_partial.json`.
+  The cumulative completed client wall-rate estimate is `$0.704889` against the `$1.00` hard cap
+  and `$0.85` safety stop. A new explicit allocation and approval are required before resuming.
+  Locked-test inference, fine-tuning, Phase 14, deployment, and release remain unopened.

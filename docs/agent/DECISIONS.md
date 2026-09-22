@@ -2974,6 +2974,49 @@ the two exact PAR provenance records, and all scientific boundary checks. `make 
 before paid execution with 715 tests passed, 33 deselected, and 95.01% coverage. No active Modal
 containers remained after completion.
 
+## D-097 — Stop narrow Phase 7 representation work at the authorized budget boundary
+Status: ACCEPTED
+Date: 2026-09-22
+Supersedes: D-096 only for the post-Phase-6 NT/Caduceus allocation boundary; the completed Evo2
+Phase 6 artifact remains immutable and accepted.
+
+Context:
+The fresh Phase 7 approval `artifacts/approvals/formal_phase7_representation_20260922.json`
+authorized only formal Nucleotide Transformer and Caduceus representations for the exact 4,000-row
+TRAIN/VALIDATION cohort, with a `$1.00` hard cap and `$0.85` safety stop. The approved HEAD was
+`71a7c2d16148aecb99037f70439a57243153f6ca`. The runner first persisted 504 verified NT rows in
+63 small shards, then switched to a committed cache-preserving 64-row/4-row-batch plan and added
+1,928 more verified NT rows without recomputing the first 504.
+
+Decision:
+Stop paid Phase 7 work as `PARTIAL / ALLOCATION BLOCKED`. Do not launch another Modal call under
+the current approval. The cumulative completed NT client wall-rate estimate is `$0.704889`; 2,072
+NT rows and all 4,000 Caduceus rows remain unscored. The runner stopped fail-closed at the safety
+gate before any unauthorized widening. The verified cache is resumable, and a future allocation
+must bind a fresh approval to the then-current HEAD and reuse both completed cache layers.
+
+Evidence:
+`artifacts/phase7/formal_budgeted_representation_20260922_partial.json` records the exact cache
+plan hashes, 2,432-row union, 1,568 remaining formal NT rows, zero Caduceus rows, zero duplicate or
+unexpected IDs, zero locked overlap, finite packed features, reference-construction matches, and
+the workspace billing snapshots. The small-shard plan is
+`research/runs/phase7_formal_budgeted_20260922/nucleotide_transformer/execution_plan.json`; the
+optimized plan is
+`research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/execution_plan.json`.
+
+Consequences:
+No Caduceus features, complete Phase 7 artifact, or Phase 7 PASS is claimed. No labels were sent
+to Modal; no locked-test rows, fine-tuning, Evo2 rerun, or Phase 14 work was started. Phase 8-13
+model selection remains blocked on the complete approved representation matrix. The 946-row locked
+test remains untouched and requires a separate future approval.
+
+Validation:
+The final no-spend audit revalidated every persisted NT shard payload and plan hash, rebuilt the
+local 8,192-bp reference/alternate/forward/reverse-complement provenance for all 2,432 rows,
+checked packed hidden states for finite values and all declared layers, and verified zero active
+Modal containers. Workspace billing remained `$0.00` billed; the latest supporting metered snapshot
+was `$30.59`. The partial artifact SHA-256 is recorded with the final report.
+
 ## Template for new decisions
 
 ### D-XXX — Title

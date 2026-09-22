@@ -1,0 +1,63 @@
+{
+  "artifact_id": "formal-budgeted-representation-20260922-partial",
+  "status": "PARTIAL_BUDGET_STOP",
+  "recorded_at_utc": "2026-09-22T06:53:03Z",
+  "approval_artifact": "artifacts/approvals/formal_phase7_representation_20260922.json",
+  "approval_sha256": "ad6da0dd0d3109647a59918fb3bf3dd5c75e154b9255e10e03fbcbc11a0d43cd",
+  "git_commit_at_last_approval": "71a7c2d16148aecb99037f70439a57243153f6ca",
+  "protocol_hash": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec",
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+  "cache_plans": {
+    "small_shard_plan": {
+      "path": "research/runs/phase7_formal_budgeted_20260922/nucleotide_transformer/execution_plan.json",
+      "sha256": "9ef93a0a0c9ba82e4b3956b42d817adb8ea54a4bceb679588f322fa2ad3813ef",
+      "plan_hash": "ab21eeb0597ba20a019a72f7729ad978c5a8a2a8929fdfdf913cfe06665c144c",
+      "shards": 63,
+      "verified_rows": 504,
+      "estimated_client_wall_rate_usd": 0.242072
+    },
+    "optimized_plan": {
+      "path": "research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/execution_plan.json",
+      "sha256": "422a79f7bdfbf6e414362801359c9d400dfac4cc1e0dfe011e2ff59f7efa94b5",
+      "plan_hash": "23b5650dbb41911438f5db029b4b181d986e9ce85f7dd5d576ca5d558a38a0a3",
+      "shards": 31,
+      "verified_rows": 1928,
+      "shard_size": 64,
+      "variant_batch_size": 4,
+      "estimated_client_wall_rate_usd": 0.462817
+    }
+  },
+  "coverage": {
+    "formal_rows": 4000,
+    "nucleotide_transformer_verified_rows": 2432,
+    "nucleotide_transformer_remaining_rows": 1568,
+    "caduceus_verified_rows": 0,
+    "caduceus_remaining_rows": 4000,
+    "duplicate_ids": 0,
+    "unexpected_ids": 0,
+    "locked_overlap": 0,
+    "labels_in_remote_results": false,
+    "reference_construction_matches": true,
+    "finite_packed_features": true
+  },
+  "cost": {
+    "hard_cap_usd": 1.0,
+    "safety_stop_usd": 0.85,
+    "completed_client_wall_rate_estimate_usd": 0.704889,
+    "workspace_metered_baseline_usd": 29.97,
+    "workspace_metered_latest_usd": 30.59,
+    "workspace_billed_latest_usd": 0.0,
+    "interpretation": "client wall-rate and workspace metering are supporting estimates, not a per-run invoice"
+  },
+  "scientific_boundary": {
+    "labels_sent_to_modal": false,
+    "locked_test_scored": false,
+    "phase14_started": false,
+    "fine_tuning_started": false,
+    "evo2_rerun_started": false,
+    "workers_active_at_capture": false
+  },
+  "stop_reason": "The remaining NT plus Caduceus workload cannot be proven to fit the remaining $0.85 safety envelope after $0.704889 cumulative completed NT estimate; no further paid work was authorized."
+}

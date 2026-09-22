@@ -1128,3 +1128,22 @@ genuine unavailable evidence, not values to infer.
 - Gate recommendation is exactly `FORMAL_PREFLIGHT_FIX_REQUIRED`. No full formal run or dependent
   GPU phase was launched; Phases 7/8/9/11/12/13/14/15/18/19 remain blocked, Phase 10 remains
   `DEFERRED_BY_COMPUTE`, and Phase 16 remains partial.
+
+## Phase 7 formal NT/Caduceus representation checkpoint — 2026-09-22
+
+- The narrow approval was validated against committed HEAD `71a7c2d16148aecb99037f70439a57243153f6ca`
+  with a `$1.00` hard cap, `$0.85` safety stop, and `$3.00` minimum post-run reserve. Scope was
+  limited to the exact 4,000-row TRAIN/VALIDATION NT/Caduceus representation matrix; Evo2 reruns,
+  locked-test inference, fine-tuning, Phase 14, deployment, and release were excluded.
+- The run is `PARTIAL / ALLOCATION BLOCKED`, not PASS. Verified NT coverage is 2,432/4,000:
+  504 rows in the original 63-shard cache and 1,928 rows in the 31-shard optimized cache. The
+  optimized runner used 64-row shards and 4-row model batches and did not recompute the first 504
+  rows. NT remaining is 1,568 rows; Caduceus coverage is 0/4,000.
+- The final no-spend audit found zero duplicates, zero unexpected IDs, zero locked overlap, no
+  remote labels, finite packed layer features, and exact local reference construction matches for
+  all 2,432 persisted rows. There are no pending calls and no active Modal containers.
+- The durable partial evidence is
+  `artifacts/phase7/formal_budgeted_representation_20260922_partial.json`. The cumulative
+  completed client wall-rate estimate is `$0.704889`; the safety gate stopped before the remaining
+  workload could be proven within the authorization. A fresh future allocation must reuse both
+  caches and bind a new approval to the then-current HEAD.

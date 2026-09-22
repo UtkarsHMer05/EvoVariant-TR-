@@ -21,10 +21,11 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |
 | NT frozen / PEFT | NOT STARTED | no adaptation result artifacts | none | Caduceus results |
 | Calibration / abstention | IMPLEMENTATION IN PROGRESS | TRAIN-OOF calibration and selective-metric helpers under validation | no holdout fit | OOF predictions |
-| Ensemble / robustness / ablations | NOT STARTED | no adaptation prediction files | none | model outputs |
+| Seed robustness | IMPLEMENTED_AWAITING_RUNS | Final trainer/evaluator accept only protocol-fixed robustness seeds 1337/2026 with the selection lock; no result files yet | no holdout use | HPO selection and final fit |
+| Ensemble / ablations | NOT_STARTED | no adaptation prediction files | none | model outputs |
 | Statistics / figures / report | NOT STARTED | no model results to plot | none | predictions |
 | Judge notebook | IMPLEMENTED, RESULT CELLS PENDING | 36 ordered sections; canonical code source display | no locked data access | training outputs |
-| Local validation | PASS | `make validate`: 734 passed, 33 deselected, 95.07% core coverage | software-only | commit |
-| Adaptation branch push | PASS | commit `c0506a0` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
+| Local validation | PASS | `make validate`: 735 passed, 33 deselected, 95.06% core coverage | software-only | commit |
+| Adaptation branch push | PASS | latest commit `80210af` pushed to `origin/research/posthoc-foundation-adaptation`; `main` and baseline tag unchanged | none | continue study |
 
 No holdout or locked-test result is inferred from training progress or the smoke test.

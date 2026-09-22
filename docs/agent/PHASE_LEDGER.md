@@ -1218,9 +1218,13 @@ genuine unavailable evidence, not values to infer.
   completed 3 TRAIN-only epochs with checkpoint SHA-256
   `230fc7bef5c12fcb5f5c5a6b31ff4d79d57c244b8a00d70ac54e60aaf4e02213`.
 - The user's existing Colab T4 session is running resumable 8-trial, 3-fold gene-grouped HPO.
-  Trial 0 remains active and selection is open; final refit and the one-shot 801 evaluation remain
-  gated. The locked 946 cohort is not used.
+  Latest poll: worker 1:02:29, trial 0 active, and fold 0 has three persisted epochs. Selection is
+  open; final refit and the one-shot 801 evaluation remain gated. The locked 946 cohort is not
+  used.
 - The existing Phase-6 Evo2 scores are excluded pending source/approval provenance recovery
   (D-A012). Their row identity/hash audit did not inspect or use score/label values.
 - Full status, evidence paths, and next gates: `research/adaptation/STATE.md` and
   `research/adaptation/EXPERIMENT_LEDGER.md`.
+- Final TRAIN/evaluation commands now allow the fixed robustness seeds 1337/2026 under the
+  selection lock. `make validate` passed with 735 tests, 33 deselected, and 95.06% coverage;
+  commit `80210af` is pushed to the adaptation branch.

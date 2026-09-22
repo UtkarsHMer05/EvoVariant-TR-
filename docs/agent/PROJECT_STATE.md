@@ -1596,7 +1596,7 @@ compute protocol. This does not reopen Phase 14, touch the frozen baseline/tag, 
 locked-cohort or paid work.
 
 - Work remains on `research/posthoc-foundation-adaptation`; the latest pushed commit is
-  `18eeb77` (`docs: record Evo2 provenance exclusion`). `main` and
+  `80210af` (`feat: allow fixed seed robustness runs`). `main` and
   `evovariant-tr-baseline-v1` remain unchanged.
 - In the user's existing Vivaldi Colab tab, the free Tesla T4 run completed the Caduceus smoke
   and 3-epoch frozen-head TRAIN-only baseline. Its resumable 8-trial, 3-fold, gene-grouped HPO is
@@ -1610,6 +1610,9 @@ locked-cohort or paid work.
   its producer checkout is recorded dirty and the full-run approval referenced in its execution
   plan is unavailable; see `research/adaptation/DECISIONS.md` D-A012. No score or label values
   were used in the identity audit.
+- The final Caduceus commands now permit only predeclared robustness seeds 1337/2026 under the
+  closed selection lock, alongside primary seed 42. `make validate` passed after this change:
+  secret scan, Ruff, strict mypy, 735 tests passed / 33 deselected, and 95.06% coverage.
 - Next: resume HPO from Drive, close selection only after the predeclared trial target is met,
   run final TRAIN refit, then perform the guarded one-shot 801 evaluation. Start NT only after
   Caduceus results are persisted; record any T4 resource deferral rather than infer a result.

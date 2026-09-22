@@ -12,6 +12,7 @@ import os
 import time
 from pathlib import Path
 
+from evovariant_tr.adaptation import selection_seed_allowed
 from evovariant_tr.adaptation.calibration import (
     apply_calibrator,
     selective_metrics_at_thresholds,
@@ -51,6 +52,7 @@ def main() -> None:
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--fixed-seed-robustness", action="store_true")
     parser.add_argument("--max-length", type=int, default=8192)
     args = parser.parse_args()
     output = Path(args.output)
@@ -105,7 +107,9 @@ def main() -> None:
     selected = None
     if args.split == "validation":
         selected = selection["selected_params"]
-        if args.seed != selection.get("seed"):
+        if not selection_seed_allowed(
+            args.seed, selection.get("seed"), args.fixed_seed_robustness
+        ):
             raise SystemExit("evaluation seed does not match the closed selection")
         config_record = {
             "stage": selected["regime"],
@@ -116,7 +120,8 @@ def main() -> None:
             "max_length": args.max_length,
             "learning_rate": selected["learning_rate"],
             "weight_decay": selected["weight_decay"],
-            "seed": selection["seed"],
+            "seed": args.seed,
+            "fixed_seed_robustness": args.fixed_seed_robustness,
             "reference_sha256": reference_sha256,
             "selection_lock_sha256": selection_hash,
         }
@@ -258,6 +263,7 @@ def main() -> None:
         "reference_sha256": reference_sha256,
         "protocol_sha256": PROTOCOL_HASH,
         "selection_lock_sha256": selection_hash,
+        "seed_mode": "fixed_seed_robustness" if args.fixed_seed_robustness else "primary",
         "training_config_sha256": config_hash if args.split == "validation" else None,
         "total_parameters": total_parameters,
         "trainable_parameters": trainable_parameters,

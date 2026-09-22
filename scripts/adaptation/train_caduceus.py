@@ -10,6 +10,7 @@ import random
 import time
 from pathlib import Path
 
+from evovariant_tr.adaptation import selection_seed_allowed
 from evovariant_tr.adaptation.checkpointing import load_checkpoint, save_checkpoint
 from evovariant_tr.adaptation.data import (
     EXPECTED_MANIFEST_SHA256,
@@ -51,6 +52,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--resume")
     parser.add_argument("--selection-lock")
+    parser.add_argument("--fixed-seed-robustness", action="store_true")
     parser.add_argument("--state")
     args = parser.parse_args()
     if args.epochs < 1:
@@ -97,7 +99,9 @@ def main() -> None:
             != EXPECTED_MANIFEST_SHA256["formal_train_manifest.json"]
             or selection.get("reference_sha256") != reference_sha256
             or args.epochs != selection.get("final_epochs")
-            or args.seed != selection.get("seed")
+            or not selection_seed_allowed(
+                args.seed, selection.get("seed"), args.fixed_seed_robustness
+            )
             or args.stage != selected.get("regime")
             or args.learning_rate != selected.get("learning_rate")
             or args.weight_decay != selected.get("weight_decay")
@@ -105,6 +109,7 @@ def main() -> None:
             or args.effective_batch_size != selected.get("effective_batch_size")
         ):
             raise SystemExit("final training config does not match the closed TRAIN-only selection")
+        config_record["fixed_seed_robustness"] = args.fixed_seed_robustness
         config_record["selection_lock_sha256"] = hashlib.sha256(
             Path(args.selection_lock).read_bytes()
         ).hexdigest()
@@ -204,6 +209,7 @@ def main() -> None:
         "data": data_report,
         "checkpoint": str(output_dir / "latest.pt"),
         "seed": args.seed,
+        "seed_mode": "fixed_seed_robustness" if args.fixed_seed_robustness else "primary",
         "epochs": args.epochs,
         "runtime_seconds": time.monotonic() - started,
         "peak_vram_bytes": int(torch.cuda.max_memory_allocated())

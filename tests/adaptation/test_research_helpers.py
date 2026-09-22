@@ -7,7 +7,15 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from evovariant_tr.adaptation import calibration, checkpointing, folds, state, statistics
+from evovariant_tr.adaptation import (
+    PREDECLARED_SEEDS,
+    calibration,
+    checkpointing,
+    folds,
+    selection_seed_allowed,
+    state,
+    statistics,
+)
 from evovariant_tr.adaptation.data import (
     DataIntegrityError,
     VariantRow,
@@ -30,6 +38,17 @@ class ModelOutputTest(unittest.TestCase):
         final_hidden = object()
         output = SimpleNamespace(hidden_states=(object(), final_hidden))
         self.assertIs(_last_hidden(output), final_hidden)
+
+
+class SeedSelectionTest(unittest.TestCase):
+    def test_only_predeclared_robustness_seeds_can_vary(self):
+        self.assertEqual(PREDECLARED_SEEDS, (42, 1337, 2026))
+        self.assertTrue(selection_seed_allowed(42, 42))
+        self.assertTrue(selection_seed_allowed(1337, 42, robustness=True))
+        self.assertTrue(selection_seed_allowed(2026, 42, robustness=True))
+        self.assertFalse(selection_seed_allowed(42, 42, robustness=True))
+        self.assertFalse(selection_seed_allowed(1337, 42))
+        self.assertFalse(selection_seed_allowed(7, 42, robustness=True))
 
 
 class CalibrationTest(unittest.TestCase):

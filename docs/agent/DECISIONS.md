@@ -3306,3 +3306,38 @@ accessed.
 Validation:
 `tests/unit/test_figure_artifacts.py` passed; `make figures` produced zero final outputs and 26
 non-promotable preliminary outputs with the expected three blockers.
+
+## D-106 — Reproduce the Phase 17 figure boundary from a clean checkout
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The HPO figure applicability decision changed the registry-driven Phase 17 manifest and needed
+fresh-clone verification. The main checkout contains unrelated pre-existing dirty source, test,
+approval, and `.agents/` paths, so the clean-room check had to use the committed tree only.
+
+Decision:
+Accept the clean-room result for the free/control-plane portion of this change while keeping the
+scientific and release gates fail-closed. Do not promote the preliminary bundle or infer missing
+context-length, loss, temporal-cohort, or FINAL-run evidence from the clone.
+
+Evidence:
+- Commit checked out: `8025a25733d65d3bfd2db9ef841e0e0e87a1e687`.
+- Fresh clone: `/private/tmp/EvoVariant_cleanroom_qvGTnG/repo`; the clone remained clean after
+  the checks.
+- `make bootstrap`, `make validate`, and `make registry-verify` passed. The clean clone reported
+  714 passed, 1 skipped, 33 deselected, and 95.01% coverage.
+- `make figures` reproduced `BLOCKED`, 15/18 applicable figure families, 11/11 applicable
+  tables, zero final-bundle outputs, and 26 non-promotable preliminary outputs. The exact
+  mandatory blockers are `context_length.json`, `loss.json`, `temporal_cohort.json`, and the
+  absence of an eligible completed `FINAL` run. HPO parameter importance remained explicitly
+  `NOT_APPLICABLE_WITH_DOCUMENTED_REASON`.
+
+Consequences:
+The no-spend clean-room/control-plane subgate is reproducible at the current commit. Phase 18
+full scientific reproduction and Phase 19 remain blocked; no paid compute, locked labels, locked
+predictions, or Phase 14 work was accessed.
+
+Validation:
+The main checkout's pre-existing dirty paths were not staged or modified by the clean-room run.

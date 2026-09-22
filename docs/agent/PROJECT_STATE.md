@@ -32,8 +32,8 @@ multi-model Phase 6 benchmark.
   below; locked-test inference and fine-tuning remain unopened.
 
 Current control-plane checkpoint: branch `research/evovariant-tr`, latest implementation commit
-`27352e5` (`make blocked workbench fallback clone-safe`), followed only by documentation commits
-recording the clean-room evidence. No Next/Playwright process or Modal container is active. The
+`8025a25` (`record defensible HPO figure boundary`). No Next/Playwright process or Modal
+container is active. The
 existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14; no
 fresh exact-scope approval is present for the current checkout, so the locked evaluation remains
 fail-closed. Continue only no-spend integrity or control-plane work until a new explicit
@@ -108,10 +108,11 @@ full-cohort batch authorization remain absent.
 The Phase 16 workbench now reads `/api/research/status`, which verifies the registered formal CPU
 output hashes before exposing development-stage evidence. It reports the completed Phase 8, 9,
 11, 12, and 13 gates, 36 classifier combinations, 12 validation-only HPO studies,
-`selection_closed=true`, untouched locked-test state, and current 15/19 figure plus 11/11
-applicable-table coverage. The UI remains `PARTIAL`: no `FINAL` run is promoted and the four
-unavailable figure families remain visible as blockers. `make web-check`, four Playwright E2E
-journeys, and the frontend contract tests pass.
+`selection_closed=true`, untouched locked-test state, and current 15/18 applicable figure plus
+11/11 applicable-table coverage. HPO parameter importance is explicitly not applicable under the
+hash-backed Phase 9 decision; the remaining three mandatory source families remain visible as
+blockers. The UI remains `PARTIAL`: no `FINAL` run is promoted. `make web-check`, four Playwright
+E2E journeys, and the frontend contract tests pass.
 
 ## Current state — 2026-09-21
 

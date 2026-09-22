@@ -15,7 +15,7 @@ Current persisted stage: `CADUCEUS_FROZEN_HEAD_ONLY_DONE`
 - UCSC hg38 reference SHA-256 `5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51`; all 4,000 development REF alleles passed.
 - Caduceus smoke passed at 128 bp: finite forward/loss/gradients, optimizer step, checkpoint save/reload compatibility; 10.73 s, 452,699,136 peak bytes.
 - Frozen-head TRAIN-only fit completed on the 3,199 TRAIN rows at 8,192 bp, seed 42, 3 epochs (losses `1.1767539545572263`, `1.1581548454985837`, `1.1497443100928366`). Runtime was 1,968.52 s; 7,728,385 total / 3,073 trainable parameters; peak allocation 320,895,488 bytes. The Drive checkpoint SHA-256 is `230fc7bef5c12fcb5f5c5a6b31ff4d79d57c244b8a00d70ac54e60aaf4e02213`; its `run.json` records `PASS`, `TRAIN_ONLY`, and `holdout_evaluated=false`.
-- The 8-trial, 3-fold gene-grouped TRAIN-only HPO process is active in the same Vivaldi T4 session. Its SQLite study and logs are on Drive; selection remains open. At the latest poll worker PID 58018 had run 2:01:25; trial 0 was active, trials 1–3 were waiting, fold 0 had four persisted epochs, and fold 1 had three. No adaptation VALIDATION labels or Caduceus predictions have been used; the one-shot evaluation remains gated. No locked rows have been loaded. The persisted stage will advance when the first trial finishes. The live notebook also now requires the primary plus fixed seeds 1337/2026 to have verified TRAIN-only reports before its one-shot 801 evaluation loop can run.
+- Caduceus HPO is `WAITING_FOR_FREE_GPU`. At the last successful poll before Colab disconnected the runtime, worker PID 58018 had run 2:13:42; trial 0 was RUNNING, trials 1–3 were WAITING, fold 0 had four persisted epochs, and fold 1 had three. Colab then denied T4 reconnection because of GPU usage limits. No completed trial or selection lock was observed, and the Drive checkpoints must be reverified when an eligible free runtime is available. No adaptation VALIDATION labels or Caduceus predictions have been used; the one-shot evaluation remains gated. No locked rows have been loaded. The live notebook also requires the primary plus fixed seeds 1337/2026 to have verified TRAIN-only reports before its one-shot 801 evaluation loop can run.
 - An identity-only audit confirmed the existing Evo2 output covers all 3,199 TRAIN and 801 VALIDATION IDs with no duplicates, split disagreements, or locked-ID overlap; its prediction and development-manifest hashes match the receipt. It remains excluded because the producing checkout is marked dirty and the full-run approval referenced in its execution plan is unavailable. Score and label values were not inspected or used.
 
 ## Current repository provenance
@@ -44,7 +44,7 @@ selection_closed: false
 
 ## Pending stages
 
-8–12 completed TRAIN-only grouped HPO trials → selection lock → final TRAIN fit → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
+Free GPU recovery → reverify Drive HPO state and resume to 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fit → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
 
 The full-candidate and NT tracks remain resource-conditional. Missing results are not inferred from the plan.
 

@@ -7,7 +7,7 @@
 
 ## Abstract
 
-The independent adaptation study is underway. Formal TRAIN/VALIDATION identities, GRCh38 REF alleles, the free-T4 environment, and a 128 bp Caduceus forward/backward/checkpoint smoke are verified. The 8,192 bp frozen-encoder/head-training baseline completed on all 3,199 TRAIN rows. Its training loss declined from `1.1767539545572263` to `1.1497443100928366` over three epochs; this is optimization evidence only, not a discrimination metric. The resumable 8-trial, 3-fold gene-grouped TRAIN-only HPO search is now running. No selected configuration, one-shot holdout result, or model comparison is available yet.
+The independent adaptation study is underway. Formal TRAIN/VALIDATION identities, GRCh38 REF alleles, the free-T4 environment, and a 128 bp Caduceus forward/backward/checkpoint smoke are verified. The 8,192 bp frozen-encoder/head-training baseline completed on all 3,199 TRAIN rows. Its training loss declined from `1.1767539545572263` to `1.1497443100928366` over three epochs; this is optimization evidence only, not a discrimination metric. The resumable 8-trial, 3-fold gene-grouped TRAIN-only HPO was interrupted when Colab disconnected the runtime. The last successful poll showed trial 0 still running with fold checkpoints persisted; Colab denied free T4 reconnection for usage limits. No completed trial, selected configuration, one-shot holdout result, or model comparison is available yet.
 
 ## Research question
 
@@ -55,7 +55,7 @@ Pinned checkpoint: `kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-1
 
 ## HPO and seed robustness
 
-`IN PROGRESS`. The 8-trial target is active from the validated adaptation revision; the study database and logs are on Drive, with summaries, fold epoch history, and checkpoints persisted as trials proceed. Selection requires at least 8 completed trials (maximum 12) using 3-fold stratified group folds grouped by gene, all inside TRAIN. The final epoch count is derived from selected fold best epochs. Seeds are fixed at 42, 1337, and 2026; none may be selected by holdout performance.
+`WAITING_FOR_FREE_GPU`. At the last successful poll, trial 0 was RUNNING, trials 1–3 were WAITING, fold 0 had four saved epochs, and fold 1 had three. The selection lock remains open. Colab's free GPU usage limit prevented reconnection; reverify the Drive database and checkpoints before resuming. Selection requires at least 8 completed trials (maximum 12) using 3-fold stratified group folds grouped by gene, all inside TRAIN. The final epoch count is derived from selected fold best epochs. Seeds are fixed at 42, 1337, and 2026; none may be selected by holdout performance.
 
 ## 801-row holdout
 
@@ -79,4 +79,4 @@ The frozen-head process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9f
 
 ## Conclusion
 
-The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. Grouped TRAIN-only HPO is running, with selection still open. Completion criteria remain unmet until grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, and remaining figures/reports are completed.
+The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. Grouped TRAIN-only HPO is waiting for an eligible free GPU after Colab denied reconnection for usage limits. Selection remains open. Completion criteria remain unmet until grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, and remaining figures/reports are completed.

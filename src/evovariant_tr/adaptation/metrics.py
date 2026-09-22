@@ -87,6 +87,10 @@ def binary_metrics(
     brier = sum(
         (float(score) - int(label)) ** 2 for label, score in zip(labels, scores, strict=True)
     ) / len(labels)
+    probability_mae = sum(
+        abs(float(score) - int(label))
+        for label, score in zip(labels, scores, strict=True)
+    ) / len(labels)
     clipped = [min(1 - 1e-7, max(1e-7, float(score))) for score in scores]
     logloss = -sum(
         int(label) * log(score) + (1 - int(label)) * log(1 - score)
@@ -107,6 +111,7 @@ def binary_metrics(
             else 0.0
         ),
         "brier": brier,
+        "probability_mae": probability_mae,
         "log_loss": logloss,
         "ece": _ece(labels, scores, bins),
         "threshold": threshold,

@@ -15,6 +15,10 @@ class AdaptationMetricsTest(unittest.TestCase):
         self.assertIsNone(result["auroc"])
         self.assertIsNone(result["auprc"])
 
+    def test_probability_mae_is_reported_as_supplementary_metric(self):
+        result = binary_metrics([0, 1], [0.1, 0.7])
+        self.assertAlmostEqual(result["probability_mae"], 0.2)
+
 
 if __name__ == "__main__":
     unittest.main()

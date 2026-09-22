@@ -389,6 +389,28 @@ loss declined from `1.17675` to `1.14974`; this is optimization evidence, not a
 discrimination result. Grouped TRAIN-only HPO is running in that session. The
 one-shot holdout remains closed and there is no adaptation improvement claim.
 
+The paired classifier shares one Caduceus encoder across reference and
+alternate 8,192 bp sequences and averages forward and reverse-complement
+logits. Its frozen baseline trains only the small prediction head; TRAIN-only
+HPO compares frozen-head, partial-unfreeze, and full-if-feasible regimes. The
+loss is `BCEWithLogitsLoss` with `pos_weight = negatives / positives`, computed
+inside each training fold. AdamW uses a fixed learning rate per run; HPO
+searches that rate, so no learning-rate scheduler is used. The three validation
+folds are `StratifiedGroupKFold`, grouped by gene. HPO and early stopping use
+TRAIN rows only; calibration and abstention are fit from TRAIN out-of-fold
+predictions.
+
+For thresholded predictions, accuracy is `(TP + TN) / n`; F1 is
+`2 * precision * recall / (precision + recall)`; AUROC is the probability that
+a randomly selected positive receives a higher score than a randomly selected
+negative, with ties handled by average ranks. The evaluator also reports AUPRC,
+balanced accuracy, precision, recall, specificity, MCC, Brier score, NLL, ECE,
+confusion counts, and supplementary probability MAE. Gene-aware 2,000-replicate
+bootstrap intervals and paired, Holm-adjusted comparisons are planned from
+final predictions. Run reports record training time, evaluation time, peak
+VRAM, parameter counts, and checkpoint size. Current results remain pending;
+the 801-row adaptation holdout is not used to tune or select any system.
+
 Implementation, protocol, progress, and inspectable walkthrough:
 
 - Training and HPO: [`train_caduceus.py`](scripts/adaptation/train_caduceus.py),

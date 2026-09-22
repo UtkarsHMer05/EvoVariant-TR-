@@ -15,6 +15,7 @@ from evovariant_tr.adaptation.data import (
     reference_window,
     resolve_contig,
 )
+from evovariant_tr.adaptation.models import _last_hidden
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -22,6 +23,13 @@ ROOT = Path(__file__).resolve().parents[2]
 class FakeTensorState:
     def cpu(self):
         return self
+
+
+class ModelOutputTest(unittest.TestCase):
+    def test_hidden_states_support_masked_lm_output(self):
+        final_hidden = object()
+        output = SimpleNamespace(hidden_states=(object(), final_hidden))
+        self.assertIs(_last_hidden(output), final_hidden)
 
 
 class CalibrationTest(unittest.TestCase):

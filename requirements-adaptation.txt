@@ -1,5 +1,6 @@
 # Free-T4 research adaptation environment. CUDA torch is installed from the PyTorch wheel index.
 torch==2.2.0
+numpy==1.26.4
 transformers==4.38.1
 accelerate>=0.27
 huggingface_hub>=0.24
@@ -16,4 +17,3 @@ safetensors
 PyYAML
 tqdm
 ninja
-

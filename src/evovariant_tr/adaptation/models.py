@@ -102,14 +102,15 @@ class PairedClassifier:
                     output_hidden_states=True,
                     return_dict=True,
                 )
+                hidden = _last_hidden(outputs)
                 mask = encoded.get("attention_mask")
                 if mask is None:
                     mask = torch.ones(
-                        outputs.last_hidden_state.shape[:2],
+                        hidden.shape[:2],
                         dtype=torch.long,
-                        device=outputs.last_hidden_state.device,
+                        device=hidden.device,
                     )
-                return _mean_pool(_last_hidden(outputs), mask)
+                return _mean_pool(hidden, mask)
 
             def pair_logits(self, reference: dict[str, Any], alternate: dict[str, Any]) -> Any:
                 reference_embedding = self.encode(reference)

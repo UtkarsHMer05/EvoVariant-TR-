@@ -3235,3 +3235,35 @@ data was accessed.
 Validation:
 No external compute was launched. No pre-existing dirty source, test, approval, or `.agents/`
 path was staged.
+
+## D-104 — Reject all stale paid approvals at the current checkout
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The current checkout has completed the Phase 7 and development CPU work, but its implementation
+and documentation commits have advanced beyond the commits recorded by the available paid
+approvals. The broad overnight artifact mentions Phase 14 but is not a current authorization; the
+Phase 7 artifact is already exhausted and also targets an earlier checkout.
+
+Decision:
+Keep all paid paths fail-closed. Treat the overnight approval bound to
+`535d73e56d10ddea5d2ef0098bb7251a57d259d7` and the Phase 7 approval bound to
+`408edcc83e4a288cc8afb90a5bb9993af302c3d4` as stale for current HEAD
+`f82893a29a5209f93f3c37299b99f42cd9228aff`. Do not launch Phase 14, locked-test inference,
+fine-tuning, context sweeps, or any other paid workload until a fresh exact-scope approval is
+bound to the current committed checkpoint with current protocol/manifest/configuration hashes,
+budget, safety stop, and exclusions.
+
+Evidence:
+- `scripts/validate_overnight_completion_approval.py` rejects the overnight artifact with
+  `approval commit ... is not current HEAD`.
+- `scripts/validate_formal_representation_approval.py` rejects the Phase 7 artifact with
+  `approval is not bound to current HEAD`.
+- `modal container list --json` remains `[]`; no paid worker was started during this audit.
+
+Consequences:
+The master timeline remains active after Phase 13, but the earliest paid-dependent Phase 14
+subgate cannot advance from repository state alone. Independent no-spend validation remains
+complete, and existing scientific artifacts remain immutable and reusable.

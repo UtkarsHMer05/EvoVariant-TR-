@@ -39,6 +39,12 @@ fresh exact-scope approval is present for the current checkout, so the locked ev
 fail-closed. Continue only no-spend integrity or control-plane work until a new explicit
 allocation is provided.
 
+The current approval audit is independently fail-closed: `validate_overnight_completion_approval.py`
+rejects the broad overnight artifact because it is bound to `535d73e56d10ddea5d2ef0098bb7251a57d259d7`,
+and `validate_formal_representation_approval.py` rejects the Phase 7 artifact because it is bound
+to `408edcc83e4a288cc8afb90a5bb9993af302c3d4`; both differ from current HEAD
+`f82893a29a5209f93f3c37299b99f42cd9228aff`. No paid workload is authorized from either artifact.
+
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 
 The separately authorized Phase 7 continuation is complete and PASS. NT resumed from the

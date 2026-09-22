@@ -31,6 +31,15 @@ multi-model Phase 6 benchmark.
   separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
   below; locked-test inference and fine-tuning remain unopened.
 
+Current control-plane checkpoint: branch `research/evovariant-tr`, last passing implementation
+commit `63be357` (`connect workbench to development evidence`), with the latest no-spend recovery commit
+`70a9c0b` (`verify local batch kill restart recovery`) also passing its focused checks. No
+Next/Playwright process or Modal container is active. The existing Phase 7 approval is scoped
+to NT/Caduceus representation work and excludes Phase 14; no fresh exact-scope approval bound
+to this HEAD is present, so the locked evaluation remains fail-closed. The next paid action is
+only the user-authorized Phase 14 run after that approval exists; until then, continue only
+no-spend integrity or control-plane work.
+
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 
 The separately authorized Phase 7 continuation is complete and PASS. NT resumed from the

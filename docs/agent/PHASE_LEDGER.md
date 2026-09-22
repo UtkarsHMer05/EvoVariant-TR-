@@ -25,6 +25,11 @@ Status: PENDING | IN_PROGRESS | PASS | PARTIAL | BLOCKED | FAILED | DEFERRED | D
 | 18 | Security + clean-room reproducibility | BLOCKED / CONTROL SURFACE ONLY | Fresh clone/free-gate evidence remains valid; `research/runs/phase18_clean_room_status.json` now records that full scientific Modal reproduction is unrun and complete figure-source regeneration is missing. |
 | 19 | Final release gate | BLOCKED | `research/runs/phase19_release_status.json`; the PRELIMINARY registry is connected, but full-cohort science, locked evaluation, complete figures, and final-release evidence remain unresolved. |
 
+Current control-plane checkpoint at implementation commit `63be357` on `research/evovariant-tr`: no paid worker
+or local browser process is active. The latest exact approval remains the Phase 7 NT/Caduceus
+representation scope and does not authorize Phase 14; no fresh Phase 14 approval is bound to this
+HEAD. The locked evaluation and downstream release promotion therefore remain fail-closed.
+
 ## Current formal development design checkpoint — 2026-09-21
 
 - `ML-DEV-BUDGETED-001` is an additive development-study amendment, not a rewrite of the

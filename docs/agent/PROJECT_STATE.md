@@ -1588,3 +1588,28 @@ it did not reopen selection, modify any Phase 14 artifact, or start Modal comput
   earlier `$7.17` Phase 6 user basis, records the later `$5.94` pre-tail basis, and separates
   `$2.989549601` of subsequent direct rate estimates from provider workspace meter deltas. No
   exact provider-confirmed remaining credit balance is claimed.
+
+## Separate free post-hoc adaptation continuation — 2026-09-23
+
+The user authorized the distinct adaptation study in `research/adaptation/` under its $0 paid
+compute protocol. This does not reopen Phase 14, touch the frozen baseline/tag, or authorize
+locked-cohort or paid work.
+
+- Work remains on `research/posthoc-foundation-adaptation`; the latest pushed commit is
+  `18eeb77` (`docs: record Evo2 provenance exclusion`). `main` and
+  `evovariant-tr-baseline-v1` remain unchanged.
+- In the user's existing Vivaldi Colab tab, the free Tesla T4 run completed the Caduceus smoke
+  and 3-epoch frozen-head TRAIN-only baseline. Its resumable 8-trial, 3-fold, gene-grouped HPO is
+  active on Drive; the latest observed worker was PID 58018 at 47m50s with trial 0 RUNNING and
+  two persisted epochs for fold 0. The study/selection lock remains open.
+- The 801-row adaptation holdout is still gated behind HPO selection and final TRAIN refit. No
+  holdout predictions or labels were used for selection, and the 946-row locked cohort remains
+  untouched.
+- The existing Phase-6 Evo2 output matches the exact 4,000 development identities/splits, model
+  revision, output hash, and locked exclusion. It is excluded from the new comparisons because
+  its producer checkout is recorded dirty and the full-run approval referenced in its execution
+  plan is unavailable; see `research/adaptation/DECISIONS.md` D-A012. No score or label values
+  were used in the identity audit.
+- Next: resume HPO from Drive, close selection only after the predeclared trial target is met,
+  run final TRAIN refit, then perform the guarded one-shot 801 evaluation. Start NT only after
+  Caduceus results are persisted; record any T4 resource deferral rather than infer a result.

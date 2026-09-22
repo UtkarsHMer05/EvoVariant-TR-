@@ -1208,3 +1208,19 @@ genuine unavailable evidence, not values to infer.
 - The no-spend ledger at `artifacts/audits/COMPUTE_LEDGER_AUDIT.md` preserves the earlier `$7.17`
   Phase 6 basis, records the later `$5.94` pre-tail basis, and separates `$2.989549601` of direct
   rate estimates from provider workspace meter deltas. It does not claim exact remaining credits.
+
+## Separate post-hoc adaptation study — 2026-09-23
+
+- User-authorized study `POSTHOC-FOUNDATION-ADAPTATION-001` is active on the separate
+  `research/posthoc-foundation-adaptation` branch with protocol hash
+  `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c` and paid budget `$0`.
+- Exact manifest/reference validation and the Caduceus smoke passed. The frozen-head baseline
+  completed 3 TRAIN-only epochs with checkpoint SHA-256
+  `230fc7bef5c12fcb5f5c5a6b31ff4d79d57c244b8a00d70ac54e60aaf4e02213`.
+- The user's existing Colab T4 session is running resumable 8-trial, 3-fold gene-grouped HPO.
+  Trial 0 remains active and selection is open; final refit and the one-shot 801 evaluation remain
+  gated. The locked 946 cohort is not used.
+- The existing Phase-6 Evo2 scores are excluded pending source/approval provenance recovery
+  (D-A012). Their row identity/hash audit did not inspect or use score/label values.
+- Full status, evidence paths, and next gates: `research/adaptation/STATE.md` and
+  `research/adaptation/EXPERIMENT_LEDGER.md`.

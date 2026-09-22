@@ -1176,12 +1176,14 @@ genuine unavailable evidence, not values to infer.
   gates passed: exact IDs, finite forward/RC/aggregate/calibrated scores, no labels transported,
   no duplicate IDs, no unexpected IDs, no reference mismatches, no locked labels before raw hash,
   one-shot selection closure, and no post-test tuning.
-- The initial paid-run billing snapshot was metered `$31.82187443` and billed `$0.00`; the final
-  fresh read-only snapshot at `2026-09-22T11:30:41.805291+00:00` was metered `$33.50187443` and
-  billed `$0.13`. Modal's `credits: -30.00000000` is a billing adjustment, not a provider-returned
-  free-credit balance. The user-stated pre-run free-compute headroom was `$7.17`; subtracting the
-  observed metered delta of `$1.68` gives an indicative `$5.49`, not a provider-confirmed balance.
-  The final container inventory was `[]`.
+- The initial paid-run billing snapshot was metered `$31.82187443` and billed `$0.00`; the
+  immutable artifact records the `2026-09-22T11:30:41.805291+00:00` snapshot as metered
+  `$33.50187443` and billed `$0.13`. The later final no-spend recheck at
+  `2026-09-22T11:48:32.102345+00:00` returned metered `$33.43187443` and billed `$0.06`, with
+  active containers `[]`. Modal's `credits: -30.00000000` is a billing adjustment, not a
+  provider-returned free-credit balance. The user-stated pre-run free-compute headroom was
+  `$7.17`; the latest observed metered delta of `$1.61` gives an indicative `$5.56`, not a
+  provider-confirmed balance.
 - Phase 15 local batch/kill-restart evidence remains available, but its overall gate is `BLOCKED`
   because remote batch parity and full-cohort batch authorization are absent. Phase 16 is `PARTIAL`
   with 12 connected runs, including the Phase 14 `FINAL` record. The no-spend Phase 17 rerun

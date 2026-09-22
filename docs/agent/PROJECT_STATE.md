@@ -19,9 +19,12 @@ The final artifact is `artifacts/phase14/phase14_locked_evo2_20260922.json`, SHA
 - Integrity: exact IDs, finite forward/RC/aggregate/calibrated scores, zero duplicates, zero
   unexpected IDs, zero reference mismatches, no labels sent remotely, raw artifact hashed before
   local label join, and every Phase 14 integrity gate `true`.
-- Closeout: final fresh Modal snapshot metered `$33.50187443`, billed `$0.13`; active containers
-  `[]`. The provider summary does not expose a remaining free-credit balance. The user-stated
-  `$7.17` pre-run headroom minus the observed `$1.68` metered delta is only an indicative `$5.49`.
+- Closeout: the immutable Phase 14 artifact records a fresh snapshot at metered `$33.50187443`,
+  billed `$0.13`; the later final no-spend recheck at `2026-09-22T11:48:32.102345+00:00` returned
+  metered `$33.43187443`, billed `$0.06`, with active containers `[]`. The provider summary does
+  not expose a remaining free-credit balance. Against the user-stated `$7.17` pre-run headroom,
+  the latest observed `$1.61` metered delta implies only an indicative `$5.56`, not a
+  provider-confirmed balance.
 
 Phase 15 remains blocked for remote batch parity; Phase 16 is partial; Phase 17 is blocked on
 three mandatory source families and an eligible `FINAL` registry run; Phase 18 is blocked on full

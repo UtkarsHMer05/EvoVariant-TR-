@@ -3460,7 +3460,9 @@ Evidence:
   zero reference mismatches, no remote labels, no labels before raw hashing, selection closed,
   and no post-test tuning.
 - The final local resume reused all 30 verified shards with zero new Modal calls. Closeout Modal
-  container inventory was `[]`; the fresh final snapshot was metered `$33.50187443`, billed `$0.13`.
+  container inventory was `[]`; the immutable artifact's fresh snapshot was metered
+  `$33.50187443`, billed `$0.13`. A later no-spend recheck returned metered `$33.43187443`, billed
+  `$0.06`, reflecting provider billing adjustment rather than new scientific compute.
 
 Consequences:
 Phase 14 is `PASS` only for the authorized Evo2 locked subgate. Phase 15 remains blocked for

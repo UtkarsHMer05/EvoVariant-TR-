@@ -383,10 +383,11 @@ Nucleotide Transformer v2 500M secondary track where free-T4 resources allow,
 improves P/LP-vs-B/LB resolution-direction discrimination against frozen
 representations on that defined research cohort. Caduceus uses shared
 reference/alternate sequence encoding, fold-local weighted BCE loss, and
-forward/reverse-complement logit averaging. The current 8,192 bp frozen-head
-baseline is still training on TRAIN in the existing free Tesla T4 session;
-the one-shot holdout remains closed and there is no adaptation improvement
-claim yet.
+forward/reverse-complement logit averaging. The 8,192 bp frozen-head baseline
+completed three TRAIN-only epochs in the existing free Tesla T4 session. Its
+loss declined from `1.17675` to `1.14974`; this is optimization evidence, not a
+discrimination result. Grouped TRAIN-only HPO is running in that session. The
+one-shot holdout remains closed and there is no adaptation improvement claim.
 
 Implementation, protocol, progress, and inspectable walkthrough:
 

@@ -20,7 +20,7 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 
 ## Open operational items
 
-1. Complete the 3-epoch TRAIN-only frozen-head run in the existing free-T4 Colab session.
+1. Frozen-head run completed: 3 TRAIN-only epochs; Drive `run.json` records the checkpoint and no holdout evaluation.
 2. Continue TRAIN-only grouped HPO from Drive checkpoints/SQLite; never start holdout evaluation before selection closes.
 3. Mark Caduceus full fine-tuning and NT workloads with measured feasibility or explicit T4 resource deferral.
 4. Generate analysis, figures, report, README updates, and push only from persisted, verified outputs.

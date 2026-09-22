@@ -16,4 +16,4 @@
 
 ## Current evidence boundary
 
-This notebook is an inspectable scientific walkthrough, not a claim that every requested stage has completed. The 128 bp smoke passed. The 8,192 bp frozen-head baseline is running in the user’s existing free T4 Colab session; no training result is reported until its checkpoint and `run.json` are persisted. The 946-row locked temporal test is not used for adaptation.
+This notebook is an inspectable scientific walkthrough, not a claim that every requested stage has completed. The 128 bp smoke passed. The 8,192 bp frozen-head baseline completed three TRAIN-only epochs in the user’s existing free T4 Colab session; its checkpoint and `run.json` are persisted in Drive. Grouped TRAIN-only HPO is running, while final selection and holdout evaluation remain pending. The 946-row locked temporal test is not used for adaptation.

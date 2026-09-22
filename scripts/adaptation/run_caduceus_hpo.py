@@ -263,6 +263,7 @@ def main() -> None:
             amp=args.device.startswith("cuda"),
         )
         fold_scores, fold_auprc, fold_mcc, fold_brier, best_epochs, oof = [], [], [], [], [], []
+        fold_epoch_history = []
         total_parameters = trainable_parameters = 0
         peak_vram_bytes = 0
         started = time.monotonic()
@@ -297,6 +298,8 @@ def main() -> None:
                     "train_manifest_sha256": EXPECTED_MANIFEST_SHA256["formal_train_manifest.json"],
                     "reference_sha256": reference_sha256,
                 }
+                history_path = checkpoint.with_name("history.json")
+                history = json.loads(history_path.read_text()) if history_path.exists() else []
                 start_epoch, best_auc, best_epoch, stale_epochs = 0, -1.0, 0, 0
                 if checkpoint.exists():
                     resume = load_checkpoint(
@@ -314,7 +317,7 @@ def main() -> None:
                 for epoch in range(start_epoch, epoch_cap):
                     if stale_epochs >= 2:
                         break
-                    train_epoch(
+                    train_loss = train_epoch(
                         model,
                         tokenizer,
                         fasta,
@@ -347,6 +350,19 @@ def main() -> None:
                         )
                     else:
                         stale_epochs += 1
+                    history = [item for item in history if item["epoch"] != epoch + 1]
+                    history.append(
+                        {
+                            "epoch": epoch + 1,
+                            "train_loss": train_loss,
+                            "validation": metrics,
+                            "learning_rate": learning_rate,
+                            "peak_vram_bytes": int(torch.cuda.max_memory_allocated())
+                            if args.device.startswith("cuda")
+                            else None,
+                        }
+                    )
+                    _atomic_json(history_path, history)
                     save_checkpoint(
                         checkpoint,
                         model=model,
@@ -380,6 +396,7 @@ def main() -> None:
                 fold_mcc.append(float(metrics["mcc"]))
                 fold_brier.append(float(metrics["brier"]))
                 best_epochs.append(best_epoch)
+                fold_epoch_history.append(history)
                 oof.extend(
                     (
                         fold_number,
@@ -410,6 +427,7 @@ def main() -> None:
             writer.writerows(oof)
         os.replace(oof_path.with_name(oof_path.name + ".tmp"), oof_path)
         trial.set_user_attr("fold_best_epochs", best_epochs)
+        trial.set_user_attr("fold_epoch_history", fold_epoch_history)
         trial.set_user_attr("fold_auroc", fold_scores)
         trial.set_user_attr("mean_auroc", statistics.mean(fold_scores))
         trial.set_user_attr("mean_auprc", statistics.mean(fold_auprc))

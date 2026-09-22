@@ -1,30 +1,29 @@
 # Adaptation Experiment Ledger
 
-Study: POSTHOC-FOUNDATION-ADAPTATION-001
-Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c
+Study: `POSTHOC-FOUNDATION-ADAPTATION-001`
+Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c`
 
 | Stage | Status | Evidence | Selection/holdout access | Next dependency |
 |---|---|---|---|---|
-| Branch hygiene | PASS | BRANCH_HYGIENE.md, cleanup commit dd36ad7 | none | protocol |
-| Manifest identity/invariants | PASS | exact hashes and local verification on 2026-09-22 | no locked rows | protocol |
-| Protocol freeze | IN_PROGRESS | protocol.yaml | none | protocol hash and approval |
-| Free-Colab execution contract | PENDING | artifacts/approvals/posthoc_adaptation_free_colab_20260922.json | none | environment |
-| Environment compatibility | PENDING | environment.json | none | Caduceus smoke |
-| Caduceus smoke | PENDING | artifacts/adaptation/caduceus_smoke.json | none | data preparation |
-| Data preparation | PENDING | Drive/local sequence cache manifests | TRAIN/VALIDATION identities only | Caduceus baseline |
-| Caduceus frozen baseline | PENDING | stage artifacts | TRAIN only | partial/full fine-tune |
-| Caduceus partial fine-tune | PENDING | stage artifacts | TRAIN/CV only | full/HPO |
-| Caduceus full fine-tune | PENDING | stage artifact or FULL_FINETUNE_RESOURCE_DEFERRED_T4 | TRAIN/CV only | HPO |
-| Caduceus HPO | PENDING | Drive HPO state | TRAIN grouped CV only | final training |
-| Caduceus final training | PENDING | checkpoint and hash | TRAIN only | holdout freeze |
-| Caduceus holdout | PENDING | POST-HOC ADAPTATION HOLDOUT artifact | 801 once per final system | NT |
-| NT frozen/PEFT | PENDING | stage artifact or RESOURCE_DEFERRED_T4 | TRAIN/CV then 801 once | analysis |
-| Calibration | PENDING | TRAIN OOF calibrators | no holdout fit | abstention |
-| Abstention | PENDING | OOF thresholds and holdout report | no holdout tuning | ensemble |
-| Ensemble | PENDING | OOF fit and holdout report | no holdout fit | robustness |
-| Ablations/robustness | PENDING | source artifacts | no 946; no holdout retuning | statistics |
-| Statistics | PENDING | machine-readable CIs/comparisons | no selection after report | figures |
-| Figures/tables | PENDING | inventory and gallery | none | Judge notebook/report |
-| Judge notebook/report/README | PENDING | required deliverables | none | tests |
-| Tests | PENDING | adaptation test suite | no locked loading | push |
-| Push | PENDING | origin branch ref | none | complete |
+| Branch hygiene | PASS | `BRANCH_HYGIENE.md`; cleanup commit `dd36ad7`; refs rechecked | none | protocol |
+| Protocol freeze | PASS | `PROTOCOL.md`, `protocol.yaml`, SHA-256 above | none | execution |
+| Free-Colab contract | PASS | `artifacts/approvals/posthoc_adaptation_free_colab_20260922.json` | none | environment |
+| Environment | PASS | Drive `state/environment.json`: T4, Python 3.11.16, Torch 2.2.0+cu121, CUDA 12.1, NumPy 1.26.4 | none | smoke/data |
+| Manifest identities | PASS | Drive `state/manifests_verified.json`; pinned hashes and zero gene/ID overlap | identities only; zero locked-ID overlap | reference |
+| Reference/REF validation | PASS | Drive `state/data_ready.json`; all 4,000 development REF alleles match GRCh38 | no locked rows loaded | smoke |
+| Caduceus smoke | PASS | Drive `runs/caduceus_smoke.json`, checkpoint SHA `da541bb2…04c9042` | no cohort evaluation | frozen head |
+| Caduceus frozen head | IN_PROGRESS | Drive `checkpoints/caduceus_frozen_head/latest.pt`, `latest.json`; epoch 0 loss `1.1767539545572263`, 8,192 bp, seed 42 | TRAIN only | finish 3 epochs |
+| Caduceus partial fine-tune | NOT STARTED | no artifact | none | frozen baseline |
+| Caduceus full fine-tune | NOT STARTED | no artifact | none | feasibility/HPO |
+| Caduceus HPO | NOT STARTED | no SQLite/trial summary yet | TRAIN grouped CV only | frozen baseline |
+| Final TRAIN refit | BLOCKED | no closed selection lock | none | HPO |
+| 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |
+| NT frozen / PEFT | NOT STARTED | no adaptation result artifacts | none | Caduceus results |
+| Calibration / abstention | IMPLEMENTATION IN PROGRESS | TRAIN-OOF calibration and selective-metric helpers under validation | no holdout fit | OOF predictions |
+| Ensemble / robustness / ablations | NOT STARTED | no adaptation prediction files | none | model outputs |
+| Statistics / figures / report | NOT STARTED | no model results to plot | none | predictions |
+| Judge notebook | IMPLEMENTED, RESULT CELLS PENDING | 36 ordered sections; canonical code source display | no locked data access | training outputs |
+| Local validation | PASS | `make validate`: 734 passed, 33 deselected, 95.07% core coverage | software-only | commit |
+| Adaptation branch push | PENDING | current source/notebook changes are local and uncommitted | none | commit and push |
+
+No holdout or locked-test result is inferred from training progress or the smoke test.

@@ -369,6 +369,40 @@ re-inference is claimed for Phase 18.
 - Phase 19: <code>INTERNAL_RELEASE_READINESS_PASS</code>; external release is
   <code>NOT_REQUESTED</code>.
 
+## Post-Hoc Foundation-Model Adaptation Study
+
+A separate follow-up study is running on branch
+[`research/posthoc-foundation-adaptation`](research/adaptation/PROTOCOL.md).
+It leaves the frozen baseline, `main`, the baseline tag, and the 946-row
+temporal result unchanged. The adaptation population is 3,199 TRAIN rows and
+an 801-row gene-held-out terminal holdout; the 946-row cohort is not used for
+adaptation training or selection.
+
+The frozen protocol asks whether adapting Caduceus-Ph, with a pinned
+Nucleotide Transformer v2 500M secondary track where free-T4 resources allow,
+improves P/LP-vs-B/LB resolution-direction discrimination against frozen
+representations on that defined research cohort. Caduceus uses shared
+reference/alternate sequence encoding, fold-local weighted BCE loss, and
+forward/reverse-complement logit averaging. The current 8,192 bp frozen-head
+baseline is still training on TRAIN in the existing free Tesla T4 session;
+the one-shot holdout remains closed and there is no adaptation improvement
+claim yet.
+
+Implementation, protocol, progress, and inspectable walkthrough:
+
+- Training and HPO: [`train_caduceus.py`](scripts/adaptation/train_caduceus.py),
+  [`run_caduceus_hpo.py`](scripts/adaptation/run_caduceus_hpo.py)
+- Frozen design and state: [`PROTOCOL.md`](research/adaptation/PROTOCOL.md),
+  [`STATE.md`](research/adaptation/STATE.md),
+  [`EXPERIMENT_LEDGER.md`](research/adaptation/EXPERIMENT_LEDGER.md)
+- Notebooks: [autonomous runner](notebooks/EvoVariant_TR_Adaptation_Autonomous.ipynb),
+  [judge demo](notebooks/EvoVariant_TR_Adaptation_Judge_Demo.ipynb)
+- Walkthrough: [`docs/JUDGE_DEMO.md`](docs/JUDGE_DEMO.md)
+
+The 4,000 development sample is class-stratified, so prevalence-sensitive
+metrics describe this study distribution. Adaptation holdout values must not
+be compared as though they were the historical 946-row temporal test.
+
 ## Limitations and responsible use
 
 This is a historical ClinVar-resolution benchmark, not a prospective clinical

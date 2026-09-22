@@ -1,0 +1,82 @@
+# Post-Hoc Foundation-Model Adaptation Report
+
+**Study:** `POSTHOC-FOUNDATION-ADAPTATION-001`
+**Status:** `IN PROGRESS`
+**Protocol SHA-256:** `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c`
+**Evidence boundary:** adaptation TRAIN/VALIDATION only; the 946-row temporal locked test was not loaded.
+
+## Abstract
+
+The independent adaptation study is underway. Formal TRAIN/VALIDATION identities, GRCh38 REF alleles, the free-T4 environment, and a 128 bp Caduceus forward/backward/checkpoint smoke are verified. The 8,192 bp frozen-encoder/head-training baseline is actively running on all 3,199 TRAIN rows. It has not completed, so no training summary, selected configuration, one-shot holdout result, or model comparison is available yet.
+
+## Research question
+
+Does task-specific adaptation of feasible genomic foundation models improve P/LP-vs-B/LB resolution-direction discrimination relative to frozen representations on the formal gene-held-out 801-row adaptation holdout?
+
+## Relationship to the frozen baseline
+
+The baseline remains the historical temporal study on 946 locked rows (AUROC `0.909225974`), bound to `main` commit `30b515314d5f8c8be7c83c96b1f576fb7225c869` and `evovariant-tr-baseline-v1` tag `1003bc5a20973145e0e096ff7b0f3424045d07e6`. The 801-row adaptation holdout is a separate population and evidence stage; these metrics are not directly interchangeable.
+
+## Dataset
+
+| Split | Rows | Negative | Positive | Status |
+|---|---:|---:|---:|---|
+| TRAIN | 3,199 | 2,645 | 554 | verified; training only so far |
+| VALIDATION | 801 | 581 | 220 | identity verified; no predictions/labels evaluated |
+| Development | 4,000 | 3,226 | 774 | manifest identities verified |
+
+TRAIN SHA-256: `32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1`
+VALIDATION SHA-256: `b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b`
+Development SHA-256: `f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782`
+
+## Leakage controls
+
+The manifests are hash-pinned. TRAIN and VALIDATION have zero normalized-ID and gene overlap. Formal adaptation IDs have zero overlap with the locked manifest. Training and HPO load TRAIN rows only; class weights are fold-local. The evaluation CLI refuses validation without a closed TRAIN-only selection lock and refuses a second output. The one-shot holdout has not been opened.
+
+## Environment and hardware
+
+Observed GPU: Tesla T4, 15,360 MiB device memory (14.56 GiB). Isolated runtime: Python 3.11.16, PyTorch 2.2.0+cu121, CUDA 12.1, NumPy 1.26.4, Transformers 4.38.1, `mamba-ssm` 1.2.0.post1, `causal-conv1d` 1.2.0.post2. No paid compute was used or authorized.
+
+## Sequence construction
+
+The verified UCSC hg38 FASTA decompresses to 3,273,481,150 bytes with SHA-256 `5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51`. All 4,000 formal development REF alleles match the FASTA. The primary context is 8,192 bp; paired reference and alternate SNV sequences and their reverse complements are constructed through the shared data module.
+
+## Caduceus architecture and smoke
+
+Pinned checkpoint: `kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16`, revision `b0477522ac5d044ad03578aa724ec8e4bdbd405b`. A shared encoder generates masked-mean-pooled reference/alternate embeddings. The head receives `z_ref`, `z_alt`, their signed difference, and its absolute value. Forward and reverse-complement logits are averaged. The 128 bp smoke passed finite forward/loss/gradients, optimizer step, and checkpoint reload prediction compatibility in 10.73 s; peak allocation was 452,699,136 bytes. This smoke is not a training result.
+
+## Frozen Caduceus baseline
+
+`IN PROGRESS`: frozen encoder, trainable paired head, seed 42, 3 epochs, batch size 1, effective batch 16, AdamW learning rate `2e-5`, weight decay `0.01`, dropout `0.1`, context 8,192 bp. Epoch 0 loss: `1.1767539545572263`; epoch 1 loss: `1.1581548454985837`. Checkpoint/progress is persisted in Drive at `checkpoints/caduceus_frozen_head/`. `run.json` does not yet exist.
+
+## Partial and full fine-tuning
+
+`NOT STARTED`. Any T4 OOM or resource limit will be recorded as `FULL_FINETUNE_RESOURCE_DEFERRED_T4`; no rows will be removed or replaced.
+
+## HPO and seed robustness
+
+`NOT STARTED`. Selection requires at least 8 completed trials (maximum 12) using 3-fold `StratifiedGroupKFold` grouped by gene, all inside TRAIN. The final epoch count is derived from selected fold best epochs. Seeds are fixed at 42, 1337, and 2026; none may be selected by holdout performance.
+
+## 801-row holdout
+
+`CLOSED`. No evaluation occurs before a hash-bound TRAIN-only selection lock and final TRAIN fit. No holdout metrics are available.
+
+## Nucleotide Transformer v2 500M
+
+Pinned revision: `06615c1660c892fc199840c18123f8385b3542a8`. `NOT STARTED`; begin only after Caduceus results are safely persisted. Frozen and PEFT results will be reported only if actually run within the free-T4 boundary.
+
+## Calibration, abstention, ensemble, robustness, ablations
+
+Calibration and gene-aware selective/statistical helpers are implemented and locally validated; no TRAIN OOF predictions exist yet. No calibrator is fitted, no abstention result is measured, and no ensemble/context/learning-curve/ablation result is available. The frozen protocol requires OOF-only calibrator fitting and a 2,000-replicate gene-aware paired bootstrap with Holm correction.
+
+## Statistics, errors, and figures
+
+No adaptation prediction CSV exists. Therefore no ROC/PR curve, confusion matrix, reliability or risk-coverage curve, subgroup/error analysis, bootstrap result, or adaptation figure has been generated. Missing curves will remain missing rather than interpolated.
+
+## Reproducibility and limitations
+
+The current adaptation branch HEAD used by the active training process is `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`. The progress checkpoint is bound to the frozen protocol, TRAIN manifest, reference hash, and model revision. The branch currently has additional local source/notebook/report updates that require a validated commit and push. The class-stratified development sample does not represent deployment prevalence. This is a research-only discrimination study and does not establish clinical validity, diagnosis, treatment utility, causality, or universal genomic performance.
+
+## Conclusion
+
+The protocol and data gates pass, the short smoke passes, and real full-context TRAIN-only optimization has begun. Completion criteria remain unmet until frozen baseline, grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, documentation, validation, and branch push are completed.

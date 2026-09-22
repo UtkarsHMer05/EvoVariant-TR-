@@ -48,6 +48,47 @@ class CalibrationTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             calibration.select_abstention_threshold(labels, probabilities[:2])
 
+    def test_calibrator_comparison_and_selective_metrics(self):
+        labels = [0, 0, 0, 1, 1, 1]
+        logits = [-3.0, -1.0, 0.2, 0.3, 1.0, 3.0]
+        model = calibration.fit_calibrators(labels, logits)
+        self.assertEqual(model["fit_scope"], "TRAIN_OOF_ONLY")
+        self.assertIn(
+            model["selected_method"], {"uncalibrated", "temperature", "platt", "isotonic"}
+        )
+        probabilities = calibration.apply_calibrator(logits, model)
+        self.assertEqual(len(probabilities), len(labels))
+        self.assertTrue(all(0 <= value <= 1 for value in probabilities))
+        coverage = calibration.selective_metrics(labels, [0.05, 0.15, 0.35, 0.7, 0.85, 0.95])
+        self.assertEqual([point["target_coverage"] for point in coverage], [0.5, 0.75, 0.9, 1.0])
+        self.assertEqual(coverage[-1]["coverage"], 1.0)
+        self.assertEqual(coverage[-1]["risk"], coverage[-1]["error_rate"])
+        with self.assertRaises(ValueError):
+            calibration.fit_calibrators([1, 1], [0.0, 1.0])
+        for method in ("uncalibrated", "temperature", "platt", "isotonic"):
+            candidate = dict(model, selected_method=method)
+            self.assertEqual(len(calibration.apply_calibrator(logits, candidate)), len(labels))
+        with self.assertRaises(ValueError):
+            calibration.fit_platt([1], [0.0])
+        with self.assertRaises(ValueError):
+            calibration._fit_isotonic([1], [0.0])
+        with self.assertRaises(ValueError):
+            calibration._apply_isotonic([0.0], {"upper_bounds": [], "values": []})
+        with self.assertRaises(ValueError):
+            calibration.apply_calibrator(
+                logits, {"selected_method": "temperature", "temperature": None}
+            )
+        with self.assertRaises(ValueError):
+            calibration.apply_calibrator(logits, {"selected_method": "platt", "platt": None})
+        with self.assertRaises(ValueError):
+            calibration.apply_calibrator(logits, {"selected_method": "isotonic", "isotonic": None})
+        with self.assertRaises(ValueError):
+            calibration.apply_calibrator(logits, {"selected_method": "unknown"})
+        with self.assertRaises(ValueError):
+            calibration.selective_metrics(labels, [0.1], [0.5])
+        with self.assertRaises(ValueError):
+            calibration.selective_metrics(labels, [0.1] * len(labels), [1.1])
+
 
 class StatisticsTest(unittest.TestCase):
     def test_gene_bootstrap_and_holm(self):
@@ -60,6 +101,35 @@ class StatisticsTest(unittest.TestCase):
         self.assertEqual(statistics.holm_adjust([0.01, 0.04, 0.03]), [0.03, 0.06, 0.06])
         with self.assertRaises(ValueError):
             statistics.gene_bootstrap_auc([1], [0.1], ["A"], replicates=0)
+        with self.assertRaises(ValueError):
+            statistics.gene_bootstrap_auc([0, 1], [0.1], ["A", "B"])
+
+    def test_gene_metric_and_paired_bootstrap(self):
+        labels = [0, 1, 0, 1, 0, 1]
+        left = [0.2, 0.8, 0.4, 0.6, 0.3, 0.7]
+        right = [0.1, 0.9, 0.2, 0.8, 0.3, 0.7]
+        genes = ["A", "A", "B", "B", "C", "C"]
+        summary = statistics.gene_bootstrap_metrics(labels, right, genes, replicates=40, seed=7)
+        self.assertEqual(set(summary), set(statistics.CORE_METRICS))
+        paired = statistics.paired_gene_bootstrap(
+            labels, left, right, genes, replicates=40, seed=7
+        )
+        self.assertEqual(set(paired), set(statistics.CORE_METRICS))
+        self.assertTrue(all(0 <= value["two_sided_p"] <= 1 for value in paired.values()))
+        with self.assertRaises(ValueError):
+            statistics.holm_adjust([0.1, 1.1])
+        with self.assertRaises(ValueError):
+            statistics.gene_bootstrap_metrics([0], [0.1], ["A"], replicates=0)
+        with self.assertRaises(ValueError):
+            statistics.gene_bootstrap_metrics([], [], [], replicates=10)
+        with self.assertRaises(ValueError):
+            statistics.paired_gene_bootstrap([0, 1], [0.1], [0.2, 0.3], ["A", "B"])
+        with self.assertRaises(ValueError):
+            statistics.paired_gene_bootstrap([], [], [], [])
+        one_class = statistics.paired_gene_bootstrap(
+            [0, 0], [0.1, 0.2], [0.2, 0.3], ["A", "B"], replicates=4
+        )
+        self.assertNotIn("auroc", one_class)
 
 
 class FoldAdapterTest(unittest.TestCase):

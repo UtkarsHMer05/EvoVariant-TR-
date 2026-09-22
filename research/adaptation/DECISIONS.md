@@ -15,9 +15,12 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 | D-A007 | Use free Colab/local resources only; defer rather than fabricate any resource-infeasible result. | Paid compute is prohibited. | FROZEN |
 | D-A008 | Evaluate the 801 holdout once per predeclared final system after selection closes. | Preserves the terminal holdout boundary. | FROZEN |
 | D-A009 | Use gene-aware paired bootstrap and Holm correction for uncertainty/comparisons. | Accounts for grouped identities and multiple primary comparisons. | FROZEN |
-| D-A010 | Keep canonical ML logic in source files and make the Judge notebook render it with inspect.getsource. | Makes fine-tuning auditable. | FROZEN |
+| D-A010 | Keep canonical ML logic in source files and make the Judge notebook render it with inspect.getsource/source inspection. | Makes fine-tuning auditable. | FROZEN |
+| D-A011 | Compare uncalibrated, temperature, Platt, and isotonic calibration from TRAIN OOF predictions; derive selective risk at predeclared coverage from confidence alone. | Implements the already-frozen calibration/abstention contract without opening VALIDATION. | FROZEN |
 
 ## Open operational items
 
-1. Verify the live Colab/Vivaldi runtime and Drive paths.
-2. Select a compatible dependency environment without mutating the frozen local baseline.
+1. Complete the 3-epoch TRAIN-only frozen-head run in the existing free-T4 Colab session.
+2. Continue TRAIN-only grouped HPO from Drive checkpoints/SQLite; never start holdout evaluation before selection closes.
+3. Mark Caduceus full fine-tuning and NT workloads with measured feasibility or explicit T4 resource deferral.
+4. Generate analysis, figures, report, README updates, and push only from persisted, verified outputs.

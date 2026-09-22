@@ -1,0 +1,170 @@
+{
+  "artifact_id": "evovariant-tr-formal-phase7-continuation-20260922",
+  "study_id": "ML-DEV-BUDGETED-001",
+  "approval_version": "formal-phase7-representation-v2",
+  "approved_by": "user",
+  "approved_at": "2026-09-22T07:06:45Z",
+  "authorization_source": "explicit user authorization in the pasted current-priority master prompt on 2026-09-22",
+  "max_budget_usd": 1.75,
+  "budget_control": {
+    "hard_cap_usd": 1.75,
+    "runner_safety_stop_usd": 1.5,
+    "minimum_post_run_reserve_usd": 3.0,
+    "locked_test_reserve_has_priority": true,
+    "no_silent_budget_widening": true,
+    "billing_basis": "user-reported free credits with workspace-level Modal snapshots as supporting evidence",
+    "scope": "complete remaining formal Nucleotide Transformer and formal Caduceus representations, including the required tiny Caduceus parity/sanity pilot and cache/resume validation"
+  },
+  "protocol": {
+    "path": "research/ml_extension/protocol.yaml",
+    "sha256": "bad95bcf9a4217a2b4029656d327a8f3bdc1b9932a16a5034475a997a22157ec"
+  },
+  "dataset": {
+    "formal_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "formal_record_count": 4000,
+    "train_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json",
+    "train_manifest_sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+    "validation_manifest_path": "research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json",
+    "validation_manifest_sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "locked_test_manifest_path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "locked_test_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "locked_test_count": 946,
+    "evo2_artifact_path": "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json",
+    "evo2_artifact_sha256": "b04940b3b5845fd57144f54a9862da8d9d89fb1b98d9c79fc45364e7a21ef54d",
+    "evo2_predictions_path": "research/runs/phase6_formal_evo2_20260921_full_overnight_20260922/predictions.jsonl",
+    "evo2_predictions_sha256": "088e39fcfa45b2af9cd8f11cbb803213d9030c92036fc9f27f577c3912693751",
+    "locked_test_overlap": 0
+  },
+  "cache_state": {
+    "verified_nt_rows": 2432,
+    "remaining_nt_rows": 1568,
+    "remaining_nt_ids_sha256": "e360278a57a0a19aedc8a506dfd8de9dad4d5a8c13f77376b726fdf74006883a",
+    "small_plan": {
+      "path": "research/runs/phase7_formal_budgeted_20260922/nucleotide_transformer/execution_plan.json",
+      "file_sha256": "9ef93a0a0c9ba82e4b3956b42d817adb8ea54a4bceb679588f322fa2ad3813ef",
+      "execution_plan_sha256": "ab21eeb0597ba20a019a72f7729ad978c5a8a2a8929fdfdf913cfe06665c144c",
+      "verified_shards": 63,
+      "verified_rows": 504,
+      "shard_hash_index_sha256": "daefd054bf5303bf7a3b5de353ee07e3ea739404a7b8a7308cf463e578983638"
+    },
+    "optimized_plan": {
+      "path": "research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/execution_plan.json",
+      "file_sha256": "422a79f7bdfbf6e414362801359c9d400dfac4cc1e0dfe011e2ff59f7efa94b5",
+      "execution_plan_sha256": "23b5650dbb41911438f5db029b4b181d986e9ce85f7dd5d576ca5d558a38a0a3",
+      "shard_size": 64,
+      "variant_batch_size": 4,
+      "verified_shards": 31,
+      "verified_rows": 1928,
+      "shard_hash_index_sha256": "cc02a1f616b54602affcc414a466cce1da9cffd8201bb1c079970bf7bceece3e"
+    },
+    "cache_intersection_rows": 0,
+    "duplicates": 0,
+    "unexpected_ids": 0,
+    "nonfinite_features": 0,
+    "locked_test_overlap": 0,
+    "labels_in_remote_results": false
+  },
+  "git": {
+    "branch": "research/evovariant-tr",
+    "commit": "408edcc83e4a288cc8afb90a5bb9993af302c3d4",
+    "head_tree": "c09deb24ec99b551add66a509d35aef6acb96838",
+    "working_tree_policy": "approval binds the committed HEAD; unrelated local downstream edits and artifacts are not part of the Modal workload"
+  },
+  "models": {
+    "nucleotide_transformer": {
+      "model_id": "InstaDeepAI/nucleotide-transformer-v2-500m-multi-species",
+      "revision": "06615c1660c892fc199840c18123f8385b3542a8",
+      "layers": [8, 16, 24]
+    },
+    "caduceus": {
+      "model_id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+      "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "layers": [4, 8, 16]
+    }
+  },
+  "model_contract": {
+    "assembly": "GRCh38",
+    "context_length_bp": 8192,
+    "orientation": "forward_and_reverse",
+    "views": [
+      "reference_forward",
+      "alternate_forward",
+      "reference_reverse_complement",
+      "alternate_reverse_complement"
+    ],
+    "pooling": "mean_tokens",
+    "one_forward_pass_per_model_for_all_declared_layers": true
+  },
+  "gpu": {
+    "type": "H100",
+    "count": 1
+  },
+  "allowed_workloads": [
+    "complete remaining formal Nucleotide Transformer representation extraction for the exact 1,568 unscored TRAIN/VALIDATION IDs",
+    "reuse and verify all 2,432 compatible persisted Nucleotide Transformer rows without recomputation",
+    "required tiny deterministic Caduceus parity and sanity pilot",
+    "formal Caduceus representation extraction for the exact 4,000-row TRAIN/VALIDATION set only if the pilot remains within the safety envelope",
+    "content-addressed cache/resume validation with atomic shard persistence",
+    "representation artifact verification and hashing"
+  ],
+  "excluded_workloads": [
+    "Evo2 rerun",
+    "Evo2 development rerun",
+    "locked-test inference",
+    "Phase 14",
+    "foundation-model fine-tuning",
+    "fine-tuning",
+    "PEFT",
+    "GPN",
+    "context-length sweep",
+    "context sweeps",
+    "deployment",
+    "release"
+  ],
+  "execution_contract": {
+    "formal_records": 4000,
+    "splits": ["TRAIN", "VALIDATION"],
+    "labels_remote_transport": false,
+    "locked_test_access": false,
+    "one_forward_pass_per_model": true,
+    "shard_size": 64,
+    "variant_batch_size": 4,
+    "finite_features_required": true,
+    "duplicate_ids_prohibited": true,
+    "unexpected_ids_prohibited": true,
+    "phase14_started": false,
+    "fine_tuning_started": false
+  },
+  "cost_baseline": {
+    "captured_at_utc": "2026-09-22T07:06:45Z",
+    "modal_billing_command": "modal billing summary",
+    "modal_app_inventory_command": "modal container list --json",
+    "workspace_metered_usd": 30.46,
+    "workspace_billed_usd": 0.0,
+    "workspace_ephemeral_apps_usd": 18.31,
+    "workspace_deployed_apps_usd": 8.78,
+    "workspace_volumes_usd": 3.37,
+    "free_compute_headroom_usd": 5.14366064,
+    "minimum_post_run_reserve_usd": 3.0,
+    "active_containers": 0,
+    "container_inventory": [],
+    "interpretation": "workspace metering is not a per-run invoice; free headroom is the conservative derived account-level balance supplied by the user context"
+  },
+  "scientific_boundary": {
+    "evo2_artifact_immutable": true,
+    "par_deviation": "DEV-2026-001",
+    "labels_joined_locally_only": true,
+    "locked_test_untouched": true,
+    "phase7_only": true,
+    "stop_before_phase14": true
+  },
+  "stop_conditions": [
+    "stop before the $1.50 safety stop and never exceed the $1.75 hard cap",
+    "stop immediately on any labels, locked-test IDs, unexpected IDs, duplicates, non-finite features, or provenance mismatch",
+    "stop and preserve resumable evidence if a paid container remains after the workload",
+    "stop the Caduceus remote track and mark it DEFERRED_BY_COMPUTE if its pilot projection does not fit the safety envelope",
+    "stop after Phase 7 reaches its allowed boundary; do not start Phase 14 or another GPU phase automatically"
+  ]
+}

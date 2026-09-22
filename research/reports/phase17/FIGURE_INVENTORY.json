@@ -14,7 +14,7 @@
       "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
       "figure_id": "context_length_metric",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 0,
       "output_paths": [],
@@ -51,7 +51,7 @@
       "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
       "figure_id": "train_validation_loss",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 0,
       "output_paths": [],
@@ -82,7 +82,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "cohort_flow",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 15,
       "output_paths": [
@@ -122,7 +122,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_class_distribution",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -164,7 +164,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_chromosome_distribution",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -206,7 +206,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_gene_top",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -248,7 +248,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "temporal_transition",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 7,
       "output_paths": [
@@ -288,7 +288,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "compute_cumulative_rows",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -348,7 +348,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "cache_reuse",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 10,
       "output_paths": [
@@ -408,7 +408,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "runtime_by_model",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -468,7 +468,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "cost_by_phase_model",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -528,7 +528,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "cumulative_compute_spend",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -588,7 +588,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "throughput_comparison",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -648,7 +648,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "foundation_model_performance",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 12,
       "output_paths": [
@@ -690,7 +690,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "representation_layers",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 6,
       "output_paths": [
@@ -732,7 +732,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "raw_vs_representation",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 2,
       "output_paths": [
@@ -774,7 +774,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "classifier_auroc_heatmap",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 36,
       "output_paths": [
@@ -808,7 +808,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "classifier_mcc_heatmap",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 36,
       "output_paths": [
@@ -842,7 +842,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "classifier_brier_heatmap",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 36,
       "output_paths": [
@@ -876,7 +876,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "combination_ranking",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 12,
       "output_paths": [
@@ -910,7 +910,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "hpo_trial_history",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 48,
       "output_paths": [
@@ -952,7 +952,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "hpo_hyperparameters",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 25,
       "output_paths": [
@@ -994,7 +994,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "learning_curve_auroc",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 5,
       "output_paths": [
@@ -1036,7 +1036,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "learning_curve_metrics",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 25,
       "output_paths": [
@@ -1070,7 +1070,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "ablation_metric_delta",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 30,
       "output_paths": [
@@ -1112,7 +1112,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "diversity_matrix",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 3,
       "output_paths": [
@@ -1154,7 +1154,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "ensemble_comparison",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 3,
       "output_paths": [
@@ -1196,7 +1196,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "calibration_reliability",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 20,
       "output_paths": [
@@ -1239,7 +1239,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "calibration_metric_comparison",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 9,
       "output_paths": [
@@ -1282,7 +1282,7 @@
       "evidence_stage": "PRELIMINARY",
       "figure_id": "risk_coverage_development",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 20,
       "output_paths": [
@@ -1325,7 +1325,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_abstention_semantics",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1367,7 +1367,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_roc",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1409,7 +1409,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_pr",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1451,7 +1451,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "bootstrap_interval",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1485,7 +1485,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_confusion_matrix",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1527,7 +1527,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_outcome_counts",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1569,7 +1569,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_error_chromosome",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1611,7 +1611,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_gene_errors",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1653,7 +1653,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "final_fp_fn",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 946,
       "output_paths": [
@@ -1695,7 +1695,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "development_final_generalization",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 2,
       "output_paths": [
@@ -1737,7 +1737,7 @@
       "evidence_stage": "FINAL",
       "figure_id": "project_timeline",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 10,
       "output_paths": [
@@ -1785,7 +1785,7 @@
       "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
       "figure_id": "context_length_metric",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 0,
       "output_paths": [],
@@ -1822,7 +1822,7 @@
       "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
       "figure_id": "train_validation_loss",
       "generator_version": "phase17-publication-bundle-v2",
-      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
       "git_dirty_at_generation": true,
       "n": 0,
       "output_paths": [],
@@ -1856,7 +1856,7 @@
     "svg": true
   },
   "generator_version": "phase17-publication-bundle-v2",
-  "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+  "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
   "git_dirty_at_generation": true,
   "no_remote_compute": true,
   "registered_completed_runs_verified": 13,

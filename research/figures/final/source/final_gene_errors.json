@@ -8,7 +8,7 @@
     "evidence_stage": "FINAL",
     "figure_id": "final_gene_errors",
     "generator_version": "phase17-publication-bundle-v2",
-    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_commit": "b4d841d33ca76c6a07ae4987876290bcf809189f",
     "git_dirty_at_generation": true,
     "n": 946,
     "population": "946 locked-test rows; top error counts",

@@ -6,7 +6,7 @@
   "manifest": "research/reports/phase17/publication_manifest.json",
   "manual_visual_review": "PASS_CONTACT_SHEET_REVIEWED_2026-09-22",
   "manual_visual_review_notes": "All 39 rendered families were reviewed on the regenerated contact sheet; no visible clipping, missing labels, stage markers, sample sizes, axis/caption truncation, or unsupported trend claims. Two conditional NOT_APPLICABLE_WITH_DOCUMENTED_REASON families remain excluded.",
-  "recorded_at_utc": "2026-09-22T16:13:31.570268+00:00",
+  "recorded_at_utc": "2026-09-22T16:21:44.073856+00:00",
   "rendered_family_count": 39,
   "results": [
     {

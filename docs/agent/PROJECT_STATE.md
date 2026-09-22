@@ -56,7 +56,7 @@ fine-tuning, and any broader paid workload remain outside this checkpoint.
   39 source sidecars, 12 tables, and a report with explicit Motivation, protocol, temporal,
   Evo2, downstream/HPO/ensemble, calibration/uncertainty, robustness/error, limitations, and
   conclusion sections. Current publication manifest SHA-256 is
-  `f34b3f2961f2a211b71729b5e41325f9bc94c9f5c2a17a0da7421692becb7ea0`.
+  `5c32737485afc8afb2e98257ade53be9ca0f8f90ca5b3d2ed8f4796615151969`.
 - Phase18: `PASS` for clean-room software/artifact reproducibility plus representative remote
   smoke; full 4,000/946 remote re-inference was not performed or claimed.
   `artifacts/phase18/clean_room_execution_20260922.json` records a clean detached

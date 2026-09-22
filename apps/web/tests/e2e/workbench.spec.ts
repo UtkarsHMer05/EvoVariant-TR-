@@ -30,7 +30,7 @@ test.describe("research workbench", () => {
     await expect(page.getByText("Research-only")).toBeVisible();
   });
 
-  test("shows preliminary registry metadata without promoting final outputs", async ({
+  test("shows the registered FINAL run without promoting blocked downstream outputs", async ({
     page,
     request,
   }) => {
@@ -40,17 +40,20 @@ test.describe("research workbench", () => {
       status: string;
       registered_run_count: number;
       completed_scientific_run_count: number;
+      final_scientific_run_count: number;
       runs: unknown[];
     };
-    expect(payload.status).toBe("PARTIAL");
+    expect(payload.status).toBe("READY");
     expect(payload.registered_run_count).toBeGreaterThan(0);
     expect(payload.completed_scientific_run_count).toBeGreaterThan(0);
+    expect(payload.final_scientific_run_count).toBeGreaterThan(0);
     expect(payload.runs.length).toBeGreaterThan(0);
 
     await page.getByRole("tab", { name: "Experiment Registry" }).click();
     await expect(page.getByText("Registered run metadata")).toBeVisible();
-    await expect(page.getByText("PARTIAL", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("READY", { exact: true }).first()).toBeVisible();
     await expect(page.getByText("PRELIMINARY").first()).toBeVisible();
+    await expect(page.getByText("FINAL").first()).toBeVisible();
     await expect(page.getByText("COMPLETED").first()).toBeVisible();
   });
 

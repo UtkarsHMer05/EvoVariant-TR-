@@ -13,6 +13,8 @@ type FormalOutputs = [
   JsonObject,
 ];
 
+const FINAL_LOCKED_ARTIFACT = "artifacts/phase14/phase14_locked_evo2_20260922.json";
+
 const FORMAL_OUTPUTS = [
   "research/runs/formal_cpu_20260922/phase8/summary.json",
   "research/runs/formal_cpu_20260922/phase9/summary.json",
@@ -131,6 +133,54 @@ async function readVerifiedFormalOutputs(
   return null;
 }
 
+function asNumber(value: unknown): number | null {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+async function readVerifiedFinalEvaluation(
+  repoRoot: string,
+): Promise<{ runId: string; artifact: JsonObject; artifactSha256: string } | null> {
+  const recordsDirectory = path.join(repoRoot, "experiments", "registry", "runs");
+  let filenames: string[];
+  try {
+    filenames = (await readdir(recordsDirectory)).filter((filename) =>
+      /^run_[^/]+\.json$/.test(filename),
+    );
+  } catch {
+    return null;
+  }
+
+  for (const filename of filenames) {
+    const record = await readJson(repoRoot, path.join("experiments/registry/runs", filename));
+    if (
+      record?.status !== "COMPLETED" ||
+      record?.evidence_stage !== "FINAL" ||
+      record?.experiment_family !== "PHASE14_LOCKED_EVALUATION"
+    ) {
+      continue;
+    }
+    const outputHashes = asObject(record.output_hashes);
+    const expectedArtifactSha256 = asString(outputHashes?.[FINAL_LOCKED_ARTIFACT]);
+    const actualArtifactSha256 = await sha256(repoRoot, FINAL_LOCKED_ARTIFACT);
+    if (!expectedArtifactSha256 || expectedArtifactSha256 !== actualArtifactSha256) continue;
+    const artifact = await readJson(repoRoot, FINAL_LOCKED_ARTIFACT);
+    const gates = asObject(artifact?.integrity_gates);
+    if (
+      artifact?.status !== "PASS_PHASE14_LOCKED_EVALUATION" ||
+      !gates ||
+      !Object.values(gates).every((value) => value === true)
+    ) {
+      continue;
+    }
+    return {
+      runId: asString(record.run_id) ?? filename.replace(/\.json$/, ""),
+      artifact,
+      artifactSha256: actualArtifactSha256,
+    };
+  }
+  return null;
+}
+
 function phaseStatus(output: JsonObject | null): string {
   return asString(output?.status) ?? "UNAVAILABLE";
 }
@@ -168,6 +218,7 @@ export async function GET() {
   }
 
   const verified = await readVerifiedFormalOutputs(repoRoot);
+  const finalEvaluation = await readVerifiedFinalEvaluation(repoRoot);
   const figureStatus = await readJson(repoRoot, "research/runs/phase17_fig_status.json");
   const uiStatus = await readJson(repoRoot, "research/runs/phase16_ui_status.json");
   if (!verified || !figureStatus) {
@@ -190,11 +241,25 @@ export async function GET() {
     (value): value is string => typeof value === "string",
   );
   const selectionClosed = freeze.selection_closed === true;
+  const finalArtifact = finalEvaluation?.artifact;
+  const finalMetrics = asObject(finalArtifact?.metrics);
+  const finalProbabilityMetrics = asObject(finalMetrics?.probability_metrics);
+  const finalCohort = asObject(finalArtifact?.locked_cohort);
+  const finalSubmission = asObject(finalArtifact?.submission);
+  const finalOutputs = asObject(finalArtifact?.outputs);
+  const finalCiValues = Array.isArray(finalMetrics?.bootstrap_auc_ci95)
+    ? finalMetrics.bootstrap_auc_ci95.map(asNumber)
+    : [];
+  const finalCi = finalCiValues.length === 2
+    && finalCiValues[0] !== null
+    && finalCiValues[1] !== null
+    ? [finalCiValues[0], finalCiValues[1]]
+    : null;
 
   return Response.json({
     status: "PARTIAL",
-    evidence_stage: "PRELIMINARY",
-    locked_test_evaluated: false,
+    evidence_stage: finalEvaluation ? "FINAL" : "PRELIMINARY",
+    locked_test_evaluated: finalEvaluation !== null,
     selection_closed: selectionClosed,
     ui: {
       status: asString(uiStatus?.status) ?? "PARTIAL",
@@ -219,5 +284,28 @@ export async function GET() {
       required_tables: figureStatus.applicable_required_table_count ?? requiredTables.length,
       blockers,
     },
+    final_evaluation: finalEvaluation
+      ? {
+          run_id: finalEvaluation.runId,
+          status: finalArtifact?.status,
+          completed_rows: asNumber(finalCohort?.completed_rows),
+          expected_rows: asNumber(finalCohort?.expected_rows),
+          submitted_rows: asNumber(finalSubmission?.submitted_rows),
+          model_contract: finalArtifact?.model_contract ?? null,
+          auroc: asNumber(finalMetrics?.auroc),
+          auprc: asNumber(finalMetrics?.auprc),
+          bootstrap_auc_ci95: finalCi,
+          accuracy: asNumber(finalProbabilityMetrics?.accuracy),
+          brier: asNumber(finalProbabilityMetrics?.brier),
+          nll: asNumber(finalProbabilityMetrics?.nll),
+          ece: asNumber(finalProbabilityMetrics?.ece),
+          coverage: asNumber(asObject(finalMetrics?.abstention)?.actual_coverage),
+          abstention_risk: asNumber(asObject(finalMetrics?.abstention)?.risk),
+          artifact_sha256: finalEvaluation.artifactSha256,
+          raw_predictions_sha256: asString(finalOutputs?.raw_predictions_sha256),
+          joined_predictions_sha256: asString(finalOutputs?.local_label_join_sha256),
+          integrity_gates_passed: true,
+        }
+      : null,
   });
 }

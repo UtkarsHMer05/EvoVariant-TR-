@@ -101,6 +101,34 @@ type ResearchEvidence = {
     required_tables: number;
     blockers: string[];
   };
+  final_evaluation: {
+    run_id: string;
+    status: string;
+    completed_rows: number | null;
+    expected_rows: number | null;
+    submitted_rows: number | null;
+    model_contract: {
+      model_id?: string;
+      revision?: string;
+      assembly?: string;
+      context_length_bp?: number;
+      orientation?: string;
+      score_semantics?: string;
+    } | null;
+    auroc: number | null;
+    auprc: number | null;
+    bootstrap_auc_ci95: [number, number] | null;
+    accuracy: number | null;
+    brier: number | null;
+    nll: number | null;
+    ece: number | null;
+    coverage: number | null;
+    abstention_risk: number | null;
+    artifact_sha256: string;
+    raw_predictions_sha256: string | null;
+    joined_predictions_sha256: string | null;
+    integrity_gates_passed: boolean;
+  } | null;
 };
 
 type WorkbenchStatus = "READY" | "PARTIAL" | "BLOCKED" | "PENDING";
@@ -259,6 +287,14 @@ function phaseStatusPill(status: string): WorkbenchStatus {
   return "PARTIAL";
 }
 
+function formatMetric(value: number | null): string {
+  return value === null ? "Unavailable" : value.toFixed(3);
+}
+
+function formatInterval(value: [number, number] | null): string {
+  return value === null ? "Unavailable" : `${value[0].toFixed(3)}–${value[1].toFixed(3)}`;
+}
+
 function readErrorDetail(value: unknown): string | null {
   if (typeof value !== "object" || value === null || Array.isArray(value)) {
     return null;
@@ -335,9 +371,9 @@ function RegistryPanel({
             <CardTitle className="text-base font-normal text-[#3c4f3d]">
               Experiment Registry
             </CardTitle>
-            <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
-              Read-only metadata from append-only run records. Scientific result values remain
-              hidden until their registered artifacts pass the project gates.
+                  <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
+                    Read-only metadata from append-only run records. Final values appear only when
+                    their registered artifacts pass the project gates.
             </CardDescription>
           </div>
           <StatusPill status={summary?.status ?? "BLOCKED"} />
@@ -387,7 +423,7 @@ function RegistryPanel({
 
             {summary.blockers.length > 0 && (
               <div className="rounded-md border border-dashed border-[#de8246]/35 bg-[#fff8f2] p-4">
-                <p className="text-sm font-medium text-[#3c4f3d]">
+                  <p className="text-sm font-medium text-[#3c4f3d]">
                   No completed scientific output is promoted from this registry.
                 </p>
                 <ul className="mt-2 space-y-1 text-sm leading-6 text-[#3c4f3d]/65">
@@ -470,11 +506,11 @@ function DevelopmentEvidencePanel({
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <CardTitle className="text-base font-normal text-[#3c4f3d]">
-              Development evidence
+              Research evidence
             </CardTitle>
             <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
-              Hash-verified TRAIN/VALIDATION outputs from the formal CPU continuation. These
-              values are preliminary and never stand in for locked-test evidence.
+              Development outputs remain preliminary. Locked-test values appear only from a
+              hash-verified registered FINAL run, with downstream gates still shown explicitly.
             </CardDescription>
           </div>
           <StatusPill status={evidence?.status ?? "BLOCKED"} />
@@ -519,6 +555,40 @@ function DevelopmentEvidencePanel({
                 </div>
               ))}
             </dl>
+
+            {evidence.final_evaluation && (
+              <div className="rounded-md border border-[#3c4f3d]/15 bg-[#f7f9f7] p-4">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/55">
+                      Final locked evaluation
+                    </h3>
+                    <p className="mt-2 text-sm text-[#3c4f3d]/70">
+                      Evo2 7B · {evidence.final_evaluation.completed_rows ?? "?"} / {evidence.final_evaluation.expected_rows ?? "?"} rows · no post-test tuning
+                    </p>
+                  </div>
+                  <StatusPill status="READY" />
+                </div>
+                <dl className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                  {[
+                    ["AUROC", formatMetric(evidence.final_evaluation.auroc)],
+                    ["AUPRC", formatMetric(evidence.final_evaluation.auprc)],
+                    ["95% CI", formatInterval(evidence.final_evaluation.bootstrap_auc_ci95)],
+                    ["Accuracy", formatMetric(evidence.final_evaluation.accuracy)],
+                    ["Coverage", formatMetric(evidence.final_evaluation.coverage)],
+                    ["Risk", formatMetric(evidence.final_evaluation.abstention_risk)],
+                  ].map(([label, value]) => (
+                    <div key={label} className="rounded-md bg-white px-3 py-2">
+                      <dt className="text-xs uppercase tracking-[0.1em] text-[#3c4f3d]/50">{label}</dt>
+                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="mt-3 text-xs leading-5 text-[#3c4f3d]/55">
+                  Run {evidence.final_evaluation.run_id}; artifact SHA-256 {evidence.final_evaluation.artifact_sha256}. All recorded integrity gates passed.
+                </p>
+              </div>
+            )}
 
             <div className="grid gap-5 lg:grid-cols-2">
               <div>
@@ -725,7 +795,9 @@ export default function VariantAnalysisPage() {
     return {
       ...area,
       status: registry?.status ?? ("BLOCKED" as const),
-      description: "Registered scientific runs and artifact-count metadata; final promotion remains explicit.",
+      description: registry?.final_scientific_run_count
+        ? "Registered scientific runs with a verified FINAL record; downstream gates remain explicit."
+        : "Registered scientific runs and artifact-count metadata; final promotion remains explicit.",
       artifact: "Verified experiment run records",
     };
   });
@@ -789,7 +861,7 @@ export default function VariantAnalysisPage() {
                   Research-only surface. {registryError
                     ? "Registry metadata could not be loaded; downstream scientific selection remains gated."
                     : registryReady
-                      ? `${registry?.completed_scientific_run_count} completed scientific run is registered; downstream panels still require their own evidence gates.`
+                      ? `${registry?.completed_scientific_run_count} completed scientific runs are registered, including ${registry?.final_scientific_run_count} FINAL; downstream panels still require their own evidence gates.`
                       : "The current registry has no completed scientific outputs; remote compute and downstream scientific selection remain gated by the project-control files."}
                 </AlertDescription>
               </Alert>
@@ -800,15 +872,21 @@ export default function VariantAnalysisPage() {
                 ["Protocol", "READY", "Frozen control plane"],
                 [
                   "Model registry",
-                  registryReady ? "PARTIAL" : "BLOCKED",
+                  registryReady ? registry?.status ?? "PARTIAL" : "BLOCKED",
                   registryReady
-                    ? `${registry?.completed_scientific_run_count} preliminary runs`
+                    ? registry?.final_scientific_run_count
+                      ? `${registry.completed_scientific_run_count} completed; ${registry.final_scientific_run_count} final`
+                      : `${registry.completed_scientific_run_count} preliminary runs`
                     : "No verified runs",
                 ],
                 [
                   "Compute evidence",
                   evidence ? "PARTIAL" : "BLOCKED",
-                  evidence ? "Preliminary outputs registered" : "Awaiting verified outputs",
+                  evidence?.final_evaluation
+                    ? "Final locked results and preliminary outputs registered"
+                    : evidence
+                      ? "Preliminary outputs registered"
+                      : "Awaiting verified outputs",
                 ],
                 [
                   "Result registry",

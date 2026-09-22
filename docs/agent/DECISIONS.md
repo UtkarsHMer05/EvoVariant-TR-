@@ -3216,12 +3216,15 @@ Evidence:
 - `3412071`, `2f538b7`, `9662c7d`, and `27352e5` are the focused implementation commits.
 - A fresh clone from `27352e5` passed `make bootstrap`, `make validate` (`714 passed, 1 skipped,
   33 deselected`, 95.01% coverage), `make registry-verify`, `make frontend-install`,
-  `make web-check`, and all four `make web-e2e` journeys.
+  `make web-check`, all four `make web-e2e` journeys, `make test-scientific` (7 passed, 1 skipped),
+  and `make test-e2e` (14 passed, 1 skipped).
 - The same clone passed protocol, ML-control-plane, schema, model-registry, and UI checks;
   `make figures` reproduced 15/19 figure families, 11/11 applicable tables, 26 preliminary
   outputs, zero final outputs, and the four documented missing source families.
 - With both tracked status manifests temporarily absent, `/api/research/status` returned a full
   blocked response and `/analysis` returned HTTP 200; the manifests were restored unchanged.
+- The no-spend `make modal-smoke` preflight returned authenticated environment metadata and wrote
+  a `PLANNED` zero-GPU ledger entry without invoking Modal remotely.
 
 Consequences:
 The free engineering/control surface now reproduces from a clean checkout without local ignored

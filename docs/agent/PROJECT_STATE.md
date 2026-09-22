@@ -1451,9 +1451,9 @@ families were not invented.
   current Phase 16/17 status manifests).
 - A fresh clone from `27352e5` passed `make bootstrap`; `make validate` (`714 passed, 1 skipped,
   33 deselected`, 95.01% coverage); `make registry-verify`; `make frontend-install` (407 packages,
-  zero vulnerabilities); `make web-check`; and all four `make web-e2e` journeys. The frozen
-  protocol, additive ML control plane, JSON schemas, model registry, and `make ui-check` also
-  passed.
+  zero vulnerabilities); `make web-check`; all four `make web-e2e` journeys; `make test-scientific`
+  (7 passed, 1 skipped); and `make test-e2e` (14 passed, 1 skipped). The frozen protocol,
+  additive ML control plane, JSON schemas, model registry, and `make ui-check` also passed.
 - Fresh-clone `make figures` reproduced the expected fail-closed state: 15/19 figure families,
   11/11 applicable tables, zero final-bundle outputs, and 26 non-promotable preliminary outputs.
   Missing sources remain exactly `context_length.json`, `hpo_importance.json`, `loss.json`, and
@@ -1465,3 +1465,6 @@ families were not invented.
   `/analysis` returned HTTP 200. The manifests were restored unchanged. No paid compute, locked
   labels, locked predictions, or Phase 14 work was performed. The pre-existing dirty source,
   test, approval, and `.agents/` paths remain uncommitted and were not staged.
+- The no-spend `make modal-smoke` preflight confirmed Modal was installed and authenticated and
+  wrote only a `PLANNED` cost-ledger entry with `gpu_count=0`; it made no remote invocation and
+  no paid worker was created. The actual gated Modal smoke remains unrun.

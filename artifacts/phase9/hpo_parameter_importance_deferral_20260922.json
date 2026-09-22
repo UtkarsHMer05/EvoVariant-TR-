@@ -1,0 +1,14 @@
+{
+  "artifact_id": "phase9-hpo-importance-deferral-20260922",
+  "phase": 9,
+  "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+  "decision": "do_not_materialize_hpo_parameter_importance",
+  "reason": "The bounded validation-only HPO evidence has four trials per study and no predeclared parameter-importance estimator; an importance figure would overstate the available evidence.",
+  "selection_split": "VALIDATION",
+  "locked_test_evaluated": false,
+  "study_count": 12,
+  "trials_per_study": 4,
+  "summary_path": "research/runs/formal_cpu_20260922/phase9/summary.json",
+  "summary_sha256": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500",
+  "scope": "formal development HPO only; no new computation; no locked-test access"
+}

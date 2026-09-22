@@ -88,10 +88,13 @@ The no-spend figure-source continuation is also recorded. `scripts/register_form
 materialized 19 hash-registered PRELIMINARY source artifacts from the verified Phase 6–13
 development outputs in registry run `run_20260922T083143Z_66e6c1cf` (record SHA-256
 `28aab509db409b46967994fe138e00ce7a33f1138ef5c878fcd1e35fc80eb5cc`). The generated figure
-manifest now has 15/19 required figure families and 11/11 applicable tables, with the Phase 10
-fine-tuning table explicitly not applicable. The preliminary renderer produced 26 explicitly
-non-promotable development-stage files. The final figure bundle remains BLOCKED by the four
-unavailable source families (`context_length.json`, `hpo_importance.json`, `loss.json`, and
+manifest now has 15/18 applicable required figure families and 11/11 applicable tables. Phase 9
+HPO parameter importance is explicitly `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` under
+`artifacts/phase9/hpo_parameter_importance_deferral_20260922.json`; the bounded validation-only
+grid has four trials per study and no predeclared importance estimator. The Phase 10 fine-tuning
+table is also explicitly not applicable. The preliminary renderer produced 26 explicitly
+non-promotable development-stage files. The final figure bundle remains BLOCKED by the three
+unavailable mandatory source families (`context_length.json`, `loss.json`, and
 `temporal_cohort.json`) and the absence of an eligible completed `FINAL` run; no locked labels or
 locked predictions were accessed.
 
@@ -1462,9 +1465,10 @@ families were not invented.
   zero vulnerabilities); `make web-check`; all four `make web-e2e` journeys; `make test-scientific`
   (7 passed, 1 skipped); and `make test-e2e` (14 passed, 1 skipped). The frozen protocol,
   additive ML control plane, JSON schemas, model registry, and `make ui-check` also passed.
-- Fresh-clone `make figures` reproduced the expected fail-closed state: 15/19 figure families,
-  11/11 applicable tables, zero final-bundle outputs, and 26 non-promotable preliminary outputs.
-  Missing sources remain exactly `context_length.json`, `hpo_importance.json`, `loss.json`, and
+- Fresh-clone `make figures` reproduced the expected fail-closed state: 15/18 applicable figure
+  families, 11/11 applicable tables, zero final-bundle outputs, and 26 non-promotable preliminary
+  outputs. HPO parameter importance is explicitly non-applicable under the hash-backed Phase 9
+  decision; missing mandatory sources remain exactly `context_length.json`, `loss.json`, and
   `temporal_cohort.json`, with no eligible completed `FINAL` run. `make clean-room` and
   `make release-check` correctly remain `BLOCKED` because paid scientific reproduction and final
   release evidence are absent.

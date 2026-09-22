@@ -1,5 +1,5 @@
 {
-  "applicable_required_figure_count": 19,
+  "applicable_required_figure_count": 18,
   "applicable_required_table_count": 11,
   "available_figures": [
     {
@@ -780,7 +780,7 @@
     }
   ],
   "blockers": [
-    "missing registered source artifact(s): context_length.json, hpo_importance.json, loss.json, temporal_cohort.json",
+    "missing registered source artifact(s): context_length.json, loss.json, temporal_cohort.json",
     "no completed FINAL run outputs are registered; preliminary sources cannot produce the final bundle"
   ],
   "eligible_completed_run_count": 11,
@@ -1144,7 +1144,16 @@
     }
   ],
   "excluded_completed_runs": [],
-  "not_applicable_figure_families": [],
+  "not_applicable_figure_families": [
+    {
+      "decision_artifact": "artifacts/phase9/hpo_parameter_importance_deferral_20260922.json",
+      "figure_id": "hpo_parameter_importance",
+      "phase": "9",
+      "reason": "The bounded validation-only HPO evidence has four trials per study and no predeclared parameter-importance estimator; an importance figure would overstate the available evidence.",
+      "source_artifact": "hpo_importance.json",
+      "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON"
+    }
+  ],
   "not_applicable_table_families": [
     {
       "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
@@ -1458,12 +1467,12 @@
       "y_field": "objective"
     },
     {
-      "applicability": "REQUIRED",
+      "applicability": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "applicability_reason": "The bounded validation-only HPO evidence has four trials per study and no predeclared parameter-importance estimator; an importance figure would overstate the available evidence.",
       "available": false,
+      "decision_artifact": "artifacts/phase9/hpo_parameter_importance_deferral_20260922.json",
       "figure_id": "hpo_parameter_importance",
-      "missing_sources": [
-        "hpo_importance.json"
-      ],
+      "missing_sources": [],
       "required_fields": [
         "parameter",
         "importance"

@@ -3268,3 +3268,41 @@ Consequences:
 The master timeline remains active after Phase 13, but the earliest paid-dependent Phase 14
 subgate cannot advance from repository state alone. Independent no-spend validation remains
 complete, and existing scientific artifacts remain immutable and reusable.
+
+## D-105 — Mark HPO parameter importance non-applicable when the bounded evidence is not defensible
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The master prompt requests HPO parameter importance only if defensible. The formal Phase 9
+continuation contains 12 validation-only studies with four predeclared trials per study, but no
+predeclared parameter-importance estimator or sufficient trial history for a defensible importance
+claim. The existing figure contract already supports conditional families when an exact decision
+artifact records the reason.
+
+Decision:
+Do not fabricate or retrospectively infer HPO parameter importance. Record
+`hpo_importance.json` as `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` using the existing conditional
+figure-family mechanism and preserve the HPO trial history and best-configuration artifacts as
+the authoritative Phase 9 evidence. Keep `context_length.json`, `loss.json`, and
+`temporal_cohort.json` mandatory and blocked until their actual registered source artifacts exist.
+
+Evidence:
+- Decision artifact: `artifacts/phase9/hpo_parameter_importance_deferral_20260922.json`.
+- Phase 9 summary SHA-256:
+  `544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500`.
+- All 12 HPO study files contain exactly four validation-only trials; no locked-test evaluation
+  was performed.
+- The regenerated manifest reports 15/18 applicable figure families, 11/11 applicable tables,
+  and the three remaining mandatory missing source families.
+
+Consequences:
+The Phase 17 gate is more precise without becoming weaker: a conditionally unjustified figure is
+not treated as a missing mandatory experiment, while the remaining context-length, loss, temporal
+cohort, and FINAL-run requirements remain fail-closed. No paid compute or locked-test data was
+accessed.
+
+Validation:
+`tests/unit/test_figure_artifacts.py` passed; `make figures` produced zero final outputs and 26
+non-promotable preliminary outputs with the expected three blockers.

@@ -38,6 +38,16 @@ CONDITIONAL_SOURCE_POLICIES: dict[str, dict[str, str]] = {
             "Phase 10 fine-tuning was not executed due to the documented compute budget deferral."
         ),
         "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+    },
+    "hpo_importance.json": {
+        "phase": "9",
+        "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+        "reason": (
+            "The bounded validation-only HPO evidence has four trials per study and no "
+            "predeclared parameter-importance estimator; an importance figure would overstate "
+            "the available evidence."
+        ),
+        "decision_artifact": "artifacts/phase9/hpo_parameter_importance_deferral_20260922.json",
     }
 }
 

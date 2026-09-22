@@ -42,8 +42,13 @@ from evovariant_tr.sequence_window import (  # noqa: E402
     generate_reference_window_with_par_alias,
 )
 
+NARROW_REPRESENTATION_MODE = (
+    os.environ.get("EVOVARIANT_TR_FORMAL_REPRESENTATION_MODE") == "1"
+)
 OVERNIGHT_MODE = os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
-if OVERNIGHT_MODE:
+if NARROW_REPRESENTATION_MODE:
+    from validate_formal_representation_approval import validate_approval  # noqa: E402
+elif OVERNIGHT_MODE:
     from validate_overnight_completion_approval import validate_approval  # noqa: E402
 else:
     from validate_ml_dev_budgeted_approval import validate_approval  # noqa: E402
@@ -56,22 +61,34 @@ FORMAL_COST = REPO_ROOT / (
 )
 FORMAL_EVO2_ARTIFACT = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_EVO2_ARTIFACT",
-    "artifacts/phase6/phase6_formal_evo2_20260921_full.json",
+    "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json",
 )
 OUTPUT_ARTIFACT = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_REPRESENTATION_OUTPUT_PATH",
-    "artifacts/phase7/formal_budgeted_representation_20260921.json",
+    (
+        "artifacts/phase7/formal_budgeted_representation_20260922.json"
+        if NARROW_REPRESENTATION_MODE
+        else "artifacts/phase7/formal_budgeted_representation_20260921.json"
+    ),
 )
 RUN_ROOT = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_REPRESENTATION_RUN_ROOT",
-    "research/runs/phase7_formal_budgeted_20260921",
+    (
+        "research/runs/phase7_formal_budgeted_20260922"
+        if NARROW_REPRESENTATION_MODE
+        else "research/runs/phase7_formal_budgeted_20260921"
+    ),
 )
 APPROVAL_PATH = REPO_ROOT / os.environ.get(
     "EVOVARIANT_TR_FORMAL_APPROVAL_PATH",
     (
-        "artifacts/approvals/overnight_completion_20260922.json"
-        if OVERNIGHT_MODE
-        else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
+        "artifacts/approvals/formal_phase7_representation_20260922.json"
+        if NARROW_REPRESENTATION_MODE
+        else (
+            "artifacts/approvals/overnight_completion_20260922.json"
+            if OVERNIGHT_MODE
+            else "artifacts/approvals/ml_dev_budgeted_001_compute_20260921.json"
+        )
     ),
 )
 REFERENCE_MANIFEST = REPO_ROOT / "data/manifests/grch38.json"
@@ -87,6 +104,10 @@ GPU_RATE_USD_PER_HOUR = 3.95
 HARD_CAP_USD = 14.0 if OVERNIGHT_MODE else 8.0
 SAFETY_STOP_USD = 13.5 if OVERNIGHT_MODE else 7.75
 LOCKED_RESERVE_USD = 2.5 if OVERNIGHT_MODE else 0.0
+if NARROW_REPRESENTATION_MODE:
+    HARD_CAP_USD = 1.0
+    SAFETY_STOP_USD = 0.85
+    LOCKED_RESERVE_USD = 0.0
 CONTEXT_LENGTH_BP = 8192
 SHARD_SIZE = 8
 VARIANT_BATCH_SIZE = 1
@@ -834,11 +855,11 @@ def main() -> None:
             "set EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS for formal representation work"
         )
     approval = validate_approval(APPROVAL_PATH)
-    if OVERNIGHT_MODE:
+    if NARROW_REPRESENTATION_MODE or OVERNIGHT_MODE:
         budget = approval["budget_control"]
         HARD_CAP_USD = float(budget["hard_cap_usd"])
         SAFETY_STOP_USD = float(budget["runner_safety_stop_usd"])
-        LOCKED_RESERVE_USD = float(budget["locked_test_reserve_min_usd"])
+        LOCKED_RESERVE_USD = float(budget.get("locked_test_reserve_min_usd", 0.0))
     for path in (
         FORMAL_MANIFEST,
         FORMAL_COST,
@@ -853,13 +874,18 @@ def main() -> None:
     evo2_artifact = json.loads(FORMAL_EVO2_ARTIFACT.read_text(encoding="utf-8"))
     if evo2_artifact.get("status") != "PASS_FULL_DEVELOPMENT_COHORT":
         raise RuntimeError("formal Evo2 scoring must PASS before representation extraction")
-    base_spend_usd = float(evo2_artifact["cost"]["cumulative_client_wall_rate_estimate_usd"])
+    evo2_prior_estimate_usd = float(
+        evo2_artifact["cost"]["cumulative_client_wall_rate_estimate_usd"]
+    )
+    # The narrow approval caps only new representation spend. The completed
+    # Evo2 estimate remains provenance, not spend against this approval.
+    budget_baseline_usd = 0.0 if NARROW_REPRESENTATION_MODE else evo2_prior_estimate_usd
     cost_plan = json.loads(FORMAL_COST.read_text(encoding="utf-8"))
     candidate_plan = {
         "nucleotide_transformer": float(cost_plan["nucleotide_transformer"]["estimated_usd"]),
         "caduceus": float(cost_plan["caduceus"]["estimated_usd"]),
     }
-    planned_total = base_spend_usd + sum(candidate_plan.values())
+    planned_total = budget_baseline_usd + sum(candidate_plan.values())
     if planned_total + LOCKED_RESERVE_USD > SAFETY_STOP_USD:
         raise RuntimeError(
             f"formal representation plan exceeds the ${SAFETY_STOP_USD:.2f} safety stop "
@@ -869,6 +895,7 @@ def main() -> None:
     billing_before = _billing_snapshot()
     outputs: dict[str, Any] = {}
     remaining = sum(candidate_plan.values())
+    base_spend_usd = budget_baseline_usd
     for candidate, worker_class in (
         ("nucleotide_transformer", NucleotideTransformerFormalWorker),
         ("caduceus", CaduceusFormalWorker),
@@ -886,14 +913,20 @@ def main() -> None:
         base_spend_usd += float(outputs[candidate]["cost"]["estimated_client_wall_rate_usd"])
 
     billing_after = _billing_snapshot()
-    total_estimated = base_spend_usd
-    if total_estimated + LOCKED_RESERVE_USD > HARD_CAP_USD:
+    budgeted_total = base_spend_usd
+    representation_estimated = budgeted_total - budget_baseline_usd
+    if budgeted_total + LOCKED_RESERVE_USD > HARD_CAP_USD:
         raise RuntimeError("formal representation total exceeded the hard cap")
+    combined_estimated = evo2_prior_estimate_usd + representation_estimated
     artifact = {
         "artifact_id": (
-            "formal-budgeted-representation-overnight-20260922"
-            if OVERNIGHT_MODE
-            else "formal-budgeted-representation-20260921"
+            "formal-budgeted-representation-20260922"
+            if NARROW_REPRESENTATION_MODE
+            else (
+                "formal-budgeted-representation-overnight-20260922"
+                if OVERNIGHT_MODE
+                else "formal-budgeted-representation-20260921"
+            )
         ),
         "status": "PASS_FORMAL_REPRESENTATION_MATRIX",
         "study_id": "ML-DEV-BUDGETED-001",
@@ -906,15 +939,9 @@ def main() -> None:
         "model_tracks": outputs,
         "cost": {
             "evo2_prior_artifact": str(FORMAL_EVO2_ARTIFACT.relative_to(REPO_ROOT)),
-            "evo2_estimated_usd": float(
-                evo2_artifact["cost"]["cumulative_client_wall_rate_estimate_usd"]
-            ),
-            "representation_estimated_usd": round(
-                total_estimated
-                - float(evo2_artifact["cost"]["cumulative_client_wall_rate_estimate_usd"]),
-                6,
-            ),
-            "combined_estimated_usd": round(total_estimated, 6),
+            "evo2_estimated_usd": evo2_prior_estimate_usd,
+            "representation_estimated_usd": round(representation_estimated, 6),
+            "combined_estimated_usd": round(combined_estimated, 6),
             "hard_cap_usd": HARD_CAP_USD,
             "runner_safety_stop_usd": SAFETY_STOP_USD,
             "locked_test_reserve_min_usd": LOCKED_RESERVE_USD,
@@ -933,20 +960,20 @@ def main() -> None:
     _append_ledger(
         {
             "run_id": (
-                "phase7-formal-budgeted-representations-overnight-20260922"
-                if OVERNIGHT_MODE
-                else "phase7-formal-budgeted-representations-20260921"
+                "phase7-formal-budgeted-representations-20260922"
+                if NARROW_REPRESENTATION_MODE
+                else (
+                    "phase7-formal-budgeted-representations-overnight-20260922"
+                    if OVERNIGHT_MODE
+                    else "phase7-formal-budgeted-representations-20260921"
+                )
             ),
             "timestamp": datetime.now(UTC).isoformat(),
             "workload": "nt_caduceus_modal_formal_budgeted_representations",
             "backend": "modal",
             "gpu_type": GPU_TYPE,
             "gpu_count": 1,
-            "estimated_usd": round(
-                total_estimated
-                - float(evo2_artifact["cost"]["cumulative_client_wall_rate_estimate_usd"]),
-                6,
-            ),
+            "estimated_usd": round(representation_estimated, 6),
             "measured_usd": None,
             "approval_artifact": str(APPROVAL_PATH.relative_to(REPO_ROOT)),
             "status": "COMPLETED",
@@ -961,7 +988,8 @@ def main() -> None:
             {
                 "status": artifact["status"],
                 "artifact": str(OUTPUT_ARTIFACT.relative_to(REPO_ROOT)),
-                "combined_estimated_usd": round(total_estimated, 6),
+                "combined_estimated_usd": round(combined_estimated, 6),
+                "representation_estimated_usd": round(representation_estimated, 6),
             },
             sort_keys=True,
         )

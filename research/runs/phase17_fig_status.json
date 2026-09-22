@@ -1,0 +1,2043 @@
+{
+  "applicable_required_figure_count": 19,
+  "applicable_required_table_count": 11,
+  "available_figures": [
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "error_high_field": "auc_roc_ci_high",
+      "error_low_field": "auc_roc_ci_low",
+      "figure_id": "model_auroc",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_roc"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Model AUROC comparison",
+      "x_field": "model_id",
+      "y_field": "auc_roc"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "error_high_field": "auc_pr_ci_high",
+      "error_low_field": "auc_pr_ci_low",
+      "figure_id": "model_auprc",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_pr"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Model AUPRC comparison",
+      "x_field": "model_id",
+      "y_field": "auc_pr"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "roc_curves",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "fpr",
+        "tpr"
+      ],
+      "source_artifacts": [
+        "roc.json"
+      ],
+      "source_records": {
+        "roc.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/roc.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ec93ed232a52de7d3de91424b34637ec838e3d79237979fdc518e724f9d55ec4",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/roc.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "361c748542f28ff2a1b46458f439a79768a00dff6a310c87792a7badcca60fbf",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "ROC curves",
+      "x_field": "fpr",
+      "y_field": "tpr"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "pr_curves",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "recall",
+        "precision"
+      ],
+      "source_artifacts": [
+        "pr.json"
+      ],
+      "source_records": {
+        "pr.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/pr.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "63ac22d403d5afc8f40633dc1d772a0db3e784a7620e29f0558b2d42436cee32",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/pr.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "5c5afeaf4e6a9318046c7dd375ed48cea89b1a0dcb1b9a1d38aa71fa7ad1a302",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Precision-recall curves",
+      "x_field": "recall",
+      "y_field": "precision"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "confusion_matrices",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "tn",
+        "fp",
+        "fn",
+        "tp"
+      ],
+      "source_artifacts": [
+        "confusion_matrix.json"
+      ],
+      "source_records": {
+        "confusion_matrix.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8bfbc0c97d861b46d51dd0c600f6418bc11e1a55779002da76dee04a97173ddb",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/confusion_matrix.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c3d4853b230234917840e3c312f237ab2d368e64e31f430d1e4cfdd350d13fa1",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Confusion matrices",
+      "x_field": "model_id",
+      "y_field": "tp"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "calibration",
+      "missing_sources": [],
+      "required_fields": [
+        "confidence",
+        "observed_frequency"
+      ],
+      "source_artifacts": [
+        "calibration.json"
+      ],
+      "source_records": {
+        "calibration.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Calibration and reliability",
+      "x_field": "confidence",
+      "y_field": "observed_frequency"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "risk_coverage",
+      "missing_sources": [],
+      "required_fields": [
+        "coverage",
+        "risk"
+      ],
+      "source_artifacts": [
+        "abstention.json"
+      ],
+      "source_records": {
+        "abstention.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/abstention.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "dbcb18a46afb9b03c00a291f997e4dabfb2a1b898a0128e9fafc9ad84d411601",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/abstention.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Risk-coverage",
+      "x_field": "coverage",
+      "y_field": "risk"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "embedding_layer_metric",
+      "missing_sources": [],
+      "required_fields": [
+        "layer",
+        "metric"
+      ],
+      "source_artifacts": [
+        "embedding_layer.json"
+      ],
+      "source_records": {
+        "embedding_layer.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Embedding layer versus metric",
+      "x_field": "layer",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "hpo_trial_history",
+      "missing_sources": [],
+      "required_fields": [
+        "trial_id",
+        "objective"
+      ],
+      "source_artifacts": [
+        "hpo.json"
+      ],
+      "source_records": {
+        "hpo.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "HPO trial history",
+      "x_field": "trial_id",
+      "y_field": "objective"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "learning_curve",
+      "missing_sources": [],
+      "required_fields": [
+        "train_size",
+        "metric"
+      ],
+      "source_artifacts": [
+        "learning_curve.json"
+      ],
+      "source_records": {
+        "learning_curve.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "acfc51a4c3a555eeea14ad42294afa914913fdf7c7bd5f9081e83fc780c1c82a",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Learning curve",
+      "x_field": "train_size",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "error_correlation",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "error_correlation"
+      ],
+      "source_artifacts": [
+        "error_correlation.json"
+      ],
+      "source_records": {
+        "error_correlation.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Error correlation and disagreement",
+      "x_field": "model_id",
+      "y_field": "error_correlation"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "ensemble",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ensemble.json"
+      ],
+      "source_records": {
+        "ensemble.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Ensemble comparison",
+      "x_field": "model_id",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "ablation",
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ablation.json"
+      ],
+      "source_records": {
+        "ablation.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Ablation study",
+      "x_field": "component",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "subgroup",
+      "missing_sources": [],
+      "required_fields": [
+        "subgroup",
+        "metric",
+        "sample_count"
+      ],
+      "source_artifacts": [
+        "subgroup.json"
+      ],
+      "source_records": {
+        "subgroup.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/subgroup.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "186cdc8d11a76617f0dd8558da6982bcb18d1cf5207d2bc58a3b0155e7ee4246",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Subgroup or per-gene performance",
+      "x_field": "subgroup",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "cost_latency",
+      "missing_sources": [],
+      "required_fields": [
+        "run_id",
+        "measured_seconds"
+      ],
+      "source_artifacts": [
+        "cost_ledger.jsonl"
+      ],
+      "source_records": {
+        "cost_ledger.jsonl": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "d8f50f6b6d4a8adc179525379ff7c8341ac94c883a761adb9f6922dff3cfc2c5",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Latency and cost",
+      "x_field": "run_id",
+      "y_field": "measured_seconds"
+    }
+  ],
+  "available_tables": [
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "stage",
+        "count"
+      ],
+      "source_artifacts": [
+        "dataset_flow.json"
+      ],
+      "source_records": {
+        "dataset_flow.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "190540e1ab4d9a1c9cdee400fc285f53f38584a46a911b487f9abb78fa9a3c29",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/dataset_flow.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "fb540cbb74c90d0af2cbc1ebde8a32097e2ca68046ecbc944220f227b2b4f765",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "dataset_flow",
+      "title": "Dataset flow"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "split",
+        "count"
+      ],
+      "source_artifacts": [
+        "split_composition.json"
+      ],
+      "source_records": {
+        "split_composition.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "bf7d1d023955fd717bc97642dd783ca499f5a7a9334f05a9c70a82ecb5e79b2a",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/split_composition.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "45d17b70e1ef0c9e53c614cfc17ea04e5c53c0f83fc52c1a235f5ddc15e64e3b",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "split_composition",
+      "title": "Split composition"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "status"
+      ],
+      "source_artifacts": [
+        "model_registry.json"
+      ],
+      "source_records": {
+        "model_registry.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "1724164f340c99ff911302348fd2ef61a6fa182431c9c14d813e69c327d255e1",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/model_registry.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "bbe26ee53d201db96b01da595748a31b5c6f2eb7fbbcbe8769d368ff75264443",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "model_registry",
+      "title": "Model registry"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_roc",
+        "auc_pr"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "zero_shot_benchmark",
+      "title": "Zero-shot benchmark"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "trained_models.json"
+      ],
+      "source_records": {
+        "trained_models.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "1218af8f445b397a68a7b7859cd1a89d1bad0d354ee16798b83868ea89f5501e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/trained_models.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "bf2c0685073d5d3500ea43dfc71282718b977a65187ea3717b9ed90a83d5fc60",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "trained_models",
+      "title": "Trained models"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "trial_id",
+        "objective"
+      ],
+      "source_artifacts": [
+        "hpo.json"
+      ],
+      "source_records": {
+        "hpo.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "hpo_best_configs",
+      "title": "HPO best configurations"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ensemble.json"
+      ],
+      "source_records": {
+        "ensemble.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "ensemble_summary",
+      "title": "Ensemble summary"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "confidence",
+        "observed_frequency"
+      ],
+      "source_artifacts": [
+        "calibration.json"
+      ],
+      "source_records": {
+        "calibration.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "calibration_summary",
+      "title": "Calibration summary"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ablation.json"
+      ],
+      "source_records": {
+        "ablation.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "ablation_results",
+      "title": "Ablation results"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "subgroup",
+        "metric",
+        "sample_count"
+      ],
+      "source_artifacts": [
+        "subgroup.json"
+      ],
+      "source_records": {
+        "subgroup.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/subgroup.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "186cdc8d11a76617f0dd8558da6982bcb18d1cf5207d2bc58a3b0155e7ee4246",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "subgroup_results",
+      "title": "Subgroup results"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "reason"
+      ],
+      "source_artifacts": [
+        "failures.json"
+      ],
+      "source_records": {
+        "failures.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/failures.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ed45cc05f5c10cefc3b118d2f00bc66f7a7779b20a507b0246175baf741566ec",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/failures.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "1162123b99ff67c11f3ea32849e1fb89d78dc71a0a6b9052f0ac16594d4d43de",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "limitations_failures",
+      "title": "Limitations and failures"
+    }
+  ],
+  "blockers": [
+    "missing registered source artifact(s): context_length.json, hpo_importance.json, loss.json, temporal_cohort.json",
+    "no completed FINAL run outputs are registered; preliminary sources cannot produce the final bundle"
+  ],
+  "eligible_completed_run_count": 11,
+  "eligible_final_run_count": 0,
+  "eligible_runs": [
+    {
+      "GPU": "H100",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 4.698582,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "ZS",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Evo2 7B",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/phase6/phase6_development_evo2_20260921.json": "be5edd45942a70f494512c111dd1245f2d721c1a10f909e9de03524f5a22cfe5"
+      },
+      "output_paths": [
+        "artifacts/phase6/phase6_development_evo2_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_286931e8",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "HPO",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Evo2-derived logistic baseline",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase9_development_subset_20260921.json": "0e87b031e72382e412986dd22169fdc28321915ceccec64d79ea2068de4f62d4"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase9_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_4587f802",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "ENS_CAL_ABS",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Fixed 50/50 logistic + MLP",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase11_12_development_subset_20260921.json": "4d968572b3dc7eadd1be241a72beec3ff0492ee24c4b7ee0cf0063663c26e33f"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase11_12_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_4cf11571",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "ABL_ROB",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Evo2-derived CPU baselines",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase13_development_subset_20260921.json": "e1a6a17d81a5909d84ee540ba7a36745914cb8845a8f0bddba67a9fb35b24737"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase13_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_707e558e",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "FIG",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Development-subset source bundle",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/figure_sources/ablation.json": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+        "artifacts/registry/development_subset_20260921/figure_sources/abstention.json": "dbcb18a46afb9b03c00a291f997e4dabfb2a1b898a0128e9fafc9ad84d411601",
+        "artifacts/registry/development_subset_20260921/figure_sources/calibration.json": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+        "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json": "8bfbc0c97d861b46d51dd0c600f6418bc11e1a55779002da76dee04a97173ddb",
+        "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json": "190540e1ab4d9a1c9cdee400fc285f53f38584a46a911b487f9abb78fa9a3c29",
+        "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+        "artifacts/registry/development_subset_20260921/figure_sources/failures.json": "ed45cc05f5c10cefc3b118d2f00bc66f7a7779b20a507b0246175baf741566ec",
+        "artifacts/registry/development_subset_20260921/figure_sources/hpo.json": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+        "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json": "acfc51a4c3a555eeea14ad42294afa914913fdf7c7bd5f9081e83fc780c1c82a",
+        "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json": "1724164f340c99ff911302348fd2ef61a6fa182431c9c14d813e69c327d255e1",
+        "artifacts/registry/development_subset_20260921/figure_sources/pr.json": "63ac22d403d5afc8f40633dc1d772a0db3e784a7620e29f0558b2d42436cee32",
+        "artifacts/registry/development_subset_20260921/figure_sources/roc.json": "ec93ed232a52de7d3de91424b34637ec838e3d79237979fdc518e724f9d55ec4",
+        "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json": "bf7d1d023955fd717bc97642dd783ca499f5a7a9334f05a9c70a82ecb5e79b2a",
+        "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json": "1218af8f445b397a68a7b7859cd1a89d1bad0d354ee16798b83868ea89f5501e"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/abstention.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/failures.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/pr.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/roc.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json",
+        "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json"
+      ],
+      "run_id": "run_20260921T134951Z_8b569866",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "REP",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Evo2 7B",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase7_development_subset_20260921.json": "a9bcc42c6e4793bcc27e1a1d3fddba06bd7909db3f6edfdddd9cb81d087f0513"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase7_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_95b4d32a",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "CLF",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Evo2-derived CPU baselines",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase8_development_subset_20260921.json": "33f3a5651ed4b4c0697c7108e2db19a891c4d2640c9ab11f870b1476962fb7d1"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase8_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T134951Z_c26c0788",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "ABL_ROB",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Fixed 50/50 logistic + MLP calibration",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json": "c6ab7ab4fe6d546076e589c95934ebf6a24ffc4f1f0054be44cad0b789b7e88a"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase13_calibration_effect_20260921.json"
+      ],
+      "run_id": "run_20260921T135911Z_1c7bbeff",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "CAL",
+      "hardware": {
+        "execution": "local CPU/control-plane"
+      },
+      "license_record": {
+        "license": "Apache-2.0"
+      },
+      "measured_cost_usd": null,
+      "model_identity": "evo2_7b",
+      "model_name": "Fixed 50/50 logistic + MLP calibration",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": "https://github.com/ArcInstitute/evo2",
+      "output_hashes": {
+        "artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json": "8f50ef0740a5d191f12ec20c536d3ed4315570ed3027a0d5ddeef07110838853"
+      },
+      "output_paths": [
+        "artifacts/registry/development_subset_20260921/phase12_calibration_development_subset_20260921.json"
+      ],
+      "run_id": "run_20260921T135911Z_90d28456",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "evo2_7b",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "FORMAL_CPU",
+      "hardware": {
+        "execution": "local CPU"
+      },
+      "license_record": {},
+      "measured_cost_usd": null,
+      "model_identity": "formal_multi_model_development",
+      "model_name": "Evo2/NT/Caduceus formal representation comparison",
+      "model_revision": "4b509ec2a22d6de472659f908bcb0714265ad3a7",
+      "model_source": null,
+      "output_hashes": {
+        "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b",
+        "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f",
+        "research/runs/formal_cpu_20260922/phase13/pre_phase14_freeze.json": "1159e8fa3ecfb312c01dab7af1ab6aeb08e836cff99aeffcc02591e8178592c4",
+        "research/runs/formal_cpu_20260922/phase8/leakage_audit.json": "dbc69b54377c2315f3b9ec328a7320e8d19b45f4f1034e76e11691da8c72544a",
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95",
+        "research/runs/formal_cpu_20260922/phase9/summary.json": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+      },
+      "output_paths": [
+        "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+        "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+        "research/runs/formal_cpu_20260922/phase13/pre_phase14_freeze.json",
+        "research/runs/formal_cpu_20260922/phase8/leakage_audit.json",
+        "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "research/runs/formal_cpu_20260922/phase9/summary.json"
+      ],
+      "run_id": "run_20260922T080913Z_8ff64696",
+      "runtime_seconds": null
+    },
+    {
+      "GPU": "CPU",
+      "checkpoint": "formal_cpu_20260922",
+      "estimated_cost_usd": 0.0,
+      "evidence_stage": "PRELIMINARY",
+      "experiment_family": "FORMAL_CPU_FIGURES",
+      "hardware": {
+        "execution": "local CPU"
+      },
+      "license_record": {},
+      "measured_cost_usd": null,
+      "model_identity": "formal_cpu_figure_sources",
+      "model_name": "Formal CPU development figure sources",
+      "model_revision": "development-artifacts",
+      "model_source": null,
+      "output_hashes": {
+        "research/runs/formal_cpu_20260922/figure_sources/ablation.json": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+        "research/runs/formal_cpu_20260922/figure_sources/abstention.json": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f",
+        "research/runs/formal_cpu_20260922/figure_sources/benchmark.json": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+        "research/runs/formal_cpu_20260922/figure_sources/calibration.json": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+        "research/runs/formal_cpu_20260922/figure_sources/confusion_matrix.json": "c3d4853b230234917840e3c312f237ab2d368e64e31f430d1e4cfdd350d13fa1",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "d8f50f6b6d4a8adc179525379ff7c8341ac94c883a761adb9f6922dff3cfc2c5",
+        "research/runs/formal_cpu_20260922/figure_sources/dataset_flow.json": "fb540cbb74c90d0af2cbc1ebde8a32097e2ca68046ecbc944220f227b2b4f765",
+        "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75",
+        "research/runs/formal_cpu_20260922/figure_sources/ensemble.json": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+        "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2",
+        "research/runs/formal_cpu_20260922/figure_sources/failures.json": "1162123b99ff67c11f3ea32849e1fb89d78dc71a0a6b9052f0ac16594d4d43de",
+        "research/runs/formal_cpu_20260922/figure_sources/hpo.json": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+        "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554",
+        "research/runs/formal_cpu_20260922/figure_sources/model_registry.json": "bbe26ee53d201db96b01da595748a31b5c6f2eb7fbbcbe8769d368ff75264443",
+        "research/runs/formal_cpu_20260922/figure_sources/pr.json": "5c5afeaf4e6a9318046c7dd375ed48cea89b1a0dcb1b9a1d38aa71fa7ad1a302",
+        "research/runs/formal_cpu_20260922/figure_sources/roc.json": "361c748542f28ff2a1b46458f439a79768a00dff6a310c87792a7badcca60fbf",
+        "research/runs/formal_cpu_20260922/figure_sources/split_composition.json": "45d17b70e1ef0c9e53c614cfc17ea04e5c53c0f83fc52c1a235f5ddc15e64e3b",
+        "research/runs/formal_cpu_20260922/figure_sources/subgroup.json": "186cdc8d11a76617f0dd8558da6982bcb18d1cf5207d2bc58a3b0155e7ee4246",
+        "research/runs/formal_cpu_20260922/figure_sources/trained_models.json": "bf2c0685073d5d3500ea43dfc71282718b977a65187ea3717b9ed90a83d5fc60"
+      },
+      "output_paths": [
+        "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+        "research/runs/formal_cpu_20260922/figure_sources/abstention.json",
+        "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+        "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+        "research/runs/formal_cpu_20260922/figure_sources/confusion_matrix.json",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+        "research/runs/formal_cpu_20260922/figure_sources/dataset_flow.json",
+        "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json",
+        "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+        "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json",
+        "research/runs/formal_cpu_20260922/figure_sources/failures.json",
+        "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+        "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json",
+        "research/runs/formal_cpu_20260922/figure_sources/model_registry.json",
+        "research/runs/formal_cpu_20260922/figure_sources/pr.json",
+        "research/runs/formal_cpu_20260922/figure_sources/roc.json",
+        "research/runs/formal_cpu_20260922/figure_sources/split_composition.json",
+        "research/runs/formal_cpu_20260922/figure_sources/subgroup.json",
+        "research/runs/formal_cpu_20260922/figure_sources/trained_models.json"
+      ],
+      "run_id": "run_20260922T083143Z_66e6c1cf",
+      "runtime_seconds": null
+    }
+  ],
+  "excluded_completed_runs": [],
+  "not_applicable_figure_families": [],
+  "not_applicable_table_families": [
+    {
+      "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+      "phase": "10",
+      "reason": "Phase 10 fine-tuning was not executed due to the documented compute budget deferral.",
+      "source_artifact": "finetuning.json",
+      "status": "DEFERRED_BY_COMPUTE",
+      "table_id": "fine_tuning_summary"
+    }
+  ],
+  "registered_run_count": 11,
+  "required_figures": [
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "error_high_field": "auc_roc_ci_high",
+      "error_low_field": "auc_roc_ci_low",
+      "figure_id": "model_auroc",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_roc"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Model AUROC comparison",
+      "x_field": "model_id",
+      "y_field": "auc_roc"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "error_high_field": "auc_pr_ci_high",
+      "error_low_field": "auc_pr_ci_low",
+      "figure_id": "model_auprc",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_pr"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Model AUPRC comparison",
+      "x_field": "model_id",
+      "y_field": "auc_pr"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "roc_curves",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "fpr",
+        "tpr"
+      ],
+      "source_artifacts": [
+        "roc.json"
+      ],
+      "source_records": {
+        "roc.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/roc.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ec93ed232a52de7d3de91424b34637ec838e3d79237979fdc518e724f9d55ec4",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/roc.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "361c748542f28ff2a1b46458f439a79768a00dff6a310c87792a7badcca60fbf",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "ROC curves",
+      "x_field": "fpr",
+      "y_field": "tpr"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "pr_curves",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "recall",
+        "precision"
+      ],
+      "source_artifacts": [
+        "pr.json"
+      ],
+      "source_records": {
+        "pr.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/pr.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "63ac22d403d5afc8f40633dc1d772a0db3e784a7620e29f0558b2d42436cee32",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/pr.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "5c5afeaf4e6a9318046c7dd375ed48cea89b1a0dcb1b9a1d38aa71fa7ad1a302",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Precision-recall curves",
+      "x_field": "recall",
+      "y_field": "precision"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "confusion_matrices",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "tn",
+        "fp",
+        "fn",
+        "tp"
+      ],
+      "source_artifacts": [
+        "confusion_matrix.json"
+      ],
+      "source_records": {
+        "confusion_matrix.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/confusion_matrix.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8bfbc0c97d861b46d51dd0c600f6418bc11e1a55779002da76dee04a97173ddb",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/confusion_matrix.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c3d4853b230234917840e3c312f237ab2d368e64e31f430d1e4cfdd350d13fa1",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Confusion matrices",
+      "x_field": "model_id",
+      "y_field": "tp"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "calibration",
+      "missing_sources": [],
+      "required_fields": [
+        "confidence",
+        "observed_frequency"
+      ],
+      "source_artifacts": [
+        "calibration.json"
+      ],
+      "source_records": {
+        "calibration.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Calibration and reliability",
+      "x_field": "confidence",
+      "y_field": "observed_frequency"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "risk_coverage",
+      "missing_sources": [],
+      "required_fields": [
+        "coverage",
+        "risk"
+      ],
+      "source_artifacts": [
+        "abstention.json"
+      ],
+      "source_records": {
+        "abstention.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/abstention.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "dbcb18a46afb9b03c00a291f997e4dabfb2a1b898a0128e9fafc9ad84d411601",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/abstention.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Risk-coverage",
+      "x_field": "coverage",
+      "y_field": "risk"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": false,
+      "figure_id": "context_length_metric",
+      "missing_sources": [
+        "context_length.json"
+      ],
+      "required_fields": [
+        "context_length",
+        "metric"
+      ],
+      "source_artifacts": [
+        "context_length.json"
+      ],
+      "source_records": {
+        "context_length.json": []
+      },
+      "title": "Context length versus metric",
+      "x_field": "context_length",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "embedding_layer_metric",
+      "missing_sources": [],
+      "required_fields": [
+        "layer",
+        "metric"
+      ],
+      "source_artifacts": [
+        "embedding_layer.json"
+      ],
+      "source_records": {
+        "embedding_layer.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Embedding layer versus metric",
+      "x_field": "layer",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "hpo_trial_history",
+      "missing_sources": [],
+      "required_fields": [
+        "trial_id",
+        "objective"
+      ],
+      "source_artifacts": [
+        "hpo.json"
+      ],
+      "source_records": {
+        "hpo.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "HPO trial history",
+      "x_field": "trial_id",
+      "y_field": "objective"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": false,
+      "figure_id": "hpo_parameter_importance",
+      "missing_sources": [
+        "hpo_importance.json"
+      ],
+      "required_fields": [
+        "parameter",
+        "importance"
+      ],
+      "source_artifacts": [
+        "hpo_importance.json"
+      ],
+      "source_records": {
+        "hpo_importance.json": []
+      },
+      "title": "HPO parameter importance",
+      "x_field": "parameter",
+      "y_field": "importance"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": false,
+      "figure_id": "train_validation_loss",
+      "missing_sources": [
+        "loss.json"
+      ],
+      "required_fields": [
+        "epoch",
+        "train_loss",
+        "validation_loss"
+      ],
+      "source_artifacts": [
+        "loss.json"
+      ],
+      "source_records": {
+        "loss.json": []
+      },
+      "title": "Train and validation loss",
+      "x_field": "epoch",
+      "y_field": "train_loss"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "learning_curve",
+      "missing_sources": [],
+      "required_fields": [
+        "train_size",
+        "metric"
+      ],
+      "source_artifacts": [
+        "learning_curve.json"
+      ],
+      "source_records": {
+        "learning_curve.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/learning_curve.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "acfc51a4c3a555eeea14ad42294afa914913fdf7c7bd5f9081e83fc780c1c82a",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Learning curve",
+      "x_field": "train_size",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "error_correlation",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "error_correlation"
+      ],
+      "source_artifacts": [
+        "error_correlation.json"
+      ],
+      "source_records": {
+        "error_correlation.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Error correlation and disagreement",
+      "x_field": "model_id",
+      "y_field": "error_correlation"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "ensemble",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ensemble.json"
+      ],
+      "source_records": {
+        "ensemble.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Ensemble comparison",
+      "x_field": "model_id",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "ablation",
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ablation.json"
+      ],
+      "source_records": {
+        "ablation.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Ablation study",
+      "x_field": "component",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "subgroup",
+      "missing_sources": [],
+      "required_fields": [
+        "subgroup",
+        "metric",
+        "sample_count"
+      ],
+      "source_artifacts": [
+        "subgroup.json"
+      ],
+      "source_records": {
+        "subgroup.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/subgroup.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "186cdc8d11a76617f0dd8558da6982bcb18d1cf5207d2bc58a3b0155e7ee4246",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Subgroup or per-gene performance",
+      "x_field": "subgroup",
+      "y_field": "metric"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "figure_id": "cost_latency",
+      "missing_sources": [],
+      "required_fields": [
+        "run_id",
+        "measured_seconds"
+      ],
+      "source_artifacts": [
+        "cost_ledger.jsonl"
+      ],
+      "source_records": {
+        "cost_ledger.jsonl": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "d8f50f6b6d4a8adc179525379ff7c8341ac94c883a761adb9f6922dff3cfc2c5",
+            "validation_errors": []
+          }
+        ]
+      },
+      "title": "Latency and cost",
+      "x_field": "run_id",
+      "y_field": "measured_seconds"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": false,
+      "figure_id": "temporal_cohort_flow",
+      "missing_sources": [
+        "temporal_cohort.json"
+      ],
+      "required_fields": [
+        "stage",
+        "count"
+      ],
+      "source_artifacts": [
+        "temporal_cohort.json"
+      ],
+      "source_records": {
+        "temporal_cohort.json": []
+      },
+      "title": "Temporal cohort flow",
+      "x_field": "stage",
+      "y_field": "count"
+    }
+  ],
+  "required_tables": [
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "stage",
+        "count"
+      ],
+      "source_artifacts": [
+        "dataset_flow.json"
+      ],
+      "source_records": {
+        "dataset_flow.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/dataset_flow.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "190540e1ab4d9a1c9cdee400fc285f53f38584a46a911b487f9abb78fa9a3c29",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/dataset_flow.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "fb540cbb74c90d0af2cbc1ebde8a32097e2ca68046ecbc944220f227b2b4f765",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "dataset_flow",
+      "title": "Dataset flow"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "split",
+        "count"
+      ],
+      "source_artifacts": [
+        "split_composition.json"
+      ],
+      "source_records": {
+        "split_composition.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/split_composition.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "bf7d1d023955fd717bc97642dd783ca499f5a7a9334f05a9c70a82ecb5e79b2a",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/split_composition.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "45d17b70e1ef0c9e53c614cfc17ea04e5c53c0f83fc52c1a235f5ddc15e64e3b",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "split_composition",
+      "title": "Split composition"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "status"
+      ],
+      "source_artifacts": [
+        "model_registry.json"
+      ],
+      "source_records": {
+        "model_registry.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/model_registry.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "1724164f340c99ff911302348fd2ef61a6fa182431c9c14d813e69c327d255e1",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/model_registry.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "bbe26ee53d201db96b01da595748a31b5c6f2eb7fbbcbe8769d368ff75264443",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "model_registry",
+      "title": "Model registry"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "auc_roc",
+        "auc_pr"
+      ],
+      "source_artifacts": [
+        "benchmark.json"
+      ],
+      "source_records": {
+        "benchmark.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "zero_shot_benchmark",
+      "title": "Zero-shot benchmark"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "trained_models.json"
+      ],
+      "source_records": {
+        "trained_models.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/trained_models.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "1218af8f445b397a68a7b7859cd1a89d1bad0d354ee16798b83868ea89f5501e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/trained_models.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "bf2c0685073d5d3500ea43dfc71282718b977a65187ea3717b9ed90a83d5fc60",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "trained_models",
+      "title": "Trained models"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "trial_id",
+        "objective"
+      ],
+      "source_artifacts": [
+        "hpo.json"
+      ],
+      "source_records": {
+        "hpo.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/hpo.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ddd20545c4999019724f11ec2b79bafe17ef3234c2b446a10e849204a299ae77",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "hpo_best_configs",
+      "title": "HPO best configurations"
+    },
+    {
+      "applicability": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "applicability_reason": "Phase 10 fine-tuning was not executed due to the documented compute budget deferral.",
+      "available": false,
+      "decision_artifact": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "finetuning.json"
+      ],
+      "source_records": {
+        "finetuning.json": []
+      },
+      "table_id": "fine_tuning_summary",
+      "title": "Fine-tuning summary"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "model_id",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ensemble.json"
+      ],
+      "source_records": {
+        "ensemble.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ensemble.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "5c06dfb72090063e65d276c04ca07b551dbe98daa3b56535a39bad17af03cb61",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "ensemble_summary",
+      "title": "Ensemble summary"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "confidence",
+        "observed_frequency"
+      ],
+      "source_artifacts": [
+        "calibration.json"
+      ],
+      "source_records": {
+        "calibration.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/calibration.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "4827cac9b080014160a749baba80390e9487d7fb0cc8e6a4020730b89f84f21e",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "calibration_summary",
+      "title": "Calibration summary"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "metric"
+      ],
+      "source_artifacts": [
+        "ablation.json"
+      ],
+      "source_records": {
+        "ablation.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/ablation.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "8f77ef0c2fc2caf7f0796d56198a45b05c2a73a5a615f75f096f327bab5e13f3",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "ablation_results",
+      "title": "Ablation results"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "subgroup",
+        "metric",
+        "sample_count"
+      ],
+      "source_artifacts": [
+        "subgroup.json"
+      ],
+      "source_records": {
+        "subgroup.json": [
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/subgroup.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "186cdc8d11a76617f0dd8558da6982bcb18d1cf5207d2bc58a3b0155e7ee4246",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "subgroup_results",
+      "title": "Subgroup results"
+    },
+    {
+      "applicability": "REQUIRED",
+      "available": true,
+      "missing_sources": [],
+      "required_fields": [
+        "component",
+        "reason"
+      ],
+      "source_artifacts": [
+        "failures.json"
+      ],
+      "source_records": {
+        "failures.json": [
+          {
+            "path": "artifacts/registry/development_subset_20260921/figure_sources/failures.json",
+            "run_id": "run_20260921T134951Z_8b569866",
+            "sha256": "ed45cc05f5c10cefc3b118d2f00bc66f7a7779b20a507b0246175baf741566ec",
+            "validation_errors": []
+          },
+          {
+            "path": "research/runs/formal_cpu_20260922/figure_sources/failures.json",
+            "run_id": "run_20260922T083143Z_66e6c1cf",
+            "sha256": "1162123b99ff67c11f3ea32849e1fb89d78dc71a0a6b9052f0ac16594d4d43de",
+            "validation_errors": []
+          }
+        ]
+      },
+      "table_id": "limitations_failures",
+      "title": "Limitations and failures"
+    }
+  ],
+  "schema_version": "1.2",
+  "status": "BLOCKED"
+}

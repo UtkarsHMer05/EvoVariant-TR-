@@ -135,24 +135,48 @@ function phaseStatus(output: JsonObject | null): string {
   return asString(output?.status) ?? "UNAVAILABLE";
 }
 
+function blockedEvidence(blockers: string[]) {
+  return {
+    status: "BLOCKED",
+    evidence_stage: "UNAVAILABLE",
+    locked_test_evaluated: false,
+    selection_closed: false,
+    ui: { status: "BLOCKED", registered_run_count: null },
+    development: {
+      classifier_combinations: 0,
+      hpo_studies: 0,
+      phases: [8, 9, 11, 12, 13].map((phase) => ({
+        phase,
+        status: "UNAVAILABLE",
+      })),
+    },
+    figures: {
+      status: "BLOCKED",
+      available_figures: 0,
+      required_figures: 19,
+      available_tables: 0,
+      required_tables: 11,
+      blockers,
+    },
+  } as const;
+}
+
 export async function GET() {
   const repoRoot = await findRepoRoot();
   if (!repoRoot) {
-    return Response.json({
-      status: "BLOCKED",
-      blockers: ["repository evidence root is unavailable"],
-    });
+    return Response.json(blockedEvidence(["repository evidence root is unavailable"]));
   }
 
   const verified = await readVerifiedFormalOutputs(repoRoot);
   const figureStatus = await readJson(repoRoot, "research/runs/phase17_fig_status.json");
   const uiStatus = await readJson(repoRoot, "research/runs/phase16_ui_status.json");
   if (!verified || !figureStatus) {
-    return Response.json({
-      status: "BLOCKED",
-      blockers: ["hash-verified formal development outputs are unavailable"],
-      locked_test_evaluated: false,
-    });
+    return Response.json(
+      blockedEvidence([
+        ...(!verified ? ["hash-verified formal development outputs are unavailable"] : []),
+        ...(!figureStatus ? ["registry-driven figure status is unavailable"] : []),
+      ]),
+    );
   }
 
   const { record, outputs } = verified;

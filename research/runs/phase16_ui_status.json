@@ -1,0 +1,10 @@
+{
+  "blockers": [],
+  "completed_scientific_run_count": 11,
+  "locked_test_evaluated": false,
+  "notes": "The UI registry panel may display immutable metadata from eligible runs; scientific result panels remain evidence-gated.",
+  "phase": 16,
+  "registered_run_count": 11,
+  "registry_connected": true,
+  "status": "PARTIAL"
+}

@@ -1,0 +1,19 @@
+# Free-T4 research adaptation environment. CUDA torch is installed from the PyTorch wheel index.
+torch==2.2.0
+transformers==4.38.1
+accelerate>=0.27
+huggingface_hub>=0.24
+mamba-ssm==1.2.0.post1
+causal-conv1d==1.2.0.post2
+pyfaidx==0.8.1.1
+scikit-learn>=1.3
+pandas>=2.0
+optuna>=3.6
+peft>=0.10
+matplotlib>=3.7
+seaborn>=0.13
+safetensors
+PyYAML
+tqdm
+ninja
+

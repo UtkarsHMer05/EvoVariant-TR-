@@ -102,9 +102,11 @@ def _confidences_from_scores(scores: list[float]) -> list[float]:
     Assumes scores are log-likelihood ratios. Higher absolute value
     indicates higher confidence in the prediction.
     """
-    # Sigmoid transform: tanh(scores) mapped to [0, 1]
+    # Signed log-likelihood scores map to probability-like confidence through
+    # tanh; absolute value is required because a very negative score is also
+    # highly confident, just in the negative class.
     import math
-    return [0.5 + 0.5 * math.tanh(s / 10.0) for s in scores]
+    return [0.5 + 0.5 * abs(math.tanh(s / 10.0)) for s in scores]
 
 
 def compute_risk_coverage_curve(
@@ -166,11 +168,13 @@ def compute_risk_coverage_curve(
             threshold=sorted_conf[n_keep - 1] if n_keep > 0 else float("inf"),
         ))
 
-    # AUC under risk-coverage curve (lower is better)
+    # The points are generated from full to low coverage.  Integrate after
+    # sorting by ascending coverage so the area is non-negative.
+    points_for_auc = sorted(points, key=lambda point: point.coverage)
     auc_rc = 0.0
-    for i in range(1, len(points)):
-        auc_rc += (points[i].coverage - points[i - 1].coverage) * (
-            points[i].risk + points[i - 1].risk
+    for i in range(1, len(points_for_auc)):
+        auc_rc += (points_for_auc[i].coverage - points_for_auc[i - 1].coverage) * (
+            points_for_auc[i].risk + points_for_auc[i - 1].risk
         ) / 2
 
     # Find optimal (lowest risk) point

@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "axes": [
+      "stage/metric",
+      "metric value"
+    ],
+    "caption": "Stage labels prevent development calibration from being confused with the final locked result.",
+    "evidence_stage": "FINAL",
+    "figure_id": "calibration_metric_comparison",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 9,
+    "population": "development VALIDATION versus final LOCKED_TEST",
+    "required": true,
+    "scientific_question": "How do calibration metrics differ between development methods and the final locked evaluation?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696",
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      }
+    ],
+    "status": "READY",
+    "title": "Calibration metric comparison by evidence stage"
+  },
+  "rows": [
+    {
+      "label": "development isotonic brier",
+      "value": 0.03153926342929872
+    },
+    {
+      "label": "development isotonic ece",
+      "value": 0.03557546905342046
+    },
+    {
+      "label": "development isotonic nll",
+      "value": 0.15317223636527735
+    },
+    {
+      "label": "development platt brier",
+      "value": 0.04616221739002158
+    },
+    {
+      "label": "development platt ece",
+      "value": 0.06794481757084805
+    },
+    {
+      "label": "development platt nll",
+      "value": 0.16838469207989318
+    },
+    {
+      "label": "FINAL calibrated Evo2 brier",
+      "value": 0.11407921672922404
+    },
+    {
+      "label": "FINAL calibrated Evo2 ece",
+      "value": 0.05523106003405314
+    },
+    {
+      "label": "FINAL calibrated Evo2 nll",
+      "value": 0.5517579434827143
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

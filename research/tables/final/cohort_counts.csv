@@ -1,0 +1,16 @@
+count,scope,stage
+1024,historical target; comparison only,historical_target_comparison_only
+1102,historical target; comparison only,historical_target_B_LB
+410,historical target; comparison only,historical_target_P_LP
+946,accepted formal cohort,authoritative_formal_temporal_cohort
+536,accepted formal cohort,authoritative_B_LB
+410,accepted formal cohort,authoritative_P_LP
+367,accepted formal cohort,authoritative_unique_genes
+1402895,Phase 3 temporal audit,source_t0_unique_variants
+3459,Phase 3 temporal audit,source_absent_at_t1
+9049,Phase 3 temporal audit,source_below_two_stars
+1389441,Phase 3 temporal audit,source_not_definitive_at_t1
+239992,authoritative development split,formal_development_total
+191957,authoritative development split,formal_development_TRAIN
+48035,authoritative development split,formal_development_VALIDATION
+946,authoritative split; labels not used for development,locked_test_excluded_from_development

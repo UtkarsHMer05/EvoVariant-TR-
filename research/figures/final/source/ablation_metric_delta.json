@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "axes": [
+      "ablation",
+      "VALIDATION AUROC"
+    ],
+    "caption": "Ablations are development evidence and do not alter the frozen final classifier.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "ablation_metric_delta",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 30,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "Which predeclared feature ablations changed development AUROC?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4"
+      }
+    ],
+    "status": "READY",
+    "title": "Development ablation AUROC"
+  },
+  "rows": [
+    {
+      "label": "all_without_evo2",
+      "value": 0.9978495840642861
+    },
+    {
+      "label": "all_without_nt",
+      "value": 0.9974676022862317
+    },
+    {
+      "label": "evo2_without_orientation",
+      "value": 0.9886637458926616
+    },
+    {
+      "label": "evo2_aggregate",
+      "value": 0.9886402753872633
+    },
+    {
+      "label": "evo2_reverse",
+      "value": 0.9866609294320138
+    },
+    {
+      "label": "foundation_without_nt",
+      "value": 0.982170239399155
+    },
+    {
+      "label": "evo2_forward",
+      "value": 0.9776326083554999
+    },
+    {
+      "label": "all_without_caduceus",
+      "value": 0.95430366136608
+    },
+    {
+      "label": "nt16_aggregate",
+      "value": 0.9484274761383195
+    },
+    {
+      "label": "nt16_forward",
+      "value": 0.9435143170082929
+    },
+    {
+      "label": "nt16_reverse",
+      "value": 0.9355186981693006
+    },
+    {
+      "label": "all_without_comparators",
+      "value": 0.9307764133325788
+    },
+    {
+      "label": "foundation_without_orientation",
+      "value": 0.9211156313565952
+    },
+    {
+      "label": "foundation_without_evo2",
+      "value": 0.9193318729463308
+    },
+    {
+      "label": "foundation_without_caduceus",
+      "value": 0.9192849319355344
+    },
+    {
+      "label": "nt24_aggregate",
+      "value": 0.9123924268502581
+    },
+    {
+      "label": "nt24_forward",
+      "value": 0.9098889062744484
+    },
+    {
+      "label": "nt24_reverse",
+      "value": 0.905539039273979
+    },
+    {
+      "label": "nt8_aggregate",
+      "value": 0.8814974182444062
+    },
+    {
+      "label": "nt8_forward",
+      "value": 0.8649350649350649
+    },
+    {
+      "label": "nt8_reverse",
+      "value": 0.8638475981849476
+    },
+    {
+      "label": "cad16_aggregate",
+      "value": 0.5582459708965734
+    },
+    {
+      "label": "cad16_reverse",
+      "value": 0.5505945861367548
+    },
+    {
+      "label": "cad16_forward",
+      "value": 0.5425911437959631
+    },
+    {
+      "label": "cad8_reverse",
+      "value": 0.45712721013925833
+    },
+    {
+      "label": "cad8_aggregate",
+      "value": 0.44560319198873416
+    },
+    {
+      "label": "cad8_forward",
+      "value": 0.4294633077765608
+    },
+    {
+      "label": "cad4_aggregate",
+      "value": 0.392145204193397
+    },
+    {
+      "label": "cad4_reverse",
+      "value": 0.39025974025974025
+    },
+    {
+      "label": "cad4_forward",
+      "value": 0.379197308715381
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

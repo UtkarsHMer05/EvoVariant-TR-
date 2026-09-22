@@ -1,0 +1,4 @@
+cohen_kappa,disagreement_rate,error_overlap_rate,left_model,n_common,pearson_correlation,right_model
+0.0,0.21473158551810237,0.25862068965517243,evo2__logistic_regression_hpo,801,0.6715191465395901,foundation_fusion__mlp
+0.0,0.2421972534332085,0.20816326530612245,evo2__logistic_regression_hpo,801,0.6725118145291028,nt16__mlp
+0.8867994523693857,0.039950062421972535,0.6444444444444445,foundation_fusion__mlp,801,0.973336963012267,nt16__mlp

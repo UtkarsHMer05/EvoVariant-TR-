@@ -55,8 +55,14 @@ def compare_model_predictions(
     left_model: str,
     right_model: str,
     split: str = "VALIDATION",
+    positive_threshold: float | None = None,
 ) -> ModelPairSummary:
-    """Compare complementary errors without reading locked labels."""
+    """Compare complementary errors without reading locked labels.
+
+    ``None`` preserves the signed-score convention used by foundation-model
+    deltas.  Probability rows must pass their operating threshold explicitly;
+    the downstream classifier analysis uses ``0.5``.
+    """
     selected = [row for row in rows if row.split == split]
     left = {row.normalized_variant_id: row for row in selected if row.model_id == left_model}
     right = {row.normalized_variant_id: row for row in selected if row.model_id == right_model}
@@ -67,16 +73,20 @@ def compare_model_predictions(
         raise ValueError("prediction comparison requires labels on the selected development split")
     left_scores = [left[identity].score for identity in common_ids]
     right_scores = [right[identity].score for identity in common_ids]
+    def is_positive(score: float) -> bool:
+        threshold = 0.0 if positive_threshold is None else positive_threshold
+        return score >= threshold
+
     disagreements = sum(
-        (score_a >= 0) != (score_b >= 0)
+        is_positive(score_a) != is_positive(score_b)
         for score_a, score_b in zip(left_scores, right_scores, strict=True)
     )
     left_errors = [
-        ((score >= 0) != bool(left[identity].label))
+        (is_positive(score) != bool(left[identity].label))
         for identity, score in zip(common_ids, left_scores, strict=True)
     ]
     right_errors = [
-        ((score >= 0) != bool(right[identity].label))
+        (is_positive(score) != bool(right[identity].label))
         for identity, score in zip(common_ids, right_scores, strict=True)
     ]
     both_errors = sum(a and b for a, b in zip(left_errors, right_errors, strict=True))

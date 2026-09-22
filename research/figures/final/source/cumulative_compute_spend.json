@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "axes": [
+      "phase",
+      "cumulative estimated USD"
+    ],
+    "caption": "This is a planning/ledger estimate, not a billed invoice.",
+    "evidence_stage": "FINAL",
+    "figure_id": "cumulative_compute_spend",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 5,
+    "population": "authorized remote workloads",
+    "required": true,
+    "scientific_question": "How did the direct client-wall-rate estimate accumulate?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      {
+        "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+      },
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+      },
+      {
+        "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+      }
+    ],
+    "status": "READY",
+    "title": "Cumulative estimated compute"
+  },
+  "rows": [
+    {
+      "series": "cumulative direct estimate",
+      "x": "Phase 6 Evo2",
+      "x_numeric": 6.00000111328,
+      "y": 0.111328
+    },
+    {
+      "series": "cumulative direct estimate",
+      "x": "Phase 7 NT",
+      "x_numeric": 7.00000893522,
+      "y": 0.8935219999999999
+    },
+    {
+      "series": "cumulative direct estimate",
+      "x": "Phase 7 Caduceus",
+      "x_numeric": 7.00001495327,
+      "y": 1.495327
+    },
+    {
+      "series": "cumulative direct estimate",
+      "x": "Phase 14 locked Evo2",
+      "x_numeric": 14.00002926431601,
+      "y": 2.926431601
+    },
+    {
+      "series": "cumulative direct estimate",
+      "x": "Phase 15 batch/resume smoke",
+      "x_numeric": 15.00002989549601,
+      "y": 2.989549601
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

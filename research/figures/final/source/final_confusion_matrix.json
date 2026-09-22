@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "axes": [
+      "actual class",
+      "predicted class"
+    ],
+    "caption": "Counts match the immutable Phase 14 confusion metrics.",
+    "evidence_stage": "FINAL",
+    "figure_id": "final_confusion_matrix",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows",
+    "required": true,
+    "scientific_question": "What are the four frozen outcome counts at the 0.5 calibrated-score threshold?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      }
+    ],
+    "status": "READY",
+    "title": "Final locked-test confusion matrix"
+  },
+  "rows": [
+    {
+      "value": 465,
+      "x": "actual negative",
+      "y": "predicted negative"
+    },
+    {
+      "value": 71,
+      "x": "actual negative",
+      "y": "predicted positive"
+    },
+    {
+      "value": 77,
+      "x": "actual positive",
+      "y": "predicted negative"
+    },
+    {
+      "value": 333,
+      "x": "actual positive",
+      "y": "predicted positive"
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

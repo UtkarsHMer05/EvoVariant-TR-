@@ -145,6 +145,7 @@ def analyze_validation_ensemble(
             left_model=left_model,
             right_model=right_model,
             split="VALIDATION",
+            positive_threshold=0.5,
         )
     except ValueError as exc:
         raise AnalysisPipelineError(str(exc)) from exc

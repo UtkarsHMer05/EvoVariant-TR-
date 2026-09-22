@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "axes": [
+      "combination",
+      "VALIDATION AUROC"
+    ],
+    "caption": "This ranking is descriptive and does not reopen the closed selection.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "combination_ranking",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 12,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "Which development combinations had the highest VALIDATION AUROC?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      }
+    ],
+    "status": "READY",
+    "title": "Top development classifier combinations"
+  },
+  "rows": [
+    {
+      "label": "all_fusion__mlp",
+      "value": 0.9980193537434214
+    },
+    {
+      "label": "all_fusion__logistic_regression",
+      "value": 0.9978495840642861
+    },
+    {
+      "label": "cadd__logistic_regression",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd__mlp",
+      "value": 0.997637371965367
+    },
+    {
+      "label": "cadd_phylop__mlp",
+      "value": 0.9974534548129704
+    },
+    {
+      "label": "cadd_phylop__logistic_regression",
+      "value": 0.9968734084092581
+    },
+    {
+      "label": "evo2__logistic_regression",
+      "value": 0.9886872163980598
+    },
+    {
+      "label": "evo2__mlp",
+      "value": 0.9886168048818651
+    },
+    {
+      "label": "all_fusion__decision_stump",
+      "value": 0.961823043404448
+    },
+    {
+      "label": "cadd__decision_stump",
+      "value": 0.961823043404448
+    },
+    {
+      "label": "cadd_phylop__decision_stump",
+      "value": 0.961823043404448
+    },
+    {
+      "label": "evo2__decision_stump",
+      "value": 0.9522062275074323
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

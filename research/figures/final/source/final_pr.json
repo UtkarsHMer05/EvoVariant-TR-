@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "axes": [
+      "recall",
+      "precision"
+    ],
+    "caption": "The curve is derived from the immutable joined final rows and calibrated scores.",
+    "evidence_stage": "FINAL",
+    "figure_id": "final_pr",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows",
+    "required": true,
+    "scientific_question": "How does frozen calibrated-score precision vary with recall on the locked cohort?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      }
+    ],
+    "status": "READY",
+    "title": "Final locked-test precision-recall curve"
+  },
+  "rows": [
+    {
+      "series": "locked Evo2 calibrated",
+      "x": 0.0,
+      "y": 1.0
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.9896907216494846,
+      "x": 0.0975609756097561,
+      "x_numeric": 0.0975609756097561,
+      "y": 0.8888888888888888
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.9743589743589743,
+      "x": 0.16341463414634147,
+      "x_numeric": 0.16341463414634147,
+      "y": 0.9054054054054054
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.9534883720930233,
+      "x": 0.2,
+      "x_numeric": 0.2,
+      "y": 0.9213483146067416
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.95,
+      "x": 0.2951219512195122,
+      "x_numeric": 0.2951219512195122,
+      "y": 0.937984496124031
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.8955223880597015,
+      "x": 0.3829268292682927,
+      "x_numeric": 0.3829268292682927,
+      "y": 0.9289940828402367
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.8,
+      "x": 0.3926829268292683,
+      "x_numeric": 0.3926829268292683,
+      "y": 0.930635838150289
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.75,
+      "x": 0.573170731707317,
+      "x_numeric": 0.573170731707317,
+      "y": 0.8703703703703703
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.68,
+      "x": 0.6390243902439025,
+      "x_numeric": 0.6390243902439025,
+      "y": 0.8590163934426229
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.6739130434782609,
+      "x": 0.6829268292682927,
+      "x_numeric": 0.6829268292682927,
+      "y": 0.835820895522388
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.6301369863013698,
+      "x": 0.7878048780487805,
+      "x_numeric": 0.7878048780487805,
+      "y": 0.834625322997416
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.5652173913043478,
+      "x": 0.8121951219512196,
+      "x_numeric": 0.8121951219512196,
+      "y": 0.8242574257425742
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.38461538461538464,
+      "x": 0.8682926829268293,
+      "x_numeric": 0.8682926829268293,
+      "y": 0.8202764976958525
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.3493975903614458,
+      "x": 0.9219512195121952,
+      "x_numeric": 0.9219512195121952,
+      "y": 0.782608695652174
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.21428571428571427,
+      "x": 0.9365853658536586,
+      "x_numeric": 0.9365853658536586,
+      "y": 0.7695390781563126
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.13846153846153847,
+      "x": 0.9463414634146341,
+      "x_numeric": 0.9463414634146341,
+      "y": 0.7225325884543762
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.12121212121212122,
+      "x": 0.9536585365853658,
+      "x_numeric": 0.9536585365853658,
+      "y": 0.7070524412296564
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.041666666666666664,
+      "x": 0.9585365853658536,
+      "x_numeric": 0.9585365853658536,
+      "y": 0.6846689895470384
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.03389830508474576,
+      "x": 0.9634146341463414,
+      "x_numeric": 0.9634146341463414,
+      "y": 0.664983164983165
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.02247191011235955,
+      "x": 0.9658536585365853,
+      "x_numeric": 0.9658536585365853,
+      "y": 0.5945945945945946
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.004750593824228029,
+      "x": 0.975609756097561,
+      "x_numeric": 0.975609756097561,
+      "y": 0.5194805194805194
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.0024630541871921183,
+      "x": 0.9878048780487805,
+      "x_numeric": 0.9878048780487805,
+      "y": 0.49210206561360875
+    },
+    {
+      "series": "locked Evo2 calibrated",
+      "threshold": 0.0,
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.4334038054968288
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

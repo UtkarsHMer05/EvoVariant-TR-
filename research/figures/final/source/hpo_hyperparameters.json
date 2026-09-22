@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "axes": [
+      "feature set",
+      "best VALIDATION objective"
+    ],
+    "caption": "The labels identify feature sets; hyperparameters remain available in the source table and are not converted into a parameter-importance claim.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "hpo_hyperparameters",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 25,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "What objective values were achieved by each feature set's selected HPO configuration?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase9/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+      }
+    ],
+    "status": "READY",
+    "title": "Selected HPO configuration objectives"
+  },
+  "rows": [
+    {
+      "label": "all_fusion",
+      "value": 0.9952464489842114
+    },
+    {
+      "label": "all_fusion",
+      "value": 0.9980759436364666
+    },
+    {
+      "label": "cad16",
+      "value": 0.5508840557033328
+    },
+    {
+      "label": "cad16",
+      "value": 0.5519949929588484
+    },
+    {
+      "label": "cad4",
+      "value": 0.40974808324205914
+    },
+    {
+      "label": "cad4",
+      "value": 0.41248630887185106
+    },
+    {
+      "label": "cad8",
+      "value": 0.4446565482710061
+    },
+    {
+      "label": "cad8",
+      "value": 0.582131121890158
+    },
+    {
+      "label": "cadd",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd_phylop",
+      "value": 0.9881019749872673
+    },
+    {
+      "label": "cadd_phylop",
+      "value": 0.9974534548129704
+    },
+    {
+      "label": "evo2",
+      "value": 0.9887889219214521
+    },
+    {
+      "label": "foundation_fusion",
+      "value": 0.9183069942106087
+    },
+    {
+      "label": "foundation_fusion",
+      "value": 0.9202863401658582
+    },
+    {
+      "label": "nt16",
+      "value": 0.9449225473321858
+    },
+    {
+      "label": "nt24",
+      "value": 0.9124784853700516
+    },
+    {
+      "label": "nt8",
+      "value": 0.8842747613831952
+    },
+    {
+      "label": "nt8",
+      "value": 0.8845642309497731
+    },
+    {
+      "label": "phylop",
+      "value": 0.9102487873572211
+    },
+    {
+      "label": "phylop",
+      "value": 0.9102487873572211
+    },
+    {
+      "label": "phylop",
+      "value": 0.9102487873572211
+    },
+    {
+      "label": "phylop",
+      "value": 0.9102487873572211
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

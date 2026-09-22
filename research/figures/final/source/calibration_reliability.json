@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "axes": [
+      "mean confidence",
+      "observed frequency"
+    ],
+    "caption": "Reliability curves are fit/evaluated within the documented development calibration boundary.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "calibration_reliability",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 20,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How closely did observed frequency track confidence for the development calibration methods?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696",
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f"
+      }
+    ],
+    "status": "READY",
+    "title": "Development calibration reliability"
+  },
+  "rows": [
+    {
+      "series": "isotonic",
+      "x": 0.006094576103788332,
+      "x_numeric": 0.006094576103788332,
+      "y": 0.009208103130755065
+    },
+    {
+      "series": "isotonic",
+      "x": 0.13353313353313354,
+      "x_numeric": 0.13353313353313354,
+      "y": 0.07142857142857142
+    },
+    {
+      "series": "isotonic",
+      "x": 0.21428571428571427,
+      "x_numeric": 0.21428571428571427,
+      "y": 0.6666666666666666
+    },
+    {
+      "series": "isotonic",
+      "x": 0.357684130185902,
+      "x_numeric": 0.357684130185902,
+      "y": 0.5294117647058824
+    },
+    {
+      "series": "isotonic",
+      "x": 0.5652173913043478,
+      "x_numeric": 0.5652173913043478,
+      "y": 0.9
+    },
+    {
+      "series": "isotonic",
+      "x": 0.6555833829660512,
+      "x_numeric": 0.6555833829660512,
+      "y": 0.9
+    },
+    {
+      "series": "isotonic",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 1.0
+    },
+    {
+      "series": "isotonic",
+      "x": 0.8955223880597016,
+      "x_numeric": 0.8955223880597016,
+      "y": 0.9444444444444444
+    },
+    {
+      "series": "isotonic",
+      "x": 0.9744976691596912,
+      "x_numeric": 0.9744976691596912,
+      "y": 0.9831932773109243
+    },
+    {
+      "series": "platt",
+      "x": 0.035213750631500514,
+      "x_numeric": 0.035213750631500514,
+      "y": 0.01056338028169014
+    },
+    {
+      "series": "platt",
+      "x": 0.13812706849180703,
+      "x_numeric": 0.13812706849180703,
+      "y": 0.5
+    },
+    {
+      "series": "platt",
+      "x": 0.24905926588211852,
+      "x_numeric": 0.24905926588211852,
+      "y": 0.8333333333333334
+    },
+    {
+      "series": "platt",
+      "x": 0.35555636482428865,
+      "x_numeric": 0.35555636482428865,
+      "y": 0.9230769230769231
+    },
+    {
+      "series": "platt",
+      "x": 0.45695608625038125,
+      "x_numeric": 0.45695608625038125,
+      "y": 0.9
+    },
+    {
+      "series": "platt",
+      "x": 0.5478882412255818,
+      "x_numeric": 0.5478882412255818,
+      "y": 0.875
+    },
+    {
+      "series": "platt",
+      "x": 0.6534501469893632,
+      "x_numeric": 0.6534501469893632,
+      "y": 1.0
+    },
+    {
+      "series": "platt",
+      "x": 0.7376002038718092,
+      "x_numeric": 0.7376002038718092,
+      "y": 1.0
+    },
+    {
+      "series": "platt",
+      "x": 0.8551325923715936,
+      "x_numeric": 0.8551325923715936,
+      "y": 1.0
+    },
+    {
+      "series": "platt",
+      "x": 0.9921800894116024,
+      "x_numeric": 0.9921800894116024,
+      "y": 0.9781021897810219
+    },
+    {
+      "series": "uncalibrated",
+      "x": 0.27732998357541583,
+      "x_numeric": 0.27732998357541583,
+      "y": 0.2746566791510612
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

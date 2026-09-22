@@ -3571,3 +3571,35 @@ Validation:
 `make validate`, `make registry-verify`, `make ui-check`, `make web-check`, `make web-e2e`,
 publication-bundle generation, Phase15 parity/resume validation, fresh Modal container inventory,
 and the detached clean-room sequence pass.
+
+## D-112 — Reconcile the post-publication compute ledger without reopening science
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The historical Phase 6 resume approval recorded a user-provided `$7.17` free-credit basis at the
+3,232-row checkpoint. A later Phase 6 tail approval recorded a separate user-provided `$5.94`
+basis before the final 32-row tail. The old Phase 15 closeout arithmetic subtracted only the
+Phase 15 `$0.063118` rate estimate from `$7.17`, which incorrectly made the Phase 6 balance look
+like a Phase 15 baseline. Provider billing summaries are workspace-level and changed
+non-monotonically after adjustments.
+
+Decision:
+Keep every raw provider snapshot immutable as evidence, but use
+`artifacts/audits/COMPUTE_LEDGER_AUDIT.md` and its JSON sidecar as the current reconciliation.
+Classify provider snapshots, metered deltas, app-specific row/runtime measurements, and
+client/H100 rate estimates separately. Record the five subsequent workload estimates as
+`$2.989549601` in aggregate, while marking the `$2.950450399` subtraction from the later `$5.94`
+user basis as indicative only. Do not claim an exact remaining provider credit balance and do not
+authorize new paid work from this arithmetic.
+
+Phase 15 is worded exactly as a 64-row batch/resume smoke with 56 cache-reused rows and 8 fresh
+remote parity rows. Phase 18 is limited to clean-room software/artifact reproducibility plus
+representative remote smoke; full 4,000/946 remote re-inference was not performed or claimed.
+Phase 19 is `INTERNAL_RELEASE_READINESS_PASS`; external release is `NOT_REQUESTED`.
+
+Validation:
+The ledger audit is no-spend and hash-addressed. The frozen Phase 14 artifact, joined predictions,
+approval, protocol, manifests, thresholds, calibration, and final metrics are unchanged. Raw-delta
+AUROC is reported directly under alternate-minus-reference orientation with no post-hoc sign flip.

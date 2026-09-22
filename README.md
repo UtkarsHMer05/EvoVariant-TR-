@@ -1,394 +1,419 @@
 # EvoVariant-TR
 
-EvoVariant-TR is research software for a frozen temporal benchmark of genomic
-variant-effect scores. The project preserves the original zero-shot Evo 2
-estimand and adds a separately controlled ML-extension surface for future
-representations, classical models, calibration, ensembling, and robustness
-experiments.
+EvoVariant-TR is a research-only study of whether frozen genomic foundation-model
+signals can help rank variants that later resolve from a historical ClinVar VUS
+cohort. The completed baseline is a temporal, leakage-resistant study with
+GRCh38 validation, forward and reverse-complement inference, downstream
+supervised models, calibration, abstention, robustness analysis, a one-shot
+locked evaluation, reproducible artifacts, and a research workbench.
 
-> **Research-only boundary:** this repository does not provide a clinical
-> diagnosis, treatment recommendation, or patient-level risk estimate. Raw
-> sequence signals and any future calibrated study probabilities are meaningful
-> only under their registered protocol and evidence stage.
+> **Research-only boundary:** this is not clinical decision support. It does
+> not provide a diagnosis, treatment recommendation, patient-level risk
+> estimate, or clinical validity claim.
 
-## Current verified status
+## The result in one paragraph
 
-The current branch is `research/evovariant-tr`. The internal Phase 19 gate is
-`PASS`; external release remains disabled because no tag, deployment, or
-publication release was requested. The free/local engineering surfaces and the
-bounded scientific evidence are reproducible, with every stronger unrun claim
-left explicitly outside scope:
+The final reported system is an **Evo2-derived feature pipeline with a frozen
+downstream classifier and calibration**. Frozen Evo2 forward, reverse-complement,
+and aggregate features feed a TRAIN-fit logistic classifier and TRAIN-fit
+isotonic calibration. The final result is therefore not “run Evo2 and display a
+number,” and it is not a raw-Evo2-only result.
 
-| Area | Current evidence |
-|---|---|
-| Frozen protocol and ML-extension control plane | PASS; the original protocol hash is preserved. |
-| Phase 3 data and splits | PASS for the ML extension under dated `ML-DEV-001`/`ML-DEV-002`; authoritative locked cohort is 946 (536 B/LB, 410 P/LP), with independent GRCh38 validation and zero unresolved mismatches. |
-| Model registry and final Phase 5 roster | Seven schema-valid candidate manifests; the final roster separates Evo2 raw scoring, Nucleotide Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators, deferred GPN, and subset-only AlphaMissense. |
-| Modal | Phase 14 remains the immutable 946-row Evo2 locked subgate. Phase 15 adds only a bounded 64-row development-only parity smoke: 56 cache rows, 8 remote rows, zero locked rows/labels, and successful resume. |
-| Experiment registry | Thirteen completed scientific runs are hash-verified, including the Phase 14 `FINAL` record; downstream evidence remains stage-qualified. |
-| Research workbench | All 14 areas are exposed; the read-only `/api/research/workbench` route verifies publication source hashes and displays registered evidence metadata. Frontend build and four browser tests PASS. |
-| Figures and tables | `PASS_LOCAL_PUBLICATION_BUNDLE`: 41 inventory entries, 39 rendered families, 39 source sidecars, and 12 tables. Context-length and training-loss omissions are explicit conditional decisions. |
-| Clean room and release | Phase 18 `PASS` for the documented detached-checkout/control-plane scope; Phase 19 `PASS` internally with `release_allowed=false`. Full remote re-inference is not required by the literal Phase 18 task list and is not claimed. |
-| Spend | Phase 15 used one planned remote invocation with a `$0.063118` rate-based estimate under the `$0.20` safety stop and `$0.25` cap. The final no-spend provider snapshot is metered `$31.69808745`, billed `$0.00`, active containers `[]`; billing adjustments mean remaining free credit is not provider-confirmed. |
-
-The existing 2,848-row Evo2 prefix and all derived CPU results remain `PRELIMINARY`; they are not
-the formal model-selection sample. The no-spend `ML-DEV-BUDGETED-001` amendment freezes a
-4,000-record subset from the 239,992-record development population: 3,199 TRAIN and 801
-VALIDATION, with 3,226 negative and 774 positive rows, 1,927 unique genes, zero
-TRAIN/VALIDATION gene overlap, zero locked-test overlap, and 56 IDs overlapping the old prefix
-for cache accounting only. The old prefix audit concludes `NOT_ESTABLISHED` for
-representativeness. The formal manifests, QC, hashes, and cost plan are in
-`research/ml_extension/splits/formal_budgeted_20260921/`.
-
-The authoritative execution state is maintained in
-[`CODEX_MASTER_PROMPT.md`](CODEX_MASTER_PROMPT.md),
-[`docs/agent/PROJECT_STATE.md`](docs/agent/PROJECT_STATE.md),
-[`docs/agent/PHASE_LEDGER.md`](docs/agent/PHASE_LEDGER.md), and
-[`docs/agent/DECISIONS.md`](docs/agent/DECISIONS.md). Historical milestone
-reports under `docs/project/` are retained as history and are not a substitute
-for the current ML-extension gate.
-
-## Quick start: free local validation
-
-The default setup and validation path does not install CUDA or download model
-weights.
-
-```bash
-make bootstrap
-cd apps/web && npm ci && cd ../..
-make validate
-make web-check
-make web-e2e
-```
-
-Useful additional checks are:
-
-```bash
-make protocol-verify
-make ml-protocol-verify
-make schema-verify
-make model-registry-verify
-make registry-verify
-make test-scientific
-make test-e2e
-make figures
-make phase3-audit
-make phase3-freeze
-```
-
-At the verified current baseline, `make validate` passes 703 tests with 33
-deselected and 95.02% coverage. The scientific tier passes 7 tests with 1
-explicit skip, the API/E2E tier passes 14 tests with 1 explicit skip, and
-`make web-e2e` passes 4 local Playwright tests. The exact evidence and warnings
-are recorded in the project-control files.
-
-## What the project measures
-
-The frozen primary estimand is:
-
-> Among unique normalized germline GRCh38 SNVs recorded as VUS in the fixed
-> historical ClinVar release at t0 and later receiving a definitive B/LB or
-> P/LP classification meeting the prespecified review-status gate at t1, how
-> well does a frozen zero-shot Evo 2 allele-likelihood score distinguish the
-> direction of that later resolution?
-
-The primary protocol fixes:
-
-- t0: ClinVar `variant_summary` archived for 2025-01-02;
-- t1: ClinVar `variant_summary` archived for 2026-08-06;
-- assembly: GRCh38;
-- unit: unique normalized biallelic A/C/G/T germline SNV;
-- t1 outcomes: P/LP versus B/LB with the primary review-status gate;
-- sequence context: exactly 8,192 bases;
-- score: forward and reverse-complement raw components retained, with
-  `delta_primary = (delta_fwd + delta_rc) / 2`;
-- calibration and threshold choices: never fit using locked-test labels.
-
-The Phase 3 archives are hash-verified. Their current recomputation yields
-1,402,895 unique valid t0 VUS IDs and 946 final temporal records (536 B/LB,
-410 P/LP). The validation-only handoff target was 1,403,225 and 1,024. The
-difference is documented and has not been tuned away. The exact historical identity set was
-not recoverable, so `ML-DEV-001` accepts the reproducible 946-record cohort for the ML extension
-only; the original zero-shot study remains historical evidence. `ML-DEV-002` freezes the Broad
-GATK hg38/v0 reference and its hashes for independent base validation. The pre-Phase-6
-checkpoint is complete, but no full model scoring or embedding extraction is authorized until a
-fresh scope-specific approval is recorded.
+The immutable Phase 14 evaluation contains 946 temporal locked-test variants:
+536 benign/likely-benign (B/LB) and 410 pathogenic/likely-pathogenic (P/LP)
+variants across 367 genes. The final calibrated locked-test result is AUROC
+<code>0.909225974</code>, AUPRC <code>0.863039100</code>, and accuracy
+<code>0.843551797</code>. Model selection, threshold, calibration, and
+abstention decisions were closed before the locked evaluation:
+<code>selection_closed = true</code>.
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    P[ Frozen protocol ] --> C[ ML control plane ]
-    T0[ ClinVar t0 archive ] --> D[ Phase 3 audit and split builder ]
-    T1[ ClinVar t1 archive ] --> D
-    C --> R[ Model registry ]
-    D --> G{ Data and model gates }
-    R --> G
-    G -->|future authorized run| M[ Modal Evo 2 execution ]
-    M --> E[ Immutable experiment registry ]
-    E --> F[ Registry-driven figures and tables ]
-    E --> W[ Next.js research workbench ]
-    W --> U[ Research-only user surface ]
-```
+The complete contribution is the study and engineering system around existing
+foundation models:
 
-The current repository contains the contracts and fail-closed execution
-scaffolding. A tiny authorized Evo2 deployment and remote cache artifact now
-exist, but they are engineering-gate evidence only and do not constitute a
-cohort benchmark or scientific result.
+~~~text
+Historical ClinVar VUS cohort
+        ↓
+frozen temporal protocol
+        ↓
+GRCh38 validation
+        ↓
+Evo2 + NT + Caduceus
+        ↓
+forward / reverse-complement evidence
+        ↓
+downstream ML
+        ↓
+HPO
+        ↓
+ensemble analysis
+        ↓
+calibration
+        ↓
+abstention
+        ↓
+ablations / learning curves
+        ↓
+frozen selection
+        ↓
+one-shot 946-variant locked test
+        ↓
+statistics / figures / research UI
+~~~
 
-## Repository map
+Evo2 was not created by this project. Nucleotide Transformer was not created by
+this project. Caduceus was not created by this project.
 
-```text
-.
-├── CODEX_MASTER_PROMPT.md       # authoritative execution instruction
-├── COMMAND_REFERENCE.md         # free/gated command reference
-├── Makefile                     # project control surface
-├── docs/agent/                  # persistent state, decisions, ledger, runbook
-├── research/protocol/           # frozen original protocol and deviation log
-├── research/ml_extension/       # additive ML protocol, model registry, split policy
-├── research/schemas/             # strict JSON Schemas
-├── experiments/registry/        # append-only preliminary/final run records
-├── src/evovariant_tr/           # typed research and control-plane package
-├── apps/web/                    # Next.js research workbench
-├── evo2_scorer_app.py           # canonical Modal entrypoint; pilot evidence is in artifacts/
-├── scripts/                     # validation, manifest, registry, and operational tools
-├── tests/                       # unit, contract, integration, scientific, API/E2E, Modal
-└── data/                        # local/ignored archives and derived Phase 3 outputs
-```
+Our contribution is the temporal study design, genomic inference pipeline,
+representation comparison, downstream training, calibration, uncertainty,
+robustness, locked evaluation, reproducibility, visualization, batch system,
+and research workbench.
 
-## Research workbench
+## Models evaluated
 
-Run the frontend from `apps/web` after installing its dependencies:
+### Frozen foundation models
 
-```bash
-cd apps/web
-npm run dev -- --port 3001
-```
+- **Evo2 7B**, revision
+  <code>4b509ec2a22d6de472659f908bcb0714265ad3a7</code>, GRCh38, 8,192-bp
+  context, H100 execution, forward and reverse-complement scoring.
+- **Nucleotide Transformer v2**, evaluated as a development representation
+  track under its separately registered artifacts.
+- **Caduceus**, evaluated as a development representation track under its
+  separately registered artifacts.
+- **CADD and PhyloP**, used only within their documented public CPU-comparator
+  scope where coverage was available.
 
-Open `/analysis` to inspect the evidence-gated workbench. It exposes all 14
-required areas:
+### Trainable downstream models
 
-- Overview;
-- Single Variant Research Analysis;
-- Temporal VUS Explorer;
-- Model Benchmark;
-- Representation / Layer Analysis;
-- Training & Hyperparameter Experiments;
-- Fine-Tuning Experiments;
-- Ensemble Analysis;
-- Calibration & Abstention;
-- Robustness & Ablation;
-- Error Analysis;
-- Batch VCF/CSV;
-- Methods & Provenance;
-- Experiment Registry.
+The foundation models remained frozen in the baseline. Downstream development
+comparisons included Logistic Regression, a tree/boosting model, and an MLP
+across 36 model-by-feature experiments. The study also recorded 12
+validation-only HPO studies, ensemble and diversity analysis, calibration,
+abstention, ablations, and learning curves.
 
-The UI can load frozen protocol metadata, render raw research signals only when
-an explicitly configured real scorer serves them, and read the hash-verified
-publication inventory for each registered area. It does not
-fall back to `FakeScorer`, derive clinical labels, invent metrics, or mark
-downstream areas ready because a planned run exists. The Experiment Registry
-tab reads safe metadata from `/api/registry`; it shows `PARTIAL` while completed
-`PRELIMINARY` metadata exists without a promoted `FINAL` run. Downstream
-scientific panels remain explicitly blocked until their own evidence gates pass.
+The original baseline study performed **no foundation-model fine-tuning**.
+Fine-tuning/adaptation is deferred to the independent
+<code>research/posthoc-foundation-adaptation</code> study branch. The immutable
+946-row locked cohort must not be reused for adaptation model selection.
 
-## Data and reproducibility
+## Formal study design
 
-The local archive-backed Phase 3 command is:
+| Split or cohort | Rows | Purpose |
+|---|---:|---|
+| Formal development set | 4,000 | Pre-locked development study |
+| TRAIN | 3,199 | Downstream fitting and TRAIN-side calibration fits |
+| VALIDATION | 801 | Model comparison, HPO, calibration/abstention selection |
+| Locked temporal test | 946 | One-shot final evaluation after selection closed |
+| Locked genes | 367 | Temporal locked cohort coverage |
+| B/LB | 536 | Negative class |
+| P/LP | 410 | Positive class |
 
-```bash
-make data-qc
-```
+TRAIN/VALIDATION were used for development. The 946-row temporal cohort was
+evaluated once after <code>selection_closed = true</code>. Locked labels were
+joined locally only after the raw prediction artifact was hashed; no labels
+were sent to Modal.
 
-It rebuilds ignored record-level outputs under
-`data/derived/ml_extension/phase3/` and validates deterministic split and
-leakage invariants. The current split manifest hash is
-`96d3e20e3cd97cb583b6b3d156ecd473c88ab66670704b1facb457351626ef72`, and its
-content split hash is
-`bac30ed0a818258445a7340b1e96fe592902af5d4d7e899fbe227d24af955722`.
+The historical 1,024-row identity target is retained as a comparison-only
+historical boundary. The accepted formal temporal test is 946 rows because the
+authoritative reproducible cohort and locked manifest govern the current study.
+Rows were not added to force the historical aggregate to match 1,024.
 
-The raw archives are local, ignored data. Their identity is recorded in:
+## What We Actually Contributed
 
-- `research/data_manifests/clinvar_t0.json`;
-- `research/data_manifests/clinvar_t1.json`;
-- `research/ml_extension/splits/phase3_manifest_summary.json`.
+1. A temporal ClinVar VUS cohort and reproducible historical protocol.
+2. A leakage-resistant gene-separated development design.
+3. GRCh38 sequence and reference validation.
+4. Forward plus reverse-complement Evo2 scoring.
+5. PAR hard-mask handling with documented provenance.
+6. Nucleotide Transformer and Caduceus representation extraction.
+7. Thirty-six downstream supervised comparisons.
+8. Validation-only hyperparameter optimization.
+9. Ensemble and diversity analysis.
+10. Probability calibration.
+11. Abstention and selective prediction.
+12. Ablation and learning-curve analysis.
+13. One-shot locked temporal evaluation.
+14. Confidence intervals, error analysis, and subgroup analysis.
+15. Cost, runtime, caching, and resumable batch engineering.
+16. Batch CSV/VCF support.
+17. A reproducible experiment registry.
+18. A research workbench exposing registered evidence.
+19. A 39-family scientific visualization bundle.
+20. Clean-room reproducibility and artifact hashing.
 
-The summary is the reviewable source of truth for the discrepancy, deviations,
-reference validation, and authoritative cohort. It does not authorize a model
-run by itself; Phase 6/7 execution still requires the separate approval and
-checkpoint gates recorded in the project-control files.
+## Immutable locked-test result
 
-## Experiment registry and figures
+The final locked evaluation is the frozen Phase 14 artifact, not a new
+calculation performed by this README. Its complete headline metrics are:
 
-Every future run must be registered with protocol, git, dataset/split, model,
-license, configuration, hardware, runtime/cost, metrics, artifact, and failure
-metadata. The registry is append-only, terminal states are final, and completed
-output hashes are recomputed by:
+| Metric | Value | Plain-language meaning |
+|---|---:|---|
+| AUROC | 0.909225974 | How well scores rank P/LP above B/LB across thresholds |
+| AUPRC | 0.863039100 | Precision-recall tradeoff across thresholds |
+| Accuracy | 0.843551797 | Fraction of all locked rows classified correctly |
+| Balanced accuracy | 0.839866218 | Average of positive-class recall and negative-class specificity |
+| Precision | 0.824257426 | Fraction of predicted P/LP rows that are P/LP |
+| Recall | 0.812195122 | Fraction of actual P/LP rows recovered |
+| Specificity | 0.867537313 | Fraction of actual B/LB rows rejected as P/LP |
+| F1 | 0.818181818 | Harmonic mean of precision and recall |
+| MCC | 0.680960611 | Balanced correlation-style measure using all four outcome counts |
+| Brier score | 0.114079217 | Mean squared error of predicted probabilities |
+| ECE | 0.055231060 | Average gap between confidence and observed frequency |
+| NLL | 0.551757943 | Probabilistic log-loss; lower is better |
 
-```bash
+The recorded confusion counts are:
+
+~~~text
+TP = 333
+TN = 465
+FP = 71
+FN = 77
+~~~
+
+The bootstrap AUROC mean is <code>0.909095980</code> with a 95% interval of
+<code>0.889154944 – 0.929919680</code>.
+
+The requested metric definitions are:
+
+~~~text
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+Precision = TP / (TP + FP)
+
+Recall = TP / (TP + FN)
+
+Specificity = TN / (TN + FP)
+
+F1 = 2 * Precision * Recall / (Precision + Recall)
+
+Balanced Accuracy = (Recall + Specificity) / 2
+~~~
+
+MAE is not the primary metric because the endpoint is binary classification,
+not continuous regression.
+
+## Score semantics and raw-delta sign
+
+For each strand orientation, the raw score is alternate-minus-reference log
+likelihood:
+
+~~~text
+delta_forward = alternate log likelihood - reference log likelihood
+delta_reverse = alternate log likelihood - reference log likelihood
+delta_primary = (delta_forward + delta_reverse) / 2
+~~~
+
+The direct raw-delta AUROC is <code>0.090221150</code> because the signed raw
+score orientation is opposite the P/LP-positive convention. That value is
+reported directly. It is not replaced with <code>1 - AUROC</code>, and no
+post-hoc score flip, label reversal, or orientation relabeling was applied.
+
+The final approximately <code>0.909</code> AUROC comes from the frozen
+downstream Evo2-derived feature pipeline, logistic classifier, and isotonic
+calibration. It is not a post-hoc correction of the raw Evo2 score.
+
+## Headline figures
+
+These images are selected from the hash-verified final figure bundle. Each
+figure has a source sidecar and is covered by the 39-family visual QA audit.
+Development figures are explicitly marked as development evidence; they are not
+locked-test results.
+
+<table>
+<tr>
+<td><img src="research/figures/final/cohort_flow.png" alt="Temporal cohort flow" width="260"><br><sub>Temporal cohort flow</sub></td>
+<td><img src="research/figures/final/final_class_distribution.png" alt="Locked class distribution" width="260"><br><sub>Locked class distribution</sub></td>
+<td><img src="research/figures/final/foundation_model_performance.png" alt="Foundation model development comparison" width="260"><br><sub>Foundation-model development comparison</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/representation_layers.png" alt="Representation layer comparison" width="260"><br><sub>Representation/layer comparison</sub></td>
+<td><img src="research/figures/final/classifier_auroc_heatmap.png" alt="Classifier AUROC comparison" width="260"><br><sub>Classifier comparison</sub></td>
+<td><img src="research/figures/final/hpo_trial_history.png" alt="HPO trial history" width="260"><br><sub>Validation-only HPO trial history</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/learning_curve_auroc.png" alt="Learning curve" width="260"><br><sub>Learning curve</sub></td>
+<td><img src="research/figures/final/final_roc.png" alt="Final ROC curve" width="260"><br><sub>Final ROC</sub></td>
+<td><img src="research/figures/final/final_pr.png" alt="Final precision recall curve" width="260"><br><sub>Final precision-recall curve</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/final_confusion_matrix.png" alt="Final confusion matrix" width="260"><br><sub>Final confusion matrix</sub></td>
+<td><img src="research/figures/final/calibration_reliability.png" alt="Calibration reliability" width="260"><br><sub>Calibration and reliability</sub></td>
+<td><img src="research/figures/final/final_abstention_semantics.png" alt="Final abstention semantics" width="260"><br><sub>Abstention semantics</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/ensemble_comparison.png" alt="Ensemble comparison" width="260"><br><sub>Ensemble comparison</sub></td>
+<td><img src="research/figures/final/diversity_matrix.png" alt="Model diversity matrix" width="260"><br><sub>Model disagreement/correlation</sub></td>
+<td><img src="research/figures/final/ablation_metric_delta.png" alt="Ablation results" width="260"><br><sub>Ablation results</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/final_error_chromosome.png" alt="Error distribution by chromosome" width="260"><br><sub>Subgroup/error distribution</sub></td>
+<td><img src="research/figures/final/runtime_by_model.png" alt="Runtime comparison" width="260"><br><sub>Runtime comparison</sub></td>
+<td><img src="research/figures/final/cost_by_phase_model.png" alt="Compute cost comparison" width="260"><br><sub>Compute-cost comparison</sub></td>
+</tr>
+<tr>
+<td><img src="research/figures/final/development_final_generalization.png" alt="Development versus final generalization" width="260"><br><sub>Development versus final</sub></td>
+<td><img src="research/figures/final/project_timeline.png" alt="Project evidence timeline" width="260"><br><sub>Project/evidence timeline</sub></td>
+<td><img src="research/figures/final/final_fp_fn.png" alt="False positive and false negative counts" width="260"><br><sub>False-positive/false-negative counts</sub></td>
+</tr>
+</table>
+
+The final bundle includes the other verified families, including class and
+chromosome distributions, gene summaries, cache reuse, throughput, raw versus
+representation comparison, classifier MCC/Brier heatmaps, combination
+ranking, HPO hyperparameters, learning-curve metrics, calibration metric
+comparison, development risk coverage, bootstrap interval, outcome counts,
+gene errors, and final error summaries:
+
+- [Full final figure directory](research/figures/final/)
+- [Full figure QA gallery](artifacts/audits/figure_qa_gallery.html)
+- [39-family contact sheet](artifacts/audits/figure_qa_contact_sheet.png)
+- [Figure QA report](artifacts/audits/FIGURE_QA.md)
+- [Publication report](research/reports/phase17/FINAL_REPORT.md)
+- [Publication manifest](research/reports/phase17/publication_manifest.json)
+
+No fine-tuning loss curve, context-length curve, or unsupported intermediate
+temporal trend is shown. Fine-tuning loss is deferred, the context-length
+cell is not applicable to the frozen 8,192-bp cache, and unsupported trends
+remain absent.
+
+## Where is the code?
+
+| Contribution area | Main code |
+|---|---|
+| Evo2 inference | [scripts/phase6_development_evo2.py](scripts/phase6_development_evo2.py) |
+| Foundation representations | [scripts/formal_budgeted_representations.py](scripts/formal_budgeted_representations.py) |
+| Feature materialization | [scripts/materialize_formal_features.py](scripts/materialize_formal_features.py), [scripts/materialize_formal_evo2_features.py](scripts/materialize_formal_evo2_features.py), [scripts/phase6_evo2_to_features.py](scripts/phase6_evo2_to_features.py) |
+| ML analysis | [src/evovariant_tr/analysis_pipeline.py](src/evovariant_tr/analysis_pipeline.py) |
+| Ensembles | [src/evovariant_tr/ensemble.py](src/evovariant_tr/ensemble.py) |
+| Calibration | [src/evovariant_tr/prediction_calibration.py](src/evovariant_tr/prediction_calibration.py) |
+| Abstention | [src/evovariant_tr/abstention.py](src/evovariant_tr/abstention.py) |
+| Final locked evaluation | [src/evovariant_tr/final_evaluation.py](src/evovariant_tr/final_evaluation.py), [scripts/evaluate_locked.py](scripts/evaluate_locked.py) |
+| Batch/resume | [src/evovariant_tr/batch_pipeline.py](src/evovariant_tr/batch_pipeline.py) |
+| Figures | [src/evovariant_tr/figure_artifacts.py](src/evovariant_tr/figure_artifacts.py) |
+| Research workbench | [apps/web/](apps/web/) |
+
+The experiment registry is under
+[experiments/registry/](experiments/registry/). The current publication
+bundle is generated from registered, hash-verified artifacts; it is not a
+collection of hand-entered metrics.
+
+## Reproducibility and validation
+
+The free local validation surface does not require new foundation-model
+inference:
+
+~~~bash
+make bootstrap
+make validate
 make registry-verify
-```
-
-The Section 21 metadata contract is implemented in
-`src/evovariant_tr/registry.py` and
-`research/schemas/experiment_run.schema.json`. The current registry contains
-nine completed `PRELIMINARY` run records and no `FINAL` record. The bounded
-development summaries and figure-source inputs are generated and registered by
-`scripts/register_development_subset_results.py`.
-
-Figure and table input discovery and export are deliberately registry-driven:
-
-```bash
+make protocol-verify
+make ml-protocol-verify
+make test-scientific
+make web-check
+make web-e2e
 make figures
-```
+git diff --check
+~~~
 
-This writes a deterministic metadata manifest under the ignored
-`research/runs/` directory and a bundle manifest under
-`research/figures/bundle_manifest.json`. The Phase 17 contract covers all 19
-required figure families and 12 declared tables. The final renderer reports
-`BLOCKED`, removes only outputs listed by the prior final bundle manifest, and
-produces no final scientific figures, tables, placeholder metrics, or inferred
-values while nine mandatory source families are missing and no completed `FINAL`
-run is registered. The conditional `fine_tuning_summary` table is explicitly
-`NOT_APPLICABLE_WITH_DOCUMENTED_REASON` under the recorded Phase 10
-`DEFERRED_BY_COMPUTE` decision; this does not waive any mandatory core source.
-`make figures` also writes a separate `PARTIAL` manifest at
-`research/figures/preliminary/preliminary_bundle_manifest.json`; it contains 9
-development-stage figure outputs and 9 tables (18 files total), is marked
-`evidence_stage: PRELIMINARY` and `promotable: false`, and must not be treated
-as final evidence. When registered inputs eventually make the final manifest
-`READY`, the final bundle renderer emits hash-addressed SVG figures,
-JSON tables, methods, limitations, cost, and model-provenance artifacts under
-`research/figures/bundle/`.
+The final baseline validation requires all applicable gates to pass. It checks
+secrets, formatting, strict typing, unit/integration/scientific tests, schema
+and registry integrity, protocol hashes, frontend/browser behavior, figure
+generation, and whitespace integrity.
 
-## Batch planning and local recovery contract
+The final publication bundle contains 41 inventory entries, 39 rendered figure
+families, 39 source sidecars, and 12 tables. The visual audit reports
+<code>39/39</code> structural PASS, zero failed families, and a manual
+contact-sheet review with no clipping, missing labels, missing stage markers,
+missing sample sizes, axis/caption truncation, or unsupported trend claims.
 
-Phase 15 has a free local planning and injected-scorer contract for label-free
-CSV/VCF input plus a separately authorized 64-row development-only Evo2 parity
-smoke. It validates GRCh38 biallelic SNVs, hashes the input, persists an
-immutable model/revision/context/orientation plan, and supports hash-verified,
-resumable shards plus deterministic export. The remote smoke does not attach
-labels or touch locked rows:
+## Compute and resumability
 
-```bash
-make batch-run \
-  BATCH_INPUT=examples/batch/variants.csv \
-  BATCH_MODEL_REVISION=4b509ec2a22d6de472659f908bcb0714265ad3a7
-```
+The formal Evo2 result used 4,000 development rows and the separate Phase 14
+locked evaluation used 946 rows. The Phase 15 remote smoke was deliberately
+bounded to 64 development rows: 56 cache-reused rows and 8 fresh remote parity
+rows. Its persisted-shard resume performed zero additional remote calls.
 
-The sample command writes a `PLANNED` status under ignored
-`research/runs/phase15_batch_plan/`. The completed smoke evidence is
-`artifacts/phase15/phase15_parity_smoke_validation_20260922.json`; full-cohort
-execution remains outside this authorization.
+The compute ledger separates provider-confirmed workspace snapshots, metered
+deltas, application measurements, and rate estimates. The earlier user-provided
+<code>$7.17</code> Phase 6 basis is not reset at Phase 15. The fresh final
+read-only provider snapshot records metered workspace cost
+<code>$31.69808745</code>, billed cost <code>$0.00</code>, and no active
+containers; the provider does not expose an exact remaining free-credit
+balance.
 
-## Budgeted development design (no-spend checkpoint)
+No new paid work is implied by the README, and no full 4,000/946 remote
+re-inference is claimed for Phase 18.
 
-Before any new scoring, run the local audit/design command:
+## Current phase and release status
 
-```bash
-make budgeted-study-design
-```
+- Phase 0–5: protocol, data, reference, scoring, and model-registry gates
+  completed under their documented scopes.
+- Phase 6: formal 4,000-row Evo2 subtrack complete; the broader multi-model
+  benchmark remains stage-qualified and separate from the locked subgate.
+- Phase 7: development representation tracks for Nucleotide Transformer and
+  Caduceus complete under their separate authorization.
+- Phases 8–13: downstream models, HPO, ensemble, calibration, abstention,
+  ablations, learning curves, and error analysis completed on the development
+  boundary.
+- Phase 10 fine-tuning/adaptation: <code>DEFERRED_BY_COMPUTE</code>; no
+  checkpoint or training-loss curve exists in the baseline.
+- Phase 14: <code>PASS / FORMAL EVO2 LOCKED SUBGATE</code>; 946 immutable
+  locked rows.
+- Phase 15: <code>PASS / 64-ROW BATCH-RESUME SMOKE</code>.
+- Phase 16: registered-output research workbench connected to verified evidence.
+- Phase 17: <code>PASS_LOCAL_PUBLICATION_BUNDLE</code>.
+- Phase 18: clean-room software/artifact reproducibility plus representative
+  remote smoke passed; full 4,000/946 remote re-inference was not performed or
+  claimed.
+- Phase 19: <code>INTERNAL_RELEASE_READINESS_PASS</code>; external release is
+  <code>NOT_REQUESTED</code>.
 
-It reconstructs the old prefix selection, compares available metadata against all 239,992
-development records, freezes `ML-DEV-BUDGETED-001`, and writes idempotent manifests and QC. It
-does not read model predictions for selection and does not invoke Modal. The measured-rate cost
-plan is `$6.506744` for 3,944 new Evo2 variants, `$0.378539` for NT, `$0.226398` for Caduceus,
-and `$7.111681` total. The previous `$5.00` approval is exhausted; the expected reserve is
-unavailable until a fresh exact-scope approval, so the command must be completed and reviewed
-before any paid workload is considered.
+## Limitations and responsible use
 
-## Modal and paid compute
+This is a historical ClinVar-resolution benchmark, not a prospective clinical
+study. ClinVar review status is a review proxy, not biological certainty. The
+study does not estimate diagnosis, treatment response, patient management,
+causal pathogenicity, or when every VUS will be reclassified.
 
-The canonical identity is app `evovariant-tr`, volume `hf_cache`, H100, the
-pinned NGC PyTorch image, and Evo2 revision
-`4b509ec2a22d6de472659f908bcb0714265ad3a7`. Under the dated user approval,
-deployment v3 (`phase2-pilot-20260921-r1`) loaded `evo2_7b` and verified one
-real prediction-cache miss plus an identical cache hit for
-`GRCh38:chr10:100065200:C>T`. The raw output is research-only and carries no
-clinical classification.
+The baseline preserves the following boundaries:
 
-```bash
-make modal-smoke
-```
+- no foundation-model fine-tuning;
+- fine-tuning/adaptation is deferred to the independent follow-up branch;
+- context-length sweep deferred/not applicable to the frozen 8,192-bp cache;
+- full second 4,000/946 remote re-inference not performed or claimed;
+- historical 1,024-row cohort retained for comparison only;
+- accepted formal temporal test is 946 rows;
+- locked-test labels were never sent to Modal;
+- final metrics, thresholds, calibration, model selection, and score direction
+  are frozen.
 
-This remains a no-spend preflight for fresh environments. The completed pilot
-evidence is recorded separately in
-`artifacts/modal/phase2_phase4_pilot_20260921_success.json`; its superseded
-chromosome-prefix failures are preserved alongside it.
+## Important artifacts
 
-Paid execution requires the explicit acknowledgement
-`EVOVARIANT_TR_PAID_COMPUTE_ACK=I_ACCEPT_COSTS` and the project-specific approval
-gates described in `docs/agent/MODAL_COMPUTE_POLICY.md`. The current
-`phase6_phase7_development_20260921.json` approval allowed only the bounded
-TRAIN/VALIDATION Evo2 prefix and local CPU Phases 8, 9, 11, 12, and 13; it did
-not authorize full-cohort inference, locked-test evaluation, fine-tuning,
-deployment, release, or publication. That approval is exhausted at the
-recorded safety stop, so any further paid work requires a new exact-scope
-approval.
-
-## Phase status
-
-The dependency-ordered phase decisions are maintained in
-[`docs/agent/PHASE_LEDGER.md`](docs/agent/PHASE_LEDGER.md). In brief:
-
-- Phases 0 and 1 are complete;
-- Phase 2 and Phase 4 pass their engineering gates with the corrected remote
-  Evo2 miss/hit evidence;
-- Phase 3 passes for the ML extension under `ML-DEV-001`/`ML-DEV-002`, with a
-  946-record authoritative locked cohort and independent reference validation;
-- Phase 5 has a final separated roster: Evo2 raw score, Nucleotide
-  Transformer/Caduceus embedding tracks, CADD/PhyloP public CPU comparators,
-  deferred GPN, and subset-only AlphaMissense;
-- Phase 6/7 and Phases 8/9/11/12/13 are partial development-subset evidence
-  only; no full-cohort or locked-test claim is made;
-- `ML-DEV-BUDGETED-001` is a frozen formal-study design with a validated `$8.00` approval and
-  `$7.75` runner stop. Its exact CADD/PhyloP comparator artifacts are complete, but two bounded
-  64-row Evo2 preflight attempts failed with `StreamTerminatedError` before any worker returned
-  a row; a third attempt already in flight was interrupted after Evo2 initialization and is not
-  a PASS. The diagnostic-only transport follow-up passed CPU/detached checks but stopped on a
-  missing `torch` dependency in its minimal H100 probe, so no new formal result is accepted and
-  the full formal run remains blocked by `FAIL_FORMAL_PREFLIGHT`;
-- Phase 10 remains formally deferred by compute; no checkpoint or training-loss
-  curve is claimed;
-- Phase 16's registered-output workbench, frontend build, and browser journeys
-  pass, while every panel remains evidence-stage qualified;
-- Phase 17's local publication bundle passes with explicit conditional omissions;
-- Phase 18's documented clean detached checkout and representative gated Modal
-  smoke pass; full remote re-inference is not claimed;
-- Phase 19 passes internally, while no release, tag, deployment, or publication
-  is claimed.
-
-## Legacy evidence boundary
-
-The repository retains historical legacy application code, reports, and ignored
-evaluation snapshots for auditability. They are not current ML-extension
-results. In particular, the former BRCA1 threshold/confidence classifier and
-old Modal endpoint identity must not be used as evidence for the frozen temporal
-benchmark. Current code fails closed when a real scorer or registered artifact
-is unavailable.
-
-## Responsible use
-
-ClinVar review stars are a review-status proxy, not biological certainty. The
-benchmark is conditional on eventual historical resolution and does not estimate
-whether every VUS will be reclassified, when it will be reclassified, patient
-diagnosis, treatment, clinical management, or causal pathogenicity.
-
-Never present a raw model score, calibrated study probability, or empty-state
-status as a clinical conclusion. Preserve protocol hashes, data hashes, model
-identity, evidence stage, failure records, and cost records for every future
-run.
+- [Frozen Phase 14 artifact](artifacts/phase14/phase14_locked_evo2_20260922.json)
+- [Phase 14 approval](artifacts/approvals/phase14_locked_evo2_20260922.json)
+- [Phase 15 parity/resume validation](artifacts/phase15/phase15_parity_smoke_validation_20260922.json)
+- [Phase 18 clean-room status](research/runs/phase18_clean_room_status.json)
+- [Phase 19 internal release status](research/runs/phase19_release_status.json)
+- [Compute ledger audit](artifacts/audits/COMPUTE_LEDGER_AUDIT.md)
+- [Raw-delta sign audit](artifacts/audits/RAW_DELTA_AUROC_SIGN_AUDIT.md)
+- [Frozen-hash audit](artifacts/audits/FROZEN_HASH_AUDIT.md)
+- [Pre-existing dirty core-diff classification](artifacts/audits/PREEXISTING_DIRTY_CORE_DIFF_AUDIT.md)
+- [Clean-room and ponytail audit reports](artifacts/audits/)
+- [Current project state](docs/agent/PROJECT_STATE.md)
+- [Phase ledger](docs/agent/PHASE_LEDGER.md)
+- [Decision log](docs/agent/DECISIONS.md)
 
 ## References
 
-- [Frozen original protocol](research/protocol/PROTOCOL.md)
+- [CODEX_MASTER_PROMPT.md](CODEX_MASTER_PROMPT.md)
+- [Original frozen protocol](research/protocol/PROTOCOL.md)
 - [ML-extension protocol](research/ml_extension/PROTOCOL.md)
 - [Command reference](COMMAND_REFERENCE.md)
-- [Project state](docs/agent/PROJECT_STATE.md)
-- [Phase ledger](docs/agent/PHASE_LEDGER.md)
-- [Decisions](docs/agent/DECISIONS.md)
 - [Testing and validation](docs/agent/TESTING_AND_VALIDATION.md)
 - [Modal compute policy](docs/agent/MODAL_COMPUTE_POLICY.md)
-- [Evo2 repository](https://github.com/ArcInstitute/evo2)
-- [UCSC Genome Browser API](https://api.genome.ucsc.edu)
+- [Evo2](https://github.com/ArcInstitute/evo2)
+- [Nucleotide Transformer](https://github.com/instadeepai/nucleotide-transformer)
+- [Caduceus](https://github.com/kuleshov-group/caduceus)
 - [NCBI ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/)
+- [UCSC Genome Browser API](https://api.genome.ucsc.edu)

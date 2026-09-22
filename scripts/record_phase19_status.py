@@ -56,8 +56,12 @@ def main() -> int:
         "phase": 19,
         "family": "RELEASE",
         "status": "PASS" if all_gates_pass else "BLOCKED",
+        "status_label": "INTERNAL_RELEASE_READINESS_PASS" if all_gates_pass else "INTERNAL_RELEASE_READINESS_BLOCKED",
+        "internal_release_readiness": "PASS" if all_gates_pass else "BLOCKED",
+        "external_release": "NOT_REQUESTED",
         "release_allowed": False,
-        "release_reason": "Internal gate only; no tag, deployment, or publication release was requested.",
+        "release_reason": "External release is NOT_REQUESTED; no tag, deployment, or publication release was requested.",
+        "release_allowed_compatibility_note": "This boolean is retained for deployment tooling compatibility and is not the Phase 19 gate label.",
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "gates": gates,
         "blockers": blockers,
@@ -72,7 +76,7 @@ def main() -> int:
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({"status": payload["status"], "release_allowed": False, "output": str(OUTPUT)}, indent=2))
+    print(json.dumps({"status": payload["status_label"], "external_release": payload["external_release"], "output": str(OUTPUT)}, indent=2))
     return 0
 
 

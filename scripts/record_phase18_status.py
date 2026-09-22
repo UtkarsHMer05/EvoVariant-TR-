@@ -73,6 +73,18 @@ def main() -> int:
         "phase": 18,
         "family": "REPRO",
         "status": "PASS" if phase18_pass else "PARTIAL",
+        "status_scope": (
+            "PASS_CLEAN_ROOM_SOFTWARE_AND_ARTIFACT_REPRODUCIBILITY_PLUS_REPRESENTATIVE_REMOTE_SMOKE"
+            if phase18_pass
+            else "PARTIAL"
+        ),
+        "scope_statement": (
+            "Clean-room software reproducibility, hash-verified scientific artifact reproducibility, "
+            "and representative remote development smoke passed. Full 4,000/946 remote re-inference "
+            "was not performed and is not claimed."
+            if phase18_pass
+            else "The documented Phase 18 clean-room and representative-smoke gates are incomplete."
+        ),
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "software_clean_room": {
             "status": "PASS_CLEAN_DETACHED_CHECKOUT" if clean_room_pass and not registry_failures else "PARTIAL",
@@ -100,7 +112,10 @@ def main() -> int:
             "full_remote_reinference_required_by_literal_phase18": False,
         },
         "full_remote_reinference": {
-            "status": "NOT_REQUIRED_BY_LITERAL_MASTER_TASK_LIST",
+            "status": "NOT_PERFORMED_NOT_CLAIMED",
+            "performed": False,
+            "claimed": False,
+            "status_label": "NOT_PERFORMED_NOT_CLAIMED",
             "reason": "Phase 18 requires a gated Modal smoke; the completed Phase15 representative development-only smoke satisfies that minimum. A full remote re-inference is a stronger optional claim and is not asserted.",
         },
         "no_additional_remote_compute_in_phase18": True,

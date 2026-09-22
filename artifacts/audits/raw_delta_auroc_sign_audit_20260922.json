@@ -1,0 +1,35 @@
+{
+  "cohort": {
+    "finite_scores": true,
+    "negatives": 536,
+    "positives": 410,
+    "rows": 946
+  },
+  "conclusion": "Report the direct signed raw-delta AUROC. Do not replace it with 1 - AUROC or flip the score after seeing the result. The higher final Phase 14 AUROC is produced by the frozen Evo2-derived feature pipeline, TRAIN-fit downstream logistic classifier, and TRAIN-fit isotonic calibration; it is not raw Evo2 alone.",
+  "formula": {
+    "delta_definition": "alternate_minus_reference_log_likelihood",
+    "delta_primary": "(delta_forward + delta_reverse) / 2",
+    "direct_auc_function": "compute_auc_roc(delta_primary, labels)",
+    "direction": "higher_is_more_pathogenic"
+  },
+  "no_scientific_mutation": true,
+  "recorded_at_utc": "2026-09-22T15:24:33.152958+00:00",
+  "results": {
+    "direct_raw_delta_primary_auroc": 0.09022115034583182,
+    "frozen_artifact_raw_delta_primary_auroc": 0.09022115034583182,
+    "negated_score_diagnostic_only": 0.9097788496541682,
+    "positive_rule_accuracy": 0.48308668076109934,
+    "score_max": 0.0020961761474609375,
+    "score_min": -0.015048593282699585
+  },
+  "schema_version": "raw-delta-sign-audit-v1",
+  "source": {
+    "frozen_downstream_config": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+    "frozen_downstream_config_sha256": "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88",
+    "joined_predictions": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+    "joined_predictions_sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7",
+    "phase14_artifact": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+    "phase14_artifact_sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+  },
+  "status": "PASS_DIRECT_SIGN_CONVENTION"
+}

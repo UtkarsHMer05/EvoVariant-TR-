@@ -1,0 +1,1879 @@
+{
+  "billing_recheck": {
+    "path": "artifacts/phase17/modal_billing_recheck_20260922.json",
+    "sha256": "180bdf52886b6bcde89112510657df829cc8453706b772985607c9e8fdd3226a"
+  },
+  "conditional_not_applicable": [
+    {
+      "axes": [
+        "context length",
+        "metric"
+      ],
+      "caption": "No context-length curve is emitted: the cell was explicitly deferred before additional foundation-model extraction.",
+      "derived_source": null,
+      "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "figure_id": "context_length_metric",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 0,
+      "output_paths": [],
+      "population": "development-only conditional cell",
+      "reason": "Phase 13 records NOT_RUN_DEFERRED_BY_COMPUTE; existing cached features are 8192 bp only.",
+      "required": false,
+      "scientific_question": "Was the conditional context-length robustness cell executed?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        },
+        {
+          "path": "artifacts/phase13/context_length_deferral_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "973fc7463ce02d8432fd42102e0d10f183fb8b4c9f6dbdd3c992a9ea2ad21c31"
+        }
+      ],
+      "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "title": "Context length versus metric"
+    },
+    {
+      "axes": [
+        "epoch",
+        "loss"
+      ],
+      "caption": "No loss curve is emitted: Phase 10 adaptation was deferred before training.",
+      "derived_source": null,
+      "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "figure_id": "train_validation_loss",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 0,
+      "output_paths": [],
+      "population": "Phase 10 adaptation",
+      "reason": "Phase 10 is DEFERRED_BY_COMPUTE and supplied no training-loss artifact.",
+      "required": false,
+      "scientific_question": "Was a scientifically valid training-loss series recorded?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "c464ba19581ebdb1222f9c11bcf3764bdf8decbbc28d4fb1bbc272601e4654a3"
+        }
+      ],
+      "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "title": "Train and validation loss"
+    }
+  ],
+  "figures": [
+    {
+      "axes": [
+        "cohort stage",
+        "records"
+      ],
+      "caption": "Counts are materialized from the Phase 3 audit and frozen manifests; the 1024 historical target is comparison-only.",
+      "derived_source": "research/figures/final/source/cohort_flow.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "cohort_flow",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 15,
+      "output_paths": [
+        "research/figures/final/cohort_flow.svg",
+        "research/figures/final/cohort_flow.png",
+        "research/figures/final/cohort_flow.pdf"
+      ],
+      "population": "historical comparison and authoritative current cohort",
+      "required": true,
+      "scientific_question": "How does the historical comparison target differ from the accepted current cohort?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json",
+          "registered_runs": [
+            "run_20260922T121044Z_6004c17e"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+        },
+        {
+          "path": "research/ml_extension/splits/phase3_manifest_summary.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420"
+        }
+      ],
+      "status": "READY",
+      "title": "Authoritative cohort flow"
+    },
+    {
+      "axes": [
+        "class",
+        "rows"
+      ],
+      "caption": "Labels were joined locally after remote scoring and are used only for final evaluation.",
+      "derived_source": "research/figures/final/source/final_class_distribution.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_class_distribution",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_class_distribution.svg",
+        "research/figures/final/final_class_distribution.png",
+        "research/figures/final/final_class_distribution.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "What is the class balance of the immutable 946-row locked cohort?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test class distribution"
+    },
+    {
+      "axes": [
+        "chromosome",
+        "rows"
+      ],
+      "caption": "Chromosome labels are parsed from normalized variant identifiers.",
+      "derived_source": "research/figures/final/source/final_chromosome_distribution.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_chromosome_distribution",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_chromosome_distribution.svg",
+        "research/figures/final/final_chromosome_distribution.png",
+        "research/figures/final/final_chromosome_distribution.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "How are locked-test rows distributed across chromosomes?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test chromosome distribution"
+    },
+    {
+      "axes": [
+        "gene",
+        "rows"
+      ],
+      "caption": "This is a population description, not a gene-level performance claim.",
+      "derived_source": "research/figures/final/source/final_gene_top.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_gene_top",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_gene_top.svg",
+        "research/figures/final/final_gene_top.png",
+        "research/figures/final/final_gene_top.pdf"
+      ],
+      "population": "946 locked-test rows; top 15 genes",
+      "required": true,
+      "scientific_question": "Which genes contribute the largest number of locked-test rows?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test genes with most rows"
+    },
+    {
+      "axes": [
+        "cohort quantity",
+        "records"
+      ],
+      "caption": "The difference is preserved as a documented deviation; no rows were added to force the historical aggregate.",
+      "derived_source": "research/figures/final/source/temporal_transition.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "temporal_transition",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 7,
+      "output_paths": [
+        "research/figures/final/temporal_transition.svg",
+        "research/figures/final/temporal_transition.png",
+        "research/figures/final/temporal_transition.pdf"
+      ],
+      "population": "historical comparison and accepted formal cohort",
+      "required": true,
+      "scientific_question": "Which cohort counts changed between the historical comparison target and the accepted current cohort?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json",
+          "registered_runs": [
+            "run_20260922T121044Z_6004c17e"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+        },
+        {
+          "path": "research/ml_extension/splits/phase3_manifest_summary.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420"
+        }
+      ],
+      "status": "READY",
+      "title": "Historical target to accepted formal cohort"
+    },
+    {
+      "axes": [
+        "phase",
+        "cumulative rows"
+      ],
+      "caption": "Values are taken from accepted closeout artifacts; no new remote work is launched by this report.",
+      "derived_source": "research/figures/final/source/compute_cumulative_rows.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "compute_cumulative_rows",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/compute_cumulative_rows.svg",
+        "research/figures/final/compute_cumulative_rows.png",
+        "research/figures/final/compute_cumulative_rows.pdf"
+      ],
+      "population": "authorized Phase 6, Phase 7, Phase 14, and Phase 15 workloads",
+      "required": true,
+      "scientific_question": "How did paid remote work accumulate across authorized phases?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Cumulative remote rows processed"
+    },
+    {
+      "axes": [
+        "phase/work type",
+        "rows"
+      ],
+      "caption": "Cache counts are reported as the closeout evidence for each authorized workload.",
+      "derived_source": "research/figures/final/source/cache_reuse.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "cache_reuse",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 10,
+      "output_paths": [
+        "research/figures/final/cache_reuse.svg",
+        "research/figures/final/cache_reuse.png",
+        "research/figures/final/cache_reuse.pdf"
+      ],
+      "population": "authorized remote workloads",
+      "required": true,
+      "scientific_question": "How much verified work was reused instead of recomputed?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Cache reuse versus new remote work"
+    },
+    {
+      "axes": [
+        "workload",
+        "remote seconds"
+      ],
+      "caption": "Runtime is remote wall time from the recorded closeout artifacts, not a clinical or throughput guarantee.",
+      "derived_source": "research/figures/final/source/runtime_by_model.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "runtime_by_model",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/runtime_by_model.svg",
+        "research/figures/final/runtime_by_model.png",
+        "research/figures/final/runtime_by_model.pdf"
+      ],
+      "population": "authorized remote workloads",
+      "required": true,
+      "scientific_question": "What remote wall time was recorded for each model workload?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Remote runtime by model/workload"
+    },
+    {
+      "axes": [
+        "workload",
+        "estimated USD"
+      ],
+      "caption": "Estimates are not provider invoices; the report keeps rate estimates and provider billing snapshots separate.",
+      "derived_source": "research/figures/final/source/cost_by_phase_model.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "cost_by_phase_model",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/cost_by_phase_model.svg",
+        "research/figures/final/cost_by_phase_model.png",
+        "research/figures/final/cost_by_phase_model.pdf"
+      ],
+      "population": "authorized remote workloads",
+      "required": true,
+      "scientific_question": "What direct client-wall-rate estimate was recorded for each workload?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Estimated direct compute cost"
+    },
+    {
+      "axes": [
+        "phase",
+        "cumulative estimated USD"
+      ],
+      "caption": "This is a planning/ledger estimate, not a billed invoice.",
+      "derived_source": "research/figures/final/source/cumulative_compute_spend.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "cumulative_compute_spend",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/cumulative_compute_spend.svg",
+        "research/figures/final/cumulative_compute_spend.png",
+        "research/figures/final/cumulative_compute_spend.pdf"
+      ],
+      "population": "authorized remote workloads",
+      "required": true,
+      "scientific_question": "How did the direct client-wall-rate estimate accumulate?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Cumulative estimated compute"
+    },
+    {
+      "axes": [
+        "workload",
+        "variants per second"
+      ],
+      "caption": "Throughput is descriptive for the recorded calls and depends on batching and provider conditions.",
+      "derived_source": "research/figures/final/source/throughput_comparison.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "throughput_comparison",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/throughput_comparison.svg",
+        "research/figures/final/throughput_comparison.png",
+        "research/figures/final/throughput_comparison.pdf"
+      ],
+      "population": "authorized remote workloads",
+      "required": true,
+      "scientific_question": "What variants-per-second values were recorded by workload?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+        },
+        {
+          "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+        }
+      ],
+      "status": "READY",
+      "title": "Recorded remote throughput"
+    },
+    {
+      "axes": [
+        "representation family",
+        "VALIDATION AUROC"
+      ],
+      "caption": "This is development evidence; it is not interchangeable with the locked-test result.",
+      "derived_source": "research/figures/final/source/foundation_model_performance.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "foundation_model_performance",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 12,
+      "output_paths": [
+        "research/figures/final/foundation_model_performance.svg",
+        "research/figures/final/foundation_model_performance.png",
+        "research/figures/final/foundation_model_performance.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did the strongest classifier per representation family perform on VALIDATION?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a"
+        }
+      ],
+      "status": "READY",
+      "title": "Development representation performance"
+    },
+    {
+      "axes": [
+        "layer",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Only layer rows present in the registered development source are shown.",
+      "derived_source": "research/figures/final/source/representation_layers.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "representation_layers",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 6,
+      "output_paths": [
+        "research/figures/final/representation_layers.svg",
+        "research/figures/final/representation_layers.png",
+        "research/figures/final/representation_layers.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did selected NT/Caduceus layers compare on development VALIDATION?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        }
+      ],
+      "status": "READY",
+      "title": "Representation layer performance"
+    },
+    {
+      "axes": [
+        "evidence stage/model",
+        "AUROC"
+      ],
+      "caption": "The bars are explicitly stage-qualified and are not a claim of like-for-like population or selection equivalence.",
+      "derived_source": "research/figures/final/source/raw_vs_representation.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "raw_vs_representation",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 2,
+      "output_paths": [
+        "research/figures/final/raw_vs_representation.svg",
+        "research/figures/final/raw_vs_representation.png",
+        "research/figures/final/raw_vs_representation.pdf"
+      ],
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "required": true,
+      "scientific_question": "How do the development selected-classifier result and final calibrated Evo2 result differ by evidence stage?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        }
+      ],
+      "status": "READY",
+      "title": "Development versus final Evo2 performance"
+    },
+    {
+      "axes": [
+        "classifier",
+        "AUROC"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "derived_source": "research/figures/final/source/classifier_auroc_heatmap.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_auroc_heatmap",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_auroc_heatmap.svg",
+        "research/figures/final/classifier_auroc_heatmap.png",
+        "research/figures/final/classifier_auroc_heatmap.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How does development AUROC vary across feature sets and classifiers?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        }
+      ],
+      "status": "READY",
+      "title": "Classifier/representation AUROC"
+    },
+    {
+      "axes": [
+        "classifier",
+        "MCC"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "derived_source": "research/figures/final/source/classifier_mcc_heatmap.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_mcc_heatmap",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_mcc_heatmap.svg",
+        "research/figures/final/classifier_mcc_heatmap.png",
+        "research/figures/final/classifier_mcc_heatmap.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How does development MCC vary across feature sets and classifiers?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        }
+      ],
+      "status": "READY",
+      "title": "Classifier/representation MCC"
+    },
+    {
+      "axes": [
+        "classifier",
+        "BRIER"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "derived_source": "research/figures/final/source/classifier_brier_heatmap.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_brier_heatmap",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_brier_heatmap.svg",
+        "research/figures/final/classifier_brier_heatmap.png",
+        "research/figures/final/classifier_brier_heatmap.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How does development BRIER vary across feature sets and classifiers?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        }
+      ],
+      "status": "READY",
+      "title": "Classifier/representation Brier score"
+    },
+    {
+      "axes": [
+        "combination",
+        "VALIDATION AUROC"
+      ],
+      "caption": "This ranking is descriptive and does not reopen the closed selection.",
+      "derived_source": "research/figures/final/source/combination_ranking.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "combination_ranking",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 12,
+      "output_paths": [
+        "research/figures/final/combination_ranking.svg",
+        "research/figures/final/combination_ranking.png",
+        "research/figures/final/combination_ranking.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "Which development combinations had the highest VALIDATION AUROC?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        }
+      ],
+      "status": "READY",
+      "title": "Top development classifier combinations"
+    },
+    {
+      "axes": [
+        "trial",
+        "VALIDATION objective"
+      ],
+      "caption": "Four trials per study were run on VALIDATION; parameter importance is intentionally not materialized.",
+      "derived_source": "research/figures/final/source/hpo_trial_history.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "hpo_trial_history",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 48,
+      "output_paths": [
+        "research/figures/final/hpo_trial_history.svg",
+        "research/figures/final/hpo_trial_history.png",
+        "research/figures/final/hpo_trial_history.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did the bounded validation-only HPO objectives vary across trials?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase9/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+        }
+      ],
+      "status": "READY",
+      "title": "Validation-only HPO trial history"
+    },
+    {
+      "axes": [
+        "feature set",
+        "best VALIDATION objective"
+      ],
+      "caption": "The labels identify feature sets; hyperparameters remain available in the source table and are not converted into a parameter-importance claim.",
+      "derived_source": "research/figures/final/source/hpo_hyperparameters.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "hpo_hyperparameters",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 25,
+      "output_paths": [
+        "research/figures/final/hpo_hyperparameters.svg",
+        "research/figures/final/hpo_hyperparameters.png",
+        "research/figures/final/hpo_hyperparameters.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "What objective values were achieved by each feature set's selected HPO configuration?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase9/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+        }
+      ],
+      "status": "READY",
+      "title": "Selected HPO configuration objectives"
+    },
+    {
+      "axes": [
+        "training fraction",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Only completed, predeclared learning-curve fractions are shown.",
+      "derived_source": "research/figures/final/source/learning_curve_auroc.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "learning_curve_auroc",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/learning_curve_auroc.svg",
+        "research/figures/final/learning_curve_auroc.png",
+        "research/figures/final/learning_curve_auroc.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did VALIDATION AUROC change with the available training fraction?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554"
+        }
+      ],
+      "status": "READY",
+      "title": "Development learning curve"
+    },
+    {
+      "axes": [
+        "training fraction",
+        "metric value"
+      ],
+      "caption": "Metrics share the same development population but have different scales; the legend identifies each metric.",
+      "derived_source": "research/figures/final/source/learning_curve_metrics.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "learning_curve_metrics",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 25,
+      "output_paths": [
+        "research/figures/final/learning_curve_metrics.svg",
+        "research/figures/final/learning_curve_metrics.png",
+        "research/figures/final/learning_curve_metrics.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did multiple predeclared metrics change with training fraction?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        }
+      ],
+      "status": "READY",
+      "title": "Development learning-curve metrics"
+    },
+    {
+      "axes": [
+        "ablation",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Ablations are development evidence and do not alter the frozen final classifier.",
+      "derived_source": "research/figures/final/source/ablation_metric_delta.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "ablation_metric_delta",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 30,
+      "output_paths": [
+        "research/figures/final/ablation_metric_delta.svg",
+        "research/figures/final/ablation_metric_delta.png",
+        "research/figures/final/ablation_metric_delta.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "Which predeclared feature ablations changed development AUROC?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/ablation.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4"
+        }
+      ],
+      "status": "READY",
+      "title": "Development ablation AUROC"
+    },
+    {
+      "axes": [
+        "left model",
+        "error correlation"
+      ],
+      "caption": "The matrix contains recorded pairwise diversity rows only; absent pairs are not filled.",
+      "derived_source": "research/figures/final/source/diversity_matrix.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "diversity_matrix",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 3,
+      "output_paths": [
+        "research/figures/final/diversity_matrix.svg",
+        "research/figures/final/diversity_matrix.png",
+        "research/figures/final/diversity_matrix.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How correlated and discordant were selected development model errors?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2"
+        }
+      ],
+      "status": "READY",
+      "title": "Development model diversity"
+    },
+    {
+      "axes": [
+        "ensemble method",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Ensemble evidence is development-only and selection-closed.",
+      "derived_source": "research/figures/final/source/ensemble_comparison.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "ensemble_comparison",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 3,
+      "output_paths": [
+        "research/figures/final/ensemble_comparison.svg",
+        "research/figures/final/ensemble_comparison.png",
+        "research/figures/final/ensemble_comparison.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did the recorded ensemble methods compare on VALIDATION AUROC?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3"
+        }
+      ],
+      "status": "READY",
+      "title": "Development ensemble comparison"
+    },
+    {
+      "axes": [
+        "mean confidence",
+        "observed frequency"
+      ],
+      "caption": "Reliability curves are fit/evaluated within the documented development calibration boundary.",
+      "derived_source": "research/figures/final/source/calibration_reliability.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "calibration_reliability",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 20,
+      "output_paths": [
+        "research/figures/final/calibration_reliability.svg",
+        "research/figures/final/calibration_reliability.png",
+        "research/figures/final/calibration_reliability.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How closely did observed frequency track confidence for the development calibration methods?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696",
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/calibration.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f"
+        }
+      ],
+      "status": "READY",
+      "title": "Development calibration reliability"
+    },
+    {
+      "axes": [
+        "stage/metric",
+        "metric value"
+      ],
+      "caption": "Stage labels prevent development calibration from being confused with the final locked result.",
+      "derived_source": "research/figures/final/source/calibration_metric_comparison.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "calibration_metric_comparison",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 9,
+      "output_paths": [
+        "research/figures/final/calibration_metric_comparison.svg",
+        "research/figures/final/calibration_metric_comparison.png",
+        "research/figures/final/calibration_metric_comparison.pdf"
+      ],
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "required": true,
+      "scientific_question": "How do calibration metrics differ between development methods and the final locked evaluation?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696",
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        }
+      ],
+      "status": "READY",
+      "title": "Calibration metric comparison by evidence stage"
+    },
+    {
+      "axes": [
+        "coverage",
+        "risk"
+      ],
+      "caption": "This curve is the recorded development risk-coverage surface, not the locked-test abstention result.",
+      "derived_source": "research/figures/final/source/risk_coverage_development.json",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "risk_coverage_development",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 20,
+      "output_paths": [
+        "research/figures/final/risk_coverage_development.svg",
+        "research/figures/final/risk_coverage_development.png",
+        "research/figures/final/risk_coverage_development.pdf"
+      ],
+      "population": "formal TRAIN/VALIDATION development",
+      "required": true,
+      "scientific_question": "How did selective risk change with development coverage?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696",
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/figure_sources/abstention.json",
+          "registered_runs": [
+            "run_20260922T083143Z_66e6c1cf"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f"
+        }
+      ],
+      "status": "READY",
+      "title": "Development risk-coverage curve"
+    },
+    {
+      "axes": [
+        "risk definition",
+        "risk"
+      ],
+      "caption": "The artifact risk is the frozen signed-delta direction disagreement measure; the second bar is a separate descriptive calculation using the same confidence-rank subset and is not a replacement metric.",
+      "derived_source": "research/figures/final/source/final_abstention_semantics.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_abstention_semantics",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_abstention_semantics.svg",
+        "research/figures/final/final_abstention_semantics.png",
+        "research/figures/final/final_abstention_semantics.pdf"
+      ],
+      "population": "946 locked-test rows at frozen 50% coverage",
+      "required": true,
+      "scientific_question": "What does the immutable Phase 14 abstention number measure, and how does it compare with descriptive classifier error at the same fixed coverage?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final abstention semantics at frozen coverage"
+    },
+    {
+      "axes": [
+        "false-positive rate",
+        "true-positive rate"
+      ],
+      "caption": "The curve is derived from the immutable joined final rows and calibrated scores.",
+      "derived_source": "research/figures/final/source/final_roc.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_roc",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_roc.svg",
+        "research/figures/final/final_roc.png",
+        "research/figures/final/final_roc.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "How does frozen calibrated-score discrimination vary with threshold on the locked cohort?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test ROC curve"
+    },
+    {
+      "axes": [
+        "recall",
+        "precision"
+      ],
+      "caption": "The curve is derived from the immutable joined final rows and calibrated scores.",
+      "derived_source": "research/figures/final/source/final_pr.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_pr",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_pr.svg",
+        "research/figures/final/final_pr.png",
+        "research/figures/final/final_pr.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "How does frozen calibrated-score precision vary with recall on the locked cohort?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test precision-recall curve"
+    },
+    {
+      "axes": [
+        "estimate",
+        "AUROC"
+      ],
+      "caption": "Only the recorded point, mean, and interval endpoints are shown; no bootstrap replicates are fabricated.",
+      "derived_source": "research/figures/final/source/bootstrap_interval.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "bootstrap_interval",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/bootstrap_interval.svg",
+        "research/figures/final/bootstrap_interval.png",
+        "research/figures/final/bootstrap_interval.pdf"
+      ],
+      "population": "946 locked-test rows; recorded bootstrap summary",
+      "required": true,
+      "scientific_question": "What uncertainty interval was recorded for final AUROC?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        }
+      ],
+      "status": "READY",
+      "title": "Final AUROC bootstrap interval"
+    },
+    {
+      "axes": [
+        "actual class",
+        "predicted class"
+      ],
+      "caption": "Counts match the immutable Phase 14 confusion metrics.",
+      "derived_source": "research/figures/final/source/final_confusion_matrix.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_confusion_matrix",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_confusion_matrix.svg",
+        "research/figures/final/final_confusion_matrix.png",
+        "research/figures/final/final_confusion_matrix.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "What are the four frozen outcome counts at the 0.5 calibrated-score threshold?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test confusion matrix"
+    },
+    {
+      "axes": [
+        "outcome",
+        "rows"
+      ],
+      "caption": "Outcomes are computed from the immutable local label join and final prediction field.",
+      "derived_source": "research/figures/final/source/final_outcome_counts.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_outcome_counts",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_outcome_counts.svg",
+        "research/figures/final/final_outcome_counts.png",
+        "research/figures/final/final_outcome_counts.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "How many true/false positive/negative outcomes were recorded?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final locked-test outcome counts"
+    },
+    {
+      "axes": [
+        "chromosome",
+        "errors"
+      ],
+      "caption": "This is descriptive subgroup error analysis, not a chromosome-level model claim.",
+      "derived_source": "research/figures/final/source/final_error_chromosome.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_error_chromosome",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_error_chromosome.svg",
+        "research/figures/final/final_error_chromosome.png",
+        "research/figures/final/final_error_chromosome.pdf"
+      ],
+      "population": "946 locked-test rows; error rows only",
+      "required": true,
+      "scientific_question": "Where were final prediction errors distributed by chromosome?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final errors by chromosome"
+    },
+    {
+      "axes": [
+        "gene",
+        "errors"
+      ],
+      "caption": "Only observed error counts are shown; small subgroups are not used for new tuning.",
+      "derived_source": "research/figures/final/source/final_gene_errors.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_gene_errors",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_gene_errors.svg",
+        "research/figures/final/final_gene_errors.png",
+        "research/figures/final/final_gene_errors.pdf"
+      ],
+      "population": "946 locked-test rows; top error counts",
+      "required": true,
+      "scientific_question": "Which genes contain the largest number of final prediction errors?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final errors by gene"
+    },
+    {
+      "axes": [
+        "error type",
+        "rows"
+      ],
+      "caption": "Counts are the frozen Phase 14 confusion-matrix components.",
+      "derived_source": "research/figures/final/source/final_fp_fn.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_fp_fn",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_fp_fn.svg",
+        "research/figures/final/final_fp_fn.png",
+        "research/figures/final/final_fp_fn.pdf"
+      ],
+      "population": "946 locked-test rows",
+      "required": true,
+      "scientific_question": "How do the two error types compare on the locked cohort?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+        }
+      ],
+      "status": "READY",
+      "title": "Final false-positive and false-negative counts"
+    },
+    {
+      "axes": [
+        "stage",
+        "AUROC"
+      ],
+      "caption": "This is a stage-qualified comparison; selection was closed before the locked evaluation.",
+      "derived_source": "research/figures/final/source/development_final_generalization.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "development_final_generalization",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 2,
+      "output_paths": [
+        "research/figures/final/development_final_generalization.svg",
+        "research/figures/final/development_final_generalization.png",
+        "research/figures/final/development_final_generalization.pdf"
+      ],
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "required": true,
+      "scientific_question": "How does the selected development result compare with the frozen final locked evaluation?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+        },
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        }
+      ],
+      "status": "READY",
+      "title": "Development versus final generalization"
+    },
+    {
+      "axes": [
+        "phase",
+        "status marker"
+      ],
+      "caption": "The timeline reports evidence status and authorization boundaries; it is not a performance trend.",
+      "derived_source": "research/figures/final/source/project_timeline.json",
+      "evidence_stage": "FINAL",
+      "figure_id": "project_timeline",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 10,
+      "output_paths": [
+        "research/figures/final/project_timeline.svg",
+        "research/figures/final/project_timeline.png",
+        "research/figures/final/project_timeline.pdf"
+      ],
+      "population": "project phase gates",
+      "required": true,
+      "scientific_question": "Which phase gates are complete, partial, or still bounded by authorization?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+          "registered_runs": [
+            "run_20260922T114022Z_ff24f7f7"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+        },
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        },
+        {
+          "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+        }
+      ],
+      "status": "READY",
+      "title": "EvoVariant-TR evidence timeline"
+    },
+    {
+      "axes": [
+        "context length",
+        "metric"
+      ],
+      "caption": "No context-length curve is emitted: the cell was explicitly deferred before additional foundation-model extraction.",
+      "derived_source": null,
+      "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "figure_id": "context_length_metric",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 0,
+      "output_paths": [],
+      "population": "development-only conditional cell",
+      "reason": "Phase 13 records NOT_RUN_DEFERRED_BY_COMPUTE; existing cached features are 8192 bp only.",
+      "required": false,
+      "scientific_question": "Was the conditional context-length robustness cell executed?",
+      "source_artifacts": [
+        {
+          "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+          "registered_runs": [
+            "run_20260922T080913Z_8ff64696"
+          ],
+          "registration_status": "HASH_VERIFIED_REGISTERED",
+          "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+        },
+        {
+          "path": "artifacts/phase13/context_length_deferral_20260922.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "973fc7463ce02d8432fd42102e0d10f183fb8b4c9f6dbdd3c992a9ea2ad21c31"
+        }
+      ],
+      "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "title": "Context length versus metric"
+    },
+    {
+      "axes": [
+        "epoch",
+        "loss"
+      ],
+      "caption": "No loss curve is emitted: Phase 10 adaptation was deferred before training.",
+      "derived_source": null,
+      "evidence_stage": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "figure_id": "train_validation_loss",
+      "generator_version": "phase17-publication-bundle-v2",
+      "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+      "git_dirty_at_generation": true,
+      "n": 0,
+      "output_paths": [],
+      "population": "Phase 10 adaptation",
+      "reason": "Phase 10 is DEFERRED_BY_COMPUTE and supplied no training-loss artifact.",
+      "required": false,
+      "scientific_question": "Was a scientifically valid training-loss series recorded?",
+      "source_artifacts": [
+        {
+          "path": "artifacts/modal/phase10_adaptation_deferral_20260921.json",
+          "registered_runs": [],
+          "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+          "sha256": "c464ba19581ebdb1222f9c11bcf3764bdf8decbbc28d4fb1bbc272601e4654a3"
+        }
+      ],
+      "status": "NOT_APPLICABLE_WITH_DOCUMENTED_REASON",
+      "title": "Train and validation loss"
+    }
+  ],
+  "final_joined_predictions": {
+    "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+    "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+  },
+  "final_phase14_artifact": {
+    "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+    "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+  },
+  "format_support": {
+    "pdf": true,
+    "png": true,
+    "svg": true
+  },
+  "generator_version": "phase17-publication-bundle-v2",
+  "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+  "git_dirty_at_generation": true,
+  "no_remote_compute": true,
+  "registered_completed_runs_verified": 13,
+  "schema_version": "phase17-figure-inventory-v1",
+  "status": "PASS_LOCAL_PUBLICATION_BUNDLE",
+  "tables": [
+    "research/tables/final/cohort_counts.csv",
+    "research/tables/final/final_metrics.csv",
+    "research/tables/final/development_model_metrics.csv",
+    "research/tables/final/classifier_matrix.csv",
+    "research/tables/final/hpo_trials.csv",
+    "research/tables/final/learning_curves.csv",
+    "research/tables/final/ablations.csv",
+    "research/tables/final/diversity.csv",
+    "research/tables/final/calibration.csv",
+    "research/tables/final/final_error_subgroups.csv",
+    "research/tables/final/cost_ledger.csv",
+    "research/tables/final/limitations.csv"
+  ]
+}

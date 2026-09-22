@@ -1,0 +1,5 @@
+component,reason
+phase10_loss,DEFERRED_BY_COMPUTE; no training loss exists
+phase13_context_length,NOT_RUN_DEFERRED_BY_COMPUTE; additional extraction needs new authorization
+phase15,bounded 64-row batch/resume smoke only; full-cohort re-inference remains outside scope
+phase18,"clean-room reproducibility and representative remote smoke passed; full 4,000/946 remote re-inference was not performed or claimed"

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "axes": [
+      "ensemble method",
+      "VALIDATION AUROC"
+    ],
+    "caption": "Ensemble evidence is development-only and selection-closed.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "ensemble_comparison",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 3,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did the recorded ensemble methods compare on VALIDATION AUROC?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/ensemble.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3"
+      }
+    ],
+    "status": "READY",
+    "title": "Development ensemble comparison"
+  },
+  "rows": [
+    {
+      "label": "equal_mean",
+      "value": 0.9515334063526835
+    },
+    {
+      "label": "hard_vote",
+      "value": 0.8775269910812079
+    },
+    {
+      "label": "train_performance_weighted_mean",
+      "value": 0.9515255828508841
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

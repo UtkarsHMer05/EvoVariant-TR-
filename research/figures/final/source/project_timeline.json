@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "axes": [
+      "phase",
+      "status marker"
+    ],
+    "caption": "The timeline reports evidence status and authorization boundaries; it is not a performance trend.",
+    "evidence_stage": "FINAL",
+    "figure_id": "project_timeline",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 10,
+    "population": "project phase gates",
+    "required": true,
+    "scientific_question": "Which phase gates are complete, partial, or still bounded by authorization?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      {
+        "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+      }
+    ],
+    "status": "READY",
+    "title": "EvoVariant-TR evidence timeline"
+  },
+  "rows": [
+    {
+      "label": "P3 PASS",
+      "value": 1
+    },
+    {
+      "label": "P6 PASS",
+      "value": 1
+    },
+    {
+      "label": "P7 PASS",
+      "value": 1
+    },
+    {
+      "label": "P8-13 PASS",
+      "value": 1
+    },
+    {
+      "label": "P14 FINAL PASS",
+      "value": 1
+    },
+    {
+      "label": "P15 AUTHORIZATION BOUNDARY",
+      "value": 1
+    },
+    {
+      "label": "P16 PARTIAL",
+      "value": 1
+    },
+    {
+      "label": "P17 LOCAL PASS",
+      "value": 1
+    },
+    {
+      "label": "P18 PARTIAL",
+      "value": 1
+    },
+    {
+      "label": "P19 BLOCKED",
+      "value": 1
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

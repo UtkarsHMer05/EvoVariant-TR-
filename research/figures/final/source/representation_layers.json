@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "axes": [
+      "layer",
+      "VALIDATION AUROC"
+    ],
+    "caption": "Only layer rows present in the registered development source are shown.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "representation_layers",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 6,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did selected NT/Caduceus layers compare on development VALIDATION?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      }
+    ],
+    "status": "READY",
+    "title": "Representation layer performance"
+  },
+  "rows": [
+    {
+      "series": "nt8",
+      "x": 8,
+      "x_numeric": 8.0,
+      "y": 0.8849710530433422
+    },
+    {
+      "series": "nt16",
+      "x": 16,
+      "x_numeric": 16.0,
+      "y": 0.9490846502894695
+    },
+    {
+      "series": "nt24",
+      "x": 24,
+      "x_numeric": 24.0,
+      "y": 0.9236817399468001
+    },
+    {
+      "series": "cad4",
+      "x": 4,
+      "x_numeric": 4.0,
+      "y": 0.6212486308871851
+    },
+    {
+      "series": "cad8",
+      "x": 8,
+      "x_numeric": 8.0,
+      "y": 0.5620638397746831
+    },
+    {
+      "series": "cad16",
+      "x": 16,
+      "x_numeric": 16.0,
+      "y": 0.5510718197465185
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

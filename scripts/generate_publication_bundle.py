@@ -29,10 +29,13 @@ OUT = ROOT / "research/figures/final"
 SOURCE_DIR = OUT / "source"
 TABLE_DIR = ROOT / "research/tables/final"
 REPORT_DIR = ROOT / "research/reports/phase17"
-GENERATOR_VERSION = "phase17-publication-bundle-v1"
+GENERATOR_VERSION = "phase17-publication-bundle-v2"
 FINAL_ARTIFACT = "artifacts/phase14/phase14_locked_evo2_20260922.json"
 JOINED = "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl"
 BILLING_RECHECK = "artifacts/phase17/modal_billing_recheck_20260922.json"
+PHASE15_VALIDATION = "artifacts/phase15/phase15_parity_smoke_validation_20260922.json"
+COMPUTE_LEDGER_AUDIT = "artifacts/audits/compute_ledger_audit_20260922.json"
+FRESH_MODAL_AUDIT = "artifacts/audits/modal_no_spend_snapshot_20260922.json"
 
 
 def read_json(relative: str) -> Any:
@@ -259,12 +262,13 @@ def roc_pr(rows: list[dict[str, Any]], score_field: str) -> tuple[list[dict[str,
     return roc, pr
 
 
-def phase_rows(phase6: dict[str, Any], phase7: dict[str, Any], phase14: dict[str, Any]) -> list[dict[str, Any]]:
+def phase_rows(phase6: dict[str, Any], phase7: dict[str, Any], phase14: dict[str, Any], phase15: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         {"label": "Phase 6 Evo2", "phase": 6, "new_rows": 32, "cache_hits": 3968, "runtime": finite(phase6["runtime"]["total_remote_wall_seconds"]), "cost": finite(phase6["cost"]["cumulative_client_wall_rate_estimate_usd"])},
         {"label": "Phase 7 NT", "phase": 7, "new_rows": 1568, "cache_hits": 2432, "runtime": finite(phase7["model_tracks"]["nucleotide_transformer"]["runtime_seconds"]), "cost": finite(phase7["model_tracks"]["nucleotide_transformer"]["cost"]["estimated_client_wall_rate_usd"])},
         {"label": "Phase 7 Caduceus", "phase": 7, "new_rows": 4000, "cache_hits": 0, "runtime": finite(phase7["model_tracks"]["caduceus"]["runtime_seconds"]), "cost": finite(phase7["model_tracks"]["caduceus"]["cost"]["estimated_client_wall_rate_usd"])},
         {"label": "Phase 14 locked Evo2", "phase": 14, "new_rows": 946, "cache_hits": 0, "runtime": finite(phase14["runtime"]["remote_wall_seconds"] if "remote_wall_seconds" in phase14["runtime"] else phase14["runtime"].get("remote_runtime_seconds", 1304.297864)), "cost": finite(phase14["cost"]["estimated_run_cost_usd"])},
+        {"label": "Phase 15 batch/resume smoke", "phase": 15, "new_rows": int(phase15["initial_paid_execution"]["new_remote_records"]), "cache_hits": int(phase15["initial_paid_execution"]["historical_cache_hits"]), "runtime": finite(phase15["initial_paid_execution"]["remote_runtime_seconds"]), "cost": finite(phase15["initial_paid_execution"]["estimated_cost_usd"])},
     ]
 
 
@@ -302,7 +306,7 @@ def write_csv(name: str, rows: list[dict[str, Any]]) -> str:
             if field not in fields:
                 fields.append(field)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({field: json.dumps(row[field], sort_keys=True) if isinstance(row.get(field), (dict, list)) else row.get(field, "") for field in fields})
@@ -327,7 +331,9 @@ def main() -> int:
     if registry_failures:
         raise SystemExit("registry verification failed: " + "; ".join(registry_failures))
     final_artifact = read_json(FINAL_ARTIFACT)
-    billing_recheck = read_json(BILLING_RECHECK)
+    phase15_validation = read_json(PHASE15_VALIDATION)
+    compute_ledger_audit = read_json(COMPUTE_LEDGER_AUDIT)
+    billing_final = read_json("artifacts/phase19/modal_billing_final_20260922.json")
     final_rows = read_jsonl(JOINED)
     if len(final_rows) != 946 or {row.get("split") for row in final_rows} != {"LOCKED_TEST"}:
         raise SystemExit("final joined predictions are not exactly the 946-row locked cohort")
@@ -412,23 +418,24 @@ def main() -> int:
     add("temporal_transition", "Historical target to accepted formal cohort", "Which cohort counts changed between the historical comparison target and the accepted current cohort?", ["research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json", "research/ml_extension/splits/phase3_manifest_summary.json"], [{"label": row["stage"], "value": row["count"]} for row in temporal["rows"] if row["stage"].startswith(("historical_target_", "authoritative_"))], "bar", ("cohort quantity", "records"), "historical comparison and accepted formal cohort", "PRELIMINARY", "The difference is preserved as a documented deviation; no rows were added to force the historical aggregate.")
 
     # Compute and cost evidence.
-    phases = phase_rows(phase6, phase7, final_artifact)
+    phases = phase_rows(phase6, phase7, final_artifact, phase15_validation)
     cumulative = 0
     cumulative_rows = []
     for row in phases:
         cumulative += row["new_rows"]
         cumulative_rows.append({"x": row["label"], "x_numeric": row["phase"] + cumulative / 100000, "y": cumulative, "series": "newly scored/extracted rows"})
-    add("compute_cumulative_rows", "Cumulative remote rows processed", "How did paid remote work accumulate across authorized phases?", ["artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], cumulative_rows, "line", ("phase", "cumulative rows"), "authorized Phase 6, Phase 7, and Phase 14 workloads", "FINAL", "Phase 7 and Phase 14 values are taken from their accepted closeout artifacts; no new remote work is launched by this report.")
-    add("cache_reuse", "Cache reuse versus new remote work", "How much verified work was reused instead of recomputed?", ["artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], [{"label": row["label"] + " cache", "value": row["cache_hits"]} for row in phases] + [{"label": row["label"] + " new", "value": row["new_rows"]} for row in phases], "bar", ("phase/work type", "rows"), "authorized remote workloads", "FINAL", "Cache counts are reported as the closeout evidence for each authorized workload.")
-    add("runtime_by_model", "Remote runtime by model/workload", "What remote wall time was recorded for each model workload?", ["research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], [{"label": row["label"], "value": row["runtime"]} for row in phases], "bar", ("workload", "remote seconds"), "authorized remote workloads", "FINAL", "Runtime is remote wall time from the recorded closeout artifacts, not a clinical or throughput guarantee.")
-    add("cost_by_phase_model", "Estimated direct compute cost", "What direct client-wall-rate estimate was recorded for each workload?", ["research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], [{"label": row["label"], "value": row["cost"]} for row in phases], "bar", ("workload", "estimated USD"), "authorized remote workloads", "FINAL", "Estimates are not provider invoices; the report keeps both estimates and provider billing snapshots separate.")
+    compute_sources = ["research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT, PHASE15_VALIDATION, COMPUTE_LEDGER_AUDIT]
+    add("compute_cumulative_rows", "Cumulative remote rows processed", "How did paid remote work accumulate across authorized phases?", compute_sources, cumulative_rows, "line", ("phase", "cumulative rows"), "authorized Phase 6, Phase 7, Phase 14, and Phase 15 workloads", "FINAL", "Values are taken from accepted closeout artifacts; no new remote work is launched by this report.")
+    add("cache_reuse", "Cache reuse versus new remote work", "How much verified work was reused instead of recomputed?", compute_sources, [{"label": row["label"] + " cache", "value": row["cache_hits"]} for row in phases] + [{"label": row["label"] + " new", "value": row["new_rows"]} for row in phases], "bar", ("phase/work type", "rows"), "authorized remote workloads", "FINAL", "Cache counts are reported as the closeout evidence for each authorized workload.")
+    add("runtime_by_model", "Remote runtime by model/workload", "What remote wall time was recorded for each model workload?", compute_sources, [{"label": row["label"], "value": row["runtime"]} for row in phases], "bar", ("workload", "remote seconds"), "authorized remote workloads", "FINAL", "Runtime is remote wall time from the recorded closeout artifacts, not a clinical or throughput guarantee.")
+    add("cost_by_phase_model", "Estimated direct compute cost", "What direct client-wall-rate estimate was recorded for each workload?", compute_sources, [{"label": row["label"], "value": row["cost"]} for row in phases], "bar", ("workload", "estimated USD"), "authorized remote workloads", "FINAL", "Estimates are not provider invoices; the report keeps rate estimates and provider billing snapshots separate.")
     running = 0.0
     spend_rows = []
     for row in phases:
         running += row["cost"]
         spend_rows.append({"x": row["label"], "x_numeric": row["phase"] + running / 100000, "y": running, "series": "cumulative direct estimate"})
-    add("cumulative_compute_spend", "Cumulative estimated compute", "How did the direct client-wall-rate estimate accumulate?", ["research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], spend_rows, "line", ("phase", "cumulative estimated USD"), "authorized remote workloads", "FINAL", "This is a planning/ledger estimate, not a billed invoice.")
-    add("throughput_comparison", "Recorded remote throughput", "What variants-per-second values were recorded by workload?", ["artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json", "artifacts/phase7/formal_budgeted_representation_20260922.json", FINAL_ARTIFACT], [{"label": "Phase 6 Evo2", "value": finite(phase6["runtime"].get("variants_per_remote_score_second", 0.0))}, {"label": "Phase 7 NT", "value": finite(phase7["model_tracks"]["nucleotide_transformer"].get("variants_per_second", 0.0))}, {"label": "Phase 7 Caduceus", "value": finite(phase7["model_tracks"]["caduceus"].get("variants_per_second", 0.0))}, {"label": "Phase 14 Evo2", "value": finite(final_rows[0]["provenance"].get("variants_per_second", 0.0))}], "bar", ("workload", "variants per second"), "authorized remote workloads", "FINAL", "Throughput is descriptive for the recorded calls and depends on batching and provider conditions.")
+    add("cumulative_compute_spend", "Cumulative estimated compute", "How did the direct client-wall-rate estimate accumulate?", compute_sources, spend_rows, "line", ("phase", "cumulative estimated USD"), "authorized remote workloads", "FINAL", "This is a planning/ledger estimate, not a billed invoice.")
+    add("throughput_comparison", "Recorded remote throughput", "What variants-per-second values were recorded by workload?", compute_sources, [{"label": "Phase 6 Evo2", "value": finite(phase6["runtime"].get("variants_per_remote_score_second", 0.0))}, {"label": "Phase 7 NT", "value": finite(phase7["model_tracks"]["nucleotide_transformer"].get("variants_per_second", 0.0))}, {"label": "Phase 7 Caduceus", "value": finite(phase7["model_tracks"]["caduceus"].get("variants_per_second", 0.0))}, {"label": "Phase 14 Evo2", "value": finite(final_rows[0]["provenance"].get("variants_per_second", 0.0))}, {"label": "Phase 15 smoke", "value": 8.0 / finite(phase15_validation["initial_paid_execution"]["remote_runtime_seconds"])}], "bar", ("workload", "variants per second"), "authorized remote workloads", "FINAL", "Throughput is descriptive for the recorded calls and depends on batching and provider conditions.")
 
     # Development model and classifier evidence.
     model_rows = []
@@ -561,7 +568,7 @@ def main() -> int:
         write_csv("calibration.csv", calibration_rows),
         write_csv("final_error_subgroups.csv", chromosome_errors + gene_errors),
         write_csv("cost_ledger.csv", cost_ledger + [{"run_id": row["label"], "measured_seconds": row["runtime"], "estimated_usd": row["cost"], "scope": "publication bundle phase ledger"} for row in phases]),
-        write_csv("limitations.csv", [{"component": "phase10_loss", "reason": "DEFERRED_BY_COMPUTE; no training loss exists"}, {"component": "phase13_context_length", "reason": "NOT_RUN_DEFERRED_BY_COMPUTE; additional extraction needs new authorization"}, {"component": "phase15", "reason": "remote batch parity remains outside current authorization"}, {"component": "phase18", "reason": "full remote clean-room re-inference remains unrun"}]),
+        write_csv("limitations.csv", [{"component": "phase10_loss", "reason": "DEFERRED_BY_COMPUTE; no training loss exists"}, {"component": "phase13_context_length", "reason": "NOT_RUN_DEFERRED_BY_COMPUTE; additional extraction needs new authorization"}, {"component": "phase15", "reason": "bounded 64-row batch/resume smoke only; full-cohort re-inference remains outside scope"}, {"component": "phase18", "reason": "clean-room reproducibility and representative remote smoke passed; full 4,000/946 remote re-inference was not performed or claimed"}]),
     ]
 
     registered_run_ids = sorted({run_id for runs in registered.values() for run_id in runs})
@@ -589,21 +596,23 @@ def main() -> int:
     (REPORT_DIR / "FIGURE_INVENTORY.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     metrics = final_artifact["metrics"]
-    phase14_runtime = phases[-1]["runtime"]
+    phase14_runtime = next(row["runtime"] for row in phases if row["phase"] == 14)
     phase14_estimated_cost = final_artifact["cost"]["estimated_run_cost_usd"]
-    billing_snapshot = billing_recheck["snapshot"]
-    billing_comparison = billing_recheck["comparison"]
+    billing_snapshot = billing_final["snapshot"]
+    rate_total = compute_ledger_audit["subsequent_rate_estimate_total_usd"]
+    indicative_after_later = compute_ledger_audit["indicative_user_basis_arithmetic"]["indicative_after_later_checkpoint_usd"]
+    phase15_initial = phase15_validation["initial_paid_execution"]
     report = f"""# EvoVariant-TR Phase 17–19 Publication and Reproducibility Report
 
 ## Executive result
 
 The no-spend publication bundle is complete for every applicable figure family supported by the registered Phase 3–14 artifacts. It contains `{sum(entry['status'] == 'READY' for entry in inventory)}` rendered figure families, SVG output for every rendered figure, and PNG/PDF companions when the installed native converter succeeded. The conditional Phase 10 loss and Phase 13 context-length cells are explicitly documented as not applicable; no values were fabricated.
 
-This bundle does not reopen scientific selection, alter the immutable Phase 14 locked evaluation, or authorize additional Modal work. Phase 17 is `PASS_LOCAL_PUBLICATION_BUNDLE`; the overall release remains `PARTIAL / NOT_RELEASED` because Phase 15 remote parity, Phase 18 full remote scientific re-inference, and the dependent Phase 19 release gate remain outside the current authorization.
+This bundle does not reopen scientific selection, alter the immutable Phase 14 locked evaluation, or authorize additional Modal work. Phase 17 is `PASS_LOCAL_PUBLICATION_BUNDLE`; Phase 15 is complete only as a bounded 64-row batch/resume smoke, Phase 18 passed its clean-room plus representative-smoke scope, and Phase 19 is `INTERNAL_RELEASE_READINESS_PASS` with external release `NOT_REQUESTED`.
 
 ## Abstract
 
-The EvoVariant-TR extension evaluates frozen GRCh38 variant windows with Evo2 and downstream development-only classifiers. The authoritative current temporal cohort contains 946 locked rows (536 benign/likely-benign and 410 pathogenic/likely-pathogenic) across 367 genes. Phase 14 completed the immutable Evo2 locked evaluation with AUROC `{metrics['auroc']:.6f}`, AUPRC `{metrics['auprc']:.6f}`, Brier score `{metrics['probability_metrics']['brier']:.6f}`, ECE `{metrics['probability_metrics']['ece']:.6f}`, and accuracy `{metrics['probability_metrics']['accuracy']:.6f}`. These are evidence-stage-qualified scientific results, not a clinical validation claim.
+The final system is an Evo2-derived feature pipeline with its frozen downstream classifier and calibration: frozen Evo2 forward/reverse/aggregate raw features feed the TRAIN-fit logistic classifier and TRAIN-fit isotonic calibration. It is not raw Evo2 alone. The authoritative current temporal cohort contains 946 locked rows (536 benign/likely-benign and 410 pathogenic/likely-pathogenic) across 367 genes. Phase 14 completed the immutable Evo2 locked evaluation with AUROC `{metrics['auroc']:.6f}`, AUPRC `{metrics['auprc']:.6f}`, Brier score `{metrics['probability_metrics']['brier']:.6f}`, ECE `{metrics['probability_metrics']['ece']:.6f}`, and accuracy `{metrics['probability_metrics']['accuracy']:.6f}`. These are evidence-stage-qualified scientific results, not a clinical validation claim.
 
 ## Motivation
 
@@ -635,7 +644,7 @@ Phase 8 evaluated 36 classifier/representation combinations. Phase 9 ran four va
 
 ## Representations, downstream models, HPO, and ensemble
 
-The development registry records Evo2 raw-score and frozen representation tracks, plus the Nucleotide Transformer and Caduceus representation work. Downstream classifiers, validation-only HPO trials, and ensemble comparisons are reported only from their registered TRAIN/VALIDATION artifacts. Fine-tuning/adaptation was formally deferred; no checkpoint or training-loss curve is implied.
+The development registry records Evo2 raw-score and frozen representation tracks, plus the Nucleotide Transformer and Caduceus representation work. The final system uses Evo2-derived features with the frozen downstream logistic classifier and frozen TRAIN-fit isotonic calibration; the raw Evo2 score is an input, not the complete final predictor. Downstream classifiers, validation-only HPO trials, and ensemble comparisons are reported only from their registered TRAIN/VALIDATION artifacts. Fine-tuning/adaptation was formally deferred; no checkpoint or training-loss curve is implied.
 
 ## Calibration, abstention, and uncertainty
 
@@ -668,27 +677,30 @@ The immutable Phase 14 metrics are:
 | Raw delta-primary AUROC | {metrics['raw_delta_primary_auroc']:.9f} |
 | TP / TN / FP / FN | {tp} / {tn} / {fp} / {fn} |
 
+## Raw-delta AUROC sign convention
+
+The raw primary score is `delta_primary = (delta_forward + delta_reverse) / 2`, where each delta is alternate-minus-reference log likelihood. The reported raw-delta AUROC `{metrics['raw_delta_primary_auroc']:.9f}` is the direct AUROC of that signed score against the frozen labels. No post-hoc sign flip, `1 - AUROC`, or orientation relabeling is applied. The signed score can therefore have an AUROC below 0.5 under the declared direction; that is a result to report, not a reason to reverse it. The final AUROC above is from the frozen downstream classifier plus TRAIN-fit isotonic calibration and must not be described as raw Evo2 alone.
+
 The frozen abstention target and actual coverage are `{metrics['abstention']['target_coverage']}` and `{metrics['abstention']['actual_coverage']}`. The artifact risk `{metrics['abstention']['risk']:.9f}` is signed-delta direction disagreement under the frozen confidence-rank selection. It is not silently relabeled as ordinary classifier error; the bundle also shows a separate descriptive prediction-error calculation at the same fixed subset.
 
 ## Compute, cost, and resource boundary
 
-Phase 6 reused 3,968 verified rows and remotely scored 32 new rows. Phase 7 reused the accepted NT prefix and completed the Caduceus representation track under its separate authorization. Phase 14 remotely scored 946 locked rows in 30 H100 calls with recorded remote runtime `{phase14_runtime:.6f}` seconds and a direct estimate of `${phase14_estimated_cost:.9f}`. Paid workers were shut down and the latest no-spend Modal audit found no active containers.
+Phase 6 reused 3,968 verified rows and remotely scored 32 new rows. Phase 7 reused the accepted NT prefix and completed the Caduceus representation track under its separate authorization. Phase 14 remotely scored 946 locked rows in 30 H100 calls with recorded remote runtime `{phase14_runtime:.6f}` seconds and a direct estimate of `${phase14_estimated_cost:.9f}`. Phase 15 completed a 64-row batch/resume smoke with 56 cache-reused rows and 8 fresh remote parity rows; its one fresh remote invocation recorded `{phase15_initial['remote_runtime_seconds']:.6f}` seconds and a `${phase15_initial['estimated_cost_usd']:.6f}` rate estimate, while the resume added zero remote calls. Paid workers were shut down and the final no-spend Modal snapshot found active containers `{billing_snapshot.get('active_containers', [])}`.
 
-The provider billing summary is workspace-level evidence, not a per-run invoice. The Phase 14 artifact records the execution snapshot at metered `$33.50187443` and billed `$0.13`; the latest no-spend recheck records metered `${billing_snapshot['metered_cost_usd']:.8f}` and billed `${billing_snapshot['billed_cost_usd']:.2f}` with active containers `{billing_snapshot['active_containers']}`. The provider does not expose a confirmed remaining free-credit balance in the local summary. Against the user-stated `$7.17` pre-run headroom, the latest observed `${billing_comparison['observed_metered_delta_usd']:.8f}` metered delta implies an indicative `${billing_comparison['indicative_user_basis_remaining_headroom_usd']:.8f}`, not a provider-confirmed balance.
+The compute ledger is reconciled at `artifacts/audits/COMPUTE_LEDGER_AUDIT.md` and distinguishes provider-confirmed workspace snapshots, metered deltas, app-specific measurements, and client/H100 rate estimates. The separately recorded subsequent rate estimates total `${rate_total}`. The earlier user-provided `$7.17` Phase 6 checkpoint basis is retained and is not reset at Phase 15; the later user-provided `$5.94` basis preceded the final 32-row tail. `${indicative_after_later}` is only an indicative subtraction from that later basis, not an exact remaining-credit claim. The provider summary does not expose exact remaining free credits and its workspace meter is non-monotonic after adjustments. The final no-spend provider snapshot records metered `${billing_snapshot['metered_cost']}`, billed `${billing_snapshot['billed_cost']}`, and no active containers. A fresh read-only check at `${FRESH_MODAL_AUDIT}` independently returned the same no-active-container state.
 
 ## Conditional and deferred work
 
 - Phase 10 training loss: `DEFERRED_BY_COMPUTE`; no training run occurred, so no loss curve is emitted.
 - Phase 13 context length: `NOT_APPLICABLE_WITH_DOCUMENTED_REASON`; the predeclared 512/1024/2048/4096/8192 cell required additional foundation-model extraction, while current cached features are frozen at 8192 bp. A 64-row, four-additional-context planning sweep is estimated at `$0.387275664` direct H100 cost from the Phase 14 rate, but it is not authorized and must not touch the locked test.
-- Phase 15 batch parity: local atomic shard interruption/restart behavior is verified; remote full-cohort parity remains outside the current authorization. No paid batch was started.
-- Phase 15 batch parity: the authorized 64-row development-only smoke passed with 56 verified cache rows, 8 newly scored rows, exact canonical parity, and a persisted-shard resume with zero additional remote calls. It does not authorize a full-cohort batch.
-- Phase 18 clean room: the free software/control-plane and local artifact hash checks are separate from the representative gated Modal smoke above. A full remote re-inference is not required by the literal Phase 18 task list and was not run or claimed.
+- Phase 15 batch/resume smoke: the exact 64-row development-only smoke passed with 56 cache-reused rows and 8 fresh remote parity rows, exact canonical parity, zero locked rows/labels, and a persisted-shard resume with zero additional remote calls. Full-cohort remote re-inference is not claimed.
+- Phase 18 clean room: clean-room software reproducibility, hash-verified scientific artifact reproducibility, and representative remote development smoke passed. Full 4,000/946 remote re-inference was not performed and is not claimed.
 
 ## Reproducibility and release gates
 
 The figure inventory is at `research/reports/phase17/FIGURE_INVENTORY.json` and the source sidecars are under `research/figures/final/source/`. Tables are under `research/tables/final/`. The final Phase 14 artifact SHA-256 is `{sha(FINAL_ARTIFACT)}` and the joined-prediction SHA-256 is `{sha(JOINED)}`. The generation path is CPU/local only and records no Modal invocation.
 
-Phase 15's bounded parity smoke is complete; the full batch remains outside scope. Phase 19 is not marked `PASS`: release still requires the clean-room control-plane gate and a fresh exact-candidate release decision. No tag, deployment, publication submission, or external release claim is made by this report.
+Phase 15's bounded parity smoke is complete; the full batch remains outside scope. Phase 19 is `INTERNAL_RELEASE_READINESS_PASS`; external release is `NOT_REQUESTED`. No tag, deployment, publication submission, or external release claim is made by this report.
 
 ## Limitations
 
@@ -699,7 +711,7 @@ The historical target identity set is unavailable, so its aggregate is compariso
 The reachable EvoVariant-TR evidence bundle is reproducible at the registered-artifact and bounded parity-smoke levels, with Phase 14 preserved as an immutable Evo2-only locked result. Remaining release status is governed by the documented clean-room storage boundary and final release gate; no unrun model, full batch, or full remote re-inference is presented as complete.
 """
     (REPORT_DIR / "FINAL_REPORT.md").write_text(report, encoding="utf-8")
-    write_json(REPORT_DIR / "publication_manifest.json", {"status": "PASS_LOCAL_PUBLICATION_BUNDLE", "generator_version": GENERATOR_VERSION, "git_commit": commit, "figure_count": len(inventory), "rendered_count": sum(entry["status"] == "READY" for entry in inventory), "outputs": sorted(generated_outputs), "output_hashes": {path: sha(path) for path in sorted(generated_outputs)}, "table_paths": table_paths, "final_artifact_sha256": sha(FINAL_ARTIFACT), "joined_predictions_sha256": sha(JOINED), "billing_recheck_sha256": sha(BILLING_RECHECK), "no_remote_compute": True})
+    write_json(REPORT_DIR / "publication_manifest.json", {"status": "PASS_LOCAL_PUBLICATION_BUNDLE", "generator_version": GENERATOR_VERSION, "git_commit": commit, "figure_count": len(inventory), "rendered_count": sum(entry["status"] == "READY" for entry in inventory), "outputs": sorted(generated_outputs), "output_hashes": {path: sha(path) for path in sorted(generated_outputs)}, "table_paths": table_paths, "final_artifact_sha256": sha(FINAL_ARTIFACT), "joined_predictions_sha256": sha(JOINED), "billing_recheck_sha256": sha(BILLING_RECHECK), "billing_final_sha256": sha("artifacts/phase19/modal_billing_final_20260922.json"), "fresh_modal_audit_sha256": sha(FRESH_MODAL_AUDIT), "phase15_validation_sha256": sha(PHASE15_VALIDATION), "compute_ledger_audit_sha256": sha(COMPUTE_LEDGER_AUDIT), "no_remote_compute": True})
     print(json.dumps({"status": "PASS_LOCAL_PUBLICATION_BUNDLE", "figures": len(inventory), "rendered": sum(entry["status"] == "READY" for entry in inventory), "tables": len(table_paths), "png_pdf": shutil.which("rsvg-convert") is not None}, indent=2))
     return 0
 

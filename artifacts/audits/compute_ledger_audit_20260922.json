@@ -1,0 +1,251 @@
+{
+  "app_specific_measurements_and_rate_estimates": [
+    {
+      "cache_hits": 3968,
+      "interpretation": "Execution-specific tail estimate; the aggregate remote runtime includes the complete stored-shard resume.",
+      "new_rows": 32,
+      "phase": "Phase 6 Evo2 tail",
+      "rate_estimate_usd": 0.111328,
+      "remote_runtime_seconds": 7776.964792,
+      "source": "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json"
+    },
+    {
+      "cache_hits": 2432,
+      "interpretation": "Client wall-rate estimate, not a provider invoice.",
+      "new_rows": 1568,
+      "phase": "Phase 7 Nucleotide Transformer",
+      "rate_estimate_usd": 0.782194,
+      "remote_runtime_seconds": 379.794382,
+      "source": "artifacts/phase7/formal_budgeted_representation_20260922.json"
+    },
+    {
+      "cache_hits": 0,
+      "interpretation": "Client wall-rate estimate, not a provider invoice.",
+      "new_rows": 4000,
+      "phase": "Phase 7 Caduceus",
+      "rate_estimate_usd": 0.601805,
+      "remote_runtime_seconds": 646.733672,
+      "source": "artifacts/phase7/formal_budgeted_representation_20260922.json"
+    },
+    {
+      "cache_hits": 0,
+      "interpretation": "Direct H100 rate estimate for the immutable locked subgate; not a provider invoice.",
+      "new_rows": 946,
+      "phase": "Phase 14 locked Evo2",
+      "rate_estimate_usd": 1.431104601,
+      "remote_runtime_seconds": 1304.297864,
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json"
+    },
+    {
+      "cache_hits": 56,
+      "interpretation": "Direct client-wall-rate estimate for one fresh 8-row remote invocation; the resume added zero calls.",
+      "new_rows": 8,
+      "phase": "Phase 15 batch/resume smoke",
+      "rate_estimate_usd": 0.063118,
+      "remote_runtime_seconds": 57.525624,
+      "source": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json"
+    }
+  ],
+  "indicative_user_basis_arithmetic": {
+    "earlier_phase6_checkpoint_usd": "7.17",
+    "indicative_after_later_checkpoint_usd": "2.950450399",
+    "later_pre_tail_checkpoint_usd": "5.94",
+    "phase15_old_7_17_subtraction_is_invalid": true,
+    "post_later_checkpoint_rate_estimate_total_usd": "2.989549601",
+    "provider_confirmed": false,
+    "why_not_exact": "The provider summary exposes workspace meter totals and adjustments, not a remaining free-credit balance; the raw totals are non-monotonic."
+  },
+  "metered_deltas": [
+    {
+      "after_metered_usd": "31.82",
+      "before_metered_usd": "30.46",
+      "note": "Observed workspace meter movement during the Phase 7 artifact window; not a per-run invoice.",
+      "observed_metered_delta_usd": "1.36",
+      "scope": "Phase 7 before/after workspace snapshots"
+    },
+    {
+      "after_metered_usd": "33.50187443",
+      "before_metered_usd": "31.82187443",
+      "note": "Recorded alongside the locked run; workspace-level and not an invoice for Phase 14 alone.",
+      "observed_metered_delta_usd": "1.68000000",
+      "scope": "Phase 14 paid-run baseline/after snapshot"
+    },
+    {
+      "after_metered_usd": "33.65808745",
+      "before_metered_usd": "33.59808745",
+      "note": "Observed workspace meter movement across the 8-row remote smoke; the direct app estimate remains separate.",
+      "observed_metered_delta_usd": "0.06000000",
+      "scope": "Phase 15 approval/validation snapshots"
+    },
+    {
+      "after_metered_usd": "33.59808745",
+      "before_metered_usd": "31.82187443",
+      "note": "The recheck compares a prior Phase 14 baseline with a later workspace total; it is not attributable to one phase.",
+      "observed_metered_delta_usd": "1.77621302",
+      "scope": "Phase 17 cross-phase comparison"
+    },
+    {
+      "after_metered_usd": "31.69808745",
+      "before_metered_usd": "33.65808745",
+      "note": "Negative movement reflects provider adjustments/non-monotonic workspace totals, not a computed refund or negative run cost.",
+      "observed_metered_delta_usd": "-1.96000000",
+      "scope": "Phase 15 validation to final no-spend snapshot"
+    }
+  ],
+  "no_new_remote_compute": true,
+  "overlap_and_exclusions": [
+    {
+      "reported_rate_estimate_usd": 7.219897,
+      "reported_rows": 3232,
+      "source": "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922_partial.json",
+      "treatment": "Historical overlapping pre-$7.17 evidence; not added to the post-snapshot total."
+    },
+    {
+      "source": "artifacts/phase19/modal_billing_final_20260922.json",
+      "treatment": "Raw provider snapshot preserved; its old pre-Phase-15 arithmetic is superseded by this reconciliation because it resets the earlier $7.17 basis."
+    }
+  ],
+  "provider_confirmed_workspace_snapshots": [
+    {
+      "captured_at_utc": "2026-09-22T05:45:53.548147+00:00",
+      "command": "modal billing summary",
+      "interpretation": "workspace-level provider evidence, not a per-run invoice",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "                              \n  Metered Cost:        29.32  \n    Ephemeral Apps:    17.17  \n    Deployed Apps:      8.78  \n    Volumes:            3.37  \n  Credits:            -25.95  \n  Free Storage:        -3.37  \n  Billed Cost:         $0.00  \n                              \n",
+      "workspace_billed_usd": 0.0,
+      "workspace_metered_usd": 29.32
+    },
+    {
+      "active_containers": null,
+      "billed_cost_usd": "0.00",
+      "captured_at_utc": "2026-09-22T07:14:39.299440+00:00",
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 7 before",
+      "metered_cost_usd": "30.46",
+      "source": "artifacts/phase7/formal_budgeted_representation_20260922.json"
+    },
+    {
+      "active_containers": null,
+      "billed_cost_usd": "0.00",
+      "captured_at_utc": "2026-09-22T07:33:07.086748+00:00",
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 7 after",
+      "metered_cost_usd": "31.82",
+      "source": "artifacts/phase7/formal_budgeted_representation_20260922.json"
+    },
+    {
+      "active_containers": null,
+      "adjustments": {
+        "credits": "-28.45000000",
+        "free_storage": "-3.37187443",
+        "plan_cost": "0E-8",
+        "reservation_adjustment": "-0E-8"
+      },
+      "billed_cost_usd": "0.00000000",
+      "captured_at_utc": "2026-09-22T09:03:08.705Z",
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 14 before",
+      "metered_cost_usd": "31.82187443",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json"
+    },
+    {
+      "active_containers": null,
+      "adjustments": {
+        "credits": "-30.00000000",
+        "free_storage": "-3.37187443",
+        "plan_cost": "0E-8",
+        "reservation_adjustment": "-0E-8"
+      },
+      "billed_cost_usd": "0.13000000",
+      "captured_at_utc": "2026-09-22T11:30:41.805291+00:00",
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 14 after",
+      "metered_cost_usd": "33.50187443",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json"
+    },
+    {
+      "active_containers": [],
+      "billed_cost_usd": "0.06",
+      "captured_at_utc": "2026-09-22T13:02:31Z",
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 15 before",
+      "metered_cost_usd": "33.59808745",
+      "source": "artifacts/approvals/phase15_parity_smoke_20260922.json"
+    },
+    {
+      "active_containers": [],
+      "adjustments": {
+        "credits": "-30.00000000",
+        "free_storage": "-3.53808745",
+        "plan_cost": "0E-8",
+        "reservation_adjustment": "-0E-8"
+      },
+      "billed_cost_usd": "0.12000000",
+      "captured_at_utc": null,
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Phase 15 after",
+      "metered_cost_usd": "33.65808745",
+      "source": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json"
+    },
+    {
+      "active_containers": [],
+      "adjustments": {
+        "credits": "-28.16000000",
+        "free_storage": "-3.53808745",
+        "plan_cost": "0E-8",
+        "reservation_adjustment": "-0E-8"
+      },
+      "billed_cost_usd": "0.00000000",
+      "captured_at_utc": null,
+      "interpretation": "provider-confirmed workspace snapshot; not a per-run invoice",
+      "label": "Final no-spend snapshot",
+      "metered_cost_usd": "31.69808745",
+      "source": "artifacts/phase19/modal_billing_final_20260922.json"
+    }
+  ],
+  "recorded_at_utc": "2026-09-22T15:30:52.919021+00:00",
+  "schema_version": "compute-ledger-audit-v2",
+  "scientific_boundary": {
+    "fine_tuning": false,
+    "locked_inference_rerun": false,
+    "new_paid_work_in_audit": false,
+    "phase14_frozen": true
+  },
+  "source_sha256": {
+    "artifacts/approvals/formal_phase6_par_resume_20260922.json": "f345f969f996a48ba33db9830d89c718d76fa64d7416e89209da5cef42758ae7",
+    "artifacts/approvals/formal_phase6_resume_20260922.json": "e010be6a67708a211f131dc1eb0ef25162f850d742d7b17a35d2da6cf10aa56f",
+    "artifacts/approvals/formal_phase7_continuation_20260922.json": "f21cdc9cacac7407aba1c8117d031ac64b24ee726ccdd35a5b9cb55cef9dfbb3",
+    "artifacts/approvals/phase15_parity_smoke_20260922.json": "7b0585acc08689d8347053e8de866d0adac3064836921fd9bd78f31de741775e",
+    "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+    "artifacts/phase17/modal_billing_recheck_20260922.json": "180bdf52886b6bcde89112510657df829cc8453706b772985607c9e8fdd3226a",
+    "artifacts/phase19/modal_billing_final_20260922.json": "45f78b4153641f474bd9d03c8c4ec07f2b70bd2351a9cb64fa898518cfbd9878",
+    "artifacts/phase6/formal_phase6_par_resume_preflight_20260922.json": "af8e052dde5f163d57951a0bdc7a41cef97da235c204f496597073d652beff17",
+    "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922.json": "b04940b3b5845fd57144f54a9862da8d9d89fb1b98d9c79fc45364e7a21ef54d",
+    "artifacts/phase6/phase6_formal_evo2_20260921_full_overnight_20260922_partial.json": "ddf0ab0d88bdff586378e9edc7bc63c1e21e39cb7ae1b41c2001646b70095590",
+    "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+  },
+  "status": "RECONCILED_NO_EXACT_PROVIDER_BALANCE",
+  "subsequent_rate_estimate_total_usd": "2.989549601",
+  "user_credit_snapshots": [
+    {
+      "captured_at_utc": "2026-09-22T04:57:19.772977+00:00",
+      "credits_left_usd": 7.17,
+      "credits_used_usd": 22.83,
+      "label": "Earlier Phase 6 checkpoint basis",
+      "meaning": "User-provided balance at the 3,232-row Phase 6 checkpoint; it is historical and is not a Phase 15 reset point.",
+      "monthly_credits_usd": 30.0,
+      "source": "artifacts/approvals/formal_phase6_resume_20260922.json"
+    },
+    {
+      "captured_at_utc": "2026-09-22T05:45:55.816065+00:00",
+      "credits_left_usd": 5.94,
+      "credits_used_usd": 22.83,
+      "label": "Later Phase 6 tail checkpoint basis",
+      "meaning": "Later user-provided basis before the final 32-row Phase 6 tail; it is not provider-confirmed.",
+      "monthly_credits_usd": 30.0,
+      "source": "artifacts/approvals/formal_phase6_par_resume_20260922.json"
+    }
+  ]
+}

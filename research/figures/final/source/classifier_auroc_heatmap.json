@@ -1,0 +1,213 @@
+{
+  "metadata": {
+    "axes": [
+      "classifier",
+      "AUROC"
+    ],
+    "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "classifier_auroc_heatmap",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 36,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How does development AUROC vary across feature sets and classifiers?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      }
+    ],
+    "status": "READY",
+    "title": "Classifier/representation AUROC"
+  },
+  "rows": [
+    {
+      "value": 0.961823043404448,
+      "x": "decision_stump",
+      "y": "all_fusion"
+    },
+    {
+      "value": 0.9978495840642861,
+      "x": "logistic_regression",
+      "y": "all_fusion"
+    },
+    {
+      "value": 0.9980193537434214,
+      "x": "mlp",
+      "y": "all_fusion"
+    },
+    {
+      "value": 0.4991394148020654,
+      "x": "decision_stump",
+      "y": "cad16"
+    },
+    {
+      "value": 0.5510718197465185,
+      "x": "logistic_regression",
+      "y": "cad16"
+    },
+    {
+      "value": 0.45671256454388987,
+      "x": "mlp",
+      "y": "cad16"
+    },
+    {
+      "value": 0.5,
+      "x": "decision_stump",
+      "y": "cad4"
+    },
+    {
+      "value": 0.4106790799561884,
+      "x": "logistic_regression",
+      "y": "cad4"
+    },
+    {
+      "value": 0.6212486308871851,
+      "x": "mlp",
+      "y": "cad4"
+    },
+    {
+      "value": 0.5028242841495854,
+      "x": "decision_stump",
+      "y": "cad8"
+    },
+    {
+      "value": 0.4501877640431857,
+      "x": "logistic_regression",
+      "y": "cad8"
+    },
+    {
+      "value": 0.5620638397746831,
+      "x": "mlp",
+      "y": "cad8"
+    },
+    {
+      "value": 0.961823043404448,
+      "x": "decision_stump",
+      "y": "cadd"
+    },
+    {
+      "value": 0.997792994171241,
+      "x": "logistic_regression",
+      "y": "cadd"
+    },
+    {
+      "value": 0.997637371965367,
+      "x": "mlp",
+      "y": "cadd"
+    },
+    {
+      "value": 0.961823043404448,
+      "x": "decision_stump",
+      "y": "cadd_phylop"
+    },
+    {
+      "value": 0.9968734084092581,
+      "x": "logistic_regression",
+      "y": "cadd_phylop"
+    },
+    {
+      "value": 0.9974534548129704,
+      "x": "mlp",
+      "y": "cadd_phylop"
+    },
+    {
+      "value": 0.9522062275074323,
+      "x": "decision_stump",
+      "y": "evo2"
+    },
+    {
+      "value": 0.9886872163980598,
+      "x": "logistic_regression",
+      "y": "evo2"
+    },
+    {
+      "value": 0.9886168048818651,
+      "x": "mlp",
+      "y": "evo2"
+    },
+    {
+      "value": 0.9522062275074323,
+      "x": "decision_stump",
+      "y": "foundation_fusion"
+    },
+    {
+      "value": 0.9193318729463308,
+      "x": "logistic_regression",
+      "y": "foundation_fusion"
+    },
+    {
+      "value": 0.9509544672195275,
+      "x": "mlp",
+      "y": "foundation_fusion"
+    },
+    {
+      "value": 0.8308245970896573,
+      "x": "decision_stump",
+      "y": "nt16"
+    },
+    {
+      "value": 0.9444531372242215,
+      "x": "logistic_regression",
+      "y": "nt16"
+    },
+    {
+      "value": 0.9490846502894695,
+      "x": "mlp",
+      "y": "nt16"
+    },
+    {
+      "value": 0.7641214207479268,
+      "x": "decision_stump",
+      "y": "nt24"
+    },
+    {
+      "value": 0.9123141918322641,
+      "x": "logistic_regression",
+      "y": "nt24"
+    },
+    {
+      "value": 0.9236817399468001,
+      "x": "mlp",
+      "y": "nt24"
+    },
+    {
+      "value": 0.7732123298388358,
+      "x": "decision_stump",
+      "y": "nt8"
+    },
+    {
+      "value": 0.8845642309497731,
+      "x": "logistic_regression",
+      "y": "nt8"
+    },
+    {
+      "value": 0.8849710530433422,
+      "x": "mlp",
+      "y": "nt8"
+    },
+    {
+      "value": 0.7686668752933813,
+      "x": "decision_stump",
+      "y": "phylop"
+    },
+    {
+      "value": 0.9102487873572211,
+      "x": "logistic_regression",
+      "y": "phylop"
+    },
+    {
+      "value": 0.9102487873572211,
+      "x": "mlp",
+      "y": "phylop"
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

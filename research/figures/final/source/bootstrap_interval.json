@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "axes": [
+      "estimate",
+      "AUROC"
+    ],
+    "caption": "Only the recorded point, mean, and interval endpoints are shown; no bootstrap replicates are fabricated.",
+    "evidence_stage": "FINAL",
+    "figure_id": "bootstrap_interval",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows; recorded bootstrap summary",
+    "required": true,
+    "scientific_question": "What uncertainty interval was recorded for final AUROC?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      }
+    ],
+    "status": "READY",
+    "title": "Final AUROC bootstrap interval"
+  },
+  "rows": [
+    {
+      "label": "mean",
+      "value": 0.9090959800384788
+    },
+    {
+      "label": "point estimate",
+      "value": 0.9092259737895887
+    },
+    {
+      "label": "CI low",
+      "value": 0.8891549439505775
+    },
+    {
+      "label": "CI high",
+      "value": 0.9299196801735569
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

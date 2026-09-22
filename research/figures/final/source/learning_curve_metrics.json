@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "axes": [
+      "training fraction",
+      "metric value"
+    ],
+    "caption": "Metrics share the same development population but have different scales; the legend identifies each metric.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "learning_curve_metrics",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 25,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did multiple predeclared metrics change with training fraction?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      }
+    ],
+    "status": "READY",
+    "title": "Development learning-curve metrics"
+  },
+  "rows": [
+    {
+      "series": "auroc",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.9890627444844312
+    },
+    {
+      "series": "auprc",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.9735576049197217
+    },
+    {
+      "series": "brier",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.19924443999236496
+    },
+    {
+      "series": "mcc",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.0
+    },
+    {
+      "series": "f1",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.0
+    },
+    {
+      "series": "auroc",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.9887341574088562
+    },
+    {
+      "series": "auprc",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.9740117857964516
+    },
+    {
+      "series": "brier",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.19925108390339918
+    },
+    {
+      "series": "mcc",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.0
+    },
+    {
+      "series": "f1",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.0
+    },
+    {
+      "series": "auroc",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.9888984509466437
+    },
+    {
+      "series": "auprc",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.9740448362748036
+    },
+    {
+      "series": "brier",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.19925361878892167
+    },
+    {
+      "series": "mcc",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.0
+    },
+    {
+      "series": "f1",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.0
+    },
+    {
+      "series": "auroc",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.9888123924268503
+    },
+    {
+      "series": "auprc",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.9739986862652359
+    },
+    {
+      "series": "brier",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.19927315593319295
+    },
+    {
+      "series": "mcc",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.0
+    },
+    {
+      "series": "f1",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.0
+    },
+    {
+      "series": "auroc",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.9887889219214521
+    },
+    {
+      "series": "auprc",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.9739811950265087
+    },
+    {
+      "series": "brier",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.1992251133430695
+    },
+    {
+      "series": "mcc",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.0
+    },
+    {
+      "series": "f1",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.0
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "axes": [
+      "representation family",
+      "VALIDATION AUROC"
+    ],
+    "caption": "This is development evidence; it is not interchangeable with the locked-test result.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "foundation_model_performance",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 12,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did the strongest classifier per representation family perform on VALIDATION?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/benchmark.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a"
+      }
+    ],
+    "status": "READY",
+    "title": "Development representation performance"
+  },
+  "rows": [
+    {
+      "label": "all_fusion",
+      "value": 0.9980193537434214
+    },
+    {
+      "label": "cad16",
+      "value": 0.5510718197465185
+    },
+    {
+      "label": "cad4",
+      "value": 0.6212486308871851
+    },
+    {
+      "label": "cad8",
+      "value": 0.5620638397746831
+    },
+    {
+      "label": "cadd",
+      "value": 0.997792994171241
+    },
+    {
+      "label": "cadd_phylop",
+      "value": 0.9974534548129704
+    },
+    {
+      "label": "evo2",
+      "value": 0.9886872163980598
+    },
+    {
+      "label": "foundation_fusion",
+      "value": 0.9522062275074323
+    },
+    {
+      "label": "nt16",
+      "value": 0.9490846502894695
+    },
+    {
+      "label": "nt24",
+      "value": 0.9236817399468001
+    },
+    {
+      "label": "nt8",
+      "value": 0.8849710530433422
+    },
+    {
+      "label": "phylop",
+      "value": 0.9102487873572211
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

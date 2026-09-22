@@ -1,0 +1,11 @@
+estimated_usd,measured_seconds,run_id,scope,measurement_class,new_rows,cache_rows,remote_invocations,resume_remote_invocations
+0.601805,646.733672,phase7-caduceus,formal development representation extraction,client_wall_rate_estimate_not_provider_invoice,4000,0,,
+0.782194,379.794382,phase7-nucleotide_transformer,formal development representation extraction,client_wall_rate_estimate_not_provider_invoice,1568,2432,,
+0.111328,7776.964792,phase6-evo2-formal-tail,execution-specific Phase 6 tail rate estimate; aggregate runtime includes the completed stored-shard resume,client_wall_rate_estimate_not_provider_invoice,32,3968,,
+1.431104601,1304.297864,phase14-evo2-locked,immutable 946-row locked Evo2 subgate,client_wall_rate_estimate_not_provider_invoice,946,0,,
+0.063118,57.525624,phase15-batch-resume-smoke,64-row batch/resume smoke: 56 cache-reused rows and 8 fresh remote parity rows,client_wall_rate_estimate_not_provider_invoice,8,56,1,0
+0.111328,7776.964792,Phase 6 Evo2,publication bundle phase ledger,,,,,
+0.782194,379.794382,Phase 7 NT,publication bundle phase ledger,,,,,
+0.601805,646.733672,Phase 7 Caduceus,publication bundle phase ledger,,,,,
+1.431104601,1304.297864,Phase 14 locked Evo2,publication bundle phase ledger,,,,,
+0.063118,57.525624,Phase 15 batch/resume smoke,publication bundle phase ledger,,,,,

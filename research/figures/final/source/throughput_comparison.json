@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "axes": [
+      "workload",
+      "variants per second"
+    ],
+    "caption": "Throughput is descriptive for the recorded calls and depends on batching and provider conditions.",
+    "evidence_stage": "FINAL",
+    "figure_id": "throughput_comparison",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 5,
+    "population": "authorized remote workloads",
+    "required": true,
+    "scientific_question": "What variants-per-second values were recorded by workload?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      {
+        "path": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+      },
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69"
+      },
+      {
+        "path": "artifacts/audits/compute_ledger_audit_20260922.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b"
+      }
+    ],
+    "status": "READY",
+    "title": "Recorded remote throughput"
+  },
+  "rows": [
+    {
+      "label": "Phase 6 Evo2",
+      "value": 0.716061
+    },
+    {
+      "label": "Phase 7 NT",
+      "value": 0.0
+    },
+    {
+      "label": "Phase 7 Caduceus",
+      "value": 0.0
+    },
+    {
+      "label": "Phase 14 Evo2",
+      "value": 0.686712
+    },
+    {
+      "label": "Phase 15 smoke",
+      "value": 0.13906846103920575
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

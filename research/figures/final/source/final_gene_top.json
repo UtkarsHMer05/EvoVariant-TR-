@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "axes": [
+      "gene",
+      "rows"
+    ],
+    "caption": "This is a population description, not a gene-level performance claim.",
+    "evidence_stage": "FINAL",
+    "figure_id": "final_gene_top",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows; top 15 genes",
+    "required": true,
+    "scientific_question": "Which genes contribute the largest number of locked-test rows?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      }
+    ],
+    "status": "READY",
+    "title": "Final locked-test genes with most rows"
+  },
+  "rows": [
+    {
+      "label": "RUNX1",
+      "value": 107
+    },
+    {
+      "label": "TTN",
+      "value": 34
+    },
+    {
+      "label": "MYOC",
+      "value": 33
+    },
+    {
+      "label": "TP53",
+      "value": 22
+    },
+    {
+      "label": "RECQL4",
+      "value": 22
+    },
+    {
+      "label": "PAH",
+      "value": 21
+    },
+    {
+      "label": "HNF1A",
+      "value": 21
+    },
+    {
+      "label": "GCK",
+      "value": 16
+    },
+    {
+      "label": "DICER1",
+      "value": 15
+    },
+    {
+      "label": "RPGR",
+      "value": 12
+    },
+    {
+      "label": "RYR1",
+      "value": 11
+    },
+    {
+      "label": "TSC2",
+      "value": 10
+    },
+    {
+      "label": "DYSF",
+      "value": 10
+    },
+    {
+      "label": "PTEN",
+      "value": 9
+    },
+    {
+      "label": "CAPN3",
+      "value": 8
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

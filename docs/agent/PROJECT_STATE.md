@@ -19,20 +19,19 @@ The final artifact is `artifacts/phase14/phase14_locked_evo2_20260922.json`, SHA
 - Integrity: exact IDs, finite forward/RC/aggregate/calibrated scores, zero duplicates, zero
   unexpected IDs, zero reference mismatches, no labels sent remotely, raw artifact hashed before
   local label join, and every Phase 14 integrity gate `true`.
-- Closeout: the immutable Phase 14 artifact records a fresh snapshot at metered `$33.50187443`,
-  billed `$0.13`; the later final no-spend recheck at `2026-09-22T11:48:32.102345+00:00` returned
-  metered `$33.43187443`, billed `$0.06`, with active containers `[]`. The provider summary does
-  not expose a remaining free-credit balance. Against the user-stated `$7.17` pre-run headroom,
-  the latest observed `$1.61` metered delta implies only an indicative `$5.56`, not a
-  provider-confirmed balance.
+- Closeout: the immutable Phase 14 artifact records a workspace snapshot at metered `$33.50187443`,
+  billed `$0.13`; the later final no-spend snapshot records metered `$31.69808745`, billed `$0.00`,
+  and active containers `[]` after provider adjustments. The provider summary does not expose a
+  remaining free-credit balance. The dated reconciliation in
+  `artifacts/audits/COMPUTE_LEDGER_AUDIT.md` preserves the earlier `$7.17` Phase 6 user basis,
+  records the later `$5.94` pre-tail user basis, and does not treat either as provider-confirmed.
 
 The post-publication continuation then completed the bounded Phase15 development-only parity
 smoke, connected the 14-area workbench to hash-verified publication inventory metadata, finalized
 the conditional Phase17 bundle, and reproduced the free/control-plane clean-room sequence from a
-detached checkout. Phase18 is `PASS` for that documented scope, with the Phase15 smoke as the
-minimum gated Modal check; full remote re-inference is explicitly not required by the literal
-Phase18 task list and is not claimed. Phase19 is `PASS` as an internal gate with
-`release_allowed=false`; no tag, deployment, or publication release was requested. NT, Caduceus,
+detached checkout. Phase18 is `PASS` for clean-room software/artifact reproducibility plus the
+representative remote smoke; full 4,000/946 remote re-inference was not performed or claimed.
+Phase19 is `INTERNAL_RELEASE_READINESS_PASS`; external release is `NOT_REQUESTED`. NT, Caduceus,
 fine-tuning, and any broader paid workload remain outside this checkpoint.
 
 ### Latest post-publication continuation — Phase 15–19
@@ -46,23 +45,26 @@ fine-tuning, and any broader paid workload remain outside this checkpoint.
   rows crossed the Modal boundary.
 - Phase15 compute: one planned remote invocation, 57.525624 seconds remote wall time, rate-based
   estimate `$0.063118`, and post-run active containers `[]`. The immediate post-run snapshot was
-  metered `$33.65808745` and billed `$0.12`; the final no-spend recheck is recorded in
+  metered `$33.65808745` and billed `$0.12`; the final no-spend snapshot is recorded in
   `artifacts/phase19/modal_billing_final_20260922.json` at metered `$31.69808745` and billed
-  `$0.00` after provider adjustments. The provider does not expose a confirmed free-credit
-  balance. The user's `$7.17` basis minus the Phase15 estimate is an indicative `$7.106882`, not
-  provider-confirmed headroom.
+  `$0.00` after provider adjustments. The corrected ledger records all subsequent direct rate
+  estimates as `$2.989549601` after the later `$5.94` user basis; the old `$7.17` Phase 6 basis is
+  not reset at Phase15, and no exact provider-confirmed headroom is claimed.
 - Phase16: `PASS`; `/api/research/workbench` verifies source hashes before exposing per-area
   evidence metadata. `make web-check` and the four committed browser journeys pass.
 - Phase17: `PASS_LOCAL_PUBLICATION_BUNDLE`; 41 inventory entries, 39 rendered figure families,
   39 source sidecars, 12 tables, and a report with explicit Motivation, protocol, temporal,
   Evo2, downstream/HPO/ensemble, calibration/uncertainty, robustness/error, limitations, and
   conclusion sections. Current publication manifest SHA-256 is
-  `aa34cbd2f31dfe1d6826b505cd1ee27c7a872948fd20a47f52f1f6442e8bc86d`.
-- Phase18: `PASS`; `artifacts/phase18/clean_room_execution_20260922.json` records a clean detached
+  `f34b3f2961f2a211b71729b5e41325f9bc94c9f5c2a17a0da7421692becb7ea0`.
+- Phase18: `PASS` for clean-room software/artifact reproducibility plus representative remote
+  smoke; full 4,000/946 remote re-inference was not performed or claimed.
+  `artifacts/phase18/clean_room_execution_20260922.json` records a clean detached
   checkout at code commit `4681ac1c122bf5bacdf65c5a89c69d9531b672eb` with bootstrap, secret scan,
   Ruff, strict mypy, 714 tests, 95.01% coverage, protocol/model/registry checks, figures, frontend
   install/build, and clean Git status all passing.
-- Phase19: `PASS` internal gate; `release_allowed=false` because external release was not requested.
+- Phase19: `INTERNAL_RELEASE_READINESS_PASS`; external release is `NOT_REQUESTED`. The
+  compatibility boolean remains `release_allowed=false` but is not the gate label.
 
 The exact approved formal Evo2 Phase 6 continuation is complete and passed within scope. The
 4,000-record formal development cohort is complete: 125 shards, 124 verified stored-shard cache
@@ -1574,15 +1576,15 @@ it did not reopen selection, modify any Phase 14 artifact, or start Modal comput
   joined-prediction hashes remain
   `4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499` and
   `77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7`.
-- Phase 15 is `BLOCKED_NEW_PAID_AUTHORIZATION_REQUIRED`. Local label-free planning and atomic
-  shard interruption/restart pass; a minimum future 64-row development-only smoke is estimated
-  at `$0.096818916` direct H100 cost, with zero locked rows, but no cap or approval was created.
-- Phase 16 remains `PARTIAL`; Phase 17 local publication is complete; Phase 18 is `PARTIAL`
-  (local registry/artifact hash reproducibility `PASS`, full remote scientific re-inference not
-  run); Phase 19 is `BLOCKED` and release is not allowed. No tag, deployment, publication,
-  NT/Caduceus rerun, fine-tuning, or locked-test rerun is authorized here.
-- Fresh read-only Modal recheck is recorded at
-  `artifacts/phase17/modal_billing_recheck_20260922.json`: metered `$33.59808745`, billed
-  `$0.06`, active containers `[]`. Against the user-stated `$7.17` pre-run headroom, the latest
-  observed meter delta `$1.77621302` implies an indicative `$5.39378698`; the provider does not
-  expose a confirmed remaining free-credit balance.
+- Phase 15 is `PASS / 64-ROW BATCH-RESUME SMOKE`: exactly 64 development-only rows, 56
+  cache-reused rows, 8 fresh remote parity rows, zero locked rows/labels, canonical parity, and
+  persisted-shard resume with zero additional remote calls.
+- Phase 16 is `PASS`; Phase 17 is `PASS_LOCAL_PUBLICATION_BUNDLE`; Phase 18 is
+  `PASS_CLEAN_ROOM_SOFTWARE_AND_ARTIFACT_REPRODUCIBILITY_PLUS_REPRESENTATIVE_REMOTE_SMOKE`;
+  full 4,000/946 remote re-inference was not performed or claimed. Phase 19 is
+  `INTERNAL_RELEASE_READINESS_PASS`; external release is `NOT_REQUESTED`. No tag, deployment,
+  publication, NT/Caduceus rerun, fine-tuning, or locked-test rerun is authorized here.
+- The corrected no-spend ledger is `artifacts/audits/COMPUTE_LEDGER_AUDIT.md`: it preserves the
+  earlier `$7.17` Phase 6 user basis, records the later `$5.94` pre-tail basis, and separates
+  `$2.989549601` of subsequent direct rate estimates from provider workspace meter deltas. No
+  exact provider-confirmed remaining credit balance is claimed.

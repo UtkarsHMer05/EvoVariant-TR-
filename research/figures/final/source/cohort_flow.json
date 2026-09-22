@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "axes": [
+      "cohort stage",
+      "records"
+    ],
+    "caption": "Counts are materialized from the Phase 3 audit and frozen manifests; the 1024 historical target is comparison-only.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "cohort_flow",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 15,
+    "population": "historical comparison and authoritative current cohort",
+    "required": true,
+    "scientific_question": "How does the historical comparison target differ from the accepted current cohort?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json",
+        "registered_runs": [
+          "run_20260922T121044Z_6004c17e"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+      },
+      {
+        "path": "research/ml_extension/splits/phase3_manifest_summary.json",
+        "registered_runs": [],
+        "registration_status": "HASH_VERIFIED_FROZEN_INPUT",
+        "sha256": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420"
+      }
+    ],
+    "status": "READY",
+    "title": "Authoritative cohort flow"
+  },
+  "rows": [
+    {
+      "label": "historical_target_comparison_only",
+      "value": 1024
+    },
+    {
+      "label": "historical_target_B_LB",
+      "value": 1102
+    },
+    {
+      "label": "historical_target_P_LP",
+      "value": 410
+    },
+    {
+      "label": "authoritative_formal_temporal_cohort",
+      "value": 946
+    },
+    {
+      "label": "authoritative_B_LB",
+      "value": 536
+    },
+    {
+      "label": "authoritative_P_LP",
+      "value": 410
+    },
+    {
+      "label": "authoritative_unique_genes",
+      "value": 367
+    },
+    {
+      "label": "source_t0_unique_variants",
+      "value": 1402895
+    },
+    {
+      "label": "source_absent_at_t1",
+      "value": 3459
+    },
+    {
+      "label": "source_below_two_stars",
+      "value": 9049
+    },
+    {
+      "label": "source_not_definitive_at_t1",
+      "value": 1389441
+    },
+    {
+      "label": "formal_development_total",
+      "value": 239992
+    },
+    {
+      "label": "formal_development_TRAIN",
+      "value": 191957
+    },
+    {
+      "label": "formal_development_VALIDATION",
+      "value": 48035
+    },
+    {
+      "label": "locked_test_excluded_from_development",
+      "value": 946
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

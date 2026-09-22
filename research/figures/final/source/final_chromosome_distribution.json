@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "axes": [
+      "chromosome",
+      "rows"
+    ],
+    "caption": "Chromosome labels are parsed from normalized variant identifiers.",
+    "evidence_stage": "FINAL",
+    "figure_id": "final_chromosome_distribution",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows",
+    "required": true,
+    "scientific_question": "How are locked-test rows distributed across chromosomes?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      }
+    ],
+    "status": "READY",
+    "title": "Final locked-test chromosome distribution"
+  },
+  "rows": [
+    {
+      "label": "1",
+      "value": 92
+    },
+    {
+      "label": "2",
+      "value": 104
+    },
+    {
+      "label": "3",
+      "value": 36
+    },
+    {
+      "label": "4",
+      "value": 12
+    },
+    {
+      "label": "5",
+      "value": 28
+    },
+    {
+      "label": "6",
+      "value": 19
+    },
+    {
+      "label": "7",
+      "value": 43
+    },
+    {
+      "label": "8",
+      "value": 29
+    },
+    {
+      "label": "9",
+      "value": 34
+    },
+    {
+      "label": "X",
+      "value": 39
+    },
+    {
+      "label": "10",
+      "value": 28
+    },
+    {
+      "label": "11",
+      "value": 32
+    },
+    {
+      "label": "12",
+      "value": 63
+    },
+    {
+      "label": "13",
+      "value": 10
+    },
+    {
+      "label": "14",
+      "value": 35
+    },
+    {
+      "label": "15",
+      "value": 34
+    },
+    {
+      "label": "16",
+      "value": 29
+    },
+    {
+      "label": "17",
+      "value": 87
+    },
+    {
+      "label": "18",
+      "value": 6
+    },
+    {
+      "label": "19",
+      "value": 42
+    },
+    {
+      "label": "20",
+      "value": 13
+    },
+    {
+      "label": "21",
+      "value": 111
+    },
+    {
+      "label": "22",
+      "value": 20
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

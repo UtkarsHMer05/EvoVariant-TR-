@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "axes": [
+      "left model",
+      "error correlation"
+    ],
+    "caption": "The matrix contains recorded pairwise diversity rows only; absent pairs are not filled.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "diversity_matrix",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 3,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How correlated and discordant were selected development model errors?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2"
+      }
+    ],
+    "status": "READY",
+    "title": "Development model diversity"
+  },
+  "rows": [
+    {
+      "value": 0.6715191465395901,
+      "x": "evo2__logistic_regression_hpo",
+      "y": "foundation_fusion__mlp"
+    },
+    {
+      "value": 0.6725118145291028,
+      "x": "evo2__logistic_regression_hpo",
+      "y": "nt16__mlp"
+    },
+    {
+      "value": 0.973336963012267,
+      "x": "foundation_fusion__mlp",
+      "y": "nt16__mlp"
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

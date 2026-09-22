@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "axes": [
+      "stage",
+      "AUROC"
+    ],
+    "caption": "This is a stage-qualified comparison; selection was closed before the locked evaluation.",
+    "evidence_stage": "FINAL",
+    "figure_id": "development_final_generalization",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 2,
+    "population": "development VALIDATION versus final LOCKED_TEST",
+    "required": true,
+    "scientific_question": "How does the selected development result compare with the frozen final locked evaluation?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase8/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      }
+    ],
+    "status": "READY",
+    "title": "Development versus final generalization"
+  },
+  "rows": [
+    {
+      "label": "development Evo2 VALIDATION AUROC",
+      "value": 0.9886872163980598
+    },
+    {
+      "label": "final calibrated Evo2 LOCKED_TEST AUROC",
+      "value": 0.9092259737895887
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

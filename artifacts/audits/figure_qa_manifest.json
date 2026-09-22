@@ -1,0 +1,1474 @@
+{
+  "contact_sheet": "artifacts/audits/figure_qa_contact_sheet.png",
+  "expected_rendered_family_count": 39,
+  "gallery": "artifacts/audits/figure_qa_gallery.html",
+  "inventory": "research/reports/phase17/FIGURE_INVENTORY.json",
+  "manifest": "research/reports/phase17/publication_manifest.json",
+  "manual_visual_review": "PASS_CONTACT_SHEET_REVIEWED_2026-09-22",
+  "manual_visual_review_notes": "All 39 rendered families were reviewed on the regenerated contact sheet; no visible clipping, missing labels, stage markers, sample sizes, axis/caption truncation, or unsupported trend claims. Two conditional NOT_APPLICABLE_WITH_DOCUMENTED_REASON families remain excluded.",
+  "recorded_at_utc": "2026-09-22T16:13:31.570268+00:00",
+  "rendered_family_count": 39,
+  "results": [
+    {
+      "axes": [
+        "cohort stage",
+        "records"
+      ],
+      "caption": "Counts are materialized from the Phase 3 audit and frozen manifests; the 1024 historical target is comparison-only.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "cohort_flow",
+      "issues": [],
+      "n": 15,
+      "output_paths": [
+        "research/figures/final/cohort_flow.svg",
+        "research/figures/final/cohort_flow.png",
+        "research/figures/final/cohort_flow.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "historical comparison and authoritative current cohort",
+      "source_sha256": {
+        "research/ml_extension/splits/phase3_manifest_summary.json": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420",
+        "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "class",
+        "rows"
+      ],
+      "caption": "Labels were joined locally after remote scoring and are used only for final evaluation.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_class_distribution",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_class_distribution.svg",
+        "research/figures/final/final_class_distribution.png",
+        "research/figures/final/final_class_distribution.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "chromosome",
+        "rows"
+      ],
+      "caption": "Chromosome labels are parsed from normalized variant identifiers.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_chromosome_distribution",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_chromosome_distribution.svg",
+        "research/figures/final/final_chromosome_distribution.png",
+        "research/figures/final/final_chromosome_distribution.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "gene",
+        "rows"
+      ],
+      "caption": "This is a population description, not a gene-level performance claim.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_gene_top",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_gene_top.svg",
+        "research/figures/final/final_gene_top.png",
+        "research/figures/final/final_gene_top.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows; top 15 genes",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "cohort quantity",
+        "records"
+      ],
+      "caption": "The difference is preserved as a documented deviation; no rows were added to force the historical aggregate.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "temporal_transition",
+      "issues": [],
+      "n": 7,
+      "output_paths": [
+        "research/figures/final/temporal_transition.svg",
+        "research/figures/final/temporal_transition.png",
+        "research/figures/final/temporal_transition.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "historical comparison and accepted formal cohort",
+      "source_sha256": {
+        "research/ml_extension/splits/phase3_manifest_summary.json": "654c74151302e4ad5d7d9e89403e3dfb4917d19c4c7491e31403230b3888b420",
+        "research/runs/formal_cpu_20260922/figure_sources/temporal_cohort.json": "79f2db03769c03d50e654ba5939726cb6523397f54a45c75d8b68eee82290cf7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "phase",
+        "cumulative rows"
+      ],
+      "caption": "Values are taken from accepted closeout artifacts; no new remote work is launched by this report.",
+      "evidence_stage": "FINAL",
+      "figure_id": "compute_cumulative_rows",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/compute_cumulative_rows.svg",
+        "research/figures/final/compute_cumulative_rows.png",
+        "research/figures/final/compute_cumulative_rows.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized Phase 6, Phase 7, Phase 14, and Phase 15 workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "newly scored/extracted rows": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "phase/work type",
+        "rows"
+      ],
+      "caption": "Cache counts are reported as the closeout evidence for each authorized workload.",
+      "evidence_stage": "FINAL",
+      "figure_id": "cache_reuse",
+      "issues": [],
+      "n": 10,
+      "output_paths": [
+        "research/figures/final/cache_reuse.svg",
+        "research/figures/final/cache_reuse.png",
+        "research/figures/final/cache_reuse.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized remote workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "workload",
+        "remote seconds"
+      ],
+      "caption": "Runtime is remote wall time from the recorded closeout artifacts, not a clinical or throughput guarantee.",
+      "evidence_stage": "FINAL",
+      "figure_id": "runtime_by_model",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/runtime_by_model.svg",
+        "research/figures/final/runtime_by_model.png",
+        "research/figures/final/runtime_by_model.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized remote workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "workload",
+        "estimated USD"
+      ],
+      "caption": "Estimates are not provider invoices; the report keeps rate estimates and provider billing snapshots separate.",
+      "evidence_stage": "FINAL",
+      "figure_id": "cost_by_phase_model",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/cost_by_phase_model.svg",
+        "research/figures/final/cost_by_phase_model.png",
+        "research/figures/final/cost_by_phase_model.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized remote workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "phase",
+        "cumulative estimated USD"
+      ],
+      "caption": "This is a planning/ledger estimate, not a billed invoice.",
+      "evidence_stage": "FINAL",
+      "figure_id": "cumulative_compute_spend",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/cumulative_compute_spend.svg",
+        "research/figures/final/cumulative_compute_spend.png",
+        "research/figures/final/cumulative_compute_spend.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized remote workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "cumulative direct estimate": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "workload",
+        "variants per second"
+      ],
+      "caption": "Throughput is descriptive for the recorded calls and depends on batching and provider conditions.",
+      "evidence_stage": "FINAL",
+      "figure_id": "throughput_comparison",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/throughput_comparison.svg",
+        "research/figures/final/throughput_comparison.png",
+        "research/figures/final/throughput_comparison.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "authorized remote workloads",
+      "source_sha256": {
+        "artifacts/audits/compute_ledger_audit_20260922.json": "9cb7785bcd9518a392b82baea5658d0609030f37c819093a34051e3c97f9857b",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase15/phase15_parity_smoke_validation_20260922.json": "a752d4dedfb23b0d2a650d28040f7b9233e421955d0fd6c677af4622cc781e69",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/figure_sources/cost_ledger.jsonl": "c34267395a5032852e42c717f32f3ed2e53868f8a44a4a16677c81186af9bd55"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "representation family",
+        "VALIDATION AUROC"
+      ],
+      "caption": "This is development evidence; it is not interchangeable with the locked-test result.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "foundation_model_performance",
+      "issues": [],
+      "n": 12,
+      "output_paths": [
+        "research/figures/final/foundation_model_performance.svg",
+        "research/figures/final/foundation_model_performance.png",
+        "research/figures/final/foundation_model_performance.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/benchmark.json": "46d2bef67bd289383ebf044b4e728e2a694481ae708d0d0ecb106892f6830a0a",
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "layer",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Only layer rows present in the registered development source are shown.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "representation_layers",
+      "issues": [],
+      "n": 6,
+      "output_paths": [
+        "research/figures/final/representation_layers.svg",
+        "research/figures/final/representation_layers.png",
+        "research/figures/final/representation_layers.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/embedding_layer.json": "73a2b11c43c6972608d1a4ec9f0e1f041fd75666eef732b9ecaa43692ef00b75",
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "cad16": "ascending",
+          "cad4": "ascending",
+          "cad8": "ascending",
+          "nt16": "ascending",
+          "nt24": "ascending",
+          "nt8": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "evidence stage/model",
+        "AUROC"
+      ],
+      "caption": "The bars are explicitly stage-qualified and are not a claim of like-for-like population or selection equivalence.",
+      "evidence_stage": "FINAL",
+      "figure_id": "raw_vs_representation",
+      "issues": [],
+      "n": 2,
+      "output_paths": [
+        "research/figures/final/raw_vs_representation.svg",
+        "research/figures/final/raw_vs_representation.png",
+        "research/figures/final/raw_vs_representation.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "classifier",
+        "AUROC"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_auroc_heatmap",
+      "issues": [],
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_auroc_heatmap.svg",
+        "research/figures/final/classifier_auroc_heatmap.png",
+        "research/figures/final/classifier_auroc_heatmap.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "classifier",
+        "MCC"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_mcc_heatmap",
+      "issues": [],
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_mcc_heatmap.svg",
+        "research/figures/final/classifier_mcc_heatmap.png",
+        "research/figures/final/classifier_mcc_heatmap.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "classifier",
+        "BRIER"
+      ],
+      "caption": "All cells are taken from the frozen Phase 8 development summary; partial CADD coverage remains marked in the source data.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "classifier_brier_heatmap",
+      "issues": [],
+      "n": 36,
+      "output_paths": [
+        "research/figures/final/classifier_brier_heatmap.svg",
+        "research/figures/final/classifier_brier_heatmap.png",
+        "research/figures/final/classifier_brier_heatmap.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "combination",
+        "VALIDATION AUROC"
+      ],
+      "caption": "This ranking is descriptive and does not reopen the closed selection.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "combination_ranking",
+      "issues": [],
+      "n": 12,
+      "output_paths": [
+        "research/figures/final/combination_ranking.svg",
+        "research/figures/final/combination_ranking.png",
+        "research/figures/final/combination_ranking.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "trial",
+        "VALIDATION objective"
+      ],
+      "caption": "Four trials per study were run on VALIDATION; parameter importance is intentionally not materialized.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "hpo_trial_history",
+      "issues": [],
+      "n": 48,
+      "output_paths": [
+        "research/figures/final/hpo_trial_history.svg",
+        "research/figures/final/hpo_trial_history.png",
+        "research/figures/final/hpo_trial_history.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/hpo.json": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+        "research/runs/formal_cpu_20260922/phase9/summary.json": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "all_fusion": "ascending",
+          "cad16": "ascending",
+          "cad4": "ascending",
+          "cad8": "ascending",
+          "cadd": "ascending",
+          "cadd_phylop": "ascending",
+          "evo2": "ascending",
+          "foundation_fusion": "ascending",
+          "nt16": "ascending",
+          "nt24": "ascending",
+          "nt8": "ascending",
+          "phylop": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "feature set",
+        "best VALIDATION objective"
+      ],
+      "caption": "The labels identify feature sets; hyperparameters remain available in the source table and are not converted into a parameter-importance claim.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "hpo_hyperparameters",
+      "issues": [],
+      "n": 25,
+      "output_paths": [
+        "research/figures/final/hpo_hyperparameters.svg",
+        "research/figures/final/hpo_hyperparameters.png",
+        "research/figures/final/hpo_hyperparameters.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/hpo.json": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79",
+        "research/runs/formal_cpu_20260922/phase9/summary.json": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "training fraction",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Only completed, predeclared learning-curve fractions are shown.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "learning_curve_auroc",
+      "issues": [],
+      "n": 5,
+      "output_paths": [
+        "research/figures/final/learning_curve_auroc.svg",
+        "research/figures/final/learning_curve_auroc.png",
+        "research/figures/final/learning_curve_auroc.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554",
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "auroc": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "training fraction",
+        "metric value"
+      ],
+      "caption": "Metrics share the same development population but have different scales; the legend identifies each metric.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "learning_curve_metrics",
+      "issues": [],
+      "n": 25,
+      "output_paths": [
+        "research/figures/final/learning_curve_metrics.svg",
+        "research/figures/final/learning_curve_metrics.png",
+        "research/figures/final/learning_curve_metrics.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "auprc": "ascending",
+          "auroc": "ascending",
+          "brier": "ascending",
+          "f1": "ascending",
+          "mcc": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "ablation",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Ablations are development evidence and do not alter the frozen final classifier.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "ablation_metric_delta",
+      "issues": [],
+      "n": 30,
+      "output_paths": [
+        "research/figures/final/ablation_metric_delta.svg",
+        "research/figures/final/ablation_metric_delta.png",
+        "research/figures/final/ablation_metric_delta.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/ablation.json": "9615adbd5999af7fe66291faf6ced6d6f32f93811fa1cdba1f338155da3e8af4",
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "left model",
+        "error correlation"
+      ],
+      "caption": "The matrix contains recorded pairwise diversity rows only; absent pairs are not filled.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "diversity_matrix",
+      "issues": [],
+      "n": 3,
+      "output_paths": [
+        "research/figures/final/diversity_matrix.svg",
+        "research/figures/final/diversity_matrix.png",
+        "research/figures/final/diversity_matrix.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/error_correlation.json": "8353f6f6a45b66a678b5153498011dc793edb7df029e4adf6da6368d34d494e2",
+        "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "ensemble method",
+        "VALIDATION AUROC"
+      ],
+      "caption": "Ensemble evidence is development-only and selection-closed.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "ensemble_comparison",
+      "issues": [],
+      "n": 3,
+      "output_paths": [
+        "research/figures/final/ensemble_comparison.svg",
+        "research/figures/final/ensemble_comparison.png",
+        "research/figures/final/ensemble_comparison.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/ensemble.json": "ae4eaedd353560331497559e957d3aac680168cd96adfed9bc075ee1a3058ed3",
+        "research/runs/formal_cpu_20260922/phase11/ensemble_analysis.json": "83a35e348d7a6359f3ed9a1d7bf5a5cde44b67d1d76cfd81e19bfa38819a7f1b"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "mean confidence",
+        "observed frequency"
+      ],
+      "caption": "Reliability curves are fit/evaluated within the documented development calibration boundary.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "calibration_reliability",
+      "issues": [],
+      "n": 20,
+      "output_paths": [
+        "research/figures/final/calibration_reliability.svg",
+        "research/figures/final/calibration_reliability.png",
+        "research/figures/final/calibration_reliability.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/calibration.json": "3649d311219113215a7cfc0c7505972611b7edfb721a26372dd2f96272fa298f",
+        "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "isotonic": "ascending",
+          "platt": "ascending",
+          "uncalibrated": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "stage/metric",
+        "metric value"
+      ],
+      "caption": "Stage labels prevent development calibration from being confused with the final locked result.",
+      "evidence_stage": "FINAL",
+      "figure_id": "calibration_metric_comparison",
+      "issues": [],
+      "n": 9,
+      "output_paths": [
+        "research/figures/final/calibration_metric_comparison.svg",
+        "research/figures/final/calibration_metric_comparison.png",
+        "research/figures/final/calibration_metric_comparison.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "coverage",
+        "risk"
+      ],
+      "caption": "This curve is the recorded development risk-coverage surface, not the locked-test abstention result.",
+      "evidence_stage": "PRELIMINARY",
+      "figure_id": "risk_coverage_development",
+      "issues": [],
+      "n": 20,
+      "output_paths": [
+        "research/figures/final/risk_coverage_development.svg",
+        "research/figures/final/risk_coverage_development.png",
+        "research/figures/final/risk_coverage_development.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "formal TRAIN/VALIDATION development",
+      "source_sha256": {
+        "research/runs/formal_cpu_20260922/figure_sources/abstention.json": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f",
+        "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "development risk": "descending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "risk definition",
+        "risk"
+      ],
+      "caption": "The artifact risk is the frozen signed-delta direction disagreement measure; the second bar is a separate descriptive calculation using the same confidence-rank subset and is not a replacement metric.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_abstention_semantics",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_abstention_semantics.svg",
+        "research/figures/final/final_abstention_semantics.png",
+        "research/figures/final/final_abstention_semantics.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows at frozen 50% coverage",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "false-positive rate",
+        "true-positive rate"
+      ],
+      "caption": "The curve is derived from the immutable joined final rows and calibrated scores.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_roc",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_roc.svg",
+        "research/figures/final/final_roc.png",
+        "research/figures/final/final_roc.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "locked Evo2 calibrated": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "recall",
+        "precision"
+      ],
+      "caption": "The curve is derived from the immutable joined final rows and calibrated scores.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_pr",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_pr.svg",
+        "research/figures/final/final_pr.png",
+        "research/figures/final/final_pr.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {
+          "locked Evo2 calibrated": "ascending"
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "estimate",
+        "AUROC"
+      ],
+      "caption": "Only the recorded point, mean, and interval endpoints are shown; no bootstrap replicates are fabricated.",
+      "evidence_stage": "FINAL",
+      "figure_id": "bootstrap_interval",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/bootstrap_interval.svg",
+        "research/figures/final/bootstrap_interval.png",
+        "research/figures/final/bootstrap_interval.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows; recorded bootstrap summary",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "actual class",
+        "predicted class"
+      ],
+      "caption": "Counts match the immutable Phase 14 confusion metrics.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_confusion_matrix",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_confusion_matrix.svg",
+        "research/figures/final/final_confusion_matrix.png",
+        "research/figures/final/final_confusion_matrix.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "outcome",
+        "rows"
+      ],
+      "caption": "Outcomes are computed from the immutable local label join and final prediction field.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_outcome_counts",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_outcome_counts.svg",
+        "research/figures/final/final_outcome_counts.png",
+        "research/figures/final/final_outcome_counts.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "chromosome",
+        "errors"
+      ],
+      "caption": "This is descriptive subgroup error analysis, not a chromosome-level model claim.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_error_chromosome",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_error_chromosome.svg",
+        "research/figures/final/final_error_chromosome.png",
+        "research/figures/final/final_error_chromosome.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows; error rows only",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "gene",
+        "errors"
+      ],
+      "caption": "Only observed error counts are shown; small subgroups are not used for new tuning.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_gene_errors",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_gene_errors.svg",
+        "research/figures/final/final_gene_errors.png",
+        "research/figures/final/final_gene_errors.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows; top error counts",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "error type",
+        "rows"
+      ],
+      "caption": "Counts are the frozen Phase 14 confusion-matrix components.",
+      "evidence_stage": "FINAL",
+      "figure_id": "final_fp_fn",
+      "issues": [],
+      "n": 946,
+      "output_paths": [
+        "research/figures/final/final_fp_fn.svg",
+        "research/figures/final/final_fp_fn.png",
+        "research/figures/final/final_fp_fn.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "946 locked-test rows",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "stage",
+        "AUROC"
+      ],
+      "caption": "This is a stage-qualified comparison; selection was closed before the locked evaluation.",
+      "evidence_stage": "FINAL",
+      "figure_id": "development_final_generalization",
+      "issues": [],
+      "n": 2,
+      "output_paths": [
+        "research/figures/final/development_final_generalization.svg",
+        "research/figures/final/development_final_generalization.png",
+        "research/figures/final/development_final_generalization.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "development VALIDATION versus final LOCKED_TEST",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "research/runs/formal_cpu_20260922/phase8/summary.json": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    },
+    {
+      "axes": [
+        "phase",
+        "status marker"
+      ],
+      "caption": "The timeline reports evidence status and authorization boundaries; it is not a performance trend.",
+      "evidence_stage": "FINAL",
+      "figure_id": "project_timeline",
+      "issues": [],
+      "n": 10,
+      "output_paths": [
+        "research/figures/final/project_timeline.svg",
+        "research/figures/final/project_timeline.png",
+        "research/figures/final/project_timeline.pdf"
+      ],
+      "pdf": {
+        "Page size": "900 x 540 pts",
+        "Pages": "1",
+        "status": "PASS"
+      },
+      "png": {
+        "status": "PASS"
+      },
+      "population": "project phase gates",
+      "source_sha256": {
+        "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+        "artifacts/phase7/formal_budgeted_representation_20260922.json": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783",
+        "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      "status": "PASS",
+      "trend_validity": {
+        "nonfinite_values": 0,
+        "nonmonotonic_series": [],
+        "series_directions": {},
+        "status": "PASS"
+      }
+    }
+  ],
+  "schema_version": "figure-qa-v1",
+  "status": "PASS_AUTOMATED_STRUCTURAL_QA"
+}

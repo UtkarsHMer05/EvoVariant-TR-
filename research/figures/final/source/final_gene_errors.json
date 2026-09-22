@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "axes": [
+      "gene",
+      "errors"
+    ],
+    "caption": "Only observed error counts are shown; small subgroups are not used for new tuning.",
+    "evidence_stage": "FINAL",
+    "figure_id": "final_gene_errors",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 946,
+    "population": "946 locked-test rows; top error counts",
+    "required": true,
+    "scientific_question": "Which genes contain the largest number of final prediction errors?",
+    "source_artifacts": [
+      {
+        "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+        "registered_runs": [
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+      }
+    ],
+    "status": "READY",
+    "title": "Final errors by gene"
+  },
+  "rows": [
+    {
+      "label": "RUNX1",
+      "value": 10
+    },
+    {
+      "label": "HNF1A",
+      "value": 7
+    },
+    {
+      "label": "PAH",
+      "value": 5
+    },
+    {
+      "label": "TP53",
+      "value": 5
+    },
+    {
+      "label": "TTN",
+      "value": 5
+    },
+    {
+      "label": "MECP2",
+      "value": 4
+    },
+    {
+      "label": "DICER1",
+      "value": 3
+    },
+    {
+      "label": "AHDC1",
+      "value": 3
+    },
+    {
+      "label": "PIK3CD",
+      "value": 3
+    },
+    {
+      "label": "CHD8",
+      "value": 2
+    },
+    {
+      "label": "PPM1D",
+      "value": 2
+    },
+    {
+      "label": "TCF4",
+      "value": 2
+    },
+    {
+      "label": "MYOC",
+      "value": 2
+    },
+    {
+      "label": "ACTA1",
+      "value": 2
+    },
+    {
+      "label": "HNF4A",
+      "value": 2
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "axes": [
+      "coverage",
+      "risk"
+    ],
+    "caption": "This curve is the recorded development risk-coverage surface, not the locked-test abstention result.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "risk_coverage_development",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 20,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did selective risk change with development coverage?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696",
+          "run_20260922T114022Z_ff24f7f7"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/abstention.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "47972571c81d19f2a1f1843ca127cc0c24090c785b1ca7f2be773872e836ea9f"
+      }
+    ],
+    "status": "READY",
+    "title": "Development risk-coverage curve"
+  },
+  "rows": [
+    {
+      "series": "development risk",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.2746566791510612
+    },
+    {
+      "series": "development risk",
+      "x": 0.9488139825218477,
+      "x_numeric": 0.9488139825218477,
+      "y": 0.2355263157894737
+    },
+    {
+      "series": "development risk",
+      "x": 0.898876404494382,
+      "x_numeric": 0.898876404494382,
+      "y": 0.19444444444444445
+    },
+    {
+      "series": "development risk",
+      "x": 0.8489388264669163,
+      "x_numeric": 0.8489388264669163,
+      "y": 0.14852941176470588
+    },
+    {
+      "series": "development risk",
+      "x": 0.7990012484394506,
+      "x_numeric": 0.7990012484394506,
+      "y": 0.096875
+    },
+    {
+      "series": "development risk",
+      "x": 0.7490636704119851,
+      "x_numeric": 0.7490636704119851,
+      "y": 0.043333333333333335
+    },
+    {
+      "series": "development risk",
+      "x": 0.6991260923845194,
+      "x_numeric": 0.6991260923845194,
+      "y": 0.008928571428571428
+    },
+    {
+      "series": "development risk",
+      "x": 0.6491885143570537,
+      "x_numeric": 0.6491885143570537,
+      "y": 0.009615384615384616
+    },
+    {
+      "series": "development risk",
+      "x": 0.599250936329588,
+      "x_numeric": 0.599250936329588,
+      "y": 0.004166666666666667
+    },
+    {
+      "series": "development risk",
+      "x": 0.5493133583021224,
+      "x_numeric": 0.5493133583021224,
+      "y": 0.0022727272727272726
+    },
+    {
+      "series": "development risk",
+      "x": 0.4993757802746567,
+      "x_numeric": 0.4993757802746567,
+      "y": 0.0025
+    },
+    {
+      "series": "development risk",
+      "x": 0.449438202247191,
+      "x_numeric": 0.449438202247191,
+      "y": 0.002777777777777778
+    },
+    {
+      "series": "development risk",
+      "x": 0.3995006242197253,
+      "x_numeric": 0.3995006242197253,
+      "y": 0.003125
+    },
+    {
+      "series": "development risk",
+      "x": 0.3495630461922597,
+      "x_numeric": 0.3495630461922597,
+      "y": 0.0035714285714285713
+    },
+    {
+      "series": "development risk",
+      "x": 0.299625468164794,
+      "x_numeric": 0.299625468164794,
+      "y": 0.004166666666666667
+    },
+    {
+      "series": "development risk",
+      "x": 0.24968789013732834,
+      "x_numeric": 0.24968789013732834,
+      "y": 0.005
+    },
+    {
+      "series": "development risk",
+      "x": 0.19975031210986266,
+      "x_numeric": 0.19975031210986266,
+      "y": 0.00625
+    },
+    {
+      "series": "development risk",
+      "x": 0.149812734082397,
+      "x_numeric": 0.149812734082397,
+      "y": 0.0
+    },
+    {
+      "series": "development risk",
+      "x": 0.09987515605493133,
+      "x_numeric": 0.09987515605493133,
+      "y": 0.0
+    },
+    {
+      "series": "development risk",
+      "x": 0.049937578027465665,
+      "x_numeric": 0.049937578027465665,
+      "y": 0.0
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

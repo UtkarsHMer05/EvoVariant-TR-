@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "axes": [
+      "training fraction",
+      "VALIDATION AUROC"
+    ],
+    "caption": "Only completed, predeclared learning-curve fractions are shown.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "learning_curve_auroc",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 5,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did VALIDATION AUROC change with the available training fraction?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "03205bb41bf2db8b814a8f7d312d01190f3f8c3644890e7aa3868e04c61f601f"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/learning_curve.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "2fd4ce0905323c0206e10e56d2125be93031e45768e4e065acaf950c0621b554"
+      }
+    ],
+    "status": "READY",
+    "title": "Development learning curve"
+  },
+  "rows": [
+    {
+      "series": "auroc",
+      "x": 0.1,
+      "x_numeric": 0.1,
+      "y": 0.9890627444844312
+    },
+    {
+      "series": "auroc",
+      "x": 0.25,
+      "x_numeric": 0.25,
+      "y": 0.9887341574088562
+    },
+    {
+      "series": "auroc",
+      "x": 0.5,
+      "x_numeric": 0.5,
+      "y": 0.9888984509466437
+    },
+    {
+      "series": "auroc",
+      "x": 0.75,
+      "x_numeric": 0.75,
+      "y": 0.9888123924268503
+    },
+    {
+      "series": "auroc",
+      "x": 1.0,
+      "x_numeric": 1.0,
+      "y": 0.9887889219214521
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

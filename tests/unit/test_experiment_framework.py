@@ -303,6 +303,22 @@ def test_ensemble_oof_and_diversity_guards() -> None:
         )
 
 
+def test_probability_diversity_uses_an_explicit_operating_threshold() -> None:
+    rows = [
+        PredictionRow("v1", "VALIDATION", "a", 0.1, 0),
+        PredictionRow("v1", "VALIDATION", "b", 0.9, 0),
+    ]
+    signed = compare_model_predictions(rows, left_model="a", right_model="b")
+    probability = compare_model_predictions(
+        rows,
+        left_model="a",
+        right_model="b",
+        positive_threshold=0.5,
+    )
+    assert signed.disagreement_rate == 0.0
+    assert probability.disagreement_rate == 1.0
+
+
 def test_analysis_plans_figures_and_batch_ingest(tmp_path: Path) -> None:
     frozen = freeze_analysis_config({"model": "fixture", "seed": 42})
     require_frozen_config(frozen, expected_sha256=frozen.sha256)

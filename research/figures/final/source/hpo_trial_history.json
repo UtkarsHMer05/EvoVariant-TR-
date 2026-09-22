@@ -1,0 +1,329 @@
+{
+  "metadata": {
+    "axes": [
+      "trial",
+      "VALIDATION objective"
+    ],
+    "caption": "Four trials per study were run on VALIDATION; parameter importance is intentionally not materialized.",
+    "evidence_stage": "PRELIMINARY",
+    "figure_id": "hpo_trial_history",
+    "generator_version": "phase17-publication-bundle-v2",
+    "git_commit": "631ec7c988357cb22e690ef7273a4ccfe2c3152f",
+    "git_dirty_at_generation": true,
+    "n": 48,
+    "population": "formal TRAIN/VALIDATION development",
+    "required": true,
+    "scientific_question": "How did the bounded validation-only HPO objectives vary across trials?",
+    "source_artifacts": [
+      {
+        "path": "research/runs/formal_cpu_20260922/figure_sources/hpo.json",
+        "registered_runs": [
+          "run_20260922T083143Z_66e6c1cf"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "c811a9deef0834522655686dfe8a21d5d5dbc0effbe39eb003a8932cd0662b79"
+      },
+      {
+        "path": "research/runs/formal_cpu_20260922/phase9/summary.json",
+        "registered_runs": [
+          "run_20260922T080913Z_8ff64696"
+        ],
+        "registration_status": "HASH_VERIFIED_REGISTERED",
+        "sha256": "544016d582d6a37fec9d29a5e17834f99717f0f76e649563cc6b412784e36500"
+      }
+    ],
+    "status": "READY",
+    "title": "Validation-only HPO trial history"
+  },
+  "rows": [
+    {
+      "series": "all_fusion",
+      "x": "all_fusion::trial_0",
+      "x_numeric": 0,
+      "y": 0.9952464489842114
+    },
+    {
+      "series": "all_fusion",
+      "x": "all_fusion::trial_1",
+      "x_numeric": 1,
+      "y": 0.9978495840642861
+    },
+    {
+      "series": "all_fusion",
+      "x": "all_fusion::trial_2",
+      "x_numeric": 2,
+      "y": 0.9968026710429517
+    },
+    {
+      "series": "all_fusion",
+      "x": "all_fusion::trial_3",
+      "x_numeric": 3,
+      "y": 0.9980759436364666
+    },
+    {
+      "series": "cad16",
+      "x": "cad16::trial_0",
+      "x_numeric": 4,
+      "y": 0.5508840557033328
+    },
+    {
+      "series": "cad16",
+      "x": "cad16::trial_1",
+      "x_numeric": 5,
+      "y": 0.5510718197465185
+    },
+    {
+      "series": "cad16",
+      "x": "cad16::trial_2",
+      "x_numeric": 6,
+      "y": 0.5510248787357221
+    },
+    {
+      "series": "cad16",
+      "x": "cad16::trial_3",
+      "x_numeric": 7,
+      "y": 0.5519949929588484
+    },
+    {
+      "series": "cad4",
+      "x": "cad4::trial_0",
+      "x_numeric": 8,
+      "y": 0.40974808324205914
+    },
+    {
+      "series": "cad4",
+      "x": "cad4::trial_1",
+      "x_numeric": 9,
+      "y": 0.4106790799561884
+    },
+    {
+      "series": "cad4",
+      "x": "cad4::trial_2",
+      "x_numeric": 10,
+      "y": 0.4099436707870443
+    },
+    {
+      "series": "cad4",
+      "x": "cad4::trial_3",
+      "x_numeric": 11,
+      "y": 0.41248630887185106
+    },
+    {
+      "series": "cad8",
+      "x": "cad8::trial_0",
+      "x_numeric": 12,
+      "y": 0.4446565482710061
+    },
+    {
+      "series": "cad8",
+      "x": "cad8::trial_1",
+      "x_numeric": 13,
+      "y": 0.4501877640431857
+    },
+    {
+      "series": "cad8",
+      "x": "cad8::trial_2",
+      "x_numeric": 14,
+      "y": 0.44512595837897045
+    },
+    {
+      "series": "cad8",
+      "x": "cad8::trial_3",
+      "x_numeric": 15,
+      "y": 0.582131121890158
+    },
+    {
+      "series": "cadd",
+      "x": "cadd::trial_0",
+      "x_numeric": 16,
+      "y": 0.997792994171241
+    },
+    {
+      "series": "cadd",
+      "x": "cadd::trial_1",
+      "x_numeric": 17,
+      "y": 0.997792994171241
+    },
+    {
+      "series": "cadd",
+      "x": "cadd::trial_2",
+      "x_numeric": 18,
+      "y": 0.997792994171241
+    },
+    {
+      "series": "cadd",
+      "x": "cadd::trial_3",
+      "x_numeric": 19,
+      "y": 0.997792994171241
+    },
+    {
+      "series": "cadd_phylop",
+      "x": "cadd_phylop::trial_0",
+      "x_numeric": 20,
+      "y": 0.9881019749872673
+    },
+    {
+      "series": "cadd_phylop",
+      "x": "cadd_phylop::trial_1",
+      "x_numeric": 21,
+      "y": 0.9968734084092581
+    },
+    {
+      "series": "cadd_phylop",
+      "x": "cadd_phylop::trial_2",
+      "x_numeric": 22,
+      "y": 0.9948786146794183
+    },
+    {
+      "series": "cadd_phylop",
+      "x": "cadd_phylop::trial_3",
+      "x_numeric": 23,
+      "y": 0.9974534548129704
+    },
+    {
+      "series": "evo2",
+      "x": "evo2::trial_0",
+      "x_numeric": 24,
+      "y": 0.9887889219214521
+    },
+    {
+      "series": "evo2",
+      "x": "evo2::trial_1",
+      "x_numeric": 25,
+      "y": 0.9886872163980598
+    },
+    {
+      "series": "evo2",
+      "x": "evo2::trial_2",
+      "x_numeric": 26,
+      "y": 0.9887185104052574
+    },
+    {
+      "series": "evo2",
+      "x": "evo2::trial_3",
+      "x_numeric": 27,
+      "y": 0.9886637458926616
+    },
+    {
+      "series": "foundation_fusion",
+      "x": "foundation_fusion::trial_0",
+      "x_numeric": 28,
+      "y": 0.9183069942106087
+    },
+    {
+      "series": "foundation_fusion",
+      "x": "foundation_fusion::trial_1",
+      "x_numeric": 29,
+      "y": 0.9193318729463308
+    },
+    {
+      "series": "foundation_fusion",
+      "x": "foundation_fusion::trial_2",
+      "x_numeric": 30,
+      "y": 0.9187138163041777
+    },
+    {
+      "series": "foundation_fusion",
+      "x": "foundation_fusion::trial_3",
+      "x_numeric": 31,
+      "y": 0.9202863401658582
+    },
+    {
+      "series": "nt16",
+      "x": "nt16::trial_0",
+      "x_numeric": 32,
+      "y": 0.9449225473321858
+    },
+    {
+      "series": "nt16",
+      "x": "nt16::trial_1",
+      "x_numeric": 33,
+      "y": 0.9444531372242215
+    },
+    {
+      "series": "nt16",
+      "x": "nt16::trial_2",
+      "x_numeric": 34,
+      "y": 0.9445235487404162
+    },
+    {
+      "series": "nt16",
+      "x": "nt16::trial_3",
+      "x_numeric": 35,
+      "y": 0.9444218432170239
+    },
+    {
+      "series": "nt24",
+      "x": "nt24::trial_0",
+      "x_numeric": 36,
+      "y": 0.9124784853700516
+    },
+    {
+      "series": "nt24",
+      "x": "nt24::trial_1",
+      "x_numeric": 37,
+      "y": 0.9123141918322641
+    },
+    {
+      "series": "nt24",
+      "x": "nt24::trial_2",
+      "x_numeric": 38,
+      "y": 0.9123141918322641
+    },
+    {
+      "series": "nt24",
+      "x": "nt24::trial_3",
+      "x_numeric": 39,
+      "y": 0.9124315443592552
+    },
+    {
+      "series": "nt8",
+      "x": "nt8::trial_0",
+      "x_numeric": 40,
+      "y": 0.8842747613831952
+    },
+    {
+      "series": "nt8",
+      "x": "nt8::trial_1",
+      "x_numeric": 41,
+      "y": 0.8845642309497731
+    },
+    {
+      "series": "nt8",
+      "x": "nt8::trial_2",
+      "x_numeric": 42,
+      "y": 0.8845407604443749
+    },
+    {
+      "series": "nt8",
+      "x": "nt8::trial_3",
+      "x_numeric": 43,
+      "y": 0.8845485839461743
+    },
+    {
+      "series": "phylop",
+      "x": "phylop::trial_0",
+      "x_numeric": 44,
+      "y": 0.9102487873572211
+    },
+    {
+      "series": "phylop",
+      "x": "phylop::trial_1",
+      "x_numeric": 45,
+      "y": 0.9102487873572211
+    },
+    {
+      "series": "phylop",
+      "x": "phylop::trial_2",
+      "x_numeric": 46,
+      "y": 0.9102487873572211
+    },
+    {
+      "series": "phylop",
+      "x": "phylop::trial_3",
+      "x_numeric": 47,
+      "y": 0.9102487873572211
+    }
+  ],
+  "schema_version": "phase17-figure-source-v1"
+}

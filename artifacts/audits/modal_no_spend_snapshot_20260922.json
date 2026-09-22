@@ -1,0 +1,28 @@
+{
+  "schema_version": "modal-no-spend-snapshot-v1",
+  "captured_at_utc": "2026-09-22T15:37:00Z",
+  "status": "NO_ACTIVE_CONTAINERS",
+  "commands": {
+    "container_list": "modal container list --json",
+    "billing_summary": "modal billing summary --json"
+  },
+  "active_containers": [],
+  "provider_snapshot": {
+    "metered_cost_usd": "31.69808745",
+    "billed_cost_usd": "0E-8",
+    "adjustments": {
+      "reservation_adjustment": "-0E-8",
+      "plan_cost": "0E-8",
+      "free_storage": "-3.53808745",
+      "credits": "-28.16000000"
+    },
+    "metered_cost_breakdown": {
+      "deployed_apps": "8.78151469",
+      "llm_tokens": "0E-8",
+      "volumes": "3.53808745",
+      "ephemeral_apps": "19.37429976"
+    }
+  },
+  "interpretation": "Fresh read-only provider snapshot. Workspace metering and adjustments are not a per-run invoice and do not expose an exact remaining free-credit balance.",
+  "no_remote_compute_launched": true
+}

@@ -1,5 +1,6 @@
 {
   "blockers": [],
+  "external_release": "NOT_REQUESTED",
   "family": "RELEASE",
   "gates": {
     "phase14_locked_evaluation": "PASS",
@@ -7,21 +8,23 @@
     "phase16_registered_output_workbench": "PASS",
     "phase17_publication_bundle": "PASS_LOCAL_PUBLICATION_BUNDLE",
     "phase18_clean_room": "PASS",
-    "phase18_full_remote_reinference": "NOT_REQUIRED_BY_LITERAL_MASTER_TASK_LIST"
+    "phase18_full_remote_reinference": "NOT_PERFORMED_NOT_CLAIMED"
   },
+  "internal_release_readiness": "PASS",
   "no_new_remote_compute": true,
   "phase": 19,
-  "recorded_at_utc": "2026-09-22T13:41:29.065012+00:00",
+  "recorded_at_utc": "2026-09-22T15:38:24.820126+00:00",
   "release_allowed": false,
-  "release_reason": "Internal gate only; no tag, deployment, or publication release was requested.",
+  "release_allowed_compatibility_note": "This boolean is retained for deployment tooling compatibility and is not the Phase 19 gate label.",
+  "release_reason": "External release is NOT_REQUESTED; no tag, deployment, or publication release was requested.",
   "source_artifacts": [
     {
       "path": "research/reports/phase17/publication_manifest.json",
-      "sha256": "aa34cbd2f31dfe1d6826b505cd1ee27c7a872948fd20a47f52f1f6442e8bc86d"
+      "sha256": "b42b52daf21cdcc4afc5d8ca6a12e199cd4dcec8d828ef939c929085a21e8779"
     },
     {
       "path": "research/runs/phase18_clean_room_status.json",
-      "sha256": "b488ffed79c9282e13fdccf01656f3488692974cac0156924c8f7a48be5ee183"
+      "sha256": "3112c6154598e5f8fa28217eff76a76fac8af7a413a4bcbb9628f06b75bc2dcd"
     },
     {
       "path": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json",
@@ -36,5 +39,6 @@
       "sha256": "45f78b4153641f474bd9d03c8c4ec07f2b70bd2351a9cb64fa898518cfbd9878"
     }
   ],
-  "status": "PASS"
+  "status": "PASS",
+  "status_label": "INTERNAL_RELEASE_READINESS_PASS"
 }

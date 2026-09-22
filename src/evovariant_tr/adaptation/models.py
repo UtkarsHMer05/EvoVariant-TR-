@@ -133,7 +133,7 @@ class PairedClassifier:
                     logits = (logits + self.pair_logits(reference_rc, alternate_rc)) / 2
                 return logits
 
-        return _Head()
+        return _Head().to(next(backbone.parameters()).device)
 
 
 def configure_trainable(model: Any, regime: str) -> tuple[int, int]:

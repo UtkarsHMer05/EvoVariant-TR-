@@ -131,6 +131,38 @@ type ResearchEvidence = {
   } | null;
 };
 
+type WorkbenchFigureEvidence = {
+  figure_id: string;
+  title: string;
+  status: string;
+  evidence_stage: string;
+  population: string;
+  n: number | null;
+  source_count: number;
+  source_hash_prefixes: string[];
+  source_hashes_verified: boolean;
+};
+
+type WorkbenchAreaEvidence = {
+  status: WorkbenchStatus;
+  evidence_stage: string;
+  note: string;
+  figures: WorkbenchFigureEvidence[];
+  summary: Array<{ label: string; value: string }>;
+};
+
+type WorkbenchEvidence = {
+  status: WorkbenchStatus;
+  manifest: {
+    status: string;
+    figure_count: number;
+    rendered_count: number;
+    sha256: string | null;
+  } | null;
+  areas: Record<string, WorkbenchAreaEvidence>;
+  blockers: string[];
+};
+
 type WorkbenchStatus = "READY" | "PARTIAL" | "BLOCKED" | "PENDING";
 
 type ResearchArea = {
@@ -308,7 +340,20 @@ function readErrorDetail(value: unknown): string | null {
   return null;
 }
 
-function EmptyAreaPanel({ area }: { area: ResearchArea }) {
+function EvidenceAreaPanel({
+  area,
+  evidence,
+  loading,
+  error,
+  onRetry,
+}: {
+  area: ResearchArea;
+  evidence: WorkbenchEvidence | null;
+  loading: boolean;
+  error: string | null;
+  onRetry: () => void;
+}) {
+  const areaEvidence = evidence?.areas[area.id];
   return (
     <Card className="gap-0 border-none bg-white py-0 shadow-sm">
       <CardHeader className="border-b border-[#3c4f3d]/10 py-5">
@@ -321,20 +366,115 @@ function EmptyAreaPanel({ area }: { area: ResearchArea }) {
               {area.description}
             </CardDescription>
           </div>
-          <StatusPill status={area.status} />
+          <StatusPill status={areaEvidence?.status ?? area.status} />
         </div>
       </CardHeader>
       <CardContent className="space-y-4 py-5">
-        <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4">
-          <p className="text-sm font-medium text-[#3c4f3d]">
-            No registered scientific output is available for this area.
-          </p>
-          <p className="mt-1 text-sm leading-6 text-[#3c4f3d]/65">
-            This is an intentional evidence-gated empty state. The workbench does not
-            invent metrics, curves, model scores, or classifications while its required
-            upstream artifact is missing.
-          </p>
-        </div>
+        {loading && (
+          <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4 text-sm text-[#3c4f3d]/65">
+            Reading registered output metadata…
+          </div>
+        )}
+
+        {!loading && error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" aria-hidden="true" />
+            <AlertDescription className="flex flex-wrap items-center justify-between gap-3">
+              <span>{error}</span>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onRetry}
+                className="border-current/20 bg-transparent"
+              >
+                Retry evidence read
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {!loading && !error && areaEvidence && (
+          <>
+            <div className="rounded-md border border-[#3c4f3d]/10 bg-[#f7f9f7] p-4">
+              <p className="text-sm font-medium text-[#3c4f3d]">{areaEvidence.note}</p>
+              <p className="mt-1 text-xs leading-5 text-[#3c4f3d]/60">
+                Evidence stage: {areaEvidence.evidence_stage}. Values are read from the
+                registered artifact inventory; no scientific result is hardcoded in the UI.
+              </p>
+            </div>
+
+            {areaEvidence.summary.length > 0 && (
+              <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {areaEvidence.summary.map((item) => (
+                  <div key={item.label} className="rounded-md bg-[#f7f9f7] px-3 py-3">
+                    <dt className="text-xs uppercase tracking-[0.1em] text-[#3c4f3d]/50">
+                      {item.label}
+                    </dt>
+                    <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {areaEvidence.figures.length > 0 ? (
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                  Registered evidence
+                </h3>
+                <div className="mt-2 overflow-x-auto rounded-md border border-[#3c4f3d]/10">
+                  <table className="w-full min-w-[760px] text-left text-sm">
+                    <thead className="bg-[#f7f9f7] text-xs text-[#3c4f3d]/60">
+                      <tr>
+                        <th className="px-3 py-2 font-medium">Figure</th>
+                        <th className="px-3 py-2 font-medium">Stage</th>
+                        <th className="px-3 py-2 font-medium">Population</th>
+                        <th className="px-3 py-2 font-medium">Sources</th>
+                        <th className="px-3 py-2 font-medium">Hash check</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {areaEvidence.figures.map((figure) => (
+                        <tr key={figure.figure_id} className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]">
+                          <td className="px-3 py-3">
+                            <p className="font-medium">{figure.title}</p>
+                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">{figure.figure_id}</p>
+                          </td>
+                          <td className="px-3 py-3">{figure.evidence_stage}</td>
+                          <td className="px-3 py-3">{figure.population}</td>
+                          <td className="px-3 py-3">
+                            {figure.source_count} · {figure.source_hash_prefixes.join(", ") || "none"}
+                          </td>
+                          <td className="px-3 py-3">
+                            {figure.source_hashes_verified ? "Verified" : "Unavailable"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : areaEvidence.status === "BLOCKED" ? (
+              <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4">
+                <p className="text-sm font-medium text-[#3c4f3d]">
+                  No registered scientific output is available for this area.
+                </p>
+                <p className="mt-1 text-sm leading-6 text-[#3c4f3d]/65">
+                  This is an intentional evidence-gated empty state. The workbench does not
+                  invent metrics, curves, model scores, or classifications.
+                </p>
+              </div>
+            ) : null}
+          </>
+        )}
+
+        {!loading && !error && !areaEvidence && (
+          <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4">
+            <p className="text-sm font-medium text-[#3c4f3d]">
+              Registered evidence metadata is unavailable.
+            </p>
+          </div>
+        )}
+
         <dl className="grid gap-3 text-sm sm:grid-cols-2">
           <div>
             <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">Phase</dt>
@@ -654,6 +794,9 @@ export default function VariantAnalysisPage() {
   const [evidence, setEvidence] = useState<ResearchEvidence | null>(null);
   const [evidenceLoading, setEvidenceLoading] = useState(true);
   const [evidenceError, setEvidenceError] = useState<string | null>(null);
+  const [workbenchEvidence, setWorkbenchEvidence] = useState<WorkbenchEvidence | null>(null);
+  const [workbenchLoading, setWorkbenchLoading] = useState(true);
+  const [workbenchError, setWorkbenchError] = useState<string | null>(null);
 
   const loadRegistry = useCallback(async () => {
     setRegistryLoading(true);
@@ -699,10 +842,33 @@ export default function VariantAnalysisPage() {
     }
   }, []);
 
+  const loadWorkbenchEvidence = useCallback(async () => {
+    setWorkbenchLoading(true);
+    setWorkbenchError(null);
+    try {
+      const response = await fetch("/api/research/workbench", { cache: "no-store" });
+      const payload: unknown = await response.json();
+      if (!response.ok) {
+        throw new Error(readErrorDetail(payload) ?? "Registered output metadata is unavailable");
+      }
+      setWorkbenchEvidence(payload as WorkbenchEvidence);
+    } catch (requestError) {
+      setWorkbenchEvidence(null);
+      setWorkbenchError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Registered output metadata is unavailable",
+      );
+    } finally {
+      setWorkbenchLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     void loadRegistry();
     void loadEvidence();
-  }, [loadEvidence, loadRegistry]);
+    void loadWorkbenchEvidence();
+  }, [loadEvidence, loadRegistry, loadWorkbenchEvidence]);
 
   const handleSubmit = async () => {
     const numericPosition = Number(position);
@@ -783,6 +949,17 @@ export default function VariantAnalysisPage() {
     "error-analysis": "PARTIAL",
   };
   const displayAreas = RESEARCH_AREAS.map((area) => {
+    const registeredEvidence = workbenchEvidence?.areas[area.id];
+    if (registeredEvidence) {
+      return {
+        ...area,
+        status: registeredEvidence.status,
+        description: registeredEvidence.note,
+        artifact: registeredEvidence.figures.length > 0
+          ? "Hash-verified publication inventory"
+          : area.artifact,
+      };
+    }
     const evidenceStatus = evidence ? evidenceStatuses[area.id] : undefined;
     if (evidenceStatus) {
       return {
@@ -1138,7 +1315,13 @@ export default function VariantAnalysisPage() {
 
           {nonInteractiveAreas.map((area) => (
             <TabsContent key={area.id} value={area.id}>
-              <EmptyAreaPanel area={area} />
+              <EvidenceAreaPanel
+                area={area}
+                evidence={workbenchEvidence}
+                loading={workbenchLoading}
+                error={workbenchError}
+                onRetry={() => void loadWorkbenchEvidence()}
+              />
             </TabsContent>
           ))}
 

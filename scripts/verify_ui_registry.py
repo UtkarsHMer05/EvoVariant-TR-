@@ -41,17 +41,30 @@ def main() -> int:
 
     if not eligible:
         blockers.append("no completed PRELIMINARY or FINAL registry runs are available")
+    workbench_route = repo_root / "apps/web/src/app/api/research/workbench/route.ts"
+    workbench_page = repo_root / "apps/web/src/app/analysis/page.tsx"
+    workbench_e2e = repo_root / "apps/web/tests/e2e/workbench.spec.ts"
+    ui_wired = (
+        workbench_route.is_file()
+        and workbench_page.is_file()
+        and "EvidenceAreaPanel" in workbench_page.read_text(encoding="utf-8")
+        and workbench_e2e.is_file()
+        and "reads registered evidence metadata" in workbench_e2e.read_text(encoding="utf-8")
+    )
+    if not ui_wired:
+        blockers.append("registered-output workbench panel is not wired")
     payload = {
-        "status": "PARTIAL" if eligible else "BLOCKED",
+        "status": "PASS" if eligible and ui_wired else "PARTIAL" if eligible else "BLOCKED",
         "phase": 16,
         "registry_connected": bool(eligible),
         "registered_run_count": len(records),
         "completed_scientific_run_count": len(eligible),
         "locked_test_evaluated": False,
         "blockers": sorted(set(blockers)),
+        "registered_output_workbench": "PASS" if ui_wired else "BLOCKED",
         "notes": (
-            "The UI registry panel may display immutable metadata from eligible runs; "
-            "scientific result panels remain evidence-gated."
+            "The UI reads hash-verified publication inventory metadata through a read-only route; "
+            "scientific result panels remain evidence-stage qualified."
         ),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

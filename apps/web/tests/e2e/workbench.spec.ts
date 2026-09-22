@@ -8,16 +8,17 @@ test.describe("research workbench", () => {
     ).toBeVisible();
   });
 
-  test("exposes all areas and keeps unavailable work explicitly blocked", async ({
+  test("exposes all areas and reads registered evidence metadata", async ({
     page,
   }) => {
     await expect(page.getByRole("tab")).toHaveCount(14);
 
     await page.getByRole("tab", { name: "Temporal VUS Explorer" }).click();
     await expect(
-      page.getByText("No registered scientific output is available for this area."),
+      page.getByText("Registered evidence", { exact: true }),
     ).toBeVisible();
-    await expect(page.getByText("BLOCKED", { exact: true }).first()).toBeVisible();
+    await expect(page.getByText("Authoritative cohort flow", { exact: true })).toBeVisible();
+    await expect(page.getByText("Verified", { exact: true }).first()).toBeVisible();
   });
 
   test("loads protocol metadata from the methods surface", async ({ page }) => {

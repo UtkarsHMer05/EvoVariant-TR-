@@ -605,6 +605,22 @@ This bundle does not reopen scientific selection, alter the immutable Phase 14 l
 
 The EvoVariant-TR extension evaluates frozen GRCh38 variant windows with Evo2 and downstream development-only classifiers. The authoritative current temporal cohort contains 946 locked rows (536 benign/likely-benign and 410 pathogenic/likely-pathogenic) across 367 genes. Phase 14 completed the immutable Evo2 locked evaluation with AUROC `{metrics['auroc']:.6f}`, AUPRC `{metrics['auprc']:.6f}`, Brier score `{metrics['probability_metrics']['brier']:.6f}`, ECE `{metrics['probability_metrics']['ece']:.6f}`, and accuracy `{metrics['probability_metrics']['accuracy']:.6f}`. These are evidence-stage-qualified scientific results, not a clinical validation claim.
 
+## Motivation
+
+The study tests whether a frozen foundation-model variant signal can support a temporally defined research benchmark without leaking locked-test labels into model selection. The workbench and publication bundle therefore expose provenance and evidence stage beside every scientific output.
+
+## Dataset and protocol
+
+The protocol fixes the GRCh38 reference, 8192-bp context, forward and reverse-complement scoring, alternate-minus-reference log likelihood, frozen TRAIN/VALIDATION development manifests, and the authoritative 946-row `LOCKED_TEST` cohort. Labels were never sent to Modal; they were joined locally only after raw predictions were hashed.
+
+## Temporal cohort
+
+The temporal cohort source is the hash-registered Phase 3/17 source. The historical 1024-row target identity set is comparison-only, while the current accepted cohort is the 946-row set governed by the frozen manifest audit.
+
+## Evo2 zero-shot model
+
+The primary zero-shot model is Evo2 7B at revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, scored on H100 with the frozen sequence and orientation contract above. Phase 14 is an Evo2-only locked-evaluation subgate; it is not a claim that unrun comparator models were evaluated on the locked cohort.
+
 ## Methods and frozen boundary
 
 - Model: Evo2 7B, revision `4b509ec2a22d6de472659f908bcb0714265ad3a7`, GRCh38, 8192 bp, forward and reverse-complement scoring, alternate-minus-reference log likelihood, H100.
@@ -616,6 +632,22 @@ The EvoVariant-TR extension evaluates frozen GRCh38 variant windows with Evo2 an
 ## Development evidence
 
 Phase 8 evaluated 36 classifier/representation combinations. Phase 9 ran four validation-only trials per study across the declared feature families. Phase 11 recorded model diversity and ensemble comparisons. Phase 12 recorded development calibration and risk-coverage surfaces. Phase 13 recorded completed learning curves and ablations. These surfaces are marked `PRELIMINARY` in the inventory and are not promoted to locked-test evidence.
+
+## Representations, downstream models, HPO, and ensemble
+
+The development registry records Evo2 raw-score and frozen representation tracks, plus the Nucleotide Transformer and Caduceus representation work. Downstream classifiers, validation-only HPO trials, and ensemble comparisons are reported only from their registered TRAIN/VALIDATION artifacts. Fine-tuning/adaptation was formally deferred; no checkpoint or training-loss curve is implied.
+
+## Calibration, abstention, and uncertainty
+
+Platt and isotonic calibration, reliability, Brier/NLL/ECE, and the development risk-coverage surface are reported at the development evidence stage. The final abstention target and signed-delta risk are copied from the immutable Phase 14 artifact; the bundle does not reinterpret that risk as ordinary classification error.
+
+## Ablations, robustness, learning curves, and error analysis
+
+The bundle includes the recorded feature ablations, learning curves, model-diversity/error-correlation surfaces, chromosome and gene error summaries, and final false-positive/false-negative counts. The context-length cell remains explicitly not applicable because the frozen cache contains only 8192-bp features; no missing robustness points are synthesized.
+
+## Development versus final
+
+Development VALIDATION outputs and final LOCKED_TEST outputs are shown with separate evidence-stage labels. Their side-by-side figures are descriptive and do not reopen selection, calibration, threshold, or abstention decisions.
 
 The development-versus-final figures intentionally keep the stages separate. The strongest development Evo2 classifier AUROC is shown alongside the final calibrated locked-test AUROC, but the chart is not a claim that the populations, calibration stage, or selection context are identical.
 
@@ -649,17 +681,22 @@ The provider billing summary is workspace-level evidence, not a per-run invoice.
 - Phase 10 training loss: `DEFERRED_BY_COMPUTE`; no training run occurred, so no loss curve is emitted.
 - Phase 13 context length: `NOT_APPLICABLE_WITH_DOCUMENTED_REASON`; the predeclared 512/1024/2048/4096/8192 cell required additional foundation-model extraction, while current cached features are frozen at 8192 bp. A 64-row, four-additional-context planning sweep is estimated at `$0.387275664` direct H100 cost from the Phase 14 rate, but it is not authorized and must not touch the locked test.
 - Phase 15 batch parity: local atomic shard interruption/restart behavior is verified; remote full-cohort parity remains outside the current authorization. No paid batch was started.
-- Phase 18 clean room: software/artifact reproducibility can be checked locally from the registry and generated hashes; full remote scientific re-inference was not run. These are distinct claims.
+- Phase 15 batch parity: the authorized 64-row development-only smoke passed with 56 verified cache rows, 8 newly scored rows, exact canonical parity, and a persisted-shard resume with zero additional remote calls. It does not authorize a full-cohort batch.
+- Phase 18 clean room: the free software/control-plane and local artifact hash checks are separate from the representative gated Modal smoke above. A full remote re-inference is not required by the literal Phase 18 task list and was not run or claimed.
 
 ## Reproducibility and release gates
 
 The figure inventory is at `research/reports/phase17/FIGURE_INVENTORY.json` and the source sidecars are under `research/figures/final/source/`. Tables are under `research/tables/final/`. The final Phase 14 artifact SHA-256 is `{sha(FINAL_ARTIFACT)}` and the joined-prediction SHA-256 is `{sha(JOINED)}`. The generation path is CPU/local only and records no Modal invocation.
 
-Phase 19 is not marked `PASS`: release requires the unresolved Phase 15/18 boundaries, complete release documentation, and a fresh exact-candidate release decision. No tag, deployment, publication submission, or external release claim is made by this report.
+Phase 15's bounded parity smoke is complete; the full batch remains outside scope. Phase 19 is not marked `PASS`: release still requires the clean-room control-plane gate and a fresh exact-candidate release decision. No tag, deployment, publication submission, or external release claim is made by this report.
 
 ## Limitations
 
 The historical target identity set is unavailable, so its aggregate is comparison-only. Development results are based on the frozen formal development manifest and are not locked-test evidence. CADD coverage is incomplete and remains explicit. The final cohort is a temporal ClinVar-derived cohort and does not establish clinical validity, prospective performance, or external validity. The provider billing summaries are workspace-level observations with meter adjustments and do not constitute a per-run invoice. Figures preserve these boundaries rather than filling missing cells.
+
+## Conclusion
+
+The reachable EvoVariant-TR evidence bundle is reproducible at the registered-artifact and bounded parity-smoke levels, with Phase 14 preserved as an immutable Evo2-only locked result. Remaining release status is governed by the documented clean-room storage boundary and final release gate; no unrun model, full batch, or full remote re-inference is presented as complete.
 """
     (REPORT_DIR / "FINAL_REPORT.md").write_text(report, encoding="utf-8")
     write_json(REPORT_DIR / "publication_manifest.json", {"status": "PASS_LOCAL_PUBLICATION_BUNDLE", "generator_version": GENERATOR_VERSION, "git_commit": commit, "figure_count": len(inventory), "rendered_count": sum(entry["status"] == "READY" for entry in inventory), "outputs": sorted(generated_outputs), "output_hashes": {path: sha(path) for path in sorted(generated_outputs)}, "table_paths": table_paths, "final_artifact_sha256": sha(FINAL_ARTIFACT), "joined_predictions_sha256": sha(JOINED), "billing_recheck_sha256": sha(BILLING_RECHECK), "no_remote_compute": True})

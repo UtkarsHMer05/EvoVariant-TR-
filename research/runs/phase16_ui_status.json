@@ -2,9 +2,10 @@
   "blockers": [],
   "completed_scientific_run_count": 13,
   "locked_test_evaluated": false,
-  "notes": "The UI registry panel may display immutable metadata from eligible runs; scientific result panels remain evidence-gated.",
+  "notes": "The UI reads hash-verified publication inventory metadata through a read-only route; scientific result panels remain evidence-stage qualified.",
   "phase": 16,
+  "registered_output_workbench": "PASS",
   "registered_run_count": 13,
   "registry_connected": true,
-  "status": "PARTIAL"
+  "status": "PASS"
 }

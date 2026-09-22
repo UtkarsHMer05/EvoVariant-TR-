@@ -1,0 +1,47 @@
+{
+  "phase": 18,
+  "recorded_at_utc": "2026-09-22T13:27:39Z",
+  "source_commit": "3269eebc54db2694f0c0669ef2267a4da18874b7",
+  "checkout": {
+    "type": "fresh detached git worktree",
+    "tracked_tree_clean_after_commands": true
+  },
+  "commands": {
+    "make bootstrap": "PASS",
+    "secret_scan": "PASS",
+    "ruff": "PASS",
+    "mypy_strict": "PASS",
+    "protocol_verify": "PASS",
+    "model_registry_verify": "PASS",
+    "figures_regeneration": "PASS",
+    "registry_verify_after_figure_materialization": "PASS",
+    "ui_registry_check": "PASS_PARTIAL",
+    "frontend_install": "PASS",
+    "frontend_build": "PASS",
+    "make validate_after_figure_materialization": "PASS"
+  },
+  "validation": {
+    "tests_passed": 714,
+    "tests_skipped": 1,
+    "tests_deselected": 33,
+    "coverage_percent": 95.01,
+    "warnings": ["anyio.abc.BlockingPortal deprecation"]
+  },
+  "figure_regeneration": {
+    "available_figures": 16,
+    "publication_inventory_entries": 41,
+    "publication_rendered_families": 39,
+    "publication_tables": 12,
+    "preliminary_outputs_promotable": false
+  },
+  "frontend": {
+    "npm_ci_packages": 407,
+    "npm_audit_vulnerabilities": 0
+  },
+  "materialization_boundary": {
+    "status": "DOCUMENTED",
+    "reason": "The temporal source is deterministically materialized by make figures before registry hashing; generated outputs remain reproducible artifacts rather than source files in the clean Git checkout."
+  },
+  "no_remote_compute": true,
+  "no_locked_labels_transmitted": true
+}

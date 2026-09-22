@@ -1,0 +1,44 @@
+{
+  "family": "REPRO",
+  "full_remote_reinference": {
+    "reason": "Phase 18 requires a gated Modal smoke; the completed Phase15 representative development-only smoke satisfies that minimum. A full remote re-inference is a stronger optional claim and is not asserted.",
+    "status": "NOT_REQUIRED_BY_LITERAL_MASTER_TASK_LIST"
+  },
+  "gated_modal_smoke": {
+    "full_remote_reinference_required_by_literal_phase18": false,
+    "scope": "64 development-only rows; 56 verified cache rows and 8 remote rows; no locked rows or labels",
+    "status": "PASS_PHASE15_REPRESENTATIVE_DEVELOPMENT_SMOKE",
+    "validation_artifact": "artifacts/phase15/phase15_parity_smoke_validation_20260922.json"
+  },
+  "no_additional_remote_compute_in_phase18": true,
+  "phase": 18,
+  "recorded_at_utc": "2026-09-22T13:31:15.741939+00:00",
+  "release_implication": "Phase 18 PASS is limited to the documented clean detached checkout, hash-verified artifact bundle, and representative gated Modal smoke; it does not claim full remote re-inference.",
+  "scientific_artifact_reproducibility": {
+    "hash_failures": [],
+    "publication_manifest": "research/reports/phase17/publication_manifest.json",
+    "publication_manifest_sha256": "9783ae0a97923110bfe870412cc9245223f8f90c7a94b31455d9da597840d0dc",
+    "status": "PASS_HASH_VERIFIED_BUNDLE"
+  },
+  "software_clean_room": {
+    "commands": {
+      "figures_regeneration": "PASS",
+      "frontend_build": "PASS",
+      "frontend_install": "PASS",
+      "make bootstrap": "PASS",
+      "make validate_after_figure_materialization": "PASS",
+      "model_registry_verify": "PASS",
+      "mypy_strict": "PASS",
+      "protocol_verify": "PASS",
+      "registry_verify_after_figure_materialization": "PASS",
+      "ruff": "PASS",
+      "secret_scan": "PASS",
+      "ui_registry_check": "PASS_PARTIAL"
+    },
+    "execution_artifact": "artifacts/phase18/clean_room_execution_20260922.json",
+    "registry_completed_runs_checked": 13,
+    "registry_failures": [],
+    "status": "PASS_CLEAN_DETACHED_CHECKOUT"
+  },
+  "status": "PASS"
+}

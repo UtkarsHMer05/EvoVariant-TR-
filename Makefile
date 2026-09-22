@@ -415,7 +415,7 @@ release-check: ## Record/run the Phase 19 final release gate
 		--command-name release-check --output research/runs/phase19_release_status.json \
 		--blocker "full-cohort Phase 6/7 and downstream scientific result artifacts are unresolved" \
 		--blocker "locked evaluation and complete figure-regeneration gates are unresolved" \
-		--blocker "the current PRELIMINARY registry cannot support a final release"
+		--blocker "the final figure, clean-room, and release-documentation gates remain unresolved"
 
 .PHONY: clean-room
 clean-room: ## Run the free reproducibility status surface

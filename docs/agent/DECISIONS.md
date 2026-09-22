@@ -3464,8 +3464,8 @@ Evidence:
 
 Consequences:
 Phase 14 is `PASS` only for the authorized Evo2 locked subgate. Phase 15 remains blocked for
-remote batch parity; Phase 16 remains partial; Phase 17 remains blocked on three mandatory source
-families and an eligible `FINAL` registry run; Phase 18 remains blocked on full scientific
+remote batch parity; Phase 16 remains partial with the Phase 14 `FINAL` record connected; Phase 17
+remains blocked on three mandatory source families; Phase 18 remains blocked on full scientific
 clean-room reproduction; and Phase 19 remains blocked. No NT, Caduceus, fine-tuning, deployment,
 release, or additional paid work is authorized by this decision.
 

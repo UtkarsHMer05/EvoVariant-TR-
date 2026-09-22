@@ -3160,3 +3160,32 @@ Consequences:
 Phase 15 now has direct evidence for local process-interruption recovery with no paid compute or
 scientific-data access. A future remote batch allocation must still prove endpoint parity, remote
 kill/restart recovery, and the exact authorized cohort boundary.
+
+## D-102 — Connect the workbench to hash-verified development evidence
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The workbench exposed the required research areas, but completed Phase 8–13 artifacts appeared as
+generic blocked panels even after the formal CPU continuation was registered. The UI must expose
+actual ML work without inventing final metrics or treating preliminary results as locked-test
+evidence.
+
+Decision:
+Add a read-only `/api/research/status` route that locates the completed `FORMAL_CPU` registry
+record, verifies every declared output hash before parsing it, and exposes only development-stage
+phase status, selection closure, registry state, and figure/table coverage. The workbench overview
+uses that payload to show evidence-backed development status while preserving explicit `PARTIAL`
+and `BLOCKED` states.
+
+Consequences:
+Phase 16 is more useful for reviewing the actual completed CPU work. No scientific metric is
+promoted to `FINAL`, no locked label is accessed, and malformed legacy JSON in the calibration
+artifact is not silently normalized; its registered phase status is read from the immutable run
+metadata instead.
+
+Validation:
+`make web-check`, `make web-e2e` (4 passed), the four frontend contract tests, and the Impeccable
+detector pass. The endpoint returned `PARTIAL`, `selection_closed=true`, all five completed CPU
+phase gates, and the expected 15/19 figure plus 11/11 applicable-table coverage.

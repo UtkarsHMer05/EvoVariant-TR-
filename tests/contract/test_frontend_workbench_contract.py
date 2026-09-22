@@ -7,6 +7,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 WORKBENCH = REPO_ROOT / "apps" / "web" / "src" / "app" / "analysis" / "page.tsx"
 REGISTRY_ROUTE = REPO_ROOT / "apps" / "web" / "src" / "app" / "api" / "registry" / "route.ts"
+RESEARCH_STATUS_ROUTE = (
+    REPO_ROOT / "apps" / "web" / "src" / "app" / "api" / "research" / "status" / "route.ts"
+)
 
 
 def test_workbench_exposes_all_required_top_level_areas() -> None:
@@ -50,3 +53,13 @@ def test_registry_surface_is_read_only_and_metadata_only() -> None:
     assert "metrics" not in source.lower()
     assert "model_source" not in source
     assert "license_record" not in source
+
+
+def test_workbench_reads_hash_verified_development_evidence() -> None:
+    page = WORKBENCH.read_text(encoding="utf-8")
+    route = RESEARCH_STATUS_ROUTE.read_text(encoding="utf-8")
+    assert "Development evidence" in page
+    assert "/api/research/status" in page
+    assert "locked_test_evaluated" in route
+    assert "output_hashes" in route
+    assert "context_length.json" not in page

@@ -79,6 +79,30 @@ type RegistrySummary = {
   runs: RegistryRunSummary[];
 };
 
+type ResearchEvidence = {
+  status: "PARTIAL" | "BLOCKED";
+  evidence_stage: string;
+  locked_test_evaluated: boolean;
+  selection_closed: boolean;
+  ui: {
+    status: string;
+    registered_run_count: number | null;
+  };
+  development: {
+    classifier_combinations: number;
+    hpo_studies: number;
+    phases: Array<{ phase: number; status: string }>;
+  };
+  figures: {
+    status: string;
+    available_figures: number;
+    required_figures: number;
+    available_tables: number;
+    required_tables: number;
+    blockers: string[];
+  };
+};
+
 type WorkbenchStatus = "READY" | "PARTIAL" | "BLOCKED" | "PENDING";
 
 type ResearchArea = {
@@ -227,6 +251,12 @@ function StatusPill({ status }: { status: WorkbenchStatus }) {
       {status}
     </span>
   );
+}
+
+function phaseStatusPill(status: string): WorkbenchStatus {
+  if (status.startsWith("PASS")) return "READY";
+  if (status === "UNAVAILABLE") return "BLOCKED";
+  return "PARTIAL";
 }
 
 function readErrorDetail(value: unknown): string | null {
@@ -423,6 +453,121 @@ function RegistryPanel({
   );
 }
 
+function DevelopmentEvidencePanel({
+  evidence,
+  loading,
+  error,
+  onRetry,
+}: {
+  evidence: ResearchEvidence | null;
+  loading: boolean;
+  error: string | null;
+  onRetry: () => void;
+}) {
+  return (
+    <Card className="gap-0 border-none bg-white py-0 shadow-sm">
+      <CardHeader className="border-b border-[#3c4f3d]/10 py-5">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <CardTitle className="text-base font-normal text-[#3c4f3d]">
+              Development evidence
+            </CardTitle>
+            <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
+              Hash-verified TRAIN/VALIDATION outputs from the formal CPU continuation. These
+              values are preliminary and never stand in for locked-test evidence.
+            </CardDescription>
+          </div>
+          <StatusPill status={evidence?.status ?? "BLOCKED"} />
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-5 py-5">
+        {loading && (
+          <div className="rounded-md border border-dashed border-[#3c4f3d]/20 bg-[#f7f9f7] p-4 text-sm text-[#3c4f3d]/65">
+            Reading verified development evidence…
+          </div>
+        )}
+
+        {!loading && error && (
+          <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" aria-hidden="true" />
+            <AlertDescription className="flex flex-wrap items-center justify-between gap-3">
+              <span>{error}</span>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onRetry}
+                className="border-current/20 bg-transparent"
+              >
+                Retry evidence read
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {!loading && !error && evidence && (
+          <>
+            <dl className="grid gap-4 sm:grid-cols-4">
+              {[
+                ["Classifier combinations", evidence.development.classifier_combinations],
+                ["HPO studies", evidence.development.hpo_studies],
+                ["Selection", evidence.selection_closed ? "Closed" : "Open"],
+                ["Locked-test access", evidence.locked_test_evaluated ? "Evaluated" : "Untouched"],
+              ].map(([label, value]) => (
+                <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3">
+                  <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">{label}</dt>
+                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">{value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="grid gap-5 lg:grid-cols-2">
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                  Development phase gates
+                </h3>
+                <ul className="mt-2 divide-y divide-[#3c4f3d]/10 rounded-md border border-[#3c4f3d]/10">
+                  {evidence.development.phases.map((phase) => (
+                    <li key={phase.phase} className="flex items-center justify-between gap-3 px-3 py-3 text-sm">
+                      <span className="text-[#3c4f3d]">Phase {phase.phase}</span>
+                      <StatusPill status={phaseStatusPill(phase.status)} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                  Figure and table coverage
+                </h3>
+                <dl className="mt-2 grid grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-md bg-[#f7f9f7] p-3">
+                    <dt className="text-[#3c4f3d]/55">Figures</dt>
+                    <dd className="mt-1 font-medium text-[#3c4f3d]">
+                      {evidence.figures.available_figures} / {evidence.figures.required_figures}
+                    </dd>
+                  </div>
+                  <div className="rounded-md bg-[#f7f9f7] p-3">
+                    <dt className="text-[#3c4f3d]/55">Applicable tables</dt>
+                    <dd className="mt-1 font-medium text-[#3c4f3d]">
+                      {evidence.figures.available_tables} / {evidence.figures.required_tables}
+                    </dd>
+                  </div>
+                </dl>
+                {evidence.figures.blockers.length > 0 && (
+                  <ul className="mt-3 space-y-1 text-xs leading-5 text-[#a55424]">
+                    {evidence.figures.blockers.map((blocker) => (
+                      <li key={blocker}>{blocker}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function VariantAnalysisPage() {
   const [chrom, setChrom] = useState("chr17");
   const [position, setPosition] = useState("43044295");
@@ -436,6 +581,9 @@ export default function VariantAnalysisPage() {
   const [registry, setRegistry] = useState<RegistrySummary | null>(null);
   const [registryLoading, setRegistryLoading] = useState(true);
   const [registryError, setRegistryError] = useState<string | null>(null);
+  const [evidence, setEvidence] = useState<ResearchEvidence | null>(null);
+  const [evidenceLoading, setEvidenceLoading] = useState(true);
+  const [evidenceError, setEvidenceError] = useState<string | null>(null);
 
   const loadRegistry = useCallback(async () => {
     setRegistryLoading(true);
@@ -459,9 +607,32 @@ export default function VariantAnalysisPage() {
     }
   }, []);
 
+  const loadEvidence = useCallback(async () => {
+    setEvidenceLoading(true);
+    setEvidenceError(null);
+    try {
+      const response = await fetch("/api/research/status", { cache: "no-store" });
+      const payload: unknown = await response.json();
+      if (!response.ok) {
+        throw new Error(readErrorDetail(payload) ?? "Development evidence is unavailable");
+      }
+      setEvidence(payload as ResearchEvidence);
+    } catch (requestError) {
+      setEvidence(null);
+      setEvidenceError(
+        requestError instanceof Error
+          ? requestError.message
+          : "Development evidence is unavailable",
+      );
+    } finally {
+      setEvidenceLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     void loadRegistry();
-  }, [loadRegistry]);
+    void loadEvidence();
+  }, [loadEvidence, loadRegistry]);
 
   const handleSubmit = async () => {
     const numericPosition = Number(position);
@@ -532,7 +703,24 @@ export default function VariantAnalysisPage() {
 
   const registryReady =
     registry !== null && registry.completed_scientific_run_count > 0;
+  const evidenceStatuses: Partial<Record<string, WorkbenchStatus>> = {
+    "model-benchmark": "PARTIAL",
+    representation: "PARTIAL",
+    "training-hpo": "PARTIAL",
+    ensemble: "PARTIAL",
+    calibration: "PARTIAL",
+    robustness: "PARTIAL",
+    "error-analysis": "PARTIAL",
+  };
   const displayAreas = RESEARCH_AREAS.map((area) => {
+    const evidenceStatus = evidence ? evidenceStatuses[area.id] : undefined;
+    if (evidenceStatus) {
+      return {
+        ...area,
+        status: evidenceStatus,
+        description: "Verified development evidence is available; locked-test promotion remains gated.",
+      };
+    }
     if (area.id !== "registry" || !registryReady) return area;
     return {
       ...area,
@@ -610,8 +798,18 @@ export default function VariantAnalysisPage() {
             <div className="grid gap-4 md:grid-cols-4">
               {[
                 ["Protocol", "READY", "Frozen control plane"],
-                ["Model registry", "BLOCKED", "No included model"],
-                ["Compute pilot", "BLOCKED", "No remote invocation"],
+                [
+                  "Model registry",
+                  registryReady ? "PARTIAL" : "BLOCKED",
+                  registryReady
+                    ? `${registry?.completed_scientific_run_count} preliminary runs`
+                    : "No verified runs",
+                ],
+                [
+                  "Compute evidence",
+                  evidence ? "PARTIAL" : "BLOCKED",
+                  evidence ? "Preliminary outputs registered" : "Awaiting verified outputs",
+                ],
                 [
                   "Result registry",
                   registry?.status ?? "BLOCKED",
@@ -658,19 +856,12 @@ export default function VariantAnalysisPage() {
               </CardContent>
             </Card>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {["Trials and learning curves", "Model differences and errors", "Cost and reproducibility"].map(
-                (label) => (
-                  <div key={label} className="rounded-lg border border-dashed border-[#3c4f3d]/20 bg-white/60 p-4">
-                    <p className="text-sm font-medium text-[#3c4f3d]">{label}</p>
-                    <p className="mt-2 text-sm leading-6 text-[#3c4f3d]/60">
-                      Awaiting a registered artifact. The dashboard will populate this view
-                      from the experiment registry when its dependency passes.
-                    </p>
-                  </div>
-                ),
-              )}
-            </div>
+            <DevelopmentEvidencePanel
+              evidence={evidence}
+              loading={evidenceLoading}
+              error={evidenceError}
+              onRetry={() => void loadEvidence()}
+            />
           </TabsContent>
 
           <TabsContent value="single-variant" className="space-y-6">

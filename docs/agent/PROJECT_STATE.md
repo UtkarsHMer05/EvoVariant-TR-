@@ -86,6 +86,14 @@ the remaining shard without recomputation. The focused batch suite passes 8 test
 local atomic-shard kill/restart behavior only; remote batch parity, remote smoke, and any
 full-cohort batch authorization remain absent.
 
+The Phase 16 workbench now reads `/api/research/status`, which verifies the registered formal CPU
+output hashes before exposing development-stage evidence. It reports the completed Phase 8, 9,
+11, 12, and 13 gates, 36 classifier combinations, 12 validation-only HPO studies,
+`selection_closed=true`, untouched locked-test state, and current 15/19 figure plus 11/11
+applicable-table coverage. The UI remains `PARTIAL`: no `FINAL` run is promoted and the four
+unavailable figure families remain visible as blockers. `make web-check`, four Playwright E2E
+journeys, and the frontend contract tests pass.
+
 ## Current state — 2026-09-21
 
 > Historical snapshot retained for provenance; the 2026-09-22 section above is authoritative for

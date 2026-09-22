@@ -75,8 +75,8 @@ No adaptation prediction CSV exists. Therefore no ROC/PR curve, confusion matrix
 
 ## Reproducibility and limitations
 
-The current adaptation branch HEAD used by the active training process is `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`. The progress checkpoint is bound to the frozen protocol, TRAIN manifest, reference hash, and model revision. The branch currently has additional local source/notebook/report updates that require a validated commit and push. The class-stratified development sample does not represent deployment prevalence. This is a research-only discrimination study and does not establish clinical validity, diagnosis, treatment utility, causality, or universal genomic performance.
+The active training process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`. Implementation, notebook, and analysis changes are in validated pushed commit `7d050e7`; this report reconciles that stage. The progress checkpoint is bound to the frozen protocol, TRAIN manifest, reference hash, and model revision. The class-stratified development sample does not represent deployment prevalence. This is a research-only discrimination study and does not establish clinical validity, diagnosis, treatment utility, causality, or universal genomic performance.
 
 ## Conclusion
 
-The protocol and data gates pass, the short smoke passes, and real full-context TRAIN-only optimization has begun. Completion criteria remain unmet until frozen baseline, grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, documentation, validation, and branch push are completed.
+The protocol and data gates pass, the short smoke passes, and real full-context TRAIN-only optimization has begun. Completion criteria remain unmet until frozen baseline, grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, and remaining figures/reports are completed.

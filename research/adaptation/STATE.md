@@ -19,8 +19,8 @@ Current persisted stage: `CADUCEUS_FROZEN_HEAD_ONLY_TRAIN_PROGRESS`
 ## Current repository provenance
 
 - Branch: `research/posthoc-foundation-adaptation`
-- Last pushed HEAD used by the active Colab training: `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`
-- Local implementation HEAD before current uncommitted analysis/notebook updates: `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`
+- HEAD used to start the active Colab training: `34f65a3d8d0125be4cf00b78f19ce115cdc9feae`
+- Latest implementation/notebook commit: `7d050e7` (`feat: add adaptation analysis and judge demo`); state/report reconciliation follows.
 - Main: `30b515314d5f8c8be7c83c96b1f576fb7225c869`
 - Frozen baseline tag: `1003bc5a20973145e0e096ff7b0f3424045d07e6`
 - TRAIN manifest: `32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1`

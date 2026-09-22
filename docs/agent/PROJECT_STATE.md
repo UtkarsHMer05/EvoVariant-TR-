@@ -31,8 +31,8 @@ multi-model Phase 6 benchmark.
   separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
   below; locked-test inference and fine-tuning remain unopened.
 
-Current control-plane checkpoint: branch `research/evovariant-tr`, latest implementation commit
-`8025a25` (`record defensible HPO figure boundary`). No Next/Playwright process or Modal
+Current control-plane checkpoint: branch `research/evovariant-tr`, latest committed checkpoint
+`1c0a81c` (`record clean-room figure gate evidence`). No Next/Playwright process or Modal
 container is active. The
 existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14; no
 fresh exact-scope approval is present for the current checkout, so the locked evaluation remains
@@ -46,6 +46,14 @@ bound to `535d73e56d10ddea5d2ef0098bb7251a57d259d7`, and
 `validate_formal_representation_approval.py` rejects the Phase 7 artifact because it is bound to
 `408edcc83e4a288cc8afb90a5bb9993af302c3d4`. Documentation-only commits follow that audit; no
 paid workload is authorized from either artifact.
+
+The fresh Phase 14 request reached the preflight boundary but did not activate paid work.
+`artifacts/phase14/phase14_preflight_block_20260922.json` records that the expected frozen
+content hash and `selection_closed=true` are present, but the configuration is not executable as
+an immutable final model: it lacks protocol/split/provenance bindings, a serialized fitted
+classifier artifact, a hash-bound isotonic mapping, an abstention rule, and seed bindings, and
+its HPO model ID is not one of the Phase 8 registered model IDs. No locked manifest rows or
+labels were read, no approval was activated, and no Modal inference was started.
 
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 

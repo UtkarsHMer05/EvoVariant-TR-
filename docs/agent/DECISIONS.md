@@ -3341,3 +3341,47 @@ predictions, or Phase 14 work was accessed.
 
 Validation:
 The main checkout's pre-existing dirty paths were not staged or modified by the clean-room run.
+
+## D-107 — Stop Phase 14 before approval activation when the frozen final configuration is not executable
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+The user supplied a fresh exact-scope Phase 14 request with a `$2.75` hard cap and `$2.50`
+safety stop. The repository contains a pre-Phase-14 freeze with the expected content hash and
+`selection_closed=true`, so the first question is whether that freeze is complete enough to run
+one immutable locked evaluation. The master prompt and the supplied continuation explicitly
+require a stop when the configuration is incomplete or internally inconsistent.
+
+Decision:
+Do not create or activate a paid Phase 14 approval and do not read the locked manifest rows,
+labels, or predictions. Preserve the frozen development decision unchanged. Require a new
+development-only freeze materialization that binds the exact executable classifier, model and
+preprocessing provenance, split/protocol hashes, calibration mapping, abstention rule, and seed
+policy before any locked inference can be authorized.
+
+Evidence:
+- Preflight artifact: `artifacts/phase14/phase14_preflight_block_20260922.json`.
+- Current committed HEAD: `1c0a81c5e18c21af745ce02131ea7e9b4aa364fe`.
+- The expected frozen configuration content hash is present as
+  `3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424`, and
+  `selection_closed=true`.
+- The frozen file does not bind the ML-extension protocol hash, separate TRAIN/VALIDATION
+  manifests, exact preprocessing/model revision, fitted classifier artifact, isotonic mapping,
+  abstention rule, or random-seed policy.
+- `model_id=evo2__logistic_regression_hpo` is not among the Phase 8 registered model IDs
+  (`evo2__logistic_regression`, `evo2__mlp`, and `evo2__decision_stump`); the HPO artifact stores
+  the selected hyperparameters but no fitted coefficients/intercept artifact.
+- No locked manifest rows or labels were read, no remote inference was started, and no paid
+  approval was activated.
+
+Consequences:
+Phase 14 remains `BLOCKED / PRE-PHASE-14 CONFIG INCOMPLETE`. This is a no-spend blocker, not a
+scientific result. The master timeline remains active; only the paid locked-evaluation path is
+stopped. Independent local work may repair the freeze using development evidence only, without
+changing the selected model decision or consulting locked outcomes.
+
+Validation:
+Protocol, development-manifest, record-set, locked-manifest, freeze, HPO, calibration, and
+Phase 13 hashes were captured in the preflight artifact. No Modal call was made.

@@ -65,9 +65,12 @@ PHASE14_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_PHASE14_MODE") == "
 FORMAL_PREFLIGHT_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_PREFLIGHT") == "1")
 FORMAL_RESUME_MODE = FORMAL_MODE and (os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_MODE") == "1")
 OVERNIGHT_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_OVERNIGHT_MODE") == "1"
-if sum((PHASE14_MODE, FORMAL_PREFLIGHT_MODE, FORMAL_RESUME_MODE, OVERNIGHT_MODE)) > 1:
+PHASE15_SMOKE_MODE = FORMAL_MODE and os.environ.get("EVOVARIANT_TR_PHASE15_SMOKE") == "1"
+if sum(
+    (PHASE14_MODE, FORMAL_PREFLIGHT_MODE, FORMAL_RESUME_MODE, OVERNIGHT_MODE, PHASE15_SMOKE_MODE)
+) > 1:
     raise RuntimeError(
-        "formal Phase 14, preflight, resume, and overnight modes are mutually exclusive"
+        "formal Phase 14, preflight, resume, overnight, and Phase 15 modes are mutually exclusive"
     )
 FORMAL_PREFLIGHT_SEED = "ML-DEV-BUDGETED-001|FORMAL-64-PREFLIGHT|2026-09-21|sha256-v1"
 FORMAL_RUN_SUFFIX = os.environ.get("EVOVARIANT_TR_FORMAL_RUN_SUFFIX", "full")
@@ -80,6 +83,8 @@ if FORMAL_MODE:
     default_approval = (
         "artifacts/approvals/phase14_locked_evo2_20260922.json"
         if PHASE14_MODE
+        else "artifacts/approvals/phase15_parity_smoke_20260922.json"
+        if PHASE15_SMOKE_MODE
         else "artifacts/approvals/formal_64_preflight_20260921.json"
         if FORMAL_PREFLIGHT_MODE
         else "artifacts/approvals/formal_phase6_resume_20260922.json"
@@ -108,11 +113,15 @@ RUN_ROOT = (
     if FORMAL_MODE
     else REPO_ROOT / "research/runs/phase6_development_evo2_20260921"
 )
+if PHASE15_SMOKE_MODE:
+    RUN_ROOT = REPO_ROOT / "research/runs/phase15_parity_smoke_20260922"
 SHARDS_ROOT = RUN_ROOT / "shards"
 PLAN_PATH = RUN_ROOT / "execution_plan.json"
 PREDICTIONS_PATH = RUN_ROOT / "predictions.jsonl"
 ARTIFACT_PATH = (
-    REPO_ROOT / f"artifacts/phase6/phase6_formal_evo2_20260921_{FORMAL_RUN_SUFFIX}.json"
+    REPO_ROOT / "artifacts/phase15/phase15_parity_smoke_20260922.json"
+    if PHASE15_SMOKE_MODE
+    else REPO_ROOT / f"artifacts/phase6/phase6_formal_evo2_20260921_{FORMAL_RUN_SUFFIX}.json"
     if FORMAL_MODE
     else REPO_ROOT / "artifacts/phase6/phase6_development_evo2_20260921.json"
 )
@@ -135,7 +144,9 @@ PROTOCOL_HASH = (
     else "39de386dcf952af0b4d03de770b68ad2c44d49a113510cafab184d6eebc0c6e3"
 )
 RUN_ID = (
-    f"phase6-formal-evo2-20260921-{FORMAL_RUN_SUFFIX}"
+    "phase15-parity-smoke-20260922"
+    if PHASE15_SMOKE_MODE
+    else f"phase6-formal-evo2-20260921-{FORMAL_RUN_SUFFIX}"
     if FORMAL_MODE
     else "phase6-development-evo2-20260921"
 )
@@ -151,9 +162,11 @@ FORMAL_PAR_ALIAS_IDS = frozenset(
         "GRCh38:Y:1309674:G>T",
     }
 )
-SHARD_SIZE = 32
+SHARD_SIZE = 64 if PHASE15_SMOKE_MODE else 32
 MAX_APPROVAL_BUDGET_USD = (
-    0.75
+    0.25
+    if PHASE15_SMOKE_MODE
+    else 0.75
     if FORMAL_PREFLIGHT_MODE
     else float(os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_HARD_CAP_USD", "2.5"))
     if FORMAL_RESUME_MODE
@@ -164,7 +177,9 @@ MAX_APPROVAL_BUDGET_USD = (
     else 5.0
 )
 MAX_RATE_ESTIMATE_USD = (
-    0.65
+    0.20
+    if PHASE15_SMOKE_MODE
+    else 0.65
     if FORMAL_PREFLIGHT_MODE
     else float(os.environ.get("EVOVARIANT_TR_FORMAL_RESUME_SAFETY_STOP_USD", "2.25"))
     if FORMAL_RESUME_MODE
@@ -330,6 +345,27 @@ def _load_development_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 str(row["normalized_variant_id"]).encode("utf-8")
             ).hexdigest()
         )
+    selection_description: dict[str, Any] | None = None
+    if PHASE15_SMOKE_MODE:
+        cached_ids = set(_load_historical_cache())
+        cached_records = [
+            row for row in records if str(row["normalized_variant_id"]) in cached_ids
+        ]
+        uncached_records = [
+            row for row in records if str(row["normalized_variant_id"]) not in cached_ids
+        ]
+        records = cached_records + uncached_records[: max(0, 64 - len(cached_records))]
+        if len(records) != 64 or len(cached_records) != 56:
+            raise RuntimeError(
+                "Phase 15 smoke selection must contain 56 cached and 8 uncached rows"
+            )
+        selection_description = {
+            "cache_first": True,
+            "cached_rows": len(cached_records),
+            "uncached_rows": len(records) - len(cached_records),
+            "selection": "all verified formal development cache IDs, then ascending ID fill",
+            "label_blind": True,
+        }
     counts = {
         "total": len(records),
         "TRAIN": sum(row["split"] == "TRAIN" for row in records),
@@ -352,6 +388,7 @@ def _load_development_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
             else "ascending SHA-256 of normalized_variant_id"
         ),
         "selection_seed": FORMAL_PREFLIGHT_SEED if FORMAL_PREFLIGHT_MODE else None,
+        "selection_description": selection_description,
         "counts": counts,
         "formal_manifest_record_set_sha256": document.get("record_set_sha256")
         if FORMAL_MODE
@@ -622,6 +659,9 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
     return {
         "run_id": RUN_ID,
         "execution_mode": (
+            "PHASE15_PARITY_SMOKE"
+            if PHASE15_SMOKE_MODE
+            else
             "FORMAL_64_PREFLIGHT"
             if FORMAL_PREFLIGHT_MODE
             else "FORMAL_PHASE6_RESUME"
@@ -656,6 +696,7 @@ def _build_plan(approval: Any, manifest_metadata: dict[str, Any]) -> dict[str, A
         "labels_remote_transport": False,
         "formal_record_limit": FORMAL_LIMIT if FORMAL_MODE else None,
         "formal_preflight": FORMAL_PREFLIGHT_MODE,
+        "phase15_smoke": PHASE15_SMOKE_MODE,
         "selection_seed": manifest_metadata.get("selection_seed"),
         "record_count": manifest_metadata["counts"]["total"],
     }
@@ -704,7 +745,9 @@ def main() -> None:
         )
         return
 
-    if FORMAL_PREFLIGHT_MODE:
+    if PHASE15_SMOKE_MODE:
+        from validate_phase15_parity_smoke_approval import validate_approval
+    elif FORMAL_PREFLIGHT_MODE:
         from validate_formal_64_preflight_approval import validate_approval
     elif FORMAL_RESUME_MODE:
         from validate_formal_phase6_resume import validate_approval, validate_preflight
@@ -717,7 +760,9 @@ def main() -> None:
 
     assert_paid_compute_allowed()
     approval = (
-        validate_approval(APPROVAL_PATH)
+        validate_approval(APPROVAL_PATH, REPO_ROOT)
+        if PHASE15_SMOKE_MODE
+        else validate_approval(APPROVAL_PATH)
         if FORMAL_MODE
         else validate_development_approval(APPROVAL_PATH, REPO_ROOT)
     )
@@ -739,8 +784,10 @@ def main() -> None:
     records, manifest_metadata = _load_development_records()
     source_record_count = len(records)
     if FORMAL_MODE and FORMAL_LIMIT:
-        if FORMAL_PREFLIGHT_MODE and FORMAL_LIMIT != 64:
-            raise ValueError("formal preflight mode requires EVOVARIANT_TR_FORMAL_LIMIT=64")
+        if (FORMAL_PREFLIGHT_MODE or PHASE15_SMOKE_MODE) and FORMAL_LIMIT != 64:
+            raise ValueError(
+                "64-row Phase 15/preflight mode requires EVOVARIANT_TR_FORMAL_LIMIT=64"
+            )
         if FORMAL_LIMIT < 1 or FORMAL_LIMIT > len(records):
             raise ValueError("EVOVARIANT_TR_FORMAL_LIMIT must be between 1 and 4,000")
         records = records[:FORMAL_LIMIT]
@@ -842,7 +889,9 @@ def main() -> None:
     estimated_usd = 0.0
     rate_samples: list[float] = []
     stop_reason = (
-        "formal sample completed"
+        "Phase 15 parity smoke completed"
+        if PHASE15_SMOKE_MODE
+        else "formal sample completed"
         if FORMAL_MODE and FORMAL_LIMIT
         else "full development cohort completed"
     )
@@ -1023,7 +1072,11 @@ def main() -> None:
         status = "FAILED"
     elif completed_shards == (len(records) + SHARD_SIZE - 1) // SHARD_SIZE:
         status = (
-            "PASS_FORMAL_SAMPLE" if FORMAL_MODE and FORMAL_LIMIT else "PASS_FULL_DEVELOPMENT_COHORT"
+            "PASS_PHASE15_PARITY_SMOKE"
+            if PHASE15_SMOKE_MODE
+            else "PASS_FORMAL_SAMPLE"
+            if FORMAL_MODE and FORMAL_LIMIT
+            else "PASS_FULL_DEVELOPMENT_COHORT"
         )
     else:
         status = "PARTIAL_BUDGET_STOP" if failure is None else "PARTIAL_REMOTE_FAILURE"
@@ -1067,6 +1120,9 @@ def main() -> None:
     billing_after = _billing_snapshot()
     artifact = {
         "artifact_id": (
+            "phase15-parity-smoke-20260922"
+            if PHASE15_SMOKE_MODE
+            else
             f"phase6-formal-evo2-20260921-{FORMAL_RUN_SUFFIX}"
             if FORMAL_MODE
             else "phase6-development-evo2-20260921"
@@ -1178,6 +1234,7 @@ def main() -> None:
             "locked_test_labels_accessed": False,
             "full_development_cohort_complete": status == "PASS_FULL_DEVELOPMENT_COHORT",
             "formal_sample_complete": status == "PASS_FORMAL_SAMPLE",
+            "phase15_smoke_complete": status == "PASS_PHASE15_PARITY_SMOKE",
             "metrics_claimed": False,
             "phase14_started": False,
             "training_hpo_finetuning_started": False,
@@ -1221,11 +1278,16 @@ def main() -> None:
             "status": (
                 "COMPLETED"
                 if status
-                in {"PASS_FULL_DEVELOPMENT_COHORT", "PASS_FORMAL_SAMPLE", "PARTIAL_BUDGET_STOP"}
+                in {
+                    "PASS_FULL_DEVELOPMENT_COHORT",
+                    "PASS_FORMAL_SAMPLE",
+                    "PASS_PHASE15_PARITY_SMOKE",
+                    "PARTIAL_BUDGET_STOP",
+                }
                 else "FAILED"
             ),
             "notes": (
-                "Development-only Evo2 raw scoring; deterministic TRAIN/VALIDATION prefix, "
+                "Development-only Evo2 raw scoring; deterministic TRAIN/VALIDATION selection, "
                 "no LOCKED_TEST access, no remote labels, no Phase 14 evaluation."
             ),
         }

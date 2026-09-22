@@ -1597,12 +1597,14 @@ locked-cohort or paid work.
 
 - Work remains on `research/posthoc-foundation-adaptation`. Notebook finalization update `44ac317`
   adds fixed-seed TRAIN refits and closes the 801 evaluation gate until all three are verified.
-  The latest full code validation is at `80210af` (`feat: allow fixed seed robustness runs`).
-  `main` and `evovariant-tr-baseline-v1` remain unchanged.
+  Full validation passed at `a2f500f` after the supplementary probability-MAE metric was added:
+  736 tests passed, 33 deselected, and core coverage was 95.06%. `main` and
+  `evovariant-tr-baseline-v1` remain unchanged.
 - In the user's existing Vivaldi Colab tab, the free Tesla T4 run completed the Caduceus smoke
   and 3-epoch frozen-head TRAIN-only baseline. Its resumable 8-trial, 3-fold, gene-grouped HPO is
-  active on Drive; the latest observed worker was PID 58018 at 1:24:39 with trial 0 RUNNING,
-  trials 1–3 WAITING, and four persisted epochs for fold 0. The study/selection lock remains open.
+  active on Drive; the latest observed worker was PID 58018 at 1:34:44 with trial 0 RUNNING,
+  trials 1–3 WAITING, four persisted epochs for fold 0, and one for fold 1. The study/selection
+  lock remains open.
 - The 801-row adaptation holdout is still gated behind HPO selection and final TRAIN refit. No
   holdout predictions or labels were used for selection, and the 946-row locked cohort remains
   untouched.

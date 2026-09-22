@@ -1,0 +1,55 @@
+{
+  "artifact_id": "posthoc_adaptation_free_colab_20260922",
+  "approval_version": "posthoc-foundation-adaptation-free-colab-v1",
+  "study_id": "POSTHOC-FOUNDATION-ADAPTATION-001",
+  "approved_at_utc": "2026-09-22T17:50:46Z",
+  "approved_by": "user request to follow the supplied autonomous adaptation master prompt",
+  "authorization_source": "downloaded master prompt supplied by user; subordinate to system/developer instructions",
+  "backend": "Google Colab free GPU",
+  "canonical_observed_gpu": "Tesla T4",
+  "paid_compute_budget_usd": 0,
+  "paid_purchases": "PROHIBITED",
+  "allowed_workloads": [
+    "Caduceus training and HPO",
+    "Nucleotide Transformer frozen baseline",
+    "Nucleotide Transformer PEFT feasibility",
+    "development-only robustness",
+    "801-row adaptation holdout evaluation",
+    "calibration, abstention, ensemble, statistics, figures, reports"
+  ],
+  "excluded_workloads": [
+    "946 locked-test selection/tuning/rerun",
+    "paid Modal, GCP, or Colab work",
+    "full Evo2 fine-tuning",
+    "clinical deployment"
+  ],
+  "data": {
+    "formal_development_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_train_manifest_sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+    "formal_validation_manifest_sha256": "b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b",
+    "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb"
+  },
+  "protocol_sha256": "dce981aaf11425732c5bdc0e081117feb8a9e4e079c28c0529807e5bfe477a7f",
+  "baseline": {
+    "main_commit": "30b515314d5f8c8be7c83c96b1f576fb7225c869",
+    "tag": "evovariant-tr-baseline-v1",
+    "tag_commit": "1003bc5a20973145e0e096ff7b0f3424045d07e6"
+  },
+  "stop_conditions": [
+    "authentication requiring user interaction",
+    "free GPU unavailable",
+    "incompatible runtime or hardware",
+    "scientific invariant violation",
+    "missing authoritative data",
+    "paid compute requirement",
+    "unrecoverable repository inconsistency"
+  ],
+  "provenance_requirements": [
+    "protocol hash",
+    "data manifest hashes",
+    "adaptation Git HEAD",
+    "model revisions",
+    "runtime",
+    "checkpoint and artifact hashes"
+  ]
+}

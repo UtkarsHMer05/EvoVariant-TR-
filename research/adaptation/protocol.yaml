@@ -1,0 +1,248 @@
+study_id: POSTHOC-FOUNDATION-ADAPTATION-001
+protocol_version: 1.0.0
+status: FROZEN
+frozen_at_utc: 2026-09-22T17:50:46Z
+study_type: POST-HOC DEVELOPMENT ADAPTATION
+primary_question: >-
+  Does task-specific adaptation of feasible genomic foundation models improve
+  P/LP-vs-B/LB resolution-direction discrimination relative to frozen
+  representations on the formal gene-held-out VALIDATION cohort?
+
+repository:
+  branch: research/posthoc-foundation-adaptation
+  baseline_branch: main
+  baseline_commit: 30b515314d5f8c8be7c83c96b1f576fb7225c869
+  baseline_tag: evovariant-tr-baseline-v1
+  baseline_tag_commit: 1003bc5a20973145e0e096ff7b0f3424045d07e6
+  adaptation_implementation_commit_at_freeze: dd36ad72572bd8aa8bf9f0a7a589075c1fe65f70
+
+baseline_anchor:
+  population: 946-row historical locked temporal cohort
+  auroc: 0.909225974
+  auprc: 0.863039100
+  accuracy: 0.843551797
+  balanced_accuracy: 0.839866218
+  locked_test_use_in_adaptation: PROHIBITED
+
+data:
+  assembly: GRCh38
+  primary_context_bp: 8192
+  development_contexts_bp: [512, 1024, 2048, 4096, 8192]
+  formal_development:
+    path: research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json
+    sha256: f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782
+    rows: 4000
+    negative: 3226
+    positive: 774
+  train:
+    path: research/ml_extension/splits/formal_budgeted_20260921/formal_train_manifest.json
+    sha256: 32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1
+    rows: 3199
+    negative: 2645
+    positive: 554
+  validation:
+    path: research/ml_extension/splits/formal_budgeted_20260921/formal_validation_manifest.json
+    sha256: b31d884860fcf07b6f7f453c3ef148886913f381965318e9c1da341d1eaf3c8b
+    rows: 801
+    negative: 581
+    positive: 220
+  locked_test:
+    path: research/ml_extension/splits/authoritative_locked_test_manifest.json
+    file_sha256: 9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb
+    record_set_sha256: ae4f6f1c1ad7c8d9ea78a9e5ce0380b1d8862a125592be5474b7826de165a6a0
+    rows: 946
+    use: display historical baseline only; never load labels or predictions for adaptation selection
+  invariants:
+    train_validation_gene_overlap: 0
+    train_validation_id_overlap: 0
+    adaptation_locked_id_overlap: 0
+    ref_alt_validation: required
+    missing_sequence: fail_closed
+    difficult_rows: never_drop
+
+models:
+  primary:
+    name: Caduceus-Ph
+    checkpoint: kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16
+    role: adapted_primary
+    revision: REQUIRED_BEFORE_SMOKE
+  secondary:
+    name: Nucleotide Transformer v2 500M
+    checkpoint: InstaDeepAI/nucleotide-transformer-v2-500m-multi-species
+    role: frozen_then_peft_if_feasible
+    revision: REQUIRED_BEFORE_SMOKE
+  frozen_anchor:
+    name: Evo2 7B
+    role: frozen_same_split_comparison_only
+    new_inference: PROHIBITED
+  trainable_parameter_policy: record_total_and_trainable_for_every_successful_system
+
+architecture:
+  paired_variant:
+    ref_path: shared_encoder(reference_sequence)
+    alt_path: shared_encoder(alternate_sequence)
+    candidate_components: [z_ref, z_alt, z_alt_minus_z_ref, abs_z_alt_minus_z_ref]
+    head: small_explainable_binary_classification_head
+    selection: TRAIN_grouped_CV_only
+  orientation:
+    forward_logit: required
+    reverse_complement_logit: required_if_supported
+    aggregation: arithmetic_mean_of_forward_and_rc_logits
+    orientation_selection_by_holdout_labels: prohibited
+    orientation_rows_are_not_independent_samples: true
+  sequence:
+    primary_context_bp: 8192
+    ref_validation: required
+    mutation_validation: required
+    chrY_PAR_policy: reuse_documented_baseline_policy
+
+selection:
+  primary_metric: AUROC
+  tie_breakers:
+    - AUPRC
+    - MCC
+    - lower_Brier
+    - lower_compute_and_trainable_parameter_count_if_scientifically_equivalent
+  hpo:
+    method: TRAIN_only_3_fold_StratifiedGroupKFold
+    grouping: gene_symbol
+    folds: 3
+    minimum_meaningful_trials: 8
+    maximum_trials: 12
+    pruning: enabled
+    search_space:
+      learning_rate: [0.00001, 0.00003, 0.0001]
+      weight_decay: [0.0, 0.01, 0.05]
+      dropout: [0.0, 0.1, 0.2]
+      regime: [frozen_head_only, partial_small, partial_large, full_if_feasible]
+      effective_batch_size: [16, 32]
+      epoch_cap: [4, 6, 8]
+    objective: mean_best_fold_validation_AUROC_then_declared_tie_breakers
+    state_persistence: every_trial_to_drive
+  seeds: [42, 1337, 2026]
+  primary_seed: 42
+  seed_selection_by_holdout: prohibited
+  class_weight:
+    loss: BCEWithLogitsLoss
+    pos_weight: fold_negative_count_divided_by_fold_positive_count
+    source: current_fold_training_rows_only
+  early_stopping:
+    metric: fold_validation_AUROC
+    patience_epochs: 2
+    min_delta: 0.0001
+    max_epoch_from_trial: epoch_cap
+  final_epoch:
+    rule: median_of_selected_config_per_fold_best_epochs_rounded_and_clipped_to_epoch_cap
+    training_rows: all_3199_train_rows
+    holdout_labels_used: false
+
+holdout:
+  population: 801-row formal VALIDATION
+  label_use: after_configuration_freeze_only
+  evaluation: exactly_once_per_predeclared_final_system
+  selection_after_evaluation: prohibited
+  label: POST-HOC ADAPTATION HOLDOUT
+
+calibration:
+  fit_population: TRAIN_OOF_only
+  methods: [uncalibrated, Platt, isotonic]
+  selection_metric: OOF_NLL_then_Brier_then_ECE
+  apply_to_holdout: frozen_selected_calibrator_only
+
+abstention:
+  fit_population: TRAIN_OOF_only
+  coverage_targets: [0.5, 0.75, 0.9, 1.0]
+  threshold_rule: OOF_confidence_quantiles
+  report: [coverage, accuracy_at_coverage, risk, error_rate, abstention_rate]
+  holdout_retuning: prohibited
+
+ensemble:
+  candidates:
+    - frozen_evo2_plus_adapted_caduceus
+    - frozen_evo2_plus_adapted_caduceus_plus_nt_peft_if_available
+  diagnostics_before_fit: [prediction_correlation, error_overlap, agreement_disagreement]
+  stacking_fit: TRAIN_OOF_only
+  weights_fit_on_holdout: prohibited
+
+robustness:
+  contexts_bp: [512, 1024, 2048, 4096, 8192]
+  learning_curve_fractions: [0.1, 0.25, 0.5, 0.75, 1.0]
+  ablations:
+    - reference_only
+    - alternate_only
+    - difference_only
+    - absolute_difference_only
+    - paired_full
+    - forward_only
+    - reverse_complement_only
+    - forward_plus_reverse_complement
+    - frozen_head_only
+    - partial_fine_tune
+    - full_fine_tune_if_feasible
+    - without_calibration
+    - with_calibration
+    - single_model
+    - ensemble
+  missing_points: report_as_missing_never_interpolate
+
+statistics:
+  bootstrap_replicates: 2000
+  bootstrap_unit: gene
+  confidence_level: 0.95
+  metrics: [AUROC, AUPRC, MCC, balanced_accuracy, Brier]
+  paired_comparison: paired_gene_aware_bootstrap
+  multiplicity: Holm_correction_for_multiple_primary_comparisons
+  point_estimate_alone_is_not_superiority: true
+
+resources:
+  backend: Google Colab free GPU
+  paid_compute_budget_usd: 0
+  paid_purchases: PROHIBITED
+  gpu_target: Tesla_T4_when_available
+  precision_preference: FP16_on_T4
+  precision_validation: reject_nonfinite_or_unstable_runs
+  full_evo2_fine_tuning: PROHIBITED
+  full_caduceus_if_oom: FULL_FINETUNE_RESOURCE_DEFERRED_T4
+  nt_peft_if_unfit: RESOURCE_DEFERRED_T4
+  free_gpu_unavailable: WAITING_FOR_FREE_GPU
+  allowed_adaptations:
+    - smaller_microbatch
+    - gradient_accumulation
+    - gradient_checkpointing
+    - activation_checkpointing
+    - sequence_caching
+    - dataloader_worker_reduction
+    - free_unused_tensors
+  forbidden_adaptations:
+    - dropping_variants
+    - training_on_validation
+    - training_on_locked_test
+    - changing_labels
+    - removing_minority_examples
+    - holdout_peeking
+
+provenance:
+  required_bindings:
+    - protocol_sha256
+    - data_manifest_hashes
+    - baseline_commit_and_tag
+    - adaptation_git_head
+    - model_revisions
+    - runtime_environment
+    - checkpoint_hashes
+    - artifact_hashes
+  drive_root: /content/drive/MyDrive/EvoVariantTR
+  local_state: research/adaptation/STATE.md
+  remote_state: /content/drive/MyDrive/EvoVariantTR/state/adaptation_state.json
+  atomic_state_writes: true
+  no_large_weights_in_git: true
+
+claims:
+  permitted: P/LP-vs-B/LB resolution-direction discrimination in the defined research cohort
+  prohibited:
+    - clinical_validation
+    - diagnosis
+    - treatment_implication
+    - causality
+    - universal_genomic_performance
+    - superiority_from_point_estimates_only

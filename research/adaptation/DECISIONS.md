@@ -1,0 +1,24 @@
+# Adaptation Decisions
+
+Study: POSTHOC-FOUNDATION-ADAPTATION-001
+Protocol: research/adaptation/protocol.yaml
+Protocol SHA-256: dce981aaf11425732c5bdc0e081117feb8a9e4e079c28c0529807e5bfe477a7f
+
+| ID | Decision | Rationale | Status |
+|---|---|---|---|
+| D-A001 | Keep adaptation separate from the frozen zero-shot baseline. | Prevents protocol and metric-stage conflation. | FROZEN |
+| D-A002 | Use the exact committed 4,000/3,199/801 manifests. | Preserves authorized gene-held-out identities and hashes. | FROZEN |
+| D-A003 | Treat the 946 temporal cohort as historical-only and never use it for adaptation selection. | Absolute locked-test rule. | FROZEN |
+| D-A004 | Use Caduceus-Ph as primary, NT v2 500M as secondary, and Evo2 7B only as a frozen same-split anchor. | Matches the requested study contract and free-T4 boundary. | FROZEN |
+| D-A005 | Select paired representation, orientation, HPO, seeds, epochs, calibration, abstention, and ensemble rules from TRAIN-only evidence. | Prevents holdout leakage. | FROZEN |
+| D-A006 | Average forward and reverse-complement logits; do not treat orientations as independent samples. | Preserves strand handling without inflating n. | FROZEN |
+| D-A007 | Use free Colab/local resources only; defer rather than fabricate any resource-infeasible result. | Paid compute is prohibited. | FROZEN |
+| D-A008 | Evaluate the 801 holdout once per predeclared final system after selection closes. | Preserves the terminal holdout boundary. | FROZEN |
+| D-A009 | Use gene-aware paired bootstrap and Holm correction for uncertainty/comparisons. | Accounts for grouped identities and multiple primary comparisons. | FROZEN |
+| D-A010 | Keep canonical ML logic in source files and make the Judge notebook render it with inspect.getsource. | Makes fine-tuning auditable. | FROZEN |
+
+## Open operational items
+
+1. Resolve and record official Caduceus and NT revisions before smoke.
+2. Verify the live Colab/Vivaldi runtime and Drive paths.
+3. Select a compatible dependency environment without mutating the frozen local baseline.

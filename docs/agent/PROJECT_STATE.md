@@ -1602,8 +1602,8 @@ locked-cohort or paid work.
   `evovariant-tr-baseline-v1` remain unchanged.
 - In the user's existing Vivaldi Colab tab, the free Tesla T4 run completed the Caduceus smoke
   and 3-epoch frozen-head TRAIN-only baseline. Its resumable 8-trial, 3-fold, gene-grouped HPO is
-  active on Drive; the latest observed worker was PID 58018 at 1:34:44 with trial 0 RUNNING,
-  trials 1–3 WAITING, four persisted epochs for fold 0, and one for fold 1. The study/selection
+  active on Drive; the latest observed worker was PID 58018 at 1:51:32 with trial 0 RUNNING,
+  trials 1–3 WAITING, four persisted epochs for fold 0, and two for fold 1. The study/selection
   lock remains open.
 - The 801-row adaptation holdout is still gated behind HPO selection and final TRAIN refit. No
   holdout predictions or labels were used for selection, and the 946-row locked cohort remains

@@ -1,0 +1,293 @@
+{
+  "errors": [],
+  "feature_audits": {
+    "all_fusion": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 2891,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "train": 2296,
+      "train_validation_gene_overlap": 0,
+      "validation": 595
+    },
+    "cad16": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "cad4": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "cad8": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "cadd": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 2891,
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "train": 2296,
+      "train_validation_gene_overlap": 0,
+      "validation": 595
+    },
+    "cadd_phylop": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 2891,
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "train": 2296,
+      "train_validation_gene_overlap": 0,
+      "validation": 595
+    },
+    "evo2": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "foundation_fusion": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "nt16": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "nt24": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "nt8": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 4000,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "train": 3199,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    },
+    "phylop": {
+      "finite_values": true,
+      "locked_test_rows": 0,
+      "rows": 3997,
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "train": 3196,
+      "train_validation_gene_overlap": 0,
+      "validation": 801
+    }
+  },
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "high_performance_models_audited": [
+    {
+      "feature_set": "all_fusion",
+      "model_id": "all_fusion__logistic_regression",
+      "validation_auroc": 0.9978495840642861,
+      "validation_rows": 595
+    },
+    {
+      "feature_set": "all_fusion",
+      "model_id": "all_fusion__mlp",
+      "validation_auroc": 0.9980193537434214,
+      "validation_rows": 595
+    },
+    {
+      "feature_set": "cadd",
+      "model_id": "cadd__logistic_regression",
+      "validation_auroc": 0.997792994171241,
+      "validation_rows": 595
+    },
+    {
+      "feature_set": "cadd",
+      "model_id": "cadd__mlp",
+      "validation_auroc": 0.997637371965367,
+      "validation_rows": 595
+    },
+    {
+      "feature_set": "cadd_phylop",
+      "model_id": "cadd_phylop__logistic_regression",
+      "validation_auroc": 0.9968734084092581,
+      "validation_rows": 595
+    },
+    {
+      "feature_set": "cadd_phylop",
+      "model_id": "cadd_phylop__mlp",
+      "validation_auroc": 0.9974534548129704,
+      "validation_rows": 595
+    }
+  ],
+  "inputs": {
+    "phase8_summary": "research/runs/formal_cpu_20260922/phase8/summary.json",
+    "phase8_summary_sha256": "c1f576ec854051e19238438017d28a0c0baf421518eaea9e78b02ff91617ae95",
+    "representation_artifact": "artifacts/phase7/formal_budgeted_representation_20260922.json",
+    "representation_artifact_sha256": "cea3b1c733eb70e58dcbaf49784fe9405e93a65eb0d7101aca464d3368b61783"
+  },
+  "labels_attached_locally_only": true,
+  "locked_test_accessed": false,
+  "status": "PASS_FORMAL_LEAKAGE_AUDIT"
+}

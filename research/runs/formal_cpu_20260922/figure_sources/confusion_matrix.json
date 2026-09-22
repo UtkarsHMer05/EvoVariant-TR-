@@ -1,0 +1,218 @@
+[
+  {
+    "fn": 220,
+    "fp": 1,
+    "model_id": "cad16__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 580,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad16__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad16__mlp",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad4__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad4__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad4__mlp",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 218,
+    "fp": 2,
+    "model_id": "cad8__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 579,
+    "tp": 2
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad8__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "cad8__mlp",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 18,
+    "fp": 8,
+    "model_id": "evo2__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 573,
+    "tp": 202
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "evo2__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "evo2__mlp",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 18,
+    "fp": 8,
+    "model_id": "foundation_fusion__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 573,
+    "tp": 202
+  },
+  {
+    "fn": 141,
+    "fp": 3,
+    "model_id": "foundation_fusion__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 578,
+    "tp": 79
+  },
+  {
+    "fn": 60,
+    "fp": 12,
+    "model_id": "foundation_fusion__mlp",
+    "scope": "VALIDATION development",
+    "tn": 569,
+    "tp": 160
+  },
+  {
+    "fn": 68,
+    "fp": 17,
+    "model_id": "nt16__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 564,
+    "tp": 152
+  },
+  {
+    "fn": 218,
+    "fp": 0,
+    "model_id": "nt16__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 2
+  },
+  {
+    "fn": 51,
+    "fp": 25,
+    "model_id": "nt16__mlp",
+    "scope": "VALIDATION development",
+    "tn": 556,
+    "tp": 169
+  },
+  {
+    "fn": 100,
+    "fp": 10,
+    "model_id": "nt24__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 571,
+    "tp": 120
+  },
+  {
+    "fn": 161,
+    "fp": 3,
+    "model_id": "nt24__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 578,
+    "tp": 59
+  },
+  {
+    "fn": 60,
+    "fp": 34,
+    "model_id": "nt24__mlp",
+    "scope": "VALIDATION development",
+    "tn": 547,
+    "tp": 160
+  },
+  {
+    "fn": 96,
+    "fp": 10,
+    "model_id": "nt8__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 571,
+    "tp": 124
+  },
+  {
+    "fn": 220,
+    "fp": 0,
+    "model_id": "nt8__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 581,
+    "tp": 0
+  },
+  {
+    "fn": 95,
+    "fp": 9,
+    "model_id": "nt8__mlp",
+    "scope": "VALIDATION development",
+    "tn": 572,
+    "tp": 125
+  },
+  {
+    "fn": 98,
+    "fp": 10,
+    "model_id": "phylop__decision_stump",
+    "scope": "VALIDATION development",
+    "tn": 571,
+    "tp": 122
+  },
+  {
+    "fn": 84,
+    "fp": 13,
+    "model_id": "phylop__logistic_regression",
+    "scope": "VALIDATION development",
+    "tn": 568,
+    "tp": 136
+  },
+  {
+    "fn": 58,
+    "fp": 51,
+    "model_id": "phylop__mlp",
+    "scope": "VALIDATION development",
+    "tn": 530,
+    "tp": 162
+  }
+]

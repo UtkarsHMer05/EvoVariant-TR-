@@ -1,0 +1,40 @@
+{
+  "config": {
+    "base_models": [
+      "evo2__logistic_regression_hpo"
+    ],
+    "bootstrap_replicates": 1000,
+    "calibrator": "isotonic",
+    "feature_names": [
+      "evo2[0]",
+      "evo2[1]",
+      "evo2[2]",
+      "evo2[3]"
+    ],
+    "feature_set": "evo2",
+    "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+    "hpo": {
+      "config": {
+        "l2": 0.0,
+        "learning_rate": 0.05,
+        "steps": 100
+      },
+      "status": "COMPLETED",
+      "trial_number": 0,
+      "validation_metric": 0.9887889219214521
+    },
+    "locked_test_evaluated": false,
+    "model_id": "evo2__logistic_regression_hpo",
+    "phase": "PRE_PHASE14_FREEZE",
+    "post_test_tuning_allowed": false,
+    "score_direction": "higher_is_more_pathogenic",
+    "score_threshold": 0.5,
+    "selection_closed": true
+  },
+  "config_sha256": "3ab606a1e351b536f3c32ce45da956f844904ec704963f88f1cdc256d7d77424",
+  "locked_test_evaluated": false,
+  "phase13_artifact": "research/runs/formal_cpu_20260922/phase13/ablations_learning_curves_robustness.json",
+  "selection_closed": true,
+  "status": "PASS_PRE_PHASE14_FREEZE"
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "model_id": "evo2",
+    "scope": "project model registry",
+    "status": "INCLUDED_RAW_SCORE"
+  },
+  {
+    "model_id": "nucleotide_transformer",
+    "scope": "project model registry",
+    "status": "INCLUDED_EMBEDDING_TRACK"
+  },
+  {
+    "model_id": "caduceus",
+    "scope": "project model registry",
+    "status": "INCLUDED_EMBEDDING_TRACK"
+  },
+  {
+    "model_id": "cadd",
+    "scope": "project model registry",
+    "status": "SUBSET_ONLY"
+  },
+  {
+    "model_id": "phylop",
+    "scope": "project model registry",
+    "status": "SUBSET_ONLY"
+  }
+]

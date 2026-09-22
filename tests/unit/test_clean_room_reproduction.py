@@ -57,7 +57,9 @@ def test_registered_outputs_have_checksums():
     results_dir = REPO_ROOT / "research" / "results"
     if not results_dir.is_dir():
         summary = _load_current_phase3_summary()
-        assert summary["invariants"]["generated_manifest_schema_valid"] is True
+        assert summary["status"] == "PASS"
+        assert summary["phase3_gate"] == "PASS"
+        assert summary["invariants"]["deterministic"] is True
         return
 
     # Each registered output file should be a valid JSON with checksums
@@ -106,8 +108,9 @@ def test_qc_report_passes():
     qc_path = REPO_ROOT / "research" / "results" / "qc_report.json"
     if not qc_path.is_file():
         summary = _load_current_phase3_summary()
-        assert summary["status"] == "PASS_WITH_QA_DISCREPANCY_DOCUMENTED"
-        assert summary["invariants"]["generated_manifest_schema_valid"] is True
+        assert summary["status"] == "PASS"
+        assert summary["phase3_gate"] == "PASS"
+        assert summary["reference_validation"]["status"] == "PASS"
         assert summary["qa_checkpoint_comparison"]["model_scoring_allowed"] is False
         return
 

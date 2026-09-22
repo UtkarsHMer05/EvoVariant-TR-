@@ -1,0 +1,122 @@
+[
+  {
+    "coverage": 1.0,
+    "risk": 0.2746566791510612,
+    "sample_count": 801,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.9488139825218477,
+    "risk": 0.2355263157894737,
+    "sample_count": 760,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.898876404494382,
+    "risk": 0.19444444444444445,
+    "sample_count": 720,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.8489388264669163,
+    "risk": 0.14852941176470588,
+    "sample_count": 680,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.7990012484394506,
+    "risk": 0.096875,
+    "sample_count": 640,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.7490636704119851,
+    "risk": 0.043333333333333335,
+    "sample_count": 600,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.6991260923845194,
+    "risk": 0.008928571428571428,
+    "sample_count": 560,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.6491885143570537,
+    "risk": 0.009615384615384616,
+    "sample_count": 520,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.599250936329588,
+    "risk": 0.004166666666666667,
+    "sample_count": 480,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.5493133583021224,
+    "risk": 0.0022727272727272726,
+    "sample_count": 440,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.4993757802746567,
+    "risk": 0.0025,
+    "sample_count": 400,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.449438202247191,
+    "risk": 0.002777777777777778,
+    "sample_count": 360,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.3995006242197253,
+    "risk": 0.003125,
+    "sample_count": 320,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.3495630461922597,
+    "risk": 0.0035714285714285713,
+    "sample_count": 280,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.299625468164794,
+    "risk": 0.004166666666666667,
+    "sample_count": 240,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.24968789013732834,
+    "risk": 0.005,
+    "sample_count": 200,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.19975031210986266,
+    "risk": 0.00625,
+    "sample_count": 160,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.149812734082397,
+    "risk": 0.0,
+    "sample_count": 120,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.09987515605493133,
+    "risk": 0.0,
+    "sample_count": 80,
+    "scope": "VALIDATION development"
+  },
+  {
+    "coverage": 0.049937578027465665,
+    "risk": 0.0,
+    "sample_count": 40,
+    "scope": "VALIDATION development"
+  }
+]

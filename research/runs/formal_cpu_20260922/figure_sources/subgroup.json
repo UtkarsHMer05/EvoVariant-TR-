@@ -1,0 +1,275 @@
+[
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 8,
+    "scope": "VALIDATION development",
+    "subgroup": "ABCA4"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 18,
+    "scope": "VALIDATION development",
+    "subgroup": "ALMS1"
+  },
+  {
+    "metric": 0.9523809523809523,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 13,
+    "scope": "VALIDATION development",
+    "subgroup": "APC"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 27,
+    "scope": "VALIDATION development",
+    "subgroup": "ATM"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 7,
+    "scope": "VALIDATION development",
+    "subgroup": "ATP7B"
+  },
+  {
+    "metric": 0.9896103896103896,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 46,
+    "scope": "VALIDATION development",
+    "subgroup": "BRCA1"
+  },
+  {
+    "metric": 0.9847645429362881,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 57,
+    "scope": "VALIDATION development",
+    "subgroup": "BRCA2"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 7,
+    "scope": "VALIDATION development",
+    "subgroup": "BRIP1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 10,
+    "scope": "VALIDATION development",
+    "subgroup": "CDH1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 16,
+    "scope": "VALIDATION development",
+    "subgroup": "CFTR"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 6,
+    "scope": "VALIDATION development",
+    "subgroup": "CHEK2"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 7,
+    "scope": "VALIDATION development",
+    "subgroup": "COL3A1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 11,
+    "scope": "VALIDATION development",
+    "subgroup": "DICER1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 8,
+    "scope": "VALIDATION development",
+    "subgroup": "DMD"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 13,
+    "scope": "VALIDATION development",
+    "subgroup": "DSP"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 9,
+    "scope": "VALIDATION development",
+    "subgroup": "FANCA"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 13,
+    "scope": "VALIDATION development",
+    "subgroup": "FBN1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 9,
+    "scope": "VALIDATION development",
+    "subgroup": "FLNC"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 20,
+    "scope": "VALIDATION development",
+    "subgroup": "LDLR"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 13,
+    "scope": "VALIDATION development",
+    "subgroup": "MLH1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 18,
+    "scope": "VALIDATION development",
+    "subgroup": "MSH2"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 9,
+    "scope": "VALIDATION development",
+    "subgroup": "MSH3"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 18,
+    "scope": "VALIDATION development",
+    "subgroup": "MSH6"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 15,
+    "scope": "VALIDATION development",
+    "subgroup": "MYBPC3"
+  },
+  {
+    "metric": 0.8888888888888888,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 15,
+    "scope": "VALIDATION development",
+    "subgroup": "MYH7"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 7,
+    "scope": "VALIDATION development",
+    "subgroup": "NEB"
+  },
+  {
+    "metric": 0.9485294117647058,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 41,
+    "scope": "VALIDATION development",
+    "subgroup": "NF1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 8,
+    "scope": "VALIDATION development",
+    "subgroup": "PALB2"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 11,
+    "scope": "VALIDATION development",
+    "subgroup": "PMS2"
+  },
+  {
+    "metric": 0.9,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 9,
+    "scope": "VALIDATION development",
+    "subgroup": "PTEN"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 5,
+    "scope": "VALIDATION development",
+    "subgroup": "RAD50"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 23,
+    "scope": "VALIDATION development",
+    "subgroup": "RYR1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 11,
+    "scope": "VALIDATION development",
+    "subgroup": "SCN5A"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 10,
+    "scope": "VALIDATION development",
+    "subgroup": "TERT"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 10,
+    "scope": "VALIDATION development",
+    "subgroup": "TP53"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 7,
+    "scope": "VALIDATION development",
+    "subgroup": "TSC1"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 13,
+    "scope": "VALIDATION development",
+    "subgroup": "TSC2"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 67,
+    "scope": "VALIDATION development",
+    "subgroup": "TTN"
+  },
+  {
+    "metric": 1.0,
+    "metric_name": "gene_grouped_validation_auroc",
+    "sample_count": 14,
+    "scope": "VALIDATION development",
+    "subgroup": "USH2A"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "disagreement_rate": 0.21473158551810237,
+    "error_correlation": 0.6715191465395901,
+    "model_id": "evo2__logistic_regression_hpo__vs__foundation_fusion__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "disagreement_rate": 0.2421972534332085,
+    "error_correlation": 0.6725118145291028,
+    "model_id": "evo2__logistic_regression_hpo__vs__nt16__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "disagreement_rate": 0.039950062421972535,
+    "error_correlation": 0.973336963012267,
+    "model_id": "foundation_fusion__mlp__vs__nt16__mlp",
+    "scope": "VALIDATION development"
+  }
+]

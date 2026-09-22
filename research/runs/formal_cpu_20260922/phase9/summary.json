@@ -1,0 +1,642 @@
+{
+  "best_feature_set": "all_fusion",
+  "best_trial": {
+    "config": {
+      "l2": 0.01,
+      "learning_rate": 0.1,
+      "steps": 400
+    },
+    "status": "COMPLETED",
+    "trial_number": 3,
+    "validation_metric": 0.9980759436364666
+  },
+  "locked_test_evaluated": false,
+  "phase": 9,
+  "selection_split": "VALIDATION",
+  "status": "PASS_FORMAL_PHASE9",
+  "studies": {
+    "all_fusion": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.9980759436364666
+      },
+      "feature_set": "all_fusion",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "845c50df9f32883e81e5270ec7737a50a12731d5ec7156dcdfaf0ce4e300aa50"
+    },
+    "cad16": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.5519949929588484
+      },
+      "feature_set": "cad16",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "738bd5a64abd874be3114ebbbc48455fd90b17997dc9578333292c3f5891e8eb"
+    },
+    "cad4": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.41248630887185106
+      },
+      "feature_set": "cad4",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "2a88c5fbdbd65a1be8a6e89d0bc0c20df37320206446145ca2244e4d58fd9e8a"
+    },
+    "cad8": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.582131121890158
+      },
+      "feature_set": "cad8",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "0a64eba62480a7dcd42f88d637c642fc6c41680d90f037102b92e5455f37c29f"
+    },
+    "cadd": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        "status": "COMPLETED",
+        "trial_number": 0,
+        "validation_metric": 0.997792994171241
+      },
+      "feature_set": "cadd",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "dcb33695f8bbdc59250a3e68309e7d44008311d5f427723337077d32e541bac6"
+    },
+    "cadd_phylop": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.9974534548129704
+      },
+      "feature_set": "cadd_phylop",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "a835a30ba9b1a5eea2fd5547df50cad34c824ae18229ce0db085e5f9920d962e"
+    },
+    "evo2": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        "status": "COMPLETED",
+        "trial_number": 0,
+        "validation_metric": 0.9887889219214521
+      },
+      "feature_set": "evo2",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "bd15b55aac58f2268d5a5fc8bc64a4efd0e4b7d09d8660be714df976e004c038"
+    },
+    "foundation_fusion": {
+      "best_trial": {
+        "config": {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        },
+        "status": "COMPLETED",
+        "trial_number": 3,
+        "validation_metric": 0.9202863401658582
+      },
+      "feature_set": "foundation_fusion",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "5f4cccb1c27e47eb7b8f124837f794322b1def025c22139bc936fc5915503f31"
+    },
+    "nt16": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        "status": "COMPLETED",
+        "trial_number": 0,
+        "validation_metric": 0.9449225473321858
+      },
+      "feature_set": "nt16",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "849ce6d8bac23b2366ff0a9091ce5df311ecc050726a8b73b3a1b41954bcc314"
+    },
+    "nt24": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        "status": "COMPLETED",
+        "trial_number": 0,
+        "validation_metric": 0.9124784853700516
+      },
+      "feature_set": "nt24",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "38088ec98d0c05ec441d66cd26c743e60ac97c8be852fbfbe8d57bd6fffc6023"
+    },
+    "nt8": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        "status": "COMPLETED",
+        "trial_number": 1,
+        "validation_metric": 0.8845642309497731
+      },
+      "feature_set": "nt8",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "8416d3a3222853f3b368d38f7f890289e994755e513571abcded64d997678e58"
+    },
+    "phylop": {
+      "best_trial": {
+        "config": {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        "status": "COMPLETED",
+        "trial_number": 0,
+        "validation_metric": 0.9102487873572211
+      },
+      "feature_set": "phylop",
+      "locked_test_evaluated": false,
+      "phase": 9,
+      "search_space": [
+        {
+          "l2": 0.0,
+          "learning_rate": 0.05,
+          "steps": 100
+        },
+        {
+          "l2": 0.0,
+          "learning_rate": 0.1,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.05,
+          "steps": 200
+        },
+        {
+          "l2": 0.01,
+          "learning_rate": 0.1,
+          "steps": 400
+        }
+      ],
+      "selection_split": "VALIDATION",
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "status": "PASS_FORMAL_VALIDATION_ONLY_HPO",
+      "study_sha256": "55af0572e67f5f73abe9874432a7f86ee276a13c1f31cf5b1b339b80849f9929"
+    }
+  }
+}

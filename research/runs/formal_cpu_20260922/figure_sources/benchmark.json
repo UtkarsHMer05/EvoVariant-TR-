@@ -1,0 +1,245 @@
+[
+  {
+    "auc_pr": 0.28536481001595304,
+    "auc_roc": 0.4991394148020654,
+    "auc_roc_ci_high": 0.5,
+    "auc_roc_ci_low": 0.497131931166348,
+    "model_id": "cad16__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.31524808672446747,
+    "auc_roc": 0.5510718197465185,
+    "auc_roc_ci_high": 0.6039084664775273,
+    "auc_roc_ci_low": 0.4817144677216198,
+    "model_id": "cad16__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.2751221038222901,
+    "auc_roc": 0.45671256454388987,
+    "auc_roc_ci_high": 0.5211102302227612,
+    "auc_roc_ci_low": 0.40362289084664776,
+    "model_id": "cad16__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.2868719869530226,
+    "auc_roc": 0.5,
+    "auc_roc_ci_high": 0.5,
+    "auc_roc_ci_low": 0.5,
+    "model_id": "cad4__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.24725392144973599,
+    "auc_roc": 0.4106790799561884,
+    "auc_roc_ci_high": 0.4909749498123418,
+    "auc_roc_ci_low": 0.3249604518103461,
+    "model_id": "cad4__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.3732004719939732,
+    "auc_roc": 0.6212486308871851,
+    "auc_roc_ci_high": 0.6732208363903155,
+    "auc_roc_ci_low": 0.5671127959152097,
+    "model_id": "cad4__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.29411313425258295,
+    "auc_roc": 0.5028242841495854,
+    "auc_roc_ci_high": 0.509810365073523,
+    "auc_roc_ci_low": 0.4968152866242038,
+    "model_id": "cad8__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.24248519521378936,
+    "auc_roc": 0.4501877640431857,
+    "auc_roc_ci_high": 0.5307627118644068,
+    "auc_roc_ci_low": 0.36187584345479085,
+    "model_id": "cad8__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.3220427077514025,
+    "auc_roc": 0.5620638397746831,
+    "auc_roc_ci_high": 0.6522521596051007,
+    "auc_roc_ci_low": 0.47510326867816094,
+    "model_id": "cad8__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.9047780511494954,
+    "auc_roc": 0.9522062275074323,
+    "auc_roc_ci_high": 0.9708662832494608,
+    "auc_roc_ci_low": 0.9313221102621084,
+    "model_id": "evo2__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.9740397889584589,
+    "auc_roc": 0.9886872163980598,
+    "auc_roc_ci_high": 0.9950034708162203,
+    "auc_roc_ci_low": 0.9788018998545315,
+    "model_id": "evo2__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.974040023694699,
+    "auc_roc": 0.9886168048818651,
+    "auc_roc_ci_high": 0.9950179325504714,
+    "auc_roc_ci_low": 0.9786534823396329,
+    "model_id": "evo2__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.9047780511494954,
+    "auc_roc": 0.9522062275074323,
+    "auc_roc_ci_high": 0.9708662832494608,
+    "auc_roc_ci_low": 0.9313221102621084,
+    "model_id": "foundation_fusion__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8466798053055028,
+    "auc_roc": 0.9193318729463308,
+    "auc_roc_ci_high": 0.9591312056737589,
+    "auc_roc_ci_low": 0.8701482541325459,
+    "model_id": "foundation_fusion__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.9162011623620326,
+    "auc_roc": 0.9509544672195275,
+    "auc_roc_ci_high": 0.9780106030298368,
+    "auc_roc_ci_low": 0.9144775376325192,
+    "model_id": "foundation_fusion__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8037558123666677,
+    "auc_roc": 0.8308245970896573,
+    "auc_roc_ci_high": 0.8931188870825894,
+    "auc_roc_ci_low": 0.7704419763243293,
+    "model_id": "nt16__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8960073303023443,
+    "auc_roc": 0.9444531372242215,
+    "auc_roc_ci_high": 0.9735404550844108,
+    "auc_roc_ci_low": 0.9057146698937744,
+    "model_id": "nt16__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.9095727813268624,
+    "auc_roc": 0.9490846502894695,
+    "auc_roc_ci_high": 0.9754460504771046,
+    "auc_roc_ci_low": 0.9105418851687508,
+    "model_id": "nt16__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.7099672085176549,
+    "auc_roc": 0.7641214207479268,
+    "auc_roc_ci_high": 0.8133327753598929,
+    "auc_roc_ci_low": 0.7083191135379562,
+    "model_id": "nt24__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8314232129313485,
+    "auc_roc": 0.9123141918322641,
+    "auc_roc_ci_high": 0.9524168584808318,
+    "auc_roc_ci_low": 0.8619623840212075,
+    "model_id": "nt24__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8729976073794988,
+    "auc_roc": 0.9236817399468001,
+    "auc_roc_ci_high": 0.9607712765957447,
+    "auc_roc_ci_low": 0.8749200888915949,
+    "model_id": "nt24__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.7363573449413519,
+    "auc_roc": 0.7732123298388358,
+    "auc_roc_ci_high": 0.8261065006915629,
+    "auc_roc_ci_low": 0.7123198820367329,
+    "model_id": "nt8__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8250519077297698,
+    "auc_roc": 0.8845642309497731,
+    "auc_roc_ci_high": 0.9329497907949791,
+    "auc_roc_ci_low": 0.8366762870640589,
+    "model_id": "nt8__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8279801080256738,
+    "auc_roc": 0.8849710530433422,
+    "auc_roc_ci_high": 0.9342198665467796,
+    "auc_roc_ci_low": 0.8376240694789082,
+    "model_id": "nt8__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.7144497861398869,
+    "auc_roc": 0.7686668752933813,
+    "auc_roc_ci_high": 0.8130479338842975,
+    "auc_roc_ci_low": 0.7198138297872341,
+    "model_id": "phylop__decision_stump",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8527069480965731,
+    "auc_roc": 0.9102487873572211,
+    "auc_roc_ci_high": 0.9337770163415919,
+    "auc_roc_ci_low": 0.8789929487482845,
+    "model_id": "phylop__logistic_regression",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  },
+  {
+    "auc_pr": 0.8527069480965731,
+    "auc_roc": 0.9102487873572211,
+    "auc_roc_ci_high": 0.9337770163415919,
+    "auc_roc_ci_low": 0.8789929487482845,
+    "model_id": "phylop__mlp",
+    "sample_count": 801,
+    "scope": "formal TRAIN/VALIDATION development; full-coverage models only"
+  }
+]

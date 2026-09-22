@@ -1,0 +1,3681 @@
+{
+  "best_validation_model": "all_fusion__mlp",
+  "feature_sets": {
+    "all_fusion": {
+      "coverage": 2891,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]",
+        "cadd",
+        "phylop"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "train": 2296,
+      "validation": 595
+    },
+    "cad16": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "cad4": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "cad8": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "cadd": {
+      "coverage": 2891,
+      "feature_names": [
+        "cadd"
+      ],
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "train": 2296,
+      "validation": 595
+    },
+    "cadd_phylop": {
+      "coverage": 2891,
+      "feature_names": [
+        "cadd",
+        "phylop"
+      ],
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "train": 2296,
+      "validation": 595
+    },
+    "evo2": {
+      "coverage": 4000,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "foundation_fusion": {
+      "coverage": 4000,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "nt16": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "nt24": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "nt8": {
+      "coverage": 4000,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "train": 3199,
+      "validation": 801
+    },
+    "phylop": {
+      "coverage": 3997,
+      "feature_names": [
+        "phylop"
+      ],
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "train": 3196,
+      "validation": 801
+    }
+  },
+  "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+  "formal_record_set_sha256": "b4559171706dcab13fdb075b38631ebda62f1f88667723fe3f27c5022283df44",
+  "locked_test_evaluated": false,
+  "models": [
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 42,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]",
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "all_fusion",
+      "model_id": "all_fusion__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.07782341609708965,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9642857142857143,
+        "auprc": 0.833816951848435,
+        "auroc": 0.9515817515817516,
+        "balanced_accuracy": 0.9515817515817515,
+        "brier": 0.03571428571428571,
+        "confusion_matrix": {
+          "fn": 26,
+          "fp": 56,
+          "tn": 1855,
+          "tp": 359
+        },
+        "coverage": 1.0,
+        "ece": 0.035714285714285705,
+        "f1": 0.8975,
+        "max_calibration_gap": 0.13493975903614452,
+        "mcc": 0.8768163541884728,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 1.2335277283896673,
+        "precision": 0.8650602409638555,
+        "recall": 0.9324675324675324,
+        "sensitivity": 0.9324675324675324,
+        "specificity": 0.9706959706959707
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9747899159663865,
+        "auprc": 0.9367974567713343,
+        "auroc": 0.961823043404448,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9829444573970122,
+          "ci95_low": 0.9357263990955342,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9618230434044479,
+        "brier": 0.025210084033613446,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 4,
+          "tn": 427,
+          "tp": 153
+        },
+        "coverage": 1.0,
+        "ece": 0.025210084033613446,
+        "f1": 0.9532710280373832,
+        "max_calibration_gap": 0.02547770700636942,
+        "mcc": 0.9364385250567018,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.8707254553338828,
+        "precision": 0.9745222929936306,
+        "recall": 0.9329268292682927,
+        "sensitivity": 0.9329268292682927,
+        "specificity": 0.9907192575406032
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 42,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]",
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "all_fusion",
+      "model_id": "all_fusion__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 1.45050458307378,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9638501742160279,
+        "auprc": 0.9525762204650716,
+        "auroc": 0.9906977376365131,
+        "balanced_accuracy": 0.9378383521240664,
+        "brier": 0.027918963991210615,
+        "confusion_matrix": {
+          "fn": 39,
+          "fp": 44,
+          "tn": 1867,
+          "tp": 346
+        },
+        "coverage": 1.0,
+        "ece": 0.021360997658969892,
+        "f1": 0.8929032258064515,
+        "max_calibration_gap": 0.17830575636838764,
+        "mcc": 0.8711857296136423,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.10210877548927429,
+        "precision": 0.8871794871794871,
+        "recall": 0.8987012987012987,
+        "sensitivity": 0.8987012987012987,
+        "specificity": 0.9769754055468342
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9680672268907563,
+        "auprc": 0.9942273532928474,
+        "auroc": 0.9978495840642861,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9994702069309399,
+          "ci95_low": 0.9954676826064109,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9515166091336087,
+        "brier": 0.022660434521421732,
+        "confusion_matrix": {
+          "fn": 14,
+          "fp": 5,
+          "tn": 426,
+          "tp": 150
+        },
+        "coverage": 1.0,
+        "ece": 0.0387853604809316,
+        "f1": 0.9404388714733544,
+        "max_calibration_gap": 0.7265352274660986,
+        "mcc": 0.9193314088648672,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.08641271733761226,
+        "precision": 0.967741935483871,
+        "recall": 0.9146341463414634,
+        "sensitivity": 0.9146341463414634,
+        "specificity": 0.988399071925754
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 42,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]",
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "all_fusion",
+      "model_id": "all_fusion__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 3.740174834150821,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+          "feature_artifact_sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7",
+          "layer": "all_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_all_fusion",
+          "train_count": 2296,
+          "validation_count": 595
+        },
+        "path": "research/runs/phase8_formal_features_20260922/all_fusion.jsonl",
+        "sha256": "458f240feac4b5b409cbbefbd71080b6f5857a236fcc9550084f2d77789066b7"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9612369337979094,
+        "auprc": 0.9625856421083536,
+        "auroc": 0.9924945802496823,
+        "balanced_accuracy": 0.9580467151895724,
+        "brier": 0.027525773091056627,
+        "confusion_matrix": {
+          "fn": 18,
+          "fp": 71,
+          "tn": 1840,
+          "tp": 367
+        },
+        "coverage": 1.0,
+        "ece": 0.013516664298472212,
+        "f1": 0.8918590522478735,
+        "max_calibration_gap": 0.4745838687046707,
+        "mcc": 0.8710449493234768,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.08919778170140809,
+        "precision": 0.8378995433789954,
+        "recall": 0.9532467532467532,
+        "sensitivity": 0.9532467532467532,
+        "specificity": 0.9628466771323915
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9781512605042016,
+        "auprc": 0.9947600640607389,
+        "auroc": 0.9980193537434214,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9996268232927166,
+          "ci95_low": 0.9954199735449736,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9716979797408183,
+        "brier": 0.01608034236206087,
+        "confusion_matrix": {
+          "fn": 7,
+          "fp": 6,
+          "tn": 425,
+          "tp": 157
+        },
+        "coverage": 1.0,
+        "ece": 0.014280042225642933,
+        "f1": 0.9602446483180427,
+        "max_calibration_gap": 0.656049673389985,
+        "mcc": 0.9451895149871077,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.05982603528713452,
+        "precision": 0.9631901840490797,
+        "recall": 0.9573170731707317,
+        "sensitivity": 0.9573170731707317,
+        "specificity": 0.9860788863109049
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad16",
+      "model_id": "cad16__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.046223958022892475,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8271334792122538,
+        "auprc": 0.15811205689028818,
+        "auroc": 0.5009025270758123,
+        "balanced_accuracy": 0.5009025270758123,
+        "brier": 0.17286652078774617,
+        "confusion_matrix": {
+          "fn": 553,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 1
+        },
+        "coverage": 1.0,
+        "ece": 0.17286652078774617,
+        "f1": 0.0036036036036036037,
+        "max_calibration_gap": 0.17292057535959976,
+        "mcc": 0.038638363696854416,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 5.970598107654144,
+        "precision": 1.0,
+        "recall": 0.0018050541516245488,
+        "sensitivity": 0.0018050541516245488,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7240948813982522,
+        "auprc": 0.28536481001595304,
+        "auroc": 0.4991394148020654,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.5,
+          "ci95_low": 0.497131931166348,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.4991394148020654,
+        "brier": 0.2759051186017478,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 1,
+          "tn": 580,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.2759051186017478,
+        "f1": 0.0,
+        "max_calibration_gap": 1.0,
+        "mcc": -0.0217559614557488,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 9.52942519759708,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 0.9982788296041308
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad16",
+      "model_id": "cad16__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6419727089814842,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.18110457981579334,
+        "auroc": 0.5109913807811209,
+        "balanced_accuracy": 0.5,
+        "brier": 0.1431883049436941,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.00044003195313321863,
+        "f1": 0.0,
+        "max_calibration_gap": 0.00044003195313321863,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4608921463937377,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.31524808672446747,
+        "auroc": 0.5510718197465185,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.6039084664775273,
+          "ci95_low": 0.4817144677216198,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.2094289689744166,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.10103752852677883,
+        "f1": 0.0,
+        "max_calibration_gap": 0.10103752852677883,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.6192165845146121,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad16",
+      "model_id": "cad16__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.6066720830276608,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_16_scalar_summary.jsonl",
+        "sha256": "dfaa9ea1b9b70ec8c1723174bf37583c9e8330dbd2834e8a53205912995ef4cc"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.17986375312875272,
+        "auroc": 0.502008762531307,
+        "balanced_accuracy": 0.5,
+        "brier": 0.15625080646687128,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.11429214788564479,
+        "f1": 0.0,
+        "max_calibration_gap": 0.11429214788564479,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.49612926268449337,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.2751221038222901,
+        "auroc": 0.45671256454388987,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.5211102302227612,
+          "ci95_low": 0.40362289084664776,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.1993846013950582,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.012814587208219652,
+        "f1": 0.0,
+        "max_calibration_gap": 0.012814587208219652,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.5882401732741346,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad4",
+      "model_id": "cad4__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.04627733305096626,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.15607563665524776,
+        "auroc": 0.5,
+        "balanced_accuracy": 0.5,
+        "brier": 0.17317911847452327,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.17317911847452327,
+        "f1": 0.0,
+        "max_calibration_gap": 0.17317911847452327,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 5.981394849259305,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.2868719869530226,
+        "auroc": 0.5,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.5,
+          "ci95_low": 0.5,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.2746566791510612,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.2746566791510612,
+        "f1": 0.0,
+        "max_calibration_gap": 0.2746566791510612,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 9.48630562656723,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad4",
+      "model_id": "cad4__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6321055418811738,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.17025546456769913,
+        "auroc": 0.4825541004415388,
+        "balanced_accuracy": 0.5,
+        "brier": 0.14318831048610853,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.0004400499189243512,
+        "f1": 0.0,
+        "max_calibration_gap": 0.0004400499189243512,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4608921657084332,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.24725392144973599,
+        "auroc": 0.4106790799561884,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.4909749498123418,
+          "ci95_low": 0.3249604518103461,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.20942900828012959,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.1010375772538534,
+        "f1": 0.0,
+        "max_calibration_gap": 0.1010375772538534,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.6192167214919734,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad4",
+      "model_id": "cad4__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.601379084168002,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+          "feature_artifact_sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41",
+          "layer": "4:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_4_scalar_summary.jsonl",
+        "sha256": "1acac52c781571129ff118ff488b983afb3e9fe6b39ca2af2c682ed3d9152b41"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.18132714422535148,
+        "auroc": 0.5157749448929593,
+        "balanced_accuracy": 0.5,
+        "brier": 0.1562508064638922,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.11429214787292907,
+        "f1": 0.0,
+        "max_calibration_gap": 0.11429214787292907,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4961292626772214,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.3732004719939732,
+        "auroc": 0.6212486308871851,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.6732208363903155,
+          "ci95_low": 0.5671127959152097,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.19938460138899491,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.012814587203830496,
+        "f1": 0.0,
+        "max_calibration_gap": 0.012814587203830496,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.588240173259334,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad8",
+      "model_id": "cad8__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.04670675005763769,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8274460768990309,
+        "auprc": 0.16221225987888346,
+        "auroc": 0.5025185453106126,
+        "balanced_accuracy": 0.5025185453106127,
+        "brier": 0.17255392310096906,
+        "confusion_matrix": {
+          "fn": 551,
+          "fp": 1,
+          "tn": 2644,
+          "tp": 3
+        },
+        "coverage": 1.0,
+        "ece": 0.17255392310096906,
+        "f1": 0.01075268817204301,
+        "max_calibration_gap": 0.25,
+        "mcc": 0.05393641265377248,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 5.959801366048983,
+        "precision": 0.75,
+        "recall": 0.005415162454873646,
+        "sensitivity": 0.005415162454873646,
+        "specificity": 0.9996219281663516
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.29411313425258295,
+        "auroc": 0.5028242841495854,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.509810365073523,
+          "ci95_low": 0.4968152866242038,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5028242841495854,
+        "brier": 0.2746566791510612,
+        "confusion_matrix": {
+          "fn": 218,
+          "fp": 2,
+          "tn": 579,
+          "tp": 2
+        },
+        "coverage": 1.0,
+        "ece": 0.2746566791510612,
+        "f1": 0.01785714285714286,
+        "max_calibration_gap": 0.5,
+        "mcc": 0.035766680449326814,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 9.48630562656723,
+        "precision": 0.5,
+        "recall": 0.00909090909090909,
+        "sensitivity": 0.00909090909090909,
+        "specificity": 0.9965576592082617
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad8",
+      "model_id": "cad8__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6362496670335531,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.146928293432782,
+        "auroc": 0.4376167825677492,
+        "balanced_accuracy": 0.5,
+        "brier": 0.143188726594218,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.0004420922789730719,
+        "f1": 0.0,
+        "max_calibration_gap": 0.0004420922789730719,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4608936158245878,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.24248519521378936,
+        "auroc": 0.4501877640431857,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.5307627118644068,
+          "ci95_low": 0.36187584345479085,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.2094291624960169,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.10103696441078677,
+        "f1": 0.0,
+        "max_calibration_gap": 0.10103696441078677,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.6192172589791561,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "cad8",
+      "model_id": "cad8__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.6006764580961317,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "caduceus",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/caduceus/caduceus_layer_8_scalar_summary.jsonl",
+        "sha256": "3503eb125817421031eb22278722f8338de01adc5df8e64be75be7b248c869f6"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.21759480393055045,
+        "auroc": 0.5723802829396791,
+        "balanced_accuracy": 0.5,
+        "brier": 0.156251108062277,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.11429366913063066,
+        "f1": 0.0,
+        "max_calibration_gap": 0.11429366913063066,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4961299988869307,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.3220427077514025,
+        "auroc": 0.5620638397746831,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.6522521596051007,
+          "ci95_low": 0.47510326867816094,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.19938459361012165,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.01281623994461406,
+        "f1": 0.0,
+        "max_calibration_gap": 0.01281623994461406,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.5882401542711225,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 1,
+      "feature_names": [
+        "cadd"
+      ],
+      "feature_set": "cadd",
+      "model_id": "cadd__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.03255658317357302,
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9642857142857143,
+        "auprc": 0.833816951848435,
+        "auroc": 0.9515817515817516,
+        "balanced_accuracy": 0.9515817515817515,
+        "brier": 0.03571428571428571,
+        "confusion_matrix": {
+          "fn": 26,
+          "fp": 56,
+          "tn": 1855,
+          "tp": 359
+        },
+        "coverage": 1.0,
+        "ece": 0.035714285714285705,
+        "f1": 0.8975,
+        "max_calibration_gap": 0.13493975903614452,
+        "mcc": 0.8768163541884728,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 1.2335277283896673,
+        "precision": 0.8650602409638555,
+        "recall": 0.9324675324675324,
+        "sensitivity": 0.9324675324675324,
+        "specificity": 0.9706959706959707
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9747899159663865,
+        "auprc": 0.9367974567713343,
+        "auroc": 0.961823043404448,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9829444573970122,
+          "ci95_low": 0.9357263990955342,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9618230434044479,
+        "brier": 0.025210084033613446,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 4,
+          "tn": 427,
+          "tp": 153
+        },
+        "coverage": 1.0,
+        "ece": 0.025210084033613446,
+        "f1": 0.9532710280373832,
+        "max_calibration_gap": 0.02547770700636942,
+        "mcc": 0.9364385250567018,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.8707254553338828,
+        "precision": 0.9745222929936306,
+        "recall": 0.9329268292682927,
+        "sensitivity": 0.9329268292682927,
+        "specificity": 0.9907192575406032
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 1,
+      "feature_names": [
+        "cadd"
+      ],
+      "feature_set": "cadd",
+      "model_id": "cadd__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.30579383415170014,
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9642857142857143,
+        "auprc": 0.9497972023523562,
+        "auroc": 0.9906093906093906,
+        "balanced_accuracy": 0.9515817515817515,
+        "brier": 0.037241292405140784,
+        "confusion_matrix": {
+          "fn": 26,
+          "fp": 56,
+          "tn": 1855,
+          "tp": 359
+        },
+        "coverage": 1.0,
+        "ece": 0.08974690305784269,
+        "f1": 0.8975,
+        "max_calibration_gap": 0.21892625756246417,
+        "mcc": 0.8768163541884728,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.16524660051997495,
+        "precision": 0.8650602409638555,
+        "recall": 0.9324675324675324,
+        "sensitivity": 0.9324675324675324,
+        "specificity": 0.9706959706959707
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.973109243697479,
+        "auprc": 0.994431549779104,
+        "auroc": 0.997792994171241,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9994488767583456,
+          "ci95_low": 0.9949484536082475,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9606629505970234,
+        "brier": 0.02905746593528017,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 5,
+          "tn": 426,
+          "tp": 153
+        },
+        "coverage": 1.0,
+        "ece": 0.09607938866942824,
+        "f1": 0.9503105590062113,
+        "max_calibration_gap": 0.4103873144769176,
+        "mcc": 0.9321902962489803,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.14184899817938884,
+        "precision": 0.9683544303797469,
+        "recall": 0.9329268292682927,
+        "sensitivity": 0.9329268292682927,
+        "specificity": 0.988399071925754
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 1,
+      "feature_names": [
+        "cadd"
+      ],
+      "feature_set": "cadd",
+      "model_id": "cadd__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 0.819416708080098,
+      "source": {
+        "available_development_rows": 2891,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+        "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+        "value_key": "raw_score"
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9538327526132404,
+        "auprc": 0.9490347235980021,
+        "auroc": 0.9905794885386722,
+        "balanced_accuracy": 0.960858189429618,
+        "brier": 0.030016545701329625,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 95,
+          "tn": 1816,
+          "tp": 374
+        },
+        "coverage": 1.0,
+        "ece": 0.017640679052619054,
+        "f1": 0.8758782201405152,
+        "max_calibration_gap": 0.34584894053288134,
+        "mcc": 0.8540874063994559,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.10423093233585606,
+        "precision": 0.7974413646055437,
+        "recall": 0.9714285714285714,
+        "sensitivity": 0.9714285714285714,
+        "specificity": 0.9502878074306645
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9815126050420168,
+        "auprc": 0.9941758904103501,
+        "auroc": 0.997637371965367,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9994441159077468,
+          "ci95_low": 0.9947665056360708,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.977795540716428,
+        "brier": 0.016669331571108673,
+        "confusion_matrix": {
+          "fn": 5,
+          "fp": 6,
+          "tn": 425,
+          "tp": 159
+        },
+        "coverage": 1.0,
+        "ece": 0.019909473148013793,
+        "f1": 0.9665653495440729,
+        "max_calibration_gap": 0.8897461259723242,
+        "mcc": 0.9537980869306616,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.0711976562350852,
+        "precision": 0.9636363636363636,
+        "recall": 0.9695121951219512,
+        "sensitivity": 0.9695121951219512,
+        "specificity": 0.9860788863109049
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 2,
+      "feature_names": [
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "cadd_phylop",
+      "model_id": "cadd_phylop__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.033745165914297104,
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9642857142857143,
+        "auprc": 0.833816951848435,
+        "auroc": 0.9515817515817516,
+        "balanced_accuracy": 0.9515817515817515,
+        "brier": 0.03571428571428571,
+        "confusion_matrix": {
+          "fn": 26,
+          "fp": 56,
+          "tn": 1855,
+          "tp": 359
+        },
+        "coverage": 1.0,
+        "ece": 0.035714285714285705,
+        "f1": 0.8975,
+        "max_calibration_gap": 0.13493975903614452,
+        "mcc": 0.8768163541884728,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 1.2335277283896673,
+        "precision": 0.8650602409638555,
+        "recall": 0.9324675324675324,
+        "sensitivity": 0.9324675324675324,
+        "specificity": 0.9706959706959707
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9747899159663865,
+        "auprc": 0.9367974567713343,
+        "auroc": 0.961823043404448,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9829444573970122,
+          "ci95_low": 0.9357263990955342,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9618230434044479,
+        "brier": 0.025210084033613446,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 4,
+          "tn": 427,
+          "tp": 153
+        },
+        "coverage": 1.0,
+        "ece": 0.025210084033613446,
+        "f1": 0.9532710280373832,
+        "max_calibration_gap": 0.02547770700636942,
+        "mcc": 0.9364385250567018,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.8707254553338828,
+        "precision": 0.9745222929936306,
+        "recall": 0.9329268292682927,
+        "sensitivity": 0.9329268292682927,
+        "specificity": 0.9907192575406032
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 2,
+      "feature_names": [
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "cadd_phylop",
+      "model_id": "cadd_phylop__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.3347776660230011,
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9603658536585366,
+        "auprc": 0.9469029471538809,
+        "auroc": 0.9894133077806547,
+        "balanced_accuracy": 0.9440416726131011,
+        "brier": 0.03765775916291256,
+        "confusion_matrix": {
+          "fn": 31,
+          "fp": 60,
+          "tn": 1851,
+          "tp": 354
+        },
+        "coverage": 1.0,
+        "ece": 0.08380528882411861,
+        "f1": 0.8861076345431791,
+        "max_calibration_gap": 0.19650758809901586,
+        "mcc": 0.8629873977201467,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.16494140858849235,
+        "precision": 0.855072463768116,
+        "recall": 0.9194805194805195,
+        "sensitivity": 0.9194805194805195,
+        "specificity": 0.9686028257456829
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9714285714285714,
+        "auprc": 0.9914078650915392,
+        "auroc": 0.9968734084092581,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9989828503843879,
+          "ci95_low": 0.9937058891588568,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9595028577895988,
+        "brier": 0.03092360774392374,
+        "confusion_matrix": {
+          "fn": 11,
+          "fp": 6,
+          "tn": 425,
+          "tp": 153
+        },
+        "coverage": 1.0,
+        "ece": 0.09787245038642446,
+        "f1": 0.9473684210526315,
+        "max_calibration_gap": 0.5298964460680932,
+        "mcc": 0.9279764709285675,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.14764670270359173,
+        "precision": 0.9622641509433962,
+        "recall": 0.9329268292682927,
+        "sensitivity": 0.9329268292682927,
+        "specificity": 0.9860788863109049
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 2,
+      "feature_names": [
+        "cadd",
+        "phylop"
+      ],
+      "feature_set": "cadd_phylop",
+      "model_id": "cadd_phylop__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 0.8881844580173492,
+      "source": {
+        "left": {
+          "available_development_rows": 2891,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/cadd_grch38_v1.7_20260921.json",
+          "sha256": "99621fa5d91e3409bc5433157381c4cb917ed3925a895a9132b716b01254d834",
+          "value_key": "raw_score"
+        },
+        "right": {
+          "available_development_rows": 3997,
+          "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+          "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+          "value_key": "sitewise_score"
+        }
+      },
+      "train_count": 2296,
+      "train_metrics": {
+        "accuracy": 0.9512195121951219,
+        "auprc": 0.9497761927008331,
+        "auroc": 0.9899012552073777,
+        "balanced_accuracy": 0.9613624470767328,
+        "brier": 0.03305878342063376,
+        "confusion_matrix": {
+          "fn": 9,
+          "fp": 103,
+          "tn": 1808,
+          "tp": 376
+        },
+        "coverage": 1.0,
+        "ece": 0.02346615227201058,
+        "f1": 0.8703703703703705,
+        "max_calibration_gap": 0.38660204938267506,
+        "mcc": 0.8483747329656003,
+        "n": 2296,
+        "n_negative": 1911,
+        "n_positive": 385,
+        "nll": 0.11197210197713509,
+        "precision": 0.7849686847599165,
+        "recall": 0.9766233766233766,
+        "sensitivity": 0.9766233766233766,
+        "specificity": 0.946101517530089
+      },
+      "validation_count": 595,
+      "validation_metrics": {
+        "accuracy": 0.9831932773109243,
+        "auprc": 0.9932385789337027,
+        "auroc": 0.9974534548129704,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9991377688593466,
+          "ci95_low": 0.9945480819758277,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9808443212042329,
+        "brier": 0.016915859144271198,
+        "confusion_matrix": {
+          "fn": 4,
+          "fp": 6,
+          "tn": 425,
+          "tp": 160
+        },
+        "coverage": 1.0,
+        "ece": 0.014345732029500029,
+        "f1": 0.9696969696969697,
+        "max_calibration_gap": 0.49635016067757626,
+        "mcc": 0.9581033441604077,
+        "n": 595,
+        "n_negative": 431,
+        "n_positive": 164,
+        "nll": 0.07844384038093481,
+        "precision": 0.963855421686747,
+        "recall": 0.975609756097561,
+        "sensitivity": 0.975609756097561,
+        "specificity": 0.9860788863109049
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 4,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]"
+      ],
+      "feature_set": "evo2",
+      "model_id": "evo2__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.04902358306571841,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.944357611753673,
+        "auprc": 0.7435501720101872,
+        "auroc": 0.9142667521991633,
+        "balanced_accuracy": 0.9142667521991633,
+        "brier": 0.05564238824632698,
+        "confusion_matrix": {
+          "fn": 73,
+          "fp": 105,
+          "tn": 2540,
+          "tp": 481
+        },
+        "coverage": 1.0,
+        "ece": 0.055642388246326974,
+        "f1": 0.8438596491228071,
+        "max_calibration_gap": 0.17918088737201365,
+        "mcc": 0.8105116896609658,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 1.921820005718694,
+        "precision": 0.8208191126279863,
+        "recall": 0.868231046931408,
+        "sensitivity": 0.868231046931408,
+        "specificity": 0.9603024574669187
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.9675405742821473,
+        "auprc": 0.9047780511494954,
+        "auroc": 0.9522062275074323,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9708662832494608,
+          "ci95_low": 0.9313221102621084,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9522062275074323,
+        "brier": 0.03245942571785269,
+        "confusion_matrix": {
+          "fn": 18,
+          "fp": 8,
+          "tn": 573,
+          "tp": 202
+        },
+        "coverage": 1.0,
+        "ece": 0.03245942571785268,
+        "f1": 0.9395348837209303,
+        "max_calibration_gap": 0.03809523809523807,
+        "mcc": 0.9178306435281215,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 1.121108846776127,
+        "precision": 0.9619047619047619,
+        "recall": 0.9181818181818182,
+        "sensitivity": 0.9181818181818182,
+        "specificity": 0.9862306368330465
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 4,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]"
+      ],
+      "feature_set": "evo2",
+      "model_id": "evo2__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.5499245000537485,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.9039893190138528,
+        "auroc": 0.9800222475483338,
+        "balanced_accuracy": 0.5,
+        "brier": 0.14325643648865347,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.008569497074905646,
+        "f1": 0.0,
+        "max_calibration_gap": 0.008569497074905646,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.46112428529783434,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.9740397889584589,
+        "auroc": 0.9886872163980598,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9950034708162203,
+          "ci95_low": 0.9788018998545315,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.2078426277876844,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.09290493489499882,
+        "f1": 0.0,
+        "max_calibration_gap": 0.09290493489499882,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.6137865328374045,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 4,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]"
+      ],
+      "feature_set": "evo2",
+      "model_id": "evo2__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.425315999891609,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+          "feature_artifact_sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c",
+          "layer": "phase13_combined_evo2",
+          "locked_test_evaluated": false,
+          "model_id": "evo2",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase13_formal_evo2_20260922/combined_evo2_features_v2.jsonl",
+        "sha256": "1a1c8a3bac1fde7e8d60d5fb16345cb14b434a48eb9ec0e18dbc9e56d3ac865c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.9039641506506421,
+        "auroc": 0.9800249773088656,
+        "balanced_accuracy": 0.5,
+        "brier": 0.15792989955946815,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.257385202913427,
+        "f1": 0.0,
+        "max_calibration_gap": 0.6285867263961379,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.500214398466006,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.974040023694699,
+        "auroc": 0.9886168048818651,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9950179325504714,
+          "ci95_low": 0.9786534823396329,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.1980986812800046,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.2777136391029128,
+        "f1": 0.0,
+        "max_calibration_gap": 0.676193973567053,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.5852017629872255,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 40,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]"
+      ],
+      "feature_set": "foundation_fusion",
+      "model_id": "foundation_fusion__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.12196112517267466,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.944357611753673,
+        "auprc": 0.7435501720101872,
+        "auroc": 0.9142667521991633,
+        "balanced_accuracy": 0.9142667521991633,
+        "brier": 0.05564238824632698,
+        "confusion_matrix": {
+          "fn": 73,
+          "fp": 105,
+          "tn": 2540,
+          "tp": 481
+        },
+        "coverage": 1.0,
+        "ece": 0.055642388246326974,
+        "f1": 0.8438596491228071,
+        "max_calibration_gap": 0.17918088737201365,
+        "mcc": 0.8105116896609658,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 1.921820005718694,
+        "precision": 0.8208191126279863,
+        "recall": 0.868231046931408,
+        "sensitivity": 0.868231046931408,
+        "specificity": 0.9603024574669187
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.9675405742821473,
+        "auprc": 0.9047780511494954,
+        "auroc": 0.9522062275074323,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9708662832494608,
+          "ci95_low": 0.9313221102621084,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.9522062275074323,
+        "brier": 0.03245942571785269,
+        "confusion_matrix": {
+          "fn": 18,
+          "fp": 8,
+          "tn": 573,
+          "tp": 202
+        },
+        "coverage": 1.0,
+        "ece": 0.03245942571785268,
+        "f1": 0.9395348837209303,
+        "max_calibration_gap": 0.03809523809523807,
+        "mcc": 0.9178306435281215,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 1.121108846776127,
+        "precision": 0.9619047619047619,
+        "recall": 0.9181818181818182,
+        "sensitivity": 0.9181818181818182,
+        "specificity": 0.9862306368330465
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 40,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]"
+      ],
+      "feature_set": "foundation_fusion",
+      "model_id": "foundation_fusion__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 1.9524899998214096,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8674585808065021,
+        "auprc": 0.6343179270023495,
+        "auroc": 0.8457678475155767,
+        "balanced_accuracy": 0.6330253253533333,
+        "brier": 0.10329442177226572,
+        "confusion_matrix": {
+          "fn": 402,
+          "fp": 22,
+          "tn": 2623,
+          "tp": 152
+        },
+        "coverage": 1.0,
+        "ece": 0.04999508719952695,
+        "f1": 0.41758241758241754,
+        "max_calibration_gap": 0.2549642145400835,
+        "mcc": 0.44390979950492765,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.34966969246556817,
+        "precision": 0.8735632183908046,
+        "recall": 0.2743682310469314,
+        "sensitivity": 0.2743682310469314,
+        "specificity": 0.9916824196597354
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8202247191011236,
+        "auprc": 0.8466798053055028,
+        "auroc": 0.9193318729463308,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9591312056737589,
+          "ci95_low": 0.8701482541325459,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.6769636989516508,
+        "brier": 0.12388923068338185,
+        "confusion_matrix": {
+          "fn": 141,
+          "fp": 3,
+          "tn": 578,
+          "tp": 79
+        },
+        "coverage": 1.0,
+        "ece": 0.09318382066585698,
+        "f1": 0.5231788079470199,
+        "max_calibration_gap": 0.4308599221402039,
+        "mcc": 0.5211253722604055,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.39393641757294007,
+        "precision": 0.9634146341463414,
+        "recall": 0.35909090909090907,
+        "sensitivity": 0.35909090909090907,
+        "specificity": 0.9948364888123924
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 40,
+      "feature_names": [
+        "evo2[0]",
+        "evo2[1]",
+        "evo2[2]",
+        "evo2[3]",
+        "nt8[0]",
+        "nt8[1]",
+        "nt8[2]",
+        "nt8[3]",
+        "nt8[4]",
+        "nt8[5]",
+        "nt16[0]",
+        "nt16[1]",
+        "nt16[2]",
+        "nt16[3]",
+        "nt16[4]",
+        "nt16[5]",
+        "nt24[0]",
+        "nt24[1]",
+        "nt24[2]",
+        "nt24[3]",
+        "nt24[4]",
+        "nt24[5]",
+        "cad4[0]",
+        "cad4[1]",
+        "cad4[2]",
+        "cad4[3]",
+        "cad4[4]",
+        "cad4[5]",
+        "cad8[0]",
+        "cad8[1]",
+        "cad8[2]",
+        "cad8[3]",
+        "cad8[4]",
+        "cad8[5]",
+        "cad16[0]",
+        "cad16[1]",
+        "cad16[2]",
+        "cad16[3]",
+        "cad16[4]",
+        "cad16[5]"
+      ],
+      "feature_set": "foundation_fusion",
+      "model_id": "foundation_fusion__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 4.474894542014226,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+          "feature_artifact_sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7",
+          "layer": "foundation_fusion",
+          "locked_test_evaluated": false,
+          "model_id": "formal_fusion",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/foundation_fusion.jsonl",
+        "sha256": "8fb5e217da8f48c298951b3673f7e12e47d00662f79a9ff38edb778004acc1f7"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8899656142544545,
+        "auprc": 0.7287456770099691,
+        "auroc": 0.8931305576218326,
+        "balanced_accuracy": 0.7351088150791971,
+        "brier": 0.08469225699756615,
+        "confusion_matrix": {
+          "fn": 278,
+          "fp": 74,
+          "tn": 2571,
+          "tp": 276
+        },
+        "coverage": 1.0,
+        "ece": 0.04903710805921345,
+        "f1": 0.6106194690265486,
+        "max_calibration_gap": 0.17557139915787168,
+        "mcc": 0.5700151283562034,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.2901408044275636,
+        "precision": 0.7885714285714286,
+        "recall": 0.4981949458483754,
+        "sensitivity": 0.4981949458483754,
+        "specificity": 0.9720226843100189
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.9101123595505618,
+        "auprc": 0.9162011623620326,
+        "auroc": 0.9509544672195275,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9780106030298368,
+          "ci95_low": 0.9144775376325192,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.8533093412611485,
+        "brier": 0.07270225825474487,
+        "confusion_matrix": {
+          "fn": 60,
+          "fp": 12,
+          "tn": 569,
+          "tp": 160
+        },
+        "coverage": 1.0,
+        "ece": 0.05687953060461723,
+        "f1": 0.8163265306122448,
+        "max_calibration_gap": 0.24250256449169305,
+        "mcc": 0.7680596961175238,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.254184600805955,
+        "precision": 0.9302325581395349,
+        "recall": 0.7272727272727273,
+        "sensitivity": 0.7272727272727273,
+        "specificity": 0.9793459552495697
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt16",
+      "model_id": "nt16__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.05087112495675683,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8865270396999062,
+        "auprc": 0.4993114498216842,
+        "auroc": 0.7408778227429998,
+        "balanced_accuracy": 0.740877822743,
+        "brier": 0.11347296030009378,
+        "confusion_matrix": {
+          "fn": 267,
+          "fp": 96,
+          "tn": 2549,
+          "tp": 287
+        },
+        "coverage": 1.0,
+        "ece": 0.1134729603000938,
+        "f1": 0.6125933831376734,
+        "max_calibration_gap": 0.25065274151436034,
+        "mcc": 0.5615375734919965,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 3.9192172026735164,
+        "precision": 0.7493472584856397,
+        "recall": 0.5180505415162455,
+        "sensitivity": 0.5180505415162455,
+        "specificity": 0.9637051039697543
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8938826466916354,
+        "auprc": 0.8037558123666677,
+        "auroc": 0.8308245970896573,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.8931188870825894,
+          "ci95_low": 0.7704419763243293,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.8308245970896573,
+        "brier": 0.10611735330836454,
+        "confusion_matrix": {
+          "fn": 68,
+          "fp": 17,
+          "tn": 564,
+          "tp": 152
+        },
+        "coverage": 1.0,
+        "ece": 0.10611735330836455,
+        "f1": 0.7814910025706941,
+        "max_calibration_gap": 0.10759493670886076,
+        "mcc": 0.7238112068704576,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 3.6651635375373384,
+        "precision": 0.8994082840236687,
+        "recall": 0.6909090909090909,
+        "sensitivity": 0.6909090909090909,
+        "specificity": 0.9707401032702238
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt16",
+      "model_id": "nt16__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6381474160589278,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8277586745858081,
+        "auprc": 0.6964096159816282,
+        "auroc": 0.883439907734094,
+        "balanced_accuracy": 0.5027075812274369,
+        "brier": 0.13037981558377895,
+        "confusion_matrix": {
+          "fn": 551,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 3
+        },
+        "coverage": 1.0,
+        "ece": 0.11541005119993193,
+        "f1": 0.010771992818671453,
+        "max_calibration_gap": 0.6361203137450449,
+        "mcc": 0.06694454557194178,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4229792924397016,
+        "precision": 1.0,
+        "recall": 0.005415162454873646,
+        "sensitivity": 0.005415162454873646,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7278401997503121,
+        "auprc": 0.8960073303023443,
+        "auroc": 0.9444531372242215,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9735404550844108,
+          "ci95_low": 0.9057146698937744,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5045454545454545,
+        "brier": 0.18238244565281522,
+        "confusion_matrix": {
+          "fn": 218,
+          "fp": 0,
+          "tn": 581,
+          "tp": 2
+        },
+        "coverage": 1.0,
+        "ece": 0.17062165934316115,
+        "f1": 0.018018018018018018,
+        "max_calibration_gap": 0.6622065031975413,
+        "mcc": 0.08130520215302436,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.5398011426363879,
+        "precision": 1.0,
+        "recall": 0.00909090909090909,
+        "sensitivity": 0.00909090909090909,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt16",
+      "model_id": "nt16__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.6405989998020232,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+          "feature_artifact_sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b",
+          "layer": "16:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_16_scalar_summary.jsonl",
+        "sha256": "2111aefc86991cc6f345600a2a1a67e97eeb0450833ecad2e04d7a56558fc77b"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8815254767114723,
+        "auprc": 0.7143650711005899,
+        "auroc": 0.8890236329018036,
+        "balanced_accuracy": 0.7542635447305385,
+        "brier": 0.09046185475536563,
+        "confusion_matrix": {
+          "fn": 244,
+          "fp": 135,
+          "tn": 2510,
+          "tp": 310
+        },
+        "coverage": 1.0,
+        "ece": 0.06768672707093816,
+        "f1": 0.6206206206206206,
+        "max_calibration_gap": 0.1425275920128078,
+        "mcc": 0.5560576756969307,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.3055598775773397,
+        "precision": 0.6966292134831461,
+        "recall": 0.5595667870036101,
+        "sensitivity": 0.5595667870036101,
+        "specificity": 0.9489603024574669
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.9051186017478152,
+        "auprc": 0.9095727813268624,
+        "auroc": 0.9490846502894695,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9754460504771046,
+          "ci95_low": 0.9105418851687508,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.8625762791425442,
+        "brier": 0.07507264561779521,
+        "confusion_matrix": {
+          "fn": 51,
+          "fp": 25,
+          "tn": 556,
+          "tp": 169
+        },
+        "coverage": 1.0,
+        "ece": 0.05973510662471593,
+        "f1": 0.8164251207729469,
+        "max_calibration_gap": 0.17320160388137618,
+        "mcc": 0.7554984533171528,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.26121036527869024,
+        "precision": 0.8711340206185567,
+        "recall": 0.7681818181818182,
+        "sensitivity": 0.7681818181818182,
+        "specificity": 0.9569707401032702
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt24",
+      "model_id": "nt24__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.05030791717581451,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8777743044701469,
+        "auprc": 0.47731557198152713,
+        "auroc": 0.6884944005787093,
+        "balanced_accuracy": 0.6884944005787093,
+        "brier": 0.12222569552985307,
+        "confusion_matrix": {
+          "fn": 333,
+          "fp": 58,
+          "tn": 2587,
+          "tp": 221
+        },
+        "coverage": 1.0,
+        "ece": 0.12222569552985307,
+        "f1": 0.5306122448979592,
+        "max_calibration_gap": 0.20788530465949817,
+        "mcc": 0.5055948509955231,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 4.22152596761803,
+        "precision": 0.7921146953405018,
+        "recall": 0.3989169675090253,
+        "sensitivity": 0.3989169675090253,
+        "specificity": 0.9780718336483932
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8626716604244694,
+        "auprc": 0.7099672085176549,
+        "auroc": 0.7641214207479268,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.8133327753598929,
+          "ci95_low": 0.7083191135379562,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.7641214207479268,
+        "brier": 0.1373283395755306,
+        "confusion_matrix": {
+          "fn": 100,
+          "fp": 10,
+          "tn": 571,
+          "tp": 120
+        },
+        "coverage": 1.0,
+        "ece": 0.1373283395755306,
+        "f1": 0.6857142857142856,
+        "max_calibration_gap": 0.14903129657228018,
+        "mcc": 0.6394404281809609,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 4.743152813283615,
+        "precision": 0.9230769230769231,
+        "recall": 0.5454545454545454,
+        "sensitivity": 0.5454545454545454,
+        "specificity": 0.9827882960413081
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt24",
+      "model_id": "nt24__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6414658329449594,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8608940293841826,
+        "auprc": 0.6145193122109449,
+        "auroc": 0.8351422546457112,
+        "balanced_accuracy": 0.6112182921253233,
+        "brier": 0.10880058448052222,
+        "confusion_matrix": {
+          "fn": 427,
+          "fp": 18,
+          "tn": 2627,
+          "tp": 127
+        },
+        "coverage": 1.0,
+        "ece": 0.0698630069956388,
+        "f1": 0.363376251788269,
+        "max_calibration_gap": 0.30213916368818083,
+        "mcc": 0.4046275230680682,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.3673268484567918,
+        "precision": 0.8758620689655172,
+        "recall": 0.2292418772563177,
+        "sensitivity": 0.2292418772563177,
+        "specificity": 0.9931947069943289
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7952559300873908,
+        "auprc": 0.8314232129313485,
+        "auroc": 0.9123141918322641,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9524168584808318,
+          "ci95_low": 0.8619623840212075,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.6315091534971053,
+        "brier": 0.13546667915590277,
+        "confusion_matrix": {
+          "fn": 161,
+          "fp": 3,
+          "tn": 578,
+          "tp": 59
+        },
+        "coverage": 1.0,
+        "ece": 0.12965727013749465,
+        "f1": 0.41843971631205684,
+        "max_calibration_gap": 0.5246938855217371,
+        "mcc": 0.4393061879012454,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.42553487172483323,
+        "precision": 0.9516129032258065,
+        "recall": 0.2681818181818182,
+        "sensitivity": 0.2681818181818182,
+        "specificity": 0.9948364888123924
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt24",
+      "model_id": "nt24__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.6238834580872208,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+          "feature_artifact_sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a",
+          "layer": "24:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_24_scalar_summary.jsonl",
+        "sha256": "000858fc5fc3b0008245a0867a1dc7cdb6d6efb675f5c1088d8e189822f22c5a"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8574554548296343,
+        "auprc": 0.6431159611752522,
+        "auroc": 0.8453631605167437,
+        "balanced_accuracy": 0.7389942879760873,
+        "brier": 0.10843880866534408,
+        "confusion_matrix": {
+          "fn": 245,
+          "fp": 211,
+          "tn": 2434,
+          "tp": 309
+        },
+        "coverage": 1.0,
+        "ece": 0.09074115744882609,
+        "f1": 0.5754189944134078,
+        "max_calibration_gap": 0.20790975263578748,
+        "mcc": 0.49022697958080036,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.3554532088644025,
+        "precision": 0.5942307692307692,
+        "recall": 0.5577617328519856,
+        "sensitivity": 0.5577617328519856,
+        "specificity": 0.920226843100189
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8826466916354557,
+        "auprc": 0.8729976073794988,
+        "auroc": 0.9236817399468001,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9607712765957447,
+          "ci95_low": 0.8749200888915949,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.8343764669065874,
+        "brier": 0.09129839260410495,
+        "confusion_matrix": {
+          "fn": 60,
+          "fp": 34,
+          "tn": 547,
+          "tp": 160
+        },
+        "coverage": 1.0,
+        "ece": 0.06346031410128802,
+        "f1": 0.7729468599033816,
+        "max_calibration_gap": 0.2219922602223583,
+        "mcc": 0.696738639855325,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.3107342778006584,
+        "precision": 0.8247422680412371,
+        "recall": 0.7272727272727273,
+        "sensitivity": 0.7272727272727273,
+        "specificity": 0.9414802065404475
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt8",
+      "model_id": "nt8__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.06457729102112353,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8796498905908097,
+        "auprc": 0.47116070363604046,
+        "auroc": 0.6903421072386425,
+        "balanced_accuracy": 0.6903421072386425,
+        "brier": 0.12035010940919037,
+        "confusion_matrix": {
+          "fn": 332,
+          "fp": 53,
+          "tn": 2592,
+          "tp": 222
+        },
+        "coverage": 1.0,
+        "ece": 0.12035010940919036,
+        "f1": 0.5355850422195415,
+        "max_calibration_gap": 0.19272727272727275,
+        "mcc": 0.5138987462473965,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 4.156745517987063,
+        "precision": 0.8072727272727273,
+        "recall": 0.4007220216606498,
+        "sensitivity": 0.4007220216606498,
+        "specificity": 0.9799621928166352
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.867665418227216,
+        "auprc": 0.7363573449413519,
+        "auroc": 0.7732123298388358,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.8261065006915629,
+          "ci95_low": 0.7123198820367329,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.7732123298388358,
+        "brier": 0.132334581772784,
+        "confusion_matrix": {
+          "fn": 96,
+          "fp": 10,
+          "tn": 571,
+          "tp": 124
+        },
+        "coverage": 1.0,
+        "ece": 0.132334581772784,
+        "f1": 0.7005649717514124,
+        "max_calibration_gap": 0.14392803598200898,
+        "mcc": 0.6534530372725255,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 4.570674529164211,
+        "precision": 0.9253731343283582,
+        "recall": 0.5636363636363636,
+        "sensitivity": 0.5636363636363636,
+        "specificity": 0.9827882960413081
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt8",
+      "model_id": "nt8__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.6345245409756899,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8268208815254767,
+        "auprc": 0.6201106002918381,
+        "auroc": 0.8166071806350788,
+        "balanced_accuracy": 0.5,
+        "brier": 0.14096556503462063,
+        "confusion_matrix": {
+          "fn": 554,
+          "fp": 0,
+          "tn": 2645,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.019883867214142235,
+        "f1": 0.0,
+        "max_calibration_gap": 0.7135658760240559,
+        "mcc": 0.0,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.4534886264081062,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.7253433208489388,
+        "auprc": 0.8250519077297698,
+        "auroc": 0.8845642309497731,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9329497907949791,
+          "ci95_low": 0.8366762870640589,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.5,
+        "brier": 0.2045484753157522,
+        "confusion_matrix": {
+          "fn": 220,
+          "fp": 0,
+          "tn": 581,
+          "tp": 0
+        },
+        "coverage": 1.0,
+        "ece": 0.09772802044020679,
+        "f1": 0.0,
+        "max_calibration_gap": 0.7865686995526833,
+        "mcc": 0.0,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.6029777812085614,
+        "precision": 0.0,
+        "recall": 0.0,
+        "sensitivity": 0.0,
+        "specificity": 1.0
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 6,
+      "feature_names": [
+        "forward_delta_l2",
+        "reverse_delta_l2",
+        "aggregate_delta_l2",
+        "orientation_disagreement_l2",
+        "cosine_similarity",
+        "aggregate_delta_mean"
+      ],
+      "feature_set": "nt8",
+      "model_id": "nt8__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.6156281668227166,
+      "source": {
+        "metadata": {
+          "feature_artifact": "/Users/utkarshkhajuria/Desktop/EvoVariant/research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+          "feature_artifact_sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c",
+          "layer": "8:scalar_summary",
+          "locked_test_evaluated": false,
+          "model_id": "nucleotide_transformer",
+          "train_count": 3199,
+          "validation_count": 801
+        },
+        "path": "research/runs/phase8_formal_features_20260922/nucleotide_transformer/nucleotide_transformer_layer_8_scalar_summary.jsonl",
+        "sha256": "152aa64dbec6fd811036033720c8d0baa09808064525098cad7847da7b64f03c"
+      },
+      "train_count": 3199,
+      "train_metrics": {
+        "accuracy": 0.8777743044701469,
+        "auprc": 0.6277558596540908,
+        "auroc": 0.8168085004742959,
+        "balanced_accuracy": 0.6856404359427569,
+        "brier": 0.10411319864125411,
+        "confusion_matrix": {
+          "fn": 337,
+          "fp": 54,
+          "tn": 2591,
+          "tp": 217
+        },
+        "coverage": 1.0,
+        "ece": 0.08128788592406344,
+        "f1": 0.5260606060606061,
+        "max_calibration_gap": 0.09485093102046416,
+        "mcc": 0.5045452410475189,
+        "n": 3199,
+        "n_negative": 2645,
+        "n_positive": 554,
+        "nll": 0.360323034860365,
+        "precision": 0.8007380073800738,
+        "recall": 0.3916967509025271,
+        "sensitivity": 0.3916967509025271,
+        "specificity": 0.9795841209829868
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8701622971285893,
+        "auprc": 0.8279801080256738,
+        "auroc": 0.8849710530433422,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9342198665467796,
+          "ci95_low": 0.8376240694789082,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.7763456423094978,
+        "brier": 0.10716272181360531,
+        "confusion_matrix": {
+          "fn": 95,
+          "fp": 9,
+          "tn": 572,
+          "tp": 125
+        },
+        "coverage": 1.0,
+        "ece": 0.09004511279768641,
+        "f1": 0.7062146892655368,
+        "max_calibration_gap": 0.3688304397202484,
+        "mcc": 0.6609471080997303,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.36482854889244426,
+        "precision": 0.9328358208955224,
+        "recall": 0.5681818181818182,
+        "sensitivity": 0.5681818181818182,
+        "specificity": 0.9845094664371773
+      }
+    },
+    {
+      "classifier": "decision_stump",
+      "feature_dimension": 1,
+      "feature_names": [
+        "phylop"
+      ],
+      "feature_set": "phylop",
+      "model_id": "phylop__decision_stump",
+      "parameters": {},
+      "runtime_seconds": 0.043677124893292785,
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "train_count": 3196,
+      "train_metrics": {
+        "accuracy": 0.9055068836045056,
+        "auprc": 0.576031832473666,
+        "auroc": 0.7795060081931149,
+        "balanced_accuracy": 0.7795060081931149,
+        "brier": 0.09449311639549436,
+        "confusion_matrix": {
+          "fn": 229,
+          "fp": 73,
+          "tn": 2569,
+          "tp": 325
+        },
+        "coverage": 1.0,
+        "ece": 0.09449311639549436,
+        "f1": 0.6827731092436975,
+        "max_calibration_gap": 0.18341708542713564,
+        "mcc": 0.6408804761071732,
+        "n": 3196,
+        "n_negative": 2642,
+        "n_positive": 554,
+        "nll": 3.2636766180422483,
+        "precision": 0.8165829145728644,
+        "recall": 0.5866425992779783,
+        "sensitivity": 0.5866425992779783,
+        "specificity": 0.9723694171082513
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8651685393258427,
+        "auprc": 0.7144497861398869,
+        "auroc": 0.7686668752933813,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.8130479338842975,
+          "ci95_low": 0.7198138297872341,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.7686668752933814,
+        "brier": 0.1348314606741573,
+        "confusion_matrix": {
+          "fn": 98,
+          "fp": 10,
+          "tn": 571,
+          "tp": 122
+        },
+        "coverage": 1.0,
+        "ece": 0.1348314606741573,
+        "f1": 0.6931818181818181,
+        "max_calibration_gap": 0.14648729446935724,
+        "mcc": 0.6464627451903601,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 4.656913671223912,
+        "precision": 0.9242424242424242,
+        "recall": 0.5545454545454546,
+        "sensitivity": 0.5545454545454546,
+        "specificity": 0.9827882960413081
+      }
+    },
+    {
+      "classifier": "logistic_regression",
+      "feature_dimension": 1,
+      "feature_names": [
+        "phylop"
+      ],
+      "feature_set": "phylop",
+      "model_id": "phylop__logistic_regression",
+      "parameters": {},
+      "runtime_seconds": 0.43180683301761746,
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "train_count": 3196,
+      "train_metrics": {
+        "accuracy": 0.8986232790988736,
+        "auprc": 0.7629778940928721,
+        "auroc": 0.9283508965147834,
+        "balanced_accuracy": 0.7896080258637888,
+        "brier": 0.07372319671160373,
+        "confusion_matrix": {
+          "fn": 209,
+          "fp": 115,
+          "tn": 2527,
+          "tp": 345
+        },
+        "coverage": 1.0,
+        "ece": 0.04652731894690892,
+        "f1": 0.6804733727810651,
+        "max_calibration_gap": 0.2050990593290255,
+        "mcc": 0.6246329867831224,
+        "n": 3196,
+        "n_negative": 2642,
+        "n_positive": 554,
+        "nll": 0.2595767658328723,
+        "precision": 0.75,
+        "recall": 0.6227436823104693,
+        "sensitivity": 0.6227436823104693,
+        "specificity": 0.9564723694171082
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8789013732833958,
+        "auprc": 0.8527069480965731,
+        "auroc": 0.9102487873572211,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9337770163415919,
+          "ci95_low": 0.8789929487482845,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.7979033015177593,
+        "brier": 0.09613201692923261,
+        "confusion_matrix": {
+          "fn": 84,
+          "fp": 13,
+          "tn": 568,
+          "tp": 136
+        },
+        "coverage": 1.0,
+        "ece": 0.044429326390001626,
+        "f1": 0.7371273712737126,
+        "max_calibration_gap": 0.28344384537308254,
+        "mcc": 0.6834201611716592,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.3247868248285662,
+        "precision": 0.912751677852349,
+        "recall": 0.6181818181818182,
+        "sensitivity": 0.6181818181818182,
+        "specificity": 0.9776247848537005
+      }
+    },
+    {
+      "classifier": "mlp",
+      "feature_dimension": 1,
+      "feature_names": [
+        "phylop"
+      ],
+      "feature_set": "phylop",
+      "model_id": "phylop__mlp",
+      "parameters": {
+        "epochs": 100
+      },
+      "runtime_seconds": 1.144454542081803,
+      "source": {
+        "available_development_rows": 3997,
+        "path": "artifacts/phase6a/comparators/formal_budgeted_20260921/phylop100way_hg38_20260921.json",
+        "sha256": "733c33f4150b84ec4a8ba7aa56ca8bff9131c5cc6c5bd552ad8f435f192ed90f",
+        "value_key": "sitewise_score"
+      },
+      "train_count": 3196,
+      "train_metrics": {
+        "accuracy": 0.8776595744680851,
+        "auprc": 0.7629778940928721,
+        "auroc": 0.9283508965147834,
+        "balanced_accuracy": 0.8482558886304818,
+        "brier": 0.07962751190647988,
+        "confusion_matrix": {
+          "fn": 109,
+          "fp": 282,
+          "tn": 2360,
+          "tp": 445
+        },
+        "coverage": 1.0,
+        "ece": 0.06042599482837189,
+        "f1": 0.6947697111631537,
+        "max_calibration_gap": 0.5165824055714032,
+        "mcc": 0.6289585175954326,
+        "n": 3196,
+        "n_negative": 2642,
+        "n_positive": 554,
+        "nll": 0.26412546386922714,
+        "precision": 0.6121045392022009,
+        "recall": 0.8032490974729242,
+        "sensitivity": 0.8032490974729242,
+        "specificity": 0.8932626797880394
+      },
+      "validation_count": 801,
+      "validation_metrics": {
+        "accuracy": 0.8639200998751561,
+        "auprc": 0.8527069480965731,
+        "auroc": 0.9102487873572211,
+        "auroc_gene_clustered_ci95": {
+          "ci95_high": 0.9337770163415919,
+          "ci95_low": 0.8789929487482845,
+          "replicates": 200
+        },
+        "balanced_accuracy": 0.8242919730871539,
+        "brier": 0.09577006251030822,
+        "confusion_matrix": {
+          "fn": 58,
+          "fp": 51,
+          "tn": 530,
+          "tp": 162
+        },
+        "coverage": 1.0,
+        "ece": 0.03875986757029731,
+        "f1": 0.7482678983833718,
+        "max_calibration_gap": 0.3568050970199078,
+        "mcc": 0.6552199867365086,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.3220192570944007,
+        "precision": 0.7605633802816901,
+        "recall": 0.7363636363636363,
+        "sensitivity": 0.7363636363636363,
+        "specificity": 0.9122203098106713
+      }
+    }
+  ],
+  "phase": 8,
+  "selection_split": "VALIDATION",
+  "status": "PASS_FORMAL_PHASE8"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "count": 4000,
+    "scope": "frozen manifest",
+    "stage": "formal_development"
+  },
+  {
+    "count": 3199,
+    "scope": "frozen manifest",
+    "stage": "TRAIN"
+  },
+  {
+    "count": 801,
+    "scope": "frozen manifest",
+    "stage": "VALIDATION"
+  },
+  {
+    "count": 0,
+    "scope": "development-only source",
+    "stage": "LOCKED_TEST_EXCLUDED"
+  }
+]

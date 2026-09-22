@@ -1,0 +1,172 @@
+{
+  "diversity": [
+    {
+      "cohen_kappa": 0.0,
+      "disagreement_rate": 0.21473158551810237,
+      "error_overlap_rate": 0.25862068965517243,
+      "left_model": "evo2__logistic_regression_hpo",
+      "n_common": 801,
+      "pearson_correlation": 0.6715191465395901,
+      "right_model": "foundation_fusion__mlp"
+    },
+    {
+      "cohen_kappa": 0.0,
+      "disagreement_rate": 0.2421972534332085,
+      "error_overlap_rate": 0.20816326530612245,
+      "left_model": "evo2__logistic_regression_hpo",
+      "n_common": 801,
+      "pearson_correlation": 0.6725118145291028,
+      "right_model": "nt16__mlp"
+    },
+    {
+      "cohen_kappa": 0.8867994523693857,
+      "disagreement_rate": 0.039950062421972535,
+      "error_overlap_rate": 0.6444444444444445,
+      "left_model": "foundation_fusion__mlp",
+      "n_common": 801,
+      "pearson_correlation": 0.973336963012267,
+      "right_model": "nt16__mlp"
+    }
+  ],
+  "ensemble_methods": {
+    "equal_mean": {
+      "accuracy": 0.8938826466916354,
+      "auprc": 0.9172471348503834,
+      "auroc": 0.9515334063526835,
+      "balanced_accuracy": 0.8167031763417305,
+      "brier": 0.09369959122477604,
+      "confusion_matrix": {
+        "fn": 78,
+        "fp": 7,
+        "tn": 574,
+        "tp": 142
+      },
+      "coverage": 1.0,
+      "ece": 0.13927251558560516,
+      "f1": 0.7696476964769648,
+      "max_calibration_gap": 0.3234582770740162,
+      "mcc": 0.7265489664475533,
+      "n": 801,
+      "n_negative": 581,
+      "n_positive": 220,
+      "nll": 0.3340071921634525,
+      "precision": 0.9530201342281879,
+      "recall": 0.6454545454545455,
+      "sensitivity": 0.6454545454545455,
+      "specificity": 0.9879518072289156
+    },
+    "hard_vote": {
+      "accuracy": 0.9088639200998752,
+      "auprc": 0.8544278131397085,
+      "auroc": 0.8775269910812079,
+      "balanced_accuracy": 0.8482123298388359,
+      "brier": 0.097933139131641,
+      "confusion_matrix": {
+        "fn": 63,
+        "fp": 10,
+        "tn": 571,
+        "tp": 157
+      },
+      "coverage": 1.0,
+      "ece": 0.12234706616729088,
+      "f1": 0.8113695090439277,
+      "max_calibration_gap": 0.27345309381237526,
+      "mcc": 0.7651924613608223,
+      "n": 801,
+      "n_negative": 581,
+      "n_positive": 220,
+      "nll": 2.192106745297423,
+      "precision": 0.9401197604790419,
+      "recall": 0.7136363636363636,
+      "sensitivity": 0.7136363636363636,
+      "specificity": 0.9827882960413081
+    },
+    "train_performance_weighted_mean": {
+      "metrics": {
+        "accuracy": 0.885143570536829,
+        "auprc": 0.917203408724394,
+        "auroc": 0.9515255828508841,
+        "balanced_accuracy": 0.7993819433578471,
+        "brier": 0.09836948701209737,
+        "confusion_matrix": {
+          "fn": 86,
+          "fp": 6,
+          "tn": 575,
+          "tp": 134
+        },
+        "coverage": 1.0,
+        "ece": 0.14980882488685915,
+        "f1": 0.7444444444444446,
+        "max_calibration_gap": 0.325923961105702,
+        "mcc": 0.7037043859645848,
+        "n": 801,
+        "n_negative": 581,
+        "n_positive": 220,
+        "nll": 0.34713093901325853,
+        "precision": 0.9571428571428572,
+        "recall": 0.6090909090909091,
+        "sensitivity": 0.6090909090909091,
+        "specificity": 0.9896729776247849
+      },
+      "weights": [
+        0.4800188353476691,
+        0.3931305576218326,
+        0.38902363290180364
+      ]
+    }
+  },
+  "locked_test_evaluated": false,
+  "oof_stack": {
+    "base_models": [
+      "evo2__logistic_regression_hpo",
+      "foundation_fusion__mlp",
+      "nt16__mlp"
+    ],
+    "fold_count": 5,
+    "locked_test_evaluated": false,
+    "meta_parameters": {
+      "l2": 0.01,
+      "learning_rate": 0.1,
+      "seed": 42,
+      "steps": 200
+    },
+    "model_id": "oof_stack",
+    "oof_train_count": 3199,
+    "selection_split": "VALIDATION",
+    "validation_count": 801,
+    "validation_metrics": {
+      "accuracy": 0.7253433208489388,
+      "auprc": 0.9173723144105929,
+      "auroc": 0.9516038178688782,
+      "balanced_accuracy": 0.5,
+      "brier": 0.1590792351653527,
+      "confusion_matrix": {
+        "fn": 220,
+        "fp": 0,
+        "tn": 581,
+        "tp": 0
+      },
+      "coverage": 1.0,
+      "ece": 0.22798395679140326,
+      "f1": 0.0,
+      "max_calibration_gap": 0.6281000690742343,
+      "mcc": 0.0,
+      "n": 801,
+      "n_negative": 581,
+      "n_positive": 220,
+      "nll": 0.47945524851132443,
+      "precision": 0.0,
+      "recall": 0.0,
+      "sensitivity": 0.0,
+      "specificity": 1.0
+    }
+  },
+  "phase": 11,
+  "selected_base_models": [
+    "evo2__logistic_regression_hpo",
+    "foundation_fusion__mlp",
+    "nt16__mlp"
+  ],
+  "selection_split": "VALIDATION",
+  "status": "PASS_FORMAL_PHASE11"
+}

@@ -1,0 +1,482 @@
+[
+  {
+    "feature_set": "all_fusion",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9952464489842114,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "all_fusion::trial_0"
+  },
+  {
+    "feature_set": "all_fusion",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9978495840642861,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "all_fusion::trial_1"
+  },
+  {
+    "feature_set": "all_fusion",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9968026710429517,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "all_fusion::trial_2"
+  },
+  {
+    "feature_set": "all_fusion",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9980759436364666,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "all_fusion::trial_3"
+  },
+  {
+    "feature_set": "cad16",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.5508840557033328,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "cad16::trial_0"
+  },
+  {
+    "feature_set": "cad16",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.5510718197465185,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad16::trial_1"
+  },
+  {
+    "feature_set": "cad16",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.5510248787357221,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad16::trial_2"
+  },
+  {
+    "feature_set": "cad16",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.5519949929588484,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "cad16::trial_3"
+  },
+  {
+    "feature_set": "cad4",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.40974808324205914,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "cad4::trial_0"
+  },
+  {
+    "feature_set": "cad4",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.4106790799561884,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad4::trial_1"
+  },
+  {
+    "feature_set": "cad4",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.4099436707870443,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad4::trial_2"
+  },
+  {
+    "feature_set": "cad4",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.41248630887185106,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "cad4::trial_3"
+  },
+  {
+    "feature_set": "cad8",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.4446565482710061,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "cad8::trial_0"
+  },
+  {
+    "feature_set": "cad8",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.4501877640431857,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad8::trial_1"
+  },
+  {
+    "feature_set": "cad8",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.44512595837897045,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cad8::trial_2"
+  },
+  {
+    "feature_set": "cad8",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.582131121890158,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "cad8::trial_3"
+  },
+  {
+    "feature_set": "cadd",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.997792994171241,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "cadd::trial_0"
+  },
+  {
+    "feature_set": "cadd",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.997792994171241,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cadd::trial_1"
+  },
+  {
+    "feature_set": "cadd",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.997792994171241,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cadd::trial_2"
+  },
+  {
+    "feature_set": "cadd",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.997792994171241,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "cadd::trial_3"
+  },
+  {
+    "feature_set": "cadd_phylop",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9881019749872673,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "cadd_phylop::trial_0"
+  },
+  {
+    "feature_set": "cadd_phylop",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9968734084092581,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cadd_phylop::trial_1"
+  },
+  {
+    "feature_set": "cadd_phylop",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9948786146794183,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "cadd_phylop::trial_2"
+  },
+  {
+    "feature_set": "cadd_phylop",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9974534548129704,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "cadd_phylop::trial_3"
+  },
+  {
+    "feature_set": "evo2",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9887889219214521,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "evo2::trial_0"
+  },
+  {
+    "feature_set": "evo2",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9886872163980598,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "evo2::trial_1"
+  },
+  {
+    "feature_set": "evo2",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9887185104052574,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "evo2::trial_2"
+  },
+  {
+    "feature_set": "evo2",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9886637458926616,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "evo2::trial_3"
+  },
+  {
+    "feature_set": "foundation_fusion",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9183069942106087,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "foundation_fusion::trial_0"
+  },
+  {
+    "feature_set": "foundation_fusion",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9193318729463308,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "foundation_fusion::trial_1"
+  },
+  {
+    "feature_set": "foundation_fusion",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9187138163041777,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "foundation_fusion::trial_2"
+  },
+  {
+    "feature_set": "foundation_fusion",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9202863401658582,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "foundation_fusion::trial_3"
+  },
+  {
+    "feature_set": "nt16",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9449225473321858,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "nt16::trial_0"
+  },
+  {
+    "feature_set": "nt16",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9444531372242215,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt16::trial_1"
+  },
+  {
+    "feature_set": "nt16",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9445235487404162,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt16::trial_2"
+  },
+  {
+    "feature_set": "nt16",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9444218432170239,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "nt16::trial_3"
+  },
+  {
+    "feature_set": "nt24",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9124784853700516,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "nt24::trial_0"
+  },
+  {
+    "feature_set": "nt24",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9123141918322641,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt24::trial_1"
+  },
+  {
+    "feature_set": "nt24",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9123141918322641,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt24::trial_2"
+  },
+  {
+    "feature_set": "nt24",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9124315443592552,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "nt24::trial_3"
+  },
+  {
+    "feature_set": "nt8",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.8842747613831952,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "nt8::trial_0"
+  },
+  {
+    "feature_set": "nt8",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.8845642309497731,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt8::trial_1"
+  },
+  {
+    "feature_set": "nt8",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.8845407604443749,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "nt8::trial_2"
+  },
+  {
+    "feature_set": "nt8",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.8845485839461743,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "nt8::trial_3"
+  },
+  {
+    "feature_set": "phylop",
+    "l2": 0.0,
+    "learning_rate": 0.05,
+    "objective": 0.9102487873572211,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 100,
+    "trial_id": "phylop::trial_0"
+  },
+  {
+    "feature_set": "phylop",
+    "l2": 0.0,
+    "learning_rate": 0.1,
+    "objective": 0.9102487873572211,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "phylop::trial_1"
+  },
+  {
+    "feature_set": "phylop",
+    "l2": 0.01,
+    "learning_rate": 0.05,
+    "objective": 0.9102487873572211,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 200,
+    "trial_id": "phylop::trial_2"
+  },
+  {
+    "feature_set": "phylop",
+    "l2": 0.01,
+    "learning_rate": 0.1,
+    "objective": 0.9102487873572211,
+    "scope": "bounded formal development HPO",
+    "selection_split": "VALIDATION",
+    "steps": 400,
+    "trial_id": "phylop::trial_3"
+  }
+]

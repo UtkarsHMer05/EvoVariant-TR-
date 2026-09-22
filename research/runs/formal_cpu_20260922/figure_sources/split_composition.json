@@ -1,0 +1,12 @@
+[
+  {
+    "count": 3199,
+    "scope": "formal development manifest",
+    "split": "TRAIN"
+  },
+  {
+    "count": 801,
+    "scope": "formal development manifest",
+    "split": "VALIDATION"
+  }
+]

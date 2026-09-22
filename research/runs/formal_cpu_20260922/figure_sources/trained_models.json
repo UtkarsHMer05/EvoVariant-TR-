@@ -1,0 +1,137 @@
+[
+  {
+    "metric": 0.4991394148020654,
+    "model_id": "cad16__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.5510718197465185,
+    "model_id": "cad16__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.45671256454388987,
+    "model_id": "cad16__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.5,
+    "model_id": "cad4__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.4106790799561884,
+    "model_id": "cad4__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.6212486308871851,
+    "model_id": "cad4__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.5028242841495854,
+    "model_id": "cad8__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.4501877640431857,
+    "model_id": "cad8__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.5620638397746831,
+    "model_id": "cad8__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9522062275074323,
+    "model_id": "evo2__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9886872163980598,
+    "model_id": "evo2__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9886168048818651,
+    "model_id": "evo2__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9522062275074323,
+    "model_id": "foundation_fusion__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9193318729463308,
+    "model_id": "foundation_fusion__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9509544672195275,
+    "model_id": "foundation_fusion__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.8308245970896573,
+    "model_id": "nt16__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9444531372242215,
+    "model_id": "nt16__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9490846502894695,
+    "model_id": "nt16__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.7641214207479268,
+    "model_id": "nt24__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9123141918322641,
+    "model_id": "nt24__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9236817399468001,
+    "model_id": "nt24__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.7732123298388358,
+    "model_id": "nt8__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.8845642309497731,
+    "model_id": "nt8__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.8849710530433422,
+    "model_id": "nt8__mlp",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.7686668752933813,
+    "model_id": "phylop__decision_stump",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9102487873572211,
+    "model_id": "phylop__logistic_regression",
+    "scope": "VALIDATION development"
+  },
+  {
+    "metric": 0.9102487873572211,
+    "model_id": "phylop__mlp",
+    "scope": "VALIDATION development"
+  }
+]

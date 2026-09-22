@@ -1,0 +1,44 @@
+[
+  {
+    "feature_set": "nt8",
+    "layer": 8,
+    "metric": 0.8849710530433422,
+    "model_id": "nt8__mlp",
+    "scope": "VALIDATION development; full-coverage feature families"
+  },
+  {
+    "feature_set": "nt16",
+    "layer": 16,
+    "metric": 0.9490846502894695,
+    "model_id": "nt16__mlp",
+    "scope": "VALIDATION development; full-coverage feature families"
+  },
+  {
+    "feature_set": "nt24",
+    "layer": 24,
+    "metric": 0.9236817399468001,
+    "model_id": "nt24__mlp",
+    "scope": "VALIDATION development; full-coverage feature families"
+  },
+  {
+    "feature_set": "cad4",
+    "layer": 4,
+    "metric": 0.6212486308871851,
+    "model_id": "cad4__mlp",
+    "scope": "VALIDATION development; full-coverage feature families"
+  },
+  {
+    "feature_set": "cad8",
+    "layer": 8,
+    "metric": 0.5620638397746831,
+    "model_id": "cad8__mlp",
+    "scope": "VALIDATION development; full-coverage feature families"
+  },
+  {
+    "feature_set": "cad16",
+    "layer": 16,
+    "metric": 0.5510718197465185,
+    "model_id": "cad16__logistic_regression",
+    "scope": "VALIDATION development; full-coverage feature families"
+  }
+]

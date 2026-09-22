@@ -1,0 +1,32 @@
+[
+  {
+    "metric": 0.9890627444844312,
+    "metric_name": "validation_auroc",
+    "scope": "formal development learning curve",
+    "train_size": 333
+  },
+  {
+    "metric": 0.9887341574088562,
+    "metric_name": "validation_auroc",
+    "scope": "formal development learning curve",
+    "train_size": 825
+  },
+  {
+    "metric": 0.9888984509466437,
+    "metric_name": "validation_auroc",
+    "scope": "formal development learning curve",
+    "train_size": 1630
+  },
+  {
+    "metric": 0.9888123924268503,
+    "metric_name": "validation_auroc",
+    "scope": "formal development learning curve",
+    "train_size": 2432
+  },
+  {
+    "metric": 0.9887889219214521,
+    "metric_name": "validation_auroc",
+    "scope": "formal development learning curve",
+    "train_size": 3199
+  }
+]

@@ -3251,7 +3251,8 @@ Decision:
 Keep all paid paths fail-closed. Treat the overnight approval bound to
 `535d73e56d10ddea5d2ef0098bb7251a57d259d7` and the Phase 7 approval bound to
 `408edcc83e4a288cc8afb90a5bb9993af302c3d4` as stale for current HEAD
-`f82893a29a5209f93f3c37299b99f42cd9228aff`. Do not launch Phase 14, locked-test inference,
+`f82893a29a5209f93f3c37299b99f42cd9228aff` (with documentation-only descendants following the
+audit). Do not launch Phase 14, locked-test inference,
 fine-tuning, context sweeps, or any other paid workload until a fresh exact-scope approval is
 bound to the current committed checkpoint with current protocol/manifest/configuration hashes,
 budget, safety stop, and exclusions.

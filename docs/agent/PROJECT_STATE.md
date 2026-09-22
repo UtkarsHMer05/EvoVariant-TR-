@@ -31,13 +31,13 @@ multi-model Phase 6 benchmark.
   separately authorized Phase 7 and formal CPU continuation are recorded in the dated section
   below; locked-test inference and fine-tuning remain unopened.
 
-Current control-plane checkpoint: branch `research/evovariant-tr`, latest committed HEAD
-`c5730d7` (`record clean-room reproducibility evidence`), with the focused implementation chain
-`3412071`, `2f538b7`, `9662c7d`, and `27352e5` preserved beneath it. No Next/Playwright process or
-Modal container is active. The existing Phase 7 approval is scoped to NT/Caduceus representation
-work and excludes Phase 14; no fresh exact-scope approval bound to this HEAD is present, so the
-locked evaluation remains fail-closed. Continue only no-spend integrity or control-plane work
-until a new explicit allocation is provided.
+Current control-plane checkpoint: branch `research/evovariant-tr`, latest implementation commit
+`27352e5` (`make blocked workbench fallback clone-safe`), followed only by documentation commits
+recording the clean-room evidence. No Next/Playwright process or Modal container is active. The
+existing Phase 7 approval is scoped to NT/Caduceus representation work and excludes Phase 14; no
+fresh exact-scope approval is present for the current checkout, so the locked evaluation remains
+fail-closed. Continue only no-spend integrity or control-plane work until a new explicit
+allocation is provided.
 
 ## Formal Phase 7 and development CPU continuation — 2026-09-22
 

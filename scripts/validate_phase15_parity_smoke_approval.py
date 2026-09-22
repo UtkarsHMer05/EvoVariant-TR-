@@ -111,7 +111,11 @@ def validate_approval(
         raise Phase15ApprovalError("unsupported Phase 15 approval version")
     if approval.get("phase") != 15:
         raise Phase15ApprovalError("approval is not for Phase 15")
-    if approval.get("hard_cap_usd") != 0.25 or approval.get("safety_stop_usd") != 0.20:
+    if (
+        approval.get("hard_cap_usd") != 0.25
+        or approval.get("safety_stop_usd") != 0.20
+        or approval.get("max_budget_usd") != 0.25
+    ):
         raise Phase15ApprovalError("approval budget does not match $0.25/$0.20")
 
     budget = _require_mapping(approval.get("budget_control"), "budget_control")

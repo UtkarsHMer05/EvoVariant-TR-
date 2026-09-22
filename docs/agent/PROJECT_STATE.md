@@ -68,6 +68,17 @@ pre-Phase-14 selection file is `phase13/frozen_config.json`; its content hash is
 `selection_closed=true`. Phase 10 remains `DEFERRED_BY_COMPUTE`. Phase 14 has not run and no
 locked label or locked prediction was read.
 
+The no-spend figure-source continuation is also recorded. `scripts/register_formal_cpu_figure_sources.py`
+materialized 19 hash-registered PRELIMINARY source artifacts from the verified Phase 6–13
+development outputs in registry run `run_20260922T083143Z_66e6c1cf` (record SHA-256
+`28aab509db409b46967994fe138e00ce7a33f1138ef5c878fcd1e35fc80eb5cc`). The generated figure
+manifest now has 15/19 required figure families and 11/11 applicable tables, with the Phase 10
+fine-tuning table explicitly not applicable. The preliminary renderer produced 26 explicitly
+non-promotable development-stage files. The final figure bundle remains BLOCKED by the four
+unavailable source families (`context_length.json`, `hpo_importance.json`, `loss.json`, and
+`temporal_cohort.json`) and the absence of an eligible completed `FINAL` run; no locked labels or
+locked predictions were accessed.
+
 ## Current state — 2026-09-21
 
 > Historical snapshot retained for provenance; the 2026-09-22 section above is authoritative for

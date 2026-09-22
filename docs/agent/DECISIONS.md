@@ -3099,3 +3099,36 @@ Evidence:
 Validation:
 The approval inventory was re-read after the Phase 7/CPU completion; no current exact-scope
 Phase 14 approval exists. No locked labels or locked predictions were accessed.
+
+## D-100 — Register only defensible preliminary figure sources from completed development stages
+
+Status: ACCEPTED
+Date: 2026-09-22
+
+Context:
+Phases 6–13 contain hash-verified formal development artifacts, but the figure gate still had
+unregistered source families. The user-authorized paid work is exhausted, and no locked-test
+labels or predictions may be accessed while Phase 14 lacks a fresh exact-scope approval.
+
+Decision:
+Materialize and register only the 19 source artifacts directly derivable from the completed
+Phase 6–13 development outputs. Mark the run `PRELIMINARY`, preserve explicit development-only
+scope, and leave unavailable context-length, HPO-importance, loss, and temporal-cohort sources
+absent. Do not promote the preliminary renderer output to a final scientific bundle.
+
+Evidence:
+- Registry run: `run_20260922T083143Z_66e6c1cf`; record SHA-256
+  `28aab509db409b46967994fe138e00ce7a33f1138ef5c878fcd1e35fc80eb5cc`.
+- Figure manifest: 15/19 figure families and 11/11 applicable tables available; Phase 10's
+  fine-tuning table is explicitly not applicable.
+- Preliminary renderer: 26 development-stage outputs, `promotable=false`; final bundle output
+  count remains zero.
+
+Consequences:
+The workbench and preliminary figure surfaces gain traceable development evidence, while Phase
+17 and the final release gate remain blocked until the four missing source families and an
+eligible completed `FINAL` run exist.
+
+Validation:
+`make registry-verify`, `make figures`, `make ui-check`, and `make validate` passed. No paid
+compute, locked labels, or locked predictions were used.

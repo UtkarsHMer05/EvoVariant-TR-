@@ -136,6 +136,8 @@ TRANSFORMERS_IMAGE = TORCH_IMAGE.pip_install(
     "transformers==4.38.1",
     "safetensors==0.4.3",
     "numpy",
+).add_local_dir("src", "/opt/evovariant_tr", copy=True).env(
+    {"PYTHONPATH": "/opt/evovariant_tr"}
 )
 CADUCEUS_IMAGE = TRANSFORMERS_IMAGE.run_commands(
     "pip install --no-build-isolation 'mamba-ssm==2.2.4'",

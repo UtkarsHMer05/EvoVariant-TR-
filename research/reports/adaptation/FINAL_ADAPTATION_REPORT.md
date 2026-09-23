@@ -51,7 +51,7 @@ Pinned checkpoint: `kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-1
 
 ## Partial and full fine-tuning
 
-`NOT STARTED`. Any T4 OOM or resource limit will be recorded as `FULL_FINETUNE_RESOURCE_DEFERRED_T4`; no rows will be removed or replaced.
+The only completed fit is the frozen-head baseline: `train_caduceus.py` trained the paired task head with the Caduceus encoder frozen. Notebook cell 15 launches `run_autonomous.py`, which launches `run_caduceus_hpo.py`, which calls the same trainer for each HPO regime. Trial 0 is `frozen_head_only`; trial 1 is the queued `partial_small` regime and is the first encoder fine-tune, unfreezing the last four backbone blocks. Partial/full fine-tuning has **not started**. Any T4 OOM or resource limit will be recorded as `FULL_FINETUNE_RESOURCE_DEFERRED_T4`; no rows will be removed or replaced.
 
 ## HPO and seed robustness
 
@@ -79,7 +79,9 @@ The frozen-head process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9f
 
 ## Conclusion
 
-The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The alternate-account T4 attempt passed recovery and reference checks and persisted fold 2 epoch 2 before it was stopped after the Colab account-limit rule was checked. All three folds' latest/best checkpoints pass metadata binding and history continuity; the post-stop SQLite snapshot passes integrity. Trial 0 remains `RUNNING` in Optuna and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
+The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The T4 attempt passed recovery and reference checks and persisted fold 2 epoch 2 before it was stopped after the Colab account-limit rule was checked. All three folds' latest/best checkpoints pass metadata binding and history continuity; the post-stop SQLite snapshot passes integrity. Trial 0 remains `RUNNING` in Optuna and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
+
+The open Colab page's persisted traceback confirms the HPO child ended by `SIGTERM: 15`; Hugging Face `FutureWarning` lines are deprecation warnings, not the cause. The old runner turned this deliberate stop into `EXITED_FAILURE`. The repository fix records `EXITED_BY_SIGNAL`, and the notebook monitor now shows stored terminal states directly. The live Colab notebook has not yet loaded that repository patch. No encoder fine-tuning or holdout evaluation occurred.
 
 ## Latest recovery check, 2026-09-23
 

@@ -53,7 +53,15 @@ The full-candidate and NT tracks remain resource-conditional. Missing results ar
 
 ## Local validation
 
-Latest `make validate` on 2026-09-23: secret scan and Ruff passed; strict mypy passed (67 files); 737 tests passed / 33 deselected; core coverage 95.07%.
+Latest `make validate` on 2026-09-23: secret scan and Ruff passed; strict mypy passed (67 files); 739 tests passed / 33 deselected; core coverage 95.07%.
+
+Focused adaptation audit on 2026-09-23: all 21 tests under `tests/adaptation` passed, including runner signal-status handling. The formal-data contract checks read frozen manifest records for declared counts and TRAIN/VALIDATION identity/gene separation; no VALIDATION predictions or metrics were generated and labels were not used for selection.
+
+## Fine-tuning location and runner-status repair, 2026-09-23
+
+- Fine-tuning code runs in `scripts/adaptation/train_caduceus.py` via `run_caduceus_hpo.py`, launched by notebook cell 15 through `run_autonomous.py`. The completed run is `frozen_head_only`: it trained the paired task head while the encoder stayed frozen. Trial 0 also uses `frozen_head_only`; the queued `partial_small` trial is the first encoder fine-tune and unfreezes the last four Caduceus blocks. No encoder fine-tuning has completed.
+- The visible Colab traceback says the HPO child died with `SIGTERM: 15`. This matches the deliberate provider-policy stop; it is not a model or training exception. The previous runner mislabeled a signaled child `EXITED_FAILURE`. The repository runner now records `EXITED_BY_SIGNAL` with the child script/signal, preserves real nonzero exits as failures, and the notebook monitor displays the recorded status.
+- The canonical notebook clarification and runner fix are local repository changes. The already-open Colab page still displays its older `EXITED_FAILURE` output and has not loaded this patch. Its persisted outputs show the SQLite snapshot integrity check passed, trial 0 is `RUNNING`, trials 1–3 are `WAITING`, fold histories are 4/3/2, and selection is open. This is not a new HPO run or permission to resume on the alternate account.
 
 ## Latest authorized runtime check, 2026-09-23
 

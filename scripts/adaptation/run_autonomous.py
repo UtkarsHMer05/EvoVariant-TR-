@@ -7,6 +7,7 @@ import argparse
 import fcntl
 import json
 import os
+import signal
 import subprocess
 import sys
 from pathlib import Path
@@ -29,10 +30,23 @@ def _status(path: Path, value: dict[str, str]) -> None:
     os.replace(temporary, path)
 
 
+class _ChildSignaled(RuntimeError):
+    def __init__(self, script: str, returncode: int) -> None:
+        self.script = script
+        self.returncode = returncode
+        self.signal_name = signal.Signals(-returncode).name
+        super().__init__(f"{script} exited on {self.signal_name} ({returncode})")
+
+
 def _run(root: Path, script: str, *arguments: str) -> None:
     command = [sys.executable, str(root / "scripts/adaptation" / script), *arguments]
     print("running", script, flush=True)
-    subprocess.run(command, cwd=root, check=True)
+    try:
+        subprocess.run(command, cwd=root, check=True)
+    except subprocess.CalledProcessError as exc:
+        if exc.returncode < 0:
+            raise _ChildSignaled(script, exc.returncode) from exc
+        raise
 
 
 def _verified_run(report_path: Path, checkpoint: Path, *, seed: int | None = None,
@@ -192,6 +206,18 @@ def main() -> None:
             ):
                 raise RuntimeError("an older HPO or TRAIN worker is active; stop duplicate launch")
             result = _execute(root, drive, reference)
+        except _ChildSignaled as exc:
+            result = "EXITED_BY_SIGNAL"
+            _status(
+                status_path,
+                {
+                    "status": result,
+                    "script": exc.script,
+                    "signal": exc.signal_name,
+                    "returncode": str(exc.returncode),
+                },
+            )
+            print(result, exc.script, exc.signal_name)
         except Exception as exc:
             result = "EXITED_FAILURE"
             error = f"{type(exc).__name__}: {exc}"

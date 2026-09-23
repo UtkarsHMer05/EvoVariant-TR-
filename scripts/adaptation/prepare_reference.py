@@ -25,21 +25,25 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default=str(Path(__file__).resolve().parents[2]))
     parser.add_argument("--drive-root", default="/content/drive/MyDrive/EvoVariantTR")
+    parser.add_argument("--source-drive-root")
     parser.add_argument("--output", default="/content/Homo_sapiens_assembly38.fasta")
     args = parser.parse_args()
     root = Path(args.root).resolve()
     reference = Path(args.output)
     drive = Path(args.drive_root) / "reference"
-    archive = drive / "hg38.fa.gz"
+    source = Path(args.source_drive_root or args.drive_root) / "reference"
+    archive = source / "hg38.fa.gz"
     provenance = drive / "provenance.json"
     reference.parent.mkdir(parents=True, exist_ok=True)
     drive.mkdir(parents=True, exist_ok=True)
     if not reference.exists() or sha256_file(reference) != REFERENCE_SHA256:
-        drive_reference = drive / reference.name
+        drive_reference = source / reference.name
         if drive_reference.exists() and sha256_file(drive_reference) == REFERENCE_SHA256:
-            shutil.copyfile(drive / reference.name, reference)
+            shutil.copyfile(drive_reference, reference)
         else:
             if not archive.exists():
+                if source != drive:
+                    raise RuntimeError(f"shared reference archive is missing: {archive}")
                 temporary = archive.with_name(archive.name + ".tmp")
                 urllib.request.urlretrieve(REFERENCE_URL, temporary)
                 os.replace(temporary, archive)
@@ -56,8 +60,9 @@ def main() -> None:
         raise RuntimeError("GRCh38 FASTA hash mismatch")
     index = reference.with_suffix(reference.suffix + ".fai")
     drive_index = drive / index.name
-    if not index.exists() and drive_index.exists():
-        shutil.copyfile(drive_index, index)
+    source_index = source / index.name
+    if not index.exists() and (drive_index.exists() or source_index.exists()):
+        shutil.copyfile(drive_index if drive_index.exists() else source_index, index)
     from pyfaidx import Fasta
 
     fasta = Fasta(str(reference), as_raw=True, sequence_always_upper=True)

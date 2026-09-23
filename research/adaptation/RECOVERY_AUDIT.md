@@ -1,6 +1,6 @@
 # Recovery audit — 2026-09-23
 
-Status: **RECOVERY PRESERVED; TRAINING WAITING FOR FREE GPU; DEFAULT-ACCOUNT RECOVERY PROVENANCE UNRESOLVED.** The scientific run is incomplete. This update is a recovery-state refresh, not a new full Drive inventory.
+Status: **RECOVERY PRESERVED; CADUCEUS HPO ACTIVE ON THE CONNECTED FREE T4; SCIENTIFIC RUN INCOMPLETE.** The older default-account provenance findings below are historical; the current authorized T4 passed recovery-root and reference checks. This update is not a new full Drive inventory.
 
 - Branch: `research/posthoc-foundation-adaptation`; repository HEAD at refresh: `331e5a35d0fef8a4ed6b714f982c3b57773d4fc1`.
 - The file classifications in [RECOVERY_AUDIT.json](RECOVERY_AUDIT.json) remain the earlier inventory from source commit `cfecb11` (121 repository files and 51 Drive files). The full Drive inventory was not repeated in this refresh.
@@ -25,3 +25,11 @@ The notebook guard remained correct for that default-account attempt. The UI rep
 ## Latest authorized T4 resume attempt
 
 The user explicitly authorized the connected Om Srivastava account and other accounts, overriding the attached prompt's default-account-only instruction; no paid compute was selected. The current T4 Drive mount passed the recovery-root, source-folder-ID, recovery-manifest, and study-database guards. A fresh SQLite snapshot copy passed integrity (`ok`) with trial 0 `RUNNING`, trials 1–3 `WAITING`; histories remained 4 / 3, the frozen report was `PASS`, and selection remained open. Reference preparation passed against the pinned GRCh38 SHA-256 and all 4,000 formal REF alleles. Guarded runner PID 11483 is active and has opened the existing Optuna study; exact checkpoint resume and any new epoch are not yet verified. Neither the 801-row adaptation holdout nor the historical 946-row test was accessed.
+
+## Live compute poll, 2026-09-23 07:35–07:37 UTC
+
+A read-only runtime sample showed parent PID 11483 alive and HPO child PID 11573 at 97.5% CPU. The Tesla T4 reported 100% utilization, 847 / 15,360 MiB VRAM, and 77 C. A follow-up notebook refresh still showed trial 0 `RUNNING`, trials 1–3 `WAITING`, fold histories 4 / 3, no fold-2 history, and no new saved epoch or completed trial. The worker is using the GPU, but its exact resumed checkpoint is not yet established. The temporary diagnostic cell was removed; Colab reports the canonical notebook saved at 20 cells / 10 sections. The selection lock remains open; the adaptation holdout and historical test remain closed. Continue on the current free T4; no account rotation to bypass usage limits or paid compute.
+
+## Checkpoint-bound continuation, 2026-09-23 07:48–07:50 UTC
+
+The latest run persisted fold 2 epoch 1. Folds 0, 1, and 2 have contiguous history/checkpoint epoch counts 4, 3, and 1. `latest.pt` and `best.pt` for each fold passed exact protocol hash, fold, trial signature, model revision, TRAIN manifest, and reference metadata checks; the latest checkpoint hashes are recorded in `STATE.md`. A copied Drive SQLite snapshot passed integrity (`ok`) with trial 0 `RUNNING`, trials 1–3 `WAITING`. The runner remained active at 07:50 UTC. The persisted stage is `CADUCEUS_HPO_EPOCH_PERSISTED`; selection remains open, and holdout and locked-test gates remain closed.

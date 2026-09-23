@@ -1,6 +1,6 @@
 # Caduceus HPO recovery, 2026-09-23
 
-## Verified recovery state
+## Pre-resume recovery snapshot (historical)
 
 - Branch at inspection: `research/posthoc-foundation-adaptation`, HEAD `dc9ee30e5b149832d0adb2f5d64707ec095d713b`.
 - The Drive file `hpo/caduceus_hpo.sqlite3` was downloaded read-only as a local copy: 114,688 bytes, SHA-256 `ae22d5c562db0c295cd93d881ca29d1fd77598842f5e706d3f9da460f39ba768`. A local SQLite `PRAGMA integrity_check` returned `ok`. The original Drive file was not edited.
@@ -12,21 +12,21 @@
 - The original Optuna database contains intermediate step 1 value `0.5269409039606832`, written during fold 1 before that fold completed. The repaired runner overwrites that step with the completed-fold mean before pruning; this prevents an old partial value from driving a resumed pruning decision.
 - No `selection_closed.json`, final refit, or adaptation holdout output was observed. The selection gate remains open.
 
-## Exact next work
+## Original resume plan (superseded by later progress)
 
 1. Confirm the authorized Drive root contains the expected source shortcut and file-level recovery-copy manifest; restore or independently verify those exact artifacts if missing. Then, on an eligible free T4, verify the checkpoint payloads and reference, and restore the study database from a verified Drive snapshot or intact legacy copy to `/content/evovariant_runtime/hpo/`.
 2. Resume trial 0 at fold 1's completion boundary. Load the saved best fold-1 checkpoint for its final TRAIN-fold evaluation, then start **fold 2 epoch 1**. The saved `stale_epochs=2` already meets the protocol's early stopping rule, so fold 1 must not train epoch 4. Fold 0 requires no new training epoch. If checkpoint metadata disagrees with its history, stop for forensic recovery; do not restart trial 0.
 3. Complete fold 2, then the queued trials and predeclared 8 completed TRAIN-only trials. Persist local SQLite via backup API to an atomic Drive `.snapshot` after each epoch, fold, and trial.
 4. Keep the 801-row adaptation holdout closed until the selection lock, OOF calibration, and all fixed-seed TRAIN refits are verified. The historical 946-row test remains outside adaptation selection.
 
-## Resume attempt and current gate, 2026-09-23
+## Historical default-account gate, 2026-09-23
 
 - The already-open Colab tab was under a non-default Google profile. Its live notebook still launched an HPO child against `/content/drive/MyDrive/EvoVariantTR_original`, the shared shortcut that had previously shown disappearing writes. Parent PID 12382 was a zombie; child PID 12473 was active. The child was stopped with SIGTERM after confirming no runner log or fold-2 history existed.
 - At that earlier poll, the visible Drive snapshots passed SQLite integrity checks: trial 0 RUNNING, trials 1–3 WAITING. Fold histories remained at four epochs for fold 0 and three for fold 1; no fold-2 checkpoint, completed trial, or selection lock was observed. The later default-account check found missing recovery provenance, so the current mounted root is not accepted as a verified resume source (see below).
 - At the time of the prior repair, the same Drive notebook file ID pointed run writes at the owned recovery root, used the original shortcut read-only, and had stale outputs cleared; the UI reported all changes saved. The notebook had not yet been rerun after editing. The later partial default-account preflight is recorded below.
-- The attached prompt requires use of the default account and prohibits account switching. The active non-default T4 was not used for training; no account rotation or paid compute was used. Current HPO status is `WAITING_FOR_FREE_GPU` until an eligible free T4 is available under that rule.
+- At that default-account checkpoint, the attached prompt's account restriction left HPO `WAITING_FOR_FREE_GPU`; no training was run on the non-default tab then. The user later authorized the connected Om account, and the active free-T4 attempt is documented below. No paid compute was selected.
 
-The selection gate remains open. The next valid work is to verify the owned SQLite snapshot and checkpoint bindings on an eligible runtime, finalize fold 1 from its best checkpoint, and start fold 2 epoch 1. Keep adaptation VALIDATION and the historical 946-row test closed.
+At that checkpoint the selection gate remained open. Later authorized T4 progress and the current exact next action are recorded below. Keep adaptation VALIDATION and the historical 946-row test closed.
 
 ## Latest default-account poll, 2026-09-23
 
@@ -45,3 +45,16 @@ Resume remained blocked during that default-account attempt by GPU availability 
 - Runner PID 11483 launched against the owned writable root. The monitor confirmed `RUNNING`; its log reports that `run_caduceus_hpo.py` opened the existing Optuna study. At the latest poll, there is no evidence yet of a new epoch, fold 2 checkpoint, completed trial, or selection lock. This is not yet a verified checkpoint resume.
 - Cell 17's initial `NameError` was caused by manually running the monitor before its launch cell defined `PID_FILE`; running it after the launch cell replaced that diagnostic output with `RUNNING`. The canonical source cell was not changed for this out-of-order check.
 - No adaptation holdout or locked-test data was accessed. Next: monitor the active log and confirm exact checkpoint/history binding before treating any training progress as resumed.
+
+### Live compute poll, 2026-09-23 07:35–07:37 UTC
+
+- A read-only process/GPU sample showed parent PID 11483 alive and HPO child PID 11573 in active compute (`97.5%` CPU, `11.0%` process memory); the Tesla T4 reported `100%` utilization, `847 / 15,360 MiB` VRAM, and `77 C`. System memory showed `3.0 / 12 GiB` used and `9.7 GiB` available.
+- At the 07:37 UTC notebook refresh, the runner was still `RUNNING`, the log had no new epoch line, fold histories remained 4 / 3, and fold 2 was absent. Trial 0 remains `RUNNING`; trials 1–3 remain `WAITING`; no completed trial or selection lock exists. Active GPU use is observed, but checkpoint-bound resume is not yet proven.
+- Selection remains `OPEN`; the holdout and historical locked test remain closed. Stay on the currently connected free T4; do not rotate accounts to evade provider limits or select paid compute. The temporary diagnostic cell was removed, and the notebook returned to 20 cells / 10 sections with `All changes saved` visible.
+
+### Checkpoint-bound progress, 2026-09-23 07:48–07:50 UTC
+
+- Fold 2 epoch 1 is now persisted. Histories and latest checkpoints agree for all folds: 0 = 4 epochs, 1 = 3, 2 = 1. The latest checkpoint SHA-256 values are `935ff06a0cf1788b0ec11b82805fd6202c4329cbf4355232e54f7e9f32937e11`, `67f32c68d72d44c4819eeeba974fa355b30334a6c8091c9b50908036c0f3dcd0`, and `a30ab6e35f4f00a45123c4395421459a47550e9401b29b317b3beaf2313c9704`, respectively.
+- `latest.pt` and `best.pt` for all three folds pass protocol hash, fold, trial signature, model revision, TRAIN manifest hash, and reference hash checks. History epochs are contiguous and each latest checkpoint epoch matches its history length.
+- A local copy of the active Drive SQLite snapshot passes integrity (`ok`), hash `cf728209360af8b1a4ea594c7d0e2f06e886ea26a8088bef7320993d4f71aebc`; trial 0 remains `RUNNING`, trials 1–3 `WAITING`. The runner was still `RUNNING` at 07:50 UTC.
+- Resume progress is now checkpoint-bound through fold 2 epoch 1. Continue the current HPO trial and the predeclared TRAIN-only queue. Selection remains open; neither holdout nor historical locked-test data has been accessed.

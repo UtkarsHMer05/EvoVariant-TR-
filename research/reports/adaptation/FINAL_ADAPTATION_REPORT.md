@@ -55,7 +55,7 @@ Pinned checkpoint: `kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-1
 
 ## HPO and seed robustness
 
-`WAITING_FOR_FREE_GPU`. The last verified SQLite snapshots pass integrity; trial 0 is RUNNING and trials 1–3 are WAITING. Fold 0 has four saved epochs, fold 1 has three, and fold 2 has none. A stale worker against the shared Drive shortcut was stopped before it produced a new fold checkpoint or completed trial. The clean notebook now points writes to the owned recovery root, but has not been rerun. The selection lock remains open. Resume only on an eligible free GPU under the prompt's default-account rule, then complete at least 8 trials (maximum 12) with 3-fold gene-grouped CV inside TRAIN. Seeds remain fixed at 42, 1337, and 2026; none may be selected by holdout performance.
+`ACTIVE_COMPUTE_FOLD2_EPOCH1_PERSISTED`. The latest copied SQLite snapshot passes integrity; trial 0 is `RUNNING` and trials 1–3 are `WAITING`. Fold histories/checkpoints are contiguous at 4 / 3 / 1 epochs. Latest and best checkpoints for all folds match the frozen protocol, trial/fold, model revision, TRAIN manifest, and reference. The worker remained active at 07:50 UTC. The selection lock remains open. Complete at least 8 trials (maximum 12) with 3-fold gene-grouped CV inside TRAIN. Seeds remain fixed at 42, 1337, and 2026; none may be selected by holdout performance.
 
 ## 801-row holdout
 
@@ -79,8 +79,16 @@ The frozen-head process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9f
 
 ## Conclusion
 
-The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The repaired notebook is saved and has only had a partial default-account preflight run. That preflight stopped at the missing source shortcut and recovery manifest; Colab also denied the free T4 request. The shared-shortcut worker was stopped before it produced a new checkpoint. Selection remains open. Completion criteria remain unmet until recovery provenance and eligible compute are restored, followed by grouped HPO, selection closure, final fit, one-shot holdout, supported analysis, and remaining figures/reports.
+The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The latest authorized free-T4 run passed recovery and reference checks, resumed the existing HPO study, and persisted fold 2 epoch 1. All three folds' latest/best checkpoints pass metadata binding and history continuity; the current SQLite snapshot passes integrity. Trial 0 remains running and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
 
 ## Latest recovery check, 2026-09-23
 
 The default-account Colab reconnect was CPU-only. Drive mounted, but the notebook correctly stopped at the source guard because the expected `EvoVariantTR_original` shortcut and `state/recovery_copy_manifest.json` were missing. Exact-title searches found neither item; the recorded folder ID opens the owned `My Drive/EvoVariantTR` folder, so a distinct read-only source was not established. A read-only copy of its SQLite snapshot passed integrity (`ok`) and still showed trial 0 `RUNNING`, trials 1–3 `WAITING`; the frozen report was `PASS`, fold histories were 4 / 3 epochs, and selection remained open. Colab denied a free T4 request due to usage limits. No training, adaptation-holdout, or locked-test cell ran. Recovery provenance and eligible free GPU availability are both required before resuming.
+
+## Initial T4 compute observation, 2026-09-23
+
+On the user-authorized connected Om account, recovery guards and pinned reference checks passed. The HPO child (PID 11573) was alive at 97.5% CPU while the T4 reported 100% utilization and 847 / 15,360 MiB VRAM. The latest persisted status remained trial 0 `RUNNING`, trials 1–3 `WAITING`, fold histories 4 / 3, and no fold-2 checkpoint or new epoch. This is active computation without verified checkpoint-resume progress. Selection remains open; the 801-row holdout and 946-row historical test remain closed. No paid compute was selected and no account was rotated to bypass usage limits.
+
+## Checkpoint-bound HPO update, 2026-09-23
+
+At 07:48–07:50 UTC, fold 2 epoch 1 was persisted. Histories and `latest.pt`/`best.pt` metadata match for folds 0–2 (4 / 3 / 1 epochs). The HPO snapshot copy passes integrity (`ok`), trial 0 remains `RUNNING`, and runner PID 11483 remains alive. No selection lock, holdout output, or locked-test access exists. The shared notebook was restored to its 20-cell / 10-section canonical layout and saved after removing the temporary audit cell.

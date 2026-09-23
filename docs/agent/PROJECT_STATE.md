@@ -1655,3 +1655,15 @@ locked-cohort or paid work.
 - The user explicitly authorized the connected Om Srivastava account and other accounts, overriding the attached prompt's default-account-only restriction. The current session uses the already-connected free T4; no paid compute was selected.
 - Drive, reference, and local validation preflight passed. The existing HPO snapshot is intact (trial 0 `RUNNING`, trials 1–3 `WAITING`); fold histories remain 4 / 3; selection is open.
 - Runner PID 11483 opened the existing Optuna study. No resumed epoch or new checkpoint is confirmed yet. The 801-row holdout and historical 946-row test remain sealed.
+
+### Live T4 compute poll, 2026-09-23 07:35–07:37 UTC
+
+- Read-only telemetry showed HPO parent PID 11483 and child PID 11573 alive. The child used 97.5% CPU; the T4 was at 100% utilization with 847 / 15,360 MiB VRAM and 77 C.
+- The 07:37 UTC status refresh still showed fold histories 4 / 3, no fold 2, no newly persisted epoch, and no completed trial. Trial 0 remains `RUNNING`, trials 1–3 `WAITING`; selection stays open.
+- The temporary diagnostic cell was removed and Colab showed `All changes saved` for the canonical 20-cell / 10-section notebook. No holdout or locked-test data was accessed. Continue on this already-connected free T4; no account rotation to bypass usage limits and no paid compute.
+
+### Checkpoint-bound HPO continuation, 2026-09-23 07:48–07:50 UTC
+
+- Fold histories/checkpoints are consistent at 4 / 3 / 1 epochs. `latest.pt` and `best.pt` for all three folds pass the frozen protocol, fold, trial signature, model revision, TRAIN manifest, and reference checks. Fold 2 epoch 1 is persisted.
+- A local copy of the latest SQLite snapshot passes integrity (`ok`); trial 0 is `RUNNING`, trials 1–3 are `WAITING`. Runner PID 11483 remained active at 07:50 UTC. The persisted stage is `CADUCEUS_HPO_EPOCH_PERSISTED`.
+- The temporary audit cell was removed and the canonical 20-cell / 10-section notebook reports all changes saved. Selection remains open. No validation-holdout or locked-test data was accessed.

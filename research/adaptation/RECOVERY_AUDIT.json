@@ -1190,7 +1190,7 @@
       "path": "research/adaptation/RECOVERY_AUDIT.md"
     }
   ],
-  "inspected_at_utc": "2026-09-23T04:28:24.718Z",
+  "inspected_at_utc": "2026-09-23T07:50:13Z",
   "locked_test_accessed": false,
   "new_account_shortcut": "/content/drive/MyDrive/EvoVariantTR_original",
   "expected_original_drive_folder_id_from_prior_audit": "1RMhA2eEUsvgryqz8YnRryuniroDiTA89",
@@ -1245,7 +1245,11 @@
     "account_policy": "Default account only; no account rotation or paid compute.",
     "drive_mount": "success",
     "full_drive_inventory": false,
-    "hardware_probe": {"python": "3.13.15", "cuda": false, "gpu": null},
+    "hardware_probe": {
+      "python": "3.13.15",
+      "cuda": false,
+      "gpu": null
+    },
     "live_notebook": {
       "all_changes_saved": true,
       "cell_count": 20,
@@ -1267,10 +1271,22 @@
     "read_only_preflight": {
       "sqlite_snapshot_integrity": "ok",
       "trials": [
-        {"number": 0, "state": "RUNNING"},
-        {"number": 1, "state": "WAITING"},
-        {"number": 2, "state": "WAITING"},
-        {"number": 3, "state": "WAITING"}
+        {
+          "number": 0,
+          "state": "RUNNING"
+        },
+        {
+          "number": 1,
+          "state": "WAITING"
+        },
+        {
+          "number": 2,
+          "state": "WAITING"
+        },
+        {
+          "number": 3,
+          "state": "WAITING"
+        }
       ],
       "frozen_head": "PASS",
       "fold_0_saved_epochs": 4,
@@ -1287,5 +1303,105 @@
   "selection_closed": false,
   "separate_new_account_folder_at_initial_audit": "/content/drive/MyDrive/EvoVariantTR",
   "source_commit": "cfecb1146fa43a1f4204c8777adc176ec8066cd4",
-  "status": "RECOVERY_PRESERVED_WAITING_FOR_FREE_GPU"
+  "status": "RECOVERY_PRESERVED_HPO_ACTIVE_FOLD2_EPOCH1_PERSISTED",
+  "latest_runtime_observation": {
+    "checkpoint_audit_utc_minute": "2026-09-23T07:48Z",
+    "status_refresh_utc_minute": "2026-09-23T07:50Z",
+    "account": "Om Srivastava; current connected session authorized by the user",
+    "account_policy": "Continue on this already-connected free T4; no account rotation to evade provider limits and no paid compute.",
+    "notebook": {
+      "drive_file_id": "15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w",
+      "account_shown": "Om Srivastava",
+      "runtime": "Tesla T4",
+      "cell_count": 20,
+      "section_count": 10,
+      "all_changes_saved": true,
+      "temporary_diagnostic_cell_removed": true
+    },
+    "last_resource_sample_utc_minute": "2026-09-23T07:44Z",
+    "processes": [
+      {
+        "pid": 11483,
+        "role": "run_autonomous.py parent",
+        "elapsed_at_sample": "00:39:50",
+        "state": "Ssl",
+        "cpu_percent_at_sample": 0.5,
+        "resident_percent_at_sample": 2.9,
+        "alive_at_07_50_utc": true
+      },
+      {
+        "pid": 11573,
+        "role": "run_caduceus_hpo.py child",
+        "elapsed_at_sample": "00:39:31",
+        "state": "Rl",
+        "cpu_percent_at_sample": 97.8,
+        "resident_percent_at_sample": 11.0
+      }
+    ],
+    "gpu_sample": {
+      "at_utc_minute": "2026-09-23T07:44Z",
+      "name": "Tesla T4",
+      "utilization_percent": 74,
+      "memory_used_mib": 847,
+      "memory_total_mib": 15360,
+      "temperature_c": 77
+    },
+    "system_memory_sample": {
+      "total_gib": 12,
+      "used_gib": 2.9,
+      "free_mib": 254,
+      "available_gib": 9.8
+    },
+    "persisted_stage_at_07_50_utc": "CADUCEUS_HPO_EPOCH_PERSISTED",
+    "hpo_log_study": "evovariant_caduceus_train_grouped_cv_v1",
+    "checkpoint_history_binding": {
+      "protocol_sha256": "07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c",
+      "trial_signature": "705d3dee50f29527",
+      "model_revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b",
+      "train_manifest_sha256": "32bf517ec8bc401d29f611e83a8c8c81eafc0d1f19886d2650a3bf441df044e1",
+      "reference_sha256": "5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51",
+      "latest_and_best_metadata_checks_passed_for_all_folds": true,
+      "folds": [
+        {
+          "fold": 0,
+          "history_epochs": 4,
+          "latest_epoch": 4,
+          "best_epoch": 2,
+          "stale_epochs": 2,
+          "latest_sha256": "935ff06a0cf1788b0ec11b82805fd6202c4329cbf4355232e54f7e9f32937e11"
+        },
+        {
+          "fold": 1,
+          "history_epochs": 3,
+          "latest_epoch": 3,
+          "best_epoch": 1,
+          "stale_epochs": 2,
+          "latest_sha256": "67f32c68d72d44c4819eeeba974fa355b30334a6c8091c9b50908036c0f3dcd0"
+        },
+        {
+          "fold": 2,
+          "history_epochs": 1,
+          "latest_epoch": 1,
+          "best_epoch": 1,
+          "stale_epochs": 0,
+          "latest_sha256": "a30ab6e35f4f00a45123c4395421459a47550e9401b29b317b3beaf2313c9704"
+        }
+      ],
+      "history_epochs_contiguous": true
+    },
+    "sqlite_snapshot": {
+      "sha256": "cf728209360af8b1a4ea594c7d0e2f06e886ea26a8088bef7320993d4f71aebc",
+      "integrity": "ok",
+      "trial_states": {
+        "0": "RUNNING",
+        "1": "WAITING",
+        "2": "WAITING",
+        "3": "WAITING"
+      }
+    },
+    "runner_status_at_07_50_utc": "RUNNING",
+    "selection_closed": false,
+    "adaptation_holdout_accessed": false,
+    "locked_test_accessed": false
+  }
 }

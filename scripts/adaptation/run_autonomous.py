@@ -49,6 +49,26 @@ def _run(root: Path, script: str, *arguments: str) -> None:
         raise
 
 
+def _verify_destination(root: Path, drive: Path, reference: Path) -> None:
+    output = drive / "artifacts/adaptation/destination_verification.json"
+    command = [
+        sys.executable,
+        str(root / "scripts/adaptation/verify_destination.py"),
+        "--root",
+        str(root),
+        "--drive-root",
+        str(drive),
+        "--reference",
+        str(reference),
+        "--output",
+        str(output),
+    ]
+    subprocess.run(command, cwd=root, check=True)
+    report = _read(output)
+    if report.get("status") != "DESTINATION_READY_TO_RESUME":
+        raise RuntimeError(f"destination verification is not ready: {report.get('status')}")
+
+
 def _verified_run(report_path: Path, checkpoint: Path, *, seed: int | None = None,
                   lock_hash: str | None = None) -> bool:
     if not report_path.exists():
@@ -65,6 +85,7 @@ def _verified_run(report_path: Path, checkpoint: Path, *, seed: int | None = Non
 
 
 def _execute(root: Path, drive: Path, reference: Path) -> str:
+    _verify_destination(root, drive, reference)
     import torch
 
     if not torch.cuda.is_available():

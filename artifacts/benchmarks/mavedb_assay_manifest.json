@@ -1,0 +1,107 @@
+{
+  "artifact_id": "evovariant-tr-mavedb-assay-manifest-v1",
+  "assays": [],
+  "decision": "DATA_BLOCKED: official search metadata did not freeze a predeclared assay with exact one-to-one GRCh38 SNV mapping, score direction, and >=20 overlapping variants; no correlations were inspected or computed.",
+  "eligibility": {
+    "exact_grch38_snv_mapping": true,
+    "human_target_with_variant_mapping": true,
+    "minimum_distinct_scores": 2,
+    "minimum_exact_overlap": 20,
+    "published_public_score_set": true,
+    "score_direction_from_metadata_only": true
+  },
+  "limitations": [
+    "Functional effect is not equivalent to clinical pathogenicity.",
+    "No assay-level correlation is valid until exact GRCh38 SNV mapping and score direction are frozen."
+  ],
+  "official_api_base": "https://api.mavedb.org/api/v1/",
+  "official_sources": [
+    "https://www.mavedb.org/docs/mavedb/programmatic-access/api-quickstart.html",
+    "https://www.mavedb.org/docs/mavedb/reference/variant-mapping.html"
+  ],
+  "protocol": "research/benchmarks/expansion_v1/mavedb_protocol.md",
+  "query_plan": {
+    "correlations_inspected": false,
+    "gene_selection": "lexicographically first external-cohort genes, fixed before search",
+    "genes_queried": [
+      "ABCB11",
+      "ACADVL;DLG4",
+      "ACADVL;DVL2",
+      "ACTG2",
+      "AIPL1",
+      "AKT3",
+      "ARL6",
+      "ARPC1B",
+      "ASNS",
+      "ATL3",
+      "C3",
+      "CACNA1D"
+    ],
+    "search_surface": "official MaveDB score-set search API"
+  },
+  "recorded_at_utc": "2026-09-23T20:31:16.588102+00:00",
+  "search_observations": [
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ABCB11",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ACADVL;DLG4",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ACADVL;DVL2",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ACTG2",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "AIPL1",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "AKT3",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ARL6",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ARPC1B",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ASNS",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "ATL3",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "C3",
+      "status": "REQUEST_ERROR"
+    },
+    {
+      "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
+      "gene": "CACNA1D",
+      "status": "REQUEST_ERROR"
+    }
+  ],
+  "selection_declared_before_correlation": true,
+  "status": "DATA_BLOCKED"
+}

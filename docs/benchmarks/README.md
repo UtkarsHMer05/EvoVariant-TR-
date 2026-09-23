@@ -11,5 +11,6 @@ the generated [benchmark manifest](../../apps/web/public/benchmarks/benchmark-ma
 - Fine-tuning boundary: [downloadable proof/demo](../../apps/web/public/benchmarks/downloads/EvoVariant_TR_FineTuning_Attempt_Demo.ipynb)
 - Reproduction: [protocol](../../research/benchmarks/expansion_v1/protocol.yaml) and [artifact manifest](../../artifacts/benchmarks/BENCHMARK_ARTIFACT_MANIFEST.json)
 
-The external cohort manifest is frozen at n=200; external
-scores remain COMPUTE_BLOCKED while a verifiable Modal balance is unavailable.
+The external cohort manifest is frozen at n=200; Evo2 inference completed with
+raw scores persisted before label joining. B63 remains DATA_BLOCKED and B64
+remains NOT_APPLICABLE under the evidence and comparator contracts.

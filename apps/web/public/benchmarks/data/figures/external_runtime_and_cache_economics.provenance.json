@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B67",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_runtime_and_cache_economics.pdf",
+    "png": "docs/benchmarks/assets/external_runtime_and_cache_economics.png",
+    "svg": "docs/benchmarks/assets/external_runtime_and_cache_economics.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_runtime_and_cache_economics.png"
+  },
+  "population": "frozen external ClinVar inference",
+  "sha256": {
+    "pdf": "4a8b546e9a62e345841e5315c09ab78ebcf8e828014d536b1a74889fdebdfefb",
+    "png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef",
+    "source_data": "e33e72611511c2b3197dafd5eacee0a46c8060fbd79fbef5bd27b7ee6363afa5",
+    "svg": "ef28c06afc3e907044ac9a0191a58915d1902475938bf392380c8d92a0fa9057",
+    "web_png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_runtime_and_cache_economics.json"
+}

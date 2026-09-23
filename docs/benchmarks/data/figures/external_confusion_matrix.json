@@ -1,0 +1,27 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "actual": 0,
+      "n": 95,
+      "predicted": 0
+    },
+    {
+      "actual": 0,
+      "n": 5,
+      "predicted": 1
+    },
+    {
+      "actual": 1,
+      "n": 25,
+      "predicted": 0
+    },
+    {
+      "actual": 1,
+      "n": 75,
+      "predicted": 1
+    }
+  ]
+}

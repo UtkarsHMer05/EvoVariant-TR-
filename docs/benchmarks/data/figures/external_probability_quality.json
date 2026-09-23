@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "B66",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "metric": "brier",
+      "value": 0.11252009005966578
+    },
+    {
+      "metric": "ece",
+      "value": 0.13962342753163207
+    },
+    {
+      "metric": "nll",
+      "value": 0.6921533824993545
+    },
+    {
+      "metric": "probability_mae",
+      "value": 0.18930472264959686
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B68",
+  "n": 200,
+  "population": "descriptive external versus locked cohorts",
+  "records": [
+    {
+      "external": 0.5,
+      "locked": 0.4334038054968288,
+      "measure": "external label proportion"
+    },
+    {
+      "external": 0.66,
+      "locked": 0.3879492600422833,
+      "measure": "external unique genes / 200"
+    }
+  ]
+}

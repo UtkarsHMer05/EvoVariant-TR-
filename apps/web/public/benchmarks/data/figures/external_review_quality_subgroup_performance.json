@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B62",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "auroc": 0.9696,
+      "f1": 0.8913043478260869,
+      "group": "2 stars",
+      "n": 100
+    },
+    {
+      "auroc": 0.927,
+      "f1": 0.7727272727272727,
+      "group": "3 stars",
+      "n": 100
+    }
+  ]
+}

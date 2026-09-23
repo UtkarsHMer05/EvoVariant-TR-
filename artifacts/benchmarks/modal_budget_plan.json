@@ -1,12 +1,16 @@
 {
+  "actual_workspace_metered_cost_since_preflight_usd": 2.11,
+  "ending_verified_credit_usd": 29.06,
+  "full_inference_completed": true,
   "hard_reserve_usd": 5.0,
-  "live_balance_usd": null,
-  "new_spend_usd": 0.0,
-  "pilot_started": false,
+  "new_spend_usd": 0.94,
+  "pilot_completed": true,
   "profile": "utkarshkhajuria59",
-  "program_budget_usd": null,
-  "safe_spendable_usd": null,
+  "program_budget_usd": 24.0,
+  "provider_billed_delta_usd": 1.7,
+  "rate_estimated_inference_usd": 0.4176400070755109,
+  "safe_spendable_usd": 24.5,
   "safety_stop_usd": 5.5,
-  "soft_maximum_usd": 24.0,
-  "status": "COMPUTE_BLOCKED_BALANCE_UNVERIFIED"
+  "starting_verified_credit_usd": 30.0,
+  "status": "COMPLETED_WITHIN_RESERVE"
 }

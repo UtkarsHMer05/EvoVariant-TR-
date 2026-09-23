@@ -1,0 +1,20 @@
+{
+  "artifact_id": "evovariant-tr-comparator-audit-v1",
+  "candidates": [
+    {
+      "build": "GRCh38/hg38",
+      "cost": "not acquired or run",
+      "coverage": "not measured; required approximately 42 GB alignment archive is absent",
+      "decision": "DEFERRED_DATA_AND_COMPUTE",
+      "license": "MIT",
+      "name": "GPN-Star hg38 V100 200M",
+      "official_source": "https://huggingface.co/songlab/gpn-star-hg38-v100-200m",
+      "score_semantics": "raw uncalibrated alternate_minus_reference log_likelihood_ratio averaged over forward and reverse-complement orientations",
+      "variant_type": "SNV-compatible only with exact 100-way MSA context"
+    }
+  ],
+  "decision": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
+  "official_audit_reused": "research/ml_extension/models/gpn.json",
+  "recorded_at_utc": "2026-09-23T20:31:16.592470+00:00",
+  "status": "NOT_APPLICABLE"
+}

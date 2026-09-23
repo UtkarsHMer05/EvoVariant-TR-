@@ -1,0 +1,35 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "metric": "accuracy",
+      "value": 0.85
+    },
+    {
+      "metric": "balanced_accuracy",
+      "value": 0.85
+    },
+    {
+      "metric": "precision",
+      "value": 0.9375
+    },
+    {
+      "metric": "recall",
+      "value": 0.75
+    },
+    {
+      "metric": "specificity",
+      "value": 0.95
+    },
+    {
+      "metric": "f1",
+      "value": 0.8333333333333334
+    },
+    {
+      "metric": "mcc",
+      "value": 0.7144345083117604
+    }
+  ]
+}

@@ -1614,3 +1614,66 @@ it did not reopen selection, modify any Phase 14 artifact, or start Modal comput
   `make test-scientific` (7 passed, 1 skipped), `make validate` (722 passed, 33 deselected,
   95.04% coverage), `make web-check`, and browser E2E (8 passed). Paid Modal inference was not
   attempted because the balance gate remained unverifiable.
+
+## External benchmark continuation — 2026-09-24
+
+The frozen ClinVar external manifest remains unchanged at 200 rows (100 benign,
+100 pathogenic). Evo2 raw forward/alternate and reverse-complement scores were
+persisted before joining the manifest labels. The frozen TRAIN-fit logistic
+model, isotonic calibrator, and threshold 0.50 were applied without refitting.
+
+External n=200; AUROC=0.9502; AUPRC=0.958859294515439;
+accuracy=0.85; balanced accuracy=0.85;
+F1=0.8333333333333334; MCC=0.7144345083117604; Brier=0.11252009005966578;
+ECE=0.13962342753163207; NLL=0.6921533824993545. Rate-estimated new Modal
+cost=$0.417640; fresh rows=192;
+cache-hit rows=8; remote seconds=267.84282031.
+
+B63 remains DATA_BLOCKED because official MaveDB search metadata did not freeze
+an exact GRCh38 SNV assay mapping with predeclared score direction and support.
+B64 remains NOT_APPLICABLE after the GPN audit because the required alignment
+asset and run contract were unavailable; no proxy comparator was substituted.
+B11/B12 retain exact missing-row coverage and no imputation or mixed builds.
+
+## External benchmark completion final reconciliation — 2026-09-24
+
+- The active integration branch is `research/external-benchmark-completion-v1`,
+  started from main `67d4a34893b3e67beb9ed54fa5e05f9e0bb4e89e`. The frozen
+  Phase-14/946-row result, locked manifest, fitted model, calibrator, threshold,
+  labels, and selection boundary remain unchanged.
+- B01-B68 now has 60 `PASS`, 1 `PASS_WITH_LIMITATIONS`, 4
+  `COMPLETED_WITH_LIMITATIONS`, 2 `NOT_APPLICABLE`, 1 `DATA_BLOCKED`, and 0
+  `COMPUTE_BLOCKED` entries. B61/B62/B66/B67 are `PASS`; B65 is
+  `PASS_WITH_LIMITATIONS`; B63 is `DATA_BLOCKED`; B64 is `NOT_APPLICABLE`.
+- The frozen external ClinVar manifest is n=200 (100/100), GRCh38-valid for
+  200 rows, strict ID/gene-disjoint from formal and locked cohorts, with file
+  SHA-256 `c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d`
+  and inner manifest hash
+  `847eb9f2a3e9a099dc60bad4955b1160c0b8f2c9c2230082b529fbdd23514a7d`.
+  Raw label-free predictions are n=200 with SHA-256
+  `b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e`.
+- External metrics are AUROC `0.9502`, AUPRC `0.958859294515439`, accuracy
+  `0.85`, balanced accuracy `0.85`, F1 `0.8333333333333334`, MCC
+  `0.7144345083117604`, Brier `0.11252009005966578`, ECE
+  `0.13962342753163207`, and NLL `0.6921533824993545`. The frozen TRAIN-fit
+  logistic model, isotonic calibrator, and threshold were transported without
+  refitting.
+- Modal profile `utkarshkhajuria59` completed the pilot and full inference with
+  8 cache-hit rows, 192 fresh rows, 24 remote invocations, zero retries, H100
+  runtime, and rate-estimated inference cost `$0.417640`. Verified dashboard
+  credit moved from `$30.00` to `$29.06` (`$0.94` credit consumption); the
+  separate CLI provider metered delta is `$1.70` and workspace metered cost
+  since preflight is `$2.11`. The hard reserve `$5.00` and safety stop `$5.50`
+  remained intact; final live apps/containers are zero.
+- A later read-only Modal CLI inventory made no new calls and reported a current
+  workspace meter of `$1.71` with `$0.00` billed after provider adjustment;
+  the `$2.11` value above is the meter captured with the authenticated dashboard
+  verification and is retained as the finalization receipt.
+- No new fine-tuning was started. MaveDB remained blocked because no exact
+  predeclared GRCh38 SNV mapping was defensible; GPN was audited but not run
+  without its required alignment asset and verified score contract. NT/Caduceus
+  external prediction assets were unavailable, so B65 is explicitly limited.
+- `make validate`, scientific tests, protocol verification, ML control-plane
+  verification, registry verification, frontend build, and browser E2E passed;
+  the final merge/push remains pending until the post-edit evidence audit is
+  complete.

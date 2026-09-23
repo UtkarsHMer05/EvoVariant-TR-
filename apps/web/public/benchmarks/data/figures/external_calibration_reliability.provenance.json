@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B66",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_calibration_reliability.pdf",
+    "png": "docs/benchmarks/assets/external_calibration_reliability.png",
+    "svg": "docs/benchmarks/assets/external_calibration_reliability.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_calibration_reliability.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "4f1826543d99214e4276245e3021998f793af440bdc7efd06ba7ddc7dbeb5cd3",
+    "png": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7",
+    "source_data": "c694da5caabc49c7aabf410301f63e24180838b206cf0ae4e74e710eca05b4d8",
+    "svg": "834ef93e050b4dda13442af0ab7973724797e71b430cab42b97b5792a118cbc4",
+    "web_png": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_calibration_reliability.json"
+}

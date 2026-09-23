@@ -1,0 +1,32 @@
+{
+  "benchmark_id": "B61-B66",
+  "n": 200,
+  "population": "frozen locked versus external cohorts",
+  "records": [
+    {
+      "external": 0.9502,
+      "locked": 0.9092259737895887,
+      "metric": "auroc"
+    },
+    {
+      "external": 0.958859294515439,
+      "locked": 0.8630391000187404,
+      "metric": "auprc"
+    },
+    {
+      "external": 0.11252009005966578,
+      "locked": 0.11407921672922404,
+      "metric": "brier"
+    },
+    {
+      "external": 0.13962342753163207,
+      "locked": 0.05523106003405314,
+      "metric": "ece"
+    },
+    {
+      "external": 0.6921533824993545,
+      "locked": 0.5517579434827143,
+      "metric": "nll"
+    }
+  ]
+}

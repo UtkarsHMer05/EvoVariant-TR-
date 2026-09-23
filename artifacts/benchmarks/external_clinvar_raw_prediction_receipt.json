@@ -1,0 +1,11 @@
+{
+  "artifact_id": "evovariant-tr-external-raw-prediction-receipt-v1",
+  "execution_plan_sha256": "f5e29fa137ba9ba792f948121bc7e3bdcb3c4fcd22a225ce59043670610e8089",
+  "labels_present": false,
+  "prediction_artifact_persisted_before_evaluation_join": true,
+  "raw_predictions_path": "research/runs/external_clinvar_completion_v1/external_raw_predictions.jsonl",
+  "raw_predictions_sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e",
+  "raw_rows": 200,
+  "recorded_at_utc": "2026-09-23T20:29:22.914489+00:00",
+  "remote_labels_transported": false
+}

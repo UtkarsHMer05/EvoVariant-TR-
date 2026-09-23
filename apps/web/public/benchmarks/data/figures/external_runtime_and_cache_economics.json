@@ -1,0 +1,27 @@
+{
+  "benchmark_id": "B67",
+  "n": 200,
+  "population": "frozen external ClinVar inference",
+  "records": [
+    {
+      "metric": "cache hit rows",
+      "value": 8
+    },
+    {
+      "metric": "fresh rows",
+      "value": 192
+    },
+    {
+      "metric": "remote invocations",
+      "value": 24
+    },
+    {
+      "metric": "remote seconds",
+      "value": 267.84282031
+    },
+    {
+      "metric": "rate-estimated USD",
+      "value": 0.4176400070755109
+    }
+  ]
+}

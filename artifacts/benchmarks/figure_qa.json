@@ -1,5 +1,5 @@
 {
-  "figure_count": 20,
+  "figure_count": 34,
   "figures": [
     {
       "asset": "apps/web/public/benchmarks/figures/benchmark_status_matrix.png",
@@ -306,17 +306,241 @@
       "source_exists": true
     },
     {
+      "asset": "apps/web/public/benchmarks/figures/external_cohort_flow.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_cohort_flow",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_cohort_flow.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_class_balance.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_class_balance",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_class_balance.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_roc.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_roc",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_roc.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_precision_recall.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_precision_recall",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_precision_recall.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_confusion_matrix.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_confusion_matrix",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_confusion_matrix.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_classification_dashboard.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_classification_dashboard",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_classification_dashboard.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_f1_family_dashboard.png",
+      "asset_exists": true,
+      "benchmark_id": "B61",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_f1_family_dashboard",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_f1_family_dashboard.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_calibration_reliability.png",
+      "asset_exists": true,
+      "benchmark_id": "B66",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_calibration_reliability",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_calibration_reliability.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_probability_quality.png",
+      "asset_exists": true,
+      "benchmark_id": "B66",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_probability_quality",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_probability_quality.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+      "asset_exists": true,
+      "benchmark_id": "B61-B66",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "locked_versus_external_calibration_and_discrimination",
+      "n": 200,
+      "population": "frozen locked versus external cohorts",
+      "source_data": "docs/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_review_quality_subgroup_performance.png",
+      "asset_exists": true,
+      "benchmark_id": "B62",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_review_quality_subgroup_performance",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_review_quality_subgroup_performance.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_model_agreement.png",
+      "asset_exists": true,
+      "benchmark_id": "B65",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_model_agreement",
+      "n": 200,
+      "population": "frozen external ClinVar cohort",
+      "source_data": "docs/benchmarks/data/figures/external_model_agreement.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_runtime_and_cache_economics.png",
+      "asset_exists": true,
+      "benchmark_id": "B67",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_runtime_and_cache_economics",
+      "n": 200,
+      "population": "frozen external ClinVar inference",
+      "source_data": "docs/benchmarks/data/figures/external_runtime_and_cache_economics.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/external_versus_locked_cohort_drift.png",
+      "asset_exists": true,
+      "benchmark_id": "B68",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "external_versus_locked_cohort_drift",
+      "n": 200,
+      "population": "descriptive external versus locked cohorts",
+      "source_data": "docs/benchmarks/data/figures/external_versus_locked_cohort_drift.json",
+      "source_exists": true
+    },
+    {
       "asset": "apps/web/public/benchmarks/figures/benchmark_contact_sheet.png",
       "asset_exists": true,
       "benchmark_id": "B01-B68",
       "dimensions": [
         1280,
-        3600
+        6120
       ],
       "finite_source_numbers": true,
       "hash_recorded": true,
       "id": "contact_sheet",
-      "n": 19,
+      "n": 33,
       "population": "registered benchmark figures",
       "source_data": "docs/benchmarks/data/figures/contact_sheet.provenance.json",
       "source_exists": true

@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B62",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_review_quality_subgroup_performance.pdf",
+    "png": "docs/benchmarks/assets/external_review_quality_subgroup_performance.png",
+    "svg": "docs/benchmarks/assets/external_review_quality_subgroup_performance.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_review_quality_subgroup_performance.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "05eeda3ccf039ed9bd70f2c09e374c57a7e4492a26587ac598718312dc5ba46c",
+    "png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524",
+    "source_data": "9b62fb2e040332e5d2280e2b3e49a66d1b749bf7c404b93c163553e4f5baa4bc",
+    "svg": "a2a9382e59c88bf0cb945639cf8c36fdd8001c2b4f179917dcca7feb90a6634e",
+    "web_png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_review_quality_subgroup_performance.json"
+}

@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B66",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_probability_quality.pdf",
+    "png": "docs/benchmarks/assets/external_probability_quality.png",
+    "svg": "docs/benchmarks/assets/external_probability_quality.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_probability_quality.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "39955673ddfeed457108cc1308132f8d58ed001fe88a590cdf5adee5ec00f24d",
+    "png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10",
+    "source_data": "d30ad0e19c8e6b5698f3af918c790cb6072ea346fe97c192951342a848b40b05",
+    "svg": "3dbd59a1e40713f319525accfeff1aa4dd0ec71abc65dabb67b6706f93000817",
+    "web_png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_probability_quality.json"
+}

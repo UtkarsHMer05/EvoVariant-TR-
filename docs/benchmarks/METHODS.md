@@ -13,6 +13,7 @@ uses common validation rows and does not fit on the locked cohort. Case studies
 are deterministic selections from the frozen locked artifact.
 
 The external ClinVar manifest is frozen before inference. It excludes formal
-and locked IDs and genes, but external scoring is blocked because a
-verifiable Modal balance is unavailable. The local GRCh38 reference FASTA is
-available.
+and locked IDs and genes. The verified continuation used the local GRCh38
+reference FASTA, persisted label-free Evo2 raw scores, and only then joined
+labels for evaluation; it did not refit the downstream classifier or
+calibrator.

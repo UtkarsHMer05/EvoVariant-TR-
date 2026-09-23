@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B61-B66",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.pdf",
+    "png": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.png",
+    "svg": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.svg",
+    "web_png": "apps/web/public/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
+  },
+  "population": "frozen locked versus external cohorts",
+  "sha256": {
+    "pdf": "21981b317f72b8d19217f6208726ded514278d67b1111003aab3f791a3da34a6",
+    "png": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab",
+    "source_data": "193d66d8adeef704c199a847920d75b59aa30f9c6589437a334d9dea2969fe4b",
+    "svg": "1dda4805127b7a0d8d0614f4249cdd8a283ef863b94c07e4df98de8290ed3b52",
+    "web_png": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab"
+  },
+  "source_data": "docs/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.json"
+}

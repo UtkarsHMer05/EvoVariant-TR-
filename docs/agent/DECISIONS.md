@@ -3641,3 +3641,39 @@ The repository has a complete local judge/demo surface with explicit stage-quali
 The immutable frozen result is preserved. Any future external inference requires a fresh balance
 verification and must reuse the frozen manifest; any fine-tuned claim requires a separately
 authorized, complete study with its own provenance and evaluation boundary.
+
+## D-114 — Accept the verified external benchmark continuation without reopening frozen science
+
+Status: ACCEPTED
+Date: 2026-09-24
+
+Context:
+The prior benchmark-expansion closeout was a truthful no-spend state because the Modal balance
+was not verifiable. A later authorized continuation supplied a verified balance, passed the
+required pilot, scored the already-frozen 200-row external manifest, and finalized the raw,
+evaluation, provenance, runtime, registry, figure, notebook, and web artifacts.
+
+Decision:
+Accept B61/B62/B66/B67 as `PASS`, B65 as `PASS_WITH_LIMITATIONS`, B63 as `DATA_BLOCKED`, and
+B64 as `NOT_APPLICABLE`. Keep the 946-row Phase-14 artifact and all locked labels, predictions,
+model/calibrator/threshold, and selection boundaries immutable. Treat `$0.94` authenticated
+dashboard credit consumption, `$1.70` CLI provider metered delta, and `$0.417640` H100 rate
+estimate as distinct evidence quantities; do not present provider billing as a per-request
+invoice. Do not substitute a MaveDB proxy, GPN proxy, or unavailable NT/Caduceus asset, and do
+not start fine-tuning or post-test recalibration.
+
+Evidence:
+- `artifacts/benchmarks/external_clinvar_manifest.json` and its receipt freeze n=200 with strict
+  ID/gene disjointness and GRCh38 validation.
+- `research/runs/external_clinvar_completion_v1/external_raw_predictions.jsonl` is hashed before
+  labels; `artifacts/benchmarks/external_clinvar_provenance.json` records leakage gates and the
+  pinned Evo2 contract.
+- `artifacts/benchmarks/external_clinvar_runtime.json` and
+  `research/runs/external_clinvar_completion_v1/modal_cost_ledger.json` record the Modal profile,
+  resource counts, cache reuse, retries, rate estimate, verified balance, and billing distinction.
+- The benchmark hub, notebook, catalog, and all local scientific gates were revalidated; final
+  branch integration is allowed only after the post-edit checks pass.
+
+Consequences:
+The external completion is a real, limited scientific result, not a fabricated PASS and not a
+fine-tuning result. The remaining blocked/non-applicable scopes are explicit and reproducible.

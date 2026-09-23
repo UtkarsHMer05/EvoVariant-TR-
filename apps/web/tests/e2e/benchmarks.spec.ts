@@ -38,7 +38,7 @@ test.describe("benchmark hub", () => {
     await expect(page.getByRole("heading", { name: "Model disagreement", exact: true })).toBeVisible();
   });
 
-  test("keeps fine-tuning boundary and downloads visible", async ({ page }) => {
+  test("keeps fine-tuning boundary and downloads visible", async ({ page, request }) => {
     await page.goto("/benchmarks");
     await page.getByRole("tab", { name: "Fine-Tuning Attempt" }).click();
     await expect(page.getByText("Foundation-model fine-tuning in primary result", { exact: true })).toBeVisible();
@@ -48,7 +48,8 @@ test.describe("benchmark hub", () => {
 
     await page.getByRole("tab", { name: "Downloads" }).click();
     await expect(page.getByRole("link", { name: "Download" }).first()).toBeVisible();
-    await expect(page.getByRole("link", { name: "Download" })).toHaveCount(10);
+    const manifest = await (await request.get("/benchmarks/benchmark-manifest.json")).json() as { downloads: Array<unknown> };
+    await expect(page.getByRole("link", { name: "Download" })).toHaveCount(manifest.downloads.length);
   });
 
   test("preserves the existing prediction workflow and mobile layout", async ({ page }) => {

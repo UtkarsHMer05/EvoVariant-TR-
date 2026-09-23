@@ -14,7 +14,7 @@
 
 ## Exact next work
 
-1. On an eligible free T4, mount Drive, verify the checkpoint payloads and reference, and restore the study database from a verified Drive snapshot or the intact legacy copy to `/content/evovariant_runtime/hpo/`.
+1. Confirm the authorized Drive root contains the expected source shortcut and file-level recovery-copy manifest; restore or independently verify those exact artifacts if missing. Then, on an eligible free T4, verify the checkpoint payloads and reference, and restore the study database from a verified Drive snapshot or intact legacy copy to `/content/evovariant_runtime/hpo/`.
 2. Resume trial 0 at fold 1's completion boundary. Load the saved best fold-1 checkpoint for its final TRAIN-fold evaluation, then start **fold 2 epoch 1**. The saved `stale_epochs=2` already meets the protocol's early stopping rule, so fold 1 must not train epoch 4. Fold 0 requires no new training epoch. If checkpoint metadata disagrees with its history, stop for forensic recovery; do not restart trial 0.
 3. Complete fold 2, then the queued trials and predeclared 8 completed TRAIN-only trials. Persist local SQLite via backup API to an atomic Drive `.snapshot` after each epoch, fold, and trial.
 4. Keep the 801-row adaptation holdout closed until the selection lock, OOF calibration, and all fixed-seed TRAIN refits are verified. The historical 946-row test remains outside adaptation selection.
@@ -22,8 +22,16 @@
 ## Resume attempt and current gate, 2026-09-23
 
 - The already-open Colab tab was under a non-default Google profile. Its live notebook still launched an HPO child against `/content/drive/MyDrive/EvoVariantTR_original`, the shared shortcut that had previously shown disappearing writes. Parent PID 12382 was a zombie; child PID 12473 was active. The child was stopped with SIGTERM after confirming no runner log or fold-2 history existed.
-- The latest visible Drive snapshots remained readable and passed SQLite integrity checks: trial 0 RUNNING, trials 1–3 WAITING. Fold histories remained at four epochs for fold 0 and three for fold 1; no fold-2 checkpoint, completed trial, or selection lock was observed. The owned recovery copy remains the writable resume source.
-- The same Drive notebook file ID now points run writes at the owned recovery root, uses the original shortcut read-only, and has stale outputs cleared. The UI reports all changes saved. The notebook was not rerun after editing.
+- At that earlier poll, the visible Drive snapshots passed SQLite integrity checks: trial 0 RUNNING, trials 1–3 WAITING. Fold histories remained at four epochs for fold 0 and three for fold 1; no fold-2 checkpoint, completed trial, or selection lock was observed. The later default-account check found missing recovery provenance, so the current mounted root is not accepted as a verified resume source (see below).
+- At the time of the prior repair, the same Drive notebook file ID pointed run writes at the owned recovery root, used the original shortcut read-only, and had stale outputs cleared; the UI reported all changes saved. The notebook had not yet been rerun after editing. The later partial default-account preflight is recorded below.
 - The attached prompt requires use of the default account and prohibits account switching. The active non-default T4 was not used for training; no account rotation or paid compute was used. Current HPO status is `WAITING_FOR_FREE_GPU` until an eligible free T4 is available under that rule.
 
 The selection gate remains open. The next valid work is to verify the owned SQLite snapshot and checkpoint bindings on an eligible runtime, finalize fold 1 from its best checkpoint, and start fold 2 epoch 1. Keep adaptation VALIDATION and the historical 946-row test closed.
+
+## Latest default-account poll, 2026-09-23
+
+- The authorized default-account Colab tab reconnected as CPU (`cuda=False`). Drive mounted, but cell 3 stopped at its source guard: `/content/drive/MyDrive/EvoVariantTR_original` was absent, and `/content/drive/MyDrive/EvoVariantTR/state/recovery_copy_manifest.json` was absent. The available `manifests_verified.json` contains dataset-manifest checks, not a file-level recovery-copy manifest; the mounted root is not accepted as a verified resume source.
+- Read-only preflight copied `caduceus_hpo.sqlite3.snapshot` to local disk and returned SQLite integrity `ok`: trial 0 `RUNNING`, trials 1–3 `WAITING`. The persisted stage was `CADUCEUS_HPO_FOLD_PERSISTED`; the frozen-head report was `PASS`; fold histories remained 4 / 3 epochs; selection remained open. No checkpoint payloads were loaded in this attempt.
+- Colab exposed T4 as an option but denied the request due to GPU usage limits. No paid compute or other Google account was used. Cells 1, 3, 7, and 13 ran; repository setup, reference preparation, runner, training, adaptation holdout, and locked-test cells did not run.
+
+Resume remains blocked by both free-GPU availability and the missing default-account recovery provenance. First restore or independently verify the expected source shortcut and recovery manifest in the authorized Drive root; only then recheck checkpoint bindings and resume on an eligible free T4.

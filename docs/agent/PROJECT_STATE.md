@@ -1639,5 +1639,11 @@ locked-cohort or paid work.
   HPO is `WAITING_FOR_FREE_GPU` until an eligible free T4 is available under that rule. No paid
   compute or account rotation was used. Adaptation VALIDATION and the historical 946-row test
   remain closed.
+- The latest default-account reconnect was CPU-only; Drive mounted, but the notebook's source
+  guard failed because the expected original shortcut and `state/recovery_copy_manifest.json`
+  were absent. The available `manifests_verified.json` is a dataset summary, not recovery
+  provenance. A read-only SQLite snapshot copy passed integrity, but its root is not accepted as
+  a verified resume source. Colab denied the free T4 request due to usage limits. No model,
+  holdout, or locked-test cell ran; both recovery provenance and free GPU availability block HPO.
 - Full local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67
   files, 737 tests passed / 33 deselected, and 95.07% core coverage.

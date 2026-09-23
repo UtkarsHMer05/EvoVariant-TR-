@@ -1240,9 +1240,49 @@
     },
     "locked_test_accessed": false
   },
+  "latest_default_account_poll": {
+    "at_utc": "2026-09-23T06:04:53Z",
+    "account_policy": "Default account only; no account rotation or paid compute.",
+    "drive_mount": "success",
+    "full_drive_inventory": false,
+    "hardware_probe": {"python": "3.13.15", "cuda": false, "gpu": null},
+    "live_notebook": {
+      "all_changes_saved": true,
+      "cell_count": 20,
+      "section_count": 10,
+      "executed_after_repair": true,
+      "execution_attempt": "Cells 1, 3, 7, and 13 only; no setup, reference, runner, training, holdout, or locked-test cell ran.",
+      "outputs_cleared": false,
+      "sha256": null,
+      "sha256_note": "Remote notebook bytes were not exported after the UI edit, so no current notebook hash is claimed."
+    },
+    "recovery_provenance": {
+      "expected_read_only_source_shortcut_present": false,
+      "expected_recovery_copy_manifest_present": false,
+      "manifests_verified_json_is_recovery_manifest": false
+    },
+    "read_only_preflight": {
+      "sqlite_snapshot_integrity": "ok",
+      "trials": [
+        {"number": 0, "state": "RUNNING"},
+        {"number": 1, "state": "WAITING"},
+        {"number": 2, "state": "WAITING"},
+        {"number": 3, "state": "WAITING"}
+      ],
+      "frozen_head": "PASS",
+      "fold_0_saved_epochs": 4,
+      "fold_1_saved_epochs": 3,
+      "selection_closed": false
+    },
+    "gpu_request": "Free T4 denied due to Colab usage limits.",
+    "training_started": false,
+    "adaptation_holdout_accessed": false,
+    "locked_test_accessed": false,
+    "status": "WAITING_FOR_FREE_GPU; recovery provenance unresolved"
+  },
   "recovery_refresh_at_utc": "2026-09-23T05:38:33Z",
   "selection_closed": false,
-  "separate_empty_new_account_folder": "/content/drive/MyDrive/EvoVariantTR",
+  "separate_new_account_folder_at_initial_audit": "/content/drive/MyDrive/EvoVariantTR",
   "source_commit": "cfecb1146fa43a1f4204c8777adc176ec8066cd4",
   "status": "RECOVERY_PRESERVED_WAITING_FOR_FREE_GPU"
 }

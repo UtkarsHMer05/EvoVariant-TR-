@@ -3603,3 +3603,20 @@ Validation:
 The ledger audit is no-spend and hash-addressed. The frozen Phase 14 artifact, joined predictions,
 approval, protocol, manifests, thresholds, calibration, and final metrics are unchanged. Raw-delta
 AUROC is reported directly under alternate-minus-reference orientation with no post-hoc sign flip.
+
+Date: 2026-09-23
+
+Context:
+The authorized default-account Colab reconnect mounted Drive on CPU but lacked the expected
+read-only source shortcut and recovery-copy manifest. Its existing SQLite snapshot passed a
+read-only integrity check; Colab denied the T4 request due to usage limits.
+
+Decision:
+Keep HPO at `WAITING_FOR_FREE_GPU`. Do not bypass the notebook's source guard, create a substitute
+recovery manifest without the source evidence, switch Google accounts, or use paid compute. Restore
+or independently verify the expected recovery provenance in the authorized Drive root before
+resuming on an eligible free T4.
+
+Validation:
+Trial 0 remains `RUNNING`, trials 1–3 `WAITING`; the frozen report is `PASS`, fold histories are
+4 / 3 epochs, and selection is open. No training or holdout cell ran in this attempt.

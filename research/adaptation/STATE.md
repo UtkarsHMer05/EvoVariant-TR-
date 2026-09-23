@@ -3,7 +3,7 @@
 Study: POSTHOC-FOUNDATION-ADAPTATION-001
 Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c`
 Evidence stage: `EXECUTION_IN_PROGRESS`
-Current persisted stage: `CADUCEUS_FROZEN_HEAD_ONLY_DONE`
+Current persisted stage: `CADUCEUS_HPO_FOLD_PERSISTED` (latest default-account Drive read; recovery provenance is incomplete)
 
 ## Completed gates
 
@@ -18,6 +18,7 @@ Current persisted stage: `CADUCEUS_FROZEN_HEAD_ONLY_DONE`
 - The original account's T4 runtime disconnected and then denied free reconnection. On 2026-09-23 a second account had a connected free T4. Its `EvoVariantTR_original` shortcut resolves to the original Drive folder ID `1RMhA2eEUsvgryqz8YnRryuniroDiTA89`. At the first poll, its separate `EvoVariantTR` folder lacked the study DB; the verified owned recovery copy was subsequently populated there. A fresh local copy of the original HPO SQLite passed `PRAGMA integrity_check`: trial 0 RUNNING, trials 1–3 WAITING. Fold 0 has four history epochs; fold 1 has three. Both folds' latest and best binary checkpoints loaded with matching protocol, revision, manifest, reference hash, signature, and fold. Fold 1's latest checkpoint has `stale_epochs=2`, so its early stopping condition is met; the next trial-0 work is fold-1 final evaluation and fold-2 epoch 1, with no fourth fold-1 training epoch. No trial is complete and selection remains open. See `HPO_RECOVERY_REPORT.md`.
 - The second T4 previously verified Python 3.11.16, PyTorch 2.2.0+cu121, CUDA 12.1, pinned Caduceus dependencies, the GRCh38 FASTA hash, and all 4,000 formal REF alleles. The same Colab file ID `15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w` now shows 20 cells / 10 sections, uses the owned `EvoVariantTR` folder for writable state and the original shortcut as a read-only source, and has stale outputs cleared. The UI reported all changes saved. The full notebook has not been executed after this repair.
 - A stale launch from the prior live notebook produced HPO child PID 12473 against the shared `EvoVariantTR_original` shortcut; its parent PID 12382 was already a zombie, and the runner log and fold-2 history were absent. The child was stopped with SIGTERM. No new fold checkpoint or completed trial was present at the last verification. The owned recovery copy and shortcut SQLite copies had passed `PRAGMA integrity_check` with trial 0 RUNNING and trials 1–3 WAITING; fold histories remained 4 / 3 / no fold 2, and selection remained open. Training is now `WAITING_FOR_FREE_GPU` under the prompt's default-account rule; no further account rotation or paid compute was used.
+- Latest default-account recheck on 2026-09-23: the already-open notebook mounted Drive on a CPU runtime, then cell 3 stopped at its source-path guard. `/content/drive/MyDrive/EvoVariantTR_original` was absent and `state/recovery_copy_manifest.json` was absent from the writable root; `manifests_verified.json` is a dataset summary, not a recovery-copy manifest. Do not treat this Drive root as a verified resume source until its provenance is restored. A read-only copy of its SQLite `.snapshot` passed `PRAGMA integrity_check` (`ok`), with trial 0 `RUNNING` and trials 1–3 `WAITING`; the frozen report was `PASS`, histories were 4 / 3 epochs, and selection remained open. Colab denied the free T4 request due to usage limits. No setup, runner, training, holdout, or locked-test cell ran in this attempt.
 - An identity-only audit confirmed the existing Evo2 output covers all 3,199 TRAIN and 801 VALIDATION IDs with no duplicates, split disagreements, or locked-ID overlap; its prediction and development-manifest hashes match the receipt. It remains excluded because the producing checkout is marked dirty and the full-run approval referenced in its execution plan is unavailable. Score and label values were not inspected or used.
 
 ## Current repository provenance
@@ -46,7 +47,7 @@ selection_closed: false
 
 ## Pending stages
 
-`WAITING_FOR_FREE_GPU` under the prompt's default-account rule → reverify the owned recovery copy and resume HPO at the fold-1 completion boundary → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
+`WAITING_FOR_FREE_GPU` with default-account recovery provenance unresolved → restore or independently verify the expected source shortcut and recovery-copy manifest in the authorized root → reverify checkpoint bindings on an eligible free T4 → resume HPO at the fold-1 completion boundary → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
 
 The full-candidate and NT tracks remain resource-conditional. Missing results are not inferred from the plan.
 

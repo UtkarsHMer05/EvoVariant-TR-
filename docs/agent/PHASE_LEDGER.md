@@ -1240,10 +1240,22 @@ Drive shortcut was stopped after confirming no runner log or fold-2 history; its
 fold histories 4 / 3 / none, and no completed trial. Selection remains open.
 
 The same Colab notebook file ID was repaired to write under the owned recovery folder and read
-the original shortcut only as a source. The saved UI shows 20 cells / 10 sections with outputs
-cleared; it was not rerun after repair. The visible tab is under a non-default account, so the
-master prompt's default-account rule keeps training at `WAITING_FOR_FREE_GPU`. No paid compute or
+the original shortcut only as a source. The saved UI showed 20 cells / 10 sections with outputs
+cleared at that point; no cells had yet been rerun after repair. The visible tab was under a
+non-default account, so the master prompt's default-account rule kept training at
+`WAITING_FOR_FREE_GPU`. No paid compute or
 account rotation was used. The 801-row adaptation holdout and 946-row historical locked test
 remain closed. See `research/adaptation/RECOVERY_AUDIT.md`; scientific completion remains pending.
 Local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67 files,
 737 tests passed / 33 deselected, and 95.07% core coverage.
+
+### Default-account preflight, 2026-09-23
+
+The authorized default-account tab reconnected as CPU and mounted Drive. Cell 3 failed closed
+because the expected `EvoVariantTR_original` shortcut and `state/recovery_copy_manifest.json`
+were absent; the existing `manifests_verified.json` is a dataset summary, not recovery-copy
+provenance. A read-only copy of the SQLite snapshot passed integrity (`ok`), with trial 0
+`RUNNING`, trials 1–3 `WAITING`, frozen report `PASS`, histories 4 / 3, and selection open. Colab
+denied the free T4 request due to usage limits. No setup, runner, training, adaptation-holdout,
+or locked-test cell ran. No paid compute or account rotation was used. HPO remains
+`WAITING_FOR_FREE_GPU` and also requires restored or independently verified Drive provenance.

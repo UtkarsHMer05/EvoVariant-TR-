@@ -10,9 +10,9 @@ Status: **RECOVERY PRESERVED; HPO PAUSED AFTER PROVIDER-POLICY CHECK; SCIENTIFIC
 - The visible Vivaldi tab was under a non-default Google account. The attached master prompt requires the default account and prohibits switching; training therefore remains `WAITING_FOR_FREE_GPU`. No paid compute or account rotation was used.
 - The 801-row adaptation holdout was not accessed; the historical 946-row locked test was not accessed for this work. The selection lock remains open.
 
-## Next gate
+## Current next gate
 
-Under the prompt's default-account rule, first restore or independently verify the expected source shortcut and recovery-copy manifest in the authorized Drive root. Then, on an eligible free T4, verify the SQLite snapshot and checkpoint bindings, finalize fold 1 from its best checkpoint, and start fold 2 epoch 1. Continue the predeclared TRAIN-only HPO/refit gates before any one-shot 801-row evaluation. Keep the 946-row test closed to adaptation selection.
+Do not use another account to bypass a Colab usage limit or buy compute. Before resuming, restore or independently verify the expected source shortcut and recovery-copy manifest in the Drive root available to the provider-compliant runtime. When eligible free T4 access is available without limit evasion, recheck the SQLite snapshot and checkpoint bindings, then resume trial 0 at fold 2 epoch 3. Continue the predeclared TRAIN-only HPO/refit gates before any one-shot 801-row evaluation. Keep the 946-row test closed to adaptation selection.
 
 ## Latest default-account execution attempt
 

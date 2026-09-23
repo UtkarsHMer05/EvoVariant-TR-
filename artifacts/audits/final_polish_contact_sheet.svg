@@ -1,0 +1,10 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='500' viewBox='0 0 1200 500'>
+<rect x="0" y="0" width="1200" height="500" fill="#ffffff" stroke="none" opacity="1" rx="4"/>
+<text x="35" y="45" text-anchor="start" font-family="Arial, sans-serif" font-size="24px" font-weight="700" fill="#172033">Final polish figure inventory</text>
+<text x="35" y="75" text-anchor="start" font-family="Arial, sans-serif" font-size="14px" font-weight="400" fill="#526070">See final_polish_gallery.html for the rendered additions</text>
+<rect x="45" y="120" width="330" height="100" fill="#eef2ff" stroke="#2563eb" opacity="1" rx="4"/><text x="210" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="15px" font-weight="700" fill="#172033">final_classification_metrics</text>
+<rect x="425" y="120" width="330" height="100" fill="#eef2ff" stroke="#2563eb" opacity="1" rx="4"/><text x="590" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="15px" font-weight="700" fill="#172033">final_f1_metrics</text>
+<rect x="805" y="120" width="330" height="100" fill="#eef2ff" stroke="#2563eb" opacity="1" rx="4"/><text x="970" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="15px" font-weight="700" fill="#172033">final_probability_quality</text>
+<rect x="45" y="270" width="330" height="100" fill="#eef2ff" stroke="#2563eb" opacity="1" rx="4"/><text x="210" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="15px" font-weight="700" fill="#172033">adaptation_workflow</text>
+<rect x="425" y="270" width="330" height="100" fill="#eef2ff" stroke="#2563eb" opacity="1" rx="4"/><text x="590" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="15px" font-weight="700" fill="#172033">encoder_update_proof</text>
+</svg>

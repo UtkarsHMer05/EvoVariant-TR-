@@ -1,0 +1,43 @@
+{
+  "f1_metrics": [
+    {
+      "label": "negative F1",
+      "value": 0.862708719851577
+    },
+    {
+      "label": "positive F1",
+      "value": 0.8181818181818182
+    },
+    {
+      "label": "macro F1",
+      "value": 0.8404452690166977
+    },
+    {
+      "label": "weighted F1",
+      "value": 0.8434105912209205
+    },
+    {
+      "label": "micro F1",
+      "value": 0.8435517970401691
+    }
+  ],
+  "figure_id": "final_f1_metrics",
+  "generator": "scripts/generate_final_readme_figures.py",
+  "holdout_used_for_derivation": false,
+  "locked_test_rows": 946,
+  "output_sha256": {
+    "research/figures/final/final_f1_metrics.pdf": "ec277aa5895d66bffa65d843671f60f4cf7f103dcb8b492ddd75937ef568ae85",
+    "research/figures/final/final_f1_metrics.png": "4c4bb2d78166e689244e02cfef949cee8826325885ccbeac7e1c5cd3f183e431",
+    "research/figures/final/final_f1_metrics.svg": "ca156bba32c698adb1cda298a9cab1e11bfc14f070a02226850a25424c1101e4"
+  },
+  "outputs": [
+    "research/figures/final/final_f1_metrics.svg",
+    "research/figures/final/final_f1_metrics.png",
+    "research/figures/final/final_f1_metrics.pdf"
+  ],
+  "source_sha256": {
+    "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591",
+    "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+  }
+}

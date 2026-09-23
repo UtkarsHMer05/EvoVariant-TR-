@@ -56,3 +56,23 @@ The audit checks output existence and publication-manifest hashes, SVG XML/viewB
 | project_timeline | PASS | FINAL | 10 | phase / status marker | PASS | none |
 
 Source hashes are preserved per figure in `figure_qa_manifest.json` and in the existing source sidecars. The two inventory entries marked `NOT_APPLICABLE_WITH_DOCUMENTED_REASON` are intentionally excluded from the rendered-family count and are not treated as missing figures.
+
+## Final-project-polish additions
+
+The original 39-family Phase 17 audit is preserved unchanged. The final polish
+adds three source-derived baseline dashboards and two separate adaptation
+appendix figures. Their inventory, output hashes, and gallery are recorded in
+[FINAL_FIGURE_INVENTORY.json](FINAL_FIGURE_INVENTORY.json),
+[final_polish_gallery.html](final_polish_gallery.html), and
+[final_polish_contact_sheet.svg](final_polish_contact_sheet.svg).
+
+| Figure | Status | Evidence boundary |
+|---|---|---|
+| `final_classification_metrics` | PASS | frozen 946-row joined predictions |
+| `final_probability_quality` | PASS | frozen Phase 14 receipt plus joined predictions |
+| `final_f1_metrics` | PASS | fixed-threshold frozen labels/predictions |
+| `encoder_update_proof` | PASS | recovered one-step feasibility proof; not completed fine-tuning |
+| `adaptation_workflow` | PASS | persisted incomplete adaptation state; no holdout result |
+
+No values were entered by hand into the generator, and no new GPU inference or
+selection was performed for these additions.

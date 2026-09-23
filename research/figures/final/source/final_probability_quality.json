@@ -1,0 +1,36 @@
+{
+  "figure_id": "final_probability_quality",
+  "generator": "scripts/generate_final_readme_figures.py",
+  "holdout_used_for_derivation": false,
+  "locked_test_rows": 946,
+  "metrics": {
+    "AUPRC": 0.8630391000187404,
+    "AUROC": 0.9092259737895887,
+    "Accuracy": 0.8435517970401691,
+    "Balanced Accuracy": 0.8398662176920277,
+    "Brier": 0.11407921672922404,
+    "ECE": 0.05523106003405314,
+    "F1": 0.8181818181818182,
+    "MCC": 0.6809606106662964,
+    "NLL": 0.5517579434827143,
+    "Precision": 0.8242574257425742,
+    "Probability MAE": 0.2067769351963632,
+    "Recall": 0.8121951219512196,
+    "Specificity": 0.8675373134328358
+  },
+  "output_sha256": {
+    "research/figures/final/final_probability_quality.pdf": "24f89a6eff05ddd91bd733f9200a4ed083c66c901e875d99e603c0bfdaad590c",
+    "research/figures/final/final_probability_quality.png": "bf4935f1a6b9db648f6c8c9701515f8316ee3b31df531c8df9dd08c44c5fddc3",
+    "research/figures/final/final_probability_quality.svg": "a05b8b772acb251118ca00995ef73f061731d837be0c7101846ac37d62f59010"
+  },
+  "outputs": [
+    "research/figures/final/final_probability_quality.svg",
+    "research/figures/final/final_probability_quality.png",
+    "research/figures/final/final_probability_quality.pdf"
+  ],
+  "source_sha256": {
+    "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591",
+    "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+  }
+}

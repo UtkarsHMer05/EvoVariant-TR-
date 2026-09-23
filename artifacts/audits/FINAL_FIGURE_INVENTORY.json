@@ -1,0 +1,21 @@
+{
+  "inherited_phase17_inventory": "research/reports/phase17/FIGURE_INVENTORY.json",
+  "inherited_rendered_family_count": 39,
+  "new_adaptation_figures": [
+    "adaptation_workflow",
+    "encoder_update_proof"
+  ],
+  "new_final_figures": [
+    "final_classification_metrics",
+    "final_f1_metrics",
+    "final_probability_quality"
+  ],
+  "notes": "Existing Phase 17 figures remain unchanged; this inventory records the final polish additions and their source-derived outputs.",
+  "schema_version": "final-project-polish-v1",
+  "source_hashes": {
+    "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591",
+    "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+  },
+  "status": "PASS"
+}

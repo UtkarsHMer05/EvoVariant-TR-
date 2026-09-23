@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<rect x="0" y="0" width="1400" height="820" fill="#ffffff" stroke="none" opacity="1" rx="4"/>
+<text x="55" y="52" text-anchor="start" font-family="Arial, sans-serif" font-size="28px" font-weight="700" fill="#172033">Controlled encoder-update feasibility proof</text>
+<text x="55" y="84" text-anchor="start" font-family="Arial, sans-serif" font-size="14px" font-weight="400" fill="#526070">Recovered PASS evidence; this is not a completed fine-tuning experiment</text>
+<text x="55" y="145" text-anchor="start" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">Partial-small regime: blocks 12–15 trainable; blocks 0–11 frozen</text>
+<line x1="170" y1="650" x2="1230" y2="650" stroke="#526070" stroke-width="1"/>
+<rect x="230" y="150" width="260" height="500" fill="#2563eb" stroke="none" opacity="1" rx="4"/>
+<rect x="820" y="650" width="260" height="1" fill="#94a3b8" stroke="none" opacity="1" rx="4"/>
+<text x="360" y="690" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="400" fill="#172033">encoder parameter</text>
+<text x="360" y="715" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="400" fill="#172033">delta norm</text>
+<text x="950" y="690" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="400" fill="#172033">frozen control</text>
+<text x="950" y="715" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="400" fill="#172033">delta norm</text>
+<text x="360" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="700" fill="#1d4ed8">0.00139626895543188</text>
+<text x="950" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="16px" font-weight="700" fill="#475569">0.0</text>
+<text x="55" y="770" text-anchor="start" font-family="Arial, sans-serif" font-size="12px" font-weight="400" fill="#526070">status=PASS · total=7,728,385 · trainable=1,933,313 · holdout evaluated=False</text>
+</svg>

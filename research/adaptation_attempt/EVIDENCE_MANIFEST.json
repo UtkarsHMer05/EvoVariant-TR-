@@ -1,0 +1,54 @@
+{
+  "schema_version": "adaptation-attempt-evidence-v1",
+  "status": "INCOMPLETE_BUT_AUDITABLE",
+  "study_id": "POSTHOC-FOUNDATION-ADAPTATION-001",
+  "protocol_sha256": "07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c",
+  "model": {
+    "id": "kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-16",
+    "revision": "b0477522ac5d044ad03578aa724ec8e4bdbd405b"
+  },
+  "data_boundary": {
+    "train_rows": 3199,
+    "validation_rows": 801,
+    "train_validation_gene_overlap": 0,
+    "validation_opened": false,
+    "locked_946_used_for_selection": false,
+    "old_source_policy": "optional_recovery_only"
+  },
+  "completed_or_verified": [
+    "protocol and manifest identities",
+    "GRCh38 reference and 4000 REF allele validation",
+    "Caduceus smoke",
+    "frozen-head TRAIN-only fit",
+    "controlled partial-small encoder-update feasibility proof"
+  ],
+  "not_completed": [
+    "adaptation HPO selection",
+    "partial-small complete trial",
+    "partial-large complete trial",
+    "full Caduceus fine-tuning",
+    "final TRAIN refits",
+    "801-row adaptation evaluation",
+    "NT adaptation track"
+  ],
+  "artifacts": {
+    "encoder_update_proof": "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json",
+    "source_snapshot": {
+      "root": "research/adaptation_attempt/source_snapshot",
+      "snapshot_commit": "196393636b069dfeaa8dbd43f41b543d0b20d91a",
+      "sha256": {
+        "checkpointing.py": "136d5f8956c6659a4aecb1cbeb177636b5e93f8be892ebef9205c6452e8a7f07",
+        "folds.py": "08e8454c7d6f51f086d3b2ec537d16ba9298f60d4059f921a5c29f504be040fe",
+        "models.py": "0af5d3b84b4edf5d92672b864e17f92490c939b229f9898cc9fbe6f5f282175b",
+        "prove_encoder_update.py": "a30e519eb389b87485748250d6adbd2e3da9832ac03d39ea0d83c9c13f156c0f",
+        "run_caduceus_hpo.py": "c40fd5392273e7aa1a8184fb7df963cb9922815a03210ae3e422d70d59d784a7",
+        "train_caduceus.py": "2cdf7c82a11dd131c07b92ad8bf0660e240e49ba8a74d3d787cd6ccf2d6ad996",
+        "training.py": "25169334eeda3e1c58a3277e3405fc84387938b69273ae0c55a8a75154aa1ea0"
+      }
+    },
+    "protocol_snapshot": "research/adaptation_attempt/PROTOCOL.md",
+    "workflow_figure": "research/adaptation_attempt/figures/adaptation_workflow.svg",
+    "proof_figure": "research/adaptation_attempt/figures/encoder_update_proof.svg"
+  },
+  "interpretation": "The retained encoder delta is implementation evidence only. It is not a completed fine-tuning experiment, selected model, or holdout result."
+}

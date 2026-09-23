@@ -1,0 +1,19 @@
+{
+  "figure_id": "adaptation_workflow",
+  "generator": "scripts/generate_final_readme_figures.py",
+  "holdout_used": false,
+  "output_sha256": {
+    "research/adaptation_attempt/figures/adaptation_workflow.pdf": "882dfe32ef551a25c3eeabf7748e3fcb074c83881cd613d9c46c53c69b5507d6",
+    "research/adaptation_attempt/figures/adaptation_workflow.png": "3bd53d25cd029c5c9cb6f0e5f67339195b732b367b9b44414bf3dbfcb662c246",
+    "research/adaptation_attempt/figures/adaptation_workflow.svg": "5be4f59a3dfc57ad07b68ee5217d0271795cc7a343ad146d67e3a566b70fe83d"
+  },
+  "outputs": [
+    "research/adaptation_attempt/figures/adaptation_workflow.svg",
+    "research/adaptation_attempt/figures/adaptation_workflow.png",
+    "research/adaptation_attempt/figures/adaptation_workflow.pdf"
+  ],
+  "source_sha256": {
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591"
+  },
+  "workflow_status": "HPO incomplete; selection open; 801 closed"
+}

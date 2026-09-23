@@ -1,0 +1,14 @@
+metric,value,source
+AUROC,0.9092259737895887,artifacts/phase14/phase14_locked_evo2_20260922.json
+AUPRC,0.8630391000187404,artifacts/phase14/phase14_locked_evo2_20260922.json
+Accuracy,0.8435517970401691,artifacts/phase14/phase14_locked_evo2_20260922.json
+Balanced Accuracy,0.8398662176920277,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+Precision,0.8242574257425742,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+Recall,0.8121951219512196,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+Specificity,0.8675373134328358,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+F1,0.8181818181818182,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+MCC,0.6809606106662964,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl
+Brier,0.11407921672922404,artifacts/phase14/phase14_locked_evo2_20260922.json
+NLL,0.5517579434827143,artifacts/phase14/phase14_locked_evo2_20260922.json
+ECE,0.05523106003405314,artifacts/phase14/phase14_locked_evo2_20260922.json
+Probability MAE,0.2067769351963632,research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl

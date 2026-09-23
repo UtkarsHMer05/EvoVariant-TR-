@@ -1,0 +1,82 @@
+{
+  "confusion": {
+    "FN": 77,
+    "FP": 71,
+    "TN": 465,
+    "TP": 333
+  },
+  "derivation": "registered receipt plus fixed-threshold calculations over frozen joined predictions; no retuning",
+  "metrics": [
+    {
+      "metric": "AUROC",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.9092259737895887
+    },
+    {
+      "metric": "AUPRC",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.8630391000187404
+    },
+    {
+      "metric": "Accuracy",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.8435517970401691
+    },
+    {
+      "metric": "Balanced Accuracy",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.8398662176920277
+    },
+    {
+      "metric": "Precision",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.8242574257425742
+    },
+    {
+      "metric": "Recall",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.8121951219512196
+    },
+    {
+      "metric": "Specificity",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.8675373134328358
+    },
+    {
+      "metric": "F1",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.8181818181818182
+    },
+    {
+      "metric": "MCC",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.6809606106662964
+    },
+    {
+      "metric": "Brier",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.11407921672922404
+    },
+    {
+      "metric": "NLL",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.5517579434827143
+    },
+    {
+      "metric": "ECE",
+      "source": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+      "value": 0.05523106003405314
+    },
+    {
+      "metric": "Probability MAE",
+      "source": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+      "value": 0.2067769351963632
+    }
+  ],
+  "source_sha256": {
+    "artifacts/phase14/phase14_locked_evo2_20260922.json": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591",
+    "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7"
+  },
+  "status": "PASS"
+}

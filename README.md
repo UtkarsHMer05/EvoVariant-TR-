@@ -1,5 +1,14 @@
 # EvoVariant-TR
 
+> **TL;DR:** The shipped result is a frozen, leakage-resistant Evo2 temporal
+> benchmark with a one-shot 946-row locked evaluation. The primary result is
+> AUROC `0.909225974`; the foundation models were not fine-tuned for that
+> result. A separate Caduceus adaptation attempt is preserved below as an
+> incomplete, auditable appendix with a real encoder-update feasibility proof,
+> not as a completed adapted model.
+
+**Judge entry points:** [baseline metrics](docs/METRICS.md) · [HPO record](docs/HYPERPARAMETER_TUNING.md) · [baseline judge notebook](notebooks/EvoVariant_TR_Baseline_Judge_Demo.ipynb) · [fine-tuning-attempt notebook](notebooks/EvoVariant_TR_FineTuning_Attempt_Demo.ipynb) · [complete figure gallery](artifacts/audits/final_polish_gallery.html)
+
 EvoVariant-TR is a research-only study of whether frozen genomic foundation-model
 signals can help rank variants that later resolve from a historical ClinVar VUS
 cohort. The completed baseline is a temporal, leakage-resistant study with
@@ -190,8 +199,39 @@ F1 = 2 * Precision * Recall / (Precision + Recall)
 Balanced Accuracy = (Recall + Specificity) / 2
 ~~~
 
-MAE is not the primary metric because the endpoint is binary classification,
-not continuous regression.
+Probability MAE is reported as a secondary descriptive probability-quality
+metric in the generated final table. It is not the primary metric because the
+endpoint is binary classification, not continuous regression.
+
+## What was actually trained
+
+The baseline trained downstream classifiers and calibration on the declared
+development boundary while keeping Evo2, Nucleotide Transformer, and Caduceus
+foundation encoders frozen. The final locked result is therefore **HEAD-ONLY
+DOWNSTREAM TRAINING**, not foundation-model fine-tuning.
+
+The independent Caduceus follow-up has a separate evidence surface:
+
+| item | measured state |
+|---|---|
+| frozen Caduceus encoder + trained task head | completed on TRAIN only |
+| partial-small encoder-update proof | PASS; blocks 12–15 trainable, encoder delta `0.0013962689554318786`, frozen control delta `0.0` |
+| partial-small complete fine-tuning trial | not completed |
+| partial-large trial | not started |
+| full Caduceus fine-tuning | resource-deferred; not completed |
+| adaptation HPO/selection | incomplete; selection open |
+| 801-row adaptation evaluation | closed and unopened |
+
+The exact appendix is [research/adaptation_attempt/README.md](research/adaptation_attempt/README.md). The project never claims **PARTIAL FOUNDATION-MODEL FINE-TUNING COMPLETED** or **FULL FOUNDATION-MODEL FINE-TUNING COMPLETED**.
+
+## HPO and selection boundary
+
+Baseline HPO is validation-only and recorded in
+[docs/HYPERPARAMETER_TUNING.md](docs/HYPERPARAMETER_TUNING.md). The separate
+post-hoc Caduceus HPO was declared TRAIN-only, gene-grouped, and persisted, but
+the mandatory queue did not complete. No adaptation configuration, final
+epoch count, calibration source, or 801-row result was selected. The historical
+946-row locked cohort remains prohibited for adaptation selection.
 
 ## Score semantics and raw-delta sign
 
@@ -271,11 +311,65 @@ gene errors, and final error summaries:
 - [Figure QA report](artifacts/audits/FIGURE_QA.md)
 - [Publication report](research/reports/phase17/FINAL_REPORT.md)
 - [Publication manifest](research/reports/phase17/publication_manifest.json)
+- [Final polish figure inventory](artifacts/audits/FINAL_FIGURE_INVENTORY.json)
+- [Final metrics table](research/reports/final_metrics_table.json)
 
 No fine-tuning loss curve, context-length curve, or unsupported intermediate
 temporal trend is shown. Fine-tuning loss is deferred, the context-length
 cell is not applicable to the frozen 8,192-bp cache, and unsupported trends
 remain absent.
+
+<details>
+<summary>Complete rendered figure gallery (42 baseline families)</summary>
+
+The 39 registered Phase 17 families remain unchanged. The three final polish
+dashboards are source-derived from the frozen receipt and joined predictions.
+
+- [ablation_metric_delta](research/figures/final/ablation_metric_delta.png)
+- [bootstrap_interval](research/figures/final/bootstrap_interval.png)
+- [cache_reuse](research/figures/final/cache_reuse.png)
+- [calibration_metric_comparison](research/figures/final/calibration_metric_comparison.png)
+- [calibration_reliability](research/figures/final/calibration_reliability.png)
+- [classifier_auroc_heatmap](research/figures/final/classifier_auroc_heatmap.png)
+- [classifier_brier_heatmap](research/figures/final/classifier_brier_heatmap.png)
+- [classifier_mcc_heatmap](research/figures/final/classifier_mcc_heatmap.png)
+- [cohort_flow](research/figures/final/cohort_flow.png)
+- [combination_ranking](research/figures/final/combination_ranking.png)
+- [compute_cumulative_rows](research/figures/final/compute_cumulative_rows.png)
+- [cost_by_phase_model](research/figures/final/cost_by_phase_model.png)
+- [cumulative_compute_spend](research/figures/final/cumulative_compute_spend.png)
+- [development_final_generalization](research/figures/final/development_final_generalization.png)
+- [diversity_matrix](research/figures/final/diversity_matrix.png)
+- [ensemble_comparison](research/figures/final/ensemble_comparison.png)
+- [final_abstention_semantics](research/figures/final/final_abstention_semantics.png)
+- [final_chromosome_distribution](research/figures/final/final_chromosome_distribution.png)
+- [final_class_distribution](research/figures/final/final_class_distribution.png)
+- [final_classification_metrics](research/figures/final/final_classification_metrics.png)
+- [final_confusion_matrix](research/figures/final/final_confusion_matrix.png)
+- [final_error_chromosome](research/figures/final/final_error_chromosome.png)
+- [final_f1_metrics](research/figures/final/final_f1_metrics.png)
+- [final_fp_fn](research/figures/final/final_fp_fn.png)
+- [final_gene_errors](research/figures/final/final_gene_errors.png)
+- [final_gene_top](research/figures/final/final_gene_top.png)
+- [final_outcome_counts](research/figures/final/final_outcome_counts.png)
+- [final_pr](research/figures/final/final_pr.png)
+- [final_probability_quality](research/figures/final/final_probability_quality.png)
+- [final_roc](research/figures/final/final_roc.png)
+- [foundation_model_performance](research/figures/final/foundation_model_performance.png)
+- [hpo_hyperparameters](research/figures/final/hpo_hyperparameters.png)
+- [hpo_trial_history](research/figures/final/hpo_trial_history.png)
+- [learning_curve_auroc](research/figures/final/learning_curve_auroc.png)
+- [learning_curve_metrics](research/figures/final/learning_curve_metrics.png)
+- [project_timeline](research/figures/final/project_timeline.png)
+- [raw_vs_representation](research/figures/final/raw_vs_representation.png)
+- [representation_layers](research/figures/final/representation_layers.png)
+- [risk_coverage_development](research/figures/final/risk_coverage_development.png)
+- [runtime_by_model](research/figures/final/runtime_by_model.png)
+- [temporal_transition](research/figures/final/temporal_transition.png)
+- [throughput_comparison](research/figures/final/throughput_comparison.png)
+
+The separate adaptation appendix has [encoder update proof](research/adaptation_attempt/figures/encoder_update_proof.png) and [workflow state](research/adaptation_attempt/figures/adaptation_workflow.png).
+</details>
 
 ## Where is the code?
 
@@ -292,6 +386,8 @@ remain absent.
 | Batch/resume | [src/evovariant_tr/batch_pipeline.py](src/evovariant_tr/batch_pipeline.py) |
 | Figures | [src/evovariant_tr/figure_artifacts.py](src/evovariant_tr/figure_artifacts.py) |
 | Research workbench | [apps/web/](apps/web/) |
+| Adaptation implementation snapshot | [research/adaptation_attempt/source_snapshot/](research/adaptation_attempt/source_snapshot/) |
+| Final dashboard generator | [scripts/generate_final_readme_figures.py](scripts/generate_final_readme_figures.py) |
 
 The experiment registry is under
 [experiments/registry/](experiments/registry/). The current publication
@@ -320,6 +416,11 @@ The final baseline validation requires all applicable gates to pass. It checks
 secrets, formatting, strict typing, unit/integration/scientific tests, schema
 and registry integrity, protocol hashes, frontend/browser behavior, figure
 generation, and whitespace integrity.
+
+The final polish also checks notebook JSON/AST validity, local README links,
+source-hashed final dashboards, and the adaptation evidence manifest. These
+checks are presentation/provenance checks; they do not turn incomplete
+adaptation into a completed scientific experiment.
 
 The final publication bundle contains 41 inventory entries, 39 rendered figure
 families, 39 source sidecars, and 12 tables. The visual audit reports
@@ -403,6 +504,30 @@ The baseline preserves the following boundaries:
 - [Current project state](docs/agent/PROJECT_STATE.md)
 - [Phase ledger](docs/agent/PHASE_LEDGER.md)
 - [Decision log](docs/agent/DECISIONS.md)
+- [Final metrics](docs/METRICS.md)
+- [Fine-tuning attempt](docs/FINE_TUNING_ATTEMPT.md)
+- [Adaptation compute limitations](docs/ADAPTATION_COMPUTE_LIMITATIONS.md)
+- [Contribution map](docs/CONTRIBUTION_MAP.md)
+- [Judge demo guide](docs/JUDGE_DEMO.md)
+
+## Experimental fine-tuning appendix
+
+The primary science remains the frozen temporal baseline. The follow-up
+foundation-model adaptation attempt is intentionally at the bottom of the
+project surface so its status is visible without being confused with the
+headline result:
+
+- [Adaptation README and status](research/adaptation_attempt/README.md)
+- [Fine-tuning method](research/adaptation_attempt/FINE_TUNING_METHOD.md)
+- [Adaptation HPO status](research/adaptation_attempt/HYPERPARAMETER_TUNING.md)
+- [Compute limitations](research/adaptation_attempt/COMPUTE_LIMITATIONS.md)
+- [Evidence manifest](research/adaptation_attempt/EVIDENCE_MANIFEST.json)
+- [Encoder-update proof](research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json)
+
+Allowed wording is **encoder-update feasibility proof**, **frozen-head
+TRAIN-only stage completed**, or **adaptation HPO incomplete**. The repository
+does not state that partial or full Caduceus foundation-model fine-tuning was
+completed.
 
 ## References
 

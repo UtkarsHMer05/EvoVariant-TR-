@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="700" viewBox="0 0 1600 700">
+<rect x="0" y="0" width="1600" height="700" fill="#ffffff" stroke="none" opacity="1" rx="4"/>
+<text x="55" y="58" text-anchor="start" font-family="Arial, sans-serif" font-size="28px" font-weight="700" fill="#172033">Post-hoc Caduceus adaptation workflow state</text>
+<text x="55" y="91" text-anchor="start" font-family="Arial, sans-serif" font-size="14px" font-weight="400" fill="#526070">TRAIN-only adaptation remains separate from the frozen temporal baseline</text>
+<rect x="60" y="260" width="190" height="125" fill="#059669" stroke="#059669" opacity="0.14" rx="4"/>
+<text x="155" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">frozen / head</text>
+<text x="155" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#059669">PASS</text>
+<line x1="255" y1="315" x2="277" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="277,315 262,307 262,323" fill="#94a3b8"/>
+<rect x="285" y="260" width="190" height="125" fill="#d97706" stroke="#d97706" opacity="0.14" rx="4"/>
+<text x="380" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">trial 0 / HPO</text>
+<text x="380" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#d97706">INCOMPLETE</text>
+<line x1="480" y1="315" x2="502" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="502,315 487,307 487,323" fill="#94a3b8"/>
+<rect x="510" y="260" width="190" height="125" fill="#94a3b8" stroke="#94a3b8" opacity="0.14" rx="4"/>
+<text x="605" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">partial / small</text>
+<text x="605" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#94a3b8">NOT STARTED</text>
+<line x1="705" y1="315" x2="727" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="727,315 712,307 712,323" fill="#94a3b8"/>
+<rect x="735" y="260" width="190" height="125" fill="#94a3b8" stroke="#94a3b8" opacity="0.14" rx="4"/>
+<text x="830" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">partial / large</text>
+<text x="830" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#94a3b8">NOT STARTED</text>
+<line x1="930" y1="315" x2="952" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="952,315 937,307 937,323" fill="#94a3b8"/>
+<rect x="960" y="260" width="190" height="125" fill="#94a3b8" stroke="#94a3b8" opacity="0.14" rx="4"/>
+<text x="1055" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">full</text>
+<text x="1055" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#94a3b8">DEFERRED</text>
+<line x1="1155" y1="315" x2="1177" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="1177,315 1162,307 1162,323" fill="#94a3b8"/>
+<rect x="1185" y="260" width="190" height="125" fill="#d97706" stroke="#d97706" opacity="0.14" rx="4"/>
+<text x="1280" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">selection</text>
+<text x="1280" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#d97706">OPEN</text>
+<line x1="1380" y1="315" x2="1402" y2="315" stroke="#94a3b8" stroke-width="3"/>
+<polygon points="1402,315 1387,307 1387,323" fill="#94a3b8"/>
+<rect x="1410" y="260" width="190" height="125" fill="#059669" stroke="#059669" opacity="0.14" rx="4"/>
+<text x="1505" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">801</text>
+<text x="1505" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="13px" font-weight="700" fill="#059669">CLOSED</text>
+<text x="60" y="520" text-anchor="start" font-family="Arial, sans-serif" font-size="18px" font-weight="700" fill="#172033">Locked boundaries</text>
+<text x="60" y="555" text-anchor="start" font-family="Arial, sans-serif" font-size="15px" font-weight="400" fill="#334155">801-row validation was not opened. The historical 946-row temporal cohort was not used for adaptation selection.</text>
+<text x="60" y="595" text-anchor="start" font-family="Arial, sans-serif" font-size="15px" font-weight="400" fill="#334155">The only retained encoder evidence is a one-step feasibility proof with a nonzero encoder delta and zero frozen-control delta.</text>
+</svg>

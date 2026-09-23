@@ -297,6 +297,9 @@ def _cells() -> list[dict]:
         ),
         _code(
             """
+            import shutil
+            import sqlite3
+
             STATE = DRIVE / "state/adaptation_state.json"
 
             def read_json(path):

@@ -124,7 +124,16 @@ class Evo2Adapter(ModelAdapter):
             str(check["name"]): str(check["status"])
             for check in parity.get("checks", [])
         }
+        if checks.get("cuda_available") != "PASS" and checks.get("torch_available") == "PASS":
+            checks["torch_available"] = "SKIP"
         if not parity.get("all_pass", False):
+            if checks.get("cuda_available") == "FAIL":
+                return AdapterReadiness(
+                    model_id=self.model_id,
+                    status=AdapterStatus.DEFERRED,
+                    checks=checks,
+                    reason="Evo2 GPU execution is unavailable in this environment",
+                )
             return AdapterReadiness(
                 model_id=self.model_id,
                 status=AdapterStatus.FAILED,

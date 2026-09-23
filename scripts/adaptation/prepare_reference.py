@@ -64,8 +64,8 @@ def main() -> None:
                 os.replace(temporary, archive)
             temporary = reference.with_name(reference.name + ".tmp")
             try:
-                with gzip.open(archive, "rb") as source, temporary.open("wb") as target:
-                    shutil.copyfileobj(source, target)
+                with gzip.open(archive, "rb") as source_stream, temporary.open("wb") as target:
+                    shutil.copyfileobj(source_stream, target)
                 if sha256_file(temporary) != REFERENCE_SHA256:
                     raise RuntimeError("GRCh38 archive does not produce the verified FASTA")
                 os.replace(temporary, reference)

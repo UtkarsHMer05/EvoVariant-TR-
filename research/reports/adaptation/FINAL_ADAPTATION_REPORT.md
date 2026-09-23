@@ -81,7 +81,7 @@ The frozen-head process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9f
 
 The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The T4 attempt passed recovery and reference checks and persisted fold 2 epoch 2 before it was stopped after the Colab account-limit rule was checked. All three folds' latest/best checkpoints pass metadata binding and history continuity; the post-stop SQLite snapshot passes integrity. Trial 0 remains `RUNNING` in Optuna and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
 
-The open Colab page's persisted traceback confirms the HPO child ended by `SIGTERM: 15`; Hugging Face `FutureWarning` lines are deprecation warnings, not the cause. The old runner turned this deliberate stop into `EXITED_FAILURE`. The repository fix records `EXITED_BY_SIGNAL`, and the notebook monitor now shows stored terminal states directly. The live Colab notebook has not yet loaded that repository patch. No encoder fine-tuning or holdout evaluation occurred.
+The open Colab page's persisted traceback confirms the HPO child ended by `SIGTERM: 15`; Hugging Face `FutureWarning` lines are deprecation warnings, not the cause. The old runner turned this deliberate stop into `EXITED_FAILURE`. The repository fix records `EXITED_BY_SIGNAL`; commit `45be47e` is synced in Colab, whose saved monitor now correctly labels the legacy record as a signal stop. No encoder fine-tuning or holdout evaluation occurred.
 
 ## Latest recovery check, 2026-09-23
 

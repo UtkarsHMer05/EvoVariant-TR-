@@ -8,6 +8,7 @@ import gzip
 import json
 import os
 import shutil
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -18,7 +19,10 @@ from evovariant_tr.adaptation.data import (
 )
 
 REFERENCE_SHA256 = "5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51"
-REFERENCE_URL = "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz"
+REFERENCE_URLS = (
+    "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz",
+    "https://hgdownload.gi.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz",
+)
 
 
 def main() -> None:
@@ -36,16 +40,27 @@ def main() -> None:
     provenance = drive / "provenance.json"
     reference.parent.mkdir(parents=True, exist_ok=True)
     drive.mkdir(parents=True, exist_ok=True)
+    source_url = REFERENCE_URLS[0]
     if not reference.exists() or sha256_file(reference) != REFERENCE_SHA256:
         drive_reference = source / reference.name
         if drive_reference.exists() and sha256_file(drive_reference) == REFERENCE_SHA256:
             shutil.copyfile(drive_reference, reference)
+            source_url = str(drive_reference)
         else:
             if not archive.exists():
                 if source != drive:
                     raise RuntimeError(f"shared reference archive is missing: {archive}")
                 temporary = archive.with_name(archive.name + ".tmp")
-                urllib.request.urlretrieve(REFERENCE_URL, temporary)
+                last_error = None
+                for source_url in REFERENCE_URLS:
+                    try:
+                        urllib.request.urlretrieve(source_url, temporary)
+                        break
+                    except (OSError, urllib.error.URLError) as error:
+                        last_error = error
+                        temporary.unlink(missing_ok=True)
+                else:
+                    raise RuntimeError(f"all GRCh38 reference URLs failed: {last_error}")
                 os.replace(temporary, archive)
             temporary = reference.with_name(reference.name + ".tmp")
             try:
@@ -74,7 +89,7 @@ def main() -> None:
         shutil.copyfile(index, drive_index)
     report = {
         "status": "PASS",
-        "source": REFERENCE_URL,
+        "source": source_url,
         "drive_archive": str(archive),
         "drive_archive_sha256": sha256_file(archive) if archive.exists() else None,
         "reference": str(reference),

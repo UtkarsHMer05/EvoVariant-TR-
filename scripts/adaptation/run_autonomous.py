@@ -96,6 +96,31 @@ def _execute(root: Path, drive: Path, reference: Path) -> str:
         if frozen_checkpoint.exists():
             args += ["--resume", str(frozen_checkpoint)]
         _run(root, "train_caduceus.py", *args)
+    proof = drive / "artifacts/adaptation/caduceus_partial_small_finetune_smoke.json"
+    if proof.exists():
+        proof_report = _read(proof)
+        if (
+            proof_report.get("status") != "PASS"
+            or proof_report.get("model_revision") != MODEL_REVISIONS["caduceus"]
+            or proof_report.get("protocol_sha256") != PROTOCOL_HASH
+            or proof_report.get("encoder_delta_norm", 0) <= 0
+            or proof_report.get("frozen_control_delta_norm") != 0
+        ):
+            raise RuntimeError("existing encoder-update proof failed verification")
+    else:
+        _run(
+            root,
+            "prove_encoder_update.py",
+            "--root", str(root),
+            "--reference", str(reference),
+            "--cache-dir", str(cache),
+            "--output", str(proof),
+            "--state", str(state),
+            "--device", "cuda",
+            "--max-length", "8192",
+            "--batch-size", "2",
+            "--seed", "42",
+        )
     hpo = drive / "hpo/caduceus_hpo.json"
     lock = drive / "hpo/selection_closed.json"
     if not lock.exists():

@@ -25,7 +25,6 @@ from evovariant_tr.adaptation.models import (
     configure_trainable,
     load_backbone,
     tokenize_sequences,
-    trainable_parameter_manifest,
 )
 from evovariant_tr.adaptation.state import record_stage
 
@@ -79,7 +78,9 @@ def main() -> None:
     root = Path(args.root).resolve()
     output = Path(args.output).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
-    state_path = Path(args.state).resolve() if args.state else output.parent / "adaptation_state.json"
+    state_path = (
+        Path(args.state).resolve() if args.state else output.parent / "adaptation_state.json"
+    )
     rows = load_train_rows(root)[:args.batch_size]
     fasta = Fasta(args.reference, as_raw=True, sequence_always_upper=True)
     started = time.monotonic()
@@ -89,7 +90,6 @@ def main() -> None:
     )
     model = PairedClassifier.build(backbone, hidden_size, dropout=0.1)
     total_parameters, trainable_parameters = configure_trainable(model, "partial_small")
-    manifest = trainable_parameter_manifest(model)
     trainable_backbone_names = [
         name for name, parameter in model.backbone.named_parameters() if parameter.requires_grad
     ]
@@ -105,7 +105,9 @@ def main() -> None:
         if name.startswith("backbone.") and not parameter.requires_grad
     ]
     if not encoder_parameters or not frozen_controls:
-        raise RuntimeError("partial_small did not produce both trainable and frozen encoder parameters")
+        raise RuntimeError(
+            "partial_small did not produce both trainable and frozen encoder parameters"
+        )
     chosen_name, chosen_parameter = encoder_parameters[0]
     control_name, control_parameter = frozen_controls[0]
     before = chosen_parameter.detach().float().cpu().clone()

@@ -1193,7 +1193,7 @@
   "inspected_at_utc": "2026-09-23T04:28:24.718Z",
   "locked_test_accessed": false,
   "new_account_shortcut": "/content/drive/MyDrive/EvoVariantTR_original",
-  "original_drive_folder_id": "1RMhA2eEUsvgryqz8YnRryuniroDiTA89",
+  "expected_original_drive_folder_id_from_prior_audit": "1RMhA2eEUsvgryqz8YnRryuniroDiTA89",
   "pre_repair_canonical_live_notebook_sha256": "e1de419ff46c38f2752bb36f20a84442ead970f7dcfa501bce2c90576f09df94",
   "raw_live_archive_sha256": "4e32a0928d7367c3ecb89e282cde8e238306482994b844d7b2c00ec63925e2f6",
   "recovery_refresh": {
@@ -1241,7 +1241,7 @@
     "locked_test_accessed": false
   },
   "latest_default_account_poll": {
-    "at_utc": "2026-09-23T06:04:53Z",
+    "at_utc": "2026-09-23T06:19:55Z",
     "account_policy": "Default account only; no account rotation or paid compute.",
     "drive_mount": "success",
     "full_drive_inventory": false,
@@ -1259,7 +1259,10 @@
     "recovery_provenance": {
       "expected_read_only_source_shortcut_present": false,
       "expected_recovery_copy_manifest_present": false,
-      "manifests_verified_json_is_recovery_manifest": false
+      "manifests_verified_json_is_recovery_manifest": false,
+      "source_alias_title_search_matches": 0,
+      "recovery_copy_manifest_title_search_matches": 0,
+      "recorded_folder_id_direct_lookup": "Owned My Drive/EvoVariantTR; a distinct original source was not established."
     },
     "read_only_preflight": {
       "sqlite_snapshot_integrity": "ok",

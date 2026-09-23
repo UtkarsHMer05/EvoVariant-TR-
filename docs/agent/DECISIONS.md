@@ -3608,8 +3608,10 @@ Date: 2026-09-23
 
 Context:
 The authorized default-account Colab reconnect mounted Drive on CPU but lacked the expected
-read-only source shortcut and recovery-copy manifest. Its existing SQLite snapshot passed a
-read-only integrity check; Colab denied the T4 request due to usage limits.
+read-only source shortcut and recovery-copy manifest. Exact-title Drive searches found neither,
+and the recorded folder ID opens the owned `My Drive/EvoVariantTR` folder rather than proving a
+distinct original source. Its existing SQLite snapshot passed a read-only integrity check; Colab
+denied the T4 request due to usage limits.
 
 Decision:
 Keep HPO at `WAITING_FOR_FREE_GPU`. Do not bypass the notebook's source guard, create a substitute

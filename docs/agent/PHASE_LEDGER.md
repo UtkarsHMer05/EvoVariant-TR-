@@ -1256,6 +1256,8 @@ because the expected `EvoVariantTR_original` shortcut and `state/recovery_copy_m
 were absent; the existing `manifests_verified.json` is a dataset summary, not recovery-copy
 provenance. A read-only copy of the SQLite snapshot passed integrity (`ok`), with trial 0
 `RUNNING`, trials 1–3 `WAITING`, frozen report `PASS`, histories 4 / 3, and selection open. Colab
-denied the free T4 request due to usage limits. No setup, runner, training, adaptation-holdout,
+denied the free T4 request due to usage limits. Exact-title Drive searches found neither missing
+item, and the recorded folder ID opens the owned `My Drive/EvoVariantTR` folder rather than a
+confirmed distinct original source. No setup, runner, training, adaptation-holdout,
 or locked-test cell ran. No paid compute or account rotation was used. HPO remains
 `WAITING_FOR_FREE_GPU` and also requires restored or independently verified Drive provenance.

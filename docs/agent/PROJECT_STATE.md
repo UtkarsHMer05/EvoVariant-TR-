@@ -1642,8 +1642,10 @@ locked-cohort or paid work.
 - The latest default-account reconnect was CPU-only; Drive mounted, but the notebook's source
   guard failed because the expected original shortcut and `state/recovery_copy_manifest.json`
   were absent. The available `manifests_verified.json` is a dataset summary, not recovery
-  provenance. A read-only SQLite snapshot copy passed integrity, but its root is not accepted as
-  a verified resume source. Colab denied the free T4 request due to usage limits. No model,
+  provenance. Exact-title Drive searches found neither item, and the recorded folder ID opens the
+  owned `My Drive/EvoVariantTR` folder, not a confirmed distinct original source. A read-only
+  SQLite snapshot copy passed integrity, but its root is not accepted as a verified resume source.
+  Colab denied the free T4 request due to usage limits. No model,
   holdout, or locked-test cell ran; both recovery provenance and free GPU availability block HPO.
 - Full local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67
   files, 737 tests passed / 33 deselected, and 95.07% core coverage.

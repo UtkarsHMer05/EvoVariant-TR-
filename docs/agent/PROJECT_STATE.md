@@ -1649,3 +1649,9 @@ locked-cohort or paid work.
   holdout, or locked-test cell ran; both recovery provenance and free GPU availability block HPO.
 - Full local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67
   files, 737 tests passed / 33 deselected, and 95.07% core coverage.
+
+### Latest authorized T4 resume attempt, 2026-09-23
+
+- The user explicitly authorized the connected Om Srivastava account and other accounts, overriding the attached prompt's default-account-only restriction. The current session uses the already-connected free T4; no paid compute was selected.
+- Drive, reference, and local validation preflight passed. The existing HPO snapshot is intact (trial 0 `RUNNING`, trials 1–3 `WAITING`); fold histories remain 4 / 3; selection is open.
+- Runner PID 11483 opened the existing Optuna study. No resumed epoch or new checkpoint is confirmed yet. The 801-row holdout and historical 946-row test remain sealed.

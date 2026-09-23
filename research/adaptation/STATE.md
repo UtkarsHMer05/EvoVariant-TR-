@@ -3,7 +3,7 @@
 Study: POSTHOC-FOUNDATION-ADAPTATION-001
 Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c`
 Evidence stage: `EXECUTION_IN_PROGRESS`
-Current persisted stage: `CADUCEUS_HPO_FOLD_PERSISTED` (latest default-account Drive read; recovery provenance is incomplete)
+Current persisted stage: `CADUCEUS_HPO_FOLD_PERSISTED` (latest connected Om-account Drive read; guarded runtime preflight passed and HPO resume is active)
 
 ## Completed gates
 
@@ -47,10 +47,18 @@ selection_closed: false
 
 ## Pending stages
 
-`WAITING_FOR_FREE_GPU` with default-account recovery provenance unresolved → restore or independently verify the expected source shortcut and recovery-copy manifest in the authorized root → reverify checkpoint bindings on an eligible free T4 → resume HPO at the fold-1 completion boundary → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
+`HPO_RESUME_PREFLIGHT_RUNNING` on the connected free T4 → confirm checkpoint-bound fold-1 completion and begin fold 2 at epoch 1 → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
 
 The full-candidate and NT tracks remain resource-conditional. Missing results are not inferred from the plan.
 
 ## Local validation
 
 Latest `make validate` on 2026-09-23: secret scan and Ruff passed; strict mypy passed (67 files); 737 tests passed / 33 deselected; core coverage 95.07%.
+
+## Latest authorized runtime check, 2026-09-23
+
+- The user explicitly authorized the already-connected Om Srivastava account and other Google accounts, overriding the attached prompt's default-account-only restriction. This run uses the connected account; no paid compute has been selected.
+- The runtime is a Tesla T4. Drive cell 3 passed its guards for writable recovery root `/content/drive/MyDrive/EvoVariantTR`, the read-only source shortcut resolving to folder ID `1RMhA2eEUsvgryqz8YnRryuniroDiTA89`, the file-level recovery manifest, and the HPO database.
+- A fresh copy of `caduceus_hpo.sqlite3.snapshot` passed `PRAGMA integrity_check`: trial 0 `RUNNING`, trials 1–3 `WAITING`. Frozen-head report is `PASS`; fold histories are 4 / 3; no fold 2 history exists; selection remains `OPEN`.
+- Reference cell 11 passed: archive SHA-256 `c1dd87068c254eb53d944f71e51d1311964fce8de24d6fc0effc9c61c01527d4`, FASTA SHA-256 `5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51`, index SHA-256 `3b425de206296a5c8053023fa5ca61da43cfe78c1737c12e58c83367c7e83c21`, and 4,000 formal REF alleles checked.
+- Guarded runner PID 11483 is active and has opened the existing Optuna study. At the latest poll, no new epoch, fold 2 checkpoint, completed trial, or selection lock had yet been observed. VALIDATION and the historical 946-row test remain closed.

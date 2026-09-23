@@ -19,6 +19,7 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 | D-A011 | Compare uncalibrated, temperature, Platt, and isotonic calibration from TRAIN OOF predictions; derive selective risk at predeclared coverage from confidence alone. | Implements the already-frozen calibration/abstention contract without opening VALIDATION. | FROZEN |
 | D-A012 | Exclude the pre-existing Phase-6 Evo2 score output from adaptation comparisons unless its exact producer source can be recovered and verified. | Its 4,000 IDs, split counts, model revision, manifest hashes, and locked exclusion match, but the producing checkout is recorded dirty and the execution plan's full-run approval file is unavailable. | EXCLUDED_PENDING_PROVENANCE |
 | D-A013 | Treat the original Drive shortcut as read-only recovery evidence; write run state only to the verified owned recovery copy. | Writes through the shared shortcut were observed to disappear from the new account's mount. The owned `EvoVariantTR` recovery copy has its own verified manifest and persisted checkpoints. | ACTIVE |
+| D-A014 | On 2026-09-23, the user explicitly authorized using the connected Om Srivastava account and other Google accounts, overriding the prompt's default-account-only restriction. | This changes only the execution-account choice; it does not alter the frozen scientific protocol, holdout gates, or $0 paid-compute limit. The current run uses the already-connected account. | ACTIVE_USER_OVERRIDE |
 
 ## Open operational items
 

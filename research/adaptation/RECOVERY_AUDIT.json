@@ -1,0 +1,1248 @@
+{
+  "adaptation_holdout_accessed": false,
+  "branch": "research/posthoc-foundation-adaptation",
+  "canonical_live_notebook_drive_id": "15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w",
+  "canonical_live_notebook_sha256": null,
+  "files": [
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/CONTRIBUTION_MAP.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/JUDGE_DEMO.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0001-fresh-repository.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0002-temporal-clinvar.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0003-grch38-reference.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0004-zero-shot-policy.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0005-exact-8192-windows.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0006-forward-rc-retention.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0007-disjoint-calibration.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0008-modal-cost-gates.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0009-no-test-label-tuning.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/0010-evidence-stage-ui.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/adr/README.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/AGENT_CHECKLIST.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/ARCHITECTURE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/BASELINE_AUDIT.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/DECISIONS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/EXPERIMENT_PLAN.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/METRICS_AND_STATISTICS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/MODAL_COMPUTE_POLICY.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/PHASE_LEDGER.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/PRD.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/PROJECT_STATE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/RESULT_ARTIFACTS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/RISKS_AND_LIMITATIONS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/RUNBOOK.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/TESTING_AND_VALIDATION.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/agent/UI_SPEC.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/architecture/DEPENDENCY_RULES.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/architecture/TARGET_ARCHITECTURE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/architecture/backend_refactor_candidates.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/audit/BACKEND_AUDIT.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/audit/FRONTEND_AUDIT.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/audit/HARDCODED_ASSUMPTIONS.csv"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/audit/LEGACY_SCIENTIFIC_AUDIT.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/audit/frontend_data_flow.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/BASELINE_ARCHITECTURE.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/BASELINE_SMOKE_TEST.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/NEW_REPOSITORY_ORIGIN.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/all_files.txt"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/initial_file_inventory.txt"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/bootstrap/source_snapshot.sha256"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/migration/FRONTEND_MOVE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/MILESTONE_STATUS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/PROJECT_IDENTITY.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/data/DATA_POLICY.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_001.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_002.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_003.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_004.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_005.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_006.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_007.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_008.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_009.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_010.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_011.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_012.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_013.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_014.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_015.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_016.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_017.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_018.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_019.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_020.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_021.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_022.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_023.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_024.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_025.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_026_030.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_038_050.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_049.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_055_099.md"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/project/reports/milestone_summary.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/security/SECRETS_AND_COST_POLICY.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/terminology/EVIDENCE_STAGES.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/terminology/GLOSSARY.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "docs/testing/TEST_TAXONOMY.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "notebooks/EvoVariant_TR_Adaptation_Autonomous.ipynb"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "notebooks/EvoVariant_TR_Adaptation_Judge_Demo.ipynb"
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "notebooks/archive/EvoVariant_TR_Adaptation_Autonomous_RAW_20260923.ipynb"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/BRANCH_HYGIENE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/CLEANUP_CHANGELOG.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/DECISIONS.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/EXPERIMENT_LEDGER.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/HPO_RECOVERY_REPORT.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/PROTOCOL.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/STATE.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/environment.json"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/adaptation/protocol.yaml"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "research/reports/adaptation/FINAL_ADAPTATION_REPORT.md"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/bootstrap_environment.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/evaluate_caduceus.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/hardware_probe.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/prepare_reference.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/run_autonomous.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/run_caduceus_hpo.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/run_posthoc_analysis.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/smoke_caduceus.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/train_caduceus.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "scripts/adaptation/verify_data.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/__init__.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/calibration.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/checkpointing.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/data.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/folds.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/metrics.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/models.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/state.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/statistics.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "src/evovariant_tr/adaptation/training.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "tests/adaptation/test_adaptation_metrics.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "tests/adaptation/test_data_contract.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "tests/adaptation/test_hpo_recovery.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "tests/adaptation/test_research_helpers.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "tracked or present in adaptation checkout at cfecb11",
+      "location": "repository",
+      "path": "tests/adaptation/test_sequence_pairs.py"
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w",
+      "evidence": "Same Drive file ID 15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w replaced in place; UI shows 20 cells and 10 sections; SHA-256 e1de419ff46c38f2752bb36f20a84442ead970f7dcfa501bce2c90576f09df94",
+      "location": "original_drive",
+      "modified_time": "2026-09-23T04:10:26.090Z",
+      "path": "EvoVariantTR/EvoVariant_TR_Adaptation_Autonomous.ipynb",
+      "size_bytes": 12568
+    },
+    {
+      "classification": "STALE",
+      "drive_id": "19--GoNHUxsdyx_U2F_To2E7aldTaX5Yb",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:46:15.250Z",
+      "path": "EvoVariantTR/state/caduceus_hpo.pid",
+      "size_bytes": 6
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1WxdePU_gOnSVHdPCtZg9yYPcM9vyZOLp",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:42:05.620Z",
+      "path": "EvoVariantTR/state/adaptation_state.json",
+      "size_bytes": 20318
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1PValoibcgDgUf5PYhxO1aHyzTcoeZpCp",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:03:50.123Z",
+      "path": "EvoVariantTR/state/environment.json",
+      "size_bytes": 775
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1pMKsF3jQQVkWNotbGHr2d7r6LQOVN81t",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:56:53.331Z",
+      "path": "EvoVariantTR/state/data_ready.json",
+      "size_bytes": 957
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1aiLG6WfcRSuKwh1DnHVKD00A1p9yISQG",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:56:42.064Z",
+      "path": "EvoVariantTR/state/manifests_verified.json",
+      "size_bytes": 760
+    },
+    {
+      "classification": "TEMPORARY",
+      "drive_id": "1GM291XRp5NljyFwr3DD6U1cEVc3vgvUV",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T17:18:14.500Z",
+      "path": "EvoVariantTR/state/colab_write_test.txt",
+      "size_bytes": 32
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "drive_id": "1TaMsd9VDt6cQh-w5X1yCgnl0632TIice",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T22:41:39.150Z",
+      "path": "EvoVariantTR/logs/caduceus_hpo.log",
+      "size_bytes": 2525
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "drive_id": "1h41j7lxzel6exXi5SjRxjO5ncJFxd4qv",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:42:03.842Z",
+      "path": "EvoVariantTR/logs/caduceus_frozen_head.log",
+      "size_bytes": 1799
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1ZXSViYoTbBDtqbpEDJfKbYRlLUCKsWvO",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T23:02:34.862Z",
+      "path": "EvoVariantTR/hpo/caduceus_hpo.sqlite3",
+      "size_bytes": 114688
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1jWIl21kGjXW51NLJ3CwFVq2kunZYOOmE",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:05:49.364Z",
+      "path": "EvoVariantTR/runs/caduceus_smoke.json",
+      "size_bytes": 641
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1j-c6oB3cKyqoBxM2Di95t3DvQxwnTY_J",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:05:48.038Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_smoke.pt",
+      "size_bytes": 93121116
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1Ifk3cwTtUYk75bkt8WRWRKtz2YC4Wdaw",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:47:45.000Z",
+      "path": "EvoVariantTR/reference/Homo_sapiens_assembly38.fasta.fai",
+      "size_bytes": 19381
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1WXj2PDPqD21S-zYTlcWrKo9IGcYCa4T7",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:16:04.066Z",
+      "path": "EvoVariantTR/reference/hg38.fa.gz",
+      "size_bytes": 983659424
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1BkVnKT3_EozcYAwHom67xtYNpG65xw78",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:42:08.564Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_frozen_head/latest.pt",
+      "size_bytes": 31077754
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1G7Q6uWpR2NwSAl8Ae2BKbP84JasLdv1Q",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:42:05.582Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_frozen_head/latest.json",
+      "size_bytes": 200
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "12K5U-4BludPWRJuAp5QdE8nS6MRrzwX5",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T20:41:53.398Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_frozen_head/run.json",
+      "size_bytes": 1382
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "15EywCalnhXpUDwjQkBvOLqGcA6_JFwdl",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:24.647Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/1ab95562b7ee254d4fcbb559585550c3fed11177b82f813816ca5404493cd2f0.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1H9yYxNk49unkyjZas0RwfasFXkToLEYu",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:23.605Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/7c0ea55283f41fb5a4df42100d6c515087d86f94.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1ZrnTeXyCIZdHISMun1rQt0FI8Z74yWZ7",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:22.180Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/40c4fe5139b574b5bf07573bc0bd576bd4b1e0bc.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1ehdBp1LG4tm1miSx8tm9yfkpKR9fVYrl",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:21.128Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/dfccd5b37e630fdbf024f1e96d12713d97b67fb3.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1SnaKCuEtu64PXWysph1Z3daT-et5d0V6",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:20.314Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/28c5e3ce5e1d10bfcefa9f81d68653e3b2447d4e.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "18QPrMdKnnR3mrS0RmYSvQO_2XSusU9ry",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.752Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/cb07cd4618f0653064315668f403b091f8287734.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1IHsDeLpKlf-NOSC9Afsmmz6C3liDVfbq",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.173Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/7ceca077334f318882ac62c7ee047a12a36fe750.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1Z2qpCbPeq-njJlI3dCBrsvEc4WP6PHQs",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:18.829Z",
+      "path": "EvoVariantTR/model_cache/.locks/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/26a76102ebe3e6115abfd7fdfd4de5ee4a30f8d0.lock",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1R9n0PpRJU9kOj9FxhyI-_y_c009vf7mf",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:24.381Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/refs/main",
+      "size_bytes": 40
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1FQVVWyXxpy3-idP_IpiZBL6EvXJ1RluT",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:31.376Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/1ab95562b7ee254d4fcbb559585550c3fed11177b82f813816ca5404493cd2f0",
+      "size_bytes": 30934736
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1fNbDCyLKSo-012mu4Oq9W5i9R0YGBtBh",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:23.872Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/7c0ea55283f41fb5a4df42100d6c515087d86f94",
+      "size_bytes": 9981
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1mgMEMDM1BbwZohm7LzKYuRH6uR_yMxnj",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:22.441Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/40c4fe5139b574b5bf07573bc0bd576bd4b1e0bc",
+      "size_bytes": 28938
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1siRmzEr5lIzjd2S1skrECuxwVQKS7o4q",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:21.382Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/dfccd5b37e630fdbf024f1e96d12713d97b67fb3",
+      "size_bytes": 1964
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1SfEpZPNOnjOLZp4MF1tff3t68bH6CSpE",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:20.346Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/28c5e3ce5e1d10bfcefa9f81d68653e3b2447d4e",
+      "size_bytes": 1376
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1Bceddxpw4auSiOq3NwudLJhTqkDqC0FF",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.778Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/cb07cd4618f0653064315668f403b091f8287734",
+      "size_bytes": 173
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1sGB5_b7s80Kokr-bLMsCIMraM27XPVcU",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.200Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/7ceca077334f318882ac62c7ee047a12a36fe750",
+      "size_bytes": 4966
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "16e-FfXNmPlysHg7142BgBtSkWkIBTi60",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:18.879Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/blobs/26a76102ebe3e6115abfd7fdfd4de5ee4a30f8d0",
+      "size_bytes": 1485
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1BfuJzqFeaEsUcN-vcModxFeMnDIgJXk4",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:24.374Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/.no_exist/b0477522ac5d044ad03578aa724ec8e4bdbd405b/adapter_config.json",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "14Ze86p_W408GyBCOmLuDHnY96YoM7xww",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:20.042Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/.no_exist/b0477522ac5d044ad03578aa724ec8e4bdbd405b/tokenizer.json",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1raDUjkojyxvM43SABokNTg5Bl2Xmuw8R",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.483Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/.no_exist/b0477522ac5d044ad03578aa724ec8e4bdbd405b/added_tokens.json",
+      "size_bytes": 0
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1ojyu74AnUVcN74blh0Pqn328apyqdScq",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:31.384Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/model.safetensors",
+      "size_bytes": 76
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1oOjXqh9y9RE8btrP46qx-HO_REwpfhAA",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:23.876Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/modeling_rcps.py",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1iMH0vnG83cewz0aeGT_WJum3ej9Lhbxn",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:22.445Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/modeling_caduceus.py",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1pI1qQI4Ai5G-IqDDDORe5d4yg0oIrVYV",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:21.386Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/configuration_caduceus.py",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "15bM6Cxatw_cZwgFhw8a8QF0xeSx6APKv",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:20.349Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/config.json",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "12OyJkk-eCIcUWwOLuzJxdJxq63XI7DG-",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.783Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/special_tokens_map.json",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1N9KrCA8WXi2ZO6znGJ3SdYD_MppNs6wF",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:19.205Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/tokenization_caduceus.py",
+      "size_bytes": 52
+    },
+    {
+      "classification": "RESOURCE_ARTIFACT",
+      "drive_id": "1mbTdskS87-TpbMkh_WuBJcH9syCbjXfC",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T19:59:18.907Z",
+      "path": "EvoVariantTR/model_cache/models--kuleshov-group--caduceus-ph_seqlen-131k_d_model-256_n_layer-16/snapshots/b0477522ac5d044ad03578aa724ec8e4bdbd405b/tokenizer_config.json",
+      "size_bytes": 52
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1g_HtC5hj89-j6zACs73tMGMrkA9thmtH",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T22:47:12.646Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_1/latest.pt",
+      "size_bytes": 31078330
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "15G7UlVkQAfUKTreRAloTSGFMdCVBUUIz",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T22:47:10.049Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_1/history.json",
+      "size_bytes": 2101
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1HxKuUehUA3WCCL-pFuksexxsxcXR30Ma",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T22:15:08.257Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_1/best.pt",
+      "size_bytes": 31077162
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1BaH0Oe4l-1B6YT2li0pOt8zkyzjKjQb9",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T21:50:41.407Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_0/latest.pt",
+      "size_bytes": 31078330
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "12b9XaRPqJ1BoiKjRGdO0hYVqiW77F3w_",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T21:50:38.543Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_0/history.json",
+      "size_bytes": 2999
+    },
+    {
+      "classification": "CANONICAL",
+      "drive_id": "1WX3UhWUzswd5F0XVzb6CsYHOAGkuJFHV",
+      "evidence": "owner-account Drive metadata; checkpoint bytes verified separately where reported",
+      "location": "original_drive",
+      "modified_time": "2026-09-22T21:18:46.257Z",
+      "path": "EvoVariantTR/checkpoints/caduceus_hpo/705d3dee50f29527/fold_0/best.pt",
+      "size_bytes": 31077162
+    },
+    {
+      "classification": "KEEP_EVIDENCE_ONLY",
+      "evidence": "Current adaptation checkout",
+      "location": "repository",
+      "path": "notebooks/archive/EvoVariant_TR_Adaptation_Autonomous_RAW_LIVE_20260923.ipynb"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "Current adaptation checkout",
+      "location": "repository",
+      "path": "research/adaptation/RECOVERY_AUDIT.json"
+    },
+    {
+      "classification": "CANONICAL",
+      "evidence": "Current adaptation checkout",
+      "location": "repository",
+      "path": "research/adaptation/RECOVERY_AUDIT.md"
+    }
+  ],
+  "inspected_at_utc": "2026-09-23T04:28:24.718Z",
+  "locked_test_accessed": false,
+  "new_account_shortcut": "/content/drive/MyDrive/EvoVariantTR_original",
+  "original_drive_folder_id": "1RMhA2eEUsvgryqz8YnRryuniroDiTA89",
+  "pre_repair_canonical_live_notebook_sha256": "e1de419ff46c38f2752bb36f20a84442ead970f7dcfa501bce2c90576f09df94",
+  "raw_live_archive_sha256": "4e32a0928d7367c3ecb89e282cde8e238306482994b844d7b2c00ec63925e2f6",
+  "recovery_refresh": {
+    "account_policy": "The attached master prompt requires the default account and prohibits account switching. The visible tab was non-default; no training was run there. No account rotation or paid compute was used.",
+    "adaptation_holdout_accessed": false,
+    "audit_commit": "331e5a35d0fef8a4ed6b714f982c3b57773d4fc1",
+    "compute_status": "WAITING_FOR_FREE_GPU",
+    "hpo_worker": {
+      "active_child_pid": 12473,
+      "child_stopped_with": "SIGTERM",
+      "fold_2_history_present_at_stop": false,
+      "new_checkpoint_or_completed_trial_at_stop": false,
+      "parent_pid": 12382,
+      "parent_state": "zombie",
+      "runner_log_present_at_stop": false
+    },
+    "inventory_note": "The file classifications below remain the earlier cfecb11 inventory snapshot; a full Drive inventory was not repeated during this recovery update.",
+    "inventory_refreshed": false,
+    "last_verified_hpo_state": {
+      "database_integrity": "ok",
+      "fold_0_history_epochs": 4,
+      "fold_1_history_epochs": 3,
+      "fold_2_history_present": false,
+      "selection_closed": false,
+      "trial_states": {
+        "0": "RUNNING",
+        "1": "WAITING",
+        "2": "WAITING",
+        "3": "WAITING"
+      }
+    },
+    "live_notebook": {
+      "all_changes_saved": true,
+      "cell_count": 20,
+      "drive_file_id": "15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w",
+      "executed_after_repair": false,
+      "outputs_cleared": true,
+      "read_only_source": "/content/drive/MyDrive/EvoVariantTR_original",
+      "section_count": 10,
+      "sha256": null,
+      "sha256_note": "Remote notebook bytes were not exported after the UI edit, so the pre-repair hash is retained separately and is not presented as current.",
+      "verification": "Visible Colab accessibility tree in the existing Vivaldi tab",
+      "writable_root": "/content/drive/MyDrive/EvoVariantTR"
+    },
+    "locked_test_accessed": false
+  },
+  "recovery_refresh_at_utc": "2026-09-23T05:38:33Z",
+  "selection_closed": false,
+  "separate_empty_new_account_folder": "/content/drive/MyDrive/EvoVariantTR",
+  "source_commit": "cfecb1146fa43a1f4204c8777adc176ec8066cd4",
+  "status": "RECOVERY_PRESERVED_WAITING_FOR_FREE_GPU"
+}

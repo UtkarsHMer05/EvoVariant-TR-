@@ -10,3 +10,7 @@ No scientific artifact, checkpoint, run report, evidence hash, baseline code, or
 | Failing `ps` monitor when an old PID exits | Non-throwing `RUNNING` / `EXITED_SUCCESS` / `EXITED_FAILURE` / `UNKNOWN` notebook monitor | A finished process is no longer a red cell. |
 
 The train/evaluate/model/metrics/calibration implementations remain in their existing source modules. No speculative duplicate pipeline was added. The Judge notebook displays source with `inspect` where importable and preserves its evidence labels for pending results.
+
+## Colab recovery repair, 2026-09-23
+
+The existing Colab notebook was saved with the owned recovery folder as the writable run root and the original shared shortcut as a read-only source. Stale cell outputs and an embedded screenshot were cleared. A stale HPO child targeting the shared shortcut was stopped before it produced a runner log, fold-2 history, or new checkpoint. No scientific artifacts or Drive files were deleted, and the notebook was not executed after repair.

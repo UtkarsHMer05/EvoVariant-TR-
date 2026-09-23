@@ -18,6 +18,7 @@ Protocol SHA-256: 07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c
 | D-A010 | Keep canonical ML logic in source files and make the Judge notebook render it with inspect.getsource/source inspection. | Makes fine-tuning auditable. | FROZEN |
 | D-A011 | Compare uncalibrated, temperature, Platt, and isotonic calibration from TRAIN OOF predictions; derive selective risk at predeclared coverage from confidence alone. | Implements the already-frozen calibration/abstention contract without opening VALIDATION. | FROZEN |
 | D-A012 | Exclude the pre-existing Phase-6 Evo2 score output from adaptation comparisons unless its exact producer source can be recovered and verified. | Its 4,000 IDs, split counts, model revision, manifest hashes, and locked exclusion match, but the producing checkout is recorded dirty and the execution plan's full-run approval file is unavailable. | EXCLUDED_PENDING_PROVENANCE |
+| D-A013 | Treat the original Drive shortcut as read-only recovery evidence; write run state only to the verified owned recovery copy. | Writes through the shared shortcut were observed to disappear from the new account's mount. The owned `EvoVariantTR` recovery copy has its own verified manifest and persisted checkpoints. | ACTIVE |
 
 ## Open operational items
 

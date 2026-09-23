@@ -1620,3 +1620,24 @@ locked-cohort or paid work.
 - Next: resume HPO from Drive, close selection only after the predeclared trial target is met,
   run final TRAIN refit, then perform the guarded one-shot 801 evaluation. Start NT only after
   Caduceus results are persisted; record any T4 resource deferral rather than infer a result.
+
+### Colab HPO recovery and stale-worker stop, 2026-09-23
+
+- The already-open Colab tab used a non-default Google profile with a connected T4. The original
+  Drive folder is available through `EvoVariantTR_original`; the separate `EvoVariantTR` folder
+  contains the owned recovery copy. HPO SQLite integrity and checkpoint metadata were verified
+  before the live resume attempt.
+- The live notebook was still launching its HPO child against the shared original shortcut. Its
+  parent PID 12382 was a zombie, its child PID 12473 was active, and no runner log or fold-2
+  history existed. The child was stopped with SIGTERM. No new fold checkpoint or completed trial
+  was observed; the saved histories remain fold 0 = four epochs and fold 1 = three.
+- The notebook at Drive file ID `15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w` now uses the owned recovery
+  root for writes and the original shortcut as read-only input. It has 20 cells / 10 sections,
+  stale outputs and an embedded screenshot cleared, and the UI reported all changes saved. No
+  training cell was rerun after repair.
+- The attached prompt requires the default Google account and prohibits account switching, so
+  HPO is `WAITING_FOR_FREE_GPU` until an eligible free T4 is available under that rule. No paid
+  compute or account rotation was used. Adaptation VALIDATION and the historical 946-row test
+  remain closed.
+- Full local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67
+  files, 737 tests passed / 33 deselected, and 95.07% core coverage.

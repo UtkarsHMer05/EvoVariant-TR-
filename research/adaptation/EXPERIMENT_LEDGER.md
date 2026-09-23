@@ -15,7 +15,7 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Caduceus frozen head | PASS | Drive `checkpoints/caduceus_frozen_head/run.json`; 3 epochs, losses `1.1767539545572263`, `1.1581548454985837`, `1.1497443100928366`, runtime 1,968.52 s; checkpoint SHA `230fc7be…4e02213`, 7,728,385 total / 3,073 trainable parameters, peak 320,895,488 bytes | TRAIN only; report says holdout not evaluated | partial/full feasibility and HPO |
 | Caduceus partial fine-tune | NOT STARTED | no artifact | none | frozen baseline |
 | Caduceus full fine-tune | NOT STARTED | no artifact | none | feasibility/HPO |
-| Caduceus HPO | WAITING_FOR_FREE_GPU | Colab disconnected the runtime and denied T4 reconnection for usage limits; last successful poll at 2:13:42 showed trial 0 RUNNING, trials 1–3 WAITING, fold 0 four epochs, fold 1 three; no completed trials or selection lock | TRAIN-only, 3-fold gene-grouped CV; selection open | reverify Drive state and resume when a free T4 is available |
+| Caduceus HPO | WAITING_FOR_FREE_GPU | Owned recovery copy and original shortcut SQLite copies passed integrity with trial 0 RUNNING / trials 1–3 WAITING; fold 0 four epochs, fold 1 three, no fold 2; stale shared-shortcut child PID 12473 stopped, with no new fold checkpoint or completed trial. Clean notebook now writes to the owned root; see `HPO_RECOVERY_REPORT.md` | TRAIN-only, 3-fold gene-grouped CV; selection open; no completed trial | On an eligible free GPU under the prompt's default-account rule, reverify owned copies, finalize fold 1 from best checkpoint, then fold 2 epoch 1 |
 | Frozen Evo2 anchor audit | EXCLUDED_PENDING_PROVENANCE | Existing 4,000-row output matches development IDs/splits, prediction hash, model revision, and locked exclusion; producer checkout is marked dirty, and the full-run approval referenced in its plan is unavailable | ID/split/hash audit only; score and label values not inspected or used | recover exact producer source and approval provenance, otherwise retain exclusion |
 | Final TRAIN refit | BLOCKED | no closed selection lock | none | HPO |
 | 801 holdout | CLOSED | evaluator requires selection lock; no output exists | no labels used | final refit |
@@ -25,7 +25,8 @@ Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2
 | Ensemble / ablations | NOT_STARTED | no adaptation prediction files | none | model outputs |
 | Statistics / figures / report | NOT STARTED | no model results to plot | none | predictions |
 | Judge notebook | IMPLEMENTED, RESULT CELLS PENDING | 36 ordered sections; canonical code source display | no locked data access | training outputs |
-| Local validation | PASS | `make validate` at `a2f500f`: 736 passed, 33 deselected, 95.06% core coverage | software-only | continue study |
+| Notebook recovery | PASS_CONTENT, EXECUTION_PENDING | Same Colab Drive ID shows 20 cells/10 sections; owned writable recovery root and read-only source shortcut; stale outputs and embedded screenshot cleared; UI reports saved. Exact prior 78-cell bytes remain archived; full execution is pending | no holdout access | execute clean notebook only on an eligible free GPU under the prompt's account rule |
+| Local validation | PASS | `make validate` on 2026-09-23: 737 passed, 33 deselected, 95.07% core coverage; secret scan, Ruff, and strict mypy passed (67 files) | software-only | continue study |
 | Adaptation branch push | PASS | metric/README update `a2f500f` pushed after fixed-seed notebook gate `44ac317`; `main` and baseline tag unchanged | none | continue study |
 
 No holdout or locked-test result is inferred from training progress or the smoke test.

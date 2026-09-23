@@ -1230,3 +1230,20 @@ genuine unavailable evidence, not values to infer.
   compiled, and the live preselection gate returned `Blocked` without opening VALIDATION. Commit
   `a2f500f` adds supplementary probability MAE; `make validate` passed with 736 tests, 33
   deselected, and 95.06% core coverage.
+
+### Recovery update, 2026-09-23
+
+The earlier running-worker poll above is historical. The original runtime disconnected and
+denied free reconnection. A stale HPO child (PID 12473) writing through the shared original
+Drive shortcut was stopped after confirming no runner log or fold-2 history; its parent (PID
+12382) was a zombie. Last verified study state remains trial 0 `RUNNING`, trials 1–3 `WAITING`,
+fold histories 4 / 3 / none, and no completed trial. Selection remains open.
+
+The same Colab notebook file ID was repaired to write under the owned recovery folder and read
+the original shortcut only as a source. The saved UI shows 20 cells / 10 sections with outputs
+cleared; it was not rerun after repair. The visible tab is under a non-default account, so the
+master prompt's default-account rule keeps training at `WAITING_FOR_FREE_GPU`. No paid compute or
+account rotation was used. The 801-row adaptation holdout and 946-row historical locked test
+remain closed. See `research/adaptation/RECOVERY_AUDIT.md`; scientific completion remains pending.
+Local `make validate` passed on this source tree: secret scan, Ruff, strict mypy over 67 files,
+737 tests passed / 33 deselected, and 95.07% core coverage.

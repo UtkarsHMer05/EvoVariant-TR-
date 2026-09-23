@@ -9,7 +9,7 @@ causal-conv1d==1.2.0.post2
 pyfaidx==0.8.1.1
 scikit-learn>=1.3
 pandas>=2.0
-optuna>=3.6
+optuna==5.0.0
 peft>=0.10
 matplotlib>=3.7
 seaborn>=0.13

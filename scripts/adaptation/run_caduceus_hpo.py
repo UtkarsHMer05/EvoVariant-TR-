@@ -12,7 +12,12 @@ import statistics
 import time
 from pathlib import Path
 
-from evovariant_tr.adaptation.checkpointing import load_checkpoint, save_checkpoint
+from evovariant_tr.adaptation.checkpointing import (
+    load_checkpoint,
+    restore_hpo_database,
+    save_checkpoint,
+    snapshot_hpo_database,
+)
 from evovariant_tr.adaptation.data import EXPECTED_MANIFEST_SHA256, load_train_rows, sha256_file
 from evovariant_tr.adaptation.folds import make_grouped_folds
 from evovariant_tr.adaptation.models import (
@@ -21,6 +26,7 @@ from evovariant_tr.adaptation.models import (
     PairedClassifier,
     configure_trainable,
     load_backbone,
+    trainable_parameter_manifest,
 )
 from evovariant_tr.adaptation.state import record_stage
 from evovariant_tr.adaptation.training import TrainConfig, evaluate, train_epoch
@@ -28,6 +34,23 @@ from evovariant_tr.adaptation.training import TrainConfig, evaluate, train_epoch
 PROTOCOL_HASH = "07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c"
 TARGET_TRIALS = 8
 MAX_TRIALS = 12
+
+
+def _trial_signature(number: int, params: dict, reference_sha256: str, seed: int) -> str:
+    digest = hashlib.sha256(
+        json.dumps(
+            {
+                "params": params,
+                "protocol": PROTOCOL_HASH,
+                "revision": MODEL_REVISIONS["caduceus"],
+                "reference_sha256": reference_sha256,
+                "seed": seed,
+            },
+            sort_keys=True,
+        ).encode()
+    ).hexdigest()[:16]
+    # Trial 0 predates trial-number namespacing and must retain its checkpoint path.
+    return digest if number == 0 else f"trial_{number:02d}_{digest}"
 
 
 def _atomic_json(path: Path, value: object) -> None:
@@ -70,6 +93,7 @@ def _persist(
     state_path: Path,
     root: Path,
     reference_sha256: str,
+    database_snapshot: Path,
 ) -> None:
     complete = _completed_trials(study)
     selection = _selection(study)
@@ -141,7 +165,7 @@ def _persist(
         summary["status"] = "INCOMPLETE_RESOURCE_OR_PRUNING_LIMIT"
         summary["selection_closed"] = False
         _atomic_json(output, summary)
-    artifacts = [output]
+    artifacts = [output, database_snapshot]
     if selection_path.exists():
         artifacts.extend([selection_path, Path(selection[0].user_attrs["oof_csv"])])
     record_stage(
@@ -170,6 +194,7 @@ def main() -> None:
     parser.add_argument("--microbatch-size", type=int, choices=(1, 2), default=1)
     parser.add_argument("--max-length", type=int, default=8192)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--local-db-dir", default="/content/evovariant_runtime/hpo")
     args = parser.parse_args()
     if not TARGET_TRIALS <= args.trials <= MAX_TRIALS:
         raise SystemExit(f"protocol requires {TARGET_TRIALS}-{MAX_TRIALS} completed HPO trials")
@@ -205,13 +230,16 @@ def main() -> None:
         if fit_genes & validation_genes:
             raise RuntimeError("gene overlap in grouped TRAIN fold")
     fasta = Fasta(args.reference, as_raw=True, sequence_always_upper=True)
-    database = output.with_suffix(".sqlite3")
+    drive_database = output.with_suffix(".sqlite3")
+    database = Path(args.local_db_dir).resolve() / drive_database.name
+    restored_from = restore_hpo_database(drive_database, database)
+    if restored_from is None and args.checkpoint_dir and any(
+        Path(args.checkpoint_dir).rglob("history.json")
+    ):
+        raise SystemExit("HPO checkpoints exist without a study DB; refusing to restart trial 0")
     database.parent.mkdir(parents=True, exist_ok=True)
     storage = optuna.storages.RDBStorage(
         url=f"sqlite:///{database}",
-        heartbeat_interval=60,
-        grace_period=120,
-        failed_trial_callback=optuna.storages.RetryFailedTrialCallback(max_retry=1),
     )
     study = optuna.create_study(
         study_name="evovariant_caduceus_train_grouped_cv_v1",
@@ -228,6 +256,7 @@ def main() -> None:
     if not study.trials:
         for regime in ("frozen_head_only", "partial_small", "partial_large", "full_if_feasible"):
             study.enqueue_trial({"regime": regime})
+    database_snapshot = snapshot_hpo_database(database, drive_database)
     checkpoints = (
         Path(args.checkpoint_dir) if args.checkpoint_dir else output.parent / "checkpoints"
     )
@@ -241,18 +270,8 @@ def main() -> None:
         )
         effective_batch = trial.suggest_categorical("effective_batch_size", [16, 32])
         epoch_cap = trial.suggest_categorical("epoch_cap", [4, 6, 8])
-        signature = hashlib.sha256(
-            json.dumps(
-                {
-                    "params": trial.params,
-                    "protocol": PROTOCOL_HASH,
-                    "revision": MODEL_REVISIONS["caduceus"],
-                    "reference_sha256": reference_sha256,
-                    "seed": args.seed,
-                },
-                sort_keys=True,
-            ).encode()
-        ).hexdigest()[:16]
+        snapshot_hpo_database(database, drive_database)
+        signature = _trial_signature(trial.number, trial.params, reference_sha256, args.seed)
         config = TrainConfig(
             batch_size=args.microbatch_size,
             gradient_accumulation_steps=max(1, effective_batch // args.microbatch_size),
@@ -282,6 +301,13 @@ def main() -> None:
                 )
                 total_parameters = total
                 trainable_parameters = max(trainable_parameters, trainable)
+                if fold_number == 0:
+                    manifest_path = checkpoints / signature / "trainable_parameter_manifest.json"
+                    _atomic_json(manifest_path, trainable_parameter_manifest(model))
+                    trial.set_user_attr("trainable_parameter_manifest", str(manifest_path))
+                    trial.set_user_attr(
+                        "trainable_parameter_manifest_sha256", sha256_file(manifest_path)
+                    )
                 optimizer = torch.optim.AdamW(
                     [parameter for parameter in model.parameters() if parameter.requires_grad],
                     lr=learning_rate,
@@ -301,6 +327,7 @@ def main() -> None:
                 history_path = checkpoint.with_name("history.json")
                 history = json.loads(history_path.read_text()) if history_path.exists() else []
                 start_epoch, best_auc, best_epoch, stale_epochs = 0, -1.0, 0, 0
+                resume = None
                 if checkpoint.exists():
                     resume = load_checkpoint(
                         checkpoint,
@@ -314,6 +341,21 @@ def main() -> None:
                     best_auc = float(resume["metrics"]["best_auc"])
                     best_epoch = int(resume["metrics"]["best_epoch"])
                     stale_epochs = int(resume["metrics"]["stale_epochs"])
+                if resume and len(history) + 1 == start_epoch:
+                    saved = resume["metrics"]
+                    if {
+                        "train_loss", "validation", "learning_rate", "peak_vram_bytes"
+                    } <= saved.keys():
+                        history.append({"epoch": start_epoch, **{
+                            key: saved[key] for key in (
+                                "train_loss", "validation", "learning_rate", "peak_vram_bytes"
+                            )
+                        }})
+                        _atomic_json(history_path, history)
+                if [item["epoch"] for item in history] != list(range(1, start_epoch + 1)):
+                    raise RuntimeError(
+                        f"fold {fold_number} history/checkpoint epochs disagree; preserve and audit"
+                    )
                 for epoch in range(start_epoch, epoch_cap):
                     if stale_epochs >= 2:
                         break
@@ -362,7 +404,6 @@ def main() -> None:
                             else None,
                         }
                     )
-                    _atomic_json(history_path, history)
                     save_checkpoint(
                         checkpoint,
                         model=model,
@@ -373,19 +414,35 @@ def main() -> None:
                             "best_auc": best_auc,
                             "best_epoch": best_epoch,
                             "stale_epochs": stale_epochs,
+                            "train_loss": train_loss,
+                            "learning_rate": learning_rate,
+                            "peak_vram_bytes": int(torch.cuda.max_memory_allocated())
+                            if args.device.startswith("cuda")
+                            else None,
                         },
                         protocol_hash=PROTOCOL_HASH,
                         metadata=checkpoint_metadata,
                     )
-                    trial.report(sum(fold_scores + [best_auc]) / (fold_number + 1), fold_number)
-                    if trial.should_prune():
-                        raise optuna.TrialPruned()
+                    _atomic_json(history_path, history)
+                    database_snapshot = snapshot_hpo_database(database, drive_database)
+                    record_stage(
+                        state_path,
+                        project_root=root,
+                        stage="CADUCEUS_HPO_EPOCH_PERSISTED",
+                        artifacts=(checkpoint, history_path, database_snapshot),
+                        details={"trial": trial.number, "fold": fold_number, "epoch": epoch + 1},
+                    )
                     if stale_epochs >= 2:
                         break
                 if not checkpoint.with_name("best.pt").exists():
                     raise RuntimeError("fold completed without a best-epoch checkpoint")
-                load_state = torch.load(checkpoint.with_name("best.pt"), map_location=args.device)
-                model.load_state_dict(load_state["model"])
+                load_checkpoint(
+                    checkpoint.with_name("best.pt"),
+                    model=model,
+                    expected_protocol_hash=PROTOCOL_HASH,
+                    expected_metadata=checkpoint_metadata,
+                    map_location=args.device,
+                )
                 metrics, probabilities = evaluate(
                     model, tokenizer, fasta, validation_rows, config=config, device=args.device
                 )
@@ -407,6 +464,24 @@ def main() -> None:
                     )
                     for row, probability in zip(validation_rows, probabilities, strict=True)
                 )
+                trial_id = storage.get_trial_id_from_study_id_trial_number(
+                    storage.get_study_id_from_name(study.study_name), trial.number
+                )
+                # Trial 0 has an old step-1 value reported mid-fold; replace it
+                # with the completed-fold value before the pruning decision.
+                storage.set_trial_intermediate_value(
+                    trial_id, fold_number, statistics.mean(fold_scores)
+                )
+                database_snapshot = snapshot_hpo_database(database, drive_database)
+                record_stage(
+                    state_path,
+                    project_root=root,
+                    stage="CADUCEUS_HPO_FOLD_PERSISTED",
+                    artifacts=(checkpoint, history_path, database_snapshot),
+                    details={"trial": trial.number, "fold": fold_number},
+                )
+                if trial.should_prune():
+                    raise optuna.TrialPruned()
                 del model, backbone, tokenizer, optimizer
                 if args.device.startswith("cuda"):
                     torch.cuda.empty_cache()
@@ -441,21 +516,38 @@ def main() -> None:
         trial.set_user_attr("oof_csv", str(oof_path))
         return statistics.mean(fold_scores)
 
-    while len(_completed_trials(study)) < args.trials and len(study.trials) < MAX_TRIALS:
-        study.optimize(
-            objective,
-            n_trials=1,
-            callbacks=[
-                lambda active, _: _persist(
-                    active,
-                    output,
-                    target_trials=args.trials,
-                    state_path=state_path,
-                    root=root,
-                    reference_sha256=reference_sha256,
-                )
-            ],
+    running = [trial for trial in study.trials if trial.state.name == "RUNNING"]
+    if len(running) > 1:
+        raise RuntimeError("multiple RUNNING HPO trials require forensic recovery")
+    while len(_completed_trials(study)) < args.trials and (
+        running
+        or any(trial.state.name == "WAITING" for trial in study.trials)
+        or len(study.trials) < MAX_TRIALS
+    ):
+        if running:
+            trial_id = storage.get_trial_id_from_study_id_trial_number(
+                storage.get_study_id_from_name(study.study_name), running.pop().number
+            )
+            trial = optuna.trial.Trial(study, trial_id)
+        else:
+            trial = study.ask()
+        try:
+            value = objective(trial)
+        except optuna.TrialPruned:
+            study.tell(trial, state=optuna.trial.TrialState.PRUNED)
+        else:
+            study.tell(trial, value)
+        database_snapshot = snapshot_hpo_database(database, drive_database)
+        _persist(
+            study,
+            output,
+            target_trials=args.trials,
+            state_path=state_path,
+            root=root,
+            reference_sha256=reference_sha256,
+            database_snapshot=database_snapshot,
         )
+    database_snapshot = snapshot_hpo_database(database, drive_database)
     _persist(
         study,
         output,
@@ -463,6 +555,7 @@ def main() -> None:
         state_path=state_path,
         root=root,
         reference_sha256=reference_sha256,
+        database_snapshot=database_snapshot,
     )
     print(output.read_text(encoding="utf-8"))
 

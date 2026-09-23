@@ -1,0 +1,16 @@
+{
+  "status": "HISTORICAL_VERIFIED_COLAB_RUNTIME",
+  "observed_at_utc": "2026-09-22",
+  "source": "Drive state/environment.json",
+  "source_sha256": "200f11ee21370d3b8700d9d8bbb9aa07a435432c1d2d3f6a3a18bd815c06539f",
+  "python": "3.11.16",
+  "gpu": "Tesla T4",
+  "cuda_runtime": "12.1",
+  "torch": "2.2.0+cu121",
+  "numpy": "1.26.4",
+  "transformers": "4.38.1",
+  "mamba-ssm": "1.2.0.post1",
+  "causal-conv1d": "1.2.0.post2",
+  "optuna": "5.0.0",
+  "current_runtime_status": "DISCONNECTED_FREE_GPU_USAGE_LIMIT"
+}

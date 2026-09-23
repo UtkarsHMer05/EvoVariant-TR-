@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import random
 import time
 from pathlib import Path
@@ -23,6 +24,7 @@ from evovariant_tr.adaptation.models import (
     PairedClassifier,
     configure_trainable,
     load_backbone,
+    trainable_parameter_manifest,
 )
 from evovariant_tr.adaptation.state import record_stage
 from evovariant_tr.adaptation.training import TrainConfig, train_epoch
@@ -130,6 +132,11 @@ def main() -> None:
     model = PairedClassifier.build(backbone, hidden_size, dropout=args.dropout)
     regime = "full" if args.stage == "full_if_feasible" else args.stage
     total_parameters, trainable_parameters = configure_trainable(model, regime)
+    parameter_manifest_path = output_dir / "trainable_parameter_manifest.json"
+    parameter_manifest = trainable_parameter_manifest(model)
+    manifest_tmp = parameter_manifest_path.with_name(parameter_manifest_path.name + ".tmp")
+    manifest_tmp.write_text(json.dumps(parameter_manifest, indent=2, sort_keys=True) + "\n")
+    os.replace(manifest_tmp, parameter_manifest_path)
     optimizer = torch.optim.AdamW(
         [parameter for parameter in model.parameters() if parameter.requires_grad],
         lr=args.learning_rate,
@@ -205,6 +212,8 @@ def main() -> None:
         "config_sha256": config_hash,
         "total_parameters": total_parameters,
         "trainable_parameters": trainable_parameters,
+        "trainable_parameter_manifest": str(parameter_manifest_path),
+        "trainable_parameter_manifest_sha256": sha256_file(parameter_manifest_path),
         "protocol_sha256": PROTOCOL_HASH,
         "data": data_report,
         "checkpoint": str(output_dir / "latest.pt"),

@@ -165,6 +165,20 @@ def configure_trainable(model: Any, regime: str) -> tuple[int, int]:
     return total, trainable
 
 
+def trainable_parameter_manifest(model: Any) -> dict[str, Any]:
+    """Record exactly which model parameters can change during this run."""
+    named = list(model.named_parameters())
+    total = sum(parameter.numel() for _, parameter in named)
+    trainable = sum(parameter.numel() for _, parameter in named if parameter.requires_grad)
+    return {
+        "total_parameters": total,
+        "trainable_parameters": trainable,
+        "trainable_percent": 100 * trainable / total if total else 0.0,
+        "trainable_names": [name for name, parameter in named if parameter.requires_grad],
+        "frozen_names": [name for name, parameter in named if not parameter.requires_grad],
+    }
+
+
 def finite_tensor(value: Any) -> bool:
     import torch
 

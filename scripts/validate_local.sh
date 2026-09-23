@@ -30,5 +30,6 @@ python -m pytest
 
 echo "==> coverage floor (core deterministic modules)"
 python -m pytest --cov --cov-report=term --cov-fail-under=95 -q
+python -m coverage report --fail-under=95 > /dev/null
 
 echo "==> validate_local: ALL GATES PASSED"

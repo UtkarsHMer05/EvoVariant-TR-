@@ -2,7 +2,9 @@
   "artifact_manifest": "artifacts/benchmarks/BENCHMARK_ARTIFACT_MANIFEST.json",
   "artifact_manifest_entries": 171,
   "blockers": [
-    "COMPUTE_BLOCKED_BALANCE_UNVERIFIED"
+    "DATA_BLOCKED_MAVEDB",
+    "NOT_APPLICABLE_GPN",
+    "PASS_WITH_LIMITATIONS_NT_CADUCEUS"
   ],
   "completed_benchmark_ids": [
     "B01",
@@ -83,12 +85,16 @@
     "apps/web/public/benchmarks/benchmark-manifest.json"
   ],
   "modal": {
-    "new_spend_usd": 0.0,
+    "ending_verified_credit_usd": 29.06,
+    "new_spend_usd": 0.94,
     "profile": "utkarshkhajuria59",
-    "resources_started": [],
-    "status": "COMPUTE_BLOCKED_BALANCE_UNVERIFIED"
+    "provider_billed_delta_usd": 1.7,
+    "rate_estimated_inference_usd": 0.4176400070755109,
+    "resources_started": 24,
+    "starting_verified_credit_usd": 30.0,
+    "status": "COMPLETED_WITHIN_RESERVE"
   },
-  "phase": "PHASE_25_LOCAL_COMPLETE_NO_SPEND",
+  "phase": "PHASE_26_EXTERNAL_COMPLETE_WITH_LIMITATIONS",
   "primary_integrity": {
     "artifact": "artifacts/phase14/phase14_locked_evo2_20260922.json",
     "artifact_metric_checks": {
@@ -177,10 +183,10 @@
   "state_id": "evovariant-tr-benchmark-expansion-state-v1",
   "status_counts": {
     "COMPLETED_WITH_LIMITATIONS": 4,
-    "COMPUTE_BLOCKED": 5,
     "DATA_BLOCKED": 1,
     "NOT_APPLICABLE": 2,
-    "PASS": 56
+    "PASS": 60,
+    "PASS_WITH_LIMITATIONS": 1
   },
-  "working_branch": "research/benchmark-expansion-v1"
+  "working_branch": "research/external-benchmark-completion-v1"
 }

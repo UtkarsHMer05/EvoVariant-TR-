@@ -1,0 +1,22 @@
+{
+  "benchmark_id": "B65",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "n_common": 151,
+      "pair": "Evo2 frozen calibrated vs CADD v1.7",
+      "spearman": 0.8077717323090077
+    },
+    {
+      "n_common": 178,
+      "pair": "Evo2 frozen calibrated vs PhyloP 100-way",
+      "spearman": 0.6798988607659914
+    },
+    {
+      "n_common": 151,
+      "pair": "CADD v1.7 vs PhyloP 100-way",
+      "spearman": 0.8092757318043923
+    }
+  ]
+}

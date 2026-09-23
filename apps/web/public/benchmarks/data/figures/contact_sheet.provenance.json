@@ -19,9 +19,23 @@
     "docs/benchmarks/assets/development_to_final_generalization.png",
     "docs/benchmarks/assets/runtime_by_model.png",
     "docs/benchmarks/assets/throughput_and_cache_reuse.png",
-    "docs/benchmarks/assets/historical_compute_cost.png"
+    "docs/benchmarks/assets/historical_compute_cost.png",
+    "docs/benchmarks/assets/external_cohort_flow.png",
+    "docs/benchmarks/assets/external_class_balance.png",
+    "docs/benchmarks/assets/external_roc.png",
+    "docs/benchmarks/assets/external_precision_recall.png",
+    "docs/benchmarks/assets/external_confusion_matrix.png",
+    "docs/benchmarks/assets/external_classification_dashboard.png",
+    "docs/benchmarks/assets/external_f1_family_dashboard.png",
+    "docs/benchmarks/assets/external_calibration_reliability.png",
+    "docs/benchmarks/assets/external_probability_quality.png",
+    "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.png",
+    "docs/benchmarks/assets/external_review_quality_subgroup_performance.png",
+    "docs/benchmarks/assets/external_model_agreement.png",
+    "docs/benchmarks/assets/external_runtime_and_cache_economics.png",
+    "docs/benchmarks/assets/external_versus_locked_cohort_drift.png"
   ],
   "output": "docs/benchmarks/assets/benchmark_contact_sheet.png",
   "population": "registered benchmark figures",
-  "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+  "sha256": "530d549153272bc5d2282f832f6c958a043802318c8ec16ae72f888951fcb2a1"
 }

@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "metric": "f1",
+      "value": 0.8333333333333334
+    },
+    {
+      "metric": "macro_f1",
+      "value": 0.8484848484848485
+    },
+    {
+      "metric": "micro_f1",
+      "value": 0.85
+    },
+    {
+      "metric": "weighted_f1",
+      "value": 0.8484848484848484
+    }
+  ]
+}

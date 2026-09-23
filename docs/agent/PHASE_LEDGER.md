@@ -1228,3 +1228,26 @@ Status: `PASS_LOCAL_NO_SPEND / EXTERNAL_COMPUTE_BLOCKED`
   95.04% coverage.
 - Fine-tuning boundary: no new fine-tuning entered the primary result; existing feasibility
   evidence is surfaced without claiming a completed fine-tuned benchmark study.
+
+| 26 | External benchmark completion | 60 PASS registry entries; B61/B62/B66/B67 persisted with fresh evidence; B63/B64 remain explicitly bounded; raw prediction and leakage receipts are tracked. |
+
+## External benchmark completion final state — 2026-09-24
+
+Status: `PASS_WITH_LIMITATIONS / EXTERNAL_EVIDENCE_COMPLETE`
+
+- B61 completed the frozen 200-row external ClinVar inference after a real
+  H100 pilot; raw forward/alternate and reverse-complement scores were persisted
+  before labels were joined. B62 evaluated unchanged predictions by review
+  stars. B66 applied the frozen TRAIN-fit isotonic calibrator without refit.
+- B65 is `PASS_WITH_LIMITATIONS`: Evo2 versus available official CADD/PhyloP
+  rows is descriptive and no external NT/Caduceus asset existed. B63 is
+  `DATA_BLOCKED` under its predeclared MaveDB mapping gate. B64 is
+  `NOT_APPLICABLE` because GPN's required alignment data and score contract
+  were unavailable. B11/B12 preserve exact missingness without imputation.
+- B67 records 8 cache-hit rows, 192 fresh rows, 24 remote invocations, zero
+  retries, H100 runtime, a `$0.417640` rate estimate, verified dashboard credit
+  consumption `$0.94`, and separate CLI provider delta `$1.70`.
+- The frozen 946-row primary result is immutable; no fine-tuning, locked-test
+  rerun, post-test selection, or calibration refit occurred. Registry, raw
+  prediction, evaluation, provenance, runtime, figure, notebook, and web
+  artifacts are persisted on `research/external-benchmark-completion-v1`.

@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B68",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_versus_locked_cohort_drift.pdf",
+    "png": "docs/benchmarks/assets/external_versus_locked_cohort_drift.png",
+    "svg": "docs/benchmarks/assets/external_versus_locked_cohort_drift.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_versus_locked_cohort_drift.png"
+  },
+  "population": "descriptive external versus locked cohorts",
+  "sha256": {
+    "pdf": "dca98ae35ed84dfd75700c1a6d68c38c5b597d9fc886e0fb7616bbc746c970d8",
+    "png": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535",
+    "source_data": "9a887f88836b72263b298cc454eb82d086f9028074cece364b4c5e0df6ef6640",
+    "svg": "abe7df40cbf8ff8f1a7e09619f68b09b925d269d16dcf682aaa541d78485a60c",
+    "web_png": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_versus_locked_cohort_drift.json"
+}

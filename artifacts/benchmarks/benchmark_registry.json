@@ -13,8 +13,7 @@
       "family": "Core",
       "figure": "/benchmarks/figures/benchmark_status_matrix.png",
       "figures": [
-        "/benchmarks/figures/benchmark_status_matrix.png",
-        "/benchmarks/figures/benchmark_contact_sheet.png"
+        "/benchmarks/figures/benchmark_status_matrix.png"
       ],
       "id": "B01",
       "limitations": [
@@ -511,8 +510,9 @@
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "code_links": [
@@ -524,7 +524,7 @@
       "figures": [],
       "id": "B11",
       "limitations": [
-        "Existing persisted evidence; no new fine-tuning."
+        "1109 formal rows remain missing from the authoritative CADD artifact."
       ],
       "metrics": [
         "n",
@@ -540,7 +540,9 @@
       ],
       "n": 4000,
       "new_inference": "NO",
-      "output_artifacts": [],
+      "output_artifacts": [
+        "artifacts/benchmarks/comparator_coverage_reaudit.json"
+      ],
       "population": "formal development",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
@@ -549,20 +551,22 @@
       "requires_new_inference": "NO",
       "scientific_question": "How does CADD compare where scores exist?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
-      "summary": "CADD is covered on the formal cohort but has missing rows.",
+      "summary": "Official CADD coverage was re-audited with exact missing IDs retained; no imputation or mixed build was used.",
       "tables": [],
       "title": "CADD",
       "web_tab": "Overview"
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "code_links": [
@@ -574,7 +578,7 @@
       "figures": [],
       "id": "B12",
       "limitations": [
-        "Existing persisted evidence; no new fine-tuning."
+        "3 formal rows remain missing from the authoritative PhyloP artifact."
       ],
       "metrics": [
         "n",
@@ -590,7 +594,9 @@
       ],
       "n": 4000,
       "new_inference": "NO",
-      "output_artifacts": [],
+      "output_artifacts": [
+        "artifacts/benchmarks/comparator_coverage_reaudit.json"
+      ],
       "population": "formal development",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
@@ -599,12 +605,13 @@
       "requires_new_inference": "NO",
       "scientific_question": "How does PhyloP compare where scores exist?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
-      "summary": "PhyloP is nearly complete on the formal cohort with explicit coverage.",
+      "summary": "Official PhyloP coverage was re-audited with exact missing IDs retained; no imputation or mixed build was used.",
       "tables": [],
       "title": "PhyloP",
       "web_tab": "Overview"
@@ -2269,8 +2276,9 @@
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "code_links": [
@@ -2284,7 +2292,7 @@
       ],
       "id": "B45",
       "limitations": [
-        "Existing persisted evidence; no new fine-tuning."
+        "Modal provider billing is workspace-level; GPU wall-rate estimate and provider billing delta are reported separately."
       ],
       "metrics": [
         "n",
@@ -2300,7 +2308,9 @@
       ],
       "n": 4000,
       "new_inference": "NO",
-      "output_artifacts": [],
+      "output_artifacts": [
+        "artifacts/benchmarks/external_clinvar_runtime.json"
+      ],
       "population": "formal development",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
@@ -2309,12 +2319,13 @@
       "requires_new_inference": "NO",
       "scientific_question": "What compute cost is attributable to existing evidence?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
-      "summary": "Historical cost evidence is available; new expansion spend is zero and live balance is unverified.",
+      "summary": "Historical compute evidence is retained and the external continuation now has measured Modal runtime, cache and rate-estimated cost receipts.",
       "tables": [],
       "title": "Compute cost",
       "web_tab": "Runtime & Cost"
@@ -3188,6 +3199,11 @@
     },
     {
       "artifact_links": [
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_manifest.json",
+        "artifacts/benchmarks/external_clinvar_manifest_receipt.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
+        "artifacts/benchmarks/external_clinvar_provenance.json",
         "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
       ],
       "code_links": [
@@ -3195,12 +3211,19 @@
         "src/evovariant_tr/benchmark_expansion.py"
       ],
       "family": "External",
-      "figure": null,
-      "figures": [],
-      "id": "B61",
-      "limitations": [
-        "Selected candidates are manifest-only; no new model scores are claimed."
+      "figure": "/benchmarks/figures/external_cohort_flow.png",
+      "figures": [
+        "/benchmarks/figures/external_cohort_flow.png",
+        "/benchmarks/figures/external_class_balance.png",
+        "/benchmarks/figures/external_roc.png",
+        "/benchmarks/figures/external_precision_recall.png",
+        "/benchmarks/figures/external_confusion_matrix.png",
+        "/benchmarks/figures/external_classification_dashboard.png",
+        "/benchmarks/figures/external_f1_family_dashboard.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
       ],
+      "id": "B61",
+      "limitations": [],
       "metrics": [
         "n",
         "class counts",
@@ -3214,25 +3237,34 @@
         "ClinVar"
       ],
       "n": 200,
-      "new_inference": "BLOCKED",
+      "new_inference": "YES",
       "output_artifacts": [
-        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+        "artifacts/benchmarks/external_clinvar_manifest.json",
+        "artifacts/benchmarks/external_clinvar_manifest_receipt.json",
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
+        "artifacts/benchmarks/external_clinvar_provenance.json"
       ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
       ],
       "question": "Does the frozen model transfer to an independent high-confidence ClinVar cohort?",
-      "requires_new_inference": "BLOCKED",
+      "requires_new_inference": "YES",
       "scientific_question": "Does the frozen model transfer to an independent high-confidence ClinVar cohort?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_manifest.json",
+        "artifacts/benchmarks/external_clinvar_manifest_receipt.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
+        "artifacts/benchmarks/external_clinvar_provenance.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
-      "status": "COMPUTE_BLOCKED",
-      "summary": "An external manifest is frozen, but new inference is blocked while Modal balance is not verifiable.",
+      "status": "PASS",
+      "summary": "Frozen 200-row independent ClinVar inference completed for 200 rows with raw predictions persisted before the label join.",
       "tables": [
         "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
       ],
@@ -3248,12 +3280,12 @@
         "src/evovariant_tr/benchmark_expansion.py"
       ],
       "family": "External",
-      "figure": null,
-      "figures": [],
-      "id": "B62",
-      "limitations": [
-        "No external performance without persisted scores."
+      "figure": "/benchmarks/figures/external_review_quality_subgroup_performance.png",
+      "figures": [
+        "/benchmarks/figures/external_review_quality_subgroup_performance.png"
       ],
+      "id": "B62",
+      "limitations": [],
       "metrics": [
         "n",
         "class counts",
@@ -3267,7 +3299,7 @@
         "ClinVar"
       ],
       "n": 200,
-      "new_inference": "BLOCKED",
+      "new_inference": "YES",
       "output_artifacts": [
         "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
       ],
@@ -3276,16 +3308,16 @@
         "research/benchmarks/expansion_v1/protocol_lock.json"
       ],
       "question": "Do external outcomes vary by review quality?",
-      "requires_new_inference": "BLOCKED",
+      "requires_new_inference": "YES",
       "scientific_question": "Do external outcomes vary by review quality?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
-      "status": "COMPUTE_BLOCKED",
-      "summary": "External review strata are prepared but not scored.",
+      "status": "PASS",
+      "summary": "Unchanged B61 predictions were evaluated by frozen ClinVar review-quality strata without subgroup tuning.",
       "tables": [
         "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
       ],
@@ -3294,10 +3326,12 @@
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/mavedb_assay_manifest.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/mavedb_protocol.md",
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "code_links": [
         "scripts/benchmark_expansion/run_local.py",
@@ -3308,7 +3342,7 @@
       "figures": [],
       "id": "B63",
       "limitations": [
-        "A functional-effect benchmark requires an assay-specific, predeclared mapping."
+        "Functional effect is not equivalent to clinical pathogenicity."
       ],
       "metrics": [
         "n",
@@ -3324,7 +3358,10 @@
       ],
       "n": 0,
       "new_inference": "NO",
-      "output_artifacts": [],
+      "output_artifacts": [
+        "research/benchmarks/expansion_v1/mavedb_protocol.md",
+        "artifacts/benchmarks/mavedb_assay_manifest.json"
+      ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
@@ -3333,23 +3370,26 @@
       "requires_new_inference": "NO",
       "scientific_question": "How does functional effect correlate with clinical pathogenicity?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/mavedb_assay_manifest.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/mavedb_protocol.md",
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "DATA_BLOCKED",
-      "summary": "No MaveDB assay was selected because functional effect is not equivalent to clinical pathogenicity and no approved assay manifest is persisted.",
+      "summary": "DATA_BLOCKED: official search metadata did not freeze a predeclared assay with exact one-to-one GRCh38 SNV mapping, score direction, and >=20 overlapping variants; no correlations were inspected or computed.",
       "tables": [],
       "title": "MaveDB functional correlation",
       "web_tab": "External Benchmarks"
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_audit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "code_links": [
         "scripts/benchmark_expansion/run_local.py",
@@ -3360,7 +3400,7 @@
       "figures": [],
       "id": "B64",
       "limitations": [
-        "No proxy comparator is substituted."
+        "GPN was audited but required alignment data and a verified external run were unavailable; no proxy was substituted."
       ],
       "metrics": [
         "n",
@@ -3376,7 +3416,9 @@
       ],
       "n": 0,
       "new_inference": "NO",
-      "output_artifacts": [],
+      "output_artifacts": [
+        "artifacts/benchmarks/comparator_audit.json"
+      ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
@@ -3385,34 +3427,39 @@
       "requires_new_inference": "NO",
       "scientific_question": "Are additional public comparator assets eligible?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_audit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "NOT_APPLICABLE",
-      "summary": "No additional compatible comparator asset is registered beyond CADD and PhyloP.",
+      "summary": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
       "tables": [],
       "title": "Additional public classical comparators",
       "web_tab": "External Benchmarks"
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_classical_comparators.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "code_links": [
         "scripts/benchmark_expansion/run_local.py",
         "src/evovariant_tr/benchmark_expansion.py"
       ],
       "family": "External",
-      "figure": null,
-      "figures": [],
+      "figure": "/benchmarks/figures/external_model_agreement.png",
+      "figures": [
+        "/benchmarks/figures/external_model_agreement.png"
+      ],
       "id": "B65",
       "limitations": [
-        "Inference blocked before external scoring."
+        "No external NT/Caduceus prediction asset was available; classical comparator direction is descriptive, not retuned."
       ],
       "metrics": [
         "n",
@@ -3427,44 +3474,55 @@
         "ClinVar"
       ],
       "n": 200,
-      "new_inference": "BLOCKED",
-      "output_artifacts": [],
+      "new_inference": "YES",
+      "output_artifacts": [
+        "artifacts/benchmarks/external_classical_comparators.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json"
+      ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
       ],
       "question": "Do multiple models agree on the external cohort?",
-      "requires_new_inference": "BLOCKED",
+      "requires_new_inference": "YES",
       "scientific_question": "Do multiple models agree on the external cohort?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_classical_comparators.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
-      "status": "COMPUTE_BLOCKED",
-      "summary": "External agreement is unavailable without fresh or cached external scores.",
+      "status": "PASS_WITH_LIMITATIONS",
+      "summary": "External Evo2 agreement is compared with available official classical comparator rows; NT/Caduceus remain explicitly unavailable for this external cohort.",
       "tables": [],
       "title": "External multi-model agreement",
       "web_tab": "External Benchmarks"
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "code_links": [
         "scripts/benchmark_expansion/run_local.py",
         "src/evovariant_tr/benchmark_expansion.py"
       ],
       "family": "External",
-      "figure": null,
-      "figures": [],
+      "figure": "/benchmarks/figures/external_calibration_reliability.png",
+      "figures": [
+        "/benchmarks/figures/external_calibration_reliability.png",
+        "/benchmarks/figures/external_probability_quality.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
+      ],
       "id": "B66",
       "limitations": [
-        "No calibration is refit on the external cohort."
+        "External probabilities are transported, not recalibrated."
       ],
       "metrics": [
         "n",
@@ -3479,44 +3537,52 @@
         "ClinVar"
       ],
       "n": 200,
-      "new_inference": "BLOCKED",
-      "output_artifacts": [],
+      "new_inference": "YES",
+      "output_artifacts": [
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json"
+      ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
       ],
       "question": "Does frozen calibration transport to an external cohort?",
-      "requires_new_inference": "BLOCKED",
+      "requires_new_inference": "YES",
       "scientific_question": "Does frozen calibration transport to an external cohort?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
-      "status": "COMPUTE_BLOCKED",
-      "summary": "Transported calibration is unavailable without external scores.",
+      "status": "PASS",
+      "summary": "The frozen TRAIN-fit isotonic calibrator was applied unchanged to external Evo2 predictions with reliability and probability-quality metrics.",
       "tables": [],
       "title": "External transported calibration",
       "web_tab": "External Benchmarks"
     },
     {
       "artifact_links": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "code_links": [
         "scripts/benchmark_expansion/run_local.py",
         "src/evovariant_tr/benchmark_expansion.py"
       ],
       "family": "External",
-      "figure": null,
-      "figures": [],
+      "figure": "/benchmarks/figures/external_runtime_and_cache_economics.png",
+      "figures": [
+        "/benchmarks/figures/external_runtime_and_cache_economics.png"
+      ],
       "id": "B67",
       "limitations": [
-        "No runtime is fabricated."
+        "Provider billing is workspace-level and is not treated as a per-request invoice."
       ],
       "metrics": [
         "n",
@@ -3531,29 +3597,33 @@
         "ClinVar"
       ],
       "n": 200,
-      "new_inference": "BLOCKED",
-      "output_artifacts": [],
+      "new_inference": "YES",
+      "output_artifacts": [
+        "artifacts/benchmarks/external_clinvar_runtime.json"
+      ],
       "population": "external manifest",
       "provenance_links": [
         "research/benchmarks/expansion_v1/protocol_lock.json"
       ],
       "question": "What is the external scoring cost and throughput?",
-      "requires_new_inference": "BLOCKED",
+      "requires_new_inference": "YES",
       "scientific_question": "What is the external scoring cost and throughput?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
-      "status": "COMPUTE_BLOCKED",
-      "summary": "No new external inference was launched; new spend is zero.",
+      "status": "PASS",
+      "summary": "External GPU runtime, throughput, cache reuse, retries, rate-estimated cost and billing snapshots are persisted.",
       "tables": [],
       "title": "External runtime/cost/throughput",
       "web_tab": "Runtime & Cost"
     },
     {
       "artifact_links": [
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/benchmarks/local_analysis_results.json#Drift"
       ],
       "code_links": [
@@ -3564,7 +3634,7 @@
       "figure": "/benchmarks/figures/benchmark_status_matrix.png",
       "figures": [
         "/benchmarks/figures/benchmark_status_matrix.png",
-        "/benchmarks/figures/benchmark_contact_sheet.png"
+        "/benchmarks/figures/external_versus_locked_cohort_drift.png"
       ],
       "id": "B68",
       "limitations": [
@@ -3585,7 +3655,7 @@
       "n": 946,
       "new_inference": "NO",
       "output_artifacts": [
-        "artifacts/benchmarks/local_analysis_results.json#Drift"
+        "artifacts/benchmarks/external_clinvar_metrics.json"
       ],
       "population": "locked temporal cohort",
       "provenance_links": [
@@ -3595,13 +3665,14 @@
       "requires_new_inference": "NO",
       "scientific_question": "How do source-release and cohort properties drift over time?",
       "source_artifacts": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
-      "summary": "T0/T1 snapshot hashes, date completeness, labels, and review strata are compared.",
+      "summary": "External and locked cohort class mix, review strata, chromosomes, genes, source dates and variant classes are compared descriptively.",
       "tables": [
         "artifacts/benchmarks/local_analysis_results.json#Drift"
       ],
@@ -3610,13 +3681,13 @@
     }
   ],
   "entry_count": 68,
-  "generated_at_utc": "2026-09-23T18:54:24.338278+00:00",
+  "generated_at_utc": "2026-09-23T20:31:19.070339+00:00",
   "registry_id": "evovariant-tr-benchmark-registry-v1",
   "status_counts": {
     "COMPLETED_WITH_LIMITATIONS": 4,
-    "COMPUTE_BLOCKED": 5,
     "DATA_BLOCKED": 1,
     "NOT_APPLICABLE": 2,
-    "PASS": 56
+    "PASS": 60,
+    "PASS_WITH_LIMITATIONS": 1
   }
 }

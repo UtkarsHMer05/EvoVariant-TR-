@@ -1,0 +1,99 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "precision": 0.5,
+      "recall": 1.0
+    },
+    {
+      "precision": 0.6242038216560509,
+      "recall": 0.98
+    },
+    {
+      "precision": 0.6533333333333333,
+      "recall": 0.98
+    },
+    {
+      "precision": 0.732824427480916,
+      "recall": 0.96
+    },
+    {
+      "precision": 0.811965811965812,
+      "recall": 0.95
+    },
+    {
+      "precision": 0.8230088495575221,
+      "recall": 0.93
+    },
+    {
+      "precision": 0.8598130841121495,
+      "recall": 0.92
+    },
+    {
+      "precision": 0.875,
+      "recall": 0.91
+    },
+    {
+      "precision": 0.9175257731958762,
+      "recall": 0.89
+    },
+    {
+      "precision": 0.9230769230769231,
+      "recall": 0.84
+    },
+    {
+      "precision": 0.9285714285714286,
+      "recall": 0.78
+    },
+    {
+      "precision": 0.9375,
+      "recall": 0.75
+    },
+    {
+      "precision": 0.961038961038961,
+      "recall": 0.74
+    },
+    {
+      "precision": 0.9701492537313433,
+      "recall": 0.65
+    },
+    {
+      "precision": 0.9836065573770492,
+      "recall": 0.6
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.56
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.43
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.42
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.33
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.26
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.19
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.11
+    },
+    {
+      "precision": 1.0,
+      "recall": 0.0
+    }
+  ]
+}

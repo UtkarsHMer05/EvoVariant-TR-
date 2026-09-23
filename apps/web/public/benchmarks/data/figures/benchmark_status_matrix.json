@@ -8,10 +8,6 @@
       "status": "COMPLETED_WITH_LIMITATIONS"
     },
     {
-      "n": 5,
-      "status": "COMPUTE_BLOCKED"
-    },
-    {
       "n": 1,
       "status": "DATA_BLOCKED"
     },
@@ -20,8 +16,12 @@
       "status": "NOT_APPLICABLE"
     },
     {
-      "n": 56,
+      "n": 60,
       "status": "PASS"
+    },
+    {
+      "n": 1,
+      "status": "PASS_WITH_LIMITATIONS"
     }
   ]
 }

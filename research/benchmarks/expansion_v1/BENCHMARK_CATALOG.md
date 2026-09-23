@@ -14,8 +14,8 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B08 | Evo2 aggregate features | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B09 | Nucleotide Transformer representation | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B10 | Caduceus representation | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
-| B11 | CADD | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
-| B12 | PhyloP | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
+| B11 | CADD | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | 1109 formal rows remain missing from the authoritative CADD artifact. |
+| B12 | PhyloP | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | 3 formal rows remain missing from the authoritative PhyloP artifact. |
 | B13 | AlphaMissense eligibility/coverage | NOT_APPLICABLE | locked temporal cohort | 0 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B14 | Foundation-model development comparison | PASS | formal development | 4000 | NO | Model Comparison | Existing persisted evidence; no new fine-tuning. |
 | B15 | Representation/layer comparison | PASS | formal development | 4000 | NO | Model Comparison | Existing persisted evidence; no new fine-tuning. |
@@ -48,7 +48,7 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B42 | Development-vs-final generalization | PASS | formal development | 4000 | NO | Generalization | Existing persisted evidence; no new fine-tuning. |
 | B43 | Runtime | PASS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
 | B44 | Throughput/cache reuse | PASS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
-| B45 | Compute cost | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
+| B45 | Compute cost | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Runtime & Cost | Modal provider billing is workspace-level; GPU wall-rate estimate and provider billing delta are reported separately. |
 | B46 | ClinVar evidence-quality/review-status | PASS | locked temporal cohort | 946 | NO | Evidence Quality | Evidence quality is an observational association; stars are not biological certainty. |
 | B47 | Temporal difficulty/time-to-resolution | PASS | locked temporal cohort | 946 | NO | Temporal Difficulty | Exploratory association; missing and invalid dates are retained. |
 | B48 | Leave-one-chromosome-out generalization | PASS | formal development | 4000 | NO | Generalization | Small chromosomes may be marked insufficient support. |
@@ -64,11 +64,11 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B58 | Per-model calibration where predictions exist | PASS | formal development | 4000 | NO | Calibration & Uncertainty | Calibration curves are not refit per model. |
 | B59 | Macro/micro/weighted F1 | PASS | locked temporal cohort | 946 | NO | Core Baseline | Threshold remains frozen. |
 | B60 | Probability MAE | PASS | locked temporal cohort | 946 | NO | Calibration & Uncertainty | Descriptive score-quality metric. |
-| B61 | Independent high-confidence ClinVar benchmark | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | Selected candidates are manifest-only; no new model scores are claimed. |
-| B62 | External review-quality subgroups | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | No external performance without persisted scores. |
-| B63 | MaveDB functional correlation | DATA_BLOCKED | external manifest | 0 | NO | External Benchmarks | A functional-effect benchmark requires an assay-specific, predeclared mapping. |
-| B64 | Additional public classical comparators | NOT_APPLICABLE | external manifest | 0 | NO | External Benchmarks | No proxy comparator is substituted. |
-| B65 | External multi-model agreement | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | Inference blocked before external scoring. |
-| B66 | External transported calibration | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | No calibration is refit on the external cohort. |
-| B67 | External runtime/cost/throughput | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | Runtime & Cost | No runtime is fabricated. |
+| B61 | Independent high-confidence ClinVar benchmark | PASS | external manifest | 200 | YES | External Benchmarks |  |
+| B62 | External review-quality subgroups | PASS | external manifest | 200 | YES | External Benchmarks |  |
+| B63 | MaveDB functional correlation | DATA_BLOCKED | external manifest | 0 | NO | External Benchmarks | Functional effect is not equivalent to clinical pathogenicity. |
+| B64 | Additional public classical comparators | NOT_APPLICABLE | external manifest | 0 | NO | External Benchmarks | GPN was audited but required alignment data and a verified external run were unavailable; no proxy was substituted. |
+| B65 | External multi-model agreement | PASS_WITH_LIMITATIONS | external manifest | 200 | YES | External Benchmarks | No external NT/Caduceus prediction asset was available; classical comparator direction is descriptive, not retuned. |
+| B66 | External transported calibration | PASS | external manifest | 200 | YES | External Benchmarks | External probabilities are transported, not recalibrated. |
+| B67 | External runtime/cost/throughput | PASS | external manifest | 200 | YES | Runtime & Cost | Provider billing is workspace-level and is not treated as a per-request invoice. |
 | B68 | Cohort/data-drift comparison | COMPLETED_WITH_LIMITATIONS | locked temporal cohort | 946 | NO | Temporal Difficulty | Drift is descriptive and does not establish causation. |

@@ -2,7 +2,7 @@
 
 | Benchmark | Figure | Web asset | Source data | PNG SHA256 |
 |---|---|---|---|---|
-| B01-B68 | Benchmark status matrix | /benchmarks/figures/benchmark_status_matrix.png | /benchmarks/data/figures/benchmark_status_matrix.json | 1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e |
+| B01-B68 | Benchmark status matrix | /benchmarks/figures/benchmark_status_matrix.png | /benchmarks/data/figures/benchmark_status_matrix.json | d16750f555d000f962bf0ea5f4ef909fc15a5841c2bde0ce09f5262634188fda |
 | B46 | Evidence quality performance | /benchmarks/figures/evidence_quality_performance.png | /benchmarks/data/figures/evidence_quality_performance.json | 54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00 |
 | B47 | Temporal difficulty by resolution interval | /benchmarks/figures/temporal_difficulty_by_resolution_interval.png | /benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json | a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0 |
 | B48 | Chromosome-held-out generalization | /benchmarks/figures/chromosome_held_out_generalization.png | /benchmarks/data/figures/chromosome_held_out_generalization.json | 42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f |
@@ -21,4 +21,4 @@
 | B43 | Runtime by model | /benchmarks/figures/runtime_by_model.png | /benchmarks/data/figures/runtime_by_model.json | 055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8 |
 | B44 | Throughput and cache reuse | /benchmarks/figures/throughput_and_cache_reuse.png | /benchmarks/data/figures/throughput_comparison.json | d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f |
 | B45 | Historical compute cost | /benchmarks/figures/historical_compute_cost.png | /benchmarks/data/figures/cost_by_phase_model.json | 2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9 |
-| B01-B68 | Benchmark figure contact sheet | /benchmarks/figures/benchmark_contact_sheet.png | /benchmarks/data/figures/contact_sheet.provenance.json | cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830 |
+| B01-B68 | Benchmark figure contact sheet | /benchmarks/figures/benchmark_contact_sheet.png | /benchmarks/data/figures/contact_sheet.provenance.json | 530d549153272bc5d2282f832f6c958a043802318c8ec16ae72f888951fcb2a1 |

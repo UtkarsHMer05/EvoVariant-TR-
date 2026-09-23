@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_classification_dashboard.pdf",
+    "png": "docs/benchmarks/assets/external_classification_dashboard.png",
+    "svg": "docs/benchmarks/assets/external_classification_dashboard.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_classification_dashboard.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "346b8a40192b118c39b5701aaa78c7d68f01eb97c79b9df905568024ae129d75",
+    "png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d",
+    "source_data": "8d007918771b3d70acbe73ed2a501ebc5a1c840612a24bb16af11b31a10d01af",
+    "svg": "d672e67fa2a7b3c467df244b3fc98c3ac3ff26ffccf1390c576035215cfaffd2",
+    "web_png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_classification_dashboard.json"
+}

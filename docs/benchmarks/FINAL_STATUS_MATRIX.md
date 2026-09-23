@@ -16,8 +16,8 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B08 | Evo2 aggregate features | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B09 | Nucleotide Transformer representation | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B10 | Caduceus representation | PASS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
-| B11 | CADD | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
-| B12 | PhyloP | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
+| B11 | CADD | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | 1109 formal rows remain missing from the authoritative CADD artifact. |
+| B12 | PhyloP | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Overview | 3 formal rows remain missing from the authoritative PhyloP artifact. |
 | B13 | AlphaMissense eligibility/coverage | NOT_APPLICABLE | locked temporal cohort | 0 | NO | Overview | Existing persisted evidence; no new fine-tuning. |
 | B14 | Foundation-model development comparison | PASS | formal development | 4000 | NO | Model Comparison | Existing persisted evidence; no new fine-tuning. |
 | B15 | Representation/layer comparison | PASS | formal development | 4000 | NO | Model Comparison | Existing persisted evidence; no new fine-tuning. |
@@ -50,7 +50,7 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B42 | Development-vs-final generalization | PASS | formal development | 4000 | NO | Generalization | Existing persisted evidence; no new fine-tuning. |
 | B43 | Runtime | PASS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
 | B44 | Throughput/cache reuse | PASS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
-| B45 | Compute cost | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Runtime & Cost | Existing persisted evidence; no new fine-tuning. |
+| B45 | Compute cost | COMPLETED_WITH_LIMITATIONS | formal development | 4000 | NO | Runtime & Cost | Modal provider billing is workspace-level; GPU wall-rate estimate and provider billing delta are reported separately. |
 | B46 | ClinVar evidence-quality/review-status | PASS | locked temporal cohort | 946 | NO | Evidence Quality | Evidence quality is an observational association; stars are not biological certainty. |
 | B47 | Temporal difficulty/time-to-resolution | PASS | locked temporal cohort | 946 | NO | Temporal Difficulty | Exploratory association; missing and invalid dates are retained. |
 | B48 | Leave-one-chromosome-out generalization | PASS | formal development | 4000 | NO | Generalization | Small chromosomes may be marked insufficient support. |
@@ -66,11 +66,31 @@ Canonical registry generated from persisted artifacts by scripts/benchmark_expan
 | B58 | Per-model calibration where predictions exist | PASS | formal development | 4000 | NO | Calibration & Uncertainty | Calibration curves are not refit per model. |
 | B59 | Macro/micro/weighted F1 | PASS | locked temporal cohort | 946 | NO | Core Baseline | Threshold remains frozen. |
 | B60 | Probability MAE | PASS | locked temporal cohort | 946 | NO | Calibration & Uncertainty | Descriptive score-quality metric. |
-| B61 | Independent high-confidence ClinVar benchmark | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | Selected candidates are manifest-only; no new model scores are claimed. |
-| B62 | External review-quality subgroups | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | No external performance without persisted scores. |
-| B63 | MaveDB functional correlation | DATA_BLOCKED | external manifest | 0 | NO | External Benchmarks | A functional-effect benchmark requires an assay-specific, predeclared mapping. |
-| B64 | Additional public classical comparators | NOT_APPLICABLE | external manifest | 0 | NO | External Benchmarks | No proxy comparator is substituted. |
-| B65 | External multi-model agreement | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | Inference blocked before external scoring. |
-| B66 | External transported calibration | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | External Benchmarks | No calibration is refit on the external cohort. |
-| B67 | External runtime/cost/throughput | COMPUTE_BLOCKED | external manifest | 200 | BLOCKED | Runtime & Cost | No runtime is fabricated. |
+| B61 | Independent high-confidence ClinVar benchmark | PASS | external manifest | 200 | YES | External Benchmarks |  |
+| B62 | External review-quality subgroups | PASS | external manifest | 200 | YES | External Benchmarks |  |
+| B63 | MaveDB functional correlation | DATA_BLOCKED | external manifest | 0 | NO | External Benchmarks | Functional effect is not equivalent to clinical pathogenicity. |
+| B64 | Additional public classical comparators | NOT_APPLICABLE | external manifest | 0 | NO | External Benchmarks | GPN was audited but required alignment data and a verified external run were unavailable; no proxy was substituted. |
+| B65 | External multi-model agreement | PASS_WITH_LIMITATIONS | external manifest | 200 | YES | External Benchmarks | No external NT/Caduceus prediction asset was available; classical comparator direction is descriptive, not retuned. |
+| B66 | External transported calibration | PASS | external manifest | 200 | YES | External Benchmarks | External probabilities are transported, not recalibrated. |
+| B67 | External runtime/cost/throughput | PASS | external manifest | 200 | YES | Runtime & Cost | Provider billing is workspace-level and is not treated as a per-request invoice. |
 | B68 | Cohort/data-drift comparison | COMPLETED_WITH_LIMITATIONS | locked temporal cohort | 946 | NO | Temporal Difficulty | Drift is descriptive and does not establish causation. |
+
+## External benchmark continuation — 2026-09-24
+
+The frozen ClinVar external manifest remains unchanged at 200 rows (100 benign,
+100 pathogenic). Evo2 raw forward/alternate and reverse-complement scores were
+persisted before joining the manifest labels. The frozen TRAIN-fit logistic
+model, isotonic calibrator, and threshold 0.50 were applied without refitting.
+
+External n=200; AUROC=0.9502; AUPRC=0.958859294515439;
+accuracy=0.85; balanced accuracy=0.85;
+F1=0.8333333333333334; MCC=0.7144345083117604; Brier=0.11252009005966578;
+ECE=0.13962342753163207; NLL=0.6921533824993545. Rate-estimated new Modal
+cost=$0.417640; fresh rows=192;
+cache-hit rows=8; remote seconds=267.84282031.
+
+B63 remains DATA_BLOCKED because official MaveDB search metadata did not freeze
+an exact GRCh38 SNV assay mapping with predeclared score direction and support.
+B64 remains NOT_APPLICABLE after the GPN audit because the required alignment
+asset and run contract were unavailable; no proxy comparator was substituted.
+B11/B12 retain exact missing-row coverage and no imputation or mixed builds.

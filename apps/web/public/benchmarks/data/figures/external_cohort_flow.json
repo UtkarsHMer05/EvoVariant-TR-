@@ -1,0 +1,23 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "n": 200,
+      "stage": "manifest selected"
+    },
+    {
+      "n": 200,
+      "stage": "reference validated"
+    },
+    {
+      "n": 200,
+      "stage": "raw predictions persisted"
+    },
+    {
+      "n": 200,
+      "stage": "evaluated"
+    }
+  ]
+}

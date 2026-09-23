@@ -1,0 +1,251 @@
+{
+  "artifact_id": "evovariant-tr-external-clinvar-evaluation-v1",
+  "class_counts": {
+    "0": 100,
+    "1": 100
+  },
+  "labels_used_for_calibration_fitting": false,
+  "labels_used_for_fitting": false,
+  "labels_used_for_threshold_selection": false,
+  "locked_calibration_comparison": {
+    "accuracy": 0.8435517970401691,
+    "auprc": 0.8630391000187404,
+    "auroc": 0.9092259737895887,
+    "brier": 0.11407921672922404,
+    "ece": 0.05523106003405314,
+    "nll": 0.5517579434827143
+  },
+  "manifest_file_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
+  "manifest_path": "artifacts/benchmarks/external_clinvar_manifest.json",
+  "metrics": {
+    "accuracy": 0.85,
+    "auprc": 0.958859294515439,
+    "auroc": 0.9502,
+    "balanced_accuracy": 0.85,
+    "bootstrap_auc": {
+      "ci95": [
+        0.9207293848790706,
+        0.9771125060357315
+      ],
+      "mean": 0.9503587517058923,
+      "replicates": 1000,
+      "seed": 42,
+      "std": 0.01479742088956456
+    },
+    "brier": 0.11252009005966578,
+    "calibration_method": "isotonic",
+    "calibration_refit": false,
+    "confidence": 0.8932278070725107,
+    "ece": 0.13962342753163207,
+    "error_rate": 0.15,
+    "f1": 0.8333333333333334,
+    "fn": 25,
+    "fp": 5,
+    "frozen_calibration_artifact_sha256": "bf1f9078386f35619d5188eabb07e8345f168cf0717565180cb0bca4c42520a3",
+    "frozen_model_artifact_sha256": "f42de3bc5e803ee2c0fea2a2159c9b6a3c6ef69fba6ed51c5f7b3bd708d4b043",
+    "label_join_gate": "raw_predictions_sha256 persisted before local manifest label join",
+    "macro_f1": 0.8484848484848485,
+    "mcc": 0.7144345083117604,
+    "micro_f1": 0.85,
+    "n": 200,
+    "negative": 100,
+    "nll": 0.6921533824993545,
+    "positive": 100,
+    "precision": 0.9375,
+    "probability_mae": 0.18930472264959686,
+    "raw_delta_auprc": 0.31808895533093534,
+    "raw_delta_auroc": 0.0505,
+    "recall": 0.75,
+    "specificity": 0.95,
+    "threshold": 0.5,
+    "tn": 95,
+    "tp": 75,
+    "weighted_f1": 0.8484848484848484
+  },
+  "n": 200,
+  "population": "frozen external ClinVar manifest",
+  "prediction_artifact_persisted_before_evaluation_join": true,
+  "raw_predictions_path": "research/runs/external_clinvar_completion_v1/external_raw_predictions.jsonl",
+  "raw_predictions_sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e",
+  "recorded_at_utc": "2026-09-23T20:29:27.467083+00:00",
+  "reliability": [
+    {
+      "bin": "0.0-0.1",
+      "lower": 0.0,
+      "mean_probability": 0.00868497445035155,
+      "n": 93,
+      "observed_rate": 0.08602150537634409,
+      "upper": 0.1
+    },
+    {
+      "bin": "0.1-0.2",
+      "lower": 0.1,
+      "mean_probability": 0.13328671328671327,
+      "n": 10,
+      "observed_rate": 0.3,
+      "upper": 0.2
+    },
+    {
+      "bin": "0.2-0.3",
+      "lower": 0.2,
+      "mean_probability": 0.21428571428571427,
+      "n": 6,
+      "observed_rate": 0.8333333333333334,
+      "upper": 0.3
+    },
+    {
+      "bin": "0.3-0.4",
+      "lower": 0.3,
+      "mean_probability": 0.36220406099924174,
+      "n": 11,
+      "observed_rate": 0.8181818181818182,
+      "upper": 0.4
+    },
+    {
+      "bin": "0.4-0.5",
+      "lower": 0.4,
+      "mean_probability": null,
+      "n": 0,
+      "observed_rate": null,
+      "upper": 0.5
+    },
+    {
+      "bin": "0.5-0.6",
+      "lower": 0.5,
+      "mean_probability": 0.5652173913043478,
+      "n": 3,
+      "observed_rate": 0.3333333333333333,
+      "upper": 0.6
+    },
+    {
+      "bin": "0.6-0.7",
+      "lower": 0.6,
+      "mean_probability": 0.6545165773277746,
+      "n": 21,
+      "observed_rate": 0.8571428571428571,
+      "upper": 0.7
+    },
+    {
+      "bin": "0.7-0.8",
+      "lower": 0.7,
+      "mean_probability": 0.75,
+      "n": 13,
+      "observed_rate": 1.0,
+      "upper": 0.8
+    },
+    {
+      "bin": "0.8-0.9",
+      "lower": 0.8,
+      "mean_probability": 0.8859701492537313,
+      "n": 10,
+      "observed_rate": 1.0,
+      "upper": 0.9
+    },
+    {
+      "bin": "0.9-1.0",
+      "lower": 0.9,
+      "mean_probability": 0.969875404171736,
+      "n": 33,
+      "observed_rate": 1.0,
+      "upper": 1.0
+    }
+  ],
+  "review_quality_subgroups": {
+    "2 stars": {
+      "class_counts": {
+        "0": 50,
+        "1": 50
+      },
+      "group": "2 stars",
+      "metrics": {
+        "accuracy": 0.9,
+        "auprc": 0.9750694530072974,
+        "auroc": 0.9696,
+        "balanced_accuracy": 0.8999999999999999,
+        "bootstrap_auc": {
+          "ci95": [
+            0.9244281045751634,
+            0.9965529753265603
+          ],
+          "mean": 0.9695851556235714,
+          "replicates": 1000,
+          "seed": 42,
+          "std": 0.018742130006733894
+        },
+        "brier": 0.08081029154750324,
+        "confidence": 0.9122785744169768,
+        "ece": 0.11836119860017369,
+        "error_rate": 0.1,
+        "f1": 0.8913043478260869,
+        "fn": 9,
+        "fp": 1,
+        "macro_f1": 0.8993558776167472,
+        "mcc": 0.8104408984731077,
+        "micro_f1": 0.9,
+        "n": 100,
+        "negative": 50,
+        "nll": 0.5836315511759134,
+        "positive": 50,
+        "precision": 0.9761904761904762,
+        "probability_mae": 0.14488949845772323,
+        "recall": 0.82,
+        "specificity": 0.98,
+        "threshold": 0.5,
+        "tn": 49,
+        "tp": 41,
+        "weighted_f1": 0.8993558776167473
+      },
+      "n": 100,
+      "status": "PASS"
+    },
+    "3 stars": {
+      "class_counts": {
+        "0": 50,
+        "1": 50
+      },
+      "group": "3 stars",
+      "metrics": {
+        "accuracy": 0.8,
+        "auprc": 0.9381818026487401,
+        "auroc": 0.927,
+        "balanced_accuracy": 0.8,
+        "bootstrap_auc": {
+          "ci95": [
+            0.8621140763997907,
+            0.9732704402515723
+          ],
+          "mean": 0.9260142205010778,
+          "replicates": 1000,
+          "seed": 42,
+          "std": 0.02807969632767782
+        },
+        "brier": 0.1442298885718283,
+        "confidence": 0.8741770397280446,
+        "ece": 0.16088565646309036,
+        "error_rate": 0.2,
+        "f1": 0.7727272727272727,
+        "fn": 16,
+        "fp": 4,
+        "macro_f1": 0.797077922077922,
+        "mcc": 0.6180642325727469,
+        "micro_f1": 0.8,
+        "n": 100,
+        "negative": 50,
+        "nll": 0.8006752138227958,
+        "positive": 50,
+        "precision": 0.8947368421052632,
+        "probability_mae": 0.23371994684147046,
+        "recall": 0.68,
+        "specificity": 0.92,
+        "threshold": 0.5,
+        "tn": 46,
+        "tp": 34,
+        "weighted_f1": 0.797077922077922
+      },
+      "n": 100,
+      "status": "PASS"
+    }
+  },
+  "runtime_artifact": "artifacts/benchmarks/external_clinvar_runtime.json",
+  "status": "PASS"
+}

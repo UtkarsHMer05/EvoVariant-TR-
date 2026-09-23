@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_confusion_matrix.pdf",
+    "png": "docs/benchmarks/assets/external_confusion_matrix.png",
+    "svg": "docs/benchmarks/assets/external_confusion_matrix.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_confusion_matrix.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "ddeaa22a3e9f6d12d58662e6f50df315d336db3ecf0e76541501e2f2364f0dc5",
+    "png": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d",
+    "source_data": "968ff900f2dd93a7fdb1bec7b6fac008f285abf254b4938c5549fbc12195118a",
+    "svg": "576536170078ab9478cde8a24cdb4d51b5640a5912ec980b15fc512f813a88a2",
+    "web_png": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_confusion_matrix.json"
+}

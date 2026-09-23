@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/external_cohort_flow.pdf",
+    "png": "docs/benchmarks/assets/external_cohort_flow.png",
+    "svg": "docs/benchmarks/assets/external_cohort_flow.svg",
+    "web_png": "apps/web/public/benchmarks/figures/external_cohort_flow.png"
+  },
+  "population": "frozen external ClinVar cohort",
+  "sha256": {
+    "pdf": "75c611e868e87eb25e3499a7f088ba84c60e7b3d95ee337156f462de58d0c09d",
+    "png": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f",
+    "source_data": "799179f9b35453af80f7633284663cef54a5f833dead385e56d9053b494627df",
+    "svg": "f0eb57794a70f6fc0d2436f941bf760fc3ac1dffeb87fcc5d1bce3a28c9568af",
+    "web_png": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f"
+  },
+  "source_data": "docs/benchmarks/data/figures/external_cohort_flow.json"
+}

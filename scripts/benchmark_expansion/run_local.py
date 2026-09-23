@@ -1004,7 +1004,7 @@ def prepare_protocol(start_main_head: str) -> dict[str, Any]:
             "new_spend_allowed": False,
             "reason": "billing summary did not expose a verifiable live balance",
         },
-        "status_vocabulary": ["PASS", "COMPLETED_WITH_LIMITATIONS", "NOT_APPLICABLE", "DATA_BLOCKED", "COMPUTE_BLOCKED"],
+        "status_vocabulary": ["PASS", "PASS_WITH_LIMITATIONS", "COMPLETED_WITH_LIMITATIONS", "NOT_APPLICABLE", "DATA_BLOCKED", "COMPUTE_BLOCKED"],
     }
     protocol_text = "\n".join(
         [
@@ -1730,7 +1730,7 @@ def write_docs(
         "locked_n": results["locked"]["n"],
         "external_n": external["selected_n"],
         "completed_benchmark_families": sum(
-            registry["status_counts"].get(status, 0) for status in ("PASS", "COMPLETED_WITH_LIMITATIONS")
+            registry["status_counts"].get(status, 0) for status in ("PASS", "PASS_WITH_LIMITATIONS", "COMPLETED_WITH_LIMITATIONS")
         ),
         "status_counts": registry["status_counts"],
         "modal_spend_usd": 0.0,
@@ -2009,7 +2009,7 @@ def build_web_manifest(
         {"id": "auprc", "label": "Frozen AUPRC", "value": primary["auprc"], "source": "B36"},
         {"id": "f1", "label": "Frozen positive-class F1", "value": primary["f1"], "source": "B59"},
         {"id": "mcc", "label": "Frozen MCC", "value": primary["mcc"], "source": "B38"},
-        {"id": "completed", "label": "Completed or limited benchmark entries", "value": sum(registry["status_counts"].get(status, 0) for status in ("PASS", "COMPLETED_WITH_LIMITATIONS")), "source": "B01-B68"},
+        {"id": "completed", "label": "Completed or limited benchmark entries", "value": sum(registry["status_counts"].get(status, 0) for status in ("PASS", "PASS_WITH_LIMITATIONS", "COMPLETED_WITH_LIMITATIONS")), "source": "B01-B68"},
         {"id": "external_n", "label": "External manifest variants", "value": external["selected_n"], "source": "B61"},
     ]
     contributions = [

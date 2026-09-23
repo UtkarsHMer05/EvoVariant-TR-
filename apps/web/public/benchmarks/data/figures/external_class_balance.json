@@ -1,0 +1,15 @@
+{
+  "benchmark_id": "B61",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "label": "benign",
+      "n": 100
+    },
+    {
+      "label": "pathogenic",
+      "n": 100
+    }
+  ]
+}

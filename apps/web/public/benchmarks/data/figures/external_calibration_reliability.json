@@ -1,0 +1,87 @@
+{
+  "benchmark_id": "B66",
+  "n": 200,
+  "population": "frozen external ClinVar cohort",
+  "records": [
+    {
+      "bin": "0.0-0.1",
+      "lower": 0.0,
+      "mean_probability": 0.00868497445035155,
+      "n": 93,
+      "observed_rate": 0.08602150537634409,
+      "upper": 0.1
+    },
+    {
+      "bin": "0.1-0.2",
+      "lower": 0.1,
+      "mean_probability": 0.13328671328671327,
+      "n": 10,
+      "observed_rate": 0.3,
+      "upper": 0.2
+    },
+    {
+      "bin": "0.2-0.3",
+      "lower": 0.2,
+      "mean_probability": 0.21428571428571427,
+      "n": 6,
+      "observed_rate": 0.8333333333333334,
+      "upper": 0.3
+    },
+    {
+      "bin": "0.3-0.4",
+      "lower": 0.3,
+      "mean_probability": 0.36220406099924174,
+      "n": 11,
+      "observed_rate": 0.8181818181818182,
+      "upper": 0.4
+    },
+    {
+      "bin": "0.4-0.5",
+      "lower": 0.4,
+      "mean_probability": null,
+      "n": 0,
+      "observed_rate": null,
+      "upper": 0.5
+    },
+    {
+      "bin": "0.5-0.6",
+      "lower": 0.5,
+      "mean_probability": 0.5652173913043478,
+      "n": 3,
+      "observed_rate": 0.3333333333333333,
+      "upper": 0.6
+    },
+    {
+      "bin": "0.6-0.7",
+      "lower": 0.6,
+      "mean_probability": 0.6545165773277746,
+      "n": 21,
+      "observed_rate": 0.8571428571428571,
+      "upper": 0.7
+    },
+    {
+      "bin": "0.7-0.8",
+      "lower": 0.7,
+      "mean_probability": 0.75,
+      "n": 13,
+      "observed_rate": 1.0,
+      "upper": 0.8
+    },
+    {
+      "bin": "0.8-0.9",
+      "lower": 0.8,
+      "mean_probability": 0.8859701492537313,
+      "n": 10,
+      "observed_rate": 1.0,
+      "upper": 0.9
+    },
+    {
+      "bin": "0.9-1.0",
+      "lower": 0.9,
+      "mean_probability": 0.969875404171736,
+      "n": 33,
+      "observed_rate": 1.0,
+      "upper": 1.0
+    }
+  ]
+}

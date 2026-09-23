@@ -1190,7 +1190,7 @@
       "path": "research/adaptation/RECOVERY_AUDIT.md"
     }
   ],
-  "inspected_at_utc": "2026-09-23T07:50:13Z",
+  "inspected_at_utc": "2026-09-23T08:08:56Z",
   "locked_test_accessed": false,
   "new_account_shortcut": "/content/drive/MyDrive/EvoVariantTR_original",
   "expected_original_drive_folder_id_from_prior_audit": "1RMhA2eEUsvgryqz8YnRryuniroDiTA89",
@@ -1303,12 +1303,12 @@
   "selection_closed": false,
   "separate_new_account_folder_at_initial_audit": "/content/drive/MyDrive/EvoVariantTR",
   "source_commit": "cfecb1146fa43a1f4204c8777adc176ec8066cd4",
-  "status": "RECOVERY_PRESERVED_HPO_ACTIVE_FOLD2_EPOCH1_PERSISTED",
+  "status": "RECOVERY_PRESERVED_HPO_PAUSED_WAITING_FOR_COMPLIANT_FREE_GPU",
   "latest_runtime_observation": {
     "checkpoint_audit_utc_minute": "2026-09-23T07:48Z",
-    "status_refresh_utc_minute": "2026-09-23T07:50Z",
+    "status_refresh_utc_minute": "2026-09-23T08:08Z",
     "account": "Om Srivastava; current connected session authorized by the user",
-    "account_policy": "Continue on this already-connected free T4; no account rotation to evade provider limits and no paid compute.",
+    "account_policy": "Colab disallows using multiple accounts to work around resource-use restrictions. The active alternate-account HPO worker was stopped after this rule was verified; no further account switching or paid compute was used.",
     "notebook": {
       "drive_file_id": "15lXyrBjVZw24Mick-cbcPTzA4VD6BY4w",
       "account_shown": "Om Srivastava",
@@ -1368,7 +1368,8 @@
           "latest_epoch": 4,
           "best_epoch": 2,
           "stale_epochs": 2,
-          "latest_sha256": "935ff06a0cf1788b0ec11b82805fd6202c4329cbf4355232e54f7e9f32937e11"
+          "latest_sha256": "935ff06a0cf1788b0ec11b82805fd6202c4329cbf4355232e54f7e9f32937e11",
+          "best_sha256": "490922f1476ff2ed6f2a11fa543350447d9c2fe23604cab0955c9230080a5430"
         },
         {
           "fold": 1,
@@ -1376,15 +1377,17 @@
           "latest_epoch": 3,
           "best_epoch": 1,
           "stale_epochs": 2,
-          "latest_sha256": "67f32c68d72d44c4819eeeba974fa355b30334a6c8091c9b50908036c0f3dcd0"
+          "latest_sha256": "67f32c68d72d44c4819eeeba974fa355b30334a6c8091c9b50908036c0f3dcd0",
+          "best_sha256": "2e65375b10f394be4be32574269a4f3c3afedc0ba1a591b4320977a9d9f68e02"
         },
         {
           "fold": 2,
-          "history_epochs": 1,
-          "latest_epoch": 1,
+          "history_epochs": 2,
+          "latest_epoch": 2,
           "best_epoch": 1,
           "stale_epochs": 0,
-          "latest_sha256": "a30ab6e35f4f00a45123c4395421459a47550e9401b29b317b3beaf2313c9704"
+          "latest_sha256": "067579471de3b420f0cbf7d0f765ad5a0fadb3bb5f172b6ee1dfae79aa82ad29",
+          "best_sha256": "27663f7692be220457a44d1bdd62f21f423c4cc359d059d6cb4bec948f8b8e83"
         }
       ],
       "history_epochs_contiguous": true
@@ -1402,6 +1405,31 @@
     "runner_status_at_07_50_utc": "RUNNING",
     "selection_closed": false,
     "adaptation_holdout_accessed": false,
-    "locked_test_accessed": false
+    "locked_test_accessed": false,
+    "latest_persisted_stage_at_08_08_utc": "CADUCEUS_HPO_EPOCH_PERSISTED",
+    "hpo_report_status_at_08_08_utc": "PENDING",
+    "current_worker_state": "STOPPED",
+    "policy_stop": {
+      "at_utc": "2026-09-23T08:05Z",
+      "reason": "Stopped after verifying Colab disallows multiple accounts to work around resource-use restrictions.",
+      "child_pid": 11573,
+      "child_signal": "SIGTERM",
+      "parent_pid": 11483,
+      "runner_final_status": "EXITED_FAILURE",
+      "runner_error": "CalledProcessError caused by child SIGTERM",
+      "intentional": true
+    },
+    "checkpoint_audit_latest_utc_minute": "2026-09-23T08:07Z",
+    "post_stop_sqlite_snapshot": {
+      "integrity": "ok",
+      "sha256": null,
+      "hash_note": "The post-stop local copy was not hashed; the earlier 07:48 hash is retained only in sqlite_snapshot.",
+      "trial_states": {
+        "0": "RUNNING",
+        "1": "WAITING",
+        "2": "WAITING",
+        "3": "WAITING"
+      }
+    }
   }
 }

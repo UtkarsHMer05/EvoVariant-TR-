@@ -1636,9 +1636,9 @@ locked-cohort or paid work.
   stale outputs and an embedded screenshot cleared, and the UI reported all changes saved. No
   training cell was rerun after repair.
 - The attached prompt requires the default Google account and prohibits account switching, so
-  HPO is `WAITING_FOR_FREE_GPU` until an eligible free T4 is available under that rule. No paid
-  compute or account rotation was used. Adaptation VALIDATION and the historical 946-row test
-  remain closed.
+  HPO was `WAITING_FOR_FREE_GPU` at this earlier checkpoint. No paid compute had been selected
+  then; the later alternate-account T4 attempt and provider-policy stop are recorded below.
+  Adaptation VALIDATION and the historical 946-row test remain closed.
 - The latest default-account reconnect was CPU-only; Drive mounted, but the notebook's source
   guard failed because the expected original shortcut and `state/recovery_copy_manifest.json`
   were absent. The available `manifests_verified.json` is a dataset summary, not recovery
@@ -1652,7 +1652,7 @@ locked-cohort or paid work.
 
 ### Latest authorized T4 resume attempt, 2026-09-23
 
-- The user explicitly authorized the connected Om Srivastava account and other accounts, overriding the attached prompt's default-account-only restriction. The current session uses the already-connected free T4; no paid compute was selected.
+- At the user's request, the existing Colab notebook was run on the connected Om Srivastava account after the default account's T4 request was denied. No paid compute was selected. The worker was later stopped after checking Colab's multiple-account resource-limit restriction; see the latest audit below.
 - Drive, reference, and local validation preflight passed. The existing HPO snapshot is intact (trial 0 `RUNNING`, trials 1–3 `WAITING`); fold histories remain 4 / 3; selection is open.
 - Runner PID 11483 opened the existing Optuna study. No resumed epoch or new checkpoint is confirmed yet. The 801-row holdout and historical 946-row test remain sealed.
 
@@ -1660,10 +1660,17 @@ locked-cohort or paid work.
 
 - Read-only telemetry showed HPO parent PID 11483 and child PID 11573 alive. The child used 97.5% CPU; the T4 was at 100% utilization with 847 / 15,360 MiB VRAM and 77 C.
 - The 07:37 UTC status refresh still showed fold histories 4 / 3, no fold 2, no newly persisted epoch, and no completed trial. Trial 0 remains `RUNNING`, trials 1–3 `WAITING`; selection stays open.
-- The temporary diagnostic cell was removed and Colab showed `All changes saved` for the canonical 20-cell / 10-section notebook. No holdout or locked-test data was accessed. Continue on this already-connected free T4; no account rotation to bypass usage limits and no paid compute.
+- At the 07:37 UTC poll, the temporary diagnostic cell was removed and Colab showed `All changes saved` for the canonical 20-cell / 10-section notebook. No holdout or locked-test data was accessed. The alternate-account worker was later stopped after the provider-policy review below.
 
 ### Checkpoint-bound HPO continuation, 2026-09-23 07:48–07:50 UTC
 
 - Fold histories/checkpoints are consistent at 4 / 3 / 1 epochs. `latest.pt` and `best.pt` for all three folds pass the frozen protocol, fold, trial signature, model revision, TRAIN manifest, and reference checks. Fold 2 epoch 1 is persisted.
 - A local copy of the latest SQLite snapshot passes integrity (`ok`); trial 0 is `RUNNING`, trials 1–3 are `WAITING`. Runner PID 11483 remained active at 07:50 UTC. The persisted stage is `CADUCEUS_HPO_EPOCH_PERSISTED`.
 - The temporary audit cell was removed and the canonical 20-cell / 10-section notebook reports all changes saved. Selection remains open. No validation-holdout or locked-test data was accessed.
+
+### Latest checkpoint audit and provider-policy stop, 2026-09-23 08:08 UTC
+
+- The user had authorized the connected Om account and requested using further accounts after the default account's free-GPU limit. Colab's official [FAQ](https://research.google.com/colaboratory/intl/en-GB/faq.html) disallows using multiple accounts to work around access or resource-use restrictions. HPO child PID 11573 was stopped with SIGTERM at 08:05 UTC; runner PID 11483 exited with a `CalledProcessError` caused by SIGTERM. This was an intentional stop after the policy check. No additional account switching or paid compute followed.
+- After shutdown, the Drive SQLite snapshot passed integrity (`ok`); Optuna still lists trial 0 `RUNNING` and trials 1–3 `WAITING`. The runner status is `EXITED_FAILURE` from the intentional signal. The persisted stage is `CADUCEUS_HPO_EPOCH_PERSISTED`; HPO report is `PENDING`; the selection lock is absent.
+- Histories are contiguous at 4 / 3 / 2 epochs. Latest and best checkpoints for all folds pass protocol, fold, trial signature, model revision, TRAIN manifest, and reference checks. Fold 2 latest (epoch 2) SHA-256 is `067579471de3b420f0cbf7d0f765ad5a0fadb3bb5f172b6ee1dfae79aa82ad29`; fold 2 best (epoch 1) is `27663f7692be220457a44d1bdd62f21f423c4cc359d059d6cb4bec948f8b8e83`.
+- The temporary audit cell is deleted and the live notebook is saved at 20 cells / 10 sections. The 801-row adaptation holdout and historical 946-row locked test remain unopened. Resume trial 0 fold 2 epoch 3 only when provider-compliant free compute is available.

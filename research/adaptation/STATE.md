@@ -3,7 +3,7 @@
 Study: POSTHOC-FOUNDATION-ADAPTATION-001
 Protocol SHA-256: `07c93b4657e84a4ddfbdc2df1af0f467f80959e0534a67840b4bf2b2b04a2c2c`
 Evidence stage: `EXECUTION_IN_PROGRESS`
-Current persisted stage: `CADUCEUS_HPO_EPOCH_PERSISTED` (connected free-T4 run; fold 2 epoch 1 and checkpoint bindings verified)
+Current persisted stage: `CADUCEUS_HPO_EPOCH_PERSISTED` (fold 2 epoch 2; checkpoint metadata and contiguous histories verified; no active runner)
 
 ## Completed gates
 
@@ -47,7 +47,7 @@ selection_closed: false
 
 ## Pending stages
 
-`CADUCEUS_HPO_EPOCH_PERSISTED` on the connected free T4 → continue fold 2 and finish trial 0 → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
+`WAITING_FOR_FREE_GPU` under provider-compliant use → resume the existing RUNNING trial 0 from fold 2 epoch 2 → 8–12 completed TRAIN-only grouped trials → selection lock → final TRAIN fits → one-shot 801 evaluation → seed/NT tracks as resources allow → analysis/statistics/figures/report → final validation and push.
 
 The full-candidate and NT tracks remain resource-conditional. Missing results are not inferred from the plan.
 
@@ -57,7 +57,7 @@ Latest `make validate` on 2026-09-23: secret scan and Ruff passed; strict mypy p
 
 ## Latest authorized runtime check, 2026-09-23
 
-- The user explicitly authorized the already-connected Om Srivastava account and other Google accounts, overriding the attached prompt's default-account-only restriction. This run uses the connected account; no paid compute has been selected.
+- The user authorized the connected Om Srivastava account and requested other accounts after the default account hit its GPU limit. This T4 attempt ran under Om's account; after checking Colab's current policy, the HPO worker was stopped and no further account switching or paid compute was used. See the latest stop record below.
 - The runtime is a Tesla T4. Drive cell 3 passed its guards for writable recovery root `/content/drive/MyDrive/EvoVariantTR`, the read-only source shortcut resolving to folder ID `1RMhA2eEUsvgryqz8YnRryuniroDiTA89`, the file-level recovery manifest, and the HPO database.
 - A fresh copy of `caduceus_hpo.sqlite3.snapshot` passed `PRAGMA integrity_check`: trial 0 `RUNNING`, trials 1–3 `WAITING`. Frozen-head report is `PASS`; fold histories are 4 / 3; no fold 2 history exists; selection remains `OPEN`.
 - Reference cell 11 passed: archive SHA-256 `c1dd87068c254eb53d944f71e51d1311964fce8de24d6fc0effc9c61c01527d4`, FASTA SHA-256 `5be01555d98347fdb3714dc84c6f77c9d8bc774adcf32c6f7a8fa06f5baf5e51`, index SHA-256 `3b425de206296a5c8053023fa5ca61da43cfe78c1737c12e58c83367c7e83c21`, and 4,000 formal REF alleles checked.
@@ -74,4 +74,12 @@ Latest `make validate` on 2026-09-23: secret scan and Ruff passed; strict mypy p
 - Fold histories are contiguous and checkpoint epochs agree: fold 0 = 4 epochs (latest epoch 4; SHA-256 `935ff06a0cf1788b0ec11b82805fd6202c4329cbf4355232e54f7e9f32937e11`), fold 1 = 3 (latest epoch 3; SHA-256 `67f32c68d72d44c4819eeeba974fa355b30334a6c8091c9b50908036c0f3dcd0`), fold 2 = 1 (latest epoch 1; SHA-256 `a30ab6e35f4f00a45123c4395421459a47550e9401b29b317b3beaf2313c9704`). The corresponding `latest.pt` and `best.pt` for all folds passed protocol, fold, trial signature, model revision, TRAIN manifest, and reference metadata checks.
 - A local copy of the current atomic Drive SQLite snapshot passed `PRAGMA integrity_check` (`ok`), SHA-256 `cf728209360af8b1a4ea594c7d0e2f06e886ea26a8088bef7320993d4f71aebc`; trial 0 remains `RUNNING`, trials 1–3 remain `WAITING`.
 - The runner remained `RUNNING` at 07:50 UTC. The 07:44 UTC resource sample showed HPO child PID 11573 at 97.8% CPU and the Tesla T4 at 74% utilization, 847 / 15,360 MiB VRAM, 77 C. The latest summary reports `CADUCEUS_HPO_EPOCH_PERSISTED`; HPO is incomplete, selection remains `OPEN`, and no holdout or locked-test data was accessed.
-- The temporary checkpoint-audit cell was removed; Colab reports the canonical notebook saved at 20 cells / 10 sections. Continue the current worker on the same free T4; no account rotation or paid compute.
+- The temporary checkpoint-audit cell was removed; Colab reports the canonical notebook saved at 20 cells / 10 sections. The worker was later stopped after the Colab policy check; see the latest stop record below.
+
+### Provider-policy stop and final checkpoint audit, 2026-09-23 08:08 UTC
+
+- Colab's official [FAQ](https://research.google.com/colaboratory/intl/en-GB/faq.html) disallows using multiple accounts to work around access or resource-use restrictions. The active Om-account run followed the default account's GPU-limit denial, so HPO child PID 11573 received SIGTERM at 08:05 UTC. Parent PID 11483 exited with `CalledProcessError` caused by that signal; this is an intentional policy stop, not a source-code failure. No further account rotation or paid compute was used.
+- After the stop, Drive SQLite snapshot integrity remained `ok`; trial 0 is still `RUNNING` in Optuna and trials 1–3 are `WAITING`. The persisted stage is `CADUCEUS_HPO_EPOCH_PERSISTED`; HPO report is `PENDING`, selection is `OPEN`, and validation outputs remain `PENDING`.
+- Fold histories are contiguous at 4 / 3 / 2 epochs. Latest and best checkpoints for all folds pass protocol, fold, trial-signature, model-revision, TRAIN-manifest, and reference metadata checks. Fold 2 latest is epoch 2 with SHA-256 `067579471de3b420f0cbf7d0f765ad5a0fadb3bb5f172b6ee1dfae79aa82ad29`; fold 2 best is epoch 1 with SHA-256 `27663f7692be220457a44d1bdd62f21f423c4cc359d059d6cb4bec948f8b8e83`.
+- The temporary audit/stop cell was removed. The live notebook is back to its canonical 20-cell / 10-section layout and reports `All changes saved`. The 801-row holdout and historical 946-row test remain unopened.
+- Resume only when a free GPU is available without using multiple accounts to bypass limits, or through user-controlled compute allowed by the protocol. The next HPO item is trial 0 fold 2 epoch 3.

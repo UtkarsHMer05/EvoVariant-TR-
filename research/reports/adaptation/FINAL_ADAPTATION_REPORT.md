@@ -55,7 +55,7 @@ Pinned checkpoint: `kuleshov-group/caduceus-ph_seqlen-131k_d_model-256_n_layer-1
 
 ## HPO and seed robustness
 
-`ACTIVE_COMPUTE_FOLD2_EPOCH1_PERSISTED`. The latest copied SQLite snapshot passes integrity; trial 0 is `RUNNING` and trials 1–3 are `WAITING`. Fold histories/checkpoints are contiguous at 4 / 3 / 1 epochs. Latest and best checkpoints for all folds match the frozen protocol, trial/fold, model revision, TRAIN manifest, and reference. The worker remained active at 07:50 UTC. The selection lock remains open. Complete at least 8 trials (maximum 12) with 3-fold gene-grouped CV inside TRAIN. Seeds remain fixed at 42, 1337, and 2026; none may be selected by holdout performance.
+`WAITING_FOR_FREE_GPU`. After the worker stopped, the Drive SQLite snapshot passed integrity; trial 0 is still `RUNNING` and trials 1–3 are `WAITING`. Fold histories/checkpoints are contiguous at 4 / 3 / 2 epochs. Latest and best checkpoints for all folds match the frozen protocol, trial/fold, model revision, TRAIN manifest, and reference. Fold 2 latest is epoch 2 with SHA-256 `067579471de3b420f0cbf7d0f765ad5a0fadb3bb5f172b6ee1dfae79aa82ad29`. Colab's current [FAQ](https://research.google.com/colaboratory/intl/en-GB/faq.html) disallows using multiple accounts to work around resource limits; the HPO child was stopped after that rule was verified. The code reattaches a single `RUNNING` trial and resumes fold checkpoints. Selection remains open. Complete at least 8 trials (maximum 12) with 3-fold gene-grouped CV inside TRAIN. Seeds remain fixed at 42, 1337, and 2026; none may be selected by holdout performance.
 
 ## 801-row holdout
 
@@ -79,7 +79,7 @@ The frozen-head process started from HEAD `34f65a3d8d0125be4cf00b78f19ce115cdc9f
 
 ## Conclusion
 
-The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The latest authorized free-T4 run passed recovery and reference checks, resumed the existing HPO study, and persisted fold 2 epoch 1. All three folds' latest/best checkpoints pass metadata binding and history continuity; the current SQLite snapshot passes integrity. Trial 0 remains running and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
+The protocol, data gates, short smoke, and full-context frozen-head TRAIN-only fit pass. The alternate-account T4 attempt passed recovery and reference checks and persisted fold 2 epoch 2 before it was stopped after the Colab account-limit rule was checked. All three folds' latest/best checkpoints pass metadata binding and history continuity; the post-stop SQLite snapshot passes integrity. Trial 0 remains `RUNNING` in Optuna and selection remains open. Completion criteria remain unmet pending grouped HPO, final fits, the gated one-shot holdout, supported analysis, and remaining figures/reports.
 
 ## Latest recovery check, 2026-09-23
 
@@ -92,3 +92,9 @@ On the user-authorized connected Om account, recovery guards and pinned referenc
 ## Checkpoint-bound HPO update, 2026-09-23
 
 At 07:48–07:50 UTC, fold 2 epoch 1 was persisted. Histories and `latest.pt`/`best.pt` metadata match for folds 0–2 (4 / 3 / 1 epochs). The HPO snapshot copy passes integrity (`ok`), trial 0 remains `RUNNING`, and runner PID 11483 remains alive. No selection lock, holdout output, or locked-test access exists. The shared notebook was restored to its 20-cell / 10-section canonical layout and saved after removing the temporary audit cell.
+
+## Latest recovery and provider-policy stop, 2026-09-23 08:08 UTC
+
+The active run was on the Om Srivastava account after the default account had been denied a free T4. The user authorized the alternate account, but Colab's current FAQ says using multiple accounts to work around access or resource-use restrictions is disallowed. HPO child PID 11573 received SIGTERM at 08:05 UTC; parent PID 11483 exited with a matching `CalledProcessError`. This was an intentional stop after a policy check. No additional accounts or paid compute were used.
+
+After the stop, the Drive SQLite snapshot still passes integrity (`ok`), with trial 0 `RUNNING` and trials 1–3 `WAITING`. Histories are 4 / 3 / 2 epochs; all latest/best checkpoints pass protocol and metadata checks. Fold 2 latest (epoch 2) is SHA-256 `067579471de3b420f0cbf7d0f765ad5a0fadb3bb5f172b6ee1dfae79aa82ad29`; fold 2 best (epoch 1) is `27663f7692be220457a44d1bdd62f21f423c4cc359d059d6cb4bec948f8b8e83`. The temporary audit cell was removed and the saved notebook returned to 20 cells / 10 sections. Selection remains open; the 801-row holdout and historical 946-row test remain unopened. Work is waiting for provider-compliant free compute.

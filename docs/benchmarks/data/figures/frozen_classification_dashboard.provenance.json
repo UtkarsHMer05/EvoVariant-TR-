@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B38",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/frozen_classification_dashboard.png",
+    "web_png": "apps/web/public/benchmarks/figures/frozen_classification_dashboard.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66",
+    "source_artifact": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66",
+    "source_data": "a90abfb3bdbc8fa5d3765dd24ff1f960afc7cd7134763c756c29e5bd3f8a091e",
+    "web_png": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66"
+  },
+  "source_artifact": "research/figures/final/final_classification_metrics.png",
+  "source_data": "docs/benchmarks/data/figures/final_classification_metrics.json"
+}

@@ -1,0 +1,31 @@
+{
+  "benchmark_id": "B55",
+  "n": 4000,
+  "population": "formal and locked registered cohorts",
+  "records": [
+    {
+      "available": 2891,
+      "comparator": "CADD formal",
+      "coverage_fraction": 0.72275,
+      "total": 4000
+    },
+    {
+      "available": 0,
+      "comparator": "PhyloP formal",
+      "coverage_fraction": 0.0,
+      "total": 4000
+    },
+    {
+      "available": 918,
+      "comparator": "CADD locked",
+      "coverage_fraction": 0.9704016913319239,
+      "total": 946
+    },
+    {
+      "available": 0,
+      "comparator": "PhyloP locked",
+      "coverage_fraction": 0.0,
+      "total": 946
+    }
+  ]
+}

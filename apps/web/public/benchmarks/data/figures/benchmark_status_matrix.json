@@ -1,0 +1,27 @@
+{
+  "benchmark_id": "B01-B68",
+  "n": 68,
+  "population": "registered benchmark catalog",
+  "records": [
+    {
+      "n": 4,
+      "status": "COMPLETED_WITH_LIMITATIONS"
+    },
+    {
+      "n": 5,
+      "status": "COMPUTE_BLOCKED"
+    },
+    {
+      "n": 1,
+      "status": "DATA_BLOCKED"
+    },
+    {
+      "n": 2,
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "n": 56,
+      "status": "PASS"
+    }
+  ]
+}

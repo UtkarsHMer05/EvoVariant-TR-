@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B01-B68",
+  "n": 68,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/benchmark_status_matrix.pdf",
+    "png": "docs/benchmarks/assets/benchmark_status_matrix.png",
+    "svg": "docs/benchmarks/assets/benchmark_status_matrix.svg",
+    "web_png": "apps/web/public/benchmarks/figures/benchmark_status_matrix.png"
+  },
+  "population": "registered benchmark catalog",
+  "sha256": {
+    "pdf": "d8ccd6a7053858c54edfbcfad3cd74be2a080b25d55ffee7dd204b8b42cf1299",
+    "png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e",
+    "source_data": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5",
+    "svg": "7c5141627266555d86358949fdd6a54883eeff67c35aca76a9695b219d50c6dc",
+    "web_png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
+  },
+  "source_data": "docs/benchmarks/data/figures/benchmark_status_matrix.json"
+}

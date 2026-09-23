@@ -1,0 +1,1033 @@
+{
+  "entries": [
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 233742,
+      "path": "apps/web/public/benchmarks/benchmark-manifest.json",
+      "sha256": "d0cdcbb887b75dfba04e14a60f1a12fb7fe55e3188c9604ab737c52ec6a6a83a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 412,
+      "path": "apps/web/public/benchmarks/data/figures/benchmark_status_matrix.json",
+      "sha256": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 889,
+      "path": "apps/web/public/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
+      "sha256": "45933f5207627ade5e46f789fb4400a45cd21bc63865a95a53e0b0a054bb00e2"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1393,
+      "path": "apps/web/public/benchmarks/data/figures/bootstrap_interval.json",
+      "sha256": "cb7d9496334cf149ed7a4d913ede0cc039ab71de48e4e1c7c2ce9e13bb27c30e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 760,
+      "path": "apps/web/public/benchmarks/data/figures/chromosome_error_analysis.provenance.json",
+      "sha256": "498156ae789b7a1eb49265f6f6c4fe45a315f07bdd12158c35cde3db34b632b1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2657,
+      "path": "apps/web/public/benchmarks/data/figures/chromosome_held_out_generalization.json",
+      "sha256": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 938,
+      "path": "apps/web/public/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
+      "sha256": "5a55ded9bf5b2a21a3f7b2293b4766c4d8cb75c3518b6b29ad86dbd8c687cea7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 630,
+      "path": "apps/web/public/benchmarks/data/figures/classical_comparator_coverage.json",
+      "sha256": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 925,
+      "path": "apps/web/public/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
+      "sha256": "041c903e6b84c8f3acbf9808a625fe1b98958c6726095fcd5a478655e1ab079a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1393,
+      "path": "apps/web/public/benchmarks/data/figures/contact_sheet.provenance.json",
+      "sha256": "36e032202bda9aff19bba3117ad712382cf6b5b5d2ec95a1b1a372d20408c1e7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2616,
+      "path": "apps/web/public/benchmarks/data/figures/cost_by_phase_model.json",
+      "sha256": "e689656ccec58dc17d848b0e5ec02ae0c5177db797c5eb23754d22ee7ff6e0ce"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1653,
+      "path": "apps/web/public/benchmarks/data/figures/development_final_generalization.json",
+      "sha256": "aa4779fee6c07bd60761910cc6add80df2b72813bb634f9caab366b027bea496"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 808,
+      "path": "apps/web/public/benchmarks/data/figures/development_to_final_generalization.provenance.json",
+      "sha256": "2ae4afaef3c8cb9280a80b7c3bbb4b0c0900fd33b9cb986d515b5311aad189ca"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 279,
+      "path": "apps/web/public/benchmarks/data/figures/evidence_quality_performance.json",
+      "sha256": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 905,
+      "path": "apps/web/public/benchmarks/data/figures/evidence_quality_performance.provenance.json",
+      "sha256": "4ab1c73e3964c952a548dd2b918eb5b7d4f21d17d0b15c16ccef62b25ddd73df"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1752,
+      "path": "apps/web/public/benchmarks/data/figures/final_classification_metrics.json",
+      "sha256": "a90abfb3bdbc8fa5d3765dd24ff1f960afc7cd7134763c756c29e5bd3f8a091e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1795,
+      "path": "apps/web/public/benchmarks/data/figures/final_confusion_matrix.json",
+      "sha256": "9a09b5152157410c2cc722dab127977bec847667dacbaff1729c571cffaf4b12"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2593,
+      "path": "apps/web/public/benchmarks/data/figures/final_error_chromosome.json",
+      "sha256": "781b7991cc711e85951640ebd820841e5e203ce12a741be001ebf3e0f8a96fe8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2220,
+      "path": "apps/web/public/benchmarks/data/figures/final_gene_errors.json",
+      "sha256": "3d6d06989d4623b263f6b838333be9a53cf7273bde4932e16317741e04aa070b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5654,
+      "path": "apps/web/public/benchmarks/data/figures/final_pr.json",
+      "sha256": "175e45a920384329ac3ecba45ebe1bfd813b863f5a3bfb9f4bb80373b310e06a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5716,
+      "path": "apps/web/public/benchmarks/data/figures/final_roc.json",
+      "sha256": "b0c7914bd19025fcef2d6d0edd76177199ed5e2ad6e2036ea6288b1d21fe3266"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 752,
+      "path": "apps/web/public/benchmarks/data/figures/frozen_bootstrap_interval.provenance.json",
+      "sha256": "a1ab920a29f2289126c897ee9933199f556fa9b8c0d12890a26f44e5e0dc7ae5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 784,
+      "path": "apps/web/public/benchmarks/data/figures/frozen_classification_dashboard.provenance.json",
+      "sha256": "60c372895c9121b26be7ff4b00a8874a3ddf3cff5bacc507975ef11d7cc07848"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 756,
+      "path": "apps/web/public/benchmarks/data/figures/frozen_confusion_matrix.provenance.json",
+      "sha256": "923b41e0ceffb72dccbbfc30a63db7b9fa06e8817ee06ef6ab1a69cf84799991"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 700,
+      "path": "apps/web/public/benchmarks/data/figures/frozen_pr.provenance.json",
+      "sha256": "3a32ca443c712ff5542cdc7271b566f01ea1fec9262d5893decf6794d06d8fcf"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 704,
+      "path": "apps/web/public/benchmarks/data/figures/frozen_roc.provenance.json",
+      "sha256": "05319b7037a154f0a8f6b5a6ac9e9d7a21fbda185aa83c538a459ede8e3a153e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 738,
+      "path": "apps/web/public/benchmarks/data/figures/gene_error_analysis.provenance.json",
+      "sha256": "b18cac7a833a6a5437f70fe4a19c9476c458abbfe9b00ef2e5a61084e7634002"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 747,
+      "path": "apps/web/public/benchmarks/data/figures/historical_compute_cost.provenance.json",
+      "sha256": "da728202c33182c3b57a15fd0a6adeabca95a26af77c68858c70c11adb4b1f1a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 294,
+      "path": "apps/web/public/benchmarks/data/figures/model_disagreement_categories.json",
+      "sha256": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 911,
+      "path": "apps/web/public/benchmarks/data/figures/model_disagreement_categories.provenance.json",
+      "sha256": "85ea0f60f727ec28287e9deeef1af1feb0ab24b5dd2080e187a4898041048f1f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2611,
+      "path": "apps/web/public/benchmarks/data/figures/runtime_by_model.json",
+      "sha256": "e60e9f28273cfd546416961edbcdca786c9fae86a37beb2d44fcdb76dc55f675"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 727,
+      "path": "apps/web/public/benchmarks/data/figures/runtime_by_model.provenance.json",
+      "sha256": "1a25f015049b0c9ffd716cf7ac6eb93c5385d816502e49177ae6e740e82f842d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 517,
+      "path": "apps/web/public/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
+      "sha256": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 975,
+      "path": "apps/web/public/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
+      "sha256": "33a70b11fc184ef948e47ed6d1d3b82dd609723ca1b34b40bc8d6d712601bed1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 757,
+      "path": "apps/web/public/benchmarks/data/figures/throughput_and_cache_reuse.provenance.json",
+      "sha256": "aaca27158aa766720d19c9a1cf3ac843239b6f4a9d9ff910a090986ca3373572"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2576,
+      "path": "apps/web/public/benchmarks/data/figures/throughput_comparison.json",
+      "sha256": "a98cfb38d4cf27ba49189dfb020da1cb114cbbd9ed58089b1b4a25978e8ffd2b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 285,
+      "path": "apps/web/public/benchmarks/data/figures/transition_versus_transversion.json",
+      "sha256": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 915,
+      "path": "apps/web/public/benchmarks/data/figures/transition_versus_transversion.provenance.json",
+      "sha256": "af1c5ea5f342e1ee18cddc54fa0bb4ee33600662091bec14fd7d57157954893b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1372,
+      "path": "apps/web/public/benchmarks/data/figures/validation_model_comparison.json",
+      "sha256": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 901,
+      "path": "apps/web/public/benchmarks/data/figures/validation_model_comparison.provenance.json",
+      "sha256": "1e3a90892c078701eaf136d2cba4d1a0621bbab9c7dc6b98ebdd762eb07f68f2"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 39264,
+      "path": "apps/web/public/benchmarks/downloads/BENCHMARK_ARTIFACT_MANIFEST.json",
+      "sha256": "e7d11d15682f5f94ffbd368f7b68c7260305a0742fe0d88bff82a533a345e7e4"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1251,
+      "path": "apps/web/public/benchmarks/downloads/EvoVariant_TR_Baseline_Judge_Demo.ipynb",
+      "sha256": "757439258dadef037ae9354471c782f82837585c575c6c3687f0af07fab36ff1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1241,
+      "path": "apps/web/public/benchmarks/downloads/EvoVariant_TR_Benchmark_Expansion_Demo.ipynb",
+      "sha256": "3d753fcbfa458be178363cd734d5e04adbce1406992dc624e40d8a84d310037e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1299,
+      "path": "apps/web/public/benchmarks/downloads/EvoVariant_TR_FineTuning_Attempt_Demo.ipynb",
+      "sha256": "5cae958b0aadcf6f38da2479cd211e953bac1815430773891867b1253954728b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 973,
+      "path": "apps/web/public/benchmarks/downloads/METHODS.md",
+      "sha256": "ac655a9c86ba8582afcbeb4959b604b5f1a70a1f71ea79bcfb3838efdd117297"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 119320,
+      "path": "apps/web/public/benchmarks/downloads/benchmark_registry.json",
+      "sha256": "0d84eaf8fc0e0496ff03bb9c3a181cacc3530519b259d10d85d9e45f47d732a3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5878,
+      "path": "apps/web/public/benchmarks/downloads/case_studies.json",
+      "sha256": "1012977b65a03f02c20f3460ffe559271186d69243c859a47af45aa49406cee0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1077,
+      "path": "apps/web/public/benchmarks/downloads/encoder_update_proof.json",
+      "sha256": "9d01ff8221f71e5b3f919fcb390deb71fc20ec4149d7a9140e02612143aa6894"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 20472,
+      "path": "apps/web/public/benchmarks/downloads/final_benchmark_summary.json",
+      "sha256": "1bdd3ac8522d99843b338b0b20a92d52cb02fb6829e611a3283cdbd955e556b9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 727,
+      "path": "apps/web/public/benchmarks/downloads/protocol.yaml",
+      "sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 388684,
+      "path": "apps/web/public/benchmarks/figures/benchmark_contact_sheet.png",
+      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 54621,
+      "path": "apps/web/public/benchmarks/figures/benchmark_status_matrix.png",
+      "sha256": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 47643,
+      "path": "apps/web/public/benchmarks/figures/chromosome_error_analysis.png",
+      "sha256": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 34248,
+      "path": "apps/web/public/benchmarks/figures/chromosome_held_out_generalization.png",
+      "sha256": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 46280,
+      "path": "apps/web/public/benchmarks/figures/classical_comparator_coverage.png",
+      "sha256": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 388684,
+      "path": "apps/web/public/benchmarks/figures/contact_sheet.png",
+      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48849,
+      "path": "apps/web/public/benchmarks/figures/development_to_final_generalization.png",
+      "sha256": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 31088,
+      "path": "apps/web/public/benchmarks/figures/evidence_quality_performance.png",
+      "sha256": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48694,
+      "path": "apps/web/public/benchmarks/figures/frozen_bootstrap_interval.png",
+      "sha256": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 57942,
+      "path": "apps/web/public/benchmarks/figures/frozen_classification_dashboard.png",
+      "sha256": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 45548,
+      "path": "apps/web/public/benchmarks/figures/frozen_confusion_matrix.png",
+      "sha256": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 52047,
+      "path": "apps/web/public/benchmarks/figures/frozen_pr.png",
+      "sha256": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 53179,
+      "path": "apps/web/public/benchmarks/figures/frozen_roc.png",
+      "sha256": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48208,
+      "path": "apps/web/public/benchmarks/figures/gene_error_analysis.png",
+      "sha256": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 54423,
+      "path": "apps/web/public/benchmarks/figures/historical_compute_cost.png",
+      "sha256": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41570,
+      "path": "apps/web/public/benchmarks/figures/model_disagreement_categories.png",
+      "sha256": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 53732,
+      "path": "apps/web/public/benchmarks/figures/runtime_by_model.png",
+      "sha256": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41305,
+      "path": "apps/web/public/benchmarks/figures/temporal_difficulty_by_resolution_interval.png",
+      "sha256": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 51633,
+      "path": "apps/web/public/benchmarks/figures/throughput_and_cache_reuse.png",
+      "sha256": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 29545,
+      "path": "apps/web/public/benchmarks/figures/transition_versus_transversion.png",
+      "sha256": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 62544,
+      "path": "apps/web/public/benchmarks/figures/validation_model_comparison.png",
+      "sha256": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 813,
+      "path": "artifacts/benchmarks/BASELINE_INTEGRITY_REPORT.json",
+      "sha256": "4a3e9cf8a0039ee07957539b4d1b6980590cc29fa4f1435c636cded8ef88396a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 4439,
+      "path": "artifacts/benchmarks/benchmark_expansion_state.json",
+      "sha256": "a4550c671bebbf1d84015eef81781b0790f79be9dfd36155e0438fbb4d1c3b73"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 119320,
+      "path": "artifacts/benchmarks/benchmark_registry.json",
+      "sha256": "0d84eaf8fc0e0496ff03bb9c3a181cacc3530519b259d10d85d9e45f47d732a3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5878,
+      "path": "artifacts/benchmarks/case_studies.json",
+      "sha256": "1012977b65a03f02c20f3460ffe559271186d69243c859a47af45aa49406cee0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 86485,
+      "path": "artifacts/benchmarks/external_clinvar_manifest.json",
+      "sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 9904,
+      "path": "artifacts/benchmarks/figure_qa.json",
+      "sha256": "5f9d83d49b84840c0deb2b9a0bd039c0ac1e44dc547776b04a8d1c2aa3c66037"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 20472,
+      "path": "artifacts/benchmarks/final_benchmark_summary.json",
+      "sha256": "1bdd3ac8522d99843b338b0b20a92d52cb02fb6829e611a3283cdbd955e556b9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 306,
+      "path": "artifacts/benchmarks/modal_budget_plan.json",
+      "sha256": "f2e9f6e3a8078f2ed9e8f6479fa8092dac607a0dda84b9ec85e84347e6a9db4b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 237,
+      "path": "artifacts/benchmarks/modal_cost_ledger.json",
+      "sha256": "2b677a7124ee3344733f21d6a68c2d65aeb678b31e3ee132fbdaa3cbffe98f61"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 531,
+      "path": "artifacts/benchmarks/notebook_syntax.json",
+      "sha256": "31d0104892b415db85dbab18c03f89cffb1e72ae2a23a3dafc473abbfa621e7c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 27058,
+      "path": "artifacts/benchmarks/source_inventory.json",
+      "sha256": "1d071931dc9521310568e00f7e32a8cc1c724368448315586ab9900aafd3626c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 10512,
+      "path": "docs/benchmarks/BENCHMARK_CATALOG.md",
+      "sha256": "c4f25a9c8e70586f5d5bb6514cf0ae964250de7c762af93aa8d90113d4e2711b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 918,
+      "path": "docs/benchmarks/CASE_STUDIES.md",
+      "sha256": "ff468eac2c84ff091868c7f7cb9313ae3fe7490a336ec619644b31b4e87ab4c8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 623,
+      "path": "docs/benchmarks/COMPUTE.md",
+      "sha256": "0ad432ef6d91135b78ac9f7cb913c66e247a12fb60086ff0b331a93145205ebc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 4367,
+      "path": "docs/benchmarks/FIGURE_INDEX.md",
+      "sha256": "25466fadd063288df0d2e83f3d68c4d295f7be9aff9b3503b7b49690e4dfe12f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 931,
+      "path": "docs/benchmarks/FINAL_BENCHMARK_REPORT.md",
+      "sha256": "f5f5756525fc69913860e5ed652c13e7369be78214ac5aacd9eb99980f7e9eab"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 10545,
+      "path": "docs/benchmarks/FINAL_STATUS_MATRIX.md",
+      "sha256": "9ac20b50ead076ab9b5c4851bbdf038a7e322f78d610c7cafd2e8f4ab65d575e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 973,
+      "path": "docs/benchmarks/METHODS.md",
+      "sha256": "ac655a9c86ba8582afcbeb4959b604b5f1a70a1f71ea79bcfb3838efdd117297"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 548,
+      "path": "docs/benchmarks/METRICS.md",
+      "sha256": "6bebb459022218d5389ccfb24e480695e277262305d555f1c18312ef82d18168"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 329,
+      "path": "docs/benchmarks/MODAL_COST_REPORT.md",
+      "sha256": "aac6b8dcbe1f22bc08c30efc3e96d3acb837e4a41fdcf27ba6bce584a381f575"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 938,
+      "path": "docs/benchmarks/README.md",
+      "sha256": "a50f884c0c74fbe7a5756b62af7a4218e56de47952369843990278312cc79c37"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 695,
+      "path": "docs/benchmarks/RESULTS.md",
+      "sha256": "2bf09ba917e0a98d3b145cbe9c65cc0b2fcff7159c7307d425c08f2a583cb2e8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 456,
+      "path": "docs/benchmarks/SCORE_SEMANTICS.md",
+      "sha256": "a1de7f4a1c1eaf0002edd3cc0fdf79bb7f21a615b6142e96be2d00ac93ce2ba7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 18359,
+      "path": "docs/benchmarks/SOURCE_INVENTORY.md",
+      "sha256": "b5d63719ec176ce06bcc441327f4a268f8dcec94d93f8d8e97243a8d452828c1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 388684,
+      "path": "docs/benchmarks/assets/benchmark_contact_sheet.png",
+      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 17422,
+      "path": "docs/benchmarks/assets/benchmark_status_matrix.pdf",
+      "sha256": "d8ccd6a7053858c54edfbcfad3cd74be2a080b25d55ffee7dd204b8b42cf1299"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 54621,
+      "path": "docs/benchmarks/assets/benchmark_status_matrix.png",
+      "sha256": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 37413,
+      "path": "docs/benchmarks/assets/benchmark_status_matrix.svg",
+      "sha256": "7c5141627266555d86358949fdd6a54883eeff67c35aca76a9695b219d50c6dc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 47643,
+      "path": "docs/benchmarks/assets/chromosome_error_analysis.png",
+      "sha256": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 16863,
+      "path": "docs/benchmarks/assets/chromosome_held_out_generalization.pdf",
+      "sha256": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 34248,
+      "path": "docs/benchmarks/assets/chromosome_held_out_generalization.png",
+      "sha256": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 42014,
+      "path": "docs/benchmarks/assets/chromosome_held_out_generalization.svg",
+      "sha256": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 14096,
+      "path": "docs/benchmarks/assets/classical_comparator_coverage.pdf",
+      "sha256": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 46280,
+      "path": "docs/benchmarks/assets/classical_comparator_coverage.png",
+      "sha256": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 32915,
+      "path": "docs/benchmarks/assets/classical_comparator_coverage.svg",
+      "sha256": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 388684,
+      "path": "docs/benchmarks/assets/contact_sheet.png",
+      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48849,
+      "path": "docs/benchmarks/assets/development_to_final_generalization.png",
+      "sha256": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 15151,
+      "path": "docs/benchmarks/assets/evidence_quality_performance.pdf",
+      "sha256": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 31088,
+      "path": "docs/benchmarks/assets/evidence_quality_performance.png",
+      "sha256": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28779,
+      "path": "docs/benchmarks/assets/evidence_quality_performance.svg",
+      "sha256": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48694,
+      "path": "docs/benchmarks/assets/frozen_bootstrap_interval.png",
+      "sha256": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 57942,
+      "path": "docs/benchmarks/assets/frozen_classification_dashboard.png",
+      "sha256": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 45548,
+      "path": "docs/benchmarks/assets/frozen_confusion_matrix.png",
+      "sha256": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 52047,
+      "path": "docs/benchmarks/assets/frozen_pr.png",
+      "sha256": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 53179,
+      "path": "docs/benchmarks/assets/frozen_roc.png",
+      "sha256": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48208,
+      "path": "docs/benchmarks/assets/gene_error_analysis.png",
+      "sha256": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 54423,
+      "path": "docs/benchmarks/assets/historical_compute_cost.png",
+      "sha256": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 12870,
+      "path": "docs/benchmarks/assets/model_disagreement_categories.pdf",
+      "sha256": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41570,
+      "path": "docs/benchmarks/assets/model_disagreement_categories.png",
+      "sha256": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28507,
+      "path": "docs/benchmarks/assets/model_disagreement_categories.svg",
+      "sha256": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 53732,
+      "path": "docs/benchmarks/assets/runtime_by_model.png",
+      "sha256": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 16629,
+      "path": "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.pdf",
+      "sha256": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41305,
+      "path": "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.png",
+      "sha256": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33156,
+      "path": "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.svg",
+      "sha256": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 51633,
+      "path": "docs/benchmarks/assets/throughput_and_cache_reuse.png",
+      "sha256": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 12500,
+      "path": "docs/benchmarks/assets/transition_versus_transversion.pdf",
+      "sha256": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 29545,
+      "path": "docs/benchmarks/assets/transition_versus_transversion.png",
+      "sha256": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 26990,
+      "path": "docs/benchmarks/assets/transition_versus_transversion.svg",
+      "sha256": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 15835,
+      "path": "docs/benchmarks/assets/validation_model_comparison.pdf",
+      "sha256": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 62544,
+      "path": "docs/benchmarks/assets/validation_model_comparison.png",
+      "sha256": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 52535,
+      "path": "docs/benchmarks/assets/validation_model_comparison.svg",
+      "sha256": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 412,
+      "path": "docs/benchmarks/data/figures/benchmark_status_matrix.json",
+      "sha256": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 889,
+      "path": "docs/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
+      "sha256": "45933f5207627ade5e46f789fb4400a45cd21bc63865a95a53e0b0a054bb00e2"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1393,
+      "path": "docs/benchmarks/data/figures/bootstrap_interval.json",
+      "sha256": "cb7d9496334cf149ed7a4d913ede0cc039ab71de48e4e1c7c2ce9e13bb27c30e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 760,
+      "path": "docs/benchmarks/data/figures/chromosome_error_analysis.provenance.json",
+      "sha256": "498156ae789b7a1eb49265f6f6c4fe45a315f07bdd12158c35cde3db34b632b1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2657,
+      "path": "docs/benchmarks/data/figures/chromosome_held_out_generalization.json",
+      "sha256": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 938,
+      "path": "docs/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
+      "sha256": "5a55ded9bf5b2a21a3f7b2293b4766c4d8cb75c3518b6b29ad86dbd8c687cea7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 630,
+      "path": "docs/benchmarks/data/figures/classical_comparator_coverage.json",
+      "sha256": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 925,
+      "path": "docs/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
+      "sha256": "041c903e6b84c8f3acbf9808a625fe1b98958c6726095fcd5a478655e1ab079a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1393,
+      "path": "docs/benchmarks/data/figures/contact_sheet.provenance.json",
+      "sha256": "36e032202bda9aff19bba3117ad712382cf6b5b5d2ec95a1b1a372d20408c1e7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2616,
+      "path": "docs/benchmarks/data/figures/cost_by_phase_model.json",
+      "sha256": "e689656ccec58dc17d848b0e5ec02ae0c5177db797c5eb23754d22ee7ff6e0ce"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1653,
+      "path": "docs/benchmarks/data/figures/development_final_generalization.json",
+      "sha256": "aa4779fee6c07bd60761910cc6add80df2b72813bb634f9caab366b027bea496"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 808,
+      "path": "docs/benchmarks/data/figures/development_to_final_generalization.provenance.json",
+      "sha256": "2ae4afaef3c8cb9280a80b7c3bbb4b0c0900fd33b9cb986d515b5311aad189ca"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 279,
+      "path": "docs/benchmarks/data/figures/evidence_quality_performance.json",
+      "sha256": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 905,
+      "path": "docs/benchmarks/data/figures/evidence_quality_performance.provenance.json",
+      "sha256": "4ab1c73e3964c952a548dd2b918eb5b7d4f21d17d0b15c16ccef62b25ddd73df"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1752,
+      "path": "docs/benchmarks/data/figures/final_classification_metrics.json",
+      "sha256": "a90abfb3bdbc8fa5d3765dd24ff1f960afc7cd7134763c756c29e5bd3f8a091e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1795,
+      "path": "docs/benchmarks/data/figures/final_confusion_matrix.json",
+      "sha256": "9a09b5152157410c2cc722dab127977bec847667dacbaff1729c571cffaf4b12"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2593,
+      "path": "docs/benchmarks/data/figures/final_error_chromosome.json",
+      "sha256": "781b7991cc711e85951640ebd820841e5e203ce12a741be001ebf3e0f8a96fe8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2220,
+      "path": "docs/benchmarks/data/figures/final_gene_errors.json",
+      "sha256": "3d6d06989d4623b263f6b838333be9a53cf7273bde4932e16317741e04aa070b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5654,
+      "path": "docs/benchmarks/data/figures/final_pr.json",
+      "sha256": "175e45a920384329ac3ecba45ebe1bfd813b863f5a3bfb9f4bb80373b310e06a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 5716,
+      "path": "docs/benchmarks/data/figures/final_roc.json",
+      "sha256": "b0c7914bd19025fcef2d6d0edd76177199ed5e2ad6e2036ea6288b1d21fe3266"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 752,
+      "path": "docs/benchmarks/data/figures/frozen_bootstrap_interval.provenance.json",
+      "sha256": "a1ab920a29f2289126c897ee9933199f556fa9b8c0d12890a26f44e5e0dc7ae5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 784,
+      "path": "docs/benchmarks/data/figures/frozen_classification_dashboard.provenance.json",
+      "sha256": "60c372895c9121b26be7ff4b00a8874a3ddf3cff5bacc507975ef11d7cc07848"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 756,
+      "path": "docs/benchmarks/data/figures/frozen_confusion_matrix.provenance.json",
+      "sha256": "923b41e0ceffb72dccbbfc30a63db7b9fa06e8817ee06ef6ab1a69cf84799991"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 700,
+      "path": "docs/benchmarks/data/figures/frozen_pr.provenance.json",
+      "sha256": "3a32ca443c712ff5542cdc7271b566f01ea1fec9262d5893decf6794d06d8fcf"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 704,
+      "path": "docs/benchmarks/data/figures/frozen_roc.provenance.json",
+      "sha256": "05319b7037a154f0a8f6b5a6ac9e9d7a21fbda185aa83c538a459ede8e3a153e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 738,
+      "path": "docs/benchmarks/data/figures/gene_error_analysis.provenance.json",
+      "sha256": "b18cac7a833a6a5437f70fe4a19c9476c458abbfe9b00ef2e5a61084e7634002"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 747,
+      "path": "docs/benchmarks/data/figures/historical_compute_cost.provenance.json",
+      "sha256": "da728202c33182c3b57a15fd0a6adeabca95a26af77c68858c70c11adb4b1f1a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 294,
+      "path": "docs/benchmarks/data/figures/model_disagreement_categories.json",
+      "sha256": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 911,
+      "path": "docs/benchmarks/data/figures/model_disagreement_categories.provenance.json",
+      "sha256": "85ea0f60f727ec28287e9deeef1af1feb0ab24b5dd2080e187a4898041048f1f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2611,
+      "path": "docs/benchmarks/data/figures/runtime_by_model.json",
+      "sha256": "e60e9f28273cfd546416961edbcdca786c9fae86a37beb2d44fcdb76dc55f675"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 727,
+      "path": "docs/benchmarks/data/figures/runtime_by_model.provenance.json",
+      "sha256": "1a25f015049b0c9ffd716cf7ac6eb93c5385d816502e49177ae6e740e82f842d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 517,
+      "path": "docs/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
+      "sha256": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 975,
+      "path": "docs/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
+      "sha256": "33a70b11fc184ef948e47ed6d1d3b82dd609723ca1b34b40bc8d6d712601bed1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 757,
+      "path": "docs/benchmarks/data/figures/throughput_and_cache_reuse.provenance.json",
+      "sha256": "aaca27158aa766720d19c9a1cf3ac843239b6f4a9d9ff910a090986ca3373572"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 2576,
+      "path": "docs/benchmarks/data/figures/throughput_comparison.json",
+      "sha256": "a98cfb38d4cf27ba49189dfb020da1cb114cbbd9ed58089b1b4a25978e8ffd2b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 285,
+      "path": "docs/benchmarks/data/figures/transition_versus_transversion.json",
+      "sha256": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 915,
+      "path": "docs/benchmarks/data/figures/transition_versus_transversion.provenance.json",
+      "sha256": "af1c5ea5f342e1ee18cddc54fa0bb4ee33600662091bec14fd7d57157954893b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1372,
+      "path": "docs/benchmarks/data/figures/validation_model_comparison.json",
+      "sha256": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 901,
+      "path": "docs/benchmarks/data/figures/validation_model_comparison.provenance.json",
+      "sha256": "1e3a90892c078701eaf136d2cba4d1a0621bbab9c7dc6b98ebdd762eb07f68f2"
+    }
+  ],
+  "entry_count": 171,
+  "generated_at_utc": "2026-09-23T18:54:28.356015+00:00",
+  "manifest_id": "evovariant-tr-benchmark-artifact-manifest-v1"
+}

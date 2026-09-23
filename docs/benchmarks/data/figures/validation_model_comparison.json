@@ -1,0 +1,67 @@
+{
+  "benchmark_id": "B14",
+  "n": 595,
+  "population": "formal validation split",
+  "records": [
+    {
+      "auroc": 0.9980193537434214,
+      "model_id": "all_fusion__mlp",
+      "n": 595
+    },
+    {
+      "auroc": 0.9978495840642861,
+      "model_id": "all_fusion__logistic_regression",
+      "n": 595
+    },
+    {
+      "auroc": 0.997792994171241,
+      "model_id": "cadd__logistic_regression",
+      "n": 595
+    },
+    {
+      "auroc": 0.997637371965367,
+      "model_id": "cadd__mlp",
+      "n": 595
+    },
+    {
+      "auroc": 0.9974534548129704,
+      "model_id": "cadd_phylop__mlp",
+      "n": 595
+    },
+    {
+      "auroc": 0.9968734084092581,
+      "model_id": "cadd_phylop__logistic_regression",
+      "n": 595
+    },
+    {
+      "auroc": 0.9886872163980598,
+      "model_id": "evo2__logistic_regression",
+      "n": 801
+    },
+    {
+      "auroc": 0.9886168048818651,
+      "model_id": "evo2__mlp",
+      "n": 801
+    },
+    {
+      "auroc": 0.961823043404448,
+      "model_id": "all_fusion__decision_stump",
+      "n": 595
+    },
+    {
+      "auroc": 0.961823043404448,
+      "model_id": "cadd__decision_stump",
+      "n": 595
+    },
+    {
+      "auroc": 0.961823043404448,
+      "model_id": "cadd_phylop__decision_stump",
+      "n": 595
+    },
+    {
+      "auroc": 0.9522062275074323,
+      "model_id": "evo2__decision_stump",
+      "n": 801
+    }
+  ]
+}

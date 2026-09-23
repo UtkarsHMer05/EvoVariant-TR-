@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B53",
+  "n": 946,
+  "population": "locked temporal cohort",
+  "records": [
+    {
+      "auroc": 0.90394406729634,
+      "group": "transition",
+      "n": 587
+    },
+    {
+      "auroc": 0.9147088072596183,
+      "group": "transversion",
+      "n": 359
+    }
+  ]
+}

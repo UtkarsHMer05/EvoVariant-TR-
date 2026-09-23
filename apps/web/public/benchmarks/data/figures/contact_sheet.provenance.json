@@ -1,0 +1,27 @@
+{
+  "benchmark_id": "B01-B68",
+  "inputs": [
+    "docs/benchmarks/assets/benchmark_status_matrix.png",
+    "docs/benchmarks/assets/evidence_quality_performance.png",
+    "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.png",
+    "docs/benchmarks/assets/chromosome_held_out_generalization.png",
+    "docs/benchmarks/assets/model_disagreement_categories.png",
+    "docs/benchmarks/assets/classical_comparator_coverage.png",
+    "docs/benchmarks/assets/transition_versus_transversion.png",
+    "docs/benchmarks/assets/validation_model_comparison.png",
+    "docs/benchmarks/assets/frozen_roc.png",
+    "docs/benchmarks/assets/frozen_pr.png",
+    "docs/benchmarks/assets/frozen_confusion_matrix.png",
+    "docs/benchmarks/assets/frozen_classification_dashboard.png",
+    "docs/benchmarks/assets/frozen_bootstrap_interval.png",
+    "docs/benchmarks/assets/chromosome_error_analysis.png",
+    "docs/benchmarks/assets/gene_error_analysis.png",
+    "docs/benchmarks/assets/development_to_final_generalization.png",
+    "docs/benchmarks/assets/runtime_by_model.png",
+    "docs/benchmarks/assets/throughput_and_cache_reuse.png",
+    "docs/benchmarks/assets/historical_compute_cost.png"
+  ],
+  "output": "docs/benchmarks/assets/benchmark_contact_sheet.png",
+  "population": "registered benchmark figures",
+  "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+}

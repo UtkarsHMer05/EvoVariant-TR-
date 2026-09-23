@@ -1,0 +1,413 @@
+{
+  "blockers": [
+    "COMPUTE_BLOCKED_BALANCE_UNVERIFIED: Modal billing summary did not expose a verifiable live balance."
+  ],
+  "completed_benchmark_families": 60,
+  "external_n": 200,
+  "figures": [
+    {
+      "asset": "/benchmarks/figures/benchmark_status_matrix.png",
+      "benchmark_id": "B01-B68",
+      "caption": "Benchmark status matrix derived from registered registered benchmark catalog evidence.",
+      "id": "benchmark_status_matrix",
+      "n": 68,
+      "population": "registered benchmark catalog",
+      "provenance": "/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
+      "sha256": {
+        "pdf": "d8ccd6a7053858c54edfbcfad3cd74be2a080b25d55ffee7dd204b8b42cf1299",
+        "png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e",
+        "source_data": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5",
+        "svg": "7c5141627266555d86358949fdd6a54883eeff67c35aca76a9695b219d50c6dc",
+        "web_png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
+      },
+      "source_data": "/benchmarks/data/figures/benchmark_status_matrix.json",
+      "title": "Benchmark status matrix"
+    },
+    {
+      "asset": "/benchmarks/figures/evidence_quality_performance.png",
+      "benchmark_id": "B46",
+      "caption": "Evidence quality performance derived from registered locked temporal cohort evidence.",
+      "id": "evidence_quality_performance",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/evidence_quality_performance.provenance.json",
+      "sha256": {
+        "pdf": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b",
+        "png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00",
+        "source_data": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452",
+        "svg": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c",
+        "web_png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
+      },
+      "source_data": "/benchmarks/data/figures/evidence_quality_performance.json",
+      "title": "Evidence quality performance"
+    },
+    {
+      "asset": "/benchmarks/figures/temporal_difficulty_by_resolution_interval.png",
+      "benchmark_id": "B47",
+      "caption": "Temporal difficulty by resolution interval derived from registered locked temporal cohort evidence.",
+      "id": "temporal_difficulty_by_resolution_interval",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
+      "sha256": {
+        "pdf": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d",
+        "png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0",
+        "source_data": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b",
+        "svg": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5",
+        "web_png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
+      },
+      "source_data": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
+      "title": "Temporal difficulty by resolution interval"
+    },
+    {
+      "asset": "/benchmarks/figures/chromosome_held_out_generalization.png",
+      "benchmark_id": "B48",
+      "caption": "Chromosome-held-out generalization derived from registered formal development, LOCO evidence.",
+      "id": "chromosome_held_out_generalization",
+      "n": 4000,
+      "population": "formal development, LOCO",
+      "provenance": "/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
+      "sha256": {
+        "pdf": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf",
+        "png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f",
+        "source_data": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7",
+        "svg": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5",
+        "web_png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
+      },
+      "source_data": "/benchmarks/data/figures/chromosome_held_out_generalization.json",
+      "title": "Chromosome-held-out generalization"
+    },
+    {
+      "asset": "/benchmarks/figures/model_disagreement_categories.png",
+      "benchmark_id": "B49",
+      "caption": "Model disagreement categories derived from registered common validation rows evidence.",
+      "id": "model_disagreement_categories",
+      "n": 2891,
+      "population": "common validation rows",
+      "provenance": "/benchmarks/data/figures/model_disagreement_categories.provenance.json",
+      "sha256": {
+        "pdf": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803",
+        "png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9",
+        "source_data": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72",
+        "svg": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786",
+        "web_png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
+      },
+      "source_data": "/benchmarks/data/figures/model_disagreement_categories.json",
+      "title": "Model disagreement categories"
+    },
+    {
+      "asset": "/benchmarks/figures/classical_comparator_coverage.png",
+      "benchmark_id": "B55",
+      "caption": "Classical comparator coverage derived from registered formal and locked registered cohorts evidence.",
+      "id": "classical_comparator_coverage",
+      "n": 4000,
+      "population": "formal and locked registered cohorts",
+      "provenance": "/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
+      "sha256": {
+        "pdf": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b",
+        "png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d",
+        "source_data": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76",
+        "svg": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598",
+        "web_png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+      },
+      "source_data": "/benchmarks/data/figures/classical_comparator_coverage.json",
+      "title": "Classical comparator coverage"
+    },
+    {
+      "asset": "/benchmarks/figures/transition_versus_transversion.png",
+      "benchmark_id": "B53",
+      "caption": "Transition versus transversion derived from registered locked temporal cohort evidence.",
+      "id": "transition_versus_transversion",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/transition_versus_transversion.provenance.json",
+      "sha256": {
+        "pdf": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49",
+        "png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5",
+        "source_data": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c",
+        "svg": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554",
+        "web_png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
+      },
+      "source_data": "/benchmarks/data/figures/transition_versus_transversion.json",
+      "title": "Transition versus transversion"
+    },
+    {
+      "asset": "/benchmarks/figures/validation_model_comparison.png",
+      "benchmark_id": "B14",
+      "caption": "Validation model comparison derived from registered formal validation split evidence.",
+      "id": "validation_model_comparison",
+      "n": 595,
+      "population": "formal validation split",
+      "provenance": "/benchmarks/data/figures/validation_model_comparison.provenance.json",
+      "sha256": {
+        "pdf": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c",
+        "png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3",
+        "source_data": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e",
+        "svg": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65",
+        "web_png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
+      },
+      "source_data": "/benchmarks/data/figures/validation_model_comparison.json",
+      "title": "Validation model comparison"
+    },
+    {
+      "asset": "/benchmarks/figures/frozen_roc.png",
+      "benchmark_id": "B35",
+      "caption": "Frozen ROC retained from the registered publication figure.",
+      "id": "frozen_roc",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/frozen_roc.provenance.json",
+      "sha256": {
+        "png": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35",
+        "source_artifact": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35",
+        "source_data": "b0c7914bd19025fcef2d6d0edd76177199ed5e2ad6e2036ea6288b1d21fe3266",
+        "web_png": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35"
+      },
+      "source_data": "/benchmarks/data/figures/final_roc.json",
+      "title": "Frozen ROC"
+    },
+    {
+      "asset": "/benchmarks/figures/frozen_pr.png",
+      "benchmark_id": "B36",
+      "caption": "Frozen PR retained from the registered publication figure.",
+      "id": "frozen_pr",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/frozen_pr.provenance.json",
+      "sha256": {
+        "png": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695",
+        "source_artifact": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695",
+        "source_data": "175e45a920384329ac3ecba45ebe1bfd813b863f5a3bfb9f4bb80373b310e06a",
+        "web_png": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695"
+      },
+      "source_data": "/benchmarks/data/figures/final_pr.json",
+      "title": "Frozen PR"
+    },
+    {
+      "asset": "/benchmarks/figures/frozen_confusion_matrix.png",
+      "benchmark_id": "B37",
+      "caption": "Frozen confusion matrix retained from the registered publication figure.",
+      "id": "frozen_confusion_matrix",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/frozen_confusion_matrix.provenance.json",
+      "sha256": {
+        "png": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd",
+        "source_artifact": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd",
+        "source_data": "9a09b5152157410c2cc722dab127977bec847667dacbaff1729c571cffaf4b12",
+        "web_png": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd"
+      },
+      "source_data": "/benchmarks/data/figures/final_confusion_matrix.json",
+      "title": "Frozen confusion matrix"
+    },
+    {
+      "asset": "/benchmarks/figures/frozen_classification_dashboard.png",
+      "benchmark_id": "B38",
+      "caption": "Frozen classification dashboard retained from the registered publication figure.",
+      "id": "frozen_classification_dashboard",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/frozen_classification_dashboard.provenance.json",
+      "sha256": {
+        "png": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66",
+        "source_artifact": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66",
+        "source_data": "a90abfb3bdbc8fa5d3765dd24ff1f960afc7cd7134763c756c29e5bd3f8a091e",
+        "web_png": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66"
+      },
+      "source_data": "/benchmarks/data/figures/final_classification_metrics.json",
+      "title": "Frozen classification dashboard"
+    },
+    {
+      "asset": "/benchmarks/figures/frozen_bootstrap_interval.png",
+      "benchmark_id": "B39",
+      "caption": "Frozen bootstrap interval retained from the registered publication figure.",
+      "id": "frozen_bootstrap_interval",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/frozen_bootstrap_interval.provenance.json",
+      "sha256": {
+        "png": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3",
+        "source_artifact": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3",
+        "source_data": "cb7d9496334cf149ed7a4d913ede0cc039ab71de48e4e1c7c2ce9e13bb27c30e",
+        "web_png": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3"
+      },
+      "source_data": "/benchmarks/data/figures/bootstrap_interval.json",
+      "title": "Frozen bootstrap interval"
+    },
+    {
+      "asset": "/benchmarks/figures/chromosome_error_analysis.png",
+      "benchmark_id": "B40",
+      "caption": "Chromosome error analysis retained from the registered publication figure.",
+      "id": "chromosome_error_analysis",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/chromosome_error_analysis.provenance.json",
+      "sha256": {
+        "png": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85",
+        "source_artifact": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85",
+        "source_data": "781b7991cc711e85951640ebd820841e5e203ce12a741be001ebf3e0f8a96fe8",
+        "web_png": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85"
+      },
+      "source_data": "/benchmarks/data/figures/final_error_chromosome.json",
+      "title": "Chromosome error analysis"
+    },
+    {
+      "asset": "/benchmarks/figures/gene_error_analysis.png",
+      "benchmark_id": "B41",
+      "caption": "Gene error analysis retained from the registered publication figure.",
+      "id": "gene_error_analysis",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "provenance": "/benchmarks/data/figures/gene_error_analysis.provenance.json",
+      "sha256": {
+        "png": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217",
+        "source_artifact": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217",
+        "source_data": "3d6d06989d4623b263f6b838333be9a53cf7273bde4932e16317741e04aa070b",
+        "web_png": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217"
+      },
+      "source_data": "/benchmarks/data/figures/final_gene_errors.json",
+      "title": "Gene error analysis"
+    },
+    {
+      "asset": "/benchmarks/figures/development_to_final_generalization.png",
+      "benchmark_id": "B42",
+      "caption": "Development to final generalization retained from the registered publication figure.",
+      "id": "development_to_final_generalization",
+      "n": 4000,
+      "population": "development and locked stages",
+      "provenance": "/benchmarks/data/figures/development_to_final_generalization.provenance.json",
+      "sha256": {
+        "png": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c",
+        "source_artifact": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c",
+        "source_data": "aa4779fee6c07bd60761910cc6add80df2b72813bb634f9caab366b027bea496",
+        "web_png": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c"
+      },
+      "source_data": "/benchmarks/data/figures/development_final_generalization.json",
+      "title": "Development to final generalization"
+    },
+    {
+      "asset": "/benchmarks/figures/runtime_by_model.png",
+      "benchmark_id": "B43",
+      "caption": "Runtime by model retained from the registered publication figure.",
+      "id": "runtime_by_model",
+      "n": 4000,
+      "population": "formal development",
+      "provenance": "/benchmarks/data/figures/runtime_by_model.provenance.json",
+      "sha256": {
+        "png": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8",
+        "source_artifact": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8",
+        "source_data": "e60e9f28273cfd546416961edbcdca786c9fae86a37beb2d44fcdb76dc55f675",
+        "web_png": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8"
+      },
+      "source_data": "/benchmarks/data/figures/runtime_by_model.json",
+      "title": "Runtime by model"
+    },
+    {
+      "asset": "/benchmarks/figures/throughput_and_cache_reuse.png",
+      "benchmark_id": "B44",
+      "caption": "Throughput and cache reuse retained from the registered publication figure.",
+      "id": "throughput_and_cache_reuse",
+      "n": 4000,
+      "population": "formal development",
+      "provenance": "/benchmarks/data/figures/throughput_and_cache_reuse.provenance.json",
+      "sha256": {
+        "png": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f",
+        "source_artifact": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f",
+        "source_data": "a98cfb38d4cf27ba49189dfb020da1cb114cbbd9ed58089b1b4a25978e8ffd2b",
+        "web_png": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f"
+      },
+      "source_data": "/benchmarks/data/figures/throughput_comparison.json",
+      "title": "Throughput and cache reuse"
+    },
+    {
+      "asset": "/benchmarks/figures/historical_compute_cost.png",
+      "benchmark_id": "B45",
+      "caption": "Historical compute cost retained from the registered publication figure.",
+      "id": "historical_compute_cost",
+      "n": 4000,
+      "population": "formal development",
+      "provenance": "/benchmarks/data/figures/historical_compute_cost.provenance.json",
+      "sha256": {
+        "png": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9",
+        "source_artifact": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9",
+        "source_data": "e689656ccec58dc17d848b0e5ec02ae0c5177db797c5eb23754d22ee7ff6e0ce",
+        "web_png": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9"
+      },
+      "source_data": "/benchmarks/data/figures/cost_by_phase_model.json",
+      "title": "Historical compute cost"
+    },
+    {
+      "asset": "/benchmarks/figures/benchmark_contact_sheet.png",
+      "benchmark_id": "B01-B68",
+      "caption": "Contact sheet of generated benchmark figures.",
+      "id": "contact_sheet",
+      "n": 19,
+      "population": "registered benchmark figures",
+      "provenance": "/benchmarks/data/figures/contact_sheet.provenance.json",
+      "sha256": {
+        "png": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+      },
+      "source_data": "/benchmarks/data/figures/contact_sheet.provenance.json",
+      "title": "Benchmark figure contact sheet"
+    }
+  ],
+  "fine_tuning_complete_study": false,
+  "fine_tuning_implementation": true,
+  "formal_n": 4000,
+  "frozen_artifact_metrics": {
+    "abstention": {
+      "abstained_count": 473,
+      "actual_coverage": 0.5,
+      "method": "confidence_rank",
+      "risk": 0.7906976744186046,
+      "selection_split": "VALIDATION",
+      "target_coverage": 0.5
+    },
+    "auprc": 0.8630391000187404,
+    "auroc": 0.9092259737895887,
+    "bootstrap_auc_ci95": [
+      0.8891549439505775,
+      0.9299196801735569
+    ],
+    "bootstrap_auc_mean": 0.9090959800384788,
+    "bootstrap_auc_std": 0.01020342994138919,
+    "n_negative": 536,
+    "n_positive": 410,
+    "probability_metrics": {
+      "accuracy": 0.8435517970401691,
+      "auprc": 0.8630391000187404,
+      "auroc": 0.9092259737895887,
+      "brier": 0.11407921672922404,
+      "ece": 0.05523106003405314,
+      "max_calibration_gap": 0.20684881688389395,
+      "n": 946,
+      "nll": 0.5517579434827143
+    },
+    "raw_delta_primary_auroc": 0.09022115034583182,
+    "threshold": 0.5
+  },
+  "generated_at_utc": "2026-09-23T18:54:27.784359+00:00",
+  "headline_metrics": {
+    "auprc": 0.8630391000187404,
+    "auroc": 0.9092259737895887,
+    "brier": 0.11407921672921348,
+    "ece": 0.05523106003392312,
+    "f1": 0.8181818181818182,
+    "mcc": 0.6809606106662964,
+    "nll": 0.5517579434827143
+  },
+  "locked_n": 946,
+  "modal_spend_usd": 0.0,
+  "new_fine_tuning_for_primary": false,
+  "primary_population": "946-row locked temporal cohort",
+  "primary_status": "PASS",
+  "protocol_hash": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+  "status_counts": {
+    "COMPLETED_WITH_LIMITATIONS": 4,
+    "COMPUTE_BLOCKED": 5,
+    "DATA_BLOCKED": 1,
+    "NOT_APPLICABLE": 2,
+    "PASS": 56
+  },
+  "summary_id": "evovariant-tr-final-benchmark-summary-v1"
+}

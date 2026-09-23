@@ -1,0 +1,3622 @@
+{
+  "entries": [
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core",
+      "figure": "/benchmarks/figures/benchmark_status_matrix.png",
+      "figures": [
+        "/benchmarks/figures/benchmark_status_matrix.png",
+        "/benchmarks/figures/benchmark_contact_sheet.png"
+      ],
+      "id": "B01",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Is the registered cohort traceable from source snapshots through the locked evaluation?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Is the registered cohort traceable from source snapshots through the locked evaluation?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Cohort identity, split boundaries, and source-release hashes are registered.",
+      "tables": [],
+      "title": "Temporal cohort identity/flow",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core",
+      "figure": "research/figures/final/final_class_distribution.png",
+      "figures": [
+        "research/figures/final/final_class_distribution.png"
+      ],
+      "id": "B02",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What are the class counts in development and locked cohorts?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What are the class counts in development and locked cohorts?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Development and locked class counts are persisted.",
+      "tables": [],
+      "title": "Class distribution",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core",
+      "figure": null,
+      "figures": [],
+      "id": "B03",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are gene groups separated across development and locked evaluation?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are gene groups separated across development and locked evaluation?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Gene separation and split provenance are recorded in the formal manifest.",
+      "tables": [],
+      "title": "Gene separation/leakage",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core",
+      "figure": null,
+      "figures": [],
+      "id": "B04",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are locked IDs isolated from development artifacts?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are locked IDs isolated from development artifacts?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "ID disjointness and locked-stage flags pass.",
+      "tables": [],
+      "title": "Locked-ID isolation",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core",
+      "figure": null,
+      "figures": [],
+      "id": "B05",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are variants normalized to GRCh38 with validated reference alleles?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are variants normalized to GRCh38 with validated reference alleles?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "The registered GRCh38 manifest and inference provenance agree on reference alleles.",
+      "tables": [],
+      "title": "GRCh38 REF validation",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Foundation evidence",
+      "figure": null,
+      "figures": [],
+      "id": "B06",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the forward Evo2 alternate-minus-reference evidence?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the forward Evo2 alternate-minus-reference evidence?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Cached forward evidence is available for the formal cohort.",
+      "tables": [],
+      "title": "Evo2 forward raw evidence",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Foundation evidence",
+      "figure": null,
+      "figures": [],
+      "id": "B07",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the reverse-complement Evo2 evidence?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the reverse-complement Evo2 evidence?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Cached reverse-orientation evidence is available for the formal cohort.",
+      "tables": [],
+      "title": "Evo2 reverse-complement evidence",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Foundation evidence",
+      "figure": null,
+      "figures": [],
+      "id": "B08",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do aggregate Evo2 deltas support downstream models?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Do aggregate Evo2 deltas support downstream models?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Primary, forward/reverse, and orientation-difference features are cached.",
+      "tables": [],
+      "title": "Evo2 aggregate features",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Representation",
+      "figure": "research/figures/final/representation_layers.png",
+      "figures": [
+        "research/figures/final/representation_layers.png"
+      ],
+      "id": "B09",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What do cached NT layers contribute?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What do cached NT layers contribute?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Layers 8, 16, and 24 are persisted with manifest metadata.",
+      "tables": [],
+      "title": "Nucleotide Transformer representation",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Representation",
+      "figure": "research/figures/final/representation_layers.png",
+      "figures": [
+        "research/figures/final/representation_layers.png"
+      ],
+      "id": "B10",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What do cached Caduceus layers contribute?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What do cached Caduceus layers contribute?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Layers 4, 8, and 16 are persisted with manifest metadata.",
+      "tables": [],
+      "title": "Caduceus representation",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Classical comparator",
+      "figure": null,
+      "figures": [],
+      "id": "B11",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does CADD compare where scores exist?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does CADD compare where scores exist?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "COMPLETED_WITH_LIMITATIONS",
+      "summary": "CADD is covered on the formal cohort but has missing rows.",
+      "tables": [],
+      "title": "CADD",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Classical comparator",
+      "figure": null,
+      "figures": [],
+      "id": "B12",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does PhyloP compare where scores exist?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does PhyloP compare where scores exist?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "COMPLETED_WITH_LIMITATIONS",
+      "summary": "PhyloP is nearly complete on the formal cohort with explicit coverage.",
+      "tables": [],
+      "title": "PhyloP",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Classical comparator",
+      "figure": null,
+      "figures": [],
+      "id": "B13",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 0,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Is AlphaMissense eligible and covered for this GRCh38 cohort?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Is AlphaMissense eligible and covered for this GRCh38 cohort?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "NOT_APPLICABLE",
+      "summary": "No compatible prediction asset is registered for this benchmark.",
+      "tables": [],
+      "title": "AlphaMissense eligibility/coverage",
+      "web_tab": "Overview"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Model comparison",
+      "figure": "/benchmarks/figures/validation_model_comparison.png",
+      "figures": [
+        "/benchmarks/figures/validation_model_comparison.png"
+      ],
+      "id": "B14",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do foundation-model representations compare on validation?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do foundation-model representations compare on validation?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Persisted multi-model development predictions are compared.",
+      "tables": [],
+      "title": "Foundation-model development comparison",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Model comparison",
+      "figure": "research/figures/final/representation_layers.png",
+      "figures": [
+        "research/figures/final/representation_layers.png"
+      ],
+      "id": "B15",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which cached representation layers perform best?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which cached representation layers perform best?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Layer-specific comparisons are present in the formal prediction matrix.",
+      "tables": [],
+      "title": "Representation/layer comparison",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": "research/figures/final/classifier_auroc_heatmap.png",
+      "figures": [
+        "research/figures/final/classifier_auroc_heatmap.png"
+      ],
+      "id": "B16",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do logistic classifiers vary by feature family?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do logistic classifiers vary by feature family?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Registered classifier-by-feature metrics are available.",
+      "tables": [],
+      "title": "Logistic feature-family comparison",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": null,
+      "figures": [],
+      "id": "B17",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do tree and boosting classifiers vary by feature family?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do tree and boosting classifiers vary by feature family?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Registered downstream comparisons include tree-family results.",
+      "tables": [],
+      "title": "Tree/boosting feature-family comparison",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": null,
+      "figures": [],
+      "id": "B18",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do MLP classifiers vary by feature family?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do MLP classifiers vary by feature family?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Registered downstream comparisons include MLP results.",
+      "tables": [],
+      "title": "MLP feature-family comparison",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": "research/figures/final/classifier_auroc_heatmap.png",
+      "figures": [
+        "research/figures/final/classifier_auroc_heatmap.png"
+      ],
+      "id": "B19",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which classifier-feature combinations rank by AUROC?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which classifier-feature combinations rank by AUROC?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Validation AUROC is reported for persisted combinations.",
+      "tables": [],
+      "title": "Classifier\u00d7feature AUROC",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": null,
+      "figures": [],
+      "id": "B20",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which classifier-feature combinations rank by AUPRC?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which classifier-feature combinations rank by AUPRC?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Validation AUPRC is reported for persisted combinations.",
+      "tables": [],
+      "title": "Classifier\u00d7feature AUPRC",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Downstream ML",
+      "figure": "research/figures/final/classifier_mcc_heatmap.png",
+      "figures": [
+        "research/figures/final/classifier_mcc_heatmap.png"
+      ],
+      "id": "B21",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which classifier-feature combinations rank by MCC?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which classifier-feature combinations rank by MCC?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Validation MCC is reported for persisted combinations.",
+      "tables": [],
+      "title": "Classifier\u00d7feature MCC",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "HPO",
+      "figure": "research/figures/final/hpo_trial_history.png",
+      "figures": [
+        "research/figures/final/hpo_trial_history.png"
+      ],
+      "id": "B22",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What HPO trials and outcomes were persisted?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What HPO trials and outcomes were persisted?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "HPO trial history is linked from the frozen project artifacts.",
+      "tables": [],
+      "title": "HPO trial history",
+      "web_tab": "HPO & Training"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "HPO",
+      "figure": "research/figures/final/hpo_hyperparameters.png",
+      "figures": [
+        "research/figures/final/hpo_hyperparameters.png"
+      ],
+      "id": "B23",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How sensitive are outcomes to selected hyperparameters?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How sensitive are outcomes to selected hyperparameters?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Chosen hyperparameters and sensitivity artifacts are persisted.",
+      "tables": [],
+      "title": "HPO hyperparameters/sensitivity",
+      "web_tab": "HPO & Training"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Ensemble",
+      "figure": "research/figures/final/ensemble_comparison.png",
+      "figures": [
+        "research/figures/final/ensemble_comparison.png"
+      ],
+      "id": "B24",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do persisted ensembles improve validation performance?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Do persisted ensembles improve validation performance?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Existing ensemble performance is retained as development evidence.",
+      "tables": [],
+      "title": "Ensemble performance",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Ensemble",
+      "figure": "research/figures/final/diversity_matrix.png",
+      "figures": [
+        "research/figures/final/diversity_matrix.png"
+      ],
+      "id": "B25",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How diverse are model errors and scores?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How diverse are model errors and scores?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Diversity matrices are registered.",
+      "tables": [],
+      "title": "Ensemble diversity/correlation",
+      "web_tab": "Model Disagreement"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration",
+      "figure": "research/figures/final/calibration_metric_comparison.png",
+      "figures": [
+        "research/figures/final/calibration_metric_comparison.png"
+      ],
+      "id": "B26",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do calibration methods compare?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do calibration methods compare?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Frozen calibration selection and comparison artifacts are retained.",
+      "tables": [],
+      "title": "Calibration methods",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration",
+      "figure": "research/figures/final/calibration_reliability.png",
+      "figures": [
+        "research/figures/final/calibration_reliability.png"
+      ],
+      "id": "B27",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are probability estimates reliable across bins?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are probability estimates reliable across bins?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Reliability artifacts are retained.",
+      "tables": [],
+      "title": "Reliability",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration",
+      "figure": "research/figures/final/final_probability_quality.png",
+      "figures": [
+        "research/figures/final/final_probability_quality.png"
+      ],
+      "id": "B28",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How good are the frozen probability estimates?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How good are the frozen probability estimates?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Brier, ECE, and NLL are present in the frozen artifact.",
+      "tables": [],
+      "title": "Brier/ECE/NLL",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Uncertainty",
+      "figure": "research/figures/final/final_abstention_semantics.png",
+      "figures": [
+        "research/figures/final/final_abstention_semantics.png"
+      ],
+      "id": "B29",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does selective prediction trade coverage for risk?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does selective prediction trade coverage for risk?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "The frozen abstention artifact reports target and actual coverage.",
+      "tables": [],
+      "title": "Abstention/selective prediction",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Uncertainty",
+      "figure": "research/figures/final/risk_coverage_development.png",
+      "figures": [
+        "research/figures/final/risk_coverage_development.png"
+      ],
+      "id": "B30",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does error risk change with coverage?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does error risk change with coverage?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Development risk-coverage evidence is retained.",
+      "tables": [],
+      "title": "Risk-coverage",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Training",
+      "figure": "research/figures/final/learning_curve_auroc.png",
+      "figures": [
+        "research/figures/final/learning_curve_auroc.png"
+      ],
+      "id": "B31",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does performance change with development sample size?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does performance change with development sample size?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Learning-curve artifacts are retained.",
+      "tables": [],
+      "title": "Learning curves",
+      "web_tab": "HPO & Training"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Ablation",
+      "figure": "research/figures/final/ablation_metric_delta.png",
+      "figures": [
+        "research/figures/final/ablation_metric_delta.png"
+      ],
+      "id": "B32",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the effect of reverse-complement inference?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the effect of reverse-complement inference?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Forward/RC ablation evidence is registered.",
+      "tables": [],
+      "title": "Forward-vs-RC ablation",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Ablation",
+      "figure": null,
+      "figures": [],
+      "id": "B33",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What changes across model families?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What changes across model families?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Model-family ablation evidence is retained.",
+      "tables": [],
+      "title": "Model-family ablation",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Ablation",
+      "figure": null,
+      "figures": [],
+      "id": "B34",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What changes when classical comparators are added?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What changes when classical comparators are added?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Comparator ablation evidence is retained with coverage limits.",
+      "tables": [],
+      "title": "Classical-comparator ablation",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Locked baseline",
+      "figure": "/benchmarks/figures/frozen_roc.png",
+      "figures": [
+        "/benchmarks/figures/frozen_roc.png"
+      ],
+      "id": "B35",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "AUROC",
+        "AUPRC",
+        "Accuracy",
+        "Balanced Accuracy",
+        "MCC"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the frozen locked ROC performance?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the frozen locked ROC performance?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "The immutable primary ROC is linked.",
+      "tables": [],
+      "title": "Locked ROC",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Locked baseline",
+      "figure": "/benchmarks/figures/frozen_pr.png",
+      "figures": [
+        "/benchmarks/figures/frozen_pr.png"
+      ],
+      "id": "B36",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "AUROC",
+        "AUPRC",
+        "Accuracy",
+        "Balanced Accuracy",
+        "MCC"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the frozen locked precision-recall performance?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the frozen locked precision-recall performance?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "The immutable primary PR is linked.",
+      "tables": [],
+      "title": "Locked PR",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Locked baseline",
+      "figure": "/benchmarks/figures/frozen_confusion_matrix.png",
+      "figures": [
+        "/benchmarks/figures/frozen_confusion_matrix.png"
+      ],
+      "id": "B37",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What errors occur at the frozen threshold?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What errors occur at the frozen threshold?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Frozen confusion counts are linked.",
+      "tables": [],
+      "title": "Locked confusion matrix",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Locked baseline",
+      "figure": "/benchmarks/figures/frozen_classification_dashboard.png",
+      "figures": [
+        "/benchmarks/figures/frozen_classification_dashboard.png"
+      ],
+      "id": "B38",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "AUROC",
+        "AUPRC",
+        "Accuracy",
+        "Balanced Accuracy",
+        "MCC"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the full frozen classification dashboard?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the full frozen classification dashboard?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "All required classification and probability metrics are registered.",
+      "tables": [],
+      "title": "Complete classification metric dashboard",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Statistics",
+      "figure": "/benchmarks/figures/frozen_bootstrap_interval.png",
+      "figures": [
+        "/benchmarks/figures/frozen_bootstrap_interval.png"
+      ],
+      "id": "B39",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What uncertainty surrounds the frozen metrics?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What uncertainty surrounds the frozen metrics?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Bootstrap confidence intervals are registered.",
+      "tables": [],
+      "title": "Bootstrap confidence",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Error analysis",
+      "figure": "/benchmarks/figures/chromosome_error_analysis.png",
+      "figures": [
+        "/benchmarks/figures/chromosome_error_analysis.png"
+      ],
+      "id": "B40",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which chromosomes contain more errors?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which chromosomes contain more errors?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Chromosome error evidence is retained.",
+      "tables": [],
+      "title": "Errors by chromosome",
+      "web_tab": "Errors & Case Studies"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Error analysis",
+      "figure": "/benchmarks/figures/gene_error_analysis.png",
+      "figures": [
+        "/benchmarks/figures/gene_error_analysis.png"
+      ],
+      "id": "B41",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Which genes contain more errors?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Which genes contain more errors?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Gene error evidence is retained.",
+      "tables": [],
+      "title": "Errors by gene",
+      "web_tab": "Errors & Case Studies"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Generalization",
+      "figure": "/benchmarks/figures/development_to_final_generalization.png",
+      "figures": [
+        "/benchmarks/figures/development_to_final_generalization.png"
+      ],
+      "id": "B42",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does development compare with frozen temporal evaluation?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does development compare with frozen temporal evaluation?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Development and final evidence remain stage-qualified.",
+      "tables": [],
+      "title": "Development-vs-final generalization",
+      "web_tab": "Generalization"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Runtime",
+      "figure": "/benchmarks/figures/runtime_by_model.png",
+      "figures": [
+        "/benchmarks/figures/runtime_by_model.png"
+      ],
+      "id": "B43",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What runtime was observed by model?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What runtime was observed by model?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Runtime artifacts include model-level measurements.",
+      "tables": [],
+      "title": "Runtime",
+      "web_tab": "Runtime & Cost"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Runtime",
+      "figure": "/benchmarks/figures/throughput_and_cache_reuse.png",
+      "figures": [
+        "/benchmarks/figures/throughput_and_cache_reuse.png"
+      ],
+      "id": "B44",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What throughput and cache reuse were observed?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What throughput and cache reuse were observed?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "PASS",
+      "summary": "Throughput and cache-reuse artifacts are retained.",
+      "tables": [],
+      "title": "Throughput/cache reuse",
+      "web_tab": "Runtime & Cost"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Runtime",
+      "figure": "/benchmarks/figures/historical_compute_cost.png",
+      "figures": [
+        "/benchmarks/figures/historical_compute_cost.png"
+      ],
+      "id": "B45",
+      "limitations": [
+        "Existing persisted evidence; no new fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "coverage",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What compute cost is attributable to existing evidence?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What compute cost is attributable to existing evidence?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json"
+      ],
+      "status": "COMPLETED_WITH_LIMITATIONS",
+      "summary": "Historical cost evidence is available; new expansion spend is zero and live balance is unverified.",
+      "tables": [],
+      "title": "Compute cost",
+      "web_tab": "Runtime & Cost"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Evidence quality"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Evidence Quality",
+      "figure": "/benchmarks/figures/evidence_quality_performance.png",
+      "figures": [
+        "/benchmarks/figures/evidence_quality_performance.png"
+      ],
+      "id": "B46",
+      "limitations": [
+        "Evidence quality is an observational association; stars are not biological certainty."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Evidence quality"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Does frozen performance differ across review/evidence-strength strata?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Does frozen performance differ across review/evidence-strength strata?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Performance and probability quality are stratified by ClinVar review status.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Evidence quality"
+      ],
+      "title": "ClinVar evidence-quality/review-status",
+      "web_tab": "Evidence Quality"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Temporal difficulty"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Temporal Difficulty",
+      "figure": "/benchmarks/figures/temporal_difficulty_by_resolution_interval.png",
+      "figures": [
+        "/benchmarks/figures/temporal_difficulty_by_resolution_interval.png"
+      ],
+      "id": "B47",
+      "limitations": [
+        "Exploratory association; missing and invalid dates are retained."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Temporal difficulty"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Does time between ClinVar evaluation and resolution associate with frozen difficulty?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Does time between ClinVar evaluation and resolution associate with frozen difficulty?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Fixed time bins and performance summaries are computed from T0/T1 dates.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Temporal difficulty"
+      ],
+      "title": "Temporal difficulty/time-to-resolution",
+      "web_tab": "Temporal Difficulty"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#LOCO"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Generalization",
+      "figure": "/benchmarks/figures/chromosome_held_out_generalization.png",
+      "figures": [
+        "/benchmarks/figures/chromosome_held_out_generalization.png"
+      ],
+      "id": "B48",
+      "limitations": [
+        "Small chromosomes may be marked insufficient support."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#LOCO"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Does an Evo2 feature model generalize to an unseen chromosome?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Does an Evo2 feature model generalize to an unseen chromosome?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Chromosome-held-out logistic fits use development features only.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#LOCO"
+      ],
+      "title": "Leave-one-chromosome-out generalization",
+      "web_tab": "Generalization"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Disagreement"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Model Disagreement",
+      "figure": "/benchmarks/figures/model_disagreement_categories.png",
+      "figures": [
+        "/benchmarks/figures/model_disagreement_categories.png"
+      ],
+      "id": "B49",
+      "limitations": [
+        "Only models with persisted common validation rows are included."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Disagreement"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Where do foundation and classical models disagree, and do consensus errors concentrate?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Where do foundation and classical models disagree, and do consensus errors concentrate?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Common-row validation disagreement, correlation, and error overlap are computed.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Disagreement"
+      ],
+      "title": "Model disagreement/hard cases",
+      "web_tab": "Model Disagreement"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Cases"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Errors & Case Studies",
+      "figure": null,
+      "figures": [],
+      "id": "B50",
+      "limitations": [
+        "No private or patient data is exposed."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Cases"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Can representative errors and high-confidence cases be reproduced from the locked artifact?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Can representative errors and high-confidence cases be reproduced from the locked artifact?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Deterministic false-positive, false-negative, confidence, orientation, evidence, and temporal cases are registered.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Cases"
+      ],
+      "title": "Deterministic case studies",
+      "web_tab": "Errors & Case Studies"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Confidence"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration & Uncertainty",
+      "figure": null,
+      "figures": [],
+      "id": "B51",
+      "limitations": [
+        "Descriptive only; threshold remains frozen."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Confidence"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do errors and probability quality vary with confidence?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Do errors and probability quality vary with confidence?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Frozen calibrated scores are stratified by confidence.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Confidence"
+      ],
+      "title": "Confidence strata",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Error overlap"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Model Disagreement",
+      "figure": null,
+      "figures": [],
+      "id": "B52",
+      "limitations": [
+        "Validation-stage only."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Error overlap"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How much do model error sets overlap?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How much do model error sets overlap?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Pairwise validation error-overlap Jaccard values are computed on common rows.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Error overlap"
+      ],
+      "title": "Model error overlap",
+      "web_tab": "Model Disagreement"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Transition"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Generalization",
+      "figure": "/benchmarks/figures/transition_versus_transversion.png",
+      "figures": [
+        "/benchmarks/figures/transition_versus_transversion.png"
+      ],
+      "id": "B53",
+      "limitations": [
+        "Exploratory subgroup analysis."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Transition"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do frozen outcomes differ by SNV transition category?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Do frozen outcomes differ by SNV transition category?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Transition and transversion strata are computed without model selection.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Transition"
+      ],
+      "title": "Transition-vs-transversion",
+      "web_tab": "Generalization"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Substitution"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Generalization",
+      "figure": null,
+      "figures": [],
+      "id": "B54",
+      "limitations": [
+        "Sparse classes are not over-interpreted."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Substitution"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do frozen outcomes differ by exact substitution class?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Do frozen outcomes differ by exact substitution class?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "All eligible SNV substitution classes are retained with support flags.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Substitution"
+      ],
+      "title": "Substitution-class analysis",
+      "web_tab": "Generalization"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Comparator coverage"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Model Comparison",
+      "figure": "/benchmarks/figures/classical_comparator_coverage.png",
+      "figures": [
+        "/benchmarks/figures/classical_comparator_coverage.png"
+      ],
+      "id": "B55",
+      "limitations": [
+        "Coverage varies by comparator and source release."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Comparator coverage"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How much comparator coverage is available and what is missing?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How much comparator coverage is available and what is missing?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "CADD and PhyloP coverage are reported for formal and locked cohorts.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Comparator coverage"
+      ],
+      "title": "Comparator coverage/missingness sensitivity",
+      "web_tab": "Model Comparison"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Threshold sensitivity"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration & Uncertainty",
+      "figure": null,
+      "figures": [],
+      "id": "B56",
+      "limitations": [
+        "The 0.50 threshold and calibration remain frozen; no post-hoc optimization."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Threshold sensitivity"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do descriptive threshold metrics vary around the frozen threshold?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do descriptive threshold metrics vary around the frozen threshold?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Thresholds 0.25, 0.50, and 0.75 are reported descriptively.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Threshold sensitivity"
+      ],
+      "title": "Frozen-threshold sensitivity",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Seed robustness"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Generalization",
+      "figure": null,
+      "figures": [],
+      "id": "B57",
+      "limitations": [
+        "This is downstream robustness, not foundation-model fine-tuning."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Seed robustness"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are cached-representation downstream results sensitive to random seed?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are cached-representation downstream results sensitive to random seed?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Three fixed-seed MLP fits are reported on the validation split.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Seed robustness"
+      ],
+      "title": "Downstream seed robustness",
+      "web_tab": "Generalization"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Model metrics"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration & Uncertainty",
+      "figure": null,
+      "figures": [],
+      "id": "B58",
+      "limitations": [
+        "Calibration curves are not refit per model."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 4000,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Model metrics"
+      ],
+      "population": "formal development",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What calibration-relevant metrics exist per development model?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What calibration-relevant metrics exist per development model?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "All persisted validation model predictions receive common metric treatment.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Model metrics"
+      ],
+      "title": "Per-model calibration where predictions exist",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Core Baseline",
+      "figure": null,
+      "figures": [],
+      "id": "B59",
+      "limitations": [
+        "Threshold remains frozen."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What are macro, micro, and weighted F1 under the frozen threshold?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What are macro, micro, and weighted F1 under the frozen threshold?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "F1 variants are derived from frozen probabilities and labels.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "title": "Macro/micro/weighted F1",
+      "web_tab": "Core Baseline"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "Calibration & Uncertainty",
+      "figure": null,
+      "figures": [],
+      "id": "B60",
+      "limitations": [
+        "Descriptive score-quality metric."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "Evo2",
+        "Nucleotide Transformer",
+        "Caduceus",
+        "CADD",
+        "PhyloP"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the mean absolute probability error?",
+      "requires_new_inference": "NO",
+      "scientific_question": "What is the mean absolute probability error?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "PASS",
+      "summary": "Probability MAE is computed from frozen calibrated probabilities and local labels.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Primary"
+      ],
+      "title": "Probability MAE",
+      "web_tab": "Calibration & Uncertainty"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B61",
+      "limitations": [
+        "Selected candidates are manifest-only; no new model scores are claimed."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 200,
+      "new_inference": "BLOCKED",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Does the frozen model transfer to an independent high-confidence ClinVar cohort?",
+      "requires_new_inference": "BLOCKED",
+      "scientific_question": "Does the frozen model transfer to an independent high-confidence ClinVar cohort?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPUTE_BLOCKED",
+      "summary": "An external manifest is frozen, but new inference is blocked while Modal balance is not verifiable.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "title": "Independent high-confidence ClinVar benchmark",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B62",
+      "limitations": [
+        "No external performance without persisted scores."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 200,
+      "new_inference": "BLOCKED",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do external outcomes vary by review quality?",
+      "requires_new_inference": "BLOCKED",
+      "scientific_question": "Do external outcomes vary by review quality?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPUTE_BLOCKED",
+      "summary": "External review strata are prepared but not scored.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
+      ],
+      "title": "External review-quality subgroups",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B63",
+      "limitations": [
+        "A functional-effect benchmark requires an assay-specific, predeclared mapping."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 0,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How does functional effect correlate with clinical pathogenicity?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How does functional effect correlate with clinical pathogenicity?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "DATA_BLOCKED",
+      "summary": "No MaveDB assay was selected because functional effect is not equivalent to clinical pathogenicity and no approved assay manifest is persisted.",
+      "tables": [],
+      "title": "MaveDB functional correlation",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B64",
+      "limitations": [
+        "No proxy comparator is substituted."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 0,
+      "new_inference": "NO",
+      "output_artifacts": [],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Are additional public comparator assets eligible?",
+      "requires_new_inference": "NO",
+      "scientific_question": "Are additional public comparator assets eligible?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "NOT_APPLICABLE",
+      "summary": "No additional compatible comparator asset is registered beyond CADD and PhyloP.",
+      "tables": [],
+      "title": "Additional public classical comparators",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B65",
+      "limitations": [
+        "Inference blocked before external scoring."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 200,
+      "new_inference": "BLOCKED",
+      "output_artifacts": [],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Do multiple models agree on the external cohort?",
+      "requires_new_inference": "BLOCKED",
+      "scientific_question": "Do multiple models agree on the external cohort?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPUTE_BLOCKED",
+      "summary": "External agreement is unavailable without fresh or cached external scores.",
+      "tables": [],
+      "title": "External multi-model agreement",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B66",
+      "limitations": [
+        "No calibration is refit on the external cohort."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 200,
+      "new_inference": "BLOCKED",
+      "output_artifacts": [],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "Does frozen calibration transport to an external cohort?",
+      "requires_new_inference": "BLOCKED",
+      "scientific_question": "Does frozen calibration transport to an external cohort?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPUTE_BLOCKED",
+      "summary": "Transported calibration is unavailable without external scores.",
+      "tables": [],
+      "title": "External transported calibration",
+      "web_tab": "External Benchmarks"
+    },
+    {
+      "artifact_links": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": null,
+      "figures": [],
+      "id": "B67",
+      "limitations": [
+        "No runtime is fabricated."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 200,
+      "new_inference": "BLOCKED",
+      "output_artifacts": [],
+      "population": "external manifest",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "What is the external scoring cost and throughput?",
+      "requires_new_inference": "BLOCKED",
+      "scientific_question": "What is the external scoring cost and throughput?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPUTE_BLOCKED",
+      "summary": "No new external inference was launched; new spend is zero.",
+      "tables": [],
+      "title": "External runtime/cost/throughput",
+      "web_tab": "Runtime & Cost"
+    },
+    {
+      "artifact_links": [
+        "artifacts/benchmarks/local_analysis_results.json#Drift"
+      ],
+      "code_links": [
+        "scripts/benchmark_expansion/run_local.py",
+        "src/evovariant_tr/benchmark_expansion.py"
+      ],
+      "family": "External",
+      "figure": "/benchmarks/figures/benchmark_status_matrix.png",
+      "figures": [
+        "/benchmarks/figures/benchmark_status_matrix.png",
+        "/benchmarks/figures/benchmark_contact_sheet.png"
+      ],
+      "id": "B68",
+      "limitations": [
+        "Drift is descriptive and does not establish causation."
+      ],
+      "metrics": [
+        "n",
+        "class counts",
+        "AUROC",
+        "AUPRC",
+        "Brier",
+        "ECE",
+        "status"
+      ],
+      "models": [
+        "ClinVar"
+      ],
+      "n": 946,
+      "new_inference": "NO",
+      "output_artifacts": [
+        "artifacts/benchmarks/local_analysis_results.json#Drift"
+      ],
+      "population": "locked temporal cohort",
+      "provenance_links": [
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "question": "How do source-release and cohort properties drift over time?",
+      "requires_new_inference": "NO",
+      "scientific_question": "How do source-release and cohort properties drift over time?",
+      "source_artifacts": [
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/reports/final_metrics_table.json",
+        "research/benchmarks/expansion_v1/protocol_lock.json"
+      ],
+      "status": "COMPLETED_WITH_LIMITATIONS",
+      "summary": "T0/T1 snapshot hashes, date completeness, labels, and review strata are compared.",
+      "tables": [
+        "artifacts/benchmarks/local_analysis_results.json#Drift"
+      ],
+      "title": "Cohort/data-drift comparison",
+      "web_tab": "Temporal Difficulty"
+    }
+  ],
+  "entry_count": 68,
+  "generated_at_utc": "2026-09-23T18:54:24.338278+00:00",
+  "registry_id": "evovariant-tr-benchmark-registry-v1",
+  "status_counts": {
+    "COMPLETED_WITH_LIMITATIONS": 4,
+    "COMPUTE_BLOCKED": 5,
+    "DATA_BLOCKED": 1,
+    "NOT_APPLICABLE": 2,
+    "PASS": 56
+  }
+}

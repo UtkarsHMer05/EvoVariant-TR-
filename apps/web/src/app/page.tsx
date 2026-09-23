@@ -1,6 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import GeneViewer from "~/components/gene-viewer";
 import { Button } from "~/components/ui/button";
@@ -148,7 +149,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#e9eeea]">
       <header className="border-b border-[#3c4f3d]/10 bg-white">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto flex items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="relative">
               <h1 className="text-xl font-light tracking-wide text-[#3c4f3d]">
@@ -161,6 +162,14 @@ export default function HomePage() {
               Variant Analysis
             </span>
           </div>
+          <nav aria-label="Primary" className="flex items-center gap-1 text-sm">
+            <Link href="/analysis" className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]">
+              Research workbench
+            </Link>
+            <Link href="/benchmarks" className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90">
+              Benchmarks
+            </Link>
+          </nav>
         </div>
       </header>
 

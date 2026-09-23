@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B42",
+  "n": 4000,
+  "outputs": {
+    "png": "docs/benchmarks/assets/development_to_final_generalization.png",
+    "web_png": "apps/web/public/benchmarks/figures/development_to_final_generalization.png"
+  },
+  "population": "development and locked stages",
+  "sha256": {
+    "png": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c",
+    "source_artifact": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c",
+    "source_data": "aa4779fee6c07bd60761910cc6add80df2b72813bb634f9caab366b027bea496",
+    "web_png": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c"
+  },
+  "source_artifact": "research/figures/final/development_final_generalization.png",
+  "source_data": "docs/benchmarks/data/figures/development_final_generalization.json"
+}

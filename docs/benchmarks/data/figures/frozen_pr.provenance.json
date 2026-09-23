@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B36",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/frozen_pr.png",
+    "web_png": "apps/web/public/benchmarks/figures/frozen_pr.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695",
+    "source_artifact": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695",
+    "source_data": "175e45a920384329ac3ecba45ebe1bfd813b863f5a3bfb9f4bb80373b310e06a",
+    "web_png": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695"
+  },
+  "source_artifact": "research/figures/final/final_pr.png",
+  "source_data": "docs/benchmarks/data/figures/final_pr.json"
+}

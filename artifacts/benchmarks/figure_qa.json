@@ -1,0 +1,326 @@
+{
+  "figure_count": 20,
+  "figures": [
+    {
+      "asset": "apps/web/public/benchmarks/figures/benchmark_status_matrix.png",
+      "asset_exists": true,
+      "benchmark_id": "B01-B68",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "benchmark_status_matrix",
+      "n": 68,
+      "population": "registered benchmark catalog",
+      "source_data": "docs/benchmarks/data/figures/benchmark_status_matrix.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/evidence_quality_performance.png",
+      "asset_exists": true,
+      "benchmark_id": "B46",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "evidence_quality_performance",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/evidence_quality_performance.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/temporal_difficulty_by_resolution_interval.png",
+      "asset_exists": true,
+      "benchmark_id": "B47",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "temporal_difficulty_by_resolution_interval",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/chromosome_held_out_generalization.png",
+      "asset_exists": true,
+      "benchmark_id": "B48",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "chromosome_held_out_generalization",
+      "n": 4000,
+      "population": "formal development, LOCO",
+      "source_data": "docs/benchmarks/data/figures/chromosome_held_out_generalization.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/model_disagreement_categories.png",
+      "asset_exists": true,
+      "benchmark_id": "B49",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "model_disagreement_categories",
+      "n": 2891,
+      "population": "common validation rows",
+      "source_data": "docs/benchmarks/data/figures/model_disagreement_categories.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/classical_comparator_coverage.png",
+      "asset_exists": true,
+      "benchmark_id": "B55",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "classical_comparator_coverage",
+      "n": 4000,
+      "population": "formal and locked registered cohorts",
+      "source_data": "docs/benchmarks/data/figures/classical_comparator_coverage.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/transition_versus_transversion.png",
+      "asset_exists": true,
+      "benchmark_id": "B53",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "transition_versus_transversion",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/transition_versus_transversion.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/validation_model_comparison.png",
+      "asset_exists": true,
+      "benchmark_id": "B14",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "validation_model_comparison",
+      "n": 595,
+      "population": "formal validation split",
+      "source_data": "docs/benchmarks/data/figures/validation_model_comparison.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/frozen_roc.png",
+      "asset_exists": true,
+      "benchmark_id": "B35",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "frozen_roc",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_roc.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/frozen_pr.png",
+      "asset_exists": true,
+      "benchmark_id": "B36",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "frozen_pr",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_pr.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/frozen_confusion_matrix.png",
+      "asset_exists": true,
+      "benchmark_id": "B37",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "frozen_confusion_matrix",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_confusion_matrix.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/frozen_classification_dashboard.png",
+      "asset_exists": true,
+      "benchmark_id": "B38",
+      "dimensions": [
+        1400,
+        820
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "frozen_classification_dashboard",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_classification_metrics.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/frozen_bootstrap_interval.png",
+      "asset_exists": true,
+      "benchmark_id": "B39",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "frozen_bootstrap_interval",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/bootstrap_interval.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/chromosome_error_analysis.png",
+      "asset_exists": true,
+      "benchmark_id": "B40",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "chromosome_error_analysis",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_error_chromosome.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/gene_error_analysis.png",
+      "asset_exists": true,
+      "benchmark_id": "B41",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "gene_error_analysis",
+      "n": 946,
+      "population": "locked temporal cohort",
+      "source_data": "docs/benchmarks/data/figures/final_gene_errors.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/development_to_final_generalization.png",
+      "asset_exists": true,
+      "benchmark_id": "B42",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "development_to_final_generalization",
+      "n": 4000,
+      "population": "development and locked stages",
+      "source_data": "docs/benchmarks/data/figures/development_final_generalization.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/runtime_by_model.png",
+      "asset_exists": true,
+      "benchmark_id": "B43",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "runtime_by_model",
+      "n": 4000,
+      "population": "formal development",
+      "source_data": "docs/benchmarks/data/figures/runtime_by_model.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/throughput_and_cache_reuse.png",
+      "asset_exists": true,
+      "benchmark_id": "B44",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "throughput_and_cache_reuse",
+      "n": 4000,
+      "population": "formal development",
+      "source_data": "docs/benchmarks/data/figures/throughput_comparison.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/historical_compute_cost.png",
+      "asset_exists": true,
+      "benchmark_id": "B45",
+      "dimensions": [
+        1200,
+        720
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "historical_compute_cost",
+      "n": 4000,
+      "population": "formal development",
+      "source_data": "docs/benchmarks/data/figures/cost_by_phase_model.json",
+      "source_exists": true
+    },
+    {
+      "asset": "apps/web/public/benchmarks/figures/benchmark_contact_sheet.png",
+      "asset_exists": true,
+      "benchmark_id": "B01-B68",
+      "dimensions": [
+        1280,
+        3600
+      ],
+      "finite_source_numbers": true,
+      "hash_recorded": true,
+      "id": "contact_sheet",
+      "n": 19,
+      "population": "registered benchmark figures",
+      "source_data": "docs/benchmarks/data/figures/contact_sheet.provenance.json",
+      "source_exists": true
+    }
+  ],
+  "status": "PASS"
+}

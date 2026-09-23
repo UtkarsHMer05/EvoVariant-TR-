@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B41",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/gene_error_analysis.png",
+    "web_png": "apps/web/public/benchmarks/figures/gene_error_analysis.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217",
+    "source_artifact": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217",
+    "source_data": "3d6d06989d4623b263f6b838333be9a53cf7273bde4932e16317741e04aa070b",
+    "web_png": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217"
+  },
+  "source_artifact": "research/figures/final/final_gene_errors.png",
+  "source_data": "docs/benchmarks/data/figures/final_gene_errors.json"
+}

@@ -1,0 +1,53 @@
+{
+  "baseline_tag": "evovariant-tr-baseline-v1",
+  "baseline_tag_commit": "1003bc5a20973145e0e096ff7b0f3424045d07e6",
+  "clinvar_snapshots": {
+    "t0": {
+      "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+      "release": "2025-01-02",
+      "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa"
+    },
+    "t1": {
+      "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
+      "release": "2026-08-06",
+      "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
+    }
+  },
+  "created_at_utc": "2026-09-23T18:52:43.834637+00:00",
+  "external_rule": "freeze external manifest before inference; strict ID and gene exclusion",
+  "fine_tuning_rule": "new fine-tuning excluded from this benchmark expansion; existing implementation/proof only",
+  "fixed_temporal_bins": [
+    "<=180",
+    "181-365",
+    "366-545",
+    ">545",
+    "missing/invalid"
+  ],
+  "formal_development_manifest": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+  "formal_n": 4000,
+  "locked_n": 946,
+  "locked_test_manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+  "locked_test_rule": "never fit, select, calibrate, tune, or infer new labels from the locked cohort",
+  "master_prompt_sha256": "044c834c7865699db6a09f7d742a9add7a6772d6c31b18da8e7a3b50836f4876",
+  "modal": {
+    "hard_reserve_usd": 5.0,
+    "new_spend_allowed": false,
+    "profile": "utkarshkhajuria59",
+    "reason": "billing summary did not expose a verifiable live balance",
+    "safety_stop_usd": 5.5,
+    "soft_maximum_usd": 24.0
+  },
+  "primary_result": "immutable phase14 locked Evo2 result",
+  "protocol_id": "evovariant-tr-benchmark-expansion-v1",
+  "protocol_yaml_sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+  "review_quality_definition": "0 stars, 1 star, 2 stars, 3 stars; evidence quality is not biological certainty",
+  "start_main_head": "cd143aaa4bf568e00d73269648f39f5131a744c1",
+  "status_vocabulary": [
+    "PASS",
+    "COMPLETED_WITH_LIMITATIONS",
+    "NOT_APPLICABLE",
+    "DATA_BLOCKED",
+    "COMPUTE_BLOCKED"
+  ],
+  "working_branch": "research/benchmark-expansion-v1"
+}

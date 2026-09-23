@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B37",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/frozen_confusion_matrix.png",
+    "web_png": "apps/web/public/benchmarks/figures/frozen_confusion_matrix.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd",
+    "source_artifact": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd",
+    "source_data": "9a09b5152157410c2cc722dab127977bec847667dacbaff1729c571cffaf4b12",
+    "web_png": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd"
+  },
+  "source_artifact": "research/figures/final/final_confusion_matrix.png",
+  "source_data": "docs/benchmarks/data/figures/final_confusion_matrix.json"
+}

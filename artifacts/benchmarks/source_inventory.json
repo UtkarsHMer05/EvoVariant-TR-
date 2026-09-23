@@ -1,0 +1,716 @@
+[
+  {
+    "bytes": 10186,
+    "label_availability": "not_applicable",
+    "path": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+    "sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+    "stage": "locked_test"
+  },
+  {
+    "bytes": 632592,
+    "label_availability": "not_applicable",
+    "path": "artifacts/phase6a/comparators/alphamissense_eligibility_20260921.json",
+    "sha256": "5f45ec6fe523ead99603daa67fc48f8962438a632ed5dfa6770791fea290a0ec",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 306104,
+    "label_availability": "not_applicable",
+    "path": "artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json",
+    "sha256": "310111c525adc31097e88b4bed2df1f553b60c0c014463d8ec3000c2103f42f6",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2941,
+    "label_availability": "not_applicable",
+    "path": "artifacts/phase6a/comparators/phase6a_comparator_qualification_20260921.json",
+    "sha256": "8064b6cb1037843e2b6c65dcafd80d83ae78c0aeb943b7f316ec8d396092887f",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 282821,
+    "label_availability": "not_applicable",
+    "path": "artifacts/phase6a/comparators/phylop100way_hg38_20260921.json",
+    "sha256": "606dde41dfae340b85fc35736cb7a212dbc040137df4c03047cab7b9390a0509",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 288267418,
+    "label_availability": "not_applicable",
+    "path": "data/raw/clinvar/variant_summary_2025-01.txt.gz",
+    "sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 441792560,
+    "label_availability": "not_applicable",
+    "path": "data/raw/clinvar/variant_summary_2026-08.txt.gz",
+    "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 727,
+    "label_availability": "not_applicable",
+    "path": "research/benchmarks/expansion_v1/protocol.yaml",
+    "sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2208,
+    "label_availability": "not_applicable",
+    "path": "research/benchmarks/expansion_v1/protocol_lock.json",
+    "sha256": "3274a0a45c28b624b04dca82efdf7021c163ba55a009aa59c45ed72c063509d2",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 98699,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/ablation_metric_delta.png",
+    "sha256": "7d3b02879f93c2f864b84ef1149a1f549a27e7be74ed2078e38a345770dfd0d8",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 48694,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/bootstrap_interval.png",
+    "sha256": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 59502,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/cache_reuse.png",
+    "sha256": "9a4c12e6345957bd5602fbe065ef4eac3f8a27efcfb7f99c4faeef4a0c33aec0",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 72336,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/calibration_metric_comparison.png",
+    "sha256": "14b4e0171fce0511451eaafb47e174fcaed154db9f8c4bbe253780c1ac336602",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 72014,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/calibration_reliability.png",
+    "sha256": "7c050ad90f2da456f8f23d2efdd0cca89b92fb8df891bf3d597daa15776c55b4",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 84915,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/classifier_auroc_heatmap.png",
+    "sha256": "19ba4bfed419278f4c256e3f4519ccd3f6622245d81ddc4811ae594c83a46492",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 87296,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/classifier_brier_heatmap.png",
+    "sha256": "dabc8f5956d9b4d11f5382951a5893409937c1cb7e03ab752107dec105e3c9ff",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 80233,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/classifier_mcc_heatmap.png",
+    "sha256": "92d5cbdd02499aed355b1a732a10eed676a28a2fb4467274d01e6e0c5e4688bd",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 77337,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/cohort_flow.png",
+    "sha256": "06d6fafa7c3cff25896bf0b3b40129b4caa158c244859ca13b57ef2074dd4dd4",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 70433,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/combination_ranking.png",
+    "sha256": "578913ba33824bccb58cca3405e1ac2c0d5aebf17c6a9318fc16d207908bbcf7",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 61735,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/compute_cumulative_rows.png",
+    "sha256": "69ecfb6f66463cfba2d04a74f9835528d4241ec6a735c748e182c310e2242825",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 54423,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/cost_by_phase_model.png",
+    "sha256": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 53345,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/cumulative_compute_spend.png",
+    "sha256": "c7928e3ca6c679e7b63f8cc47a30c3e014f062dcb0d49ef775b79b4ba3719cc5",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 48849,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/development_final_generalization.png",
+    "sha256": "322b3f038aec187b016d56eea1412553c8ae2dab22d368b17df29f8360e04c3c",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 49219,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/diversity_matrix.png",
+    "sha256": "54d92eea6cee0172fc3be02e87e7f8c86d744627e0c9163668b3ff31a6821fed",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 48375,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/ensemble_comparison.png",
+    "sha256": "83dbcd24a47c773094ea743ef1937b94c6f7da8ee997a710efa23e7ec5e1dc60",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 57489,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_abstention_semantics.png",
+    "sha256": "83dd44d0378f86fee8c2ca9726053d6648f1a336cab6ce0a89d829a8ab55b043",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 51736,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_chromosome_distribution.png",
+    "sha256": "92dbb4cf09b8db9b928d9da8f80dca540bd00dc176c7a247a2ec897a5d3b23fb",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 39664,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_class_distribution.png",
+    "sha256": "e28aba0f8a504bb0024b588075b1ee1572e68fc3cff58ac752f326a6ec99657c",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 57942,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_classification_metrics.png",
+    "sha256": "5566eedf8616e26dd07e3b3b6297085b39592aeef8e0939085189d1e737f7d66",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 45548,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_confusion_matrix.png",
+    "sha256": "889562317ce30de7bac3de37c4cfca47fda19e9cc45b91d0a8f6c5bd7f7675dd",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 47643,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_error_chromosome.png",
+    "sha256": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 54367,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_f1_metrics.png",
+    "sha256": "4c4bb2d78166e689244e02cfef949cee8826325885ccbeac7e1c5cd3f183e431",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 41464,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_fp_fn.png",
+    "sha256": "79e3a6297b0517df0f109caddc4959c4a0396c56c1480a9c719d7b84ddea9406",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 48208,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_gene_errors.png",
+    "sha256": "9fcaee48f7a749819666d10e996ceccc701035b28cfa19130c0909f14e8f4217",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 52570,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_gene_top.png",
+    "sha256": "b14722d56fd0f2eaadd4b9d7fcf6f3e9e896cbaea4529836663924376972ced7",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 40210,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_outcome_counts.png",
+    "sha256": "0315cc7001cbd4eafbf7f7ebe44137b5f5c4957d2b42ca5fc3cb5df9246e5122",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 52047,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_pr.png",
+    "sha256": "6d10ce03a4baf4549584bafeadc47a802ebbbbb7cb2d80910e02ded4966f8695",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 58999,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_probability_quality.png",
+    "sha256": "bf4935f1a6b9db648f6c8c9701515f8316ee3b31df531c8df9dd08c44c5fddc3",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 53179,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/final_roc.png",
+    "sha256": "0d345da63060a75cfde4b26187fb65e449c7b2de074890381221c33f90ed3e35",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 64188,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/foundation_model_performance.png",
+    "sha256": "b32f9f7668085ba84ebd98e46a7c542bfcf0c5ec1ce2e55347ae2820e14e9112",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 71506,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/hpo_hyperparameters.png",
+    "sha256": "98e1e8885b4c9926175866d72d1b4236745c3b69d62e7c67e8abe9e4145e8cf6",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 62438,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/hpo_trial_history.png",
+    "sha256": "9b6c561ae700456d22946e39a31e41b831810b23ad5620870744097c56a7097e",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 41462,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/learning_curve_auroc.png",
+    "sha256": "0849cb01ee55204b3ce687af68140c98c45cc77d77288747767be66f413a8bc1",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 48667,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/learning_curve_metrics.png",
+    "sha256": "b791579ea87d5641eca5cbe3a3d5f46cbb80a68d0b585b1e7d898777d432f2a9",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 51003,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/project_timeline.png",
+    "sha256": "b2231af45b9ae4603942f454c48925e8060f68fc3e11a978706dcb6e0e7f2330",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 52099,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/raw_vs_representation.png",
+    "sha256": "36a164dfa338310a2811bdfd947c1df3385a4aa6abf40faca7a6d0c847e12a2b",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 45951,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/representation_layers.png",
+    "sha256": "940db0dcfc79af55e048950396eec7bfe645d901d8bbc7e227dcfc684caf328d",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 52502,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/risk_coverage_development.png",
+    "sha256": "d5f00f1dbd32de4393766aaa70d56d224b84fe6443755936939fe675be0770d5",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 53732,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/runtime_by_model.png",
+    "sha256": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 3881,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/ablation_metric_delta.json",
+    "sha256": "9307a64c81fb675ef0f105b026ab2fd47ddece2fbafeb7c1779f3140b9c09104",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1393,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/bootstrap_interval.json",
+    "sha256": "cb7d9496334cf149ed7a4d913ede0cc039ab71de48e4e1c7c2ce9e13bb27c30e",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2928,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/cache_reuse.json",
+    "sha256": "e05f83f6b8dfef27d1237b28a05e2c4d7f0f1ae9f260840dfec029a5b424b027",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2356,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/calibration_metric_comparison.json",
+    "sha256": "d4ebde4c691a1b6d4a866edc2a1fb3d5dc9ab1acf20e43b089b32b6bfde437c0",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 4191,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/calibration_reliability.json",
+    "sha256": "63577a2a6a1f17aee9fece67d44943c599ae406958b3aa2584f21b3c0123a2d4",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 4544,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/classifier_auroc_heatmap.json",
+    "sha256": "6036de853042aee16db7520cdbb9d77b1a61b6dfa4a20900c3783867952ed158",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 4598,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/classifier_brier_heatmap.json",
+    "sha256": "2248c3f89b0325d540becc68f4a5fbd3d58cda6d55f712d0a0119db55c42c794",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 4408,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/classifier_mcc_heatmap.json",
+    "sha256": "7cf0fa3a2341b59b863cd961886122368be1065dfd9342f83bd541e8b3b286f9",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2597,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/cohort_flow.json",
+    "sha256": "be66768e3b7c0ba572ed89610d0908c0f3c125c1dcd2c50b1e2ab9936b255541",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2132,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/combination_ranking.json",
+    "sha256": "a201a2ba373856de7a91dfc5a204cb09cc0fb6a6f581327afbf93a400dbdb931",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2944,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/compute_cumulative_rows.json",
+    "sha256": "ea10d92e306ea2e92be1fa09bf977deffce209b70937298efc5cf92fbb390b39",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2616,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/cost_by_phase_model.json",
+    "sha256": "e689656ccec58dc17d848b0e5ec02ae0c5177db797c5eb23754d22ee7ff6e0ce",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2944,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/cumulative_compute_spend.json",
+    "sha256": "017b9279dc304fc037fa840343ab1701685e69a18b7ee36b83766ff64f6f81ce",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1653,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/development_final_generalization.json",
+    "sha256": "aa4779fee6c07bd60761910cc6add80df2b72813bb634f9caab366b027bea496",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1792,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/diversity_matrix.json",
+    "sha256": "39c5f665aee46fb0ac499625a48734fc8a8fa0fa542f9438e03d78099efb8b60",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1661,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/ensemble_comparison.json",
+    "sha256": "f16d60d63ae3200348622e526351cc12a58b1026ec7d6ee48971d93d8f6f3993",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1882,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_abstention_semantics.json",
+    "sha256": "4c63738d9836def8457cb92e6bb234dc14f53a9272afed1eff2ad0529d2423af",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2594,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_chromosome_distribution.json",
+    "sha256": "0ede5fd6408edb0a3146bc67db0b724eb406a2eed620a3a7e13fa778e17e8f92",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1533,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_class_distribution.json",
+    "sha256": "e5e0f85b4eb04e189dfc52c60a219243fa65c5691c8d2e32ecf826fe35013980",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1752,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_classification_metrics.json",
+    "sha256": "a90abfb3bdbc8fa5d3765dd24ff1f960afc7cd7134763c756c29e5bd3f8a091e",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1795,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_confusion_matrix.json",
+    "sha256": "9a09b5152157410c2cc722dab127977bec847667dacbaff1729c571cffaf4b12",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2593,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_error_chromosome.json",
+    "sha256": "781b7991cc711e85951640ebd820841e5e203ce12a741be001ebf3e0f8a96fe8",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1591,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_f1_metrics.json",
+    "sha256": "75668fe1a25928ef847cbd8d0a62eccadcf76d25a6acf6a6bc7e13f7b498b3ba",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1518,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_fp_fn.json",
+    "sha256": "c2ff887a1483642bb79f1841bf36f8a8f2dc4821afbfba4633bf31f9305f488a",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2220,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_gene_errors.json",
+    "sha256": "3d6d06989d4623b263f6b838333be9a53cf7273bde4932e16317741e04aa070b",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2220,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_gene_top.json",
+    "sha256": "1db168521729ba2cb0850160192a1a6de8d5e72f1d3585082d77759175b5a5da",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1621,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_outcome_counts.json",
+    "sha256": "b660baf95b833958685964168711b3396ed278824b3fd79c8af4fee9a143983f",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 5654,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_pr.json",
+    "sha256": "175e45a920384329ac3ecba45ebe1bfd813b863f5a3bfb9f4bb80373b310e06a",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1731,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_probability_quality.json",
+    "sha256": "7cdf05cd066c57ac8db81e52b2606ba922cc268e2c8c1060c98bfbf82b6862d7",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 5716,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/final_roc.json",
+    "sha256": "b0c7914bd19025fcef2d6d0edd76177199ed5e2ad6e2036ea6288b1d21fe3266",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2333,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/foundation_model_performance.json",
+    "sha256": "786f9455d891ddb7c20ca5a8657fcd0b51115bae248cd5deec2b3474431f4d1f",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 3319,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/hpo_hyperparameters.json",
+    "sha256": "e0bd3159b85098ce7ea21ff42fcfd2c1bde12f23ca88470cbf6192d0b4a3c7ac",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 7314,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/hpo_trial_history.json",
+    "sha256": "56a682a3a7a3ababcd446d00d59c725b5ea5c1e300cff3e03de4406116ec5bee",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1987,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/learning_curve_auroc.json",
+    "sha256": "b4df60f3ccde96688634e44883bf3545f50a7ab5e42fbd597f6e3402a6900ab5",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 3710,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/learning_curve_metrics.json",
+    "sha256": "61cd67455a02f3dc2c066f000c375ae0963b76dc85ea8ce7a454f6d0b1107d1b",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2314,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/project_timeline.json",
+    "sha256": "ed64b87710c5294080d76305b051008ec716c8de67dcbf39ac17633175c1594d",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1679,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/raw_vs_representation.json",
+    "sha256": "2278647d8b612225493dbb0b5deb92628ef3d38ceecd052fae79208bd2c420f9",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2054,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/representation_layers.json",
+    "sha256": "fb8bb04a1825a8e8cbe2aa44d5a47f5f26b8f24101e8c89bcbc8598beede3b60",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 4351,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/risk_coverage_development.json",
+    "sha256": "29ae251e3bcd29f046cc108203e4b213ad6e171ab0770ab0300b8c407b30d755",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2611,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/runtime_by_model.json",
+    "sha256": "e60e9f28273cfd546416961edbcdca786c9fae86a37beb2d44fcdb76dc55f675",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1998,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/temporal_transition.json",
+    "sha256": "95e37fa1b0072a6bd275f338577eda01e74a0daeece2703a85d3b4bfea7f66ce",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2576,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/source/throughput_comparison.json",
+    "sha256": "a98cfb38d4cf27ba49189dfb020da1cb114cbbd9ed58089b1b4a25978e8ffd2b",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 63711,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/temporal_transition.png",
+    "sha256": "a774dd80a2668789f7b2bb717eeb4721c5447ba9959c1462770cbfae00190d40",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 51633,
+    "label_availability": "not_applicable",
+    "path": "research/figures/final/throughput_comparison.png",
+    "sha256": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 494671,
+    "label_availability": "labels_local_or_frozen",
+    "path": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+    "sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+    "stage": "locked_test"
+  },
+  {
+    "bytes": 2190626,
+    "label_availability": "labels_local_or_frozen",
+    "path": "research/ml_extension/splits/formal_budgeted_20260921/formal_development_manifest.json",
+    "sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1316,
+    "label_availability": "not_applicable",
+    "path": "research/reports/final_metrics_table.csv",
+    "sha256": "16485dbbe45ae759e9a8a7ea2fa8eb9c821c4f68807714e934bc298b6f3b33b8",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 2864,
+    "label_availability": "not_applicable",
+    "path": "research/reports/final_metrics_table.json",
+    "sha256": "bf4e7a30223281e27912636117b288d8f6cdc4cc1f83c5e16c858cc3a621188b",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 6884,
+    "label_availability": "not_applicable",
+    "path": "research/runs/formal_cpu_20260922/phase13/frozen_config_materialized.json",
+    "sha256": "4a8d9cb542f31c1d96638ae43330247f55796da23f737e81b9e40472ab480c88",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 1682810,
+    "label_availability": "labels_local_or_frozen",
+    "path": "research/runs/formal_cpu_20260922/phase14_locked_evo2/predictions_with_local_labels.jsonl",
+    "sha256": "77cbbb48032ac7852ff09f93ea448d1e98ca21457843c1feda16f31e8dc530e7",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 26706546,
+    "label_availability": "labels_local_or_frozen",
+    "path": "research/runs/formal_cpu_20260922/phase8/development_predictions.jsonl",
+    "sha256": "0eb7392306b50ebfb35ccc631a8f60cae247d593bcf1aca58b0baffec5698ff4",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 110466629,
+    "label_availability": "not_applicable",
+    "path": "research/runs/phase7_formal_budgeted_optimized_20260922/caduceus/features.npz",
+    "sha256": "280dcc531baee4f4d55fd4eeea46142b35fc98de5c57ee2ab83f001f596e9a20",
+    "stage": "development_or_provenance"
+  },
+  {
+    "bytes": 439668929,
+    "label_availability": "not_applicable",
+    "path": "research/runs/phase7_formal_budgeted_optimized_20260922/nucleotide_transformer/features.npz",
+    "sha256": "c41aca39e6c066d8acd2025ca7ab050d12a22a7b7f1c72424e48704c11d3a5de",
+    "stage": "development_or_provenance"
+  }
+]

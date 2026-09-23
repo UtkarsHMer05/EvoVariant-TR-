@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B39",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/frozen_bootstrap_interval.png",
+    "web_png": "apps/web/public/benchmarks/figures/frozen_bootstrap_interval.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3",
+    "source_artifact": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3",
+    "source_data": "cb7d9496334cf149ed7a4d913ede0cc039ab71de48e4e1c7c2ce9e13bb27c30e",
+    "web_png": "3aeb7050b3b6dc82bb68bbd27104677e81d5a79bef17a1f00f7811b41ef26eb3"
+  },
+  "source_artifact": "research/figures/final/bootstrap_interval.png",
+  "source_data": "docs/benchmarks/data/figures/bootstrap_interval.json"
+}

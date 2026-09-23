@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AlertCircle, Shield } from "lucide-react";
+import Link from "next/link";
 import { Alert, AlertDescription } from "~/components/ui/alert";
 import { Button } from "~/components/ui/button";
 import {
@@ -986,7 +987,7 @@ export default function VariantAnalysisPage() {
   return (
     <div className="min-h-screen bg-[#e9eeea]">
       <header className="border-b border-[#3c4f3d]/10 bg-white">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto flex items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <Shield className="h-6 w-6 text-[#de8246]" aria-hidden="true" />
             <div>
@@ -998,6 +999,14 @@ export default function VariantAnalysisPage() {
               </p>
             </div>
           </div>
+          <nav aria-label="Primary" className="flex items-center gap-1 text-sm">
+            <Link href="/" className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]">
+              Variant analysis
+            </Link>
+            <Link href="/benchmarks" className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90">
+              Benchmarks
+            </Link>
+          </nav>
         </div>
       </header>
 

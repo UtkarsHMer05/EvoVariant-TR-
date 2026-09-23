@@ -1,0 +1,16 @@
+protocol_id: evovariant-tr-benchmark-expansion-v1
+primary_result: immutable phase14 locked Evo2 result
+start_main_head: cd143aaa4bf568e00d73269648f39f5131a744c1
+working_branch: research/benchmark-expansion-v1
+baseline_tag_commit: 1003bc5a20973145e0e096ff7b0f3424045d07e6
+formal_n: 4000
+locked_n: 946
+locked_test_rule: never fit, select, calibrate, tune, or infer new labels from locked cohort
+fine_tuning_rule: no new fine-tuning in benchmark expansion
+review_quality_groups: [0 stars, 1 star, 2 stars, 3 stars]
+temporal_bins: [<=180, 181-365, 366-545, >545, missing/invalid]
+modal_profile: utkarshkhajuria59
+modal_hard_reserve_usd: 5.00
+modal_safety_stop_usd: 5.50
+modal_soft_maximum_usd: 24.00
+new_modal_spend_allowed: false

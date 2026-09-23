@@ -1,0 +1,17 @@
+{
+  "EvoVariant_TR_Baseline_Judge_Demo.ipynb": {
+    "errors": [],
+    "sha256": "757439258dadef037ae9354471c782f82837585c575c6c3687f0af07fab36ff1",
+    "status": "PASS"
+  },
+  "EvoVariant_TR_Benchmark_Expansion_Demo.ipynb": {
+    "errors": [],
+    "sha256": "3d753fcbfa458be178363cd734d5e04adbce1406992dc624e40d8a84d310037e",
+    "status": "PASS"
+  },
+  "EvoVariant_TR_FineTuning_Attempt_Demo.ipynb": {
+    "errors": [],
+    "sha256": "5cae958b0aadcf6f38da2479cd211e953bac1815430773891867b1253954728b",
+    "status": "PASS"
+  }
+}

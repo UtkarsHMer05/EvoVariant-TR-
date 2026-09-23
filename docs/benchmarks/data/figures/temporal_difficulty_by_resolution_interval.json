@@ -1,0 +1,32 @@
+{
+  "benchmark_id": "B47",
+  "n": 946,
+  "population": "locked temporal cohort",
+  "records": [
+    {
+      "auroc": 0.916083916083916,
+      "bin": "181-365",
+      "n": 24
+    },
+    {
+      "auroc": 0.841820987654321,
+      "bin": "366-545",
+      "n": 51
+    },
+    {
+      "auroc": null,
+      "bin": "<=180",
+      "n": 5
+    },
+    {
+      "auroc": 0.9161756917781014,
+      "bin": ">545",
+      "n": 862
+    },
+    {
+      "auroc": 0.6666666666666666,
+      "bin": "missing/invalid",
+      "n": 4
+    }
+  ]
+}

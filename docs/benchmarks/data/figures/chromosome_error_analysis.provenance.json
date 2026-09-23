@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B40",
+  "n": 946,
+  "outputs": {
+    "png": "docs/benchmarks/assets/chromosome_error_analysis.png",
+    "web_png": "apps/web/public/benchmarks/figures/chromosome_error_analysis.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "png": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85",
+    "source_artifact": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85",
+    "source_data": "781b7991cc711e85951640ebd820841e5e203ce12a741be001ebf3e0f8a96fe8",
+    "web_png": "163f05027e9d7bc0013f85cee6916d2ae7d4a9f61584289d806ba1a15dc84e85"
+  },
+  "source_artifact": "research/figures/final/final_error_chromosome.png",
+  "source_data": "docs/benchmarks/data/figures/final_error_chromosome.json"
+}

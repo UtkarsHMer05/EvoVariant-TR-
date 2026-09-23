@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B45",
+  "n": 4000,
+  "outputs": {
+    "png": "docs/benchmarks/assets/historical_compute_cost.png",
+    "web_png": "apps/web/public/benchmarks/figures/historical_compute_cost.png"
+  },
+  "population": "formal development",
+  "sha256": {
+    "png": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9",
+    "source_artifact": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9",
+    "source_data": "e689656ccec58dc17d848b0e5ec02ae0c5177db797c5eb23754d22ee7ff6e0ce",
+    "web_png": "2923db9c5b9efe746abdf36041a2d21be43aff08b0ad15e18f9e37e04a2c12c9"
+  },
+  "source_artifact": "research/figures/final/cost_by_phase_model.png",
+  "source_data": "docs/benchmarks/data/figures/cost_by_phase_model.json"
+}

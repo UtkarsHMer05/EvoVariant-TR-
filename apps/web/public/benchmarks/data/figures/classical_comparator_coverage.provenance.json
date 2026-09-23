@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B55",
+  "n": 4000,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/classical_comparator_coverage.pdf",
+    "png": "docs/benchmarks/assets/classical_comparator_coverage.png",
+    "svg": "docs/benchmarks/assets/classical_comparator_coverage.svg",
+    "web_png": "apps/web/public/benchmarks/figures/classical_comparator_coverage.png"
+  },
+  "population": "formal and locked registered cohorts",
+  "sha256": {
+    "pdf": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b",
+    "png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d",
+    "source_data": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76",
+    "svg": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598",
+    "web_png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+  },
+  "source_data": "docs/benchmarks/data/figures/classical_comparator_coverage.json"
+}

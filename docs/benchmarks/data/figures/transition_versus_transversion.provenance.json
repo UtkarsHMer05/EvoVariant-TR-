@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B53",
+  "n": 946,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/transition_versus_transversion.pdf",
+    "png": "docs/benchmarks/assets/transition_versus_transversion.png",
+    "svg": "docs/benchmarks/assets/transition_versus_transversion.svg",
+    "web_png": "apps/web/public/benchmarks/figures/transition_versus_transversion.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "pdf": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49",
+    "png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5",
+    "source_data": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c",
+    "svg": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554",
+    "web_png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
+  },
+  "source_data": "docs/benchmarks/data/figures/transition_versus_transversion.json"
+}

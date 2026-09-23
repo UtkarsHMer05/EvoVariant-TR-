@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B46",
+  "n": 946,
+  "population": "locked temporal cohort",
+  "records": [
+    {
+      "auroc": 0.9177284882806355,
+      "group": "2 stars",
+      "n": 560
+    },
+    {
+      "auroc": 0.8922213203463204,
+      "group": "3 stars",
+      "n": 386
+    }
+  ]
+}

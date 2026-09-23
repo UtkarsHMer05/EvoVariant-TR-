@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B46",
+  "n": 946,
+  "outputs": {
+    "pdf": "docs/benchmarks/assets/evidence_quality_performance.pdf",
+    "png": "docs/benchmarks/assets/evidence_quality_performance.png",
+    "svg": "docs/benchmarks/assets/evidence_quality_performance.svg",
+    "web_png": "apps/web/public/benchmarks/figures/evidence_quality_performance.png"
+  },
+  "population": "locked temporal cohort",
+  "sha256": {
+    "pdf": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b",
+    "png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00",
+    "source_data": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452",
+    "svg": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c",
+    "web_png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
+  },
+  "source_data": "docs/benchmarks/data/figures/evidence_quality_performance.json"
+}

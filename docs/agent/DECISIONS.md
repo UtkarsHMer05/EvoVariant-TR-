@@ -3603,3 +3603,41 @@ Validation:
 The ledger audit is no-spend and hash-addressed. The frozen Phase 14 artifact, joined predictions,
 approval, protocol, manifests, thresholds, calibration, and final metrics are unchanged. Raw-delta
 AUROC is reported directly under alternate-minus-reference orientation with no post-hoc sign flip.
+
+## D-113 — Close the no-spend benchmark expansion surface without reopening frozen science
+
+Status: ACCEPTED
+Date: 2026-09-24
+
+Context:
+The benchmark-expansion master prompt requires a broad B01-B68 evidence surface, a judge-facing
+web modal, notebooks, figures, provenance, and a Modal safety gate. The repository already held
+the immutable 946-row Phase 14 result and historical publication artifacts. A fresh local balance
+was not verifiable, while the local GRCh38 reference FASTA was present.
+
+Decision:
+Complete the local benchmark expansion on `research/benchmark-expansion-v1` using only registered
+artifacts and no new paid inference. Freeze the 200-row gene/ID-disjoint external manifest before
+inference, record external scoring as `COMPUTE_BLOCKED_BALANCE_UNVERIFIED`, retain the sole
+MaveDB assay-mapping `DATA_BLOCKED` row, and expose every state through the registry and web hub.
+Keep new fine-tuning out of the primary result; link existing feasibility evidence only as a
+bounded proof surface. Do not claim external scores, a completed fine-tuned study, or a release
+deployment.
+
+Evidence:
+- `artifacts/benchmarks/benchmark_registry.json` contains all 68 entries and status counts.
+- `artifacts/benchmarks/benchmark_expansion_state.json` records the no-spend phase closeout;
+  `artifacts/benchmarks/external_clinvar_manifest.json` records 200 frozen candidates, ready
+  reference data, zero fresh scores, and the compute block.
+- `artifacts/benchmarks/BASELINE_INTEGRITY_REPORT.json` is `PASS`; figure QA is `PASS`; the
+  artifact manifest contains 171 hash-addressed entries.
+- `apps/web/public/benchmarks/benchmark-manifest.json` drives the 15-tab web surface. Frontend
+  build, 49/49 HTTP asset checks, and 8/8 browser journeys pass.
+- `make validate` passes with 722 tests, 33 deselected tests, and 95.04% coverage; scientific,
+  protocol, ML-control-plane, and registry gates also pass.
+
+Consequences:
+The repository has a complete local judge/demo surface with explicit stage-qualified blockers.
+The immutable frozen result is preserved. Any future external inference requires a fresh balance
+verification and must reuse the frozen manifest; any fine-tuned claim requires a separately
+authorized, complete study with its own provenance and evaluation boundary.

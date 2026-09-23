@@ -1588,3 +1588,29 @@ it did not reopen selection, modify any Phase 14 artifact, or start Modal comput
   earlier `$7.17` Phase 6 user basis, records the later `$5.94` pre-tail basis, and separates
   `$2.989549601` of subsequent direct rate estimates from provider workspace meter deltas. No
   exact provider-confirmed remaining credit balance is claimed.
+
+## Benchmark expansion v1 no-spend continuation — 2026-09-24
+
+- The working branch is `research/benchmark-expansion-v1`. The frozen Phase 14/946-row primary
+  artifact remains unchanged and is rechecked by `artifacts/benchmarks/BASELINE_INTEGRITY_REPORT.json`
+  with status `PASS`. The locally recomputed primary metrics remain AUROC `0.9092259737895887`,
+  AUPRC `0.8630391000187404`, F1 `0.8181818181818182`, and MCC `0.6809606106662964`.
+- The no-spend B01-B68 registry is closed locally with 68 entries: 56 `PASS`, 4
+  `COMPLETED_WITH_LIMITATIONS`, 2 `NOT_APPLICABLE`, 5 `COMPUTE_BLOCKED`, and 1 `DATA_BLOCKED`.
+  The sole data-blocked entry is the intentionally unselected MaveDB assay mapping; it is not
+  treated as clinical pathogenicity evidence.
+- The external ClinVar T1 manifest is frozen at 200 candidates with strict formal/locked ID and
+  gene disjointness. Reference status is `READY`, but no external scores were generated because
+  the Modal billing summary did not expose a verifiable live balance. New Modal spend is `$0.00`,
+  no resources were started, and the only global blocker is `COMPUTE_BLOCKED_BALANCE_UNVERIFIED`.
+- The generated evidence bundle contains 20 figure records, figure QA `PASS`, 171 artifact-manifest
+  entries, three syntax-checked notebooks, and the manifest-driven `/benchmarks` hub. The fresh
+  production build passed, all 49 manifest-linked assets returned HTTP 200, and the eight browser
+  journeys (benchmark hub plus existing workbench) passed.
+- The primary result does not include new fine-tuning. Existing adaptation/encoder-update
+  feasibility evidence is linked as a bounded proof surface; a complete fine-tuned benchmark
+  study remains explicitly unclaimed.
+- Free local gates passed: `make protocol-verify`, `make ml-protocol-verify`, `make registry-verify`,
+  `make test-scientific` (7 passed, 1 skipped), `make validate` (722 passed, 33 deselected,
+  95.04% coverage), `make web-check`, and browser E2E (8 passed). Paid Modal inference was not
+  attempted because the balance gate remained unverifiable.

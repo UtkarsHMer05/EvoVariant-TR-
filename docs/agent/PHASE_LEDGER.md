@@ -1208,3 +1208,23 @@ genuine unavailable evidence, not values to infer.
 - The no-spend ledger at `artifacts/audits/COMPUTE_LEDGER_AUDIT.md` preserves the earlier `$7.17`
   Phase 6 basis, records the later `$5.94` pre-tail basis, and separates `$2.989549601` of direct
   rate estimates from provider workspace meter deltas. It does not claim exact remaining credits.
+
+## Phase 25 — Autonomous benchmark expansion v1 — 2026-09-24
+
+Status: `PASS_LOCAL_NO_SPEND / EXTERNAL_COMPUTE_BLOCKED`
+
+- B01-B68 registry: 68 entries; 56 `PASS`, 4 `COMPLETED_WITH_LIMITATIONS`, 2 `NOT_APPLICABLE`,
+  5 `COMPUTE_BLOCKED`, and 1 `DATA_BLOCKED`.
+- Frozen baseline integrity: `PASS`; locked cohort remains 946 rows and the primary artifact,
+  manifest, calibration, threshold, and selection boundary were not modified.
+- External manifest: 200 deterministic, strict-gene-disjoint ClinVar T1 candidates; reference
+  FASTA `READY`; fresh inference `0`; Modal status `COMPUTE_BLOCKED_BALANCE_UNVERIFIED`; new
+  spend `$0.00`; no remote resources started.
+- Publication and web evidence: 20 figure records with figure QA `PASS`, 171 artifact-manifest
+  entries, three syntax-checked notebooks, 15 web tabs, 10 downloads, 49/49 HTTP asset checks,
+  and 8/8 Playwright journeys.
+- Software gates: protocol, additive ML control plane, registry, scientific tests, full local
+  validation, and frontend build all pass. Full local validation is 722 passed, 33 deselected,
+  95.04% coverage.
+- Fine-tuning boundary: no new fine-tuning entered the primary result; existing feasibility
+  evidence is surfaced without claiming a completed fine-tuned benchmark study.

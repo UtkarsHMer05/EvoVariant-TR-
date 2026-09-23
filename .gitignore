@@ -86,5 +86,17 @@ research/reports/
 # Python pytest cache
 .pytest_cache/
 
+# Local coding-agent instructions; scientific protocol and benchmark docs stay tracked.
+.agent-prompts/
+.codex/
+CODEX_MASTER_PROMPT.md
+**/CODEX_MASTER_PROMPT.md
+**/*codex*prompt*.md
+**/*AGENT_PROMPT*.md
+
 # Python ruff cache
 .ruff_cache/
+
+# Local UI review and Playwright snapshots
+.impeccable/
+apps/web/.playwright-cli/

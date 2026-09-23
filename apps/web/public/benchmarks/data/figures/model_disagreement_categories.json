@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "B49",
+  "n": 2891,
+  "population": "common validation rows",
+  "records": [
+    {
+      "category": "high disagreement",
+      "n": 410
+    },
+    {
+      "category": "majority",
+      "n": 251
+    },
+    {
+      "category": "strong consensus",
+      "n": 2230
+    }
+  ]
+}

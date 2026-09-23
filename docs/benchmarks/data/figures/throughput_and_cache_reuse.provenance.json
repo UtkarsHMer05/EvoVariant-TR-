@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B44",
+  "n": 4000,
+  "outputs": {
+    "png": "docs/benchmarks/assets/throughput_and_cache_reuse.png",
+    "web_png": "apps/web/public/benchmarks/figures/throughput_and_cache_reuse.png"
+  },
+  "population": "formal development",
+  "sha256": {
+    "png": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f",
+    "source_artifact": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f",
+    "source_data": "a98cfb38d4cf27ba49189dfb020da1cb114cbbd9ed58089b1b4a25978e8ffd2b",
+    "web_png": "d04f8bcbbac0dd743e4f97eae64630db2f61cd7fec5a94252be4d5f0e6d5527f"
+  },
+  "source_artifact": "research/figures/final/throughput_comparison.png",
+  "source_data": "docs/benchmarks/data/figures/throughput_comparison.json"
+}

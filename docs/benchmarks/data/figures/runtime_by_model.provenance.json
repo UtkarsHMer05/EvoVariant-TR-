@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "B43",
+  "n": 4000,
+  "outputs": {
+    "png": "docs/benchmarks/assets/runtime_by_model.png",
+    "web_png": "apps/web/public/benchmarks/figures/runtime_by_model.png"
+  },
+  "population": "formal development",
+  "sha256": {
+    "png": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8",
+    "source_artifact": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8",
+    "source_data": "e60e9f28273cfd546416961edbcdca786c9fae86a37beb2d44fcdb76dc55f675",
+    "web_png": "055ace34923db2ee81be1035ed02b2119fa233c00b33608d2ffed3c2e90bf8c8"
+  },
+  "source_artifact": "research/figures/final/runtime_by_model.png",
+  "source_data": "docs/benchmarks/data/figures/runtime_by_model.json"
+}

@@ -1,0 +1,145 @@
+{
+  "benchmark_id": "B48",
+  "n": 4000,
+  "population": "formal development, LOCO",
+  "records": [
+    {
+      "auroc": 0.9704280648429585,
+      "chromosome": "1",
+      "n": 338,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9915134370579916,
+      "chromosome": "2",
+      "n": 373,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9872587827808016,
+      "chromosome": "3",
+      "n": 219,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9957519116397621,
+      "chromosome": "4",
+      "n": 129,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9756927564414195,
+      "chromosome": "5",
+      "n": 155,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9806949806949807,
+      "chromosome": "6",
+      "n": 109,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9638408999598232,
+      "chromosome": "7",
+      "n": 169,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.971444568868981,
+      "chromosome": "8",
+      "n": 113,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9725135623869801,
+      "chromosome": "9",
+      "n": 193,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9785024154589372,
+      "chromosome": "X",
+      "n": 136,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9705882352941176,
+      "chromosome": "10",
+      "n": 154,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9943381491604841,
+      "chromosome": "11",
+      "n": 249,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9763071895424836,
+      "chromosome": "12",
+      "n": 185,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9920076726342711,
+      "chromosome": "13",
+      "n": 126,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9742132867132867,
+      "chromosome": "14",
+      "n": 126,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9748201438848921,
+      "chromosome": "15",
+      "n": 167,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9840670859538784,
+      "chromosome": "16",
+      "n": 204,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.975632556400349,
+      "chromosome": "17",
+      "n": 297,
+      "status": "PASS"
+    },
+    {
+      "auroc": 1.0,
+      "chromosome": "18",
+      "n": 63,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9871593291404612,
+      "chromosome": "19",
+      "n": 248,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9875259875259875,
+      "chromosome": "20",
+      "n": 87,
+      "status": "PASS"
+    },
+    {
+      "auroc": 0.9896103896103896,
+      "chromosome": "21",
+      "n": 62,
+      "status": "PASS"
+    },
+    {
+      "auroc": 1.0,
+      "chromosome": "22",
+      "n": 93,
+      "status": "PASS"
+    }
+  ]
+}

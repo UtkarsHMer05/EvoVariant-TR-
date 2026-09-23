@@ -9,6 +9,15 @@
 
 **Judge entry points:** [baseline metrics](docs/METRICS.md) · [HPO record](docs/HYPERPARAMETER_TUNING.md) · [baseline judge notebook](notebooks/EvoVariant_TR_Baseline_Judge_Demo.ipynb) · [fine-tuning-attempt notebook](notebooks/EvoVariant_TR_FineTuning_Attempt_Demo.ipynb) · [complete figure gallery](artifacts/audits/final_polish_gallery.html)
 
+**Benchmark expansion:** open the [Benchmark Hub](/benchmarks) or follow the
+[judge demo](docs/JUDGE_DEMO.md). The generated [B01-B68 catalog](docs/benchmarks/BENCHMARK_CATALOG.md)
+covers frozen baseline, model comparison, calibration, evidence quality,
+temporal difficulty, LOCO, disagreement, external-manifest status, runtime,
+fine-tuning feasibility, and reproducibility. The no-spend run preserves the
+immutable 946-row result, generated figures, compact notebooks, and an
+artifact-hash manifest; external inference remains explicitly blocked when
+the balance or reference-data gate is unavailable.
+
 EvoVariant-TR is a research-only study of whether frozen genomic foundation-model
 signals can help rank variants that later resolve from a historical ClinVar VUS
 cohort. The completed baseline is a temporal, leakage-resistant study with

@@ -1,0 +1,30 @@
+{
+  "baseline_tag_commit": "1003bc5a20973145e0e096ff7b0f3424045d07e6",
+  "fine_tuning_started_for_primary": false,
+  "local_checks": {
+    "accuracy": true,
+    "auprc": true,
+    "auroc": true,
+    "balanced_accuracy": true,
+    "brier": true,
+    "ece": true,
+    "f1": true,
+    "mcc": true,
+    "nll": true,
+    "precision": true,
+    "recall": true,
+    "specificity": true
+  },
+  "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
+  "metric_checks": {
+    "accuracy": true,
+    "auprc": true,
+    "auroc": true,
+    "brier": true,
+    "ece": true,
+    "nll": true
+  },
+  "primary_artifact": "artifacts/phase14/phase14_locked_evo2_20260922.json",
+  "primary_artifact_sha256": "4dd9b9229c47d65491345e87b70a6f6739432c24a7585966f4aea97a9d115499",
+  "status": "PASS"
+}

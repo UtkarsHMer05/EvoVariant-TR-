@@ -84,6 +84,7 @@ validate: ## Run the full local gate: secret scan, ruff, mypy, pytest, coverage 
 
 .PHONY: secrets
 secrets: ## Scan tracked files for credential patterns
+	./scripts/check_agent_prompt_tracking.sh
 	./scripts/check_secrets.sh
 
 .PHONY: lint

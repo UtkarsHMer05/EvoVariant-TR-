@@ -1,0 +1,20 @@
+{
+  "figure_id": "encoder_update_proof",
+  "generator": "scripts/generate_final_readme_figures.py",
+  "holdout_used": false,
+  "interpretation": "controlled encoder-update feasibility proof; not completed fine-tuning",
+  "output_sha256": {
+    "research/adaptation_attempt/figures/encoder_update_proof.pdf": "b7a94d3ed456071449aaca85afc2eb3d542595d419ad8e8198b35c2c1166ea0c",
+    "research/adaptation_attempt/figures/encoder_update_proof.png": "4378682fe1e529132f5bbd1256af7f3186361d0306af32eaed1e1b5460000f32",
+    "research/adaptation_attempt/figures/encoder_update_proof.svg": "4eafcb60f18cb1fc1fd02b5c895b469f94bab63147fc82e1090e6081ab209194"
+  },
+  "outputs": [
+    "research/adaptation_attempt/figures/encoder_update_proof.svg",
+    "research/adaptation_attempt/figures/encoder_update_proof.png",
+    "research/adaptation_attempt/figures/encoder_update_proof.pdf"
+  ],
+  "source_sha256": {
+    "research/adaptation_attempt/artifacts/caduceus_partial_small_finetune_smoke.json": "c7349171bb741824eba09845b2e04ff435c62b33f8e271d5660493386f9f1591"
+  },
+  "status": "PASS"
+}

@@ -87,6 +87,8 @@ export default function GeneViewer({
 
         setGeneSequence(sequence);
         setActualRange(fetchedRange);
+        setActiveSequencePosition(null);
+        setActiveReferenceNucleotide(null);
 
         if (apiError) {
           setError(apiError);
@@ -126,7 +128,7 @@ export default function GeneViewer({
           await fetchGeneSequence(fetchedRange.start, fetchedRange.end);
         }
       } catch {
-        setError("Faield to load gene information. Please try again.");
+        setError("Failed to load gene information. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -192,7 +194,6 @@ export default function GeneViewer({
         genomeId,
       );
       setClinvarVariants(variants);
-      console.log(variants);
     } catch {
       setClinvarError("Failed to fetch ClinVar variants");
       setClinvarVariants([]);
@@ -242,6 +243,8 @@ export default function GeneViewer({
         referenceSequence={activeReferenceNucleotide}
         sequencePosition={activeSequencePosition}
         geneBounds={geneBounds}
+        sequenceData={geneSequence}
+        sequenceRange={actualRange}
       />
 
       <KnownVariants

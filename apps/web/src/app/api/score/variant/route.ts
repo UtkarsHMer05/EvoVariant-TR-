@@ -73,11 +73,25 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(payload),
     });
 
-    const data: unknown = await response.json();
+    const responseText = await response.text();
+    let data: unknown = null;
+    try {
+      data = responseText ? (JSON.parse(responseText) as unknown) : null;
+    } catch {
+      data = { error: responseText || `Scoring failed: ${response.status}` };
+    }
+
     if (!response.ok) {
       return Response.json(
         isJsonObject(data) ? data : { error: `Scoring failed: ${response.status}` },
         { status: response.status },
+      );
+    }
+
+    if (!isJsonObject(data)) {
+      return Response.json(
+        { error: "Scoring service returned an invalid response" },
+        { status: 502 },
       );
     }
 

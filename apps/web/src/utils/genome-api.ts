@@ -249,10 +249,10 @@ export async function searchGenes(query: string, genome: string) {
             chrom = `chr${chrom}`;
           }
           results.push({
-            symbol: display[2] ?? "",
-            name: display[3] ?? "",
+            symbol: display[1] ?? "",
+            name: display[2] ?? "",
             chrom,
-            description: display[3] ?? "",
+            description: display[2] ?? "",
             gene_id: geneIds[i] ?? "",
           });
         } catch {
@@ -261,6 +261,13 @@ export async function searchGenes(query: string, genome: string) {
       }
     }
   }
+
+  const normalizedQuery = query.trim().toUpperCase();
+  results.sort(
+    (a, b) =>
+      Number(a.symbol.trim().toUpperCase() !== normalizedQuery) -
+      Number(b.symbol.trim().toUpperCase() !== normalizedQuery),
+  );
 
   return { query, genome, results };
 }
@@ -379,7 +386,6 @@ export async function fetchClinvarVariants(
     !searchData.esearchresult?.idlist ||
     searchData.esearchresult.idlist.length === 0
   ) {
-    console.log("No ClinVar variants found");
     return [];
   }
 

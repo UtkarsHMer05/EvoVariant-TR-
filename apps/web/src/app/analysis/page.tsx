@@ -782,8 +782,8 @@ function DevelopmentEvidencePanel({
 export default function VariantAnalysisPage() {
   const [chrom, setChrom] = useState("chr17");
   const [position, setPosition] = useState("43044295");
-  const [ref, setRef] = useState("C");
-  const [alt, setAlt] = useState("T");
+  const [ref, setRef] = useState("T");
+  const [alt, setAlt] = useState("C");
   const [orientation, setOrientation] = useState("both");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -933,9 +933,10 @@ export default function VariantAnalysisPage() {
   const loadExample = () => {
     setChrom("chr17");
     setPosition("43044295");
-    setRef("C");
-    setAlt("T");
+    setRef("T");
+    setAlt("C");
     setError(null);
+    setResult(null);
   };
 
   const registryReady =

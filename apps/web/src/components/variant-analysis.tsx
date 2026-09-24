@@ -15,6 +15,7 @@ import React, {
   useImperativeHandle,
   useRef,
   useState,
+  useCallback,
 } from "react";
 import {
   getClassificationColorClasses,
@@ -35,6 +36,8 @@ interface VariantAnalysisProps {
   referenceSequence: string | null;
   sequencePosition: number | null;
   geneBounds: GeneBounds | null;
+  sequenceData: string;
+  sequenceRange: { start: number; end: number } | null;
 }
 
 const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
@@ -47,6 +50,8 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
       referenceSequence,
       sequencePosition,
       geneBounds,
+      sequenceData,
+      sequenceRange,
     }: VariantAnalysisProps,
     ref,
   ) => {
@@ -62,6 +67,24 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
     const [variantError, setVariantError] = useState<string | null>(null);
     const alternativeInputRef = useRef<HTMLInputElement>(null);
 
+    const getLoadedReference = useCallback(
+      (rawPosition: string): string | null => {
+        const position = Number(rawPosition.replaceAll(",", ""));
+        if (
+          !Number.isInteger(position) ||
+          position < 1 ||
+          !sequenceData ||
+          !sequenceRange
+        ) {
+          return null;
+        }
+
+        const nucleotide = sequenceData[position - sequenceRange.start];
+        return nucleotide && /^[ATGC]$/.test(nucleotide) ? nucleotide : null;
+      },
+      [sequenceData, sequenceRange],
+    );
+
     useImperativeHandle(ref, () => ({
       focusAlternativeInput: () => {
         if (alternativeInputRef.current) {
@@ -71,15 +94,23 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
     }));
 
     useEffect(() => {
-      if (sequencePosition && referenceSequence) {
+      if (sequencePosition !== null && referenceSequence) {
         setVariantPosition(String(sequencePosition));
         setVariantReference(referenceSequence);
       }
     }, [sequencePosition, referenceSequence]);
 
+    useEffect(() => {
+      if (sequencePosition !== null) return;
+      setVariantReference(getLoadedReference(variantPosition) ?? "");
+    }, [getLoadedReference, sequencePosition, sequenceData, sequenceRange, variantPosition]);
+
     const handlePositionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setVariantPosition(e.target.value);
-      setVariantReference("");
+      const nextPosition = e.target.value;
+      setVariantPosition(nextPosition);
+      setVariantReference(getLoadedReference(nextPosition) ?? "");
+      setVariantResult(null);
+      setVariantError(null);
     };
 
     const handleVariantSubmit = async (pos: string, alt: string) => {
@@ -94,10 +125,15 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
         setVariantError("Nucleotides must be A, C, G or T");
         return;
       }
-      if (!variantReference) {
+      const reference = variantReference || getLoadedReference(pos);
+      if (!reference) {
         setVariantError(
-          "Reference base is required. Select a position in the loaded reference sequence first.",
+          "No reference base is loaded at this position. Click a base in the GRCh38 sequence below or load a sequence window covering this coordinate.",
         );
+        return;
+      }
+      if (reference === alt) {
+        setVariantError("Reference and alternate bases must differ.");
         return;
       }
 
@@ -107,7 +143,7 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
       try {
       const data = await analyzeVariantWithAPI({
         position,
-        reference: variantReference,
+        reference,
         alternative: alt,
           genomeId,
           chromosome,
@@ -143,6 +179,13 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
                 onChange={handlePositionChange}
                 className="h-8 w-32 border-[#3c4f3d]/10 text-xs"
               />
+              <p className="mt-1 max-w-40 text-[11px] leading-4 text-[#3c4f3d]/60">
+                {variantReference
+                  ? `Reference ${variantReference} loaded from GRCh38`
+                  : sequenceData
+                    ? "Choose a base in the loaded sequence below."
+                    : "Load a GRCh38 sequence window first."}
+              </p>
             </div>
             <div>
               <label className="mb-1 block text-xs text-[#3c4f3d]/70">
@@ -176,7 +219,12 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
               </div>
             )}
             <Button
-              disabled={isAnalyzing || !variantPosition || !variantAlternative}
+              disabled={
+                isAnalyzing ||
+                !variantPosition ||
+                !variantAlternative ||
+                !variantReference
+              }
               className="h-8 cursor-pointer bg-[#3c4f3d] text-xs text-white hover:bg-[#3c4f3d]/90"
               onClick={() =>
                 handleVariantSubmit(

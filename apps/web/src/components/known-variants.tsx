@@ -243,7 +243,11 @@ export default function KnownVariants({
           <div className="flex h-48 flex-col items-center justify-center text-center text-gray-400">
             <Search className="mb-4 h-10 w-10 text-gray-300" />
             <p className="text-sm leading-relaxed">
-              No ClinVar variants found for this gene.
+              No ClinVar variants were returned for {gene.symbol} in the selected
+              GRCh38 interval.
+            </p>
+            <p className="mt-1 text-xs text-gray-400">
+              This is a live ClinVar query result. Try an exact gene symbol or refresh.
             </p>
           </div>
         )}

@@ -471,7 +471,18 @@ export async function analyzeVariantWithAPI({
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error("Failed to analyze variant " + errorText);
+    let errorDetail = errorText;
+    try {
+      const payload = JSON.parse(errorText) as { error?: unknown };
+      if (typeof payload.error === "string") errorDetail = payload.error;
+    } catch {
+      // Keep the plain-text upstream error.
+    }
+    throw new Error(
+      errorDetail
+        ? `Failed to analyze variant: ${errorDetail}`
+        : "Failed to analyze variant",
+    );
   }
 
   return (await response.json()) as AnalysisResult;

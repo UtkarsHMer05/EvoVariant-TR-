@@ -16,12 +16,20 @@ export function VariantComparisonModal({
   if (!comparisonVariant?.evo2Result) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="variant-comparison-title"
+    >
       <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white">
         {/* Modal header */}
         <div className="border-b border-[#3c4f3d]/10 p-5">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-medium text-[#3c4f3d]">
+            <h3
+              id="variant-comparison-title"
+              className="text-lg font-medium text-[#3c4f3d]"
+            >
               Variant Analysis Comparison
             </h3>
             <Button
@@ -69,7 +77,7 @@ export function VariantComparisonModal({
                     <div className="space-y-2">
                       <div className="flex">
                         <span className="w-28 text-xs text-[#3c4f3d]/70">
-                          Variant:
+                          ClinVar notation:
                         </span>
                         <span className="font-mono text-xs">
                           {(() => {
@@ -95,6 +103,16 @@ export function VariantComparisonModal({
                             }
                             return comparisonVariant.title;
                           })()}
+                        </span>
+                      </div>
+                      <div className="flex">
+                        <span className="w-28 text-xs text-[#3c4f3d]/70">
+                          GRCh38 allele:
+                        </span>
+                        <span className="font-mono text-xs">
+                          {comparisonVariant.evo2Result.reference}
+                          {">"}
+                          {comparisonVariant.evo2Result.alternate}
                         </span>
                       </div>
                       <div className="flex items-center">
@@ -128,7 +146,7 @@ export function VariantComparisonModal({
                         <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#3c4f3d]/10">
                           <span className="h-3 w-3 rounded-full bg-[#3c4f3d]"></span>
                         </span>
-                        ClinVar Assessment
+                        ClinVar classification
                       </h5>
                       <div className="mt-2">
                         <div
@@ -136,6 +154,10 @@ export function VariantComparisonModal({
                         >
                           {comparisonVariant.classification ||
                             "Unknown significance"}
+                        </div>
+                        <div className="mt-2 text-xs text-[#3c4f3d]/60">
+                          External ClinVar evidence; this is not inferred from the
+                          Evo2 score.
                         </div>
                       </div>
                     </div>

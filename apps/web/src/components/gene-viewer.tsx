@@ -214,6 +214,11 @@ export default function GeneViewer({
     }
   };
 
+  const geneInfo = geneDetail?.genomicinfo?.[0];
+  const reverseStrand = geneInfo
+    ? geneInfo.chrstart > geneInfo.chrstop
+    : false;
+
   if (isLoading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -256,6 +261,7 @@ export default function GeneViewer({
         clinvarError={clinvarError}
         genomeId={genomeId}
         gene={gene}
+        reverseStrand={reverseStrand}
       />
 
       <GeneSequence

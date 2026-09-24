@@ -24,6 +24,36 @@ import {
 } from "lucide-react";
 import { getClassificationColorClasses } from "~/utils/coloring-utils";
 
+function complementBase(base: string): string {
+  switch (base.toUpperCase()) {
+    case "A":
+      return "T";
+    case "T":
+      return "A";
+    case "C":
+      return "G";
+    case "G":
+      return "C";
+    default:
+      return base.toUpperCase();
+  }
+}
+
+function parseClinvarAlleles(title: string, reverseStrand: boolean) {
+  const transcriptMatch = /(?:^|:)c\.[^>]*([ACGT])>([ACGT])/i.exec(title);
+  const match = transcriptMatch ?? /([ACGT])>([ACGT])/i.exec(title);
+  if (!match) return null;
+
+  const reference = match[1]!.toUpperCase();
+  const alternative = match[2]!.toUpperCase();
+  return reverseStrand && transcriptMatch
+    ? {
+        reference: complementBase(reference),
+        alternative: complementBase(alternative),
+      }
+    : { reference, alternative };
+}
+
 export default function KnownVariants({
   refreshVariants,
   showComparison,
@@ -33,6 +63,7 @@ export default function KnownVariants({
   clinvarError,
   genomeId,
   gene,
+  reverseStrand,
 }: {
   refreshVariants: () => void;
   showComparison: (variant: ClinvarVariant) => void;
@@ -42,34 +73,34 @@ export default function KnownVariants({
   clinvarError: string | null;
   genomeId: string;
   gene: GeneFromSearch;
+  reverseStrand: boolean;
 }) {
   const analyzeVariant = async (variant: ClinvarVariant) => {
-    let variantDetails = null;
     const position = variant.location
       ? parseInt(variant.location.replaceAll(",", ""))
       : null;
-
-    const refAltMatch = /(\w)>(\w)/.exec(variant.title);
-
-    if (refAltMatch?.length === 3) {
-      variantDetails = {
-        position,
-        reference: refAltMatch[1],
-        alternative: refAltMatch[2],
-      };
-    }
+    const alleles = parseClinvarAlleles(variant.title, reverseStrand);
+    const variantDetails = alleles
+      ? { position, ...alleles }
+      : null;
 
     if (
       !variantDetails?.position ||
       !variantDetails.reference ||
       !variantDetails.alternative
     ) {
+      updateClinvarVariant(variant.clinvar_id, {
+        ...variant,
+        isAnalyzing: false,
+        evo2Error: "This ClinVar record does not contain a supported SNV allele.",
+      });
       return;
     }
 
     updateClinvarVariant(variant.clinvar_id, {
       ...variant,
       isAnalyzing: true,
+      evo2Error: undefined,
     });
 
     try {
@@ -206,6 +237,7 @@ export default function KnownVariants({
                               size="sm"
                               className="h-7 cursor-pointer border-[#3c4f3d]/20 bg-[#e9eeea] px-3 text-xs text-[#3c4f3d] hover:bg-[#3c4f3d]/10"
                               disabled={variant.isAnalyzing}
+                              aria-label={`Analyze research signal for ${variant.title}`}
                               onClick={() => analyzeVariant(variant)}
                             >
                               {variant.isAnalyzing ? (
@@ -232,6 +264,22 @@ export default function KnownVariants({
                             </Button>
                           )
                         ) : null}
+                        {variant.evo2Error && (
+                          <div
+                            className="max-w-64 rounded-md bg-red-50 p-2 text-left text-[11px] leading-4 text-red-700"
+                            role="alert"
+                          >
+                            <div>{variant.evo2Error}</div>
+                            <Button
+                              variant="link"
+                              size="sm"
+                              className="h-auto px-0 pt-1 text-[11px] text-red-700 underline"
+                              onClick={() => analyzeVariant(variant)}
+                            >
+                              Retry analysis
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </TableCell>
                   </TableRow>

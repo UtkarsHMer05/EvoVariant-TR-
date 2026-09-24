@@ -262,6 +262,109 @@ The final approximately <code>0.909</code> AUROC comes from the frozen
 downstream Evo2-derived feature pipeline, logistic classifier, and isotonic
 calibration. It is not a post-hoc correction of the raw Evo2 score.
 
+## Reading the web comparison dialog
+
+The web workbench intentionally shows two different evidence sources side by
+side. ClinVar supplies the external clinical-significance record. Evo2 supplies
+raw research scores for the same GRCh38 single-nucleotide variant. The Evo2
+score does **not** replace, reproduce, or overrule the ClinVar classification.
+
+<p align="center">
+  <img src="docs/images/variant-analysis-comparison.png" alt="Variant Analysis Comparison dialog showing ClinVar classification and Evo2 research signal" width="900">
+</p>
+
+_Example shown above: BRCA1 ClinVar record 4883316 at GRCh38 position
+43,092,225. The record is classified as **Uncertain significance** by ClinVar;
+that label is not inferred from the Evo2 number._
+
+### What each field means
+
+| Dialog field | Source or calculation | Interpretation |
+|---|---|---|
+| Position | Live ClinVar location, represented as a 1-based GRCh38 coordinate | The genomic base position sent to the scorer. |
+| Type | ClinVar variation type | This example is a single-nucleotide variant (SNV). Indels are not sent through this single-base research action. |
+| ClinVar notation | The allele notation in the ClinVar transcript record | `T>A` is transcript-oriented notation for this BRCA1 record. |
+| GRCh38 allele | Reference-checked genomic allele | `A>T` is the genomic orientation used by the scorer. BRCA1 is on the reverse strand, so the transcript alleles are complemented (`T→A`, `A→T`). |
+| ClinVar ID | NCBI ClinVar record identifier | The link opens the external source record used for the classification. |
+| ClinVar classification | `germline_classification.description` from the ClinVar response | Values such as `Pathogenic`, `Likely pathogenic`, `Benign`, `Likely benign`, or `Uncertain significance` come from ClinVar. |
+| Primary delta signal | Mean of the forward and reverse-complement deltas | The orientation-combined raw Evo2 research signal; it is not a probability, thresholded label, or confidence. |
+| Forward / reverse-complement | Two independent Evo2 orientation scores | The raw alternate-minus-reference signal for each sequence orientation. |
+| Disagreement | Absolute difference between the two orientation deltas | A diagnostic of orientation sensitivity, not a clinical uncertainty score. |
+
+### Exact formulas
+
+For each orientation, Evo2 scores the reference sequence and the sequence with
+the requested alternate base. The scorer records the alternate-minus-reference
+log-likelihood difference:
+
+~~~text
+delta_forward = logL(alternate, forward) - logL(reference, forward)
+delta_reverse = logL(alternate, reverse-complement)
+                - logL(reference, reverse-complement)
+
+delta_primary = (delta_forward + delta_reverse) / 2
+
+orientation_disagreement = abs(delta_forward - delta_reverse)
+~~~
+
+The screenshot's displayed values are the rounded form of the raw response:
+
+~~~text
+delta_forward = -0.0005704760551452637
+delta_reverse = -0.000057756900787353516
+
+delta_primary = (-0.0005704760551452637
+                 + -0.000057756900787353516) / 2
+               = -0.0003141164779663086
+               → -0.000314 in the dialog
+
+orientation_disagreement = abs(-0.0005704760551452637
+                               - -0.000057756900787353516)
+                          = 0.0005127191543579102
+                          → 0.000513 in the dialog
+~~~
+
+### How to read the raw signal
+
+- A negative delta means the alternate sequence received a lower raw Evo2
+  score than the reference sequence in that context.
+- A positive delta means the alternate sequence received a higher raw Evo2
+  score in that context.
+- A value close to zero means the model's raw scores are close. It does **not**
+  mean benign, harmless, or clinically neutral.
+- A larger forward/reverse disagreement means the two orientations respond
+  differently. It is a reason to inspect the context and provenance, not a
+  pathogenicity or benignity cutoff.
+- There is no clinical threshold or model-derived benign/pathogenic label in
+  this dialog. The only clinical-significance label displayed is the external
+  ClinVar classification.
+
+### Where the values come from
+
+The complete request path is:
+
+~~~text
+ClinVar query
+  → position, transcript allele, type, and classification
+  → reverse-strand normalization when needed
+  → GRCh38 reference validation
+  → /api/score/variant transport route
+  → configured Evo2 scoring service
+  → forward + reverse-complement raw scores
+  → delta formulas above
+  → comparison dialog
+~~~
+
+The web client does not hard-code the values in the screenshot. The ClinVar
+row is populated from a live NCBI query, and the research fields are returned
+by the configured scorer with provenance such as model revision, context
+length, scoring semantics, and `research_only: true`. The service URL is
+configured through `NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL` in the local
+ignored `.env` or `.env.local` file; it is not embedded in the README and no
+fake scorer is used when the service is unavailable.
+
+Relevant implementation points are [the ClinVar query and scorer transport](apps/web/src/utils/genome-api.ts), [the row parsing and reverse-strand normalization](apps/web/src/components/known-variants.tsx), [the comparison dialog](apps/web/src/components/variant-comparison-modal.tsx), [the API validation/forwarding route](apps/web/src/app/api/score/variant/route.ts), and [the scorer payload formulas](evo2_scorer_app.py).
+
 ## Headline figures
 
 These images are selected from the hash-verified final figure bundle. Each
@@ -540,7 +643,6 @@ completed.
 
 ## References
 
-- [CODEX_MASTER_PROMPT.md](CODEX_MASTER_PROMPT.md)
 - [Original frozen protocol](research/protocol/PROTOCOL.md)
 - [ML-extension protocol](research/ml_extension/PROTOCOL.md)
 - [Command reference](COMMAND_REFERENCE.md)

@@ -1,4 +1,4 @@
-# EvoVariant-TR — Codex ML Extension Handoff
+# EvoVariant-TR — Project Handoff
 
 This package is the authoritative handoff for extending **EvoVariant-TR** from a primarily
 zero-shot temporal variant-scoring benchmark into a rigorous, reproducible ML research
@@ -27,18 +27,17 @@ but the extension must not retroactively tune or contaminate the original tempor
 
 ## Read order for every coding-agent session
 
-1. `CODEX_MASTER_PROMPT.md`
-2. `docs/agent/PROJECT_STATE.md`
-3. `docs/agent/PRD.md`
-4. `docs/agent/DECISIONS.md`
-5. `research/ml_extension/PROTOCOL.md`
-6. `docs/agent/ARCHITECTURE.md`
-7. `docs/agent/EXPERIMENT_PLAN.md`
-8. `docs/agent/METRICS_AND_STATISTICS.md`
-9. `docs/agent/MODAL_COMPUTE_POLICY.md`
-10. `docs/agent/TESTING_AND_VALIDATION.md`
-11. `docs/agent/PHASE_LEDGER.md`
-12. `docs/agent/RUNBOOK.md`
+1. `docs/agent/PROJECT_STATE.md`
+2. `docs/agent/PRD.md`
+3. `docs/agent/DECISIONS.md`
+4. `research/ml_extension/PROTOCOL.md`
+5. `docs/agent/ARCHITECTURE.md`
+6. `docs/agent/EXPERIMENT_PLAN.md`
+7. `docs/agent/METRICS_AND_STATISTICS.md`
+8. `docs/agent/MODAL_COMPUTE_POLICY.md`
+9. `docs/agent/TESTING_AND_VALIDATION.md`
+10. `docs/agent/PHASE_LEDGER.md`
+11. `docs/agent/RUNBOOK.md`
 
 The agent must then inspect the repository and reconcile these documents with actual code.
 Documentation is the control plane; code and registered artifacts are the evidence.
@@ -55,4 +54,3 @@ Documentation is the control plane; code and registered artifacts are the eviden
 - Never recompute expensive embeddings/scores if a valid cached artifact exists.
 - Never make clinical-diagnostic claims. This remains research software.
 - Every phase must pass its gate before the next dependent phase begins.
-

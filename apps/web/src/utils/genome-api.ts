@@ -299,9 +299,9 @@ export async function fetchGeneDetails(geneId: string): Promise<{
         const maxPos = Math.max(info.chrstart, info.chrstop);
         const bounds = { min: minPos, max: maxPos };
 
-        const geneSize = maxPos - minPos;
+        const geneSize = maxPos - minPos + 1;
         const seqStart = minPos;
-        const seqEnd = geneSize > 10000 ? minPos + 10000 : maxPos;
+        const seqEnd = geneSize > 10000 ? minPos + 9999 : maxPos;
         const range = { start: seqStart, end: seqEnd };
 
         return { geneDetails: detail, geneBounds: bounds, initialRange: range };

@@ -167,8 +167,8 @@ export default function GeneViewer({
         validationError = `End position (${end.toLocaleString()}) exceeds the maximum value (${maxBound.toLocaleString()})`;
       }
 
-      if (end - start > 10000) {
-        validationError = `Selected range exceeds maximum view range of 10.000 bp.`;
+      if (end - start + 1 > 10000) {
+        validationError = `Selected range exceeds maximum view range of 10,000 bp.`;
       }
     }
 

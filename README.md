@@ -29,6 +29,36 @@ locked evaluation, reproducible artifacts, and a research workbench.
 > not provide a diagnosis, treatment recommendation, patient-level risk
 > estimate, or clinical validity claim.
 
+## Contributions at a glance
+
+The contribution is the **benchmark, the pipeline, and the audit trail around
+existing foundation models** — not a new foundation model. Every figure below is
+generated from a registered artifact in this repository; none is hand-entered.
+
+| Contribution | Measured evidence |
+|---|---:|
+| Registered benchmark entries | **68** (`B01`–`B68`), **65** completed or completed-with-limitations |
+| Rendered figure families | **42** final families (PNG + PDF + SVG) plus **2** adaptation figures |
+| Publication bundle | **41** inventory entries, **39** rendered Phase 17 families, **12** tables |
+| Registered experiment runs | **13**, all `COMPLETED` |
+| One-shot locked temporal evaluation | **946** rows, AUROC **0.909226** |
+| Independent external validation | **200** rows, AUROC **0.950200** |
+| Downstream model × feature comparisons | **36** (logistic, tree/boosting, MLP) |
+| Validation-only HPO feature families | **12** |
+| Automated tests | **722** passing (unit, contract, integration, scientific, browser E2E) |
+| Core-package coverage gate | **95.04%** (floor 95%) |
+| Typing and lint | `mypy --strict` clean, `ruff` clean on `src`/`tests`/`scripts` |
+| Browser end-to-end checks | **8** Playwright scenarios |
+| Code footprint | **58** Python modules / **15,643** LOC core, **23,577** LOC scripts, **7,616** LOC TypeScript |
+| New paid compute for the benchmark expansion | **$0.00** |
+
+**What this is not.** It is not "call a model and print a number." The headline
+result comes from a frozen downstream feature pipeline with TRAIN-fit logistic
+regression and TRAIN-fit isotonic calibration; the raw Evo2 delta is reported
+separately and honestly (raw-delta AUROC `0.090221`), and no threshold,
+calibration, or model-selection decision was reopened after the locked cohort
+was scored.
+
 ## The result in one paragraph
 
 The final reported system is an **Evo2-derived feature pipeline with a frozen
@@ -139,6 +169,10 @@ Rows were not added to force the historical aggregate to match 1,024.
 
 ## What We Actually Contributed
 
+The list below is the qualitative contribution; the
+[scoreboard](#benchmark-scoreboard) above gives the measured form of each item.
+Every entry maps to code and to a registered artifact rather than to a claim.
+
 1. A temporal ClinVar VUS cohort and reproducible historical protocol.
 2. A leakage-resistant gene-separated development design.
 3. GRCh38 sequence and reference validation.
@@ -157,7 +191,8 @@ Rows were not added to force the historical aggregate to match 1,024.
 16. Batch CSV/VCF support.
 17. A reproducible experiment registry.
 18. A research workbench exposing registered evidence.
-19. A 39-family scientific visualization bundle.
+19. A 42-family scientific visualization bundle (39 Phase 17 families plus 3
+    final source-derived dashboards), each with a provenance sidecar.
 20. Clean-room reproducibility and artifact hashing.
 
 ## Immutable locked-test result
@@ -211,6 +246,91 @@ Balanced Accuracy = (Recall + Specificity) / 2
 Probability MAE is reported as a secondary descriptive probability-quality
 metric in the generated final table. It is not the primary metric because the
 endpoint is binary classification, not continuous regression.
+
+## Benchmark scoreboard
+
+Both headline evaluations are read from registered artifacts, not typed into
+this README by hand.
+
+| Evaluation | n | AUROC | AUPRC | Accuracy | Precision | Recall | Specificity | F1 | MCC | Brier | ECE |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Locked temporal test (one-shot, frozen) | 946 | 0.909226 | 0.863039 | 0.843552 | 0.824257 | 0.812195 | 0.867537 | 0.818182 | 0.680961 | 0.114079 | 0.055231 |
+| Independent external cohort (transported) | 200 | 0.950200 | 0.958859 | 0.850000 | 0.937500 | 0.750000 | 0.950000 | 0.833333 | 0.714435 | 0.112520 | 0.139623 |
+
+### Classical comparator coverage
+
+Exact coverage with every missing row retained — no imputation, no mixed genome
+builds, and no proxy substitution. Corrected 2026-09-24: the benchmark loader
+did not recognise the PhyloP `sitewise_score` field, so PhyloP was previously
+reported as `0/4,000 DATA_BLOCKED`; the regenerated evidence below is the
+corrected state.
+
+| Comparator | Cohort | Available | Total | Coverage | Status |
+|---|---|---:|---:|---:|---|
+| CADD v1.7 | formal development | 2,891 | 4,000 | 72.28% | PASS, 1,109 rows retained as missing |
+| CADD v1.7 | locked temporal | 918 | 946 | 97.04% | PASS |
+| PhyloP 100-way | formal development | 3,997 | 4,000 | 99.93% | PASS, 3 rows retained as missing |
+| PhyloP 100-way | locked temporal | 946 | 946 | 100.00% | PASS |
+
+### Benchmark registry status
+
+| Status | Entries | Meaning |
+|---|---:|---|
+| `PASS` | 60 | Executed on registered evidence with no open limitation |
+| `PASS_WITH_LIMITATIONS` | 1 | Executed with a documented scope limitation |
+| `COMPLETED_WITH_LIMITATIONS` | 4 | Completed; specific rows or contracts remain unavailable |
+| `NOT_APPLICABLE` | 2 | Audited and correctly excluded; no proxy substituted |
+| `DATA_BLOCKED` | 1 | The required external assay mapping is not defensible |
+
+The two deliberately bounded entries are `B63` (MaveDB functional correlation,
+`DATA_BLOCKED`: no exact GRCh38 SNV assay mapping with a predeclared score
+direction could be frozen) and `B64` (additional public classical comparators,
+`NOT_APPLICABLE`: GPN was audited but its required alignment asset and run
+contract were unavailable). The registry, not this README, is the source of
+truth: [B01–B68 catalog](docs/benchmarks/BENCHMARK_CATALOG.md) ·
+[status matrix](docs/benchmarks/FINAL_STATUS_MATRIX.md) ·
+[machine-readable registry](artifacts/benchmarks/benchmark_registry.json) ·
+[registered runs](experiments/registry/runs/).
+
+### Benchmark gallery
+
+<table>
+<tr>
+<td><img src="apps/web/public/benchmarks/figures/benchmark_status_matrix.png" alt="B01-B68 benchmark status matrix" width="260"><br><sub>B01–B68 status matrix (68 entries)</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/benchmark_contact_sheet.png" alt="Benchmark contact sheet" width="260"><br><sub>Benchmark contact sheet</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/frozen_roc.png" alt="Locked temporal ROC" width="260"><br><sub>Locked temporal ROC (n=946)</sub></td>
+</tr>
+<tr>
+<td><img src="apps/web/public/benchmarks/figures/external_roc.png" alt="External validation ROC" width="260"><br><sub>External validation ROC (n=200)</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/classical_comparator_coverage.png" alt="Classical comparator coverage" width="260"><br><sub>Comparator coverage (corrected)</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png" alt="Locked versus external calibration" width="260"><br><sub>Locked vs external calibration</sub></td>
+</tr>
+<tr>
+<td><img src="apps/web/public/benchmarks/figures/external_runtime_and_cache_economics.png" alt="External runtime and cache economics" width="260"><br><sub>Runtime and cache economics</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/evidence_quality_performance.png" alt="Evidence-quality strata performance" width="260"><br><sub>Evidence-quality strata</sub></td>
+<td><img src="apps/web/public/benchmarks/figures/model_disagreement_categories.png" alt="Model disagreement categories" width="260"><br><sub>Model disagreement</sub></td>
+</tr>
+</table>
+
+### Benchmark coverage by family
+
+25 families cover the 68 entries (`B01`–`B68`):
+
+| Family | Entries | Family | Entries |
+|---|---:|---|---:|
+| External validation | 8 | Representation | 2 |
+| Downstream ML | 6 | Model comparison | 2 |
+| Core baseline | 5 | HPO | 2 |
+| Generalization | 5 | Ensemble | 2 |
+| Locked baseline | 4 | Uncertainty | 2 |
+| Calibration & uncertainty | 4 | Error analysis | 2 |
+| Foundation evidence | 3 | Model disagreement | 2 |
+| Classical comparators | 3 | Training | 1 |
+| Calibration | 3 | Statistics | 1 |
+| Ablation | 3 | Evidence quality | 1 |
+| Runtime & cost | 3 | Temporal difficulty | 1 |
+| Model Comparison (`B55`) | 1 | Errors & case studies | 1 |
+| Core Baseline (`B59`) | 1 | | |
 
 ## What was actually trained
 
@@ -359,9 +479,13 @@ The web client does not hard-code the values in the screenshot. The ClinVar
 row is populated from a live NCBI query, and the research fields are returned
 by the configured scorer with provenance such as model revision, context
 length, scoring semantics, and `research_only: true`. The service URL is
-configured through `NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL` in the local
-ignored `.env` or `.env.local` file; it is not embedded in the README and no
-fake scorer is used when the service is unavailable.
+configured through the server-only `EVOVARIANT_SCORER_URL` in the local ignored
+`.env` or `.env.local` file (the legacy
+`NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL` name is still accepted, but it is
+inlined at build time). The value is read at runtime, so `next start` honours an
+override without a rebuild; it is not embedded in the README, and no fake scorer
+is used when the service is unavailable — the transport routes answer `503`
+instead.
 
 Relevant implementation points are [the ClinVar query and scorer transport](apps/web/src/utils/genome-api.ts), [the row parsing and reverse-strand normalization](apps/web/src/components/known-variants.tsx), [the comparison dialog](apps/web/src/components/variant-comparison-modal.tsx), [the API validation/forwarding route](apps/web/src/app/api/score/variant/route.ts), and [the scorer payload formulas](evo2_scorer_app.py).
 
@@ -432,7 +556,7 @@ cell is not applicable to the frozen 8,192-bp cache, and unsupported trends
 remain absent.
 
 <details>
-<summary>Complete rendered figure gallery (42 baseline families)</summary>
+<summary>Complete rendered figure gallery (42 families: 39 Phase 17 + 3 final dashboards)</summary>
 
 The 39 registered Phase 17 families remain unchanged. The three final polish
 dashboards are source-derived from the frozen receipt and joined predictions.
@@ -524,6 +648,25 @@ make figures
 git diff --check
 ~~~
 
+Rebuilding the entire benchmark surface is also free: the expansion reads
+registered caches, and the external continuation can be re-derived from the
+persisted raw predictions without starting a GPU worker.
+
+~~~bash
+# 1. Recompute every local benchmark artifact from registered evidence.
+PYTHONPATH=src .venv/bin/python scripts/benchmark_expansion/run_local.py
+
+# 2. Re-derive the completed external catalogs from persisted predictions.
+#    (No Modal worker is constructed; remote_compute_started=false.)
+EVOVARIANT_EXTERNAL_MODE=local-finalize PYTHONPATH=src \
+  .venv/bin/python scripts/benchmark_expansion/complete_external.py
+~~~
+
+The second command is the reason the external statuses survive a full local
+rebuild: `run_local.py` correctly reports `COMPUTE_BLOCKED` for the external
+entries, and `local-finalize` then promotes them using the already-persisted
+raw predictions and recorded runtime receipt.
+
 The final baseline validation requires all applicable gates to pass. It checks
 secrets, formatting, strict typing, unit/integration/scientific tests, schema
 and registry integrity, protocol hashes, frontend/browser behavior, figure
@@ -539,6 +682,20 @@ families, 39 source sidecars, and 12 tables. The visual audit reports
 <code>39/39</code> structural PASS, zero failed families, and a manual
 contact-sheet review with no clipping, missing labels, missing stage markers,
 missing sample sizes, axis/caption truncation, or unsupported trend claims.
+
+## Corrections applied 2026-09-24
+
+A full read-only audit of this repository was performed, the defects it found
+were fixed, and the affected evidence was regenerated. No scientific input,
+label, threshold, or model artifact was modified by the audit.
+
+| Correction | What was wrong | Regenerated evidence |
+|---|---|---|
+| PhyloP comparator coverage | The benchmark loader recognised only `scaled_phred`, `raw_score`, `score`, and `value`, so PhyloP's `sitewise_score` field was invisible and coverage read `0/4,000` `DATA_BLOCKED`. | [Comparator coverage](apps/web/public/benchmarks/data/figures/classical_comparator_coverage.json) now reports 3,997/4,000 formal and 946/946 locked, and the case studies gained PhyloP scores. |
+| Protocol lock preservation | Regenerating on a machine without the external master prompt wrote `master_prompt_sha256: null`, silently dropping a frozen hash. | The previously locked hash is preserved and labelled `preserved-from-previous-protocol-lock`; override the source with `EVOVARIANT_MASTER_PROMPT_PATH`. |
+| Web scorer URL convention | `/api/score/variant` posted to the bare configured URL while `/api/batch/*` and `/api/results/*` appended REST paths, so no single configuration could satisfy both. | A shared resolver accepts a REST base URL or an explicit endpoint; all four transport routes were verified against a live local scorer. |
+| Runtime environment override | `NEXT_PUBLIC_*` values are inlined at build time, so `next start` ignored runtime overrides and the browser-test config could not retarget the scorer. | New server-only `EVOVARIANT_SCORER_URL` is read at runtime; the legacy name still works but is documented as build-time only. |
+| Legacy 8,193-bp window | `evo2-backend/main.py` fetched 8,193 bases for an 8,192-base window (off-by-one) and still printed clinical labels. | The window is corrected to exactly 8,192 bases with a deprecation banner pointing at the frozen implementation. |
 
 ## Compute and resumability
 

@@ -8,6 +8,12 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    /**
+     * Server-only scorer URL. Preferred over the legacy NEXT_PUBLIC_ variable
+     * because the value is never needed in the browser bundle. Read at
+     * runtime, so `next start` honours an override without a rebuild.
+     */
+    EVOVARIANT_SCORER_URL: z.string().url().optional(),
   },
 
   /**
@@ -16,7 +22,12 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL: z.string(),
+    /**
+     * Legacy name, retained for existing local `.env.local` files and for
+     * deployments that already bake this value at build time. Optional so a
+     * build without a configured scorer still succeeds; routes answer 503.
+     */
+    NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL: z.string().url().optional(),
   },
 
   /**
@@ -25,6 +36,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    EVOVARIANT_SCORER_URL: process.env.EVOVARIANT_SCORER_URL,
     NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL:
       process.env.NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL,
   },

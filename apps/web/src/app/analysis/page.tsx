@@ -176,10 +176,31 @@ type ResearchArea = {
 };
 
 const CHROMOSOMES = [
-  "chr1", "chr2", "chr3", "chr4", "chr5", "chr6", "chr7", "chr8",
-  "chr9", "chr10", "chr11", "chr12", "chr13", "chr14", "chr15",
-  "chr16", "chr17", "chr18", "chr19", "chr20", "chr21", "chr22",
-  "chrX", "chrY", "chrM",
+  "chr1",
+  "chr2",
+  "chr3",
+  "chr4",
+  "chr5",
+  "chr6",
+  "chr7",
+  "chr8",
+  "chr9",
+  "chr10",
+  "chr11",
+  "chr12",
+  "chr13",
+  "chr14",
+  "chr15",
+  "chr16",
+  "chr17",
+  "chr18",
+  "chr19",
+  "chr20",
+  "chr21",
+  "chr22",
+  "chrX",
+  "chrY",
+  "chrM",
 ];
 
 const RESEARCH_AREAS: ResearchArea[] = [
@@ -196,7 +217,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Single Variant Research Analysis",
     phase: "Phase 2",
     status: "READY",
-    description: "Canonical GRCh38 input with raw forward and reverse-complement signals.",
+    description:
+      "Canonical GRCh38 input with raw forward and reverse-complement signals.",
     artifact: "Research scoring API response",
   },
   {
@@ -204,7 +226,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Temporal VUS Explorer",
     phase: "Phase 3 / 6",
     status: "BLOCKED",
-    description: "t0-to-t1 cohort flow, model signals, disagreement, and review status.",
+    description:
+      "t0-to-t1 cohort flow, model signals, disagreement, and review status.",
     artifact: "Registered temporal benchmark rows",
   },
   {
@@ -212,7 +235,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Model Benchmark",
     phase: "Phase 6",
     status: "BLOCKED",
-    description: "Comparable zero-shot outputs, score direction, coverage, and runtime.",
+    description:
+      "Comparable zero-shot outputs, score direction, coverage, and runtime.",
     artifact: "Zero-shot result registry entries",
   },
   {
@@ -220,7 +244,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Representation / Layer Analysis",
     phase: "Phase 7",
     status: "BLOCKED",
-    description: "Frozen ref/alt representations, layer selection, and storage evidence.",
+    description:
+      "Frozen ref/alt representations, layer selection, and storage evidence.",
     artifact: "Verified feature-cache manifest",
   },
   {
@@ -228,7 +253,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Training & Hyperparameter Experiments",
     phase: "Phases 8–9",
     status: "BLOCKED",
-    description: "Validation-only trials, curves, seeds, and frozen development configs.",
+    description:
+      "Validation-only trials, curves, seeds, and frozen development configs.",
     artifact: "Training and HPO run manifests",
   },
   {
@@ -236,7 +262,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Fine-Tuning Experiments",
     phase: "Phase 10",
     status: "BLOCKED",
-    description: "PEFT or full adaptation smoke evidence, checkpoints, and recovery notes.",
+    description:
+      "PEFT or full adaptation smoke evidence, checkpoints, and recovery notes.",
     artifact: "Adaptation checkpoint manifest",
   },
   {
@@ -244,7 +271,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Ensemble Analysis",
     phase: "Phase 11",
     status: "BLOCKED",
-    description: "Diversity, error overlap, out-of-fold stacking, and validation selection.",
+    description:
+      "Diversity, error overlap, out-of-fold stacking, and validation selection.",
     artifact: "OOF and ensemble comparison artifacts",
   },
   {
@@ -252,7 +280,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Calibration & Abstention",
     phase: "Phase 12",
     status: "BLOCKED",
-    description: "Reliability, uncertainty, risk coverage, and validation-frozen thresholds.",
+    description:
+      "Reliability, uncertainty, risk coverage, and validation-frozen thresholds.",
     artifact: "Calibration and abstention manifest",
   },
   {
@@ -260,7 +289,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Robustness & Ablation",
     phase: "Phase 13",
     status: "BLOCKED",
-    description: "Predeclared context, orientation, feature, subgroup, and seed comparisons.",
+    description:
+      "Predeclared context, orientation, feature, subgroup, and seed comparisons.",
     artifact: "Ablation matrix and robustness results",
   },
   {
@@ -268,7 +298,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Error Analysis",
     phase: "Phase 13 / 14",
     status: "BLOCKED",
-    description: "Failure cases and subgroup diagnostics from registered predictions.",
+    description:
+      "Failure cases and subgroup diagnostics from registered predictions.",
     artifact: "Error-analysis report artifact",
   },
   {
@@ -276,7 +307,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Batch VCF/CSV",
     phase: "Phase 15",
     status: "BLOCKED",
-    description: "Validated ingest, resumable execution, progress, partial failure, and export.",
+    description:
+      "Validated ingest, resumable execution, progress, partial failure, and export.",
     artifact: "Batch manifest and result export",
   },
   {
@@ -284,7 +316,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Methods & Provenance",
     phase: "Control plane",
     status: "READY",
-    description: "Frozen protocol identity, limitations, and research-only boundaries.",
+    description:
+      "Frozen protocol identity, limitations, and research-only boundaries.",
     artifact: "Protocol and provenance metadata",
   },
   {
@@ -292,7 +325,8 @@ const RESEARCH_AREAS: ResearchArea[] = [
     label: "Experiment Registry",
     phase: "All phases",
     status: "BLOCKED",
-    description: "Immutable run metadata, artifact hashes, cost, and failure reasons.",
+    description:
+      "Immutable run metadata, artifact hashes, cost, and failure reasons.",
     artifact: "Registered experiment manifests",
   },
 ];
@@ -325,7 +359,9 @@ function formatMetric(value: number | null): string {
 }
 
 function formatInterval(value: [number, number] | null): string {
-  return value === null ? "Unavailable" : `${value[0].toFixed(3)}–${value[1].toFixed(3)}`;
+  return value === null
+    ? "Unavailable"
+    : `${value[0].toFixed(3)}–${value[1].toFixed(3)}`;
 }
 
 function readErrorDetail(value: unknown): string | null {
@@ -397,21 +433,29 @@ function EvidenceAreaPanel({
         {!loading && !error && areaEvidence && (
           <>
             <div className="rounded-md border border-[#3c4f3d]/10 bg-[#f7f9f7] p-4">
-              <p className="text-sm font-medium text-[#3c4f3d]">{areaEvidence.note}</p>
+              <p className="text-sm font-medium text-[#3c4f3d]">
+                {areaEvidence.note}
+              </p>
               <p className="mt-1 text-xs leading-5 text-[#3c4f3d]/60">
-                Evidence stage: {areaEvidence.evidence_stage}. Values are read from the
-                registered artifact inventory; no scientific result is hardcoded in the UI.
+                Evidence stage: {areaEvidence.evidence_stage}. Values are read
+                from the registered artifact inventory; no scientific result is
+                hardcoded in the UI.
               </p>
             </div>
 
             {areaEvidence.summary.length > 0 && (
               <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {areaEvidence.summary.map((item) => (
-                  <div key={item.label} className="rounded-md bg-[#f7f9f7] px-3 py-3">
-                    <dt className="text-xs uppercase tracking-[0.1em] text-[#3c4f3d]/50">
+                  <div
+                    key={item.label}
+                    className="rounded-md bg-[#f7f9f7] px-3 py-3"
+                  >
+                    <dt className="text-xs tracking-[0.1em] text-[#3c4f3d]/50 uppercase">
                       {item.label}
                     </dt>
-                    <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{item.value}</dd>
+                    <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
+                      {item.value}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -419,7 +463,7 @@ function EvidenceAreaPanel({
 
             {areaEvidence.figures.length > 0 ? (
               <div>
-                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
                   Registered evidence
                 </h3>
                 <div className="mt-2 overflow-x-auto rounded-md border border-[#3c4f3d]/10">
@@ -435,18 +479,26 @@ function EvidenceAreaPanel({
                     </thead>
                     <tbody>
                       {areaEvidence.figures.map((figure) => (
-                        <tr key={figure.figure_id} className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]">
+                        <tr
+                          key={figure.figure_id}
+                          className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]"
+                        >
                           <td className="px-3 py-3">
                             <p className="font-medium">{figure.title}</p>
-                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">{figure.figure_id}</p>
+                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">
+                              {figure.figure_id}
+                            </p>
                           </td>
                           <td className="px-3 py-3">{figure.evidence_stage}</td>
                           <td className="px-3 py-3">{figure.population}</td>
                           <td className="px-3 py-3">
-                            {figure.source_count} · {figure.source_hash_prefixes.join(", ") || "none"}
+                            {figure.source_count} ·{" "}
+                            {figure.source_hash_prefixes.join(", ") || "none"}
                           </td>
                           <td className="px-3 py-3">
-                            {figure.source_hashes_verified ? "Verified" : "Unavailable"}
+                            {figure.source_hashes_verified
+                              ? "Verified"
+                              : "Unavailable"}
                           </td>
                         </tr>
                       ))}
@@ -460,8 +512,9 @@ function EvidenceAreaPanel({
                   No registered scientific output is available for this area.
                 </p>
                 <p className="mt-1 text-sm leading-6 text-[#3c4f3d]/65">
-                  This is an intentional evidence-gated empty state. The workbench does not
-                  invent metrics, curves, model scores, or classifications.
+                  This is an intentional evidence-gated empty state. The
+                  workbench does not invent metrics, curves, model scores, or
+                  classifications.
                 </p>
               </div>
             ) : null}
@@ -478,11 +531,13 @@ function EvidenceAreaPanel({
 
         <dl className="grid gap-3 text-sm sm:grid-cols-2">
           <div>
-            <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">Phase</dt>
+            <dt className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
+              Phase
+            </dt>
             <dd className="mt-1 text-[#3c4f3d]">{area.phase}</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+            <dt className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
               Expected artifact
             </dt>
             <dd className="mt-1 text-[#3c4f3d]">{area.artifact}</dd>
@@ -512,9 +567,10 @@ function RegistryPanel({
             <CardTitle className="text-base font-normal text-[#3c4f3d]">
               Experiment Registry
             </CardTitle>
-                  <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
-                    Read-only metadata from append-only run records. Final values appear only when
-                    their registered artifacts pass the project gates.
+            <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
+              Read-only metadata from append-only run records. Final values
+              appear only when their registered artifacts pass the project
+              gates.
             </CardDescription>
           </div>
           <StatusPill status={summary?.status ?? "BLOCKED"} />
@@ -549,22 +605,30 @@ function RegistryPanel({
             <dl className="grid gap-4 sm:grid-cols-4">
               {[
                 ["Registered runs", summary.registered_run_count],
-                ["Completed scientific runs", summary.completed_scientific_run_count],
+                [
+                  "Completed scientific runs",
+                  summary.completed_scientific_run_count,
+                ],
                 ["Final scientific runs", summary.final_scientific_run_count],
                 ["Registered artifacts", summary.artifact_count],
               ].map(([label, value]) => (
-                <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3">
-                  <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                <div
+                  key={label}
+                  className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3"
+                >
+                  <dt className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
                     {label}
                   </dt>
-                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">{value}</dd>
+                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">
+                    {value}
+                  </dd>
                 </div>
               ))}
             </dl>
 
             {summary.blockers.length > 0 && (
               <div className="rounded-md border border-dashed border-[#de8246]/35 bg-[#fff8f2] p-4">
-                  <p className="text-sm font-medium text-[#3c4f3d]">
+                <p className="text-sm font-medium text-[#3c4f3d]">
                   No completed scientific output is promoted from this registry.
                 </p>
                 <ul className="mt-2 space-y-1 text-sm leading-6 text-[#3c4f3d]/65">
@@ -577,7 +641,7 @@ function RegistryPanel({
 
             {summary.runs.length > 0 ? (
               <div>
-                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
                   Registered run metadata
                 </h3>
                 <div className="mt-2 overflow-x-auto rounded-md border border-[#3c4f3d]/10">
@@ -593,10 +657,15 @@ function RegistryPanel({
                     </thead>
                     <tbody>
                       {summary.runs.map((run) => (
-                        <tr key={run.run_id} className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]">
+                        <tr
+                          key={run.run_id}
+                          className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]"
+                        >
                           <td className="px-3 py-3">
                             <p className="font-medium">{run.title}</p>
-                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">{run.run_id}</p>
+                            <p className="mt-1 font-mono text-xs text-[#3c4f3d]/55">
+                              {run.run_id}
+                            </p>
                           </td>
                           <td className="px-3 py-3">{run.experiment_family}</td>
                           <td className="px-3 py-3">{run.evidence_stage}</td>
@@ -608,8 +677,9 @@ function RegistryPanel({
                   </table>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-[#3c4f3d]/55">
-                  This surface intentionally omits scientific metric values and file locations.
-                  Use the immutable registry record and verifier for artifact-level inspection.
+                  This surface intentionally omits scientific metric values and
+                  file locations. Use the immutable registry record and verifier
+                  for artifact-level inspection.
                 </p>
               </div>
             ) : (
@@ -618,8 +688,9 @@ function RegistryPanel({
                   No completed scientific run records are registered.
                 </p>
                 <p className="mt-1 text-sm leading-6 text-[#3c4f3d]/65">
-                  The registry is present but empty. Downstream result panels remain blocked
-                  until a real run is registered and its outputs are hash-verifiable.
+                  The registry is present but empty. Downstream result panels
+                  remain blocked until a real run is registered and its outputs
+                  are hash-verifiable.
                 </p>
               </div>
             )}
@@ -650,8 +721,9 @@ function DevelopmentEvidencePanel({
               Research evidence
             </CardTitle>
             <CardDescription className="mt-2 max-w-2xl text-sm text-[#3c4f3d]/65">
-              Development outputs remain preliminary. Locked-test values appear only from a
-              hash-verified registered FINAL run, with downstream gates still shown explicitly.
+              Development outputs remain preliminary. Locked-test values appear
+              only from a hash-verified registered FINAL run, with downstream
+              gates still shown explicitly.
             </CardDescription>
           </div>
           <StatusPill status={evidence?.status ?? "BLOCKED"} />
@@ -685,14 +757,27 @@ function DevelopmentEvidencePanel({
           <>
             <dl className="grid gap-4 sm:grid-cols-4">
               {[
-                ["Classifier combinations", evidence.development.classifier_combinations],
+                [
+                  "Classifier combinations",
+                  evidence.development.classifier_combinations,
+                ],
                 ["HPO studies", evidence.development.hpo_studies],
                 ["Selection", evidence.selection_closed ? "Closed" : "Open"],
-                ["Locked-test access", evidence.locked_test_evaluated ? "Evaluated" : "Untouched"],
+                [
+                  "Locked-test access",
+                  evidence.locked_test_evaluated ? "Evaluated" : "Untouched",
+                ],
               ].map(([label, value]) => (
-                <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3">
-                  <dt className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">{label}</dt>
-                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">{value}</dd>
+                <div
+                  key={label}
+                  className="border-l-2 border-[#3c4f3d]/15 bg-[#f7f9f7] px-4 py-3"
+                >
+                  <dt className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
+                    {label}
+                  </dt>
+                  <dd className="mt-2 text-xl font-light text-[#3c4f3d]">
+                    {value}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -701,11 +786,14 @@ function DevelopmentEvidencePanel({
               <div className="rounded-md border border-[#3c4f3d]/15 bg-[#f7f9f7] p-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/55">
+                    <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/55 uppercase">
                       Final locked evaluation
                     </h3>
                     <p className="mt-2 text-sm text-[#3c4f3d]/70">
-                      Evo2 7B · {evidence.final_evaluation.completed_rows ?? "?"} / {evidence.final_evaluation.expected_rows ?? "?"} rows · no post-test tuning
+                      Evo2 7B ·{" "}
+                      {evidence.final_evaluation.completed_rows ?? "?"} /{" "}
+                      {evidence.final_evaluation.expected_rows ?? "?"} rows · no
+                      post-test tuning
                     </p>
                   </div>
                   <StatusPill status="READY" />
@@ -714,52 +802,79 @@ function DevelopmentEvidencePanel({
                   {[
                     ["AUROC", formatMetric(evidence.final_evaluation.auroc)],
                     ["AUPRC", formatMetric(evidence.final_evaluation.auprc)],
-                    ["95% CI", formatInterval(evidence.final_evaluation.bootstrap_auc_ci95)],
-                    ["Accuracy", formatMetric(evidence.final_evaluation.accuracy)],
-                    ["Coverage", formatMetric(evidence.final_evaluation.coverage)],
-                    ["Risk", formatMetric(evidence.final_evaluation.abstention_risk)],
+                    [
+                      "95% CI",
+                      formatInterval(
+                        evidence.final_evaluation.bootstrap_auc_ci95,
+                      ),
+                    ],
+                    [
+                      "Accuracy",
+                      formatMetric(evidence.final_evaluation.accuracy),
+                    ],
+                    [
+                      "Coverage",
+                      formatMetric(evidence.final_evaluation.coverage),
+                    ],
+                    [
+                      "Risk",
+                      formatMetric(evidence.final_evaluation.abstention_risk),
+                    ],
                   ].map(([label, value]) => (
                     <div key={label} className="rounded-md bg-white px-3 py-2">
-                      <dt className="text-xs uppercase tracking-[0.1em] text-[#3c4f3d]/50">{label}</dt>
-                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{value}</dd>
+                      <dt className="text-xs tracking-[0.1em] text-[#3c4f3d]/50 uppercase">
+                        {label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
+                        {value}
+                      </dd>
                     </div>
                   ))}
                 </dl>
                 <p className="mt-3 text-xs leading-5 text-[#3c4f3d]/55">
-                  Run {evidence.final_evaluation.run_id}; artifact SHA-256 {evidence.final_evaluation.artifact_sha256}. All recorded integrity gates passed.
+                  Run {evidence.final_evaluation.run_id}; artifact SHA-256{" "}
+                  {evidence.final_evaluation.artifact_sha256}. All recorded
+                  integrity gates passed.
                 </p>
               </div>
             )}
 
             <div className="grid gap-5 lg:grid-cols-2">
               <div>
-                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
                   Development phase gates
                 </h3>
                 <ul className="mt-2 divide-y divide-[#3c4f3d]/10 rounded-md border border-[#3c4f3d]/10">
                   {evidence.development.phases.map((phase) => (
-                    <li key={phase.phase} className="flex items-center justify-between gap-3 px-3 py-3 text-sm">
-                      <span className="text-[#3c4f3d]">Phase {phase.phase}</span>
+                    <li
+                      key={phase.phase}
+                      className="flex items-center justify-between gap-3 px-3 py-3 text-sm"
+                    >
+                      <span className="text-[#3c4f3d]">
+                        Phase {phase.phase}
+                      </span>
                       <StatusPill status={phaseStatusPill(phase.status)} />
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">
+                <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
                   Figure and table coverage
                 </h3>
                 <dl className="mt-2 grid grid-cols-2 gap-3 text-sm">
                   <div className="rounded-md bg-[#f7f9f7] p-3">
                     <dt className="text-[#3c4f3d]/55">Figures</dt>
                     <dd className="mt-1 font-medium text-[#3c4f3d]">
-                      {evidence.figures.available_figures} / {evidence.figures.required_figures}
+                      {evidence.figures.available_figures} /{" "}
+                      {evidence.figures.required_figures}
                     </dd>
                   </div>
                   <div className="rounded-md bg-[#f7f9f7] p-3">
                     <dt className="text-[#3c4f3d]/55">Applicable tables</dt>
                     <dd className="mt-1 font-medium text-[#3c4f3d]">
-                      {evidence.figures.available_tables} / {evidence.figures.required_tables}
+                      {evidence.figures.available_tables} /{" "}
+                      {evidence.figures.required_tables}
                     </dd>
                   </div>
                 </dl>
@@ -795,7 +910,8 @@ export default function VariantAnalysisPage() {
   const [evidence, setEvidence] = useState<ResearchEvidence | null>(null);
   const [evidenceLoading, setEvidenceLoading] = useState(true);
   const [evidenceError, setEvidenceError] = useState<string | null>(null);
-  const [workbenchEvidence, setWorkbenchEvidence] = useState<WorkbenchEvidence | null>(null);
+  const [workbenchEvidence, setWorkbenchEvidence] =
+    useState<WorkbenchEvidence | null>(null);
   const [workbenchLoading, setWorkbenchLoading] = useState(true);
   const [workbenchError, setWorkbenchError] = useState<string | null>(null);
 
@@ -806,7 +922,9 @@ export default function VariantAnalysisPage() {
       const response = await fetch("/api/registry", { cache: "no-store" });
       const payload: unknown = await response.json();
       if (!response.ok) {
-        throw new Error(readErrorDetail(payload) ?? "Registry metadata is unavailable");
+        throw new Error(
+          readErrorDetail(payload) ?? "Registry metadata is unavailable",
+        );
       }
       setRegistry(payload as RegistrySummary);
     } catch (requestError) {
@@ -825,10 +943,14 @@ export default function VariantAnalysisPage() {
     setEvidenceLoading(true);
     setEvidenceError(null);
     try {
-      const response = await fetch("/api/research/status", { cache: "no-store" });
+      const response = await fetch("/api/research/status", {
+        cache: "no-store",
+      });
       const payload: unknown = await response.json();
       if (!response.ok) {
-        throw new Error(readErrorDetail(payload) ?? "Development evidence is unavailable");
+        throw new Error(
+          readErrorDetail(payload) ?? "Development evidence is unavailable",
+        );
       }
       setEvidence(payload as ResearchEvidence);
     } catch (requestError) {
@@ -847,10 +969,15 @@ export default function VariantAnalysisPage() {
     setWorkbenchLoading(true);
     setWorkbenchError(null);
     try {
-      const response = await fetch("/api/research/workbench", { cache: "no-store" });
+      const response = await fetch("/api/research/workbench", {
+        cache: "no-store",
+      });
       const payload: unknown = await response.json();
       if (!response.ok) {
-        throw new Error(readErrorDetail(payload) ?? "Registered output metadata is unavailable");
+        throw new Error(
+          readErrorDetail(payload) ??
+            "Registered output metadata is unavailable",
+        );
       }
       setWorkbenchEvidence(payload as WorkbenchEvidence);
     } catch (requestError) {
@@ -873,7 +1000,12 @@ export default function VariantAnalysisPage() {
 
   const handleSubmit = async () => {
     const numericPosition = Number(position);
-    if (!Number.isInteger(numericPosition) || numericPosition < 1 || !ref || !alt) {
+    if (
+      !Number.isInteger(numericPosition) ||
+      numericPosition < 1 ||
+      !ref ||
+      !alt
+    ) {
       setError("A positive integer position, ref, and alt are required.");
       return;
     }
@@ -908,7 +1040,9 @@ export default function VariantAnalysisPage() {
       setResult(data);
     } catch (requestError) {
       setError(
-        requestError instanceof Error ? requestError.message : "An error occurred",
+        requestError instanceof Error
+          ? requestError.message
+          : "An error occurred",
       );
     } finally {
       setIsLoading(false);
@@ -957,9 +1091,10 @@ export default function VariantAnalysisPage() {
         ...area,
         status: registeredEvidence.status,
         description: registeredEvidence.note,
-        artifact: registeredEvidence.figures.length > 0
-          ? "Hash-verified publication inventory"
-          : area.artifact,
+        artifact:
+          registeredEvidence.figures.length > 0
+            ? "Hash-verified publication inventory"
+            : area.artifact,
       };
     }
     const evidenceStatus = evidence ? evidenceStatuses[area.id] : undefined;
@@ -967,7 +1102,8 @@ export default function VariantAnalysisPage() {
       return {
         ...area,
         status: evidenceStatus,
-        description: "Verified development evidence is available; locked-test promotion remains gated.",
+        description:
+          "Verified development evidence is available; locked-test promotion remains gated.",
       };
     }
     if (area.id !== "registry" || !registryReady) return area;
@@ -982,7 +1118,12 @@ export default function VariantAnalysisPage() {
   });
   const nonInteractiveAreas = displayAreas.filter(
     (area) =>
-      !["overview", "single-variant", "methods-provenance", "registry"].includes(area.id),
+      ![
+        "overview",
+        "single-variant",
+        "methods-provenance",
+        "registry",
+      ].includes(area.id),
   );
 
   return (
@@ -996,15 +1137,22 @@ export default function VariantAnalysisPage() {
                 EvoVariant-TR Research Workbench
               </h1>
               <p className="mt-1 text-xs text-[#3c4f3d]/60">
-                Evidence-gated temporal variant research · no clinical classification
+                Evidence-gated temporal variant research · no clinical
+                classification
               </p>
             </div>
           </div>
           <nav aria-label="Primary" className="flex items-center gap-1 text-sm">
-            <Link href="/" className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]">
+            <Link
+              href="/"
+              className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]"
+            >
               Variant analysis
             </Link>
-            <Link href="/benchmarks" className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90">
+            <Link
+              href="/benchmarks"
+              className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90"
+            >
               Benchmarks
             </Link>
           </nav>
@@ -1013,7 +1161,10 @@ export default function VariantAnalysisPage() {
 
       <main className="container mx-auto px-6 py-8">
         <Tabs defaultValue="overview" className="space-y-6">
-          <div className="w-full overflow-x-auto pb-1" aria-label="Research workbench areas">
+          <div
+            className="w-full overflow-x-auto pb-1"
+            aria-label="Research workbench areas"
+          >
             <TabsList className="min-w-max bg-[#e9eeea]">
               {displayAreas.map((area) => (
                 <TabsTrigger
@@ -1031,21 +1182,31 @@ export default function VariantAnalysisPage() {
             <section aria-labelledby="overview-heading">
               <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#de8246]">Overview</p>
-                  <h2 id="overview-heading" className="mt-1 text-2xl font-light text-[#3c4f3d]">
+                  <p className="text-xs tracking-[0.16em] text-[#de8246] uppercase">
+                    Overview
+                  </p>
+                  <h2
+                    id="overview-heading"
+                    className="mt-1 text-2xl font-light text-[#3c4f3d]"
+                  >
                     Research status, not a toy classifier
                   </h2>
                 </div>
                 <p className="max-w-lg text-right text-sm leading-6 text-[#3c4f3d]/65">
-                  Every result panel is backed by a registered artifact. Missing evidence is
-                  shown as blocked or pending and never replaced with placeholder metrics.
+                  Every result panel is backed by a registered artifact. Missing
+                  evidence is shown as blocked or pending and never replaced
+                  with placeholder metrics.
                 </p>
               </div>
 
               <Alert className="border-[#de8246]/30 bg-[#fff8f2] text-[#3c4f3d]">
-                <AlertCircle className="h-4 w-4 text-[#de8246]" aria-hidden="true" />
+                <AlertCircle
+                  className="h-4 w-4 text-[#de8246]"
+                  aria-hidden="true"
+                />
                 <AlertDescription>
-                  Research-only surface. {registryError
+                  Research-only surface.{" "}
+                  {registryError
                     ? "Registry metadata could not be loaded; downstream scientific selection remains gated."
                     : registryReady
                       ? `${registry?.completed_scientific_run_count} completed scientific runs are registered, including ${registry?.final_scientific_run_count} FINAL; downstream panels still require their own evidence gates.`
@@ -1059,7 +1220,7 @@ export default function VariantAnalysisPage() {
                 ["Protocol", "READY", "Frozen control plane"],
                 [
                   "Model registry",
-                  registryReady ? registry?.status ?? "PARTIAL" : "BLOCKED",
+                  registryReady ? (registry?.status ?? "PARTIAL") : "BLOCKED",
                   registryReady
                     ? registry?.final_scientific_run_count
                       ? `${registry.completed_scientific_run_count} completed; ${registry.final_scientific_run_count} final`
@@ -1083,10 +1244,17 @@ export default function VariantAnalysisPage() {
                     : "No completed outputs",
                 ],
               ].map(([label, status, detail]) => (
-                <div key={label} className="border-l-2 border-[#3c4f3d]/15 bg-white px-4 py-4 shadow-sm">
-                  <p className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">{label}</p>
+                <div
+                  key={label}
+                  className="border-l-2 border-[#3c4f3d]/15 bg-white px-4 py-4 shadow-sm"
+                >
+                  <p className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
+                    {label}
+                  </p>
                   <div className="mt-3 flex items-center justify-between gap-2">
-                    <span className="text-sm font-medium text-[#3c4f3d]">{detail}</span>
+                    <span className="text-sm font-medium text-[#3c4f3d]">
+                      {detail}
+                    </span>
                     <StatusPill status={status as WorkbenchStatus} />
                   </div>
                 </div>
@@ -1099,8 +1267,8 @@ export default function VariantAnalysisPage() {
                   Workbench map
                 </CardTitle>
                 <CardDescription className="text-sm text-[#3c4f3d]/65">
-                  Open any area from the navigation above to inspect its artifact contract or
-                  evidence-gated empty state.
+                  Open any area from the navigation above to inspect its
+                  artifact contract or evidence-gated empty state.
                 </CardDescription>
               </CardHeader>
               <CardContent className="grid gap-x-8 gap-y-1 py-3 md:grid-cols-2">
@@ -1136,13 +1304,16 @@ export default function VariantAnalysisPage() {
                   Single Variant Research Analysis
                 </CardTitle>
                 <CardDescription className="text-sm text-[#3c4f3d]/65">
-                  Canonical GRCh38 input. The endpoint returns raw research signals only.
+                  Canonical GRCh38 input. The endpoint returns raw research
+                  signals only.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pb-6">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
                   <div>
-                    <Label className="text-xs font-normal text-[#3c4f3d]/70">Chromosome</Label>
+                    <Label className="text-xs font-normal text-[#3c4f3d]/70">
+                      Chromosome
+                    </Label>
                     <Select value={chrom} onValueChange={setChrom}>
                       <SelectTrigger className="h-9 border-[#3c4f3d]/10">
                         <SelectValue />
@@ -1157,7 +1328,9 @@ export default function VariantAnalysisPage() {
                     </Select>
                   </div>
                   <div>
-                    <Label className="text-xs font-normal text-[#3c4f3d]/70">Position (1-based)</Label>
+                    <Label className="text-xs font-normal text-[#3c4f3d]/70">
+                      Position (1-based)
+                    </Label>
                     <Input
                       type="number"
                       min="1"
@@ -1167,35 +1340,49 @@ export default function VariantAnalysisPage() {
                     />
                   </div>
                   <div>
-                    <Label className="text-xs font-normal text-[#3c4f3d]/70">Reference Allele</Label>
+                    <Label className="text-xs font-normal text-[#3c4f3d]/70">
+                      Reference Allele
+                    </Label>
                     <Input
                       type="text"
                       maxLength={1}
                       value={ref}
-                      onChange={(event) => setRef(event.target.value.toUpperCase())}
+                      onChange={(event) =>
+                        setRef(event.target.value.toUpperCase())
+                      }
                       className="h-9 border-[#3c4f3d]/10"
                     />
                   </div>
                   <div>
-                    <Label className="text-xs font-normal text-[#3c4f3d]/70">Alternate Allele</Label>
+                    <Label className="text-xs font-normal text-[#3c4f3d]/70">
+                      Alternate Allele
+                    </Label>
                     <Input
                       type="text"
                       maxLength={1}
                       value={alt}
-                      onChange={(event) => setAlt(event.target.value.toUpperCase())}
+                      onChange={(event) =>
+                        setAlt(event.target.value.toUpperCase())
+                      }
                       className="h-9 border-[#3c4f3d]/10"
                     />
                   </div>
                   <div>
-                    <Label className="text-xs font-normal text-[#3c4f3d]/70">Orientation</Label>
+                    <Label className="text-xs font-normal text-[#3c4f3d]/70">
+                      Orientation
+                    </Label>
                     <Select value={orientation} onValueChange={setOrientation}>
                       <SelectTrigger className="h-9 border-[#3c4f3d]/10">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="both">Forward + reverse-complement</SelectItem>
+                        <SelectItem value="both">
+                          Forward + reverse-complement
+                        </SelectItem>
                         <SelectItem value="forward">Forward only</SelectItem>
-                        <SelectItem value="reverse">Reverse-complement only</SelectItem>
+                        <SelectItem value="reverse">
+                          Reverse-complement only
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1207,7 +1394,9 @@ export default function VariantAnalysisPage() {
                     disabled={isLoading}
                     className="bg-[#3c4f3d] text-white hover:bg-[#3c4f3d]/90"
                   >
-                    {isLoading ? "Requesting raw signal..." : "Request raw signal"}
+                    {isLoading
+                      ? "Requesting raw signal..."
+                      : "Request raw signal"}
                   </Button>
                   <Button
                     variant="outline"
@@ -1234,20 +1423,25 @@ export default function VariantAnalysisPage() {
                     Registered response fields
                   </CardTitle>
                   <CardDescription className="text-sm text-[#3c4f3d]/65">
-                    These are raw scorer/provenance fields. No clinical label is derived here.
+                    These are raw scorer/provenance fields. No clinical label is
+                    derived here.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5 pb-6">
                   <dl className="grid grid-cols-2 gap-x-5 gap-y-4 md:grid-cols-5">
                     <div>
-                      <dt className="text-xs text-[#3c4f3d]/55">Normalized variant</dt>
-                      <dd className="mt-1 break-all text-sm font-medium text-[#3c4f3d]">
+                      <dt className="text-xs text-[#3c4f3d]/55">
+                        Normalized variant
+                      </dt>
+                      <dd className="mt-1 text-sm font-medium break-all text-[#3c4f3d]">
                         {result.normalized_variant_id}
                       </dd>
                     </div>
                     <div>
                       <dt className="text-xs text-[#3c4f3d]/55">Assembly</dt>
-                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{result.assembly}</dd>
+                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
+                        {result.assembly}
+                      </dd>
                     </div>
                     <div>
                       <dt className="text-xs text-[#3c4f3d]/55">Context</dt>
@@ -1257,10 +1451,14 @@ export default function VariantAnalysisPage() {
                     </div>
                     <div>
                       <dt className="text-xs text-[#3c4f3d]/55">Status</dt>
-                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{result.status}</dd>
+                      <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
+                        {result.status}
+                      </dd>
                     </div>
                     <div>
-                      <dt className="text-xs text-[#3c4f3d]/55">Research-only</dt>
+                      <dt className="text-xs text-[#3c4f3d]/55">
+                        Research-only
+                      </dt>
                       <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
                         {result.provenance.research_only ? "Yes" : "No"}
                       </dd>
@@ -1268,26 +1466,46 @@ export default function VariantAnalysisPage() {
                   </dl>
 
                   <div>
-                    <h3 className="text-xs uppercase tracking-[0.12em] text-[#3c4f3d]/50">Model signals</h3>
+                    <h3 className="text-xs tracking-[0.12em] text-[#3c4f3d]/50 uppercase">
+                      Model signals
+                    </h3>
                     <div className="mt-2 overflow-x-auto rounded-md border border-[#3c4f3d]/10">
                       <table className="w-full min-w-[620px] text-left text-sm">
                         <thead className="bg-[#f7f9f7] text-xs text-[#3c4f3d]/60">
                           <tr>
                             <th className="px-3 py-2 font-medium">Scorer</th>
-                            <th className="px-3 py-2 font-medium">Reference raw score</th>
-                            <th className="px-3 py-2 font-medium">Alternate raw score</th>
-                            <th className="px-3 py-2 font-medium">Primary delta</th>
-                            <th className="px-3 py-2 font-medium">FWD / RC delta</th>
+                            <th className="px-3 py-2 font-medium">
+                              Reference raw score
+                            </th>
+                            <th className="px-3 py-2 font-medium">
+                              Alternate raw score
+                            </th>
+                            <th className="px-3 py-2 font-medium">
+                              Primary delta
+                            </th>
+                            <th className="px-3 py-2 font-medium">
+                              FWD / RC delta
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr className="border-t border-[#3c4f3d]/10 text-[#3c4f3d]">
-                            <td className="px-3 py-3">{result.provenance.scorer} v{result.provenance.scorer_version}</td>
-                            <td className="px-3 py-3">{result.reference_score.toFixed(4)}</td>
-                            <td className="px-3 py-3">{result.alternate_score.toFixed(4)}</td>
-                            <td className="px-3 py-3 text-[#de8246]">{result.delta_primary.toFixed(4)}</td>
                             <td className="px-3 py-3">
-                              {result.delta_forward?.toFixed(4) ?? "N/A"} / {result.delta_reverse?.toFixed(4) ?? "N/A"}
+                              {result.provenance.scorer} v
+                              {result.provenance.scorer_version}
+                            </td>
+                            <td className="px-3 py-3">
+                              {result.reference_score.toFixed(4)}
+                            </td>
+                            <td className="px-3 py-3">
+                              {result.alternate_score.toFixed(4)}
+                            </td>
+                            <td className="px-3 py-3 text-[#de8246]">
+                              {result.delta_primary.toFixed(4)}
+                            </td>
+                            <td className="px-3 py-3">
+                              {result.delta_forward?.toFixed(4) ?? "N/A"} /{" "}
+                              {result.delta_reverse?.toFixed(4) ?? "N/A"}
                             </td>
                           </tr>
                         </tbody>
@@ -1297,28 +1515,44 @@ export default function VariantAnalysisPage() {
 
                   <dl className="grid gap-4 border-t border-[#3c4f3d]/10 pt-4 md:grid-cols-3">
                     <div>
-                      <dt className="text-xs text-[#3c4f3d]/55">Calibrated study probability</dt>
-                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">Not available: no validation-frozen calibrator is registered.</dd>
+                      <dt className="text-xs text-[#3c4f3d]/55">
+                        Calibrated study probability
+                      </dt>
+                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">
+                        Not available: no validation-frozen calibrator is
+                        registered.
+                      </dd>
                     </div>
                     <div>
-                      <dt className="text-xs text-[#3c4f3d]/55">Uncertainty / abstention</dt>
-                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">Not available: no calibration artifact is registered.</dd>
+                      <dt className="text-xs text-[#3c4f3d]/55">
+                        Uncertainty / abstention
+                      </dt>
+                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">
+                        Not available: no calibration artifact is registered.
+                      </dd>
                     </div>
                     <div>
-                      <dt className="text-xs text-[#3c4f3d]/55">Comparator evidence</dt>
-                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">Not available: multi-model benchmark is blocked.</dd>
+                      <dt className="text-xs text-[#3c4f3d]/55">
+                        Comparator evidence
+                      </dt>
+                      <dd className="mt-1 text-sm text-[#3c4f3d]/70">
+                        Not available: multi-model benchmark is blocked.
+                      </dd>
                     </div>
                   </dl>
 
                   <p className="rounded-md bg-[#e9eeea]/60 p-3 text-xs leading-5 text-[#3c4f3d]/65">
-                    Provenance: {result.provenance.orientation_requested} orientation · {result.provenance.context_length_bp} bp context · raw research signal only.
+                    Provenance: {result.provenance.orientation_requested}{" "}
+                    orientation · {result.provenance.context_length_bp} bp
+                    context · raw research signal only.
                   </p>
                 </CardContent>
               </Card>
             ) : (
               <div className="rounded-lg border border-dashed border-[#3c4f3d]/20 bg-white/60 p-5 text-sm text-[#3c4f3d]/65">
-                No response loaded. A configured research scoring service is required; the
-                default environment fails closed instead of using a fake scorer.
+                No response loaded. A configured research scoring service is
+                required; the default environment fails closed instead of using
+                a fake scorer.
               </div>
             )}
           </TabsContent>
@@ -1351,7 +1585,8 @@ export default function VariantAnalysisPage() {
                   Methods & Provenance
                 </CardTitle>
                 <CardDescription className="text-sm text-[#3c4f3d]/65">
-                  The protocol endpoint is the source for runtime identity fields shown here.
+                  The protocol endpoint is the source for runtime identity
+                  fields shown here.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pb-6">
@@ -1359,7 +1594,10 @@ export default function VariantAnalysisPage() {
                   <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {[
                       ["Protocol version", protocol.protocol_version],
-                      ["ML extension version", protocol.ml_extension_protocol_version],
+                      [
+                        "ML extension version",
+                        protocol.ml_extension_protocol_version,
+                      ],
                       ["Frozen at", protocol.frozen_at],
                       ["Identity", protocol.identity],
                       ["Context length", `${protocol.context_length_bp} bp`],
@@ -1367,7 +1605,9 @@ export default function VariantAnalysisPage() {
                     ].map(([label, value]) => (
                       <div key={label}>
                         <dt className="text-xs text-[#3c4f3d]/55">{label}</dt>
-                        <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">{value}</dd>
+                        <dd className="mt-1 text-sm font-medium text-[#3c4f3d]">
+                          {value}
+                        </dd>
                       </div>
                     ))}
                   </dl>
@@ -1382,15 +1622,29 @@ export default function VariantAnalysisPage() {
                 )}
 
                 <div className="border-t border-[#3c4f3d]/10 pt-5">
-                  <h3 className="text-xs font-medium uppercase tracking-[0.12em] text-[#3c4f3d]/55">
+                  <h3 className="text-xs font-medium tracking-[0.12em] text-[#3c4f3d]/55 uppercase">
                     Frozen contract boundaries
                   </h3>
                   <ul className="mt-3 space-y-2 text-sm leading-6 text-[#3c4f3d]/70">
-                    <li>• Temporal generalization is the ML-extension estimand.</li>
-                    <li>• GRCh38 and the protocol-served context length define canonical input.</li>
-                    <li>• Forward and reverse-complement raw signals are retained when requested.</li>
-                    <li>• Calibration, clinical interpretation, and classification require registered artifacts.</li>
-                    <li>• Missing model, compute, or registry evidence is surfaced as blocked.</li>
+                    <li>
+                      • Temporal generalization is the ML-extension estimand.
+                    </li>
+                    <li>
+                      • GRCh38 and the protocol-served context length define
+                      canonical input.
+                    </li>
+                    <li>
+                      • Forward and reverse-complement raw signals are retained
+                      when requested.
+                    </li>
+                    <li>
+                      • Calibration, clinical interpretation, and classification
+                      require registered artifacts.
+                    </li>
+                    <li>
+                      • Missing model, compute, or registry evidence is surfaced
+                      as blocked.
+                    </li>
                   </ul>
                 </div>
 

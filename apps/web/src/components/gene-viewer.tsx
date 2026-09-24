@@ -215,9 +215,7 @@ export default function GeneViewer({
   };
 
   const geneInfo = geneDetail?.genomicinfo?.[0];
-  const reverseStrand = geneInfo
-    ? geneInfo.chrstart > geneInfo.chrstop
-    : false;
+  const reverseStrand = geneInfo ? geneInfo.chrstart > geneInfo.chrstop : false;
 
   if (isLoading) {
     return (

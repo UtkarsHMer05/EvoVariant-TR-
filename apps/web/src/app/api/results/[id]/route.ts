@@ -1,20 +1,27 @@
 /**
  * API route: retrieve batch results.
- * 
+ *
  * GET /api/results/[id] — returns results of a completed batch job.
  */
 import type { NextRequest } from "next/server";
-import { env } from "~/env";
+import { configuredScorerUrl, serviceEndpoint } from "~/lib/scorer-endpoint";
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id: jobId } = await params;
-  const baseUrl = env.NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL;
+  const configuredUrl = configuredScorerUrl();
+  if (!configuredUrl) {
+    return Response.json(
+      { error: "No research scoring service is configured" },
+      { status: 503 },
+    );
+  }
+  const resultsUrl = serviceEndpoint(configuredUrl, `/results/${jobId}`);
 
   try {
-    const response = await fetch(`${baseUrl}/results/${jobId}`);
+    const response = await fetch(resultsUrl);
     const data: unknown = await response.json();
     return Response.json(data, { status: response.status });
   } catch (error) {

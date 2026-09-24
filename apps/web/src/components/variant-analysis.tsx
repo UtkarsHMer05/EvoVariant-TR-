@@ -103,7 +103,13 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
     useEffect(() => {
       if (sequencePosition !== null) return;
       setVariantReference(getLoadedReference(variantPosition) ?? "");
-    }, [getLoadedReference, sequencePosition, sequenceData, sequenceRange, variantPosition]);
+    }, [
+      getLoadedReference,
+      sequencePosition,
+      sequenceData,
+      sequenceRange,
+      variantPosition,
+    ]);
 
     const handlePositionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const nextPosition = e.target.value;
@@ -141,10 +147,10 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
       setVariantError(null);
 
       try {
-      const data = await analyzeVariantWithAPI({
-        position,
-        reference,
-        alternative: alt,
+        const data = await analyzeVariantWithAPI({
+          position,
+          reference,
+          alternative: alt,
           genomeId,
           chromosome,
         });
@@ -166,8 +172,8 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
         </CardHeader>
         <CardContent className="pb-4">
           <p className="mb-4 text-xs text-[#3c4f3d]/80">
-            Inspect raw forward and reverse-complement model signals for research
-            use. This view does not provide a clinical classification.
+            Inspect raw forward and reverse-complement model signals for
+            research use. This view does not provide a clinical classification.
           </p>
           <div className="flex flex-wrap items-end gap-4">
             <div>
@@ -371,7 +377,8 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
                       {variantResult.delta_primary.toFixed(6)}
                     </div>
                     <div className="text-xs text-[#3c4f3d]/60">
-                      Raw alternate-minus-reference research signal; not a clinical label
+                      Raw alternate-minus-reference research signal; not a
+                      clinical label
                     </div>
                   </div>
                 </div>
@@ -380,9 +387,19 @@ const VariantAnalysis = forwardRef<VariantAnalysisHandle, VariantAnalysisProps>(
                     Orientation components
                   </div>
                   <div className="space-y-1 text-xs text-[#3c4f3d]/70">
-                    <div>Forward: {variantResult.delta_forward?.toFixed(6) ?? "UNAVAILABLE"}</div>
-                    <div>Reverse-complement: {variantResult.delta_reverse?.toFixed(6) ?? "UNAVAILABLE"}</div>
-                    <div>Disagreement: {variantResult.orientation_disagreement?.toFixed(6) ?? "UNAVAILABLE"}</div>
+                    <div>
+                      Forward:{" "}
+                      {variantResult.delta_forward?.toFixed(6) ?? "UNAVAILABLE"}
+                    </div>
+                    <div>
+                      Reverse-complement:{" "}
+                      {variantResult.delta_reverse?.toFixed(6) ?? "UNAVAILABLE"}
+                    </div>
+                    <div>
+                      Disagreement:{" "}
+                      {variantResult.orientation_disagreement?.toFixed(6) ??
+                        "UNAVAILABLE"}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,7 @@
  * pathogenic/benign classification logic.
  */
 import type { NextRequest } from "next/server";
-import { env } from "~/env";
+import { configuredScorerUrl, scoreEndpoint } from "~/lib/scorer-endpoint";
 
 type JsonObject = Record<string, unknown>;
 
@@ -32,12 +32,20 @@ export async function POST(request: NextRequest) {
   try {
     const rawBody: unknown = await request.json();
     if (!isJsonObject(rawBody)) {
-      return Response.json({ error: "Request body must be a JSON object" }, { status: 400 });
+      return Response.json(
+        { error: "Request body must be a JSON object" },
+        { status: 400 },
+      );
     }
 
     const chromosome = requiredString(rawBody, "chromosome", "chrom");
     const reference = requiredString(rawBody, "reference", "ref");
-    const alternate = requiredString(rawBody, "alternate", "alternative", "alt");
+    const alternate = requiredString(
+      rawBody,
+      "alternate",
+      "alternative",
+      "alt",
+    );
     const position = requiredPosition(rawBody);
     if (!chromosome || !reference || !alternate || position === null) {
       return Response.json(
@@ -49,13 +57,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const baseUrl = env.NEXT_PUBLIC_ANALYZE_SINGLE_VARIANT_BASE_URL;
-    if (!baseUrl) {
+    const configuredUrl = configuredScorerUrl();
+    if (!configuredUrl) {
       return Response.json(
         { error: "No research scoring service is configured" },
         { status: 503 },
       );
     }
+    const baseUrl = scoreEndpoint(configuredUrl);
 
     const orientation = rawBody.orientation ?? rawBody.strand ?? "both";
     const payload = {
@@ -83,7 +92,9 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       return Response.json(
-        isJsonObject(data) ? data : { error: `Scoring failed: ${response.status}` },
+        isJsonObject(data)
+          ? data
+          : { error: `Scoring failed: ${response.status}` },
         { status: response.status },
       );
     }

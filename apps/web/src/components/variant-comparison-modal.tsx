@@ -81,8 +81,9 @@ export function VariantComparisonModal({
                         </span>
                         <span className="font-mono text-xs">
                           {(() => {
-                            const match =
-                              /(\w)>(\w)/.exec(comparisonVariant.title);
+                            const match = /(\w)>(\w)/.exec(
+                              comparisonVariant.title,
+                            );
                             if (match?.length === 3) {
                               const [, ref, alt] = match;
                               return (
@@ -156,8 +157,8 @@ export function VariantComparisonModal({
                             "Unknown significance"}
                         </div>
                         <div className="mt-2 text-xs text-[#3c4f3d]/60">
-                          External ClinVar evidence; this is not inferred from the
-                          Evo2 score.
+                          External ClinVar evidence; this is not inferred from
+                          the Evo2 score.
                         </div>
                       </div>
                     </div>
@@ -175,22 +176,34 @@ export function VariantComparisonModal({
                           Primary delta signal:
                         </div>
                         <div className="text-sm font-medium">
-                          {comparisonVariant.evo2Result.delta_primary.toFixed(6)}
+                          {comparisonVariant.evo2Result.delta_primary.toFixed(
+                            6,
+                          )}
                         </div>
                         <div className="text-xs text-[#3c4f3d]/60">
-                          Raw alternate-minus-reference signal; no clinical label or confidence is derived here.
+                          Raw alternate-minus-reference signal; no clinical
+                          label or confidence is derived here.
                         </div>
                       </div>
                       <div className="mt-3">
                         <div className="space-y-1 text-xs text-[#3c4f3d]/70">
                           <div>
-                            Forward: {comparisonVariant.evo2Result.delta_forward?.toFixed(6) ?? "UNAVAILABLE"}
+                            Forward:{" "}
+                            {comparisonVariant.evo2Result.delta_forward?.toFixed(
+                              6,
+                            ) ?? "UNAVAILABLE"}
                           </div>
                           <div>
-                            Reverse-complement: {comparisonVariant.evo2Result.delta_reverse?.toFixed(6) ?? "UNAVAILABLE"}
+                            Reverse-complement:{" "}
+                            {comparisonVariant.evo2Result.delta_reverse?.toFixed(
+                              6,
+                            ) ?? "UNAVAILABLE"}
                           </div>
                           <div>
-                            Disagreement: {comparisonVariant.evo2Result.orientation_disagreement?.toFixed(6) ?? "UNAVAILABLE"}
+                            Disagreement:{" "}
+                            {comparisonVariant.evo2Result.orientation_disagreement?.toFixed(
+                              6,
+                            ) ?? "UNAVAILABLE"}
                           </div>
                         </div>
                       </div>

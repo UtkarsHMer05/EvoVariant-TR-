@@ -1,6 +1,6 @@
 /**
  * API route: return protocol/version info.
- * 
+ *
  * GET /api/protocol — returns the frozen protocol version.
  */
 import type { NextRequest } from "next/server";

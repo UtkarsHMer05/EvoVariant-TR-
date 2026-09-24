@@ -13,7 +13,8 @@ type FormalOutputs = [
   JsonObject,
 ];
 
-const FINAL_LOCKED_ARTIFACT = "artifacts/phase14/phase14_locked_evo2_20260922.json";
+const FINAL_LOCKED_ARTIFACT =
+  "artifacts/phase14/phase14_locked_evo2_20260922.json";
 
 const FORMAL_OUTPUTS = [
   "research/runs/formal_cpu_20260922/phase8/summary.json",
@@ -56,7 +57,11 @@ async function findRepoRoot(): Promise<string | null> {
 
   for (const candidate of [...new Set(candidates)]) {
     try {
-      if ((await stat(path.join(candidate, "experiments", "registry", "runs"))).isDirectory()) {
+      if (
+        (
+          await stat(path.join(candidate, "experiments", "registry", "runs"))
+        ).isDirectory()
+      ) {
         return candidate;
       }
     } catch {
@@ -66,7 +71,10 @@ async function findRepoRoot(): Promise<string | null> {
   return null;
 }
 
-async function readJson(repoRoot: string, relativePath: string): Promise<JsonObject | null> {
+async function readJson(
+  repoRoot: string,
+  relativePath: string,
+): Promise<JsonObject | null> {
   const target = path.resolve(repoRoot, relativePath);
   if (!target.startsWith(`${repoRoot}${path.sep}`)) return null;
   try {
@@ -76,11 +84,16 @@ async function readJson(repoRoot: string, relativePath: string): Promise<JsonObj
   }
 }
 
-async function sha256(repoRoot: string, relativePath: string): Promise<string | null> {
+async function sha256(
+  repoRoot: string,
+  relativePath: string,
+): Promise<string | null> {
   const target = path.resolve(repoRoot, relativePath);
   if (!target.startsWith(`${repoRoot}${path.sep}`)) return null;
   try {
-    return createHash("sha256").update(await readFile(target)).digest("hex");
+    return createHash("sha256")
+      .update(await readFile(target))
+      .digest("hex");
   } catch {
     return null;
   }
@@ -89,7 +102,12 @@ async function sha256(repoRoot: string, relativePath: string): Promise<string | 
 async function readVerifiedFormalOutputs(
   repoRoot: string,
 ): Promise<{ record: JsonObject; outputs: FormalOutputs } | null> {
-  const recordsDirectory = path.join(repoRoot, "experiments", "registry", "runs");
+  const recordsDirectory = path.join(
+    repoRoot,
+    "experiments",
+    "registry",
+    "runs",
+  );
   let filenames: string[];
   try {
     filenames = (await readdir(recordsDirectory)).filter((filename) =>
@@ -100,7 +118,10 @@ async function readVerifiedFormalOutputs(
   }
 
   for (const filename of filenames) {
-    const record = await readJson(repoRoot, path.join("experiments/registry/runs", filename));
+    const record = await readJson(
+      repoRoot,
+      path.join("experiments/registry/runs", filename),
+    );
     if (
       record?.experiment_family !== "FORMAL_CPU" ||
       record?.status !== "COMPLETED" ||
@@ -112,7 +133,10 @@ async function readVerifiedFormalOutputs(
     const outputPaths = asArray(record.output_paths).filter(
       (value): value is string => typeof value === "string",
     );
-    if (!outputHashes || !FORMAL_OUTPUTS.every((output) => outputPaths.includes(output))) {
+    if (
+      !outputHashes ||
+      !FORMAL_OUTPUTS.every((output) => outputPaths.includes(output))
+    ) {
       continue;
     }
     const verified = await Promise.all(
@@ -139,8 +163,17 @@ function asNumber(value: unknown): number | null {
 
 async function readVerifiedFinalEvaluation(
   repoRoot: string,
-): Promise<{ runId: string; artifact: JsonObject; artifactSha256: string } | null> {
-  const recordsDirectory = path.join(repoRoot, "experiments", "registry", "runs");
+): Promise<{
+  runId: string;
+  artifact: JsonObject;
+  artifactSha256: string;
+} | null> {
+  const recordsDirectory = path.join(
+    repoRoot,
+    "experiments",
+    "registry",
+    "runs",
+  );
   let filenames: string[];
   try {
     filenames = (await readdir(recordsDirectory)).filter((filename) =>
@@ -151,7 +184,10 @@ async function readVerifiedFinalEvaluation(
   }
 
   for (const filename of filenames) {
-    const record = await readJson(repoRoot, path.join("experiments/registry/runs", filename));
+    const record = await readJson(
+      repoRoot,
+      path.join("experiments/registry/runs", filename),
+    );
     if (
       record?.status !== "COMPLETED" ||
       record?.evidence_stage !== "FINAL" ||
@@ -160,9 +196,15 @@ async function readVerifiedFinalEvaluation(
       continue;
     }
     const outputHashes = asObject(record.output_hashes);
-    const expectedArtifactSha256 = asString(outputHashes?.[FINAL_LOCKED_ARTIFACT]);
+    const expectedArtifactSha256 = asString(
+      outputHashes?.[FINAL_LOCKED_ARTIFACT],
+    );
     const actualArtifactSha256 = await sha256(repoRoot, FINAL_LOCKED_ARTIFACT);
-    if (!expectedArtifactSha256 || expectedArtifactSha256 !== actualArtifactSha256) continue;
+    if (
+      !expectedArtifactSha256 ||
+      expectedArtifactSha256 !== actualArtifactSha256
+    )
+      continue;
     const artifact = await readJson(repoRoot, FINAL_LOCKED_ARTIFACT);
     const gates = asObject(artifact?.integrity_gates);
     if (
@@ -214,18 +256,30 @@ function blockedEvidence(blockers: string[]) {
 export async function GET() {
   const repoRoot = await findRepoRoot();
   if (!repoRoot) {
-    return Response.json(blockedEvidence(["repository evidence root is unavailable"]));
+    return Response.json(
+      blockedEvidence(["repository evidence root is unavailable"]),
+    );
   }
 
   const verified = await readVerifiedFormalOutputs(repoRoot);
   const finalEvaluation = await readVerifiedFinalEvaluation(repoRoot);
-  const figureStatus = await readJson(repoRoot, "research/runs/phase17_fig_status.json");
-  const uiStatus = await readJson(repoRoot, "research/runs/phase16_ui_status.json");
+  const figureStatus = await readJson(
+    repoRoot,
+    "research/runs/phase17_fig_status.json",
+  );
+  const uiStatus = await readJson(
+    repoRoot,
+    "research/runs/phase16_ui_status.json",
+  );
   if (!verified || !figureStatus) {
     return Response.json(
       blockedEvidence([
-        ...(!verified ? ["hash-verified formal development outputs are unavailable"] : []),
-        ...(!figureStatus ? ["registry-driven figure status is unavailable"] : []),
+        ...(!verified
+          ? ["hash-verified formal development outputs are unavailable"]
+          : []),
+        ...(!figureStatus
+          ? ["registry-driven figure status is unavailable"]
+          : []),
       ]),
     );
   }
@@ -250,11 +304,12 @@ export async function GET() {
   const finalCiValues = Array.isArray(finalMetrics?.bootstrap_auc_ci95)
     ? finalMetrics.bootstrap_auc_ci95.map(asNumber)
     : [];
-  const finalCi = finalCiValues.length === 2
-    && finalCiValues[0] !== null
-    && finalCiValues[1] !== null
-    ? [finalCiValues[0], finalCiValues[1]]
-    : null;
+  const finalCi =
+    finalCiValues.length === 2 &&
+    finalCiValues[0] !== null &&
+    finalCiValues[1] !== null
+      ? [finalCiValues[0], finalCiValues[1]]
+      : null;
 
   return Response.json({
     status: "PARTIAL",
@@ -272,7 +327,10 @@ export async function GET() {
         { phase: 8, status: phaseStatus(phase8) },
         { phase: 9, status: phaseStatus(phase9) },
         { phase: 11, status: phaseStatus(phase11) },
-        { phase: 12, status: asString(runMetrics?.phase12_status) ?? "UNAVAILABLE" },
+        {
+          phase: 12,
+          status: asString(runMetrics?.phase12_status) ?? "UNAVAILABLE",
+        },
         { phase: 13, status: phaseStatus(phase13) },
       ],
     },
@@ -281,7 +339,8 @@ export async function GET() {
       available_figures: availableFigures.length,
       required_figures: requiredFigures.length,
       available_tables: availableTables.length,
-      required_tables: figureStatus.applicable_required_table_count ?? requiredTables.length,
+      required_tables:
+        figureStatus.applicable_required_table_count ?? requiredTables.length,
       blockers,
     },
     final_evaluation: finalEvaluation
@@ -299,11 +358,17 @@ export async function GET() {
           brier: asNumber(finalProbabilityMetrics?.brier),
           nll: asNumber(finalProbabilityMetrics?.nll),
           ece: asNumber(finalProbabilityMetrics?.ece),
-          coverage: asNumber(asObject(finalMetrics?.abstention)?.actual_coverage),
+          coverage: asNumber(
+            asObject(finalMetrics?.abstention)?.actual_coverage,
+          ),
           abstention_risk: asNumber(asObject(finalMetrics?.abstention)?.risk),
           artifact_sha256: finalEvaluation.artifactSha256,
-          raw_predictions_sha256: asString(finalOutputs?.raw_predictions_sha256),
-          joined_predictions_sha256: asString(finalOutputs?.local_label_join_sha256),
+          raw_predictions_sha256: asString(
+            finalOutputs?.raw_predictions_sha256,
+          ),
+          joined_predictions_sha256: asString(
+            finalOutputs?.local_label_join_sha256,
+          ),
           integrity_gates_passed: true,
         }
       : null,

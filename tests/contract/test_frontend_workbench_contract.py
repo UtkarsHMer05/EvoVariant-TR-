@@ -36,11 +36,14 @@ def test_workbench_exposes_all_required_top_level_areas() -> None:
 
 def test_workbench_does_not_derive_clinical_labels_or_placeholder_metrics() -> None:
     source = WORKBENCH.read_text(encoding="utf-8")
-    assert "No clinical label is derived here" in source
-    assert "invent metrics" in source
-    assert "Calibrated study probability" in source
-    assert "Uncertainty / abstention" in source
-    assert "Comparator evidence" in source
+    # JSX prose may be reflowed by the formatter, so compare collapsed
+    # whitespace rather than raw line breaks.
+    normalized = " ".join(source.split())
+    assert "No clinical label is derived here" in normalized
+    assert "invent metrics" in normalized
+    assert "Calibrated study probability" in normalized
+    assert "Uncertainty / abstention" in normalized
+    assert "Comparator evidence" in normalized
     assert "pathogenic" not in source.lower()
     assert "benign" not in source.lower()
 

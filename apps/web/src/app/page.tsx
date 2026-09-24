@@ -162,10 +162,16 @@ export default function HomePage() {
             </span>
           </div>
           <nav aria-label="Primary" className="flex items-center gap-1 text-sm">
-            <Link href="/analysis" className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]">
+            <Link
+              href="/analysis"
+              className="rounded-md px-3 py-2 text-[#3c4f3d]/70 hover:bg-[#e9eeea] hover:text-[#3c4f3d]"
+            >
               Research workbench
             </Link>
-            <Link href="/benchmarks" className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90">
+            <Link
+              href="/benchmarks"
+              className="rounded-md bg-[#3c4f3d] px-3 py-2 text-white hover:bg-[#3c4f3d]/90"
+            >
               Benchmarks
             </Link>
           </nav>

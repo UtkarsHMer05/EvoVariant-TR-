@@ -64,11 +64,14 @@ export interface ResearchScore {
   delta_reverse: number | null;
   delta_primary: number;
   orientation_disagreement: number | null;
-  raw_scores: Record<string, {
-    reference_score: number;
-    alternate_score: number;
-    delta: number;
-  }>;
+  raw_scores: Record<
+    string,
+    {
+      reference_score: number;
+      alternate_score: number;
+      delta: number;
+    }
+  >;
   status: string;
   provenance: {
     scorer: string;
@@ -288,13 +291,13 @@ export async function fetchGeneDetails(geneId: string): Promise<{
       return { geneDetails: null, geneBounds: null, initialRange: null };
     }
 
-    const detailData = (await detailsResponse.json()) as NcbiGeneSummaryResponse;
+    const detailData =
+      (await detailsResponse.json()) as NcbiGeneSummaryResponse;
 
     const detail = detailData.result?.[geneId];
     if (detail && !Array.isArray(detail)) {
       const info = detail.genomicinfo?.[0];
       if (info) {
-
         const minPos = Math.min(info.chrstart, info.chrstop);
         const maxPos = Math.max(info.chrstart, info.chrstop);
         const bounds = { min: minPos, max: maxPos };

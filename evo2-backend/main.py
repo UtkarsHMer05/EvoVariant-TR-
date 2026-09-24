@@ -1,3 +1,13 @@
+"""DEPRECATED legacy prototype — do not deploy.
+
+This file predates the current project. It is kept only as historical
+context: it hard-codes clinical classification thresholds, uses an unpinned
+image, and is superseded by ``evo2_scorer_app.py`` plus
+``src/evovariant_tr``. The frozen 8,192-bp window convention now lives in
+``src/evovariant_tr/sequence_window.py``; this file was corrected to match it
+so the historical off-by-one cannot be copied forward.
+"""
+
 import sys
 
 import modal
@@ -226,7 +236,9 @@ def get_genome_sequence(position, genome: str, chromosome: str, window_size=8192
 
     half_window = window_size // 2
     start = max(0, position - 1 - half_window)
-    end = position - 1 + half_window + 1
+    # UCSC getData/sequence uses a 0-based half-open interval, so `end` must
+    # not be incremented again: this yields exactly `window_size` bases.
+    end = position - 1 + half_window
 
     print(
         f"Fetching {window_size}bp window around position {position} from UCSC API..")
@@ -243,7 +255,7 @@ def get_genome_sequence(position, genome: str, chromosome: str, window_size=8192
 
     if "dna" not in genome_data:
         error = genome_data.get("error", "Unknown error")
-        raise Exception(f"UCSC API errpr: {error}")
+        raise Exception(f"UCSC API error: {error}")
 
     sequence = genome_data.get("dna", "").upper()
     expected_length = end - start

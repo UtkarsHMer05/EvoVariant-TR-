@@ -17,8 +17,12 @@ test.describe("research workbench", () => {
     await expect(
       page.getByText("Registered evidence", { exact: true }),
     ).toBeVisible();
-    await expect(page.getByText("Authoritative cohort flow", { exact: true })).toBeVisible();
-    await expect(page.getByText("Verified", { exact: true }).first()).toBeVisible();
+    await expect(
+      page.getByText("Authoritative cohort flow", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Verified", { exact: true }).first(),
+    ).toBeVisible();
   });
 
   test("loads protocol metadata from the methods surface", async ({ page }) => {
@@ -26,7 +30,9 @@ test.describe("research workbench", () => {
     await page.getByRole("button", { name: "Load protocol metadata" }).click();
 
     await expect(page.getByText("Protocol version")).toBeVisible();
-    await expect(page.getByText("1.0.0", { exact: true }).first()).toBeVisible();
+    await expect(
+      page.getByText("1.0.0", { exact: true }).first(),
+    ).toBeVisible();
     await expect(page.getByText("8192 bp", { exact: true })).toBeVisible();
     await expect(page.getByText("Research-only")).toBeVisible();
   });
@@ -52,7 +58,9 @@ test.describe("research workbench", () => {
 
     await page.getByRole("tab", { name: "Experiment Registry" }).click();
     await expect(page.getByText("Registered run metadata")).toBeVisible();
-    await expect(page.getByText("READY", { exact: true }).first()).toBeVisible();
+    await expect(
+      page.getByText("READY", { exact: true }).first(),
+    ).toBeVisible();
     await expect(page.getByText("PRELIMINARY").first()).toBeVisible();
     await expect(page.getByText("FINAL").first()).toBeVisible();
     await expect(page.getByText("COMPLETED").first()).toBeVisible();
@@ -61,7 +69,9 @@ test.describe("research workbench", () => {
   test("rejects invalid client-side variant input without a scorer call", async ({
     page,
   }) => {
-    await page.getByRole("tab", { name: "Single Variant Research Analysis" }).click();
+    await page
+      .getByRole("tab", { name: "Single Variant Research Analysis" })
+      .click();
 
     const textInputs = page.getByRole("textbox");
     await textInputs.nth(0).fill("A");

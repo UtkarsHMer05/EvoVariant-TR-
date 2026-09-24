@@ -30,7 +30,11 @@ type RegistryRunSummary = {
   artifact_count: number;
 };
 
-function asRequiredString(value: unknown, field: string, source: string): string {
+function asRequiredString(
+  value: unknown,
+  field: string,
+  source: string,
+): string {
   if (typeof value !== "string" || !value.trim()) {
     throw new Error(`${source}: ${field} must be a non-empty string`);
   }
@@ -48,7 +52,10 @@ function parseRunRecord(raw: unknown, source: string): RegistryRunSummary {
 
   const record = raw as RegistryRecord;
   const status = asRequiredString(record.status, "status", source);
-  if (!TERMINAL_STATUSES.has(status) && !["REGISTERED", "RUNNING"].includes(status)) {
+  if (
+    !TERMINAL_STATUSES.has(status) &&
+    !["REGISTERED", "RUNNING"].includes(status)
+  ) {
     throw new Error(`${source}: unsupported status ${status}`);
   }
 
@@ -61,7 +68,11 @@ function parseRunRecord(raw: unknown, source: string): RegistryRunSummary {
     run_id: asRequiredString(record.run_id, "run_id", source),
     title: asRequiredString(record.title, "title", source),
     status,
-    evidence_stage: asRequiredString(record.evidence_stage, "evidence_stage", source),
+    evidence_stage: asRequiredString(
+      record.evidence_stage,
+      "evidence_stage",
+      source,
+    ),
     experiment_family:
       asOptionalString(record.experiment_family) ?? "UNSPECIFIED",
     model_name: asOptionalString(record.model_name),
@@ -80,7 +91,14 @@ async function findRunsDirectory(): Promise<string | null> {
   ].filter((candidate): candidate is string => Boolean(candidate));
 
   for (const candidate of [...new Set(candidates)]) {
-    const runsDirectory = path.join(candidate, "experiments", "registry", "runs");
+    // The repository root is resolved at runtime, so keep the dynamic access
+    // out of Turbopack's file tracing instead of tracing the whole project.
+    const runsDirectory = path.join(
+      /* turbopackIgnore: true */ candidate,
+      "experiments",
+      "registry",
+      "runs",
+    );
     try {
       if ((await stat(runsDirectory)).isDirectory()) return runsDirectory;
     } catch {
@@ -94,43 +112,51 @@ export async function GET() {
   try {
     const runsDirectory = await findRunsDirectory();
     if (!runsDirectory) {
-    return Response.json({
-      status: "BLOCKED",
-      registered_run_count: 0,
-      completed_scientific_run_count: 0,
-      final_scientific_run_count: 0,
-      artifact_count: 0,
+      return Response.json({
+        status: "BLOCKED",
+        registered_run_count: 0,
+        completed_scientific_run_count: 0,
+        final_scientific_run_count: 0,
+        artifact_count: 0,
         blockers: ["registry run directory is unavailable"],
         runs: [],
       });
     }
 
-    const filenames = (await readdir(runsDirectory))
+    const filenames = (await readdir(/* turbopackIgnore: true */ runsDirectory))
       .filter((filename) => /^run_[^/]+\.json$/.test(filename))
       .sort()
       .reverse();
     const runs: RegistryRunSummary[] = [];
 
     for (const filename of filenames) {
-      const source = path.join(runsDirectory, filename);
-      const raw = JSON.parse(await readFile(source, "utf8")) as unknown;
+      const source = path.join(
+        /* turbopackIgnore: true */ runsDirectory,
+        filename,
+      );
+      const raw = JSON.parse(
+        await readFile(/* turbopackIgnore: true */ source, "utf8"),
+      ) as unknown;
       runs.push(parseRunRecord(raw, filename));
     }
 
     const completedScientificRunCount = runs.filter(
       (run) =>
-        run.status === "COMPLETED" &&
-        SCIENTIFIC_STAGES.has(run.evidence_stage),
+        run.status === "COMPLETED" && SCIENTIFIC_STAGES.has(run.evidence_stage),
     ).length;
     const finalScientificRunCount = runs.filter(
       (run) => run.status === "COMPLETED" && run.evidence_stage === "FINAL",
     ).length;
-    const artifactCount = runs.reduce((total, run) => total + run.artifact_count, 0);
-    const status = finalScientificRunCount > 0
-      ? "READY"
-      : completedScientificRunCount > 0
-        ? "PARTIAL"
-        : "BLOCKED";
+    const artifactCount = runs.reduce(
+      (total, run) => total + run.artifact_count,
+      0,
+    );
+    const status =
+      finalScientificRunCount > 0
+        ? "READY"
+        : completedScientificRunCount > 0
+          ? "PARTIAL"
+          : "BLOCKED";
 
     return Response.json({
       status,
@@ -142,12 +168,15 @@ export async function GET() {
         status === "READY"
           ? []
           : status === "PARTIAL"
-            ? ["registered scientific runs are PRELIMINARY; no FINAL result is promoted"]
+            ? [
+                "registered scientific runs are PRELIMINARY; no FINAL result is promoted",
+              ]
             : ["no completed scientific run records are registered"],
       runs,
     });
   } catch (error) {
-    const detail = error instanceof Error ? error.message : "unknown registry error";
+    const detail =
+      error instanceof Error ? error.message : "unknown registry error";
     return Response.json(
       { error: "Registry metadata unavailable", detail },
       { status: 500 },

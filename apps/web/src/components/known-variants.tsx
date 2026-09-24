@@ -15,13 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import {
-  BarChart2,
-  ExternalLink,
-  RefreshCw,
-  Search,
-  Zap,
-} from "lucide-react";
+import { BarChart2, ExternalLink, RefreshCw, Search, Zap } from "lucide-react";
 import { getClassificationColorClasses } from "~/utils/coloring-utils";
 
 function complementBase(base: string): string {
@@ -80,9 +74,7 @@ export default function KnownVariants({
       ? parseInt(variant.location.replaceAll(",", ""))
       : null;
     const alleles = parseClinvarAlleles(variant.title, reverseStrand);
-    const variantDetails = alleles
-      ? { position, ...alleles }
-      : null;
+    const variantDetails = alleles ? { position, ...alleles } : null;
 
     if (
       !variantDetails?.position ||
@@ -92,7 +84,8 @@ export default function KnownVariants({
       updateClinvarVariant(variant.clinvar_id, {
         ...variant,
         isAnalyzing: false,
-        evo2Error: "This ClinVar record does not contain a supported SNV allele.",
+        evo2Error:
+          "This ClinVar record does not contain a supported SNV allele.",
       });
       return;
     }
@@ -216,11 +209,18 @@ export default function KnownVariants({
                       {variant.evo2Result && (
                         <div className="mt-2">
                           <div className="space-y-1 rounded-md bg-[#e9eeea]/60 px-2 py-1 text-xs text-[#3c4f3d]">
-                            <div>Research signal: {variant.evo2Result.delta_primary.toFixed(6)}</div>
+                            <div>
+                              Research signal:{" "}
+                              {variant.evo2Result.delta_primary.toFixed(6)}
+                            </div>
                             <div className="text-[#3c4f3d]/60">
-                              FWD {variant.evo2Result.delta_forward?.toFixed(4) ?? "UNAVAILABLE"}
+                              FWD{" "}
+                              {variant.evo2Result.delta_forward?.toFixed(4) ??
+                                "UNAVAILABLE"}
                               {" · "}
-                              RC {variant.evo2Result.delta_reverse?.toFixed(4) ?? "UNAVAILABLE"}
+                              RC{" "}
+                              {variant.evo2Result.delta_reverse?.toFixed(4) ??
+                                "UNAVAILABLE"}
                             </div>
                           </div>
                         </div>
@@ -248,7 +248,7 @@ export default function KnownVariants({
                               ) : (
                                 <>
                                   <Zap className="mr-1 inline-block h-3 w-3" />
-                                Analyze research signal
+                                  Analyze research signal
                                 </>
                               )}
                             </Button>
@@ -291,11 +291,12 @@ export default function KnownVariants({
           <div className="flex h-48 flex-col items-center justify-center text-center text-gray-400">
             <Search className="mb-4 h-10 w-10 text-gray-300" />
             <p className="text-sm leading-relaxed">
-              No ClinVar variants were returned for {gene.symbol} in the selected
-              GRCh38 interval.
+              No ClinVar variants were returned for {gene.symbol} in the
+              selected GRCh38 interval.
             </p>
             <p className="mt-1 text-xs text-gray-400">
-              This is a live ClinVar query result. Try an exact gene symbol or refresh.
+              This is a live ClinVar query result. Try an exact gene symbol or
+              refresh.
             </p>
           </div>
         )}

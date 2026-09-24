@@ -9,10 +9,10 @@
   },
   "population": "locked temporal cohort",
   "sha256": {
-    "pdf": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d",
+    "pdf": "65204748fd96b7aecbb016484f15446aaeca0a063ddb5d5ff32f4e4b5194ca83",
     "png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0",
     "source_data": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b",
-    "svg": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5",
+    "svg": "47a0e37c330abf6b3f384d6852810f5daa39be8886936137ee83d938e6e43fb4",
     "web_png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
   },
   "source_data": "docs/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json"

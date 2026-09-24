@@ -535,12 +535,12 @@
       "benchmark_id": "B01-B68",
       "dimensions": [
         1280,
-        6120
+        8640
       ],
       "finite_source_numbers": true,
       "hash_recorded": true,
       "id": "contact_sheet",
-      "n": 33,
+      "n": 47,
       "population": "registered benchmark figures",
       "source_data": "docs/benchmarks/data/figures/contact_sheet.provenance.json",
       "source_exists": true

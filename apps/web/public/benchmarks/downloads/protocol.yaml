@@ -1,7 +1,7 @@
 protocol_id: evovariant-tr-benchmark-expansion-v1
 primary_result: immutable phase14 locked Evo2 result
 start_main_head: cd143aaa4bf568e00d73269648f39f5131a744c1
-working_branch: research/benchmark-expansion-v1
+working_branch: main
 baseline_tag_commit: 1003bc5a20973145e0e096ff7b0f3424045d07e6
 formal_n: 4000
 locked_n: 946

@@ -2,9 +2,9 @@
   "entries": [
     {
       "benchmark_id": "B01-B68",
-      "bytes": 233742,
+      "bytes": 233728,
       "path": "apps/web/public/benchmarks/benchmark-manifest.json",
-      "sha256": "d0cdcbb887b75dfba04e14a60f1a12fb7fe55e3188c9604ab737c52ec6a6a83a"
+      "sha256": "24d35fc46773b226a9d5f5bbdb6c2b8895e161c04c98a838d238b983a793d412"
     },
     {
       "benchmark_id": "B01-B68",
@@ -16,7 +16,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 889,
       "path": "apps/web/public/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
-      "sha256": "45933f5207627ade5e46f789fb4400a45cd21bc63865a95a53e0b0a054bb00e2"
+      "sha256": "5d46aa42cbb354af8cea0fc64cc2cbcb0b50b422b581fce86c1ef4d5c8049295"
     },
     {
       "benchmark_id": "B01-B68",
@@ -40,25 +40,25 @@
       "benchmark_id": "B01-B68",
       "bytes": 938,
       "path": "apps/web/public/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
-      "sha256": "5a55ded9bf5b2a21a3f7b2293b4766c4d8cb75c3518b6b29ad86dbd8c687cea7"
+      "sha256": "2afb76f6f0055d62f6ae227f85c3b824b7bba3384d90a3732bd83c3a3e33d763"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 630,
+      "bytes": 639,
       "path": "apps/web/public/benchmarks/data/figures/classical_comparator_coverage.json",
-      "sha256": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76"
+      "sha256": "423fd279b2da3d3c479c24dd6793ad5b17492407d7aac5f691e65f877fb1880c"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 925,
       "path": "apps/web/public/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
-      "sha256": "041c903e6b84c8f3acbf9808a625fe1b98958c6726095fcd5a478655e1ab079a"
+      "sha256": "786890978cfcf5c783e1ddb17cf528955d24eda819227148dd24af4639080989"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 1393,
       "path": "apps/web/public/benchmarks/data/figures/contact_sheet.provenance.json",
-      "sha256": "36e032202bda9aff19bba3117ad712382cf6b5b5d2ec95a1b1a372d20408c1e7"
+      "sha256": "2fef1e0c0e00fb11f574660aea553de4231698d4b6cb40e60cbe57131403e5d7"
     },
     {
       "benchmark_id": "B01-B68",
@@ -88,7 +88,163 @@
       "benchmark_id": "B01-B68",
       "bytes": 905,
       "path": "apps/web/public/benchmarks/data/figures/evidence_quality_performance.provenance.json",
-      "sha256": "4ab1c73e3964c952a548dd2b918eb5b7d4f21d17d0b15c16ccef62b25ddd73df"
+      "sha256": "edce3d3a9eb765406eecddbe6f5834d9488ed794543d37c258aceb078bf75ff6"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1808,
+      "path": "apps/web/public/benchmarks/data/figures/external_calibration_reliability.json",
+      "sha256": "c694da5caabc49c7aabf410301f63e24180838b206cf0ae4e74e710eca05b4d8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 933,
+      "path": "apps/web/public/benchmarks/data/figures/external_calibration_reliability.provenance.json",
+      "sha256": "97192098ab3d76a005be8e64756dbc9353c5e554d09a5c1724ae654559ab4b8c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 219,
+      "path": "apps/web/public/benchmarks/data/figures/external_class_balance.json",
+      "sha256": "189e7cfe31952f3169f5e63168e5e84a0badfff1a3de02cd9eda0a1628ee8a3e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 883,
+      "path": "apps/web/public/benchmarks/data/figures/external_class_balance.provenance.json",
+      "sha256": "2a67187de7c4d53f61c6101ab5783f049e50048aa503ea73970b677698f53e4e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 566,
+      "path": "apps/web/public/benchmarks/data/figures/external_classification_dashboard.json",
+      "sha256": "8d007918771b3d70acbe73ed2a501ebc5a1c840612a24bb16af11b31a10d01af"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 938,
+      "path": "apps/web/public/benchmarks/data/figures/external_classification_dashboard.provenance.json",
+      "sha256": "2d0ae874ed50511612bea16f3a63bb20f5c794ff48a7a3fe0671076a19d02c3f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 367,
+      "path": "apps/web/public/benchmarks/data/figures/external_cohort_flow.json",
+      "sha256": "799179f9b35453af80f7633284663cef54a5f833dead385e56d9053b494627df"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 873,
+      "path": "apps/web/public/benchmarks/data/figures/external_cohort_flow.provenance.json",
+      "sha256": "4006e17ee6b370c45d773f69eec535b9c7c1fa6122449185a69546b39bb75650"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 380,
+      "path": "apps/web/public/benchmarks/data/figures/external_confusion_matrix.json",
+      "sha256": "968ff900f2dd93a7fdb1bec7b6fac008f285abf254b4938c5549fbc12195118a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 898,
+      "path": "apps/web/public/benchmarks/data/figures/external_confusion_matrix.provenance.json",
+      "sha256": "2c39ef7502dab3b81f8fed431a41c2160028bab493ada2d819ff6366e0427959"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 392,
+      "path": "apps/web/public/benchmarks/data/figures/external_f1_family_dashboard.json",
+      "sha256": "7375bb710ebe4c02cb9d5eeb6ec9f1f6bb49c1b3cab703ad4e8944cccbd4a776"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 913,
+      "path": "apps/web/public/benchmarks/data/figures/external_f1_family_dashboard.provenance.json",
+      "sha256": "cb7d508ac7aa6dd84c2bf0b98e8bdc6b4be18ac1c9e3c7ca92193587b559bc66"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 484,
+      "path": "apps/web/public/benchmarks/data/figures/external_model_agreement.json",
+      "sha256": "90bbdb83536ff76ef5f211b1f02b78ee86c4e39be9a5b2ff724942f6c6c9a994"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 893,
+      "path": "apps/web/public/benchmarks/data/figures/external_model_agreement.provenance.json",
+      "sha256": "5193721bfe2cf7ad84da050de16311c87a2f2b2a1b02b8657bb72428f49208bd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1622,
+      "path": "apps/web/public/benchmarks/data/figures/external_precision_recall.json",
+      "sha256": "474fe1b6a06a1a010abf1b6c4433c30bd3668d934689262ff9e43b7b1f419245"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 898,
+      "path": "apps/web/public/benchmarks/data/figures/external_precision_recall.provenance.json",
+      "sha256": "7bcb66fd805a4e1f292bc4aa62e2304e74b561d48304ce061cace1ed504a4040"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 406,
+      "path": "apps/web/public/benchmarks/data/figures/external_probability_quality.json",
+      "sha256": "d30ad0e19c8e6b5698f3af918c790cb6072ea346fe97c192951342a848b40b05"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 913,
+      "path": "apps/web/public/benchmarks/data/figures/external_probability_quality.provenance.json",
+      "sha256": "d49ab58025e673f6672b08cdc6ae0a5d18a7834f0c9b43d322ffbff97b7500b4"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 326,
+      "path": "apps/web/public/benchmarks/data/figures/external_review_quality_subgroup_performance.json",
+      "sha256": "9b62fb2e040332e5d2280e2b3e49a66d1b749bf7c404b93c163553e4f5baa4bc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 993,
+      "path": "apps/web/public/benchmarks/data/figures/external_review_quality_subgroup_performance.provenance.json",
+      "sha256": "428ff5ca6b0335cbc8808703b33cf3544715cc3fdd7f5349f3a5bf7f4de1d6f1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1197,
+      "path": "apps/web/public/benchmarks/data/figures/external_roc.json",
+      "sha256": "147bf72daa4f4dd58d1d825f21b139f61bf3b6c25e2fe45ed02d2ce6b09bb754"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 833,
+      "path": "apps/web/public/benchmarks/data/figures/external_roc.provenance.json",
+      "sha256": "9f6e0e496b706dd0f4185f61cf6aa6c5799343d03a0809e953b7cafd66d86815"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 467,
+      "path": "apps/web/public/benchmarks/data/figures/external_runtime_and_cache_economics.json",
+      "sha256": "e33e72611511c2b3197dafd5eacee0a46c8060fbd79fbef5bd27b7ee6363afa5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 956,
+      "path": "apps/web/public/benchmarks/data/figures/external_runtime_and_cache_economics.provenance.json",
+      "sha256": "fc97d55e8f189c5e445005a60be2d5e7d5bea6d9539cd5cb6290563f5e905eae"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 358,
+      "path": "apps/web/public/benchmarks/data/figures/external_versus_locked_cohort_drift.json",
+      "sha256": "9a887f88836b72263b298cc454eb82d086f9028074cece364b4c5e0df6ef6640"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 960,
+      "path": "apps/web/public/benchmarks/data/figures/external_versus_locked_cohort_drift.provenance.json",
+      "sha256": "f4553351289b24ede0026fc9aadfed77e95ab606e131cf0809537ef6eecd6862"
     },
     {
       "benchmark_id": "B01-B68",
@@ -170,6 +326,18 @@
     },
     {
       "benchmark_id": "B01-B68",
+      "bytes": 662,
+      "path": "apps/web/public/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.json",
+      "sha256": "193d66d8adeef704c199a847920d75b59aa30f9c6589437a334d9dea2969fe4b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1049,
+      "path": "apps/web/public/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.provenance.json",
+      "sha256": "addfe11695ed859445404347935581790941ffe9c818e4bfa9475b6b49b65669"
+    },
+    {
+      "benchmark_id": "B01-B68",
       "bytes": 294,
       "path": "apps/web/public/benchmarks/data/figures/model_disagreement_categories.json",
       "sha256": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72"
@@ -178,7 +346,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 911,
       "path": "apps/web/public/benchmarks/data/figures/model_disagreement_categories.provenance.json",
-      "sha256": "85ea0f60f727ec28287e9deeef1af1feb0ab24b5dd2080e187a4898041048f1f"
+      "sha256": "b88814f253589224f603b16e534117861005da6b355b9b2fd6fbee1b1adc9689"
     },
     {
       "benchmark_id": "B01-B68",
@@ -202,7 +370,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 975,
       "path": "apps/web/public/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
-      "sha256": "33a70b11fc184ef948e47ed6d1d3b82dd609723ca1b34b40bc8d6d712601bed1"
+      "sha256": "2964f152c2f4a1e95662ecdae9f653432e91403e0a69a5aee61920e0298aed61"
     },
     {
       "benchmark_id": "B01-B68",
@@ -226,7 +394,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 915,
       "path": "apps/web/public/benchmarks/data/figures/transition_versus_transversion.provenance.json",
-      "sha256": "af1c5ea5f342e1ee18cddc54fa0bb4ee33600662091bec14fd7d57157954893b"
+      "sha256": "93482cd29c5f044dc5325490fe1a40354b51858230b7e9dcbb2570ec40eeb93c"
     },
     {
       "benchmark_id": "B01-B68",
@@ -238,13 +406,13 @@
       "benchmark_id": "B01-B68",
       "bytes": 901,
       "path": "apps/web/public/benchmarks/data/figures/validation_model_comparison.provenance.json",
-      "sha256": "1e3a90892c078701eaf136d2cba4d1a0621bbab9c7dc6b98ebdd762eb07f68f2"
+      "sha256": "d8ed51af945ad0f1c468b4ae06d607f34206f380d2cd62c24d3ca8d5133c4d90"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 39264,
+      "bytes": 70164,
       "path": "apps/web/public/benchmarks/downloads/BENCHMARK_ARTIFACT_MANIFEST.json",
-      "sha256": "e7d11d15682f5f94ffbd368f7b68c7260305a0742fe0d88bff82a533a345e7e4"
+      "sha256": "b8326695196a098c6a52d706b048395edd431df26272a6f488223c61fa6d86ce"
     },
     {
       "benchmark_id": "B01-B68",
@@ -274,13 +442,19 @@
       "benchmark_id": "B01-B68",
       "bytes": 119320,
       "path": "apps/web/public/benchmarks/downloads/benchmark_registry.json",
-      "sha256": "0d84eaf8fc0e0496ff03bb9c3a181cacc3530519b259d10d85d9e45f47d732a3"
+      "sha256": "00005d64f43194982f35f1b5cdd3f2f9be959169f1fc6235e93bd21fafdc28c4"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 5878,
+      "bytes": 5898,
       "path": "apps/web/public/benchmarks/downloads/case_studies.json",
-      "sha256": "1012977b65a03f02c20f3460ffe559271186d69243c859a47af45aa49406cee0"
+      "sha256": "1acb2c321d463a468a0f4ee0f6d3beb0693592d4903cfff5b353646a156bd055"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1122,
+      "path": "apps/web/public/benchmarks/downloads/comparator_audit.json",
+      "sha256": "4ff0c00f81a1d706e55dd586ad972240fd9af3d71e07640e66d065c24ef2b0e9"
     },
     {
       "benchmark_id": "B01-B68",
@@ -290,21 +464,63 @@
     },
     {
       "benchmark_id": "B01-B68",
+      "bytes": 548438,
+      "path": "apps/web/public/benchmarks/downloads/external_clinvar_evaluation.json",
+      "sha256": "9e4fbe7b252cac5a5bffd5f54411db0fb55869f60a314a06bb090c58316d2af6"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 20646,
+      "path": "apps/web/public/benchmarks/downloads/external_clinvar_predictions_summary.csv",
+      "sha256": "9c60bd9fedca26d0dadb9d942b3732baffab6bc007594a4718f4d8a114c74f06"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33586,
+      "path": "apps/web/public/benchmarks/downloads/external_clinvar_provenance.json",
+      "sha256": "29dc5314daa2c2be011b3d3a0c00c8cca51d59380262474e5d6067dab69b9e54"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 27689,
+      "path": "apps/web/public/benchmarks/downloads/external_clinvar_runtime.json",
+      "sha256": "6b719cd8ad779e478afe5172f0d6302114aed19d8e4e586ff2d01e68ebfee1d4"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 31911,
+      "path": "apps/web/public/benchmarks/downloads/external_figure_index.json",
+      "sha256": "8278c6827af2d2edd975a1e3834122dbc7c13d84efb7f5be2b2ec67884253021"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 271,
+      "path": "apps/web/public/benchmarks/downloads/final_benchmark_summary.csv",
+      "sha256": "b85d494ee5be9ae9e1732638a3b2c23de6846ba946d60b178025dfe25cb8af99"
+    },
+    {
+      "benchmark_id": "B01-B68",
       "bytes": 20472,
       "path": "apps/web/public/benchmarks/downloads/final_benchmark_summary.json",
-      "sha256": "1bdd3ac8522d99843b338b0b20a92d52cb02fb6829e611a3283cdbd955e556b9"
+      "sha256": "3b878dfaea0f0154085049a24b1b5b318e349482a1efe8cf0a29e7dbe03672f0"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 727,
+      "bytes": 4367,
+      "path": "apps/web/public/benchmarks/downloads/mavedb_assay_manifest.json",
+      "sha256": "536344102362ecda63a0909418b14d75be8e9c90a19cc95304d11041ed546e92"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 700,
       "path": "apps/web/public/benchmarks/downloads/protocol.yaml",
-      "sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8"
+      "sha256": "c180e2e9c2dcbc986279aecd2650c307a9d3c46dc95cf4251276c30c2555b643"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 388684,
+      "bytes": 388963,
       "path": "apps/web/public/benchmarks/figures/benchmark_contact_sheet.png",
-      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+      "sha256": "ed27cf42f44e675b49cf561ebc1058527006b6804a64c9d91cad0fda327e477a"
     },
     {
       "benchmark_id": "B01-B68",
@@ -326,15 +542,15 @@
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 46280,
+      "bytes": 46302,
       "path": "apps/web/public/benchmarks/figures/classical_comparator_coverage.png",
-      "sha256": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+      "sha256": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 388684,
+      "bytes": 388963,
       "path": "apps/web/public/benchmarks/figures/contact_sheet.png",
-      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+      "sha256": "ed27cf42f44e675b49cf561ebc1058527006b6804a64c9d91cad0fda327e477a"
     },
     {
       "benchmark_id": "B01-B68",
@@ -347,6 +563,84 @@
       "bytes": 31088,
       "path": "apps/web/public/benchmarks/figures/evidence_quality_performance.png",
       "sha256": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 76062,
+      "path": "apps/web/public/benchmarks/figures/external_calibration_reliability.png",
+      "sha256": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28599,
+      "path": "apps/web/public/benchmarks/figures/external_class_balance.png",
+      "sha256": "0f7037680c9bd3d9acf39273e10e21d15904c5577fca9b4fb9df305a4c76c8af"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41836,
+      "path": "apps/web/public/benchmarks/figures/external_classification_dashboard.png",
+      "sha256": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 32730,
+      "path": "apps/web/public/benchmarks/figures/external_cohort_flow.png",
+      "sha256": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 26335,
+      "path": "apps/web/public/benchmarks/figures/external_confusion_matrix.png",
+      "sha256": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 34160,
+      "path": "apps/web/public/benchmarks/figures/external_f1_family_dashboard.png",
+      "sha256": "e89a8179dea97c67d0f2d2520aba2e775b830805e99fc7414f747c0480857a7d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 64953,
+      "path": "apps/web/public/benchmarks/figures/external_model_agreement.png",
+      "sha256": "4d586d51a0e84a6d44a307ba5265429e8845d9226f5290a81ab318c14ecdfcdd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 42433,
+      "path": "apps/web/public/benchmarks/figures/external_precision_recall.png",
+      "sha256": "c504b4c10efb6278f43c7cbe0c8a960ccac74b7fdeeb19fc710f6252fa4b9b44"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 35354,
+      "path": "apps/web/public/benchmarks/figures/external_probability_quality.png",
+      "sha256": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 39641,
+      "path": "apps/web/public/benchmarks/figures/external_review_quality_subgroup_performance.png",
+      "sha256": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 60038,
+      "path": "apps/web/public/benchmarks/figures/external_roc.png",
+      "sha256": "516222099601e00a9bd60db87d1c31988c367a0113047648cc7dc61c024a17dc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48756,
+      "path": "apps/web/public/benchmarks/figures/external_runtime_and_cache_economics.png",
+      "sha256": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 49666,
+      "path": "apps/web/public/benchmarks/figures/external_versus_locked_cohort_drift.png",
+      "sha256": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535"
     },
     {
       "benchmark_id": "B01-B68",
@@ -392,6 +686,12 @@
     },
     {
       "benchmark_id": "B01-B68",
+      "bytes": 41011,
+      "path": "apps/web/public/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+      "sha256": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab"
+    },
+    {
+      "benchmark_id": "B01-B68",
       "bytes": 41570,
       "path": "apps/web/public/benchmarks/figures/model_disagreement_categories.png",
       "sha256": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
@@ -434,27 +734,93 @@
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 4439,
+      "bytes": 4412,
       "path": "artifacts/benchmarks/benchmark_expansion_state.json",
-      "sha256": "a4550c671bebbf1d84015eef81781b0790f79be9dfd36155e0438fbb4d1c3b73"
+      "sha256": "9132ae9e49ed6761620654840e7da053be2c5fd9f3313c38eab52ab79ba1ea1d"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 119320,
       "path": "artifacts/benchmarks/benchmark_registry.json",
-      "sha256": "0d84eaf8fc0e0496ff03bb9c3a181cacc3530519b259d10d85d9e45f47d732a3"
+      "sha256": "00005d64f43194982f35f1b5cdd3f2f9be959169f1fc6235e93bd21fafdc28c4"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 5878,
+      "bytes": 5898,
       "path": "artifacts/benchmarks/case_studies.json",
-      "sha256": "1012977b65a03f02c20f3460ffe559271186d69243c859a47af45aa49406cee0"
+      "sha256": "1acb2c321d463a468a0f4ee0f6d3beb0693592d4903cfff5b353646a156bd055"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1122,
+      "path": "artifacts/benchmarks/comparator_audit.json",
+      "sha256": "4ff0c00f81a1d706e55dd586ad972240fd9af3d71e07640e66d065c24ef2b0e9"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 36104,
+      "path": "artifacts/benchmarks/comparator_coverage_reaudit.json",
+      "sha256": "9ff7cbf6e9046ab4ae48c0ea3ca9c4f0d7070dda40d28ab86ff81c8cf39e8b66"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 135220,
+      "path": "artifacts/benchmarks/external_classical_comparators.json",
+      "sha256": "0c5577bcf77f12a548bb354bc0c2e6e692d4a7ca7bd6fa12e7e5de872c4ce0b8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1946,
+      "path": "artifacts/benchmarks/external_clinvar_dry_run.json",
+      "sha256": "5a77e96611bd3eb80d220053bbc5897f2984f5b23d43b0079b9a225ce1b3e7dc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 548438,
+      "path": "artifacts/benchmarks/external_clinvar_evaluation.json",
+      "sha256": "9e4fbe7b252cac5a5bffd5f54411db0fb55869f60a314a06bb090c58316d2af6"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 86485,
       "path": "artifacts/benchmarks/external_clinvar_manifest.json",
       "sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1054,
+      "path": "artifacts/benchmarks/external_clinvar_manifest_receipt.json",
+      "sha256": "f65503e65b8d55f028f72ab353cec083b190fd5f2c1968f5b74189d930cd5bf3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 6720,
+      "path": "artifacts/benchmarks/external_clinvar_metrics.json",
+      "sha256": "e8f73f5ef9d12e52325b09ad1db02c2c048c0f8cdec57c7584ed24b00e1f6b38"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 20646,
+      "path": "artifacts/benchmarks/external_clinvar_predictions_summary.csv",
+      "sha256": "9c60bd9fedca26d0dadb9d942b3732baffab6bc007594a4718f4d8a114c74f06"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33586,
+      "path": "artifacts/benchmarks/external_clinvar_provenance.json",
+      "sha256": "29dc5314daa2c2be011b3d3a0c00c8cca51d59380262474e5d6067dab69b9e54"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 573,
+      "path": "artifacts/benchmarks/external_clinvar_raw_prediction_receipt.json",
+      "sha256": "588862fc919beddd87dd35aee5b248e665030d17149da321bd39a05179dd2e3f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 27689,
+      "path": "artifacts/benchmarks/external_clinvar_runtime.json",
+      "sha256": "6b719cd8ad779e478afe5172f0d6302114aed19d8e4e586ff2d01e68ebfee1d4"
     },
     {
       "benchmark_id": "B01-B68",
@@ -466,7 +832,13 @@
       "benchmark_id": "B01-B68",
       "bytes": 20472,
       "path": "artifacts/benchmarks/final_benchmark_summary.json",
-      "sha256": "1bdd3ac8522d99843b338b0b20a92d52cb02fb6829e611a3283cdbd955e556b9"
+      "sha256": "3b878dfaea0f0154085049a24b1b5b318e349482a1efe8cf0a29e7dbe03672f0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 4367,
+      "path": "artifacts/benchmarks/mavedb_assay_manifest.json",
+      "sha256": "536344102362ecda63a0909418b14d75be8e9c90a19cc95304d11041ed546e92"
     },
     {
       "benchmark_id": "B01-B68",
@@ -490,7 +862,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 27058,
       "path": "artifacts/benchmarks/source_inventory.json",
-      "sha256": "1d071931dc9521310568e00f7e32a8cc1c724368448315586ab9900aafd3626c"
+      "sha256": "5a0481e4042c12a70afedff60d61049b61d90a0bca6d2611b074dfe01bdee63c"
     },
     {
       "benchmark_id": "B01-B68",
@@ -514,7 +886,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 4367,
       "path": "docs/benchmarks/FIGURE_INDEX.md",
-      "sha256": "25466fadd063288df0d2e83f3d68c4d295f7be9aff9b3503b7b49690e4dfe12f"
+      "sha256": "eb448285b3f610757f92527d4f1f2d6a5abcee549214fffba52d9424783e79ca"
     },
     {
       "benchmark_id": "B01-B68",
@@ -568,19 +940,19 @@
       "benchmark_id": "B01-B68",
       "bytes": 18359,
       "path": "docs/benchmarks/SOURCE_INVENTORY.md",
-      "sha256": "b5d63719ec176ce06bcc441327f4a268f8dcec94d93f8d8e97243a8d452828c1"
+      "sha256": "c59a45cddb6f37863df7d58e209c2a86d8ae6ec3365503cfb842d84928b07f09"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 388684,
+      "bytes": 388963,
       "path": "docs/benchmarks/assets/benchmark_contact_sheet.png",
-      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+      "sha256": "ed27cf42f44e675b49cf561ebc1058527006b6804a64c9d91cad0fda327e477a"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 17422,
       "path": "docs/benchmarks/assets/benchmark_status_matrix.pdf",
-      "sha256": "d8ccd6a7053858c54edfbcfad3cd74be2a080b25d55ffee7dd204b8b42cf1299"
+      "sha256": "25d85daa607e38295c123783f626dee52b7cfc9ec1af829365e0d40685d11b6a"
     },
     {
       "benchmark_id": "B01-B68",
@@ -592,7 +964,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 37413,
       "path": "docs/benchmarks/assets/benchmark_status_matrix.svg",
-      "sha256": "7c5141627266555d86358949fdd6a54883eeff67c35aca76a9695b219d50c6dc"
+      "sha256": "848b941e003179433d69876e612ac3e2cf544c8594c12be34466ab878825fd63"
     },
     {
       "benchmark_id": "B01-B68",
@@ -604,7 +976,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 16863,
       "path": "docs/benchmarks/assets/chromosome_held_out_generalization.pdf",
-      "sha256": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf"
+      "sha256": "26fbfa812e4a7a21859338ebb035b1733c61a6a2bd0ea736ce61240816423cfe"
     },
     {
       "benchmark_id": "B01-B68",
@@ -616,31 +988,31 @@
       "benchmark_id": "B01-B68",
       "bytes": 42014,
       "path": "docs/benchmarks/assets/chromosome_held_out_generalization.svg",
-      "sha256": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5"
+      "sha256": "32c837d3187f8c2487eca5ba4ae7d583309d5af588ca29b6b623abc6f87b4eda"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 14096,
+      "bytes": 14107,
       "path": "docs/benchmarks/assets/classical_comparator_coverage.pdf",
-      "sha256": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b"
+      "sha256": "853abe22bf91a5315bf8b98b25898790eb56df19a6b16d07a1ed144ba813e8ff"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 46280,
+      "bytes": 46302,
       "path": "docs/benchmarks/assets/classical_comparator_coverage.png",
-      "sha256": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+      "sha256": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 32915,
+      "bytes": 32911,
       "path": "docs/benchmarks/assets/classical_comparator_coverage.svg",
-      "sha256": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598"
+      "sha256": "f2bdbb37a9413e4da36abeb5155e2b4b3088c62c7b6a834ce5d32749eee1e7f2"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 388684,
+      "bytes": 388963,
       "path": "docs/benchmarks/assets/contact_sheet.png",
-      "sha256": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+      "sha256": "ed27cf42f44e675b49cf561ebc1058527006b6804a64c9d91cad0fda327e477a"
     },
     {
       "benchmark_id": "B01-B68",
@@ -652,7 +1024,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 15151,
       "path": "docs/benchmarks/assets/evidence_quality_performance.pdf",
-      "sha256": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b"
+      "sha256": "837f699bab397a6ea34bd0c1ede2616c247359a74126f6aa643190ad5b544508"
     },
     {
       "benchmark_id": "B01-B68",
@@ -664,7 +1036,241 @@
       "benchmark_id": "B01-B68",
       "bytes": 28779,
       "path": "docs/benchmarks/assets/evidence_quality_performance.svg",
-      "sha256": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c"
+      "sha256": "87f468c2a92fc107dbce7ea017202deab100464fe71e04464863917a06b4fa2b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13896,
+      "path": "docs/benchmarks/assets/external_calibration_reliability.pdf",
+      "sha256": "ad9484e294d71a86da74674d4753baffedf01716fc7b0e7e412c9d507cd41668"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 76062,
+      "path": "docs/benchmarks/assets/external_calibration_reliability.png",
+      "sha256": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33013,
+      "path": "docs/benchmarks/assets/external_calibration_reliability.svg",
+      "sha256": "d2aba2fa84d05f35ec569f7e47f3bde262174ed7b2df6f0544e131e40a853003"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 12540,
+      "path": "docs/benchmarks/assets/external_class_balance.pdf",
+      "sha256": "f0ecf5a8d7dfb1efb87abf1126d1f0bb7b3fad01b899e17d2aadbe3df237038a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28599,
+      "path": "docs/benchmarks/assets/external_class_balance.png",
+      "sha256": "0f7037680c9bd3d9acf39273e10e21d15904c5577fca9b4fb9df305a4c76c8af"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 25288,
+      "path": "docs/benchmarks/assets/external_class_balance.svg",
+      "sha256": "377dac1a0230ad6dd7963333c41133c3994b5fc528db77decac4d845b6e2dcf2"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 15007,
+      "path": "docs/benchmarks/assets/external_classification_dashboard.pdf",
+      "sha256": "56b2e44a05b51efb72e96996c8c6834ece2c9adf1a05863894d3ff9a2c8e3bda"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41836,
+      "path": "docs/benchmarks/assets/external_classification_dashboard.png",
+      "sha256": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 32856,
+      "path": "docs/benchmarks/assets/external_classification_dashboard.svg",
+      "sha256": "9368ff72c26bb489f8b3c648a48c3f4e31b9808d9db4374e6609b215200f5202"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13836,
+      "path": "docs/benchmarks/assets/external_cohort_flow.pdf",
+      "sha256": "db671e36c1f54e097c824405b4524b04ce4f5f25895076e7a0cd07369522ff1e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 32730,
+      "path": "docs/benchmarks/assets/external_cohort_flow.png",
+      "sha256": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28555,
+      "path": "docs/benchmarks/assets/external_cohort_flow.svg",
+      "sha256": "f94a3d226c6eb702b17c2461147ea2be3713b290a037c05ed8dd60ea8dbcb663"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13307,
+      "path": "docs/benchmarks/assets/external_confusion_matrix.pdf",
+      "sha256": "dc09fdb971337fec80b551cdc08bee691012c20b2971898d069577524887fd90"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 26335,
+      "path": "docs/benchmarks/assets/external_confusion_matrix.png",
+      "sha256": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 25827,
+      "path": "docs/benchmarks/assets/external_confusion_matrix.svg",
+      "sha256": "8d74c6db43abff280f169a315105f4087c0c64243bf4aa73b89ceb58752bc146"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13830,
+      "path": "docs/benchmarks/assets/external_f1_family_dashboard.pdf",
+      "sha256": "d45d44f2459294e9d878af6c6caea799ff659bce52017c3e9aaa795344c00bd1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 34160,
+      "path": "docs/benchmarks/assets/external_f1_family_dashboard.png",
+      "sha256": "e89a8179dea97c67d0f2d2520aba2e775b830805e99fc7414f747c0480857a7d"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 28897,
+      "path": "docs/benchmarks/assets/external_f1_family_dashboard.svg",
+      "sha256": "4d49121a87cb6e3f302bc747bd3ff12d2c388028e14b0761be351353cffca5fe"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 16823,
+      "path": "docs/benchmarks/assets/external_model_agreement.pdf",
+      "sha256": "ae9f782b19b51a52a8ef66fe2267298257de7e6ac5f55aea6bac46db074b6ee8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 64953,
+      "path": "docs/benchmarks/assets/external_model_agreement.png",
+      "sha256": "4d586d51a0e84a6d44a307ba5265429e8845d9226f5290a81ab318c14ecdfcdd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 40036,
+      "path": "docs/benchmarks/assets/external_model_agreement.svg",
+      "sha256": "5c000bd84b9c6953b3c50ddb0a25cfcdd94e1c49c78c8d2923dc0bc68206baa0"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 14291,
+      "path": "docs/benchmarks/assets/external_precision_recall.pdf",
+      "sha256": "3a6d9eb9990e61cc324a19d891a13e7b5521525fbf19421225c42be9b2062b87"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 42433,
+      "path": "docs/benchmarks/assets/external_precision_recall.png",
+      "sha256": "c504b4c10efb6278f43c7cbe0c8a960ccac74b7fdeeb19fc710f6252fa4b9b44"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 31261,
+      "path": "docs/benchmarks/assets/external_precision_recall.svg",
+      "sha256": "3fb70fbb618efb4f186be416fbd1237d5048597dfe04f053561fe3d465fdc4f5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13584,
+      "path": "docs/benchmarks/assets/external_probability_quality.pdf",
+      "sha256": "b814d4f91a4aefc708d08fe394cc00eed7275fab672b5ca148d50a98b51bfc09"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 35354,
+      "path": "docs/benchmarks/assets/external_probability_quality.png",
+      "sha256": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 29299,
+      "path": "docs/benchmarks/assets/external_probability_quality.svg",
+      "sha256": "b6f3ca4a97f3ede42762b306013dc9a5e8f2d083d22bcffce5996deb72009405"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 16352,
+      "path": "docs/benchmarks/assets/external_review_quality_subgroup_performance.pdf",
+      "sha256": "1201de078dac890aa10eac0d5ddbb58ce3aae5be02376270a6503600e1f288ec"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 39641,
+      "path": "docs/benchmarks/assets/external_review_quality_subgroup_performance.png",
+      "sha256": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33154,
+      "path": "docs/benchmarks/assets/external_review_quality_subgroup_performance.svg",
+      "sha256": "70c8e8be4cc9fc465ff3263527c92a402d626ba1fc837346f67dfa02bd4031ee"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 14682,
+      "path": "docs/benchmarks/assets/external_roc.pdf",
+      "sha256": "c64be09a77ae7f2bf44b18e7b98056451ada063a833c7eaa83d22d8f9e76e0c2"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 60038,
+      "path": "docs/benchmarks/assets/external_roc.png",
+      "sha256": "516222099601e00a9bd60db87d1c31988c367a0113047648cc7dc61c024a17dc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 32653,
+      "path": "docs/benchmarks/assets/external_roc.svg",
+      "sha256": "40b94e506cddbb4c7a8fc531409298bdc0bf2aaf306f8450d7867876ad5769b3"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 13908,
+      "path": "docs/benchmarks/assets/external_runtime_and_cache_economics.pdf",
+      "sha256": "b8f3810d4615c85affe319eca63d06dae97571ba37997cf4e0a9c597c3748535"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 48756,
+      "path": "docs/benchmarks/assets/external_runtime_and_cache_economics.png",
+      "sha256": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 33131,
+      "path": "docs/benchmarks/assets/external_runtime_and_cache_economics.svg",
+      "sha256": "5c056aaf0168e57f23744b2352efd24b54447634173a4affd2918f50104c4c42"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 14623,
+      "path": "docs/benchmarks/assets/external_versus_locked_cohort_drift.pdf",
+      "sha256": "549aa719c52c274c440739d3288bb230114c6bde7f3a7f988a7554390c6ff27e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 49666,
+      "path": "docs/benchmarks/assets/external_versus_locked_cohort_drift.png",
+      "sha256": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 34822,
+      "path": "docs/benchmarks/assets/external_versus_locked_cohort_drift.svg",
+      "sha256": "6ea947e09d382fcec0ff288382543cedda0316891544b47e57dcfdb40f60f70d"
     },
     {
       "benchmark_id": "B01-B68",
@@ -710,9 +1316,27 @@
     },
     {
       "benchmark_id": "B01-B68",
+      "bytes": 15806,
+      "path": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.pdf",
+      "sha256": "0c6c31baf40e17c392e78e8477126329e0eceb03715a460f4c5a6107c8476963"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 41011,
+      "path": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.png",
+      "sha256": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 36092,
+      "path": "docs/benchmarks/assets/locked_versus_external_calibration_and_discrimination.svg",
+      "sha256": "60b5aa8898a50b62575e34fb1fe7d5176fa4a6d0b65f3e03df1fe1cac202957d"
+    },
+    {
+      "benchmark_id": "B01-B68",
       "bytes": 12870,
       "path": "docs/benchmarks/assets/model_disagreement_categories.pdf",
-      "sha256": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803"
+      "sha256": "545df7c1170cf02899cbabfad9229d551998f58378ce4a11e19a7427924dee38"
     },
     {
       "benchmark_id": "B01-B68",
@@ -724,7 +1348,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 28507,
       "path": "docs/benchmarks/assets/model_disagreement_categories.svg",
-      "sha256": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786"
+      "sha256": "fa17d94c7d9c105a32a4ff00fe3220664ccbb01351fb581d882cd6b1f58d5e19"
     },
     {
       "benchmark_id": "B01-B68",
@@ -736,7 +1360,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 16629,
       "path": "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.pdf",
-      "sha256": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d"
+      "sha256": "65204748fd96b7aecbb016484f15446aaeca0a063ddb5d5ff32f4e4b5194ca83"
     },
     {
       "benchmark_id": "B01-B68",
@@ -748,7 +1372,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 33156,
       "path": "docs/benchmarks/assets/temporal_difficulty_by_resolution_interval.svg",
-      "sha256": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5"
+      "sha256": "47a0e37c330abf6b3f384d6852810f5daa39be8886936137ee83d938e6e43fb4"
     },
     {
       "benchmark_id": "B01-B68",
@@ -760,7 +1384,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 12500,
       "path": "docs/benchmarks/assets/transition_versus_transversion.pdf",
-      "sha256": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49"
+      "sha256": "87f86a161c9aa003b2d8267a63162cfe905e99fd5d9c2db8b31685388682ed18"
     },
     {
       "benchmark_id": "B01-B68",
@@ -772,13 +1396,13 @@
       "benchmark_id": "B01-B68",
       "bytes": 26990,
       "path": "docs/benchmarks/assets/transition_versus_transversion.svg",
-      "sha256": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554"
+      "sha256": "7a1296d9374a12a67080c1d7d80103147d83b2874fc8174134f1a03073b01fcc"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 15835,
       "path": "docs/benchmarks/assets/validation_model_comparison.pdf",
-      "sha256": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c"
+      "sha256": "9ace8bb0fd67d77b589b007bf4d85940cbf1cc4ea9ef6c902086952fba4cf0fe"
     },
     {
       "benchmark_id": "B01-B68",
@@ -790,7 +1414,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 52535,
       "path": "docs/benchmarks/assets/validation_model_comparison.svg",
-      "sha256": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65"
+      "sha256": "786b11d1533e4f17ed1e9e47658f59c5a9cf3363878fc2900e529b1478bb8b17"
     },
     {
       "benchmark_id": "B01-B68",
@@ -802,7 +1426,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 889,
       "path": "docs/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
-      "sha256": "45933f5207627ade5e46f789fb4400a45cd21bc63865a95a53e0b0a054bb00e2"
+      "sha256": "5d46aa42cbb354af8cea0fc64cc2cbcb0b50b422b581fce86c1ef4d5c8049295"
     },
     {
       "benchmark_id": "B01-B68",
@@ -826,25 +1450,25 @@
       "benchmark_id": "B01-B68",
       "bytes": 938,
       "path": "docs/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
-      "sha256": "5a55ded9bf5b2a21a3f7b2293b4766c4d8cb75c3518b6b29ad86dbd8c687cea7"
+      "sha256": "2afb76f6f0055d62f6ae227f85c3b824b7bba3384d90a3732bd83c3a3e33d763"
     },
     {
       "benchmark_id": "B01-B68",
-      "bytes": 630,
+      "bytes": 639,
       "path": "docs/benchmarks/data/figures/classical_comparator_coverage.json",
-      "sha256": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76"
+      "sha256": "423fd279b2da3d3c479c24dd6793ad5b17492407d7aac5f691e65f877fb1880c"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 925,
       "path": "docs/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
-      "sha256": "041c903e6b84c8f3acbf9808a625fe1b98958c6726095fcd5a478655e1ab079a"
+      "sha256": "786890978cfcf5c783e1ddb17cf528955d24eda819227148dd24af4639080989"
     },
     {
       "benchmark_id": "B01-B68",
       "bytes": 1393,
       "path": "docs/benchmarks/data/figures/contact_sheet.provenance.json",
-      "sha256": "36e032202bda9aff19bba3117ad712382cf6b5b5d2ec95a1b1a372d20408c1e7"
+      "sha256": "2fef1e0c0e00fb11f574660aea553de4231698d4b6cb40e60cbe57131403e5d7"
     },
     {
       "benchmark_id": "B01-B68",
@@ -874,7 +1498,163 @@
       "benchmark_id": "B01-B68",
       "bytes": 905,
       "path": "docs/benchmarks/data/figures/evidence_quality_performance.provenance.json",
-      "sha256": "4ab1c73e3964c952a548dd2b918eb5b7d4f21d17d0b15c16ccef62b25ddd73df"
+      "sha256": "edce3d3a9eb765406eecddbe6f5834d9488ed794543d37c258aceb078bf75ff6"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1808,
+      "path": "docs/benchmarks/data/figures/external_calibration_reliability.json",
+      "sha256": "c694da5caabc49c7aabf410301f63e24180838b206cf0ae4e74e710eca05b4d8"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 933,
+      "path": "docs/benchmarks/data/figures/external_calibration_reliability.provenance.json",
+      "sha256": "97192098ab3d76a005be8e64756dbc9353c5e554d09a5c1724ae654559ab4b8c"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 219,
+      "path": "docs/benchmarks/data/figures/external_class_balance.json",
+      "sha256": "189e7cfe31952f3169f5e63168e5e84a0badfff1a3de02cd9eda0a1628ee8a3e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 883,
+      "path": "docs/benchmarks/data/figures/external_class_balance.provenance.json",
+      "sha256": "2a67187de7c4d53f61c6101ab5783f049e50048aa503ea73970b677698f53e4e"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 566,
+      "path": "docs/benchmarks/data/figures/external_classification_dashboard.json",
+      "sha256": "8d007918771b3d70acbe73ed2a501ebc5a1c840612a24bb16af11b31a10d01af"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 938,
+      "path": "docs/benchmarks/data/figures/external_classification_dashboard.provenance.json",
+      "sha256": "2d0ae874ed50511612bea16f3a63bb20f5c794ff48a7a3fe0671076a19d02c3f"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 367,
+      "path": "docs/benchmarks/data/figures/external_cohort_flow.json",
+      "sha256": "799179f9b35453af80f7633284663cef54a5f833dead385e56d9053b494627df"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 873,
+      "path": "docs/benchmarks/data/figures/external_cohort_flow.provenance.json",
+      "sha256": "4006e17ee6b370c45d773f69eec535b9c7c1fa6122449185a69546b39bb75650"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 380,
+      "path": "docs/benchmarks/data/figures/external_confusion_matrix.json",
+      "sha256": "968ff900f2dd93a7fdb1bec7b6fac008f285abf254b4938c5549fbc12195118a"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 898,
+      "path": "docs/benchmarks/data/figures/external_confusion_matrix.provenance.json",
+      "sha256": "2c39ef7502dab3b81f8fed431a41c2160028bab493ada2d819ff6366e0427959"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 392,
+      "path": "docs/benchmarks/data/figures/external_f1_family_dashboard.json",
+      "sha256": "7375bb710ebe4c02cb9d5eeb6ec9f1f6bb49c1b3cab703ad4e8944cccbd4a776"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 913,
+      "path": "docs/benchmarks/data/figures/external_f1_family_dashboard.provenance.json",
+      "sha256": "cb7d508ac7aa6dd84c2bf0b98e8bdc6b4be18ac1c9e3c7ca92193587b559bc66"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 484,
+      "path": "docs/benchmarks/data/figures/external_model_agreement.json",
+      "sha256": "90bbdb83536ff76ef5f211b1f02b78ee86c4e39be9a5b2ff724942f6c6c9a994"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 893,
+      "path": "docs/benchmarks/data/figures/external_model_agreement.provenance.json",
+      "sha256": "5193721bfe2cf7ad84da050de16311c87a2f2b2a1b02b8657bb72428f49208bd"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1622,
+      "path": "docs/benchmarks/data/figures/external_precision_recall.json",
+      "sha256": "474fe1b6a06a1a010abf1b6c4433c30bd3668d934689262ff9e43b7b1f419245"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 898,
+      "path": "docs/benchmarks/data/figures/external_precision_recall.provenance.json",
+      "sha256": "7bcb66fd805a4e1f292bc4aa62e2304e74b561d48304ce061cace1ed504a4040"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 406,
+      "path": "docs/benchmarks/data/figures/external_probability_quality.json",
+      "sha256": "d30ad0e19c8e6b5698f3af918c790cb6072ea346fe97c192951342a848b40b05"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 913,
+      "path": "docs/benchmarks/data/figures/external_probability_quality.provenance.json",
+      "sha256": "d49ab58025e673f6672b08cdc6ae0a5d18a7834f0c9b43d322ffbff97b7500b4"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 326,
+      "path": "docs/benchmarks/data/figures/external_review_quality_subgroup_performance.json",
+      "sha256": "9b62fb2e040332e5d2280e2b3e49a66d1b749bf7c404b93c163553e4f5baa4bc"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 993,
+      "path": "docs/benchmarks/data/figures/external_review_quality_subgroup_performance.provenance.json",
+      "sha256": "428ff5ca6b0335cbc8808703b33cf3544715cc3fdd7f5349f3a5bf7f4de1d6f1"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1197,
+      "path": "docs/benchmarks/data/figures/external_roc.json",
+      "sha256": "147bf72daa4f4dd58d1d825f21b139f61bf3b6c25e2fe45ed02d2ce6b09bb754"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 833,
+      "path": "docs/benchmarks/data/figures/external_roc.provenance.json",
+      "sha256": "9f6e0e496b706dd0f4185f61cf6aa6c5799343d03a0809e953b7cafd66d86815"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 467,
+      "path": "docs/benchmarks/data/figures/external_runtime_and_cache_economics.json",
+      "sha256": "e33e72611511c2b3197dafd5eacee0a46c8060fbd79fbef5bd27b7ee6363afa5"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 956,
+      "path": "docs/benchmarks/data/figures/external_runtime_and_cache_economics.provenance.json",
+      "sha256": "fc97d55e8f189c5e445005a60be2d5e7d5bea6d9539cd5cb6290563f5e905eae"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 358,
+      "path": "docs/benchmarks/data/figures/external_versus_locked_cohort_drift.json",
+      "sha256": "9a887f88836b72263b298cc454eb82d086f9028074cece364b4c5e0df6ef6640"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 960,
+      "path": "docs/benchmarks/data/figures/external_versus_locked_cohort_drift.provenance.json",
+      "sha256": "f4553351289b24ede0026fc9aadfed77e95ab606e131cf0809537ef6eecd6862"
     },
     {
       "benchmark_id": "B01-B68",
@@ -956,6 +1736,18 @@
     },
     {
       "benchmark_id": "B01-B68",
+      "bytes": 662,
+      "path": "docs/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.json",
+      "sha256": "193d66d8adeef704c199a847920d75b59aa30f9c6589437a334d9dea2969fe4b"
+    },
+    {
+      "benchmark_id": "B01-B68",
+      "bytes": 1049,
+      "path": "docs/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.provenance.json",
+      "sha256": "addfe11695ed859445404347935581790941ffe9c818e4bfa9475b6b49b65669"
+    },
+    {
+      "benchmark_id": "B01-B68",
       "bytes": 294,
       "path": "docs/benchmarks/data/figures/model_disagreement_categories.json",
       "sha256": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72"
@@ -964,7 +1756,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 911,
       "path": "docs/benchmarks/data/figures/model_disagreement_categories.provenance.json",
-      "sha256": "85ea0f60f727ec28287e9deeef1af1feb0ab24b5dd2080e187a4898041048f1f"
+      "sha256": "b88814f253589224f603b16e534117861005da6b355b9b2fd6fbee1b1adc9689"
     },
     {
       "benchmark_id": "B01-B68",
@@ -988,7 +1780,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 975,
       "path": "docs/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
-      "sha256": "33a70b11fc184ef948e47ed6d1d3b82dd609723ca1b34b40bc8d6d712601bed1"
+      "sha256": "2964f152c2f4a1e95662ecdae9f653432e91403e0a69a5aee61920e0298aed61"
     },
     {
       "benchmark_id": "B01-B68",
@@ -1012,7 +1804,7 @@
       "benchmark_id": "B01-B68",
       "bytes": 915,
       "path": "docs/benchmarks/data/figures/transition_versus_transversion.provenance.json",
-      "sha256": "af1c5ea5f342e1ee18cddc54fa0bb4ee33600662091bec14fd7d57157954893b"
+      "sha256": "93482cd29c5f044dc5325490fe1a40354b51858230b7e9dcbb2570ec40eeb93c"
     },
     {
       "benchmark_id": "B01-B68",
@@ -1024,10 +1816,10 @@
       "benchmark_id": "B01-B68",
       "bytes": 901,
       "path": "docs/benchmarks/data/figures/validation_model_comparison.provenance.json",
-      "sha256": "1e3a90892c078701eaf136d2cba4d1a0621bbab9c7dc6b98ebdd762eb07f68f2"
+      "sha256": "d8ed51af945ad0f1c468b4ae06d607f34206f380d2cd62c24d3ca8d5133c4d90"
     }
   ],
-  "entry_count": 171,
-  "generated_at_utc": "2026-09-23T18:54:28.356015+00:00",
+  "entry_count": 303,
+  "generated_at_utc": "2026-09-24T07:24:34.629399+00:00",
   "manifest_id": "evovariant-tr-benchmark-artifact-manifest-v1"
 }

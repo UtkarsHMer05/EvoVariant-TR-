@@ -15,7 +15,7 @@
       "normalized_variant_id": "GRCh38:10:71362313:C>T",
       "nt_features": null,
       "orientation_disagreement": 0.00040036439895629883,
-      "phylop_score": null,
+      "phylop_score": 2.77024,
       "prediction": 0,
       "reason": "highest-confidence-correct",
       "review_stars": 2,
@@ -40,7 +40,7 @@
       "normalized_variant_id": "GRCh38:10:75020686:G>A",
       "nt_features": null,
       "orientation_disagreement": 0.0003472566604614258,
-      "phylop_score": null,
+      "phylop_score": 7.56956,
       "prediction": 1,
       "reason": "false-positive",
       "review_stars": 2,
@@ -65,7 +65,7 @@
       "normalized_variant_id": "GRCh38:10:102919460:A>G",
       "nt_features": null,
       "orientation_disagreement": 0.00019943714141845703,
-      "phylop_score": null,
+      "phylop_score": 9.22595,
       "prediction": 0,
       "reason": "false-negative",
       "review_stars": 2,
@@ -90,7 +90,7 @@
       "normalized_variant_id": "GRCh38:12:121001169:C>T",
       "nt_features": null,
       "orientation_disagreement": 0.0047800540924072266,
-      "phylop_score": null,
+      "phylop_score": 6.37709,
       "prediction": 1,
       "reason": "largest-calibration-shift",
       "review_stars": 3,
@@ -115,7 +115,7 @@
       "normalized_variant_id": "GRCh38:4:15601236:G>C",
       "nt_features": null,
       "orientation_disagreement": 0.02094036340713501,
-      "phylop_score": null,
+      "phylop_score": 9.221,
       "prediction": 1,
       "reason": "strongest-orientation-disagreement",
       "review_stars": 2,
@@ -140,7 +140,7 @@
       "normalized_variant_id": "GRCh38:10:87863279:G>A",
       "nt_features": null,
       "orientation_disagreement": 0.00015020370483398438,
-      "phylop_score": null,
+      "phylop_score": 0.534433,
       "prediction": 0,
       "reason": "highest-evidence-review",
       "review_stars": 3,
@@ -165,7 +165,7 @@
       "normalized_variant_id": "GRCh38:2:71516184:T>G",
       "nt_features": null,
       "orientation_disagreement": 0.0014172792434692383,
-      "phylop_score": null,
+      "phylop_score": 4.60865,
       "prediction": 1,
       "reason": "longest-temporal-duration",
       "review_stars": 3,
@@ -193,7 +193,7 @@
     ],
     "decision": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
     "official_audit_reused": "research/ml_extension/models/gpn.json",
-    "recorded_at_utc": "2026-09-23T20:31:16.592470+00:00",
+    "recorded_at_utc": "2026-09-24T07:38:20.112303+00:00",
     "status": "NOT_APPLICABLE"
   },
   "comparator_coverage": {
@@ -213,16 +213,16 @@
     },
     "PhyloP formal": {
       "artifact": null,
-      "available": 0,
-      "coverage_fraction": 0.0,
-      "status": "DATA_BLOCKED",
+      "available": 3997,
+      "coverage_fraction": 0.99925,
+      "status": "PASS",
       "total": 4000
     },
     "PhyloP locked": {
       "artifact": null,
-      "available": 0,
-      "coverage_fraction": 0.0,
-      "status": "DATA_BLOCKED",
+      "available": 946,
+      "coverage_fraction": 1.0,
+      "status": "PASS",
       "total": 946
     }
   },
@@ -1362,7 +1362,7 @@
     "artifact_id": "evovariant-tr-comparator-coverage-reaudit-v1",
     "imputation": false,
     "mixed_builds": false,
-    "recorded_at_utc": "2026-09-23T20:31:09.317873+00:00"
+    "recorded_at_utc": "2026-09-24T07:38:12.763158+00:00"
   },
   "confidence": {
     "groups": {
@@ -78243,7 +78243,7 @@
     "prediction_artifact_persisted_before_evaluation_join": true,
     "raw_predictions_path": "research/runs/external_clinvar_completion_v1/external_raw_predictions.jsonl",
     "raw_predictions_sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e",
-    "recorded_at_utc": "2026-09-23T20:29:27.467083+00:00",
+    "recorded_at_utc": "2026-09-24T07:38:12.721667+00:00",
     "reliability": [
       {
         "bin": "0.0-0.1",
@@ -95132,7 +95132,7 @@
       ],
       "search_surface": "official MaveDB score-set search API"
     },
-    "recorded_at_utc": "2026-09-23T20:31:16.588102+00:00",
+    "recorded_at_utc": "2026-09-24T07:38:20.108648+00:00",
     "search_observations": [
       {
         "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",

@@ -9,11 +9,11 @@
   },
   "population": "formal and locked registered cohorts",
   "sha256": {
-    "pdf": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b",
-    "png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d",
-    "source_data": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76",
-    "svg": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598",
-    "web_png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+    "pdf": "853abe22bf91a5315bf8b98b25898790eb56df19a6b16d07a1ed144ba813e8ff",
+    "png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61",
+    "source_data": "423fd279b2da3d3c479c24dd6793ad5b17492407d7aac5f691e65f877fb1880c",
+    "svg": "f2bdbb37a9413e4da36abeb5155e2b4b3088c62c7b6a834ce5d32749eee1e7f2",
+    "web_png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61"
   },
   "source_data": "docs/benchmarks/data/figures/classical_comparator_coverage.json"
 }

@@ -9,10 +9,10 @@
   },
   "population": "frozen external ClinVar cohort",
   "sha256": {
-    "pdf": "05eeda3ccf039ed9bd70f2c09e374c57a7e4492a26587ac598718312dc5ba46c",
+    "pdf": "039d753cf43d870d99ead01010c2651fffed1cd0c3782ab9031a6e81a5886bfd",
     "png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524",
     "source_data": "9b62fb2e040332e5d2280e2b3e49a66d1b749bf7c404b93c163553e4f5baa4bc",
-    "svg": "a2a9382e59c88bf0cb945639cf8c36fdd8001c2b4f179917dcca7feb90a6634e",
+    "svg": "873486cb13aeb29a8cb12cd5298fbc3e03bfcf76848bf382a2384725163c1427",
     "web_png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524"
   },
   "source_data": "docs/benchmarks/data/figures/external_review_quality_subgroup_performance.json"

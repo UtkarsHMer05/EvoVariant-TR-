@@ -14,7 +14,7 @@
   "manifest_file_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
   "manifest_inner_sha256": "847eb9f2a3e9a099dc60bad4955b1160c0b8f2c9c2230082b529fbdd23514a7d",
   "manifest_path": "artifacts/benchmarks/external_clinvar_manifest.json",
-  "recorded_at_utc": "2026-09-23T20:22:57.842243+00:00",
+  "recorded_at_utc": "2026-09-24T07:38:10.654783+00:00",
   "reference_asset": "data/reference/Homo_sapiens_assembly38.fasta",
   "reference_asset_sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564",
   "reference_rows_sha256": "4fb4a2da21c1b9f5c3ee4f4cd91a1bbb60ae1f3bc994bbfbbc56fa0dc709e99c",

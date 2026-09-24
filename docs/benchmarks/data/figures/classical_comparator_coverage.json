@@ -10,9 +10,9 @@
       "total": 4000
     },
     {
-      "available": 0,
+      "available": 3997,
       "comparator": "PhyloP formal",
-      "coverage_fraction": 0.0,
+      "coverage_fraction": 0.99925,
       "total": 4000
     },
     {
@@ -22,9 +22,9 @@
       "total": 946
     },
     {
-      "available": 0,
+      "available": 946,
       "comparator": "PhyloP locked",
-      "coverage_fraction": 0.0,
+      "coverage_fraction": 1.0,
       "total": 946
     }
   ]

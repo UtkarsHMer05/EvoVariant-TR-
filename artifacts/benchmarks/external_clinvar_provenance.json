@@ -61,7 +61,7 @@
   "evaluation": {
     "labels_joined_after_raw_hash": true,
     "path": "artifacts/benchmarks/external_clinvar_evaluation.json",
-    "sha256": "6921215e0d4574fd67c8d71a8e86e163d5ad9d0eb39d0065cd06b73896ca2d65"
+    "sha256": "688fd4b6abbb2346af396a9fc7ce013f82e306c44791a51e2e594b05b3b4adfd"
   },
   "frozen_downstream": {
     "calibration_artifact": "research/runs/formal_cpu_20260922/phase12/calibration_abstention.json",
@@ -97,7 +97,7 @@
     "manifest_file_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
     "manifest_inner_sha256": "847eb9f2a3e9a099dc60bad4955b1160c0b8f2c9c2230082b529fbdd23514a7d",
     "manifest_path": "artifacts/benchmarks/external_clinvar_manifest.json",
-    "recorded_at_utc": "2026-09-23T20:22:57.842243+00:00",
+    "recorded_at_utc": "2026-09-24T07:38:10.654783+00:00",
     "reference_asset": "data/reference/Homo_sapiens_assembly38.fasta",
     "reference_asset_sha256": "93157a161863464c9435062fd67c173fdaf99cb8b32f1455018361387ffa5564",
     "reference_rows_sha256": "4fb4a2da21c1b9f5c3ee4f4cd91a1bbb60ae1f3bc994bbfbbc56fa0dc709e99c",
@@ -118,7 +118,7 @@
     "path": "research/runs/external_clinvar_completion_v1/external_raw_predictions.jsonl",
     "sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e"
   },
-  "recorded_at_utc": "2026-09-23T20:42:06.294034+00:00",
+  "recorded_at_utc": "2026-09-24T07:38:20.149130+00:00",
   "runtime": {
     "actual_workspace_metered_cost_since_preflight_usd": 2.11,
     "artifact_id": "evovariant-tr-external-runtime-v1",

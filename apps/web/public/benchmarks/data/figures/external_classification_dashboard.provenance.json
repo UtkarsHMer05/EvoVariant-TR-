@@ -9,10 +9,10 @@
   },
   "population": "frozen external ClinVar cohort",
   "sha256": {
-    "pdf": "346b8a40192b118c39b5701aaa78c7d68f01eb97c79b9df905568024ae129d75",
+    "pdf": "f86ed9a52a16ae0e08f1e8eee7805c3a612fd157408c20d467e5b656852f3fe3",
     "png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d",
     "source_data": "8d007918771b3d70acbe73ed2a501ebc5a1c840612a24bb16af11b31a10d01af",
-    "svg": "d672e67fa2a7b3c467df244b3fc98c3ac3ff26ffccf1390c576035215cfaffd2",
+    "svg": "6b08ea66eaa2004b94415825186e3e36a81e044c3e1337a84b2b7406b72c310b",
     "web_png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d"
   },
   "source_data": "docs/benchmarks/data/figures/external_classification_dashboard.json"

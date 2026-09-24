@@ -9,10 +9,10 @@
   },
   "population": "common validation rows",
   "sha256": {
-    "pdf": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803",
+    "pdf": "545df7c1170cf02899cbabfad9229d551998f58378ce4a11e19a7427924dee38",
     "png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9",
     "source_data": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72",
-    "svg": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786",
+    "svg": "fa17d94c7d9c105a32a4ff00fe3220664ccbb01351fb581d882cd6b1f58d5e19",
     "web_png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
   },
   "source_data": "docs/benchmarks/data/figures/model_disagreement_categories.json"

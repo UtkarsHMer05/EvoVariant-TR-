@@ -9,10 +9,10 @@
   },
   "population": "locked temporal cohort",
   "sha256": {
-    "pdf": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49",
+    "pdf": "87f86a161c9aa003b2d8267a63162cfe905e99fd5d9c2db8b31685388682ed18",
     "png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5",
     "source_data": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c",
-    "svg": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554",
+    "svg": "7a1296d9374a12a67080c1d7d80103147d83b2874fc8174134f1a03073b01fcc",
     "web_png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
   },
   "source_data": "docs/benchmarks/data/figures/transition_versus_transversion.json"

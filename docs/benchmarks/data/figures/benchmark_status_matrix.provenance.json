@@ -9,11 +9,11 @@
   },
   "population": "registered benchmark catalog",
   "sha256": {
-    "pdf": "d75f97b3840ce169c2e688baee5f3d04d1f806e46b2de979af512d7ca28aec3e",
-    "png": "d16750f555d000f962bf0ea5f4ef909fc15a5841c2bde0ce09f5262634188fda",
-    "source_data": "d19178a395ebd144473eece01380b31c8fc4acd75a180b79d03dada401ab36a4",
-    "svg": "6caf4f542db578e7bf945ec03b3d9d4368975c094a4fb0141136edfe70b554b0",
-    "web_png": "d16750f555d000f962bf0ea5f4ef909fc15a5841c2bde0ce09f5262634188fda"
+    "pdf": "25d85daa607e38295c123783f626dee52b7cfc9ec1af829365e0d40685d11b6a",
+    "png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e",
+    "source_data": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5",
+    "svg": "848b941e003179433d69876e612ac3e2cf544c8594c12be34466ab878825fd63",
+    "web_png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
   },
   "source_data": "docs/benchmarks/data/figures/benchmark_status_matrix.json"
 }

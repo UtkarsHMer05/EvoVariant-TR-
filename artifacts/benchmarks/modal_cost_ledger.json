@@ -1,15 +1,9 @@
 {
-  "actual_workspace_metered_cost_since_preflight_usd": 2.11,
-  "balance_status": "VERIFIED",
-  "cache_hit_rows": 8,
-  "ending_verified_credit_usd": 29.06,
-  "fresh_rows": 192,
-  "new_spend_usd": 0.94,
+  "balance_status": "UNVERIFIED",
+  "billing_summary_checked": true,
+  "entries": [],
+  "new_spend_usd": 0.0,
   "profile": "utkarshkhajuria59",
-  "provider_billed_delta_usd": 1.7,
-  "rate_estimated_inference_usd": 0.4176400070755109,
-  "resources_started_by_expansion": ["H100"],
-  "remote_invocations": 24,
-  "starting_verified_credit_usd": 30.0,
-  "status": "PASS_WITH_LIMITATIONS"
+  "resources_started_by_expansion": [],
+  "status": "COMPUTE_BLOCKED_BALANCE_UNVERIFIED"
 }

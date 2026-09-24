@@ -39,7 +39,7 @@
     ],
     "search_surface": "official MaveDB score-set search API"
   },
-  "recorded_at_utc": "2026-09-23T20:31:16.588102+00:00",
+  "recorded_at_utc": "2026-09-24T07:38:20.108648+00:00",
   "search_observations": [
     {
       "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",

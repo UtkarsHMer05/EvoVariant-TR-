@@ -3220,6 +3220,14 @@
         "/benchmarks/figures/external_confusion_matrix.png",
         "/benchmarks/figures/external_classification_dashboard.png",
         "/benchmarks/figures/external_f1_family_dashboard.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+        "/benchmarks/figures/external_cohort_flow.png",
+        "/benchmarks/figures/external_class_balance.png",
+        "/benchmarks/figures/external_roc.png",
+        "/benchmarks/figures/external_precision_recall.png",
+        "/benchmarks/figures/external_confusion_matrix.png",
+        "/benchmarks/figures/external_classification_dashboard.png",
+        "/benchmarks/figures/external_f1_family_dashboard.png",
         "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
       ],
       "id": "B61",
@@ -3282,6 +3290,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_review_quality_subgroup_performance.png",
       "figures": [
+        "/benchmarks/figures/external_review_quality_subgroup_performance.png",
         "/benchmarks/figures/external_review_quality_subgroup_performance.png"
       ],
       "id": "B62",
@@ -3455,6 +3464,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_model_agreement.png",
       "figures": [
+        "/benchmarks/figures/external_model_agreement.png",
         "/benchmarks/figures/external_model_agreement.png"
       ],
       "id": "B65",
@@ -3518,6 +3528,9 @@
       "figures": [
         "/benchmarks/figures/external_calibration_reliability.png",
         "/benchmarks/figures/external_probability_quality.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+        "/benchmarks/figures/external_calibration_reliability.png",
+        "/benchmarks/figures/external_probability_quality.png",
         "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
       ],
       "id": "B66",
@@ -3578,6 +3591,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_runtime_and_cache_economics.png",
       "figures": [
+        "/benchmarks/figures/external_runtime_and_cache_economics.png",
         "/benchmarks/figures/external_runtime_and_cache_economics.png"
       ],
       "id": "B67",
@@ -3634,6 +3648,7 @@
       "figure": "/benchmarks/figures/benchmark_status_matrix.png",
       "figures": [
         "/benchmarks/figures/benchmark_status_matrix.png",
+        "/benchmarks/figures/external_versus_locked_cohort_drift.png",
         "/benchmarks/figures/external_versus_locked_cohort_drift.png"
       ],
       "id": "B68",
@@ -3681,7 +3696,7 @@
     }
   ],
   "entry_count": 68,
-  "generated_at_utc": "2026-09-23T20:31:19.070339+00:00",
+  "generated_at_utc": "2026-09-24T07:38:22.432228+00:00",
   "registry_id": "evovariant-tr-benchmark-registry-v1",
   "status_counts": {
     "COMPLETED_WITH_LIMITATIONS": 4,

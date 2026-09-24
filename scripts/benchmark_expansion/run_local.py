@@ -75,6 +75,14 @@ COMPARATORS = {
     "locked_cadd": ROOT / "artifacts/phase6a/comparators/cadd_grch38_v1.7_20260921.json",
     "locked_phylop": ROOT / "artifacts/phase6a/comparators/phylop100way_hg38_20260921.json",
 }
+# Optional external provenance document. Override with
+# EVOVARIANT_MASTER_PROMPT_PATH when the originating prompt lives elsewhere.
+DEFAULT_MASTER_PROMPT_PATH = Path(
+    os.environ.get(
+        "EVOVARIANT_MASTER_PROMPT_PATH",
+        str(ROOT / "docs/agent/MASTER_PROMPT.md"),
+    )
+)
 EXPECTED_PRIMARY = {
     "auroc": 0.9092259737895887,
     "auprc": 0.8630391000187404,
@@ -418,7 +426,16 @@ def load_feature_matrix(formal_ids: set[str]) -> dict[str, Any]:
     }
 
 
-def load_comparator(path: Path, score_fields: tuple[str, ...] = ("scaled_phred", "raw_score", "score", "value")) -> dict[str, float]:
+def load_comparator(
+    path: Path,
+    score_fields: tuple[str, ...] = (
+        "scaled_phred",
+        "sitewise_score",
+        "raw_score",
+        "score",
+        "value",
+    ),
+) -> dict[str, float]:
     payload = read_json(path)
     rows = payload.get("rows", payload if isinstance(payload, list) else [])
     result: dict[str, float] = {}
@@ -968,8 +985,27 @@ def external_blockers(external: dict[str, Any]) -> list[str]:
     return blockers
 
 
+def resolve_master_prompt_hash(
+    previous_lock: dict[str, Any] | None = None,
+) -> tuple[str | None, str]:
+    """Resolve the optional master-prompt hash without dropping a frozen value.
+
+    The originating prompt is an external document, so it may be absent from a
+    clean checkout or another machine. When it cannot be read, the previously
+    locked hash is preserved instead of being silently nulled.
+    """
+    configured = os.environ.get("EVOVARIANT_MASTER_PROMPT_PATH")
+    prompt_path = Path(configured).expanduser() if configured else DEFAULT_MASTER_PROMPT_PATH
+    if prompt_path.is_file():
+        return sha256_file(prompt_path), str(prompt_path)
+    if previous_lock and previous_lock.get("master_prompt_sha256"):
+        return str(previous_lock["master_prompt_sha256"]), "preserved-from-previous-protocol-lock"
+    return None, "unavailable"
+
+
 def prepare_protocol(start_main_head: str) -> dict[str, Any]:
-    prompt_path = Path("/Users/utkarshkhajuria/Downloads/EVOVARIANT_TR_AUTONOMOUS_BENCHMARK_EXPANSION_WEB_MODAL_MASTER_PROMPT.md")
+    lock_path = EXPANSION / "protocol_lock.json"
+    previous_lock = read_json(lock_path) if lock_path.is_file() else None
     baseline_tag = None
     try:
         baseline_tag = git_value("rev-parse", "evovariant-tr-baseline-v1")
@@ -1026,6 +1062,9 @@ def prepare_protocol(start_main_head: str) -> dict[str, Any]:
             "new_modal_spend_allowed: false",
         ]
     ) + "\n"
+    protocol["master_prompt_sha256"], protocol["master_prompt_source"] = resolve_master_prompt_hash(
+        previous_lock
+    )
     write_json(EXPANSION / "protocol_lock.json", protocol)
     atomic_write(EXPANSION / "protocol.yaml", protocol_text)
     atomic_write(
@@ -1048,7 +1087,6 @@ manifest is apps/web/public/benchmarks/benchmark-manifest.json.
     )
     protocol_hash = sha256_file(EXPANSION / "protocol.yaml")
     protocol["protocol_yaml_sha256"] = protocol_hash
-    protocol["master_prompt_sha256"] = sha256_file(prompt_path) if prompt_path.exists() else None
     write_json(EXPANSION / "protocol_lock.json", protocol)
     return protocol
 

@@ -9,10 +9,10 @@
   },
   "population": "locked temporal cohort",
   "sha256": {
-    "pdf": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b",
+    "pdf": "837f699bab397a6ea34bd0c1ede2616c247359a74126f6aa643190ad5b544508",
     "png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00",
     "source_data": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452",
-    "svg": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c",
+    "svg": "87f468c2a92fc107dbce7ea017202deab100464fe71e04464863917a06b4fa2b",
     "web_png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
   },
   "source_data": "docs/benchmarks/data/figures/evidence_quality_performance.json"

@@ -9,10 +9,10 @@
   },
   "population": "formal validation split",
   "sha256": {
-    "pdf": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c",
+    "pdf": "9ace8bb0fd67d77b589b007bf4d85940cbf1cc4ea9ef6c902086952fba4cf0fe",
     "png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3",
     "source_data": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e",
-    "svg": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65",
+    "svg": "786b11d1533e4f17ed1e9e47658f59c5a9cf3363878fc2900e529b1478bb8b17",
     "web_png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
   },
   "source_data": "docs/benchmarks/data/figures/validation_model_comparison.json"

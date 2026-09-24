@@ -218,7 +218,7 @@
       ],
       "decision": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
       "official_audit_reused": "research/ml_extension/models/gpn.json",
-      "recorded_at_utc": "2026-09-23T20:31:16.592470+00:00",
+      "recorded_at_utc": "2026-09-24T07:38:20.112303+00:00",
       "status": "NOT_APPLICABLE"
     },
     "coverage_reaudit": {
@@ -1357,7 +1357,7 @@
       "artifact_id": "evovariant-tr-comparator-coverage-reaudit-v1",
       "imputation": false,
       "mixed_builds": false,
-      "recorded_at_utc": "2026-09-23T20:31:09.317873+00:00"
+      "recorded_at_utc": "2026-09-24T07:38:12.763158+00:00"
     },
     "drift": {
       "artifact_id": "evovariant-tr-external-drift-v1",
@@ -1448,7 +1448,7 @@
         }
       }
     },
-    "evaluation_artifact_sha256": "6921215e0d4574fd67c8d71a8e86e163d5ad9d0eb39d0065cd06b73896ca2d65",
+    "evaluation_artifact_sha256": "688fd4b6abbb2346af396a9fc7ce013f82e306c44791a51e2e594b05b3b4adfd",
     "inference_status": "COMPLETED",
     "manifest": {
       "class_counts": {
@@ -1458,6 +1458,7 @@
       "file_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
       "inner_sha256": "847eb9f2a3e9a099dc60bad4955b1160c0b8f2c9c2230082b529fbdd23514a7d",
       "path": "artifacts/benchmarks/external_clinvar_manifest.json",
+      "reference_validated_n": 200,
       "selected_n": 200
     },
     "mavedb": {
@@ -1501,7 +1502,7 @@
         ],
         "search_surface": "official MaveDB score-set search API"
       },
-      "recorded_at_utc": "2026-09-23T20:31:16.588102+00:00",
+      "recorded_at_utc": "2026-09-24T07:38:20.108648+00:00",
       "search_observations": [
         {
           "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
@@ -2421,7 +2422,7 @@
     },
     "selected_n": 200
   },
-  "external_evaluation_sha256": "6921215e0d4574fd67c8d71a8e86e163d5ad9d0eb39d0065cd06b73896ca2d65",
+  "external_evaluation_sha256": "688fd4b6abbb2346af396a9fc7ce013f82e306c44791a51e2e594b05b3b4adfd",
   "external_manifest_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
   "external_n": 200,
   "external_predictions_sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e",
@@ -2435,10 +2436,10 @@
       "population": "registered benchmark catalog",
       "provenance": "/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
       "sha256": {
-        "pdf": "d8ccd6a7053858c54edfbcfad3cd74be2a080b25d55ffee7dd204b8b42cf1299",
+        "pdf": "25d85daa607e38295c123783f626dee52b7cfc9ec1af829365e0d40685d11b6a",
         "png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e",
         "source_data": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5",
-        "svg": "7c5141627266555d86358949fdd6a54883eeff67c35aca76a9695b219d50c6dc",
+        "svg": "848b941e003179433d69876e612ac3e2cf544c8594c12be34466ab878825fd63",
         "web_png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
       },
       "source_data": "/benchmarks/data/figures/benchmark_status_matrix.json",
@@ -2453,10 +2454,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/evidence_quality_performance.provenance.json",
       "sha256": {
-        "pdf": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b",
+        "pdf": "837f699bab397a6ea34bd0c1ede2616c247359a74126f6aa643190ad5b544508",
         "png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00",
         "source_data": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452",
-        "svg": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c",
+        "svg": "87f468c2a92fc107dbce7ea017202deab100464fe71e04464863917a06b4fa2b",
         "web_png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
       },
       "source_data": "/benchmarks/data/figures/evidence_quality_performance.json",
@@ -2471,10 +2472,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
       "sha256": {
-        "pdf": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d",
+        "pdf": "65204748fd96b7aecbb016484f15446aaeca0a063ddb5d5ff32f4e4b5194ca83",
         "png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0",
         "source_data": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b",
-        "svg": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5",
+        "svg": "47a0e37c330abf6b3f384d6852810f5daa39be8886936137ee83d938e6e43fb4",
         "web_png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
       },
       "source_data": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
@@ -2489,10 +2490,10 @@
       "population": "formal development, LOCO",
       "provenance": "/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
       "sha256": {
-        "pdf": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf",
+        "pdf": "26fbfa812e4a7a21859338ebb035b1733c61a6a2bd0ea736ce61240816423cfe",
         "png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f",
         "source_data": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7",
-        "svg": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5",
+        "svg": "32c837d3187f8c2487eca5ba4ae7d583309d5af588ca29b6b623abc6f87b4eda",
         "web_png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
       },
       "source_data": "/benchmarks/data/figures/chromosome_held_out_generalization.json",
@@ -2507,10 +2508,10 @@
       "population": "common validation rows",
       "provenance": "/benchmarks/data/figures/model_disagreement_categories.provenance.json",
       "sha256": {
-        "pdf": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803",
+        "pdf": "545df7c1170cf02899cbabfad9229d551998f58378ce4a11e19a7427924dee38",
         "png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9",
         "source_data": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72",
-        "svg": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786",
+        "svg": "fa17d94c7d9c105a32a4ff00fe3220664ccbb01351fb581d882cd6b1f58d5e19",
         "web_png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
       },
       "source_data": "/benchmarks/data/figures/model_disagreement_categories.json",
@@ -2525,11 +2526,11 @@
       "population": "formal and locked registered cohorts",
       "provenance": "/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
       "sha256": {
-        "pdf": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b",
-        "png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d",
-        "source_data": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76",
-        "svg": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598",
-        "web_png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+        "pdf": "853abe22bf91a5315bf8b98b25898790eb56df19a6b16d07a1ed144ba813e8ff",
+        "png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61",
+        "source_data": "423fd279b2da3d3c479c24dd6793ad5b17492407d7aac5f691e65f877fb1880c",
+        "svg": "f2bdbb37a9413e4da36abeb5155e2b4b3088c62c7b6a834ce5d32749eee1e7f2",
+        "web_png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61"
       },
       "source_data": "/benchmarks/data/figures/classical_comparator_coverage.json",
       "title": "Classical comparator coverage"
@@ -2543,10 +2544,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/transition_versus_transversion.provenance.json",
       "sha256": {
-        "pdf": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49",
+        "pdf": "87f86a161c9aa003b2d8267a63162cfe905e99fd5d9c2db8b31685388682ed18",
         "png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5",
         "source_data": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c",
-        "svg": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554",
+        "svg": "7a1296d9374a12a67080c1d7d80103147d83b2874fc8174134f1a03073b01fcc",
         "web_png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
       },
       "source_data": "/benchmarks/data/figures/transition_versus_transversion.json",
@@ -2561,10 +2562,10 @@
       "population": "formal validation split",
       "provenance": "/benchmarks/data/figures/validation_model_comparison.provenance.json",
       "sha256": {
-        "pdf": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c",
+        "pdf": "9ace8bb0fd67d77b589b007bf4d85940cbf1cc4ea9ef6c902086952fba4cf0fe",
         "png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3",
         "source_data": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e",
-        "svg": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65",
+        "svg": "786b11d1533e4f17ed1e9e47658f59c5a9cf3363878fc2900e529b1478bb8b17",
         "web_png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
       },
       "source_data": "/benchmarks/data/figures/validation_model_comparison.json",
@@ -2766,7 +2767,7 @@
       "population": "registered benchmark figures",
       "provenance": "/benchmarks/data/figures/contact_sheet.provenance.json",
       "sha256": {
-        "png": "cd970d826a71f27c02c5b653b229a9949c2ebea6bbf175529fe66e5690122830"
+        "png": "ed27cf42f44e675b49cf561ebc1058527006b6804a64c9d91cad0fda327e477a"
       },
       "source_data": "/benchmarks/data/figures/contact_sheet.provenance.json",
       "title": "Benchmark figure contact sheet"
@@ -2807,7 +2808,7 @@
     "raw_delta_primary_auroc": 0.09022115034583182,
     "threshold": 0.5
   },
-  "generated_at_utc": "2026-09-23T20:31:19.161216+00:00",
+  "generated_at_utc": "2026-09-24T07:38:22.527633+00:00",
   "headline_metrics": {
     "auprc": 0.8630391000187404,
     "auroc": 0.9092259737895887,
@@ -2818,16 +2819,12 @@
     "nll": 0.5517579434827143
   },
   "locked_n": 946,
-  "modal_ending_verified_credit_usd": 29.06,
-  "modal_provider_billed_delta_usd": 1.7,
-  "modal_rate_estimated_inference_usd": 0.4176400070755109,
-  "modal_spend_usd": 0.94,
-  "modal_starting_verified_credit_usd": 30.0,
+  "modal_spend_usd": 0.4176400070755109,
   "new_external_figure_count": 14,
   "new_fine_tuning_for_primary": false,
   "primary_population": "946-row locked temporal cohort",
   "primary_status": "PASS",
-  "protocol_hash": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+  "protocol_hash": "c180e2e9c2dcbc986279aecd2650c307a9d3c46dc95cf4251276c30c2555b643",
   "status_counts": {
     "COMPLETED_WITH_LIMITATIONS": 4,
     "DATA_BLOCKED": 1,

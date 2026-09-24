@@ -13,7 +13,7 @@
       "sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500"
     }
   },
-  "created_at_utc": "2026-09-23T18:52:43.834637+00:00",
+  "created_at_utc": "2026-09-24T07:22:50.075797+00:00",
   "external_rule": "freeze external manifest before inference; strict ID and gene exclusion",
   "fine_tuning_rule": "new fine-tuning excluded from this benchmark expansion; existing implementation/proof only",
   "fixed_temporal_bins": [
@@ -29,6 +29,7 @@
   "locked_test_manifest": "research/ml_extension/splits/authoritative_locked_test_manifest.json",
   "locked_test_rule": "never fit, select, calibrate, tune, or infer new labels from the locked cohort",
   "master_prompt_sha256": "044c834c7865699db6a09f7d742a9add7a6772d6c31b18da8e7a3b50836f4876",
+  "master_prompt_source": "preserved-from-previous-protocol-lock",
   "modal": {
     "hard_reserve_usd": 5.0,
     "new_spend_allowed": false,
@@ -39,15 +40,16 @@
   },
   "primary_result": "immutable phase14 locked Evo2 result",
   "protocol_id": "evovariant-tr-benchmark-expansion-v1",
-  "protocol_yaml_sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+  "protocol_yaml_sha256": "c180e2e9c2dcbc986279aecd2650c307a9d3c46dc95cf4251276c30c2555b643",
   "review_quality_definition": "0 stars, 1 star, 2 stars, 3 stars; evidence quality is not biological certainty",
   "start_main_head": "cd143aaa4bf568e00d73269648f39f5131a744c1",
   "status_vocabulary": [
     "PASS",
+    "PASS_WITH_LIMITATIONS",
     "COMPLETED_WITH_LIMITATIONS",
     "NOT_APPLICABLE",
     "DATA_BLOCKED",
     "COMPUTE_BLOCKED"
   ],
-  "working_branch": "research/benchmark-expansion-v1"
+  "working_branch": "main"
 }

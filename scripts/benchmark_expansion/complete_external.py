@@ -1049,12 +1049,15 @@ B11/B12 retain exact missing-row coverage and no imputation or mixed builds.
     append_once(DOCS / "RESULTS.md", "## External benchmark continuation — 2026-09-24", summary)
     append_once(DOCS / "COMPUTE.md", "## External benchmark continuation — 2026-09-24", summary)
     append_once(DOCS / "MODAL_COST_REPORT.md", "## External benchmark continuation — 2026-09-24", summary)
-    append_once(ROOT / "README.md", "## External benchmark completion — 2026-09-24", summary)
-    append_once(ROOT / "docs/JUDGE_DEMO.md", "## External benchmark completion — 2026-09-24", summary)
-    append_once(ROOT / "docs/agent/PROJECT_STATE.md", "### External benchmark completion — 2026-09-24", summary)
+    # The marker must match the heading that is actually appended, otherwise a
+    # re-run silently stacks duplicate sections.
+    continuation_marker = "## External benchmark continuation — 2026-09-24"
+    append_once(ROOT / "README.md", continuation_marker, summary)
+    append_once(ROOT / "docs/JUDGE_DEMO.md", continuation_marker, summary)
+    append_once(ROOT / "docs/agent/PROJECT_STATE.md", continuation_marker, summary)
     append_once(ROOT / "docs/agent/PHASE_LEDGER.md", "| 26 | External benchmark completion", f"| 26 | External benchmark completion | {registry['status_counts'].get('PASS', 0)} PASS registry entries; B61/B62/B66/B67 persisted with fresh evidence; B63/B64 remain explicitly bounded; raw prediction and leakage receipts are tracked. |")
     # Keep a compact current cost report generated from actual local artifacts.
-    append_once(ROOT / "docs/benchmarks/FINAL_STATUS_MATRIX.md", "## External benchmark continuation — 2026-09-24", summary)
+    append_once(ROOT / "docs/benchmarks/FINAL_STATUS_MATRIX.md", continuation_marker, summary)
 
 
 def update_notebook() -> None:
@@ -1237,13 +1240,81 @@ metered overhead, while the provider delta is not a per-request invoice.
     append_once(DOCS / "MODAL_COST_REPORT.md", "## Modal balance finalization — 2026-09-24", cost_note)
 
 
+def local_finalize() -> dict[str, Any]:
+    """Re-derive every external catalog from persisted predictions.
+
+    This mode never constructs a Modal worker and never launches remote
+    compute. It is the reproducible, no-spend completion path: the frozen raw
+    predictions and the recorded runtime receipt must already exist on disk.
+    """
+    if not RAW_PREDICTIONS.is_file():
+        raise RuntimeError(
+            "local-finalize requires the persisted external raw predictions "
+            f"at {RAW_PREDICTIONS.relative_to(ROOT)}"
+        )
+    if not RUNTIME.is_file():
+        raise RuntimeError(
+            "local-finalize requires the recorded external runtime artifact "
+            f"at {RUNTIME.relative_to(ROOT)}"
+        )
+    runtime = read_json(RUNTIME)
+    _, records, audit = validate_manifest()
+    load_local_helpers()
+    evaluation = evaluate_external(records, runtime)
+    comparator = audit_external_comparators(records)
+    b11_b12 = audit_b11_b12()
+    mavedb = audit_mavedb(records)
+    comp_audit = audit_comparator()
+    agreement = model_agreement(evaluation, comparator)
+    drift = drift_analysis(evaluation)
+    write_provenance(evaluation, runtime, audit, agreement)
+    figures = make_external_figures(
+        evaluation,
+        evaluation["review_quality_subgroups"],
+        evaluation["reliability"],
+        agreement,
+        runtime,
+        drift,
+    )
+    catalog = update_catalogs(
+        evaluation,
+        comparator,
+        agreement,
+        runtime,
+        drift,
+        mavedb,
+        b11_b12,
+        comp_audit,
+        figures,
+        local.git_value("rev-parse", "HEAD"),
+    )
+    write_downloads(catalog)
+    update_docs(evaluation, runtime, catalog["registry"], mavedb, comp_audit, b11_b12)
+    update_notebook()
+    summary = {
+        "status": evaluation["status"],
+        "mode": "local-finalize",
+        "remote_compute_started": False,
+        "n": evaluation["n"],
+        "metrics": evaluation["metrics"],
+        "registry_status_counts": catalog["registry"]["status_counts"],
+        "raw_predictions_sha256": sha256_file(RAW_PREDICTIONS),
+        "figure_count": len(figures),
+    }
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return summary
+
+
 def main() -> None:
     mode = os.environ.get("EVOVARIANT_EXTERNAL_MODE", "full")
-    if mode not in {"dry-run", "pilot", "full", "finalize"}:
+    if mode not in {"dry-run", "pilot", "full", "finalize", "local-finalize"}:
         raise SystemExit(f"unsupported EVOVARIANT_EXTERNAL_MODE={mode!r}")
     if mode == "finalize":
         finalize_verified_balance(float(os.environ["EVOVARIANT_MODAL_ENDING_BALANCE_USD"]))
         print(json.dumps(read_json(RUNTIME), indent=2, sort_keys=True))
+        return
+    if mode == "local-finalize":
+        local_finalize()
         return
     start_balance = float(os.environ.get("EVOVARIANT_MODAL_STARTING_BALANCE_USD", "30.00"))
     if start_balance < SAFETY_STOP_USD:

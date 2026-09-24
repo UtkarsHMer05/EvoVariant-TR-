@@ -9,10 +9,10 @@
   },
   "population": "frozen external ClinVar inference",
   "sha256": {
-    "pdf": "4a8b546e9a62e345841e5315c09ab78ebcf8e828014d536b1a74889fdebdfefb",
+    "pdf": "38e4ea5ce601b7b5b9489607390c84faa4865d9fd744c10eedd33d3b6496e530",
     "png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef",
     "source_data": "e33e72611511c2b3197dafd5eacee0a46c8060fbd79fbef5bd27b7ee6363afa5",
-    "svg": "ef28c06afc3e907044ac9a0191a58915d1902475938bf392380c8d92a0fa9057",
+    "svg": "77a098e0541bd6745a8db54b7c39d01a97c74e6c01f4ff2359f0ffc0e6c8bccb",
     "web_png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef"
   },
   "source_data": "docs/benchmarks/data/figures/external_runtime_and_cache_economics.json"

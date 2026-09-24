@@ -9,10 +9,10 @@
   },
   "population": "formal development, LOCO",
   "sha256": {
-    "pdf": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf",
+    "pdf": "26fbfa812e4a7a21859338ebb035b1733c61a6a2bd0ea736ce61240816423cfe",
     "png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f",
     "source_data": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7",
-    "svg": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5",
+    "svg": "32c837d3187f8c2487eca5ba4ae7d583309d5af588ca29b6b623abc6f87b4eda",
     "web_png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
   },
   "source_data": "docs/benchmarks/data/figures/chromosome_held_out_generalization.json"

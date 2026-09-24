@@ -9,10 +9,10 @@
   },
   "population": "frozen external ClinVar cohort",
   "sha256": {
-    "pdf": "39955673ddfeed457108cc1308132f8d58ed001fe88a590cdf5adee5ec00f24d",
+    "pdf": "8840d22c2956554dd5309de7baf6cbdb8c0d97c2f9d3d85b1b00f85a266c4937",
     "png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10",
     "source_data": "d30ad0e19c8e6b5698f3af918c790cb6072ea346fe97c192951342a848b40b05",
-    "svg": "3dbd59a1e40713f319525accfeff1aa4dd0ec71abc65dabb67b6706f93000817",
+    "svg": "ab4e88cf2403d166e6b3ef498c94003fe71861d235c8080db0fdfd446bc00b7d",
     "web_png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10"
   },
   "source_data": "docs/benchmarks/data/figures/external_probability_quality.json"

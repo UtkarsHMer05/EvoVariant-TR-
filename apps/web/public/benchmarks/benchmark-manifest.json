@@ -3220,6 +3220,14 @@
         "/benchmarks/figures/external_confusion_matrix.png",
         "/benchmarks/figures/external_classification_dashboard.png",
         "/benchmarks/figures/external_f1_family_dashboard.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+        "/benchmarks/figures/external_cohort_flow.png",
+        "/benchmarks/figures/external_class_balance.png",
+        "/benchmarks/figures/external_roc.png",
+        "/benchmarks/figures/external_precision_recall.png",
+        "/benchmarks/figures/external_confusion_matrix.png",
+        "/benchmarks/figures/external_classification_dashboard.png",
+        "/benchmarks/figures/external_f1_family_dashboard.png",
         "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
       ],
       "id": "B61",
@@ -3282,6 +3290,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_review_quality_subgroup_performance.png",
       "figures": [
+        "/benchmarks/figures/external_review_quality_subgroup_performance.png",
         "/benchmarks/figures/external_review_quality_subgroup_performance.png"
       ],
       "id": "B62",
@@ -3455,6 +3464,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_model_agreement.png",
       "figures": [
+        "/benchmarks/figures/external_model_agreement.png",
         "/benchmarks/figures/external_model_agreement.png"
       ],
       "id": "B65",
@@ -3518,6 +3528,9 @@
       "figures": [
         "/benchmarks/figures/external_calibration_reliability.png",
         "/benchmarks/figures/external_probability_quality.png",
+        "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png",
+        "/benchmarks/figures/external_calibration_reliability.png",
+        "/benchmarks/figures/external_probability_quality.png",
         "/benchmarks/figures/locked_versus_external_calibration_and_discrimination.png"
       ],
       "id": "B66",
@@ -3578,6 +3591,7 @@
       "family": "External",
       "figure": "/benchmarks/figures/external_runtime_and_cache_economics.png",
       "figures": [
+        "/benchmarks/figures/external_runtime_and_cache_economics.png",
         "/benchmarks/figures/external_runtime_and_cache_economics.png"
       ],
       "id": "B67",
@@ -3634,6 +3648,7 @@
       "figure": "/benchmarks/figures/benchmark_status_matrix.png",
       "figures": [
         "/benchmarks/figures/benchmark_status_matrix.png",
+        "/benchmarks/figures/external_versus_locked_cohort_drift.png",
         "/benchmarks/figures/external_versus_locked_cohort_drift.png"
       ],
       "id": "B68",
@@ -3697,7 +3712,7 @@
         "normalized_variant_id": "GRCh38:10:71362313:C>T",
         "nt_features": null,
         "orientation_disagreement": 0.00040036439895629883,
-        "phylop_score": null,
+        "phylop_score": 2.77024,
         "prediction": 0,
         "reason": "highest-confidence-correct",
         "review_stars": 2,
@@ -3722,7 +3737,7 @@
         "normalized_variant_id": "GRCh38:10:75020686:G>A",
         "nt_features": null,
         "orientation_disagreement": 0.0003472566604614258,
-        "phylop_score": null,
+        "phylop_score": 7.56956,
         "prediction": 1,
         "reason": "false-positive",
         "review_stars": 2,
@@ -3747,7 +3762,7 @@
         "normalized_variant_id": "GRCh38:10:102919460:A>G",
         "nt_features": null,
         "orientation_disagreement": 0.00019943714141845703,
-        "phylop_score": null,
+        "phylop_score": 9.22595,
         "prediction": 0,
         "reason": "false-negative",
         "review_stars": 2,
@@ -3772,7 +3787,7 @@
         "normalized_variant_id": "GRCh38:12:121001169:C>T",
         "nt_features": null,
         "orientation_disagreement": 0.0047800540924072266,
-        "phylop_score": null,
+        "phylop_score": 6.37709,
         "prediction": 1,
         "reason": "largest-calibration-shift",
         "review_stars": 3,
@@ -3797,7 +3812,7 @@
         "normalized_variant_id": "GRCh38:4:15601236:G>C",
         "nt_features": null,
         "orientation_disagreement": 0.02094036340713501,
-        "phylop_score": null,
+        "phylop_score": 9.221,
         "prediction": 1,
         "reason": "strongest-orientation-disagreement",
         "review_stars": 2,
@@ -3822,7 +3837,7 @@
         "normalized_variant_id": "GRCh38:10:87863279:G>A",
         "nt_features": null,
         "orientation_disagreement": 0.00015020370483398438,
-        "phylop_score": null,
+        "phylop_score": 0.534433,
         "prediction": 0,
         "reason": "highest-evidence-review",
         "review_stars": 3,
@@ -3847,7 +3862,7 @@
         "normalized_variant_id": "GRCh38:2:71516184:T>G",
         "nt_features": null,
         "orientation_disagreement": 0.0014172792434692383,
-        "phylop_score": null,
+        "phylop_score": 4.60865,
         "prediction": 1,
         "reason": "longest-temporal-duration",
         "review_stars": 3,
@@ -3875,28 +3890,25 @@
       },
       "PhyloP formal": {
         "artifact": null,
-        "available": 0,
-        "coverage_fraction": 0.0,
-        "status": "DATA_BLOCKED",
+        "available": 3997,
+        "coverage_fraction": 0.99925,
+        "status": "PASS",
         "total": 4000
       },
       "PhyloP locked": {
         "artifact": null,
-        "available": 0,
-        "coverage_fraction": 0.0,
-        "status": "DATA_BLOCKED",
+        "available": 946,
+        "coverage_fraction": 1.0,
+        "status": "PASS",
         "total": 946
       }
     },
     "compute": {
-      "balance_status": "VERIFIED",
-      "cache_hit_rows": 8,
+      "balance_status": "VERIFIED_STARTING_BALANCE_ENDING_CHECK_PENDING",
       "ending_verified_credit_usd": 29.06,
-      "fresh_rows": 192,
       "modal_profile": "utkarshkhajuria59",
-      "new_spend_usd": 0.94,
+      "new_spend_usd": 0.4176400070755109,
       "provider_billed_delta_usd": 1.7,
-      "rate_estimated_inference_usd": 0.4176400070755109,
       "resources_running": 0,
       "resources_started": 24,
       "starting_verified_credit_usd": 30.0
@@ -4435,7 +4447,7 @@
         ],
         "decision": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
         "official_audit_reused": "research/ml_extension/models/gpn.json",
-        "recorded_at_utc": "2026-09-23T20:31:16.592470+00:00",
+        "recorded_at_utc": "2026-09-24T07:38:20.112303+00:00",
         "status": "NOT_APPLICABLE"
       },
       "coverage_reaudit": {
@@ -5574,7 +5586,7 @@
         "artifact_id": "evovariant-tr-comparator-coverage-reaudit-v1",
         "imputation": false,
         "mixed_builds": false,
-        "recorded_at_utc": "2026-09-23T20:31:09.317873+00:00"
+        "recorded_at_utc": "2026-09-24T07:38:12.763158+00:00"
       },
       "drift": {
         "artifact_id": "evovariant-tr-external-drift-v1",
@@ -5665,7 +5677,7 @@
           }
         }
       },
-      "evaluation_artifact_sha256": "6921215e0d4574fd67c8d71a8e86e163d5ad9d0eb39d0065cd06b73896ca2d65",
+      "evaluation_artifact_sha256": "688fd4b6abbb2346af396a9fc7ce013f82e306c44791a51e2e594b05b3b4adfd",
       "inference_status": "COMPLETED",
       "manifest": {
         "class_counts": {
@@ -5719,7 +5731,7 @@
           ],
           "search_surface": "official MaveDB score-set search API"
         },
-        "recorded_at_utc": "2026-09-23T20:31:16.588102+00:00",
+        "recorded_at_utc": "2026-09-24T07:38:20.108648+00:00",
         "search_observations": [
           {
             "error": "URLError:<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>",
@@ -8051,11 +8063,11 @@
       "population": "registered benchmark catalog",
       "provenance": "/benchmarks/data/figures/benchmark_status_matrix.provenance.json",
       "sha256": {
-        "pdf": "d75f97b3840ce169c2e688baee5f3d04d1f806e46b2de979af512d7ca28aec3e",
-        "png": "d16750f555d000f962bf0ea5f4ef909fc15a5841c2bde0ce09f5262634188fda",
-        "source_data": "d19178a395ebd144473eece01380b31c8fc4acd75a180b79d03dada401ab36a4",
-        "svg": "6caf4f542db578e7bf945ec03b3d9d4368975c094a4fb0141136edfe70b554b0",
-        "web_png": "d16750f555d000f962bf0ea5f4ef909fc15a5841c2bde0ce09f5262634188fda"
+        "pdf": "25d85daa607e38295c123783f626dee52b7cfc9ec1af829365e0d40685d11b6a",
+        "png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e",
+        "source_data": "69973f4ac53de8152ab81e60c25385796be5161accfc504422d9f65ba23e85a5",
+        "svg": "848b941e003179433d69876e612ac3e2cf544c8594c12be34466ab878825fd63",
+        "web_png": "1a1a5e03fa99631a77d0bce92d75fd6b7ad9a628a5219bee8c7f58ac95a9cb8e"
       },
       "source_data": "/benchmarks/data/figures/benchmark_status_matrix.json",
       "title": "Benchmark status matrix"
@@ -8069,10 +8081,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/evidence_quality_performance.provenance.json",
       "sha256": {
-        "pdf": "84820b328ee2122c86c354ffa20b85c850090557c790fc1eb53997740241328b",
+        "pdf": "837f699bab397a6ea34bd0c1ede2616c247359a74126f6aa643190ad5b544508",
         "png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00",
         "source_data": "c41203fe85b7591c4438778b527970dfac3f5844b61b61818947a807822a1452",
-        "svg": "0aba36e7230009426c27eab0c290edb0f94a68ae15d397cc3cf76c7ccbcb7e0c",
+        "svg": "87f468c2a92fc107dbce7ea017202deab100464fe71e04464863917a06b4fa2b",
         "web_png": "54c2e405f67b6152dccfdec0d11c054fcf34cfc9c2ae571a61591cfd8becdc00"
       },
       "source_data": "/benchmarks/data/figures/evidence_quality_performance.json",
@@ -8087,10 +8099,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.provenance.json",
       "sha256": {
-        "pdf": "09cdb0a36107fb8bb78c3123165e2026687355cb6d67e0667f849dd65bd42b2d",
+        "pdf": "65204748fd96b7aecbb016484f15446aaeca0a063ddb5d5ff32f4e4b5194ca83",
         "png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0",
         "source_data": "7f2727f64ed9de62d4e6130c7020ffd29169fb2448b761e8fcb89ce85e971b7b",
-        "svg": "10535ef12f36f96b7d4c310f353aa848d74d474180a311e83f047d7e4eeb0bf5",
+        "svg": "47a0e37c330abf6b3f384d6852810f5daa39be8886936137ee83d938e6e43fb4",
         "web_png": "a07edb4120df9a35eb171ea87909d7286e08e8e2bc18e1eb9aad643c4cca36b0"
       },
       "source_data": "/benchmarks/data/figures/temporal_difficulty_by_resolution_interval.json",
@@ -8105,10 +8117,10 @@
       "population": "formal development, LOCO",
       "provenance": "/benchmarks/data/figures/chromosome_held_out_generalization.provenance.json",
       "sha256": {
-        "pdf": "885632b29697e892488ff4e35a83c089eed8eece58ae0f0b75c237160523b5cf",
+        "pdf": "26fbfa812e4a7a21859338ebb035b1733c61a6a2bd0ea736ce61240816423cfe",
         "png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f",
         "source_data": "804fbdab2fa6b60676b596167fedf1da0f58ecd18e97f7f156f4b37b01eca1c7",
-        "svg": "1c435a4ef5fab925017e05d5e13d585778595e583bb798eb871cd3847ecb65b5",
+        "svg": "32c837d3187f8c2487eca5ba4ae7d583309d5af588ca29b6b623abc6f87b4eda",
         "web_png": "42f9b3ee98b60dd760cb34412a7eb6cdc59791747928b0c80ee39a5bacf1625f"
       },
       "source_data": "/benchmarks/data/figures/chromosome_held_out_generalization.json",
@@ -8123,10 +8135,10 @@
       "population": "common validation rows",
       "provenance": "/benchmarks/data/figures/model_disagreement_categories.provenance.json",
       "sha256": {
-        "pdf": "08d720d7d32173aec8c405f4d88ba4d5f0ad9158732de795dcbe6a0e39435803",
+        "pdf": "545df7c1170cf02899cbabfad9229d551998f58378ce4a11e19a7427924dee38",
         "png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9",
         "source_data": "a37f836c3e0b5014cafa975d6454e37941117760a94d21474544de5b26c45b72",
-        "svg": "328e93adf7065c52bfd4bceefbda30e268e213673754df96394eac9be1922786",
+        "svg": "fa17d94c7d9c105a32a4ff00fe3220664ccbb01351fb581d882cd6b1f58d5e19",
         "web_png": "f06bff135664d241c65feffb70c6bc084ef7551c282b1a0b2eb7cf38006deaf9"
       },
       "source_data": "/benchmarks/data/figures/model_disagreement_categories.json",
@@ -8141,11 +8153,11 @@
       "population": "formal and locked registered cohorts",
       "provenance": "/benchmarks/data/figures/classical_comparator_coverage.provenance.json",
       "sha256": {
-        "pdf": "d7084be349ef89a83a2c917212c21f65dbf80fac99563fe66c3fb01a5412289b",
-        "png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d",
-        "source_data": "4d56a14da3e3829801fa8215044c3209924cad197c7a90b88e3b84fd4d137a76",
-        "svg": "7daaaf251ed721dd049c1c805f6baa0debdd37bd4d10a396f9ea90876b68d598",
-        "web_png": "2b2b13c35a915ee34d0c0d7eb22e76bbd795d6ade694bda37c73661554fc039d"
+        "pdf": "853abe22bf91a5315bf8b98b25898790eb56df19a6b16d07a1ed144ba813e8ff",
+        "png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61",
+        "source_data": "423fd279b2da3d3c479c24dd6793ad5b17492407d7aac5f691e65f877fb1880c",
+        "svg": "f2bdbb37a9413e4da36abeb5155e2b4b3088c62c7b6a834ce5d32749eee1e7f2",
+        "web_png": "8635e219c377e390a4fcd6b88e1a9571419557f55246742d8d6d9127c024bb61"
       },
       "source_data": "/benchmarks/data/figures/classical_comparator_coverage.json",
       "title": "Classical comparator coverage"
@@ -8159,10 +8171,10 @@
       "population": "locked temporal cohort",
       "provenance": "/benchmarks/data/figures/transition_versus_transversion.provenance.json",
       "sha256": {
-        "pdf": "341737746174672d0d221712fcb463b61d0c109c052da33ceb84aafa1e888e49",
+        "pdf": "87f86a161c9aa003b2d8267a63162cfe905e99fd5d9c2db8b31685388682ed18",
         "png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5",
         "source_data": "eb740b8c3529d4ee1e6b0bc616c08e0ff601d633a8294271f19ce2e259be451c",
-        "svg": "7ae6c1deecccebea08efbbdd07d3bce70153cc49ab0e2996d333ab9e81e72554",
+        "svg": "7a1296d9374a12a67080c1d7d80103147d83b2874fc8174134f1a03073b01fcc",
         "web_png": "260d453ed9508d20a38ea55cda973bb4ec864b6daaef1f0fbfce5d709dd6c1b5"
       },
       "source_data": "/benchmarks/data/figures/transition_versus_transversion.json",
@@ -8177,10 +8189,10 @@
       "population": "formal validation split",
       "provenance": "/benchmarks/data/figures/validation_model_comparison.provenance.json",
       "sha256": {
-        "pdf": "4ecd6dd70bb2b5e48f6cc5cea5fa85f306a6e962ae23fa9c36f329467010e98c",
+        "pdf": "9ace8bb0fd67d77b589b007bf4d85940cbf1cc4ea9ef6c902086952fba4cf0fe",
         "png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3",
         "source_data": "4bd33370291ddf37f521fa540113a22e9b1db57ee7925dac2825c3792534750e",
-        "svg": "c97d31b72e4d157c473d3d23ba97aea242ed390ebea3b13bd9c981e6a01c3c65",
+        "svg": "786b11d1533e4f17ed1e9e47658f59c5a9cf3363878fc2900e529b1478bb8b17",
         "web_png": "9449d840b0ce6f452a36f9e06c73d27d43ce9ba6298a32f86d65238299f0a6a3"
       },
       "source_data": "/benchmarks/data/figures/validation_model_comparison.json",
@@ -8382,10 +8394,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_cohort_flow.provenance.json",
       "sha256": {
-        "pdf": "75c611e868e87eb25e3499a7f088ba84c60e7b3d95ee337156f462de58d0c09d",
+        "pdf": "f7e2571081f2a663b7a3756704837e69de8314e589951f96ec59d05d419f1740",
         "png": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f",
         "source_data": "799179f9b35453af80f7633284663cef54a5f833dead385e56d9053b494627df",
-        "svg": "f0eb57794a70f6fc0d2436f941bf760fc3ac1dffeb87fcc5d1bce3a28c9568af",
+        "svg": "a6ca7b94fcd27304d9b0ac9e242bffec6793b4884a6142eab89545534dda0a81",
         "web_png": "c96ff4a987d67d05f58c73e6a768914336afbcc04a75617c9cd001537644139f"
       },
       "source_data": "/benchmarks/data/figures/external_cohort_flow.json",
@@ -8400,10 +8412,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_class_balance.provenance.json",
       "sha256": {
-        "pdf": "e422d3a8ec048f318279c18e942c1695792960d1bb137d85dd87fc2783fb6a89",
+        "pdf": "63c36ad3344cff25fdf7e99cae954b58e8f0391c878e1447a6a08c1325488e36",
         "png": "0f7037680c9bd3d9acf39273e10e21d15904c5577fca9b4fb9df305a4c76c8af",
         "source_data": "189e7cfe31952f3169f5e63168e5e84a0badfff1a3de02cd9eda0a1628ee8a3e",
-        "svg": "9fb9e7c223022340c448f2b0bc567c452de9a70b7b86f1bd69989e1f407d863c",
+        "svg": "f91af865de7e6e133e3525d6f16ab10238bdc4b34e58296feeb50104262be4e6",
         "web_png": "0f7037680c9bd3d9acf39273e10e21d15904c5577fca9b4fb9df305a4c76c8af"
       },
       "source_data": "/benchmarks/data/figures/external_class_balance.json",
@@ -8418,10 +8430,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_roc.provenance.json",
       "sha256": {
-        "pdf": "725082986ec3a2660052efb689ff931b88a8d8a66b21dd4590e3c50a51fb43c5",
+        "pdf": "05a22c0bf4d4aa14445ea9c9d85e28ea552a346fc4b5d1d96af3c16a8cea4276",
         "png": "516222099601e00a9bd60db87d1c31988c367a0113047648cc7dc61c024a17dc",
         "source_data": "147bf72daa4f4dd58d1d825f21b139f61bf3b6c25e2fe45ed02d2ce6b09bb754",
-        "svg": "64ad4750b7c6dd69cd7fce4b4eba93390939a81a63370eaf5ddea5b89475fbca",
+        "svg": "ea35bbc183245bbb25840d8a543ac6f7944808b5f3dd9ee908d8124cc5df75af",
         "web_png": "516222099601e00a9bd60db87d1c31988c367a0113047648cc7dc61c024a17dc"
       },
       "source_data": "/benchmarks/data/figures/external_roc.json",
@@ -8436,10 +8448,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_precision_recall.provenance.json",
       "sha256": {
-        "pdf": "eba495c35d3724e6a815081eedb9e4cf7179e1b60fa5adb3fbea6fee5ce71a40",
+        "pdf": "8ef069f426931c4bdac0cc938b5229b22db316670ba425a06c9aee8bb8a70a60",
         "png": "c504b4c10efb6278f43c7cbe0c8a960ccac74b7fdeeb19fc710f6252fa4b9b44",
         "source_data": "474fe1b6a06a1a010abf1b6c4433c30bd3668d934689262ff9e43b7b1f419245",
-        "svg": "c717ac991ef4e7f51b7ef2d279cd6126a045fbb1141a50acf9684366a5d8fe98",
+        "svg": "2978dd60671a36327e04a743456ce5e95977e2cbcb6f099f67384fe1f738b8a4",
         "web_png": "c504b4c10efb6278f43c7cbe0c8a960ccac74b7fdeeb19fc710f6252fa4b9b44"
       },
       "source_data": "/benchmarks/data/figures/external_precision_recall.json",
@@ -8454,10 +8466,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_confusion_matrix.provenance.json",
       "sha256": {
-        "pdf": "ddeaa22a3e9f6d12d58662e6f50df315d336db3ecf0e76541501e2f2364f0dc5",
+        "pdf": "57b4053228b7052414d9cc316969d055c474c4713612ba9d6496a247c0200580",
         "png": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d",
         "source_data": "968ff900f2dd93a7fdb1bec7b6fac008f285abf254b4938c5549fbc12195118a",
-        "svg": "576536170078ab9478cde8a24cdb4d51b5640a5912ec980b15fc512f813a88a2",
+        "svg": "098578ecb5b7351fb090898b7709504da8e6425f9288132393788a0ee607bcbb",
         "web_png": "65180587351a92f4155c922d92b01f68ee52a3a8c6afe0e96c11ee39e4ff0e8d"
       },
       "source_data": "/benchmarks/data/figures/external_confusion_matrix.json",
@@ -8472,10 +8484,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_classification_dashboard.provenance.json",
       "sha256": {
-        "pdf": "346b8a40192b118c39b5701aaa78c7d68f01eb97c79b9df905568024ae129d75",
+        "pdf": "f86ed9a52a16ae0e08f1e8eee7805c3a612fd157408c20d467e5b656852f3fe3",
         "png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d",
         "source_data": "8d007918771b3d70acbe73ed2a501ebc5a1c840612a24bb16af11b31a10d01af",
-        "svg": "d672e67fa2a7b3c467df244b3fc98c3ac3ff26ffccf1390c576035215cfaffd2",
+        "svg": "6b08ea66eaa2004b94415825186e3e36a81e044c3e1337a84b2b7406b72c310b",
         "web_png": "9538ea4ce3243243f4784aefe84c16c2ef9bdef8d2a59d08292586e090659d7d"
       },
       "source_data": "/benchmarks/data/figures/external_classification_dashboard.json",
@@ -8490,10 +8502,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_f1_family_dashboard.provenance.json",
       "sha256": {
-        "pdf": "b86f4b9b43bcd6af1d85baf7ca6150af1ef764ec1dc9221280adbee445908872",
+        "pdf": "b1169a8d20fe700317235d9b892faaf85612ca968d6ba9b19e1d2256a3abf291",
         "png": "e89a8179dea97c67d0f2d2520aba2e775b830805e99fc7414f747c0480857a7d",
         "source_data": "7375bb710ebe4c02cb9d5eeb6ec9f1f6bb49c1b3cab703ad4e8944cccbd4a776",
-        "svg": "f82332ba608950f9f2c41e8f9707fae57fd7b36da3d8ac244c7f0fed077b0bf4",
+        "svg": "b299b030c46aa448e89415793fdf363e67762e588a74bc0110c9ba271de1d709",
         "web_png": "e89a8179dea97c67d0f2d2520aba2e775b830805e99fc7414f747c0480857a7d"
       },
       "source_data": "/benchmarks/data/figures/external_f1_family_dashboard.json",
@@ -8508,10 +8520,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_calibration_reliability.provenance.json",
       "sha256": {
-        "pdf": "4f1826543d99214e4276245e3021998f793af440bdc7efd06ba7ddc7dbeb5cd3",
+        "pdf": "3532d79d251cef2bb89a8de3799898a323616d19b9db2394a86005451c289785",
         "png": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7",
         "source_data": "c694da5caabc49c7aabf410301f63e24180838b206cf0ae4e74e710eca05b4d8",
-        "svg": "834ef93e050b4dda13442af0ab7973724797e71b430cab42b97b5792a118cbc4",
+        "svg": "acf94ea2ff4171f600f0ecdcf2cc8c5aebff0b73dc949a444e128d31ae9770fa",
         "web_png": "edd6bc666715b1ed0d6284e908f20ce38b5c91f13053b007c786044fdcfacfb7"
       },
       "source_data": "/benchmarks/data/figures/external_calibration_reliability.json",
@@ -8526,10 +8538,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_probability_quality.provenance.json",
       "sha256": {
-        "pdf": "39955673ddfeed457108cc1308132f8d58ed001fe88a590cdf5adee5ec00f24d",
+        "pdf": "8840d22c2956554dd5309de7baf6cbdb8c0d97c2f9d3d85b1b00f85a266c4937",
         "png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10",
         "source_data": "d30ad0e19c8e6b5698f3af918c790cb6072ea346fe97c192951342a848b40b05",
-        "svg": "3dbd59a1e40713f319525accfeff1aa4dd0ec71abc65dabb67b6706f93000817",
+        "svg": "ab4e88cf2403d166e6b3ef498c94003fe71861d235c8080db0fdfd446bc00b7d",
         "web_png": "74625c6de2c566f30ad31603361a75ecc76d4437d472780dcc3007ff0d0efd10"
       },
       "source_data": "/benchmarks/data/figures/external_probability_quality.json",
@@ -8544,10 +8556,10 @@
       "population": "frozen locked versus external cohorts",
       "provenance": "/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.provenance.json",
       "sha256": {
-        "pdf": "21981b317f72b8d19217f6208726ded514278d67b1111003aab3f791a3da34a6",
+        "pdf": "d727d2d8a904f87e406e8ae80f2c16ddaa184b5dfe4b5e35f3b0148623f56cee",
         "png": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab",
         "source_data": "193d66d8adeef704c199a847920d75b59aa30f9c6589437a334d9dea2969fe4b",
-        "svg": "1dda4805127b7a0d8d0614f4249cdd8a283ef863b94c07e4df98de8290ed3b52",
+        "svg": "a03295ac6be3133c714d972d04b6e6958026daa49c68aee721b52e04b2709d97",
         "web_png": "c9c088adb8021db31a65ac3cd11cd64b1eae3e6a78f71fa5fdb08087c1c6ceab"
       },
       "source_data": "/benchmarks/data/figures/locked_versus_external_calibration_and_discrimination.json",
@@ -8562,10 +8574,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_review_quality_subgroup_performance.provenance.json",
       "sha256": {
-        "pdf": "05eeda3ccf039ed9bd70f2c09e374c57a7e4492a26587ac598718312dc5ba46c",
+        "pdf": "039d753cf43d870d99ead01010c2651fffed1cd0c3782ab9031a6e81a5886bfd",
         "png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524",
         "source_data": "9b62fb2e040332e5d2280e2b3e49a66d1b749bf7c404b93c163553e4f5baa4bc",
-        "svg": "a2a9382e59c88bf0cb945639cf8c36fdd8001c2b4f179917dcca7feb90a6634e",
+        "svg": "873486cb13aeb29a8cb12cd5298fbc3e03bfcf76848bf382a2384725163c1427",
         "web_png": "24a87e07b55a449115855c3492a2d83e3b804ffc1d19e037bf3785c0fca22524"
       },
       "source_data": "/benchmarks/data/figures/external_review_quality_subgroup_performance.json",
@@ -8580,10 +8592,10 @@
       "population": "frozen external ClinVar cohort",
       "provenance": "/benchmarks/data/figures/external_model_agreement.provenance.json",
       "sha256": {
-        "pdf": "574b54d814edd4234662f555b890cff04c342abe2f040f35d444c7a0f9a31912",
+        "pdf": "4cfcf38f7bf1a00bd9570fe1a25f36008c217dbfd7c2f0c93aa31edd13221c8b",
         "png": "4d586d51a0e84a6d44a307ba5265429e8845d9226f5290a81ab318c14ecdfcdd",
         "source_data": "90bbdb83536ff76ef5f211b1f02b78ee86c4e39be9a5b2ff724942f6c6c9a994",
-        "svg": "350b867c803e34c8a6b51ab8324d5b021d44c170e977176d1bb7b3b00650a443",
+        "svg": "dc6fa50edb3f3eb4f7c5785ee5156aaecd6196fbbcef9b9b4881a0cc1f0f087f",
         "web_png": "4d586d51a0e84a6d44a307ba5265429e8845d9226f5290a81ab318c14ecdfcdd"
       },
       "source_data": "/benchmarks/data/figures/external_model_agreement.json",
@@ -8598,10 +8610,10 @@
       "population": "frozen external ClinVar inference",
       "provenance": "/benchmarks/data/figures/external_runtime_and_cache_economics.provenance.json",
       "sha256": {
-        "pdf": "4a8b546e9a62e345841e5315c09ab78ebcf8e828014d536b1a74889fdebdfefb",
+        "pdf": "38e4ea5ce601b7b5b9489607390c84faa4865d9fd744c10eedd33d3b6496e530",
         "png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef",
         "source_data": "e33e72611511c2b3197dafd5eacee0a46c8060fbd79fbef5bd27b7ee6363afa5",
-        "svg": "ef28c06afc3e907044ac9a0191a58915d1902475938bf392380c8d92a0fa9057",
+        "svg": "77a098e0541bd6745a8db54b7c39d01a97c74e6c01f4ff2359f0ffc0e6c8bccb",
         "web_png": "8a4c5fa5f823f4b4258c30ee98ab1744c1718c08ed1dab252ed22061b72d01ef"
       },
       "source_data": "/benchmarks/data/figures/external_runtime_and_cache_economics.json",
@@ -8616,10 +8628,10 @@
       "population": "descriptive external versus locked cohorts",
       "provenance": "/benchmarks/data/figures/external_versus_locked_cohort_drift.provenance.json",
       "sha256": {
-        "pdf": "dca98ae35ed84dfd75700c1a6d68c38c5b597d9fc886e0fb7616bbc746c970d8",
+        "pdf": "0c99006a2bdede4941cdb191b1e60f83d500927edddf64eb74fc54de9eac7fc1",
         "png": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535",
         "source_data": "9a887f88836b72263b298cc454eb82d086f9028074cece364b4c5e0df6ef6640",
-        "svg": "abe7df40cbf8ff8f1a7e09619f68b09b925d269d16dcf682aaa541d78485a60c",
+        "svg": "6d3dde57eb576c377a00e6337c91ba99f8ddb3078fe9ce8872b799880ff85b66",
         "web_png": "201fd2dd8fae826b78c5593c16af6308bd9ee0c88f475fe176e167e4627c4535"
       },
       "source_data": "/benchmarks/data/figures/external_versus_locked_cohort_drift.json",
@@ -8630,11 +8642,11 @@
       "benchmark_id": "B01-B68",
       "caption": "Contact sheet of generated benchmark figures.",
       "id": "contact_sheet",
-      "n": 33,
+      "n": 47,
       "population": "registered benchmark figures",
       "provenance": "/benchmarks/data/figures/contact_sheet.provenance.json",
       "sha256": {
-        "png": "530d549153272bc5d2282f832f6c958a043802318c8ec16ae72f888951fcb2a1"
+        "png": "1d3f45657ce83a0b69b1b8c66df33e07610deaf61404df3fa540b2f12aca4f3a"
       },
       "source_data": "/benchmarks/data/figures/contact_sheet.provenance.json",
       "title": "Benchmark figure contact sheet"
@@ -8652,7 +8664,7 @@
     "limitation": "Existing feasibility evidence is not a complete fine-tuned scientific result.",
     "real_encoder_update_feasibility_proof": "YES if existing proof artifact verifies"
   },
-  "generated_at_utc": "2026-09-23T20:31:19.143085+00:00",
+  "generated_at_utc": "2026-09-24T07:38:22.509192+00:00",
   "headline_cards": [
     {
       "id": "locked_n",
@@ -8705,32 +8717,30 @@
   ],
   "reproducibility": {
     "baseline_tag_commit": "1003bc5a20973145e0e096ff7b0f3424045d07e6",
-    "benchmark_protocol_sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
-    "benchmark_registry_sha256": "0d84eaf8fc0e0496ff03bb9c3a181cacc3530519b259d10d85d9e45f47d732a3",
+    "benchmark_protocol_sha256": "c180e2e9c2dcbc986279aecd2650c307a9d3c46dc95cf4251276c30c2555b643",
+    "benchmark_registry_sha256": "00005d64f43194982f35f1b5cdd3f2f9be959169f1fc6235e93bd21fafdc28c4",
     "commands": [
       "PYTHONPATH=src .venv/bin/python scripts/benchmark_expansion/run_local.py --self-check",
       "PYTHONPATH=src .venv/bin/python scripts/benchmark_expansion/run_local.py",
       "make secrets",
       "make web-check"
     ],
-    "external_evaluation_sha256": "6921215e0d4574fd67c8d71a8e86e163d5ad9d0eb39d0065cd06b73896ca2d65",
+    "external_evaluation_sha256": "688fd4b6abbb2346af396a9fc7ce013f82e306c44791a51e2e594b05b3b4adfd",
     "external_manifest_file_sha256": "c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d",
     "external_manifest_inner_sha256": "847eb9f2a3e9a099dc60bad4955b1160c0b8f2c9c2230082b529fbdd23514a7d",
-    "external_provenance_sha256": "5f7bb3b47026bf360af8b40b174c9b920960a0e18e2558c7980c9ceb56df4c40",
+    "external_provenance_sha256": "9595d5c4a836ad03fbb83f3400bbe1819c78e57c86e94b756aac8c8fbc32d442",
     "external_raw_predictions_sha256": "b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e",
-    "external_runtime_sha256": "6b719cd8ad779e478afe5172f0d6302114aed19d8e4e586ff2d01e68ebfee1d4",
     "formal_manifest_sha256": "f4a9e53bd96c60dd9bd949568adb7a6bece3ff01bd4cceb76f71f1380e16e782",
     "locked_manifest_sha256": "9f9e052d21f4a6a32f595cb20f48cb81e033c0481942820d04f9b67d410a16cb",
     "main_start_sha": "cd143aaa4bf568e00d73269648f39f5131a744c1",
-    "starting_main_head": "67d4a34893b3e67beb9ed54fa5e05f9e0bb4e89e",
+    "starting_main_head": "affe66e73236af5964fe432523e6bfdc93cc6744",
     "t0_sha256": "931322c5b576e4d46c82b2e275ef0920661ef9c39c1acf62ed48e6756f24d7aa",
     "t1_sha256": "230ba6d5ac0869bfb46fecb8d19bd8dbfa9a133bfda2e3f8f5b5b662ae7bf500",
-    "working_branch": "research/external-benchmark-completion-v1"
+    "working_branch": "main"
   },
   "schema_version": "1.0.0",
   "status_vocabulary": [
     "PASS",
-    "PASS_WITH_LIMITATIONS",
     "COMPLETED_WITH_LIMITATIONS",
     "NOT_APPLICABLE",
     "DATA_BLOCKED",
@@ -9009,8 +9019,9 @@
     {
       "benchmark_id": "B11",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
@@ -9020,8 +9031,9 @@
     {
       "benchmark_id": "B12",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_coverage_reaudit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
@@ -9383,8 +9395,9 @@
     {
       "benchmark_id": "B45",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
         "research/reports/final_metrics_table.json"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",
@@ -9529,6 +9542,11 @@
     {
       "benchmark_id": "B61",
       "evidence": [
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_manifest.json",
+        "artifacts/benchmarks/external_clinvar_manifest_receipt.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
+        "artifacts/benchmarks/external_clinvar_provenance.json",
         "artifacts/benchmarks/local_analysis_results.json#External ClinVar"
       ],
       "status": "PASS",
@@ -9547,10 +9565,12 @@
     {
       "benchmark_id": "B63",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/mavedb_assay_manifest.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/mavedb_protocol.md",
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "DATA_BLOCKED",
       "title": "MaveDB functional correlation",
@@ -9559,10 +9579,11 @@
     {
       "benchmark_id": "B64",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/comparator_audit.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "NOT_APPLICABLE",
       "title": "Additional public classical comparators",
@@ -9571,10 +9592,12 @@
     {
       "benchmark_id": "B65",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_classical_comparators.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "PASS_WITH_LIMITATIONS",
       "title": "External multi-model agreement",
@@ -9583,10 +9606,12 @@
     {
       "benchmark_id": "B66",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_evaluation.json",
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "PASS",
       "title": "External transported calibration",
@@ -9595,10 +9620,11 @@
     {
       "benchmark_id": "B67",
       "evidence": [
-        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "artifacts/benchmarks/external_clinvar_runtime.json",
         "artifacts/phase14/phase14_locked_evo2_20260922.json",
-        "research/reports/final_metrics_table.json",
-        "research/benchmarks/expansion_v1/protocol_lock.json"
+        "research/benchmarks/expansion_v1/protocol_lock.json",
+        "research/ml_extension/splits/authoritative_locked_test_manifest.json",
+        "research/reports/final_metrics_table.json"
       ],
       "status": "PASS",
       "title": "External runtime/cost/throughput",
@@ -9607,6 +9633,7 @@
     {
       "benchmark_id": "B68",
       "evidence": [
+        "artifacts/benchmarks/external_clinvar_metrics.json",
         "artifacts/benchmarks/local_analysis_results.json#Drift"
       ],
       "status": "COMPLETED_WITH_LIMITATIONS",

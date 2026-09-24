@@ -49,17 +49,17 @@
     "stage": "development_or_provenance"
   },
   {
-    "bytes": 727,
+    "bytes": 700,
     "label_availability": "not_applicable",
     "path": "research/benchmarks/expansion_v1/protocol.yaml",
-    "sha256": "4c86a8df54d8daa57af783a384a19e257aceb33d769012d457472f5fdc394eb8",
+    "sha256": "c180e2e9c2dcbc986279aecd2650c307a9d3c46dc95cf4251276c30c2555b643",
     "stage": "development_or_provenance"
   },
   {
-    "bytes": 2208,
+    "bytes": 2277,
     "label_availability": "not_applicable",
     "path": "research/benchmarks/expansion_v1/protocol_lock.json",
-    "sha256": "3274a0a45c28b624b04dca82efdf7021c163ba55a009aa59c45ed72c063509d2",
+    "sha256": "d72849f84423f3d5560f893f6a3940e46be0a10e34ad2e4cb7d2262a512079bf",
     "stage": "development_or_provenance"
   },
   {

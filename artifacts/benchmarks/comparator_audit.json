@@ -15,6 +15,6 @@
   ],
   "decision": "No additional public comparator is eligible for this continuation. GPN is a serious candidate with a compatible hg38 checkpoint and MIT license, but its required alignment asset is absent and the score-direction/orientation contract remains unverified. No proxy was substituted.",
   "official_audit_reused": "research/ml_extension/models/gpn.json",
-  "recorded_at_utc": "2026-09-23T20:31:16.592470+00:00",
+  "recorded_at_utc": "2026-09-24T07:38:20.112303+00:00",
   "status": "NOT_APPLICABLE"
 }

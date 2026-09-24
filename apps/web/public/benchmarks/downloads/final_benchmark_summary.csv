@@ -1,9 +1,6 @@
 field,value
 primary_status,PASS
 external_n,200
-modal_spend_usd,0.94
-modal_rate_estimated_inference_usd,0.4176400070755109
-modal_provider_billed_delta_usd,1.7
-modal_ending_verified_credit_usd,29.06
+modal_spend_usd,0.4176400070755109
 external_manifest_sha256,c5b90a453a9d9206b94d92cb141b15d878c0542c9d7bf516212b1d4ff4c7130d
 external_predictions_sha256,b3796f50e590d9a46dc969837f5cf395d0bcf46fba669694c93861ed52b9bf8e
